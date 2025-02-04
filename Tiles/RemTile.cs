@@ -1,0 +1,661 @@
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Remnants.Biomes;
+using Remnants.Biomes.Waters;
+using Remnants.Tiles.Blocks;
+using Remnants.Tiles.Objects;
+using Remnants.Tiles.Objects.Furniture;
+using Remnants.Tiles.Plants;
+using Remnants.Walls;
+using Remnants.Worldgen.Subworlds;
+using System;
+using System.Linq;
+//using SubworldLibrary;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Remnants.Tiles.Objects.Hazards;
+using Terraria.ObjectData;
+using Remnants.Walls.Parallax;
+using Remnants.Worldgen;
+using Remnants.Dusts.Environment;
+
+namespace Remnants.Tiles
+{
+    public class RemTile : GlobalTile
+    {
+        public override void SetStaticDefaults()
+        {
+            //Main.tileBlendAll[TileID.Coralstone] = true;
+            Main.tileBlockLight[TileID.Coralstone] = true;
+
+            TileID.Sets.CanBeClearedDuringGeneration[TileID.WoodBlock] = false;
+            TileID.Sets.CanBeClearedDuringGeneration[TileID.GrayBrick] = false;
+            TileID.Sets.CanBeClearedDuringGeneration[TileID.BrownMossBrick] = false;
+            TileID.Sets.CanBeClearedDuringGeneration[TileID.IridescentBrick] = false;
+            TileID.Sets.CanBeClearedDuringGeneration[TileID.ObsidianBrick] = false;
+            TileID.Sets.CanBeClearedDuringGeneration[TileID.HellstoneBrick] = false;
+            TileID.Sets.CanBeClearedDuringGeneration[TileID.Glass] = false;
+
+            WallID.Sets.AllowsPlantsToGrow[WallID.LavaUnsafe4] = true;
+
+            for (int type = 0; type <= 300; type++)
+            {
+                if (Main.tileMergeDirt[type])
+                {
+                    Main.tileMerge[type][TileID.ClayBlock] = true;
+                    Main.tileMerge[TileID.ClayBlock][type] = true;
+                }
+            }
+        }
+
+        public override bool CanPlace(int i, int j, int type)
+        {
+            if (IsBackgroundWall(i, j) && !AdjacentTiles(i, j, TileID.Sets.Platforms[type], TileID.Sets.Torch[type]))
+            {
+                if (Main.tileSolid[type] || TileID.Sets.Torch[type])
+                {
+                    return false;
+                }
+            }
+            return base.CanPlace(i, j, type);
+        }
+
+        private bool AdjacentTiles(int i, int j, bool diagonal, bool torch)
+        {
+            if (diagonal)
+            {
+                if (Main.tile[i - 1, j - 1].HasTile || Main.tile[i + 1, j - 1].HasTile || Main.tile[i + 1, j + 1].HasTile || Main.tile[i - 1, j + 1].HasTile)
+                {
+                    return true;
+                }
+            }
+
+            if (Main.tile[i - 1, j].HasTile && (Main.tileSolid[Main.tile[i - 1, j].TileType] && !Main.tileSolidTop[Main.tile[i - 1, j].TileType] || !torch) || Main.tile[i, j - 1].HasTile && !torch || Main.tile[i + 1, j].HasTile && (Main.tileSolid[Main.tile[i + 1, j].TileType] && !Main.tileSolidTop[Main.tile[i + 1, j].TileType] || !torch) || Main.tile[i, j + 1].HasTile && (Main.tileSolid[Main.tile[i, j + 1].TileType] || !torch))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool IsBackgroundWall(int i, int j)
+        {
+            Tile tile = Main.tile[i, j];
+            return tile.WallType == ModContent.WallType<undergrowth>() || tile.WallType == ModContent.WallType<pyramid>() || tile.WallType == ModContent.WallType<forgottentomb>() || tile.WallType == ModContent.WallType<stronghold>() || tile.WallType == ModContent.WallType<magicallab>() || tile.WallType == ModContent.WallType<hive>() || tile.WallType == ModContent.WallType<dungeonblue>() || tile.WallType == ModContent.WallType<dungeongreen>() || tile.WallType == ModContent.WallType<dungeonpink>() || tile.WallType == ModContent.WallType<temple>() || tile.WallType == ModContent.WallType<whisperingmaze>();
+        }
+
+        public override bool TileFrame(int i, int j, int type, ref bool resetFrame, ref bool noBreak)
+        {
+            if (IsBackgroundWall(i, j) && TileID.Sets.Torch[type])
+            {
+                if (!AdjacentTiles(i, j, false, true))
+                {
+                    WorldGen.KillTile(i, j);
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public override void KillTile(int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem)
+        {
+            if (Main.tile[i, j + 1].HasTile && Main.tile[i, j + 1].TileType == ModContent.TileType<LockedIronDoor>())
+            {
+                fail = true;
+            }
+        }
+
+        public override bool CanKillTile(int i, int j, int type, ref bool blockDamaged)
+        {
+            if (type == TileID.BlueDungeonBrick || type == TileID.GreenDungeonBrick || type == TileID.PinkDungeonBrick)
+            {
+                if (!Main.hardMode)
+                {
+                    return false;
+                }
+            }
+            else if (WorldGen.gen)
+            {
+                if (type == TileID.LivingWood || type == TileID.Sunplate || type == TileID.Glass)
+                {
+                    return false;
+                }
+            }
+
+            return base.CanKillTile(i, j, type, ref blockDamaged);
+        }
+
+        public override bool CanReplace(int i, int j, int type, int tileTypeBeingPlaced)
+        {
+            if (type == TileID.BlueDungeonBrick || type == TileID.GreenDungeonBrick || type == TileID.PinkDungeonBrick)
+            {
+                if (!Main.hardMode)
+                {
+                    return false;
+                }
+            }
+
+            return base.CanReplace(i, j, type, tileTypeBeingPlaced);
+        }
+
+        public override bool Slope(int i, int j, int type)
+        {
+            if (Main.tile[i, j + 1].HasTile && Main.tile[i, j + 1].TileType == ModContent.TileType<LockedIronDoor>() || Main.tile[i, j - 1].HasTile && Main.tile[i, j - 1].TileType == ModContent.TileType<LockedIronDoor>())
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override bool PreDraw(int i, int j, int type, SpriteBatch spriteBatch)
+        {
+            Tile tile = Main.tile[i, j];
+
+            if (tile.WallType == ModContent.WallType<dungeonblue>() || tile.WallType == ModContent.WallType<dungeongreen>() || tile.WallType == ModContent.WallType<dungeonpink>() || tile.WallType == ModContent.WallType<pyramid>() || tile.WallType == ModContent.WallType<temple>())
+            {
+                if (tile.TileType == TileID.Painting3X3 || tile.TileType == TileID.Painting6X4 || tile.TileType == TileID.Painting4X3)
+                {
+                    int yOffset = (int)(Math.Sin(Main.GameUpdateCount * 0.03f) * 8);
+                    if (tile.TileType == TileID.Painting6X4)
+                    {
+                        yOffset *= -1;
+                    }
+
+                    Texture2D texture = Main.instance.TilesRenderer.GetTileDrawTexture(tile, i, j);// ModContent.Request<Texture2D>("Terraria/Images/Tiles_" + tile.TileType).Value;
+                    Vector2 zero = Main.drawToScreen ? Vector2.Zero : new(Main.offScreenRange);
+                    Rectangle frame = new(tile.TileFrameX, tile.TileFrameY, 16, 16);
+
+                    Main.spriteBatch.Draw(texture, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y + yOffset) + zero, frame, Lighting.GetColor(i, j), 0f, Vector2.Zero, 1f, 0, 0f);
+
+                    if (!Main.tile[i, j + 1].HasTile || Main.tile[i, j + 1].TileType != tile.TileType)
+                    {
+                        if (Main.rand.NextBool(1))
+                        {
+                            int dustType = tile.WallType == ModContent.WallType<pyramid>() || tile.WallType == ModContent.WallType<temple>() ? DustID.YellowTorch : DustID.BoneTorch;
+                            float dustScale = dustType == DustID.YellowTorch ? 1f : 0.5f;
+
+                            Dust dust = Dust.NewDustDirect(new Vector2(i * 16, (j + 0.5f) * 16 + yOffset), 16, 0, dustType, Scale: dustScale);
+                            dust.velocity *= 0.5f;
+                            dust.velocity.Y += 2f;
+                            dust.noGravity = true;
+                        }
+                    }
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public override void RandomUpdate(int i, int j, int type)
+        {
+            //if (!Framing.GetTileSafely(i, j - 1).HasTile && RemTile.SolidTop(i, j))
+            //{
+            //    Tile tile = Main.tile[i, j];
+            //    if (j < Main.worldSurface && (tile.TileType == TileID.Grass || tile.TileType == TileID.JungleGrass) && Main.rand.NextBool(100))
+            //    {
+            //        WorldGen.PlaceTile(i, j - 1, ModContent.TileType<nightglow>(), true, style: Main.rand.Next(3));
+            //    }
+            //}
+            //if (Main.rand.NextBool(1000))
+            //         {
+            //	if (!Main.tile[i, j - 1].HasTile && Main.tile[i, j - 1].LiquidAmount <= 32 && i >= 95 && i <= Main.maxTilesX - 95 && j >= 95 && j <= Main.maxTilesY - 95)
+            //             {
+            //		if (j < Main.worldSurface && Main.tile[i, j].TileType == TileID.SnowBlock)
+            //		{
+            //			WorldGen.PlaceTile(i, j - 1, TileID.DyePlants, mute: true, style: 4);
+            //		}
+            //	}
+            //}
+
+            //if (Framing.GetTileSafely(i, j).LiquidAmount == 255 && Framing.GetTileSafely(i, j).LiquidAmountType() == 1)
+            //{
+            //    if (Framing.GetTileSafely(i, j).wall == WallID.GrassUnsafe || Framing.GetTileSafely(i, j).wall == WallID.FlowerUnsafe || Framing.GetTileSafely(i, j).wall == WallID.CorruptGrassUnsafe || Framing.GetTileSafely(i, j).wall == WallID.CrimsonGrassUnsafe || Framing.GetTileSafely(i, j).wall == WallID.HallowedGrassUnsafe)
+            //    {
+            //        Framing.GetTileSafely(i, j).wall = WallID.DirtUnsafe;
+            //    }
+            //    if (Framing.GetTileSafely(i, j).wall == WallID.JungleUnsafe)
+            //    {
+            //        Framing.GetTileSafely(i, j).wall = WallID.MudUnsafe;
+            //    }
+            //}
+        }
+
+        public static bool SolidTop(int i, int j)
+        {
+            if (!Main.tile[i, j].HasTile || !Main.tileSolid[Main.tile[i, j].TileType] && !Main.tileSolidTop[Main.tile[i, j].TileType])
+            {
+                return false;
+            }
+            else if (Main.tile[i, j].Slope == SlopeType.SlopeDownLeft || Main.tile[i, j].Slope == SlopeType.SlopeDownRight || Main.tile[i, j].IsHalfBlock)
+            {
+                return false;
+            }
+            return true;
+        }
+        public static bool SolidBottom(int i, int j)
+        {
+            if (!Main.tile[i, j].HasTile || !Main.tileSolid[Main.tile[i, j].TileType])
+            {
+                return false;
+            }
+            else if (Main.tile[i, j].Slope == SlopeType.SlopeUpLeft || Main.tile[i, j].Slope == SlopeType.SlopeUpRight)
+            {
+                return false;
+            }
+            return true;
+        }
+        public static bool SolidLeft(int i, int j)
+        {
+            if (!Main.tile[i, j].HasTile || !Main.tileSolid[Main.tile[i, j].TileType])
+            {
+                return false;
+            }
+            else if (Main.tile[i, j].Slope == SlopeType.SlopeDownRight || Main.tile[i, j].Slope == SlopeType.SlopeUpRight || Main.tile[i, j].IsHalfBlock)
+            {
+                return false;
+            }
+            return true;
+        }
+        public static bool SolidRight(int i, int j)
+        {
+            if (!Main.tile[i, j].HasTile || !Main.tileSolid[Main.tile[i, j].TileType])
+            {
+                return false;
+            }
+            else if (Main.tile[i, j].Slope == SlopeType.SlopeDownLeft || Main.tile[i, j].Slope == SlopeType.SlopeUpLeft || Main.tile[i, j].IsHalfBlock)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public static void RGBLight(float r, float g, float b, Color color)
+        {
+            r = (float)(color.R / 255f);
+            g = (float)(color.G / 255f);
+            b = (float)(color.B / 255f);
+        }
+
+        public static int GetGemType(int j, bool random = true)
+        {
+            int low = (int)Main.rockLayer;
+            int high = Main.maxTilesY - 300;
+
+            int gemType = (int)(((float)j - low) / (high - low) * 5);
+
+            if (j <= low)
+            {
+                gemType = 0;
+            }
+            else if (j >= high)
+            {
+                gemType = 4;
+            }
+
+            return gemType + (random ? WorldGen.genRand.Next(2) : 0);
+        }
+
+        public static int FlowerGetLength(int i, int j)
+        {
+            int length = 0;
+            for (int a = 0; !WGTools.Solid(i, j + a) && Main.tile[i, j + a].LiquidAmount != 255; a++)
+            {
+                if (Main.tile[i, j + a].TileType == ModContent.TileType<jungleflowerstem>() || Main.tile[i, j + a].TileType == ModContent.TileType<jungleflowerhead>())
+                {
+                    length++;
+                }
+            }
+
+            return length;
+        }
+
+        public static Color GoldenCityLightColour(int i, int j, bool light = false, bool red = false)
+        {
+            float r = 255;
+            float g = 205 + (int)(Math.Sin((Main.GameUpdateCount - i) * 0.1f) * 50);
+            float b = 100;
+            if (red)
+            {
+                g /= 2f;
+            }
+            if (light)
+            {
+                r /= 2f;
+                g /= 4f;
+                b /= 4f;
+            }
+            return new Color((int)r, (int)g, (int)b);
+        }
+
+        public static Color MagicalLabLightColour(int j, bool light = false)
+        {
+            float frequency = MathHelper.TwoPi / 200;
+
+            float r = 200 + (int)(Math.Sin(frequency * Main.GameUpdateCount + j / 3f) * 55);
+            float g = 200 + (int)(Math.Sin(frequency * Main.GameUpdateCount + j / 3f + 2) * 55);
+            float b = 200 + (int)(Math.Sin(frequency * Main.GameUpdateCount + j / 3f + 4) * 55);
+            if (light)
+            {
+                r /= 1.5f;
+                g /= 2f;
+                b /= 2f;
+            }
+            return new Color((int)r, (int)g, (int)b);
+        }
+
+        public static void SmallPile(int x, int y, int style)
+        {
+            if (Framing.GetTileSafely(x, y + 1).HasTile && Main.tileSolid[Framing.GetTileSafely(x, y + 1).TileType])
+            {
+                if (!Framing.GetTileSafely(x, y).HasTile)
+                {
+                    WorldGen.PlaceTile(x, y, TileID.SmallPiles);
+                    Framing.GetTileSafely(x, y).TileFrameX = (short)(style * 18);
+                }
+            }
+        }
+
+        public static void Stalactite(int x, int y, int style)
+        {
+            if (Framing.GetTileSafely(x, y - 1).HasTile && Main.tileSolid[Framing.GetTileSafely(x, y - 1).TileType])
+            {
+                if (!Framing.GetTileSafely(x, y).HasTile && !Framing.GetTileSafely(x, y + 1).HasTile)
+                {
+                    Framing.GetTileSafely(x, y).HasTile = true;
+                    Framing.GetTileSafely(x, y + 1).HasTile = true;
+                    Framing.GetTileSafely(x, y).TileType = TileID.Stalactite;
+                    Framing.GetTileSafely(x, y + 1).TileType = TileID.Stalactite;
+
+                    Framing.GetTileSafely(x, y).TileFrameX = (short)(style * 18);
+                    Framing.GetTileSafely(x, y + 1).TileFrameX = (short)(style * 18);
+                    Framing.GetTileSafely(x, y).TileFrameY = 0;
+                    Framing.GetTileSafely(x, y + 1).TileFrameY = 18;
+                }
+            }
+        }
+    }
+
+    public class TileBlend : GlobalTile
+    {
+        public override void SetStaticDefaults()
+        {
+            //Main.tileBlendAll[TileID.ClayBlock] = true;
+            //Main.tileBlendAll[TileID.Mud] = true;
+
+            Main.tileBlendAll[TileID.Grass] = true;
+            Main.tileBlendAll[TileID.CorruptGrass] = true;
+            Main.tileBlendAll[TileID.CrimsonGrass] = true;
+            Main.tileBlendAll[TileID.JungleGrass] = true;
+            Main.tileBlendAll[TileID.MushroomGrass] = true;
+
+            //TileMerge(TileID.Grass, TileID.ClayBlock);
+
+            TileMerge(TileID.Vines, TileID.VineFlowers);
+
+            //TileMerge(TileID.Sandstone, TileID.SmoothSandstone);
+
+            //TileMerge(TileID.FossilOre, TileID.Sand);
+            //TileMerge(TileID.FossilOre, TileID.HardenedSand);
+
+            Main.tileMerge[TileID.Sandstone][TileID.Stalactite] = false;//true;
+            Main.tileMerge[TileID.Granite][TileID.Stalactite] = false;//true;
+            Main.tileMerge[TileID.Marble][TileID.Stalactite] = false;//true;
+
+            TileMerge(TileID.Silt, TileID.Stone);
+            TileMerge(TileID.Slush, TileID.IceBlock);
+
+            TileMerge(TileID.Granite, TileID.GraniteBlock);
+
+            TileMerge(TileID.HardenedSand, TileID.Dirt);
+            TileMerge(TileID.HardenedSand, TileID.ClayBlock);
+            TileMerge(TileID.HardenedSand, TileID.Stone);
+
+            TileMerge(TileID.Sandstone, TileID.SmoothSandstone);
+
+            TileMerge(TileID.Silt, TileID.Mud);
+            TileMerge(TileID.Silt, TileID.Ash);
+            TileMerge(TileID.Silt, TileID.Slush);
+
+            TileMerge(TileID.Obsidian, TileID.Stone);
+            TileMerge(TileID.Obsidian, TileID.Mud);
+            TileMerge(TileID.Obsidian, TileID.Silt);
+            TileMerge(TileID.Obsidian, TileID.Ash);
+            TileMerge(TileID.Obsidian, TileID.Hellstone);
+            TileMerge(TileID.Obsidian, TileID.ObsidianBrick);
+            TileMerge(TileID.Obsidian, TileID.HellstoneBrick);
+
+            TileMerge(TileID.Hellstone, TileID.Stone);
+            TileMerge(TileID.Hellstone, TileID.Mud);
+            TileMerge(TileID.Hellstone, TileID.Silt);
+            TileMerge(TileID.Hellstone, TileID.ObsidianBrick);
+            TileMerge(TileID.Hellstone, TileID.HellstoneBrick);
+
+            //Main.tileMergeDirt[TileID.SnowBlock] = true;
+            //Main.tileMerge[TileID.SnowBlock][TileID.IceBlock] = true;
+        }
+
+        private void TileMerge(ushort tile1, ushort tile2)
+        {
+            Main.tileMerge[tile1][tile2] = true;
+            Main.tileMerge[tile2][tile1] = true;
+        }
+    }
+
+    public class RandomUpdates : GlobalWall
+    {
+        public override void RandomUpdate(int i, int j, int type)
+        {
+            Tile tile = Main.tile[i, j];
+
+            //if (j > Main.worldSurface)
+            //         {
+            //	TryToPlaceGuardian(i, j);
+            //}
+
+            if (ModContent.GetInstance<Server>().HangingBats && Main.netMode == NetmodeID.SinglePlayer)
+            {
+                int[] badWalls = new int[2];
+
+                //badWalls[0] = ModContent.WallType<temple>();
+                //badWalls[1] = WallID.LihzahrdBrickUnsafe;
+                //badWalls[2] = ModContent.WallType<pyramid>();
+                //badWalls[3] = ModContent.WallType<PyramidBrickWallUnsafe>();
+                //badWalls[4] = ModContent.WallType<whisperingmaze>();
+                //badWalls[5] = ModContent.WallType<LabyrinthTileWall>();
+                //badWalls[6] = ModContent.WallType<LabyrinthBrickWall>();
+                //badWalls[7] = ModContent.WallType<magicallab>();
+                //badWalls[8] = ModContent.WallType<EnchantedBrickWallUnsafe>();
+                badWalls[0] = WallID.CorruptionUnsafe3;
+                badWalls[1] = WallID.CrimsonUnsafe3;
+
+                Player player = Main.LocalPlayer;
+                if (Main.rand.NextBool(50) && !tile.HasTile && WGTools.Solid(i, j - 1) && !WGTools.Solid(i, j + 1) && tile.LiquidAmount == 0 && Main.tileOreFinderPriority[Main.tile[i, j - 1].TileType] == 0 && Vector2.Distance(new Vector2(i * 16 + 8, j * 16 + 8), player.Center) > 80 * 16)
+                {
+                    if (!Main.wallHouse[tile.WallType] && tile.WallType < WallID.Count)
+                    {
+                        //tile.WallType == 0 || tile.WallType == WallID.DirtUnsafe || tile.WallType == WallID.Cave6Unsafe || tile.WallType == WallID.DirtUnsafe1 || tile.WallType == WallID.DirtUnsafe2 || tile.WallType == WallID.DirtUnsafe3 || tile.WallType == WallID.DirtUnsafe4 || tile.WallType == WallID.SnowWallUnsafe || tile.WallType == WallID.IceUnsafe || tile.WallType == WallID.JungleUnsafe || tile.WallType == WallID.MudUnsafe || tile.WallType == WallID.JungleUnsafe1 || tile.WallType == WallID.JungleUnsafe2 || tile.WallType == WallID.JungleUnsafe3 || tile.WallType == WallID.JungleUnsafe4 || tile.WallType == WallID.LavaUnsafe1 || tile.WallType == WallID.LavaUnsafe2 || tile.WallType == WallID.LavaUnsafe3 || tile.WallType == WallID.LavaUnsafe4 || tile.WallType == WallID.ObsidianBackUnsafe)
+                        // && tile.WallType != ModContent.WallType<vault>() && tile.WallType != ModContent.WallType<vaultwallunsafe>()
+                        if (!Main.wallDungeon[tile.WallType] && !badWalls.Contains(tile.WallType) && tile.WallType != WallID.LivingWoodUnsafe && tile.WallType != WallID.HiveUnsafe && !WallID.Sets.Conversion.Sandstone[tile.WallType] && !WallID.Sets.Conversion.HardenedSand[tile.WallType] && tile.WallType != WallID.DesertFossil)
+                        {
+                            tile = Main.tile[i, j - 1];
+                            int style = -1;
+
+                            if (j > Main.maxTilesY - 300)
+                            {
+                                if (Main.hardMode)
+                                {
+                                    style = 6;
+                                }
+                                else style = 2;
+                            }
+                            else if (j > Main.worldSurface)
+                            {
+                                if (TileID.Sets.Hallow[tile.TileType])
+                                {
+                                    style = 4;
+                                }
+                                else if (tile.TileType == TileID.JungleGrass || tile.TileType == TileID.LihzahrdBrick || tile.TileType == TileID.Hive || tile.TileType == TileID.Chlorophyte || tile.TileType == TileID.RichMahogany || tile.TileType == TileID.LivingMahogany || tile.TileType == TileID.LivingMahoganyLeaves)
+                                {
+                                    if (Main.hardMode)
+                                    {
+                                        style = 7;
+                                    }
+                                    else style = 1;
+                                }
+                                else if (tile.TileType == TileID.SnowBlock || tile.TileType == TileID.IceBlock || tile.TileType == TileID.SnowBrick || tile.TileType == TileID.IceBrick || tile.TileType == TileID.BorealWood)
+                                {
+                                    style = 5;
+                                }
+                                else if (tile.TileType == TileID.MushroomGrass || tile.TileType == TileID.MushroomBlock)
+                                {
+                                    style = 8;
+                                }
+                                else if (!TileID.Sets.Corrupt[tile.TileType] && !TileID.Sets.Crimson[tile.TileType] && tile.TileType != ModContent.TileType<Hardstone>())
+                                {
+                                    if (Main.hardMode)
+                                    {
+                                        style = 3;
+                                    }
+                                    else style = 0;
+                                }
+                            }
+
+                            if (style >= 0)
+                            {
+                                WorldGen.PlaceTile(i, j, ModContent.TileType<HangingBat>(), true, style: style);
+                                ModContent.GetInstance<TEhangingbat>().Place(i, j);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    public class WaterVisuals : GlobalTile
+    {
+        public override void DrawEffects(int i, int j, int type, SpriteBatch spriteBatch, ref TileDrawInfo drawData)
+        {
+            if (Main.waterStyle == ModContent.Find<ModWaterStyle>("Remnants/GardenWater").Slot)
+            {
+                if (Main.rand.NextBool(50))
+                {
+                    Tile tile = Main.tile[i, j];
+
+                    if (!WorldGen.SolidOrSlopedTile(i, j - 1) && Main.tile[i, j - 1].LiquidAmount > 0)
+                    {
+                        int height = 0;
+                        while (true)
+                        {
+                            if (Main.tile[i, j - height - 2].LiquidAmount > 0)
+                            {
+                                height++;
+                            }
+                            else break;
+                        }
+
+                        if (!WorldGen.SolidOrSlopedTile(i, j - height - 2) && Lighting.Brightness(i, j - height - 1) > 0.75f)
+                        {
+                            Dust dust = Dust.NewDustPerfect(new Vector2((i + Main.rand.NextFloat(1)) * 16, (j - height) * 16), DustID.TreasureSparkle, Vector2.Zero);
+                            dust.position.Y -= (Main.tile[i, j - height - 1].LiquidAmount / 255f) * 16f;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public class TileVisuals : GlobalWall
+    {
+        public override void SetStaticDefaults()
+        {
+
+        }
+
+        public override void ModifyLight(int i, int j, int type, ref float r, ref float g, ref float b)
+        {
+            Tile tile = Main.tile[i, j];
+
+            #region passivelight
+            if (tile.TileType == TileID.AlchemyTable)
+            {
+                if (tile.TileFrameY == 0 || tile.TileFrameX == 18 && tile.TileFrameY == 18 * 2)
+                {
+                    r = (float)(105f / 255f);
+                    g = (float)(213f / 255f);
+                    b = (float)(89f / 255f);
+                }
+                else if (tile.TileFrameX == 18 && tile.TileFrameY == 18)
+                {
+                    r = (float)(181f / 255f);
+                    g = (float)(138f / 255f);
+                    b = (float)(126f / 255f);
+                }
+
+                r /= 2f;
+                g /= 2f;
+                b /= 2f;
+            }
+            else if ((!tile.HasTile || !Main.tileSolid[tile.TileType]) && tile.LiquidAmount > 0)
+            {
+                //if (Main.LocalPlayer.ZoneSkyHeight)
+                //{
+                //	float sin = (float)(Math.Sin(Main.GameUpdateCount * 0.02f - i / 2) + 1) / 2;
+
+                //	r = (float)(190f / 255f) * (tile.LiquidAmount / 255f) * (1 - sin / 5);
+                //	g = (float)(195f / 255f) * (tile.LiquidAmount / 255f) * (1 - sin / 5);
+                //	b = (float)(255f / 255f) * (tile.LiquidAmount / 255f);
+                //}
+                if (Main.LocalPlayer.InModBiome<GraniteCave>())
+                {
+                    float sin = (float)(Math.Sin(Main.GameUpdateCount * 0.02f - i / 2) + 1) / 2;
+
+                    r = (float)(32f / 255f) * (tile.LiquidAmount / 255f) * (1 - sin / 2);
+                    g = (float)(62f / 255f) * (tile.LiquidAmount / 255f) * (1 - sin / 2);
+                    b = (float)(103f / 255f) * (tile.LiquidAmount / 255f) * (1 - sin / 4);
+                }
+            }
+            #endregion
+        }
+
+        public override void PostDraw(int i, int j, int type, SpriteBatch spriteBatch)
+        {
+            Tile tile = Main.tile[i, j];
+
+            if (tile.TileType == TileID.AlchemyTable && tile.TileFrameX == 0 && tile.TileFrameY == 18)
+            {
+                Dust dust = Dust.NewDustDirect(new Vector2(i * 16, j * 16 + 2), 8, 8, DustID.Torch, SpeedY: -100);
+                dust.noGravity = true;
+            }
+
+            Player player = Main.LocalPlayer;
+            if ((!tile.HasTile || !Main.tileSolid[tile.TileType]) && tile.LiquidAmount > 0)
+            {
+                if (player.InModBiome<GraniteCave>())
+                {
+                    if (Main.rand.NextBool(1000))
+                    {
+                        Dust dust = Dust.NewDustDirect(new Vector2(i, j) * 16, 16, 16, ModContent.DustType<granitespark>());
+                        dust.velocity = Vector2.Zero;
+                    }
+                }
+            }
+
+            if (tile.WallType == ModContent.WallType<undergrowth>() || tile.WallType == WallID.LivingWoodUnsafe)
+            {
+                if (Main.rand.NextBool(5000) && !tile.HasTile && tile.LiquidAmount == 0)
+                {
+                    Dust.NewDust(new Vector2(i, j) * 16, 16, 16, ModContent.DustType<treefirefly>());
+                }
+            }
+            else if (tile.WallType == ModContent.WallType<whisperingmaze>() || tile.WallType == ModContent.WallType<LabyrinthTileWall>() || tile.WallType == ModContent.WallType<LabyrinthBrickWall>())
+            {
+                if (Main.rand.NextBool(5000) && !tile.HasTile && tile.LiquidAmount == 0 && tile.TileType != ModContent.TileType<LabyrinthSpawner>())
+                {
+                    Dust.NewDust(new Vector2(i, j) * 16, 16, 16, ModContent.DustType<mazefirefly>());
+                }
+            }
+        }
+    }
+}

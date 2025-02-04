@@ -1,0 +1,8 @@
+Remnants is a unique, innovative mod that rebuilds your Terraria world from the ground up, enriching it with new environments to explore and secrets to discover.
+
+In summary, this mod adds:
+ . A complete overhaul to ALL vanilla world generation
+ . A diverse range of unique dungeons to test and reward your skills
+ . Gameplay improvements, most notably reworks to some enemy AI
+
+See the steam workshop page for more details.

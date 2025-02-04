@@ -1,0 +1,50 @@
+[url=https://discord.gg/cbK6rVC][img]https://imgur.com/SpUmKtI.png[/img][/url]
+[url=https://ko-fi.com/wombatgamery][img]https://imgur.com/ITDLQg9.png[/img][/url]
+[url=https://terrariamods.wiki.gg/wiki/Remnants][img]https://imgur.com/GxMGKAn.png[/img][/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3308342945][img]https://imgur.com/NDcAjBg.png[/img][/url]
+
+[h2]Overview[/h2] [img]https://i.imgur.com/jdunrUl.png[/img]
+Remnants is a unique, innovative mod that rebuilds your Terraria world from the ground up, enriching it with new environments to explore and secrets to discover.
+
+In summary, this mod adds:
+[list]
+[*]A complete overhaul to ALL vanilla world generation
+[*]A diverse range of unique dungeons to test and reward your skills
+[*]Gameplay improvements, most notably reworks to some enemy AI
+[/list]
+
+[h2]Compatibility[/h2] [img]https://i.imgur.com/jdunrUl.png[/img]
+Remnants makes extremely drastic changes to the game's world generation, and it is important to know which mods break with these changes. Please do not report compatibility issues here, as most conflicts are unfixable on this mod's end.
+
+Fully compatible mods should be completely safe to use: [list]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416][b]Thorium Mod[/b][/url]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3015412343][b]Infernum Mode[/b][/url]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2893332653][b]Mod of Redemption[/b][/url]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2982372319][b]Spirit Mod[/b][/url]
+[/list]
+
+Partially compatible mods will cause some problems, but otherwise may still be playable: [list]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2824688072][b]Calamity Mod[/b][/url] (Golem enrages in the new jungle temple)
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2563862309][b]The Stars Above[/b][/url] (The Neon Veil overlaps other structures)
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2984622072][b]Starlight River[/b][/url] (A few biome and structure conflicts)
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2843112914][b]Secrets of the Shadows[/b][/url] (Conflicting pyramid reworks)
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3019925104][b]Lunar Veil[/b][/url] (Numerous biome and structure conflicts)
+[/list]
+
+Incompatible mods will result in a guaranteed crash or unplayable world: [list]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2930931197][b]Homeward Journey[/b][/url]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2833852432][b]Spooky Mod[/b][/url]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2787632488][b]Aequus[/b][/url]
+[/list]
+
+Note that the compatibility of these mods are evaluated only by their individual changes, and not that of any dependencies they might have. 
+
+[h2]Credits[/h2] [img]https://i.imgur.com/jdunrUl.png[/img]
+Thanks to the following sources for providing copyright-free assets: [list]
+[*]Sound effects designed by [url=https://www.bluezone-corporation.com][b]Bluezone Corporation.[/b][/url]
+[/list]
+
+Thanks to the following users for contributing directly to the mod: [list]
+[*]Russian localisation written by [url=https://steamcommunity.com/id/xenofite][b]Xenofite.[/b][/url]
+[/list]
+

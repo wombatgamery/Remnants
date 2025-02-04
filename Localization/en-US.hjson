@@ -1,0 +1,675 @@
+Mods: {
+	Remnants: {
+		Biomes: {
+			GoldenCity: {
+				DisplayName: Golden City
+				TownNPCDialogueName: the Golden City
+			}
+
+			GraniteCave: {
+				DisplayName: Granite Cave
+				TownNPCDialogueName: the Granite Cave
+			}
+
+			Growth: {
+				DisplayName: Growth
+				TownNPCDialogueName: the Growth
+			}
+
+			Hive: {
+				DisplayName: The Hive
+				TownNPCDialogueName: the Hive
+			}
+
+			JungleTemple: {
+				DisplayName: Jungle Temple
+				TownNPCDialogueName: the Jungle Temple
+			}
+
+			MagicalLab: {
+				DisplayName: Magical Lab
+				TownNPCDialogueName: the Magical Lab
+			}
+
+			MarbleCave: {
+				DisplayName: Marble Cave
+				TownNPCDialogueName: the Marble Cave
+			}
+
+			OceanCave: {
+				DisplayName: Ocean Cave
+				TownNPCDialogueName: the Ocean Cave
+			}
+
+			Pyramid: {
+				DisplayName: Pyramid
+				TownNPCDialogueName: the Pyramid
+			}
+
+			Vault: {
+				DisplayName: Vault
+				TownNPCDialogueName: the Vault
+			}
+
+			EchoingHalls: {
+				DisplayName: Echoing Halls
+				TownNPCDialogueName: the Echoing Halls
+			}
+
+			ForgottenTomb: {
+				DisplayName: Forgotten Tomb
+				TownNPCDialogueName: the Forgotten Tomb
+			}
+
+			MagicalLabAscension: {
+				DisplayName: Magical Lab Ascension
+				TownNPCDialogueName: the Magical Lab Ascension
+			}
+
+			Undergrowth: {
+				DisplayName: Undergrowth
+				TownNPCDialogueName: the Undergrowth
+			}
+
+			AerialGarden: {
+				DisplayName: Aerial Garden
+				TownNPCDialogueName: the Aerial Garden
+			}
+		}
+
+		Tiles: {
+			Hardstone.MapEntry: Hardstone
+			StarOre.MapEntry: Stellar Remnant
+			vaultpipe.MapEntry: vaultpipe
+			LockedIronDoor.MapEntry: Locked Iron Door
+			RustedChest.MapEntry: Rusted Chest
+			LabyrinthSpawner.MapEntry: Spawner
+			PiranhaSpawner.MapEntry: Spawner
+			Spitflower.MapEntry: Spitflower
+			LabyrinthAltar.MapEntry: Labyrinth Altar
+			Minecart.MapEntry: Minecart
+			Sarcophagus.MapEntry: Sarcophagus
+			Scrapper.MapEntry: Scrapper
+			spiritlamp.MapEntry: spiritlamp
+			Dreampod.MapEntry: Dreampod
+			Runestalk.MapEntry: Runestalk
+
+			PyramidChest: {
+				MapEntry: Pyramid Chest
+				MapEntry0: Locked Pyramid Chest
+			}
+
+			PyramidPot.MapEntry: Pyramid Pot
+			Cryocoral.MapEntry: Cryocoral
+			Luminsponge.MapEntry: Luminsponge
+			Nightglow.MapEntry: Nightglow
+			Shroomcart.MapEntry: Shroomcart
+			ArcaneChest.MapEntry: Arcane Chest
+			SacrificialAltar.MapEntry: Sacrificial Altar
+			Eyeball.MapEntry: Evil Eye
+			VaultPipe.MapEntry: Vault Pipe
+			AlchemyBench.MapEntry: Alchemy Bench
+		}
+
+		Buffs: {
+			ManaShieldCooldown: {
+				DisplayName: Shield Break
+				Description: Your magic shield needs time to recover
+			}
+
+			RunestalkBlessing: {
+				DisplayName: Runestalk Blessing
+				Description: 50% increased mining speed
+			}
+		}
+
+		Items: {
+			alchemybook: {
+				DisplayName: alchemybook
+				Tooltip: ""
+			}
+
+			devtool: {
+				DisplayName: devtool
+				Tooltip: ""
+			}
+
+			ManaShield: {
+				DisplayName: Magic Shield
+				Tooltip:
+					'''
+					At the cost of mana, reduces final damage taken by 25%
+					Temporarily shuts down if it fully depletes your mana
+					'''
+			}
+
+			RingofElements: {
+				DisplayName: Ring of Elements
+				Tooltip: Debuffs wear off 100% faster, not including potion sickness
+			}
+
+			IronKey: {
+				DisplayName: Iron Key
+				Tooltip: Opens one locked Iron Door
+			}
+
+			NightglowBerry: {
+				DisplayName: Nightglow Berry
+				Tooltip: A zesty, luminous fruit with almost magical properties...
+			}
+
+			PyramidKey: {
+				DisplayName: Pyramid Key
+				Tooltip: Unlocks a chest in the desert temple
+			}
+
+			CoinMold: {
+				DisplayName: Coin Mold
+				Tooltip: Allows one to forge a coin using a gold bar, but breaks after a single use
+			}
+
+			SalvagedMetal: {
+				DisplayName: Salvaged Metal
+				Tooltip: Can be recycled into iron bars at a furnace
+			}
+
+			WandofRefinement: {
+				DisplayName: Wand of Refinement
+				Tooltip: The shimmer magic in this wand makes certain walls look nicer
+			}
+
+			EnchantedBrick: {
+				DisplayName: Arcane Brick
+				Tooltip: ""
+			}
+
+			GardenBrick: {
+				DisplayName: Garden Brick
+				Tooltip: ""
+			}
+
+			GoldenPanel: {
+				DisplayName: Golden Panel
+				Tooltip: ""
+			}
+
+			Hardstone: {
+				DisplayName: Hardstone
+				Tooltip: A superdense rock of unknown origin
+			}
+
+			PyramidBrick: {
+				DisplayName: Pyramid Brick
+				Tooltip: ""
+			}
+
+			PyramidChest: {
+				DisplayName: Pyramid Chest
+				Tooltip: ""
+			}
+
+			StarOre: {
+				DisplayName: Stellar Remnant
+				Tooltip: A cooled and solidified star, still glowing with vibrant energy
+			}
+
+			ToxicWaste: {
+				DisplayName: Toxic Waste
+				Tooltip: ""
+			}
+
+			WaterBrick: {
+				DisplayName: Water Brick
+				Tooltip: ""
+			}
+
+			EnergySpike: {
+				DisplayName: Energy Spike
+				Tooltip: ""
+			}
+
+			LabyrinthDoor: {
+				DisplayName: Labyrinth Door
+				Tooltip: ""
+			}
+
+			LabyrinthWallLamp: {
+				DisplayName: Labyrinth Wall Lantern
+				Tooltip: ""
+			}
+
+			NightglowSeed: {
+				DisplayName: Nightglow Seed
+				Tooltip: ...and a hard pit in the center
+			}
+
+			RustedChest: {
+				DisplayName: Rusted Chest
+				Tooltip: The lock has worn off
+			}
+
+			Sarcophagus: {
+				DisplayName: Sarcophagus
+				Tooltip: An ancient tomb with a simple design
+			}
+
+			Scrapper: {
+				DisplayName: Scrapper
+				Tooltip: ""
+			}
+
+			sprout: {
+				DisplayName: sprout
+				Tooltip: ""
+			}
+
+			GardenBrickWall: {
+				DisplayName: Garden Brick Wall
+				Tooltip: ""
+			}
+
+			GoldenPanelWall: {
+				DisplayName: Golden Panel Wall
+				Tooltip: ""
+			}
+
+			PyramidBrickWall: {
+				DisplayName: Pyramid Brick Wall
+				Tooltip: ""
+			}
+
+			WaterBrickWall: {
+				DisplayName: Water Brick Wall
+				Tooltip: ""
+			}
+
+			LuminousHook: {
+				DisplayName: Luminous Hook
+				Tooltip: Provides light
+			}
+
+			ArmCannon: {
+				DisplayName: Arm Cannon
+				Tooltip: ""
+			}
+
+			CursedFlamethrower: {
+				DisplayName: Cursed Flamethrower
+				Tooltip: ""
+			}
+
+			SpiritLance: {
+				DisplayName: Spirit Lance
+				Tooltip: Restores mana based on damage dealt, but is much weaker when at full mana
+			}
+
+			VintageSniper: {
+				DisplayName: Vintage Sniper
+				Tooltip:
+					'''
+					Shoots a powerful, high velocity bullet
+					Right click to zoom out
+					'''
+			}
+
+			SummonCrown: {
+				DisplayName: Crown of Guidance
+				Tooltip: Depending on the wearer's injuries, minions deal up to 25% more damage
+			}
+
+			TombBrick: {
+				DisplayName: Tomb Brick
+				Tooltip: ""
+			}
+
+			TombBrickWall: {
+				DisplayName: Tomb Brick Wall
+				Tooltip: ""
+			}
+
+			EnchantedBrickWall: {
+				DisplayName: Arcane Brick Wall
+				Tooltip: ""
+			}
+
+			ScientistNotes1: {
+				DisplayName: Researcher's Notes: Preparation
+				Tooltip:
+					'''
+					Week 1, Day 1
+					-
+					Amidst a world of squalor and chaos, our home city was founded by visionaries with a passion for
+					progress and science. In their name, we have worked tirelessly to expand our knowledge and
+					civilisation, one generation after the next, surpassing what all others thought possible. The latest
+					of our developments is a state-of-the-art research facility located in our continent's tropical
+					region, built specifically to gather knowledge from unknown environments. I and my colleagues, the
+					greatest scientists of our city, were made eligible for this program, and have since been transferred
+					here to conduct our research. We are settling in today, and are expected to start tomorrow.
+					'''
+			}
+
+			ScientistNotes2: {
+				DisplayName: Researcher's Notes: Assignment
+				Tooltip:
+					'''
+					Week 1, Day 2
+					-
+					Our first order of business is experimenting with alchemical mixtures. The land surrounding this 
+					facility is far richer in alchemical ingredients, so it is now our job to improve their healing and
+					body-enhancing medicines. At the beginning of each week, a convoy will receive our findings for
+					integration into the city's development. We hope to yield useful results soon, because we will need
+					them for this program to survive.
+					'''
+			}
+
+			ScientistNotes3: {
+				DisplayName: Researcher's Notes: Symbiosis
+				Tooltip:
+					'''
+					Week 2, Day 6
+					-
+					The Magic-Enhanced Tissue Repair Agent, or known by common folk as the Healing Potion, is a medicine
+					of extraordinary power - it channels the life-giving energy of the Common Mushroom to induce rapid,
+					almost instant tissue repair, but not without putting immense strain on the body. If the body does
+					not regain its strength before further consumption, it risks total heart failure. Our recent studies
+					show that the subterranean Glowing Mushroom shares a curious symbiotic relationship with its common
+					counterpart, and by combining them in the mixture, we can supercharge the tissue repair process. The
+					result is a new healing substance that's precisely twice as strong as its predecessor, with no added
+					strain on the body. Today, we have made history, and it's safe to say we've secured the longevity of
+					this program. The authorities will be pleased with our work, but there is still much to be done.
+					'''
+			}
+
+			ScientistNotes4: {
+				DisplayName: Researcher's Notes: Sentience
+				Tooltip:
+					'''
+					Week 5, Day 4
+					-
+					With our alchemy work being managed effectively, we've had time to study magic extensively, and the
+					results have been... utmost intriguing. The most curious of our new spells is the ability to twist
+					ordinary matter into basic neural networks. So far, we've been practicing and refining our technique,
+					but now begins the field testing. We've written some magical tomes to receive sentience, and if
+					things go as planned, they should be able to read and cast the very spells stored within them! With
+					almost unlimited magical potential, these tomes could be suited to virtually any role, giving them
+					an incredible diversity of applications.
+					'''
+			}
+
+			ScientistNotes5: {
+				DisplayName: Researcher's Notes: Genesis
+				Tooltip:
+					'''
+					Week 13, Day 2
+					-
+					The cancerous growth neighbouring our home city continues to spread closer, but a few weeks ago, we
+					got our hands on some infected cell samples, which have been critical to our latest research. We
+					discovered that the infection is caused by a strain of pathogenic bacteria, specifically the harmful
+					toxins they release. Using their genetic information, we've managed to create our own recombinant
+					bacteria with a modified toxin that not only is harmless to ordinary cells, but specifically destroys
+					any malignant bacteria. With our newfound knowledge of magic, we can enchant our bacteria to have
+					some potentially useful side effects. We are well underway to creating what may be the greatest work
+					of science and magic in known history, and some are beginning to call it The Hallow.
+					'''
+			}
+
+			ScientistNotes6: {
+				DisplayName: Researcher's Notes: Dread
+				Tooltip:
+					'''
+					Week 14, Day 1
+					-
+					As we waited for our convoy, nobody came. The city would never forget about us, not with the immense
+					contributions we've made - something must be terribly wrong. This likely means we aren't getting any
+					more supply shipments, so we need to start fending for ourselves. We should start with a sustainable
+					food source by cultivating the fruits, vegetables and grain from our stockpiles. Still, it is barely
+					sufficient to sustain our current population, and we may need to implement our knowledge of magic
+					and genetics to ensure our survival... What a shame our great breakthrough never came to fruition.
+					'''
+			}
+
+			ScientistNotes7: {
+				DisplayName: Researcher's Notes: Abandonment
+				Tooltip:
+					'''
+					Week ??, Day ?
+					-
+					It's been quite some time since my last entry, and I have lost track of how many days have passed.
+					Recent events have kept me very busy, not to mention the toll they've taken on my mind... I set out
+					to investigate what remained of our wondrous city, and nothing could've prepared me for what I saw -
+					everybody I once knew had been reduced to a mindless corpse, aimlessly wandering the city halls, now
+					littered with rubble and piled bones. Everything we worked for... destroyed in mere days. Moreover,
+					there were some unprecedented side effects from our magically and genetically enhanced food. Some of
+					us are experiencing intense cravings and withdrawals, and in worse cases, loss of sanity. I
+					should've seen this coming. How could we have been so stupid?! Alas, there is nothing left for me
+					here - or anywhere, for that matter. I will take what I can with me and abandon this place tonight,
+					in search of a new calling.
+					'''
+			}
+
+			ArcaneChest: {
+				DisplayName: Arcane Chest
+				Tooltip: ""
+			}
+
+			SacrificialAltar: {
+				DisplayName: Sacrificial Altar
+				Tooltip: Old bloodstains cover the altar's surface, memorialising its terrible history
+			}
+
+			VaultPlating: {
+				DisplayName: Vault Plating
+				Tooltip: ""
+			}
+
+			VaultWall: {
+				DisplayName: Vault Wall
+				Tooltip: ""
+			}
+
+			HeavyAlloy: {
+				DisplayName: Heavy Alloy
+				Tooltip: ""
+			}
+
+			VaultPlatform: {
+				DisplayName: Vault Platform
+				Tooltip: ""
+			}
+
+			VaultPipe: {
+				DisplayName: Vault Pipework
+				Tooltip: ""
+			}
+
+			devwand2: {
+				DisplayName: devwand2
+				Tooltip: ""
+			}
+
+			HellishBrick: {
+				Tooltip: ""
+				DisplayName: Hellish Brick
+			}
+
+			HellishPlatform: {
+				DisplayName: Hellish Platform
+				Tooltip: ""
+			}
+
+			HellishBrickWall: {
+				DisplayName: Hellish Brick Wall
+				Tooltip: ""
+			}
+
+			MarineSlab: {
+				DisplayName: Marine Slab
+				Tooltip: ""
+			}
+
+			MarinePlatform: {
+				DisplayName: Marine Platform
+				Tooltip: ""
+			}
+
+			MarineSlabWall: {
+				DisplayName: Marine Slab Wall
+				Tooltip: ""
+			}
+
+			NightglowBerryIcon: {
+				DisplayName: Nightglow Berry Icon
+				Tooltip: ""
+			}
+
+			ArcanePlatform: {
+				DisplayName: Arcane Platform
+				Tooltip: ""
+			}
+
+			ArcaneChandelier: {
+				DisplayName: Arcane Chandelier
+				Tooltip: ""
+			}
+
+			AlchemyBench: {
+				DisplayName: Alchemy Bench
+				Tooltip: ""
+			}
+		}
+
+		NPCs: {
+			HoneySlime.DisplayName: Honey Slime
+			IlluminantDagger.DisplayName: Illuminant Dagger
+			TomeofFrost.DisplayName: Tome of Frost
+			TomeofInferno.DisplayName: Tome of Inferno
+			Ward.DisplayName: Ward
+			Blaster.DisplayName: Blaster
+			Flamer.DisplayName: Flamer
+			Gunner.DisplayName: Gunner
+			Icer.DisplayName: Icer
+			Shocker.DisplayName: Shocker
+			Arcanist.DisplayName: Enchanter
+			TomeofMending.DisplayName: Tomeof Mending
+		}
+
+		Projectiles: {
+			burn.DisplayName: burn
+			cursedburn.DisplayName: cursedburn
+			cursedflamejet.DisplayName: cursedflamejet
+			deathbolt.DisplayName: deathbolt
+			magicshieldhit.DisplayName: magicshieldhit
+			MazeGuardianTeleport.DisplayName: Maze Guardian Teleport
+			blastermissile.DisplayName: blastermissile
+			fireball.DisplayName: fireball
+			FireBolt.DisplayName: Fire Bolt
+			iceball.DisplayName: iceball
+			IceSpike.DisplayName: Ice Spike
+			PoisonSpit.DisplayName: Poison Spit
+			frostburn.DisplayName: frostburn
+			LuminousHook.DisplayName: Luminous Hook
+			ichorjet.DisplayName: ichorjet
+			shockbolt.DisplayName: shockbolt
+			uraniumbullet.DisplayName: uraniumbullet
+			flamejet.DisplayName: flamejet
+			minigunholdout.DisplayName: minigunholdout
+			pulsebolt.DisplayName: pulsebolt
+			SpiritLanceHoldout.DisplayName: Spirit Lance Holdout
+			AetherButterfly.DisplayName: Aether Butterfly
+			FallingDreampod.DisplayName: Falling Dreampod
+			FallingEyeball.DisplayName: Falling Eyeball
+		}
+
+		Configs: {
+			Client: {
+				DisplayName: Client Settings
+
+				Headers: {
+					Worldgen: World Generation
+					Audio: Audio
+				}
+
+				TerrainAmplitude: {
+					Label: "[i:3] Terrain Amplitude"
+					Tooltip: Directy controls the height variance of surface terrain
+				}
+
+				OreFrequency: {
+					Label: "[i:11] Ore Frequency"
+					Tooltip: Directly controls the amount of ore generated in new worlds
+				}
+
+				TrapFrequency: {
+					Label: "[i:539] Trap Frequency"
+					Tooltip: Directly controls the amount of traps generated in new worlds
+				}
+
+				CloudDensity: {
+					Label: "[i:751] Sky Density"
+					Tooltip: Directly controls the amount of floating isles and clouds generated in new worlds
+				}
+
+				CustomMusic: {
+					Label: "[i:576] Custom Music"
+					Tooltip: Enables the mod's custom music
+				}
+
+				ExperimentalWorldgen: {
+					Label: "[i:1344] Experimental Worldgen"
+					Tooltip:
+						'''
+						Enables worldgen still in development
+
+						Note: FOR TESTING PURPOSES ONLY, NEVER USE THIS FOR A NORMAL PLAYTHROUGH
+						'''
+				}
+			}
+
+			Server: {
+				DisplayName: Server Settings
+				Headers.Gameplay: Gameplay
+
+				FreedomOfMovement: {
+					Label: "[i:54] Freedom of Movement"
+					Tooltip:
+						'''
+						The player is naturally faster and more agile (15mph > 18mph) 
+
+						Note: Highly recommended - If using the Calamity mod, you are advised to keep this movement buff while disabling theirs
+						'''
+				}
+
+				EnemyAI: {
+					Label: "[i:1248] Enemy AI Improvements"
+					Tooltip:
+						'''
+						Most airborne or aquatic enemies will have improved AI
+
+						Note: Does nothing in multiplayer
+						'''
+				}
+
+				ProjectileAI: {
+					Label: "[i:1321] Projectile AI Improvements"
+					Tooltip:
+						'''
+						Throwing weapons will have a smooth flight trajectory, making them easier to use
+						Comes with additional balance changes, like autoswing for shurikens
+
+						Note: Contains obscure bugs
+						'''
+				}
+
+				HangingBats: {
+					Label: "[i:1621] Hanging Bats"
+					Tooltip:
+						'''
+						Bats will spawn hanging from the ceiling, only attacking when approached
+
+						Note: Does nothing in multiplayer
+						'''
+				}
+			}
+		}
+	}
+}

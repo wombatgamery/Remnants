@@ -1,0 +1,7 @@
+displayName = [c/81FEFF:Remnants]
+author = Wombat
+version = 1.5.33
+
+dllReferences = StructureHelper
+modReferences = WombatQOL
+sortAfter = StructureHelper, WombatQOL, Stellamod, VervCaves
