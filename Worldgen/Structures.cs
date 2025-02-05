@@ -932,15 +932,18 @@ namespace Remnants.Worldgen
                                 }
                                 else if (WGTools.Tile(x, y + 1).TileType == ModContent.TileType<AlchemyBench>())
                                 {
-                                    if (WorldGen.genRand.NextBool(2))
+                                    if (!WorldGen.genRand.NextBool(3))
                                     {
-                                        WorldGen.PlaceTile(x, y, TileID.Bottles);
                                         if (WorldGen.genRand.NextBool(2))
                                         {
-                                            tile.TileFrameX = (short)(WorldGen.genRand.NextBool(2) ? 18 : 36);
+                                            WorldGen.PlaceTile(x, y, TileID.Bottles);
+                                            if (WorldGen.genRand.NextBool(2))
+                                            {
+                                                tile.TileFrameX = (short)(WorldGen.genRand.NextBool(2) ? 18 : 36);
+                                            }
                                         }
+                                        else WorldGen.PlaceTile(x, y, TileID.Books);
                                     }
-                                    else WorldGen.PlaceTile(x, y, TileID.Books);
                                 }
                                 else if (WGTools.Tile(x, y + 1).TileType == TileID.Tables || WGTools.Tile(x, y + 1).TileType == TileID.WorkBenches || WGTools.Tile(x, y + 1).TileType == TileID.Dressers || WGTools.Tile(x, y + 1).TileType == TileID.Platforms && (WGTools.Tile(x, y + 1).TileFrameY == 18 * 9 || WGTools.Tile(x, y + 1).TileFrameY == 18 * 10 || WGTools.Tile(x, y + 1).TileFrameY == 18 * 11 || WGTools.Tile(x, y + 1).TileFrameY == 18 * 12))
                                 {
@@ -5284,6 +5287,7 @@ namespace Remnants.Worldgen
             progressCounter++;
 
             structureCount = 0; // GRANITE TOWER
+            int missingPiece = WorldGen.genRand.NextBool(3) ? ItemID.AncientCobaltLeggings : WorldGen.genRand.NextBool(2) ? ItemID.AncientCobaltBreastplate : ItemID.AncientCobaltHelmet;
             while (structureCount < Main.maxTilesY / 300)
             {
                 progress.Set((progressCounter + (structureCount / (float)(Main.maxTilesY / 300))) / (float)uniqueStructures);
@@ -5468,9 +5472,11 @@ namespace Remnants.Worldgen
                                 #region chestloot
                                 var itemsToAdd = new List<(int type, int stack)>();
 
-                                //itemsToAdd.Add((structureCount % 2 == 0 ? ItemID.CelestialMagnet : ItemID.CelestialMagnet, 1));
-
-                                itemsToAdd.Add((structureCount % 4 == 3 ? ItemID.AncientCobaltLeggings : structureCount % 4 == 2 ? ItemID.AncientCobaltBreastplate : structureCount % 4 == 1 ? ItemID.AncientCobaltHelmet : ItemID.CelestialMagnet, 1));
+                                int piece = structureCount % 4 == 3 ? ItemID.AncientCobaltLeggings : structureCount % 4 == 2 ? ItemID.AncientCobaltBreastplate : structureCount % 4 == 1 ? ItemID.AncientCobaltHelmet : ItemID.CelestialMagnet;
+                                if (piece != missingPiece)
+                                {
+                                    itemsToAdd.Add((piece, 1));
+                                }
 
                                 Structures.GenericLoot(chestIndex, itemsToAdd, 2);
 

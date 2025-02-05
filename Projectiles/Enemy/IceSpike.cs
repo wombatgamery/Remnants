@@ -38,7 +38,7 @@ namespace Remnants.Projectiles.Enemy
             }
 			else
             {
-				while (!WorldGen.SolidTile((int)(Projectile.position.X + 8) / 16, (int)(Projectile.position.Y / 16), true))
+				while (!WorldGen.SolidTile((int)(Projectile.position.X + 8) / 16, (int)(Projectile.position.Y / 16), true) && (!Main.tile[(int)(Projectile.position.X + 8) / 16, (int)(Projectile.position.Y / 16)].HasTile || !TileID.Sets.Platforms[Main.tile[(int)(Projectile.position.X + 8) / 16, (int)(Projectile.position.Y / 16)].TileType]))
 				{
 					Projectile.position.Y++;
 					if ((int)(Projectile.position.Y / 16) >= Main.maxTilesY - 40)

@@ -1,260 +1,270 @@
-﻿//using Terraria;
-//using Terraria.ModLoader;
-//using Terraria.ID;
-//using Microsoft.Xna.Framework;
-//using Terraria.GameContent.Bestiary;
-//using Remnants.Biomes;
-//using Terraria.Audio;
-//using Remnants.Projectiles.Enemy;
+﻿using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+using Microsoft.Xna.Framework;
+using Terraria.GameContent.Bestiary;
+using System;
+using Remnants.Projectiles.Enemy;
 
-//namespace Remnants.NPCs.Monsters.MagicalLab
-//{
-//    public class TomeofMending : ModNPC
-//    {
-//        public override void SetStaticDefaults()
-//        {
-//            // DisplayName.SetDefault("Flamer");
-//            Main.npcFrameCount[NPC.type] = 6;
-//        }
+namespace Remnants.NPCs.Monsters.MagicalLab
+{
+    public class TomeofMending : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            Main.npcFrameCount[NPC.type] = 6;
+
+            //NPCID.Sets.ShimmerTransformToNPC[Type] = ModContent.NPCType<TomeofSummoning>();
+
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire3] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Poisoned] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
+        }
 
 
 
-//        public override void SetDefaults()
-//        {
-//            NPC.width = 22 * 2;
-//            NPC.height = 16 * 2;
+        public override void SetDefaults()
+        {
+            NPC.width = 22 * 2;
+            NPC.height = 16 * 2;
 
-//            NPC.lifeMax = 80;
-//            NPC.damage = 0;
-//            NPC.defense = 8;
+            NPC.lifeMax = 80;
+            NPC.damage = 0;
+            NPC.defense = 8;
 
-//            NPC.HitSound = SoundID.NPCHit11;
-//            NPC.DeathSound = SoundID.NPCDeath35;
-//            NPC.value = 200f;
-//            NPC.aiStyle = -1;
+            NPC.HitSound = SoundID.NPCHit11;
+            NPC.DeathSound = SoundID.NPCDeath35;
+            NPC.value = 200f;
+            NPC.aiStyle = -1;
 
-//            NPC.noGravity = true;
+            NPC.noGravity = true;
 
-//            NPC.buffImmune[BuffID.OnFire] = true;
-//            NPC.buffImmune[BuffID.OnFire3] = true;
-//            NPC.buffImmune[BuffID.Poisoned] = true;
-//            NPC.buffImmune[BuffID.Venom] = true;
-//            NPC.buffImmune[BuffID.Bleeding] = true;
+            NPC.buffImmune[BuffID.OnFire] = true;
+            NPC.buffImmune[BuffID.OnFire3] = true;
+            NPC.buffImmune[BuffID.Poisoned] = true;
+            NPC.buffImmune[BuffID.Venom] = true;
+            NPC.buffImmune[BuffID.Bleeding] = true;
 
-//            SpawnModBiomes = new int[] { ModContent.GetInstance<Biomes.MagicalLab>().Type };
-//        }
+            SpawnModBiomes = new int[] { ModContent.GetInstance<Biomes.MagicalLab>().Type };
+        }
 
-//        public override void FindFrame(int frameHeight)
-//        {
-//            if (++NPC.frameCounter > 2)
-//            {
-//                NPC.frameCounter = 0;
+        public override void FindFrame(int frameHeight)
+        {
+            if (++NPC.frameCounter > 2)
+            {
+                NPC.frameCounter = 0;
 
-//                NPC.frame.Y += NPC.height;
-//                if (NPC.frame.Y >= NPC.height * Main.npcFrameCount[Type])
-//                {
-//                    NPC.frame.Y = 0;
-//                }
-//            }
-//        }
+                NPC.frame.Y += NPC.height;
+                if (NPC.frame.Y >= NPC.height * Main.npcFrameCount[Type])
+                {
+                    NPC.frame.Y = 0;
+                }
+            }
+        }
 
-//        Vector2 lastKnownTargetPosition;
-//        Vector2 wanderVelocity;
-//        int aiState;
-//        int attackTimer;
-//        float speed = 0.1f;
-//        float bouncyness = 1;
+        public void SpawnTome(NPC parent)
+        {
+            NPC npc = NPC.NewNPCDirect(NPC.GetSource_NaturalSpawn(), (int)(NPC.position.X / 16), (int)(NPC.position.Y), ModContent.NPCType<TomeofMending>());
+            npc.position = parent.position;
 
-//        public override void AI()
-//        {
-//            //bouncyness = aiState == 0 ? 1 : 0.5f;
+            NetMessage.SendData(MessageID.SyncNPC, number: npc.whoAmI);
+        }
 
-//            if (NPC.collideX)
-//            {
-//                NPC.velocity.X *= -bouncyness;
-//                wanderVelocity.X *= -bouncyness;
-//                NPC.netUpdate = true;
-//            }
-//            if (NPC.collideY)
-//            {
-//                NPC.velocity.Y *= -bouncyness;
-//                wanderVelocity.Y *= -bouncyness;
-//                NPC.netUpdate = true;
-//            }
+        public override bool? CanFallThroughPlatforms()
+        {
+            return true;
+        }
 
-//            if (NPC.target < 0 || NPC.target >= 255 || Main.player[NPC.target].dead)
-//            {
-//                NPC.TargetClosest();
-//            }
+        public override void DrawEffects(ref Color drawColor)
+        {
+            Dust dust = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.CursedTorch, 0, 0);
+            dust.noGravity = true;
+        }
 
-//            if (Main.rand.NextBool((int)(3 / speed)))
-//            {
-//                wanderVelocity = Main.rand.NextVector2Circular(speed, speed);
-//            }
-//            if (Main.rand.NextBool((int)(6 / speed)))
-//            {
-//                wanderVelocity = Vector2.Zero;
-//            }
+        public override void HitEffect(NPC.HitInfo hit)
+        {
+            for (int i = 0; i < hit.Damage; i++)
+            {
+                Dust dust = Dust.NewDustDirect(NPC.Center, NPC.width, NPC.height, DustID.Smoke, 0, 0, 100);
+                dust.velocity = NPC.velocity / 2 + Main.rand.NextVector2Circular(2, 2);
+            }
+            for (int i = 0; i < hit.Damage / 2; i++)
+            {
+                Dust dust = Dust.NewDustDirect(NPC.Center, NPC.width, NPC.height, DustID.DynastyWall);
+                dust.velocity = NPC.velocity / 2 + Main.rand.NextVector2Circular(2, 2);
+            }
+        }
+        public override void OnKill()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                int goreIndex = Gore.NewGore(NPC.GetSource_Death(), NPC.Center, default, Main.rand.Next(61, 64), 1f);
+                Main.gore[goreIndex].velocity = NPC.velocity / 2 + Main.rand.NextVector2Circular(4, 4);
+            }
+            for (int i = 0; i < 10; i++)
+            {
+                int dustIndex = Dust.NewDust(NPC.Center, 0, 0, DustID.Smoke, Alpha: 100);
+                Main.dust[dustIndex].velocity = NPC.velocity / 2 + Main.rand.NextVector2Circular(4, 4);
+            }
+            for (int i = 0; i < 10; i++)
+            {
+                int dustIndex = Dust.NewDust(NPC.Center, 0, 0, DustID.CursedTorch, Scale: Main.rand.Next(1, 3));
+                Main.dust[dustIndex].velocity = NPC.velocity / 2 + Main.rand.NextVector2Circular(4, 4);
+            }
+        }
 
-//            if (aiState == 0)
-//            {
-//                NPC.velocity += wanderVelocity;
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 
-//                if (CanSeePlayer(NPC))
-//                {
-//                    aiState = 1;
-//                }
-//            }
-//            else if (aiState == 1)
-//            {
-//                if (!CanSeePlayer(NPC))
-//                {
-//                    if (Vector2.Distance(NPC.Center, lastKnownTargetPosition) <= 16 || !CanSeePlayerLastPosition(NPC))
-//                    {
-//                        aiState = 0;
-//                    }
-//                    else NPC.velocity += Vector2.Normalize(lastKnownTargetPosition - NPC.Center) * speed;
-//                }
-//                else
-//                {
-//                    lastKnownTargetPosition = Main.player[NPC.target].Center;
+                new FlavorTextBestiaryInfoElement("A bizarre testament to the endless potential of magic - a tome with the ability to read and cast its own spells. This variant accompanies other units, restoring their vigor in the midst of battle."),
+                new BestiaryPortraitBackgroundProviderPreferenceInfoElement(ModContent.GetInstance<Biomes.MagicalLab>().ModBiomeBestiaryInfoElement)
+            });
+        }
+    }
 
-//                    NPC.velocity += wanderVelocity * 0.5f;
-//                    if (Vector2.Distance(NPC.Center, lastKnownTargetPosition) <= 16 * 16)
-//                    {
-//                        NPC.velocity -= Vector2.Normalize(lastKnownTargetPosition - NPC.Center) * speed;
-//                    }
-//                    else if (Vector2.Distance(NPC.Center, lastKnownTargetPosition) >= 32 * 16)
-//                    {
-//                        NPC.velocity += Vector2.Normalize(lastKnownTargetPosition - NPC.Center) * speed;
-//                    }
+    public class TomeofMendingAI : EnemyAI
+    {
+        public override bool AffectsModdedNPCS => true;
 
-//                    if (attackTimer <= 60)
-//                    {
-//                        if (attackTimer == 0 || attackTimer == 10 || attackTimer == 20)
-//                        {
-//                            Projectile.NewProjectile(NPC.GetSource_FromAI(), Main.player[NPC.target].Center + Vector2.UnitX * Main.rand.Next(-48, 49), Vector2.Zero, ModContent.ProjectileType<IceSpike>(), 30, 0f, Main.myPlayer);
-//                        }
+        public override float bouncyness => 1;
 
-//                        for (int i = 0; i < 3; i++)
-//                        {
-//                            Dust dust = Dust.NewDustDirect(NPC.Center - Vector2.One * 2.5f + Main.rand.NextVector2CircularEdge(4, 4), 5, 5, DustID.IceTorch, 0, 0);
-//                            dust.noGravity = true;
-//                        }
-//                    }
-//                    if (++attackTimer >= 120)
-//                    {
-//                        attackTimer = 0;
-//                    }
+        public override bool IsValidNPC(NPC npc)
+        {
+            return npc.type == ModContent.NPCType<TomeofMending>();
+        }
 
-//                    //for (int i = 0; i < 3; i++)
-//                    //{
-//                    //	for (int k = 0; k < 2; k++)
-//                    //	{
-//                    //		Vector2 offset = Vector2.UnitX * 32;
-//                    //		Dust dust = Dust.NewDustDirect(NPC.Center - Vector2.One * 2.5f + offset.RotatedBy(Main.GameUpdateCount * 0.1f + (i + 0.5f) * MathHelper.TwoPi * (1/3f)), 5, 5, DustID.IceTorch, 0, 0);
-//                    //		dust.noGravity = true;
-//                    //	}
-//                    //}
-//                }
-//            }
+        public int target;
 
-//            if (aiState == 0)
-//            {
-//                if (NPC.velocity.X < 0)
-//                {
-//                    NPC.direction = -1;
-//                }
-//                else if (NPC.velocity.X > 0)
-//                {
-//                    NPC.direction = 1;
-//                }
-//            }
-//            else
-//            {
-//                if (lastKnownTargetPosition.X < NPC.Center.X)
-//                {
-//                    NPC.direction = -1;
-//                }
-//                else NPC.direction = 1;
-//            }
-//            NPC.spriteDirection = NPC.direction;
+        public override void ConstantBehaviour(NPC npc)
+        {
+            speed = 0.2f;
 
-//            NPC.rotation = NPC.velocity.X / 10;
+            if (Main.rand.NextBool((int)(3 / speed)))
+            {
+                wanderAcceleration = Main.rand.NextVector2Circular(speed, speed);
+            }
+            if (Main.rand.NextBool((int)(3 / speed)))
+            {
+                wanderAcceleration = Vector2.Zero;
+            }
 
-//            NPC.velocity *= 0.98f;
-//        }
+            npc.velocity *= 0.97f;
 
-//        //      public override float SpawnChance(NPCSpawnInfo spawnInfo)
-//        //      {
-//        //	Tile tile = Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY];
-//        //	if (spawnInfo.Player.InModBiome<Vault>() && (tile.WallType == ModContent.WallType<vault>() || tile.WallType == ModContent.WallType<vaultwallunsafe>()))
-//        //          {
-//        //		return 0.1f;
-//        //          }
-//        //	return 0;
-//        //}
 
-//        private bool CanSeePlayer(NPC npc)
-//        {
-//            return !Main.player[npc.target].DeadOrGhost && !Main.player[npc.target].shimmering && Collision.CanHit(npc.Center - Vector2.One / 2, 1, 1, Main.player[npc.target].Center - Vector2.One / 2, 1, 1);
-//        }
+            foreach (NPC index in Main.ActiveNPCs)
+            {
+                if (index.whoAmI != npc.whoAmI)
+                {
+                    if ((target == -1 || index.lifeMax - index.life > Main.npc[target].lifeMax - Main.npc[target].life) && !index.friendly && index.lifeMax > 5 && LineOfSight(npc.Center, index.Center))
+                    {
+                        target = index.whoAmI;
+                    }
+                }
+            }
+        }
 
-//        private bool CanSeePlayerLastPosition(NPC npc)
-//        {
-//            return Collision.CanHit(npc.Center - Vector2.One / 2, 1, 1, lastKnownTargetPosition - Vector2.One / 2, 1, 1);
-//        }
+        public override void AIState_Passive(NPC npc)
+        {
+            npc.velocity += wanderAcceleration;
 
-//        public override bool? CanFallThroughPlatforms()
-//        {
-//            return true;
-//        }
+            foreach (NPC index in Main.ActiveNPCs)
+            {
+                if (index.whoAmI != npc.whoAmI)
+                {
+                    if (!index.friendly && index.lifeMax > 5 && LineOfSight(npc.Center, index.Center))
+                    {
+                        target = index.whoAmI;
+                        break;
+                    }
+                }
+            }
+        }
 
-//        public override void DrawEffects(ref Color drawColor)
-//        {
-//            Dust dust = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.DryadsWard, 0, 0);
-//            dust.noGravity = true;
-//        }
+        public override void AIState_Hostile(NPC npc)
+        {
+            if (!CanSeeTarget(npc))
+            {
+                if (Vector2.Distance(npc.Center, lastKnownTargetPosition) <= 16 || !CanSeeLastKnownTargetPosition(npc))
+                {
+                    target = -1;
+                }
+                else npc.velocity += Vector2.Normalize(lastKnownTargetPosition - npc.Center) * speed;
+            }
+            else
+            {
+                lastKnownTargetPosition = Main.npc[target].Center;
 
-//        public override void HitEffect(NPC.HitInfo hit)
-//        {
-//            for (int i = 0; i < hit.Damage; i++)
-//            {
-//                Dust dust = Dust.NewDustDirect(NPC.Center, NPC.width, NPC.height, DustID.Smoke, 0, 0, 100);
-//                dust.velocity = NPC.velocity / 2 + Main.rand.NextVector2Circular(2, 2);
-//            }
-//            for (int i = 0; i < hit.Damage / 2; i++)
-//            {
-//                Dust dust = Dust.NewDustDirect(NPC.Center, NPC.width, NPC.height, DustID.DynastyWall);
-//                dust.velocity = NPC.velocity / 2 + Main.rand.NextVector2Circular(2, 2);
-//            }
-//        }
-//        public override void OnKill()
-//        {
-//            for (int i = 0; i < 5; i++)
-//            {
-//                int goreIndex = Gore.NewGore(NPC.GetSource_Death(), NPC.Center, default, Main.rand.Next(61, 64), 1f);
-//                Main.gore[goreIndex].velocity = NPC.velocity / 2 + Main.rand.NextVector2Circular(4, 4);
-//            }
-//            for (int i = 0; i < 10; i++)
-//            {
-//                int dustIndex = Dust.NewDust(NPC.Center, 0, 0, DustID.Smoke, Alpha: 100);
-//                Main.dust[dustIndex].velocity = NPC.velocity / 2 + Main.rand.NextVector2Circular(4, 4);
-//            }
-//            for (int i = 0; i < 10; i++)
-//            {
-//                int dustIndex = Dust.NewDust(NPC.Center, 0, 0, DustID.CursedTorch, Scale: Main.rand.Next(1, 3));
-//                Main.dust[dustIndex].velocity = NPC.velocity / 2 + Main.rand.NextVector2Circular(4, 4);
-//            }
-//        }
+                npc.velocity += wanderAcceleration * 0.5f;
+                if (Vector2.Distance(npc.Center, lastKnownTargetPosition) >= 4 * 16)
+                {
+                    npc.velocity += Vector2.Normalize(lastKnownTargetPosition - npc.Center) * speed;
+                }
 
-//        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-//        {
-//            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                if (Vector2.Distance(npc.Center, lastKnownTargetPosition) < 8 * 16)
+                {
+                    NPC targetNpc = Main.npc[target];
+                    Dust dust;
 
-//                new FlavorTextBestiaryInfoElement("Created as both protectors of the magical lab and repositories of its knowledge, these enchanted books cast their own spells on intruders."),
-//                new BestiaryPortraitBackgroundProviderPreferenceInfoElement(ModContent.GetInstance<Biomes.MagicalLab>().ModBiomeBestiaryInfoElement)
-//            });
-//        }
-//    }
-//}
+                    if (targetNpc.life < targetNpc.lifeMax)
+                    {
+                        if (Main.GameUpdateCount % 3 == 0)
+                        {
+                            int amountHealed = Math.Min(1, targetNpc.lifeMax - targetNpc.life);
+
+                            if (amountHealed > 0)
+                            {
+                                targetNpc.life += amountHealed;
+                                targetNpc.HealEffect(amountHealed);
+                            }
+                        }
+                        dust = Dust.NewDustDirect(targetNpc.position, targetNpc.width, targetNpc.height, DustID.CursedTorch, 0, 0);
+                        dust.noGravity = true;
+                    }
+
+                    for (int i = 0; i < 3; i++)
+                    {
+                        for (int k = 0; k < 2; k++)
+                        {
+                            Vector2 offset = Vector2.UnitX * 32;
+                            dust = Dust.NewDustDirect(targetNpc.Center - Vector2.One * 2.5f + offset.RotatedBy(Main.GameUpdateCount * 0.15f + i * MathHelper.TwoPi * (1 / 3f)), 5, 5, DustID.CursedTorch, 0, 0);
+                            dust.noGravity = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        public override bool CanSeeTarget(NPC npc)
+        {
+            return target != -1 && Main.npc[target].active && Main.npc[target].whoAmI != npc.whoAmI && LineOfSight(npc.Center, Main.npc[target].Center);
+        }
+
+        public override void SetDirection(NPC npc)
+        {
+            if (aiState == 0)
+            {
+                if (npc.velocity.X < 0)
+                {
+                    npc.direction = -1;
+                }
+                else if (npc.velocity.X > 0)
+                {
+                    npc.direction = 1;
+                }
+            }
+            else
+            {
+                if (lastKnownTargetPosition.X < npc.Center.X)
+                {
+                    npc.direction = -1;
+                }
+                else npc.direction = 1;
+            }
+            npc.spriteDirection = npc.direction;
+
+            npc.rotation = npc.velocity.X / 10 + (float)Math.Sin(Main.GameUpdateCount / 10f + npc.whoAmI * 7) / 5;
+        }
+    }
+}

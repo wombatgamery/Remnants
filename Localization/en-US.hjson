@@ -550,7 +550,8 @@ Mods: {
 			Icer.DisplayName: Icer
 			Shocker.DisplayName: Shocker
 			Arcanist.DisplayName: Enchanter
-			TomeofMending.DisplayName: Tomeof Mending
+			TomeofMending.DisplayName: Tome of Mending
+			TomeofSummoning.DisplayName: Tome of Summoning
 		}
 
 		Projectiles: {
@@ -622,6 +623,11 @@ Mods: {
 
 						Note: FOR TESTING PURPOSES ONLY, NEVER USE THIS FOR A NORMAL PLAYTHROUGH
 						'''
+				}
+
+				LargerSky: {
+					Label: Larger Sky
+					Tooltip: ""
 				}
 			}
 

@@ -1404,6 +1404,13 @@ namespace Remnants.Worldgen
             Main.rockLayer = (int)(Main.maxTilesY / 2.25f / 6) * 6;
             //GenVars.lavaLine = (int)((Main.maxTilesY / 1.5f) / 6) * 6;
 
+            //if (ModContent.GetInstance<Client>().LargerSky)
+            //{
+            //    Main.worldSurface += Main.maxTilesX / 21;
+            //    Main.rockLayer += Main.maxTilesX / 21;
+            //    GenVars.lavaLine += Main.maxTilesX / 21;
+            //}
+
             #region terrain
             progress.Message = "Generating world terrain";
 
@@ -1428,7 +1435,7 @@ namespace Remnants.Worldgen
             roughness.SetFractalType(FastNoiseLite.FractalType.FBm);
             roughness.SetFractalOctaves(5);
 
-            for (float y = MathHelper.Clamp(Minimum - (Maximum - Minimum) / 2, 0, (int)Main.worldSurface * 0.5f); y <= Main.maxTilesY - 200; y++)
+            for (float y = MathHelper.Clamp(Minimum - (Maximum - Minimum) / 2, 0, (int)Main.worldSurface * 0.35f); y <= Main.maxTilesY - 200; y++)
             {
                 progress.Set(y / (Main.maxTilesY - 200));
 

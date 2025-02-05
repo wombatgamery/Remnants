@@ -39,11 +39,16 @@ namespace Remnants.NPCs
     {
         public override bool InstancePerEntity => true;
 
+        public virtual bool AffectsModdedNPCS => false;
+
         public Vector2 wanderAcceleration;
         public Vector2 lastKnownTargetPosition;
         public int aiState;
+        public float speed;
         public int timer;
-        public float bouncyness;
+        public int attackTimer;
+
+        public virtual float bouncyness => 0;
 
         public virtual bool IsValidNPC(NPC npc)
         {
@@ -52,7 +57,7 @@ namespace Remnants.NPCs
 
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
-            if (IsValidNPC(npc) && ModContent.GetInstance<Server>().EnemyAI && npc.type <= NPCID.Count && Main.netMode == NetmodeID.SinglePlayer)
+            if (IsValidNPC(npc) && (ModContent.GetInstance<Server>().EnemyAI && npc.type <= NPCID.Count || AffectsModdedNPCS) && Main.netMode == NetmodeID.SinglePlayer)
             {
                 npc.TargetClosest();
 
@@ -62,11 +67,11 @@ namespace Remnants.NPCs
 
         public override bool PreAI(NPC npc)
         {
-            if (IsValidNPC(npc) && ModContent.GetInstance<Server>().EnemyAI && npc.type <= NPCID.Count && Main.netMode == NetmodeID.SinglePlayer)
+            if (IsValidNPC(npc) && (ModContent.GetInstance<Server>().EnemyAI && npc.type <= NPCID.Count || AffectsModdedNPCS) && Main.netMode == NetmodeID.SinglePlayer)
             {
                 timer++;
 
-                if (npc.target < 0 || npc.target >= 255 || Main.player[npc.target].dead)
+                if (npc.target < 0 || npc.target >= 255 || Main.player[npc.target].DeadOrGhost)
                 {
                     npc.TargetClosest();
                 }
@@ -75,9 +80,8 @@ namespace Remnants.NPCs
                 {
                     AIState_Passive(npc);
 
-                    if (npc.damage > 0 && CanSeeTarget(npc))
+                    if (npc.lifeMax > 5 && !Main.player[npc.target].DeadOrGhost && CanSeeTarget(npc))
                     {
-                        lastKnownTargetPosition = Main.player[npc.target].Center;
                         aiState = 1;
                     }
                 }
@@ -85,13 +89,16 @@ namespace Remnants.NPCs
                 {
                     AIState_Hostile(npc);
 
-                    if (CanSeeTarget(npc))
+                    if (npc.type != ModContent.NPCType<TomeofMending>())
                     {
-                        lastKnownTargetPosition = Main.player[npc.target].Center;
-                    }
-                    else if (Vector2.Distance(npc.Center, lastKnownTargetPosition) <= 16 || !CanSeeLastKnownTargetPosition(npc))
-                    {
-                        aiState = 0;
+                        if (!Main.player[npc.target].DeadOrGhost && CanSeeTarget(npc))
+                        {
+                            lastKnownTargetPosition = Main.player[npc.target].Center;
+                        }
+                        else if (Vector2.Distance(npc.Center, lastKnownTargetPosition) <= 16 || !CanSeeLastKnownTargetPosition(npc))
+                        {
+                            aiState = 0;
+                        }
                     }
                     //else
                     //            {
@@ -111,29 +118,13 @@ namespace Remnants.NPCs
                 }
                 else if (aiState == -1)
                 {
-                    lastKnownTargetPosition = Main.player[npc.target].Center;
                     if (npc.life < npc.lifeMax || Vector2.Distance(npc.Center, Main.player[npc.target].Center) <= 16 * 16)
                     {
                         aiState = 0;
                     }
                 }
 
-                if (bouncyness > 0)
-                {
-                    if (npc.collideX)
-                    {
-                        npc.velocity.X *= -bouncyness;
-                        wanderAcceleration.X *= -bouncyness;
-                        npc.netUpdate = true;
-                    }
-                    if (npc.collideY)
-                    {
-                        npc.velocity.Y *= -bouncyness;
-                        wanderAcceleration.Y *= -bouncyness;
-                        npc.netUpdate = true;
-                    }
-                }
-
+                WallBounce(npc);
                 ConstantBehaviour(npc);
                 SetDirection(npc);
 
@@ -157,9 +148,30 @@ namespace Remnants.NPCs
 
         }
 
+        public void WallBounce(NPC npc)
+        {
+            if (npc.collideX)
+            {
+                npc.velocity.X *= -bouncyness;
+                wanderAcceleration = Main.rand.NextVector2Circular(speed, speed);
+                npc.netUpdate = true;
+            }
+            if (npc.collideY)
+            {
+                npc.velocity.Y *= -bouncyness;
+                wanderAcceleration = Main.rand.NextVector2Circular(speed, speed);
+                npc.netUpdate = true;
+            }
+        }
+
         public virtual bool WillSearchForPlayer(NPC npc)
         {
             return true;
+        }
+
+        public bool LineOfSight(Vector2 startPoint, Vector2 endPoint)
+        {
+            return Collision.CanHit(startPoint - Vector2.One / 2, 1, 1, endPoint - Vector2.One / 2, 1, 1);
         }
 
         public virtual bool CanSeeTarget(NPC npc)
@@ -168,7 +180,7 @@ namespace Remnants.NPCs
             {
                 return false;
             }
-            if (npc.confused || Main.player[npc.target].invis)
+            if (npc.confused || Main.player[npc.target].invis || Main.player[npc.target].shimmering)
             {
                 return false;
             }
@@ -176,7 +188,7 @@ namespace Remnants.NPCs
             {
                 return true;
             }
-            return !Main.player[npc.target].DeadOrGhost && Collision.CanHit(npc.position, npc.width, npc.height, Main.player[npc.target].position, Main.player[npc.target].width, Main.player[npc.target].height);
+            return LineOfSight(npc.Center, Main.player[npc.target].Center);
         }
 
         public bool CanSeeLastKnownTargetPosition(NPC npc)
@@ -189,7 +201,7 @@ namespace Remnants.NPCs
             {
                 return true;
             }
-            return Collision.CanHit(npc.position, npc.width, npc.height, new Vector2(lastKnownTargetPosition.X - Main.player[npc.target].width / 2, lastKnownTargetPosition.Y - Main.player[npc.target].height / 2), Main.player[npc.target].width, Main.player[npc.target].height);
+            return LineOfSight(npc.Center, lastKnownTargetPosition);
         }
 
         public virtual void SetDirection(NPC npc)
@@ -200,16 +212,10 @@ namespace Remnants.NPCs
 
     public class Flyer : EnemyAI
     {
-        float speed;
-        int attackTimer;
         int attackMode;
 
         public override bool IsValidNPC(NPC npc)
         {
-            if (!(ModContent.GetInstance<Server>().EnemyAI && npc.type <= NPCID.Count && Main.netMode == NetmodeID.SinglePlayer))
-            {
-                return false;
-            }
             return npc.aiStyle == 2 || npc.aiStyle == 5 || npc.aiStyle == 14 && npc.type != NPCID.VampireBat || npc.aiStyle == 17 || npc.aiStyle == 44 && npc.type != NPCID.FlyingFish;
         }
 
@@ -592,14 +598,8 @@ namespace Remnants.NPCs
 
     public class Swimmer : EnemyAI
     {
-        float speed;
-
         public override bool IsValidNPC(NPC npc)
         {
-            if (!(ModContent.GetInstance<Server>().EnemyAI && npc.type <= NPCID.Count && Main.netMode == NetmodeID.SinglePlayer))
-            {
-                return false;
-            }
             return npc.aiStyle == 16 || npc.type == NPCID.FlyingFish || npc.aiStyle == 18;
         }
 

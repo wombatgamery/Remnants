@@ -344,6 +344,8 @@ namespace Remnants.NPCs
             ContentSamples.NpcBestiaryRarityStars[ModContent.NPCType<Arcanist>()] = 3;
             ContentSamples.NpcBestiaryRarityStars[ModContent.NPCType<TomeofInferno>()] = 3;
             ContentSamples.NpcBestiaryRarityStars[ModContent.NPCType<TomeofFrost>()] = 3;
+            ContentSamples.NpcBestiaryRarityStars[ModContent.NPCType<TomeofMending>()] = 3;
+            ContentSamples.NpcBestiaryRarityStars[ModContent.NPCType<TomeofSummoning>()] = 5;
             //ContentSamples.NpcBestiaryRarityStars[ModContent.NPCType<IlluminantDagger>()] = 3;
 
             ContentSamples.NpcBestiaryRarityStars[ModContent.NPCType<Ward>()] = 5;

@@ -49,6 +49,10 @@ namespace Remnants
 		[DefaultValue(1f)]
 		public float CloudDensity;
 
+        //[DefaultValue(false)]
+        //[BackgroundColor(150, 150, 125)]
+        //public bool LargerSky;
+
         [DefaultValue(false)]
         [BackgroundColor(150, 100, 125)]
         public bool ExperimentalWorldgen;

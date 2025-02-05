@@ -8,6 +8,8 @@ using Remnants.Projectiles.Enemy;
 using Terraria.DataStructures;
 using Terraria.Audio;
 using System;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria.GameContent;
 
 namespace Remnants.NPCs.Monsters.MagicalLab
 {
@@ -25,12 +27,12 @@ namespace Remnants.NPCs.Monsters.MagicalLab
 			NPC.width = 24 * 2;
 			NPC.height = 32 * 2;
 
-			NPC.lifeMax = 200;
+			NPC.lifeMax = 160;
 			NPC.damage = 0;
 			NPC.defense = 4;
 
-			NPC.HitSound = SoundID.NPCHit1;
-			NPC.DeathSound = SoundID.NPCDeath56;
+			NPC.HitSound = SoundID.NPCHit37;
+			NPC.DeathSound = SoundID.NPCDeath40;
 			NPC.value = 400f;
 			NPC.aiStyle = -1;
 
@@ -53,143 +55,13 @@ namespace Remnants.NPCs.Monsters.MagicalLab
 			}
 		}
 
-		Vector2 wanderAcceleration;
-		ref float attackTimer => ref NPC.ai[0];
-		float speed = 0.1f;
-		bool aggro = false;
-
-        public override void AI()
-		{
-			wanderAcceleration += Main.rand.NextVector2Circular(speed, speed) / 5;
-			if (wanderAcceleration.Length() > speed)
-			{
-				wanderAcceleration = Vector2.Normalize(wanderAcceleration) * speed;
-			}
-			NPC.velocity += wanderAcceleration;
-
-			NPC.TargetClosest();
-			if (!aggro)
-			{
-				if (CanSeePlayer(NPC))
-				{
-					aggro = true;
-				}
-			}
-			else if (!CanSeePlayer(NPC) || Vector2.Distance(NPC.Center, Main.player[NPC.target].Center) > 64 * 16)
+        public override void OnSpawn(IEntitySource source)
+        {
+            if (Main.rand.NextBool(3))
             {
-				int x = (int)(Main.player[NPC.target].Center.X / 16) + Main.rand.Next(-32, 33);
-				int y = (int)(Main.player[NPC.target].Center.Y / 16) + Main.rand.Next(-32, 33);
-				bool valid = true;
-
-				for (int j = y; j <= y + 3; j++)
-                {
-					for (int i = x - 1; i <= x + 1; i++)
-					{
-						if (Main.tile[i, j].HasTile && Main.tileSolid[Main.tile[i, j].TileType] || Main.tile[i, j].LiquidAmount == 255)
-						{
-							valid = false;
-							break;
-						}
-					}
-					if (!valid)
-                    {
-						break;
-                    }
-				}
-
-				Vector2 pos = new Vector2(x - 1, y) * 16;
-				if (valid && Vector2.Distance(pos + new Vector2(NPC.width, NPC.height) / 2, Main.player[NPC.target].Center) > 8 * 16 && Collision.CanHit(pos + new Vector2(NPC.width, NPC.height) / 2 - Vector2.One / 2, 1, 1, Main.player[NPC.target].Center - Vector2.One / 2, 1, 1))
-                {
-					for (int k = 0; k < 100; k++)
-					{
-						Dust dust = Dust.NewDustPerfect(NPC.Center, DustID.ShimmerTorch, Main.rand.NextVector2Circular(10, 10), Scale: Main.rand.Next(1, 3));
-						dust.noGravity = true;
-					}
-					SoundEngine.PlaySound(SoundID.Item8, NPC.Center);
-					NPC.position = pos;
-					for (int k = 0; k < 100; k++)
-					{
-						Dust dust = Dust.NewDustPerfect(NPC.Center, DustID.ShimmerTorch, Main.rand.NextVector2Circular(10, 10), Scale: Main.rand.Next(1, 3));
-						dust.noGravity = true;
-					}
-					SoundEngine.PlaySound(SoundID.Item8, NPC.Center);
-				}
-			}
-			else
-            {
-				if (Vector2.Distance(NPC.Center, Main.player[NPC.target].Center) <= 16 * 16)
-				{
-					NPC.velocity -= Vector2.Normalize(Main.player[NPC.target].Center - NPC.Center) * speed;
-				}
-				else if (Vector2.Distance(NPC.Center, Main.player[NPC.target].Center) >= 32 * 16)
-				{
-					NPC.velocity += Vector2.Normalize(Main.player[NPC.target].Center - NPC.Center) * speed;
-				}
-
-				attackTimer++;
-				if (attackTimer >= 240)
-				{
-					if (attackTimer == 240)
-					{
-						SoundStyle sound = SoundID.Item165;
-						sound.MaxInstances = Main.maxNPCs;
-						sound.PitchVariance = 1;
-						SoundEngine.PlaySound(sound, NPC.Center);
-					}
-					else if (attackTimer == 300)
-                    {
-						SoundStyle sound = SoundID.Item164;
-						sound.MaxInstances = Main.maxNPCs;
-						SoundEngine.PlaySound(sound, NPC.Center);
-					}
-
-					if (attackTimer % 4 == 0)
-					{
-						Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + Main.rand.NextVector2Circular(32, 32), Vector2.Zero, ModContent.ProjectileType<AetherButterfly>(), 20, 0f, Main.myPlayer);
-					}
-				}
-				if (attackTimer >= 300)
-				{
-					attackTimer = 0;
-				}
-			}
-
-            //for (int i = 0; i < 3; i++)
-            //{
-            //    for (int k = 0; k < 2; k++)
-            //    {
-            //        Vector2 offset = Vector2.UnitX * 48;
-            //        Dust dust = Dust.NewDustDirect(NPC.Center - Vector2.One * 2.5f + offset.RotatedBy(Main.GameUpdateCount * 0.15f + i * MathHelper.TwoPi * (1 / 3f)), 5, 5, DustID.ShimmerTorch, 0, 0);
-            //        dust.noGravity = true;
-            //    }
-            //}
-
-            if (Main.player[NPC.target].Center.X < NPC.Center.X)
-			{
-				NPC.direction = -1;
-			}
-			else NPC.direction = 1;
-			NPC.spriteDirection = NPC.direction;
-
-			NPC.rotation = NPC.velocity.X / 20;
-
-			NPC.velocity *= 0.98f;
-		}
-
-		//      public override float SpawnChance(NPCSpawnInfo spawnInfo)
-		//      {
-		//	Tile tile = Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY];
-		//	if (spawnInfo.Player.InModBiome<Vault>() && (tile.WallType == ModContent.WallType<vault>() || tile.WallType == ModContent.WallType<vaultwallunsafe>()))
-		//          {
-		//		return 0.1f;
-		//          }
-		//	return 0;
-		//}
-
-		private bool CanSeePlayer(NPC npc)
-		{
-			return !Main.player[npc.target].DeadOrGhost && !Main.player[npc.target].invis && Collision.CanHit(npc.Center - Vector2.One / 2, 1, 1, Main.player[npc.target].Center - Vector2.One / 2, 1, 1);
-		}
+                ModContent.GetInstance<TomeofMending>().SpawnTome(NPC);
+            }
+        }
 
 		public override bool? CanFallThroughPlatforms()
 		{
@@ -234,13 +106,160 @@ namespace Remnants.NPCs.Monsters.MagicalLab
 			}
 		}
 
-		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            Vector2 drawOrigin = new Vector2(TextureAssets.Npc[NPC.type].Value.Width * 0.5f, NPC.height * 0.5f);
+            Vector2 drawPos = NPC.position - Main.screenPosition + drawOrigin;// + new Vector2(0f, NPC.gfxOffY);
+
+            Main.spriteBatch.Draw(ModContent.Request<Texture2D>(Texture + "Eyes").Value, drawPos, NPC.frame, Color.White, NPC.rotation, drawOrigin, NPC.scale, NPC.direction == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0f);
+		}
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 
-				new FlavorTextBestiaryInfoElement("A once great scientist, disfigured and made savage by some failed experiment. While their intelligence and order remains, they will not hesitate to kill outsiders."),
+				new FlavorTextBestiaryInfoElement("Once brilliant scientists, disfigured and made ruthless by a failed experiment - a demise of their own making. Regardless, their aptitude for magic remains, and they will not hesitate to use it."),
 				new BestiaryPortraitBackgroundProviderPreferenceInfoElement(ModContent.GetInstance<Biomes.MagicalLab>().ModBiomeBestiaryInfoElement)
 			});
 		}
 	}
+
+    public class ArcanistAI : EnemyAI
+    {
+        public override bool AffectsModdedNPCS => true;
+
+        public override float bouncyness => 1;
+
+        public override bool IsValidNPC(NPC npc)
+        {
+            return npc.type == ModContent.NPCType<Arcanist>();
+        }
+
+        public override void ConstantBehaviour(NPC npc)
+        {
+            speed = 0.1f;
+
+            wanderAcceleration += Main.rand.NextVector2Circular(speed, speed) / 5;
+            if (wanderAcceleration.Length() > speed)
+            {
+                wanderAcceleration = Vector2.Normalize(wanderAcceleration) * speed;
+            }
+            npc.velocity += wanderAcceleration;
+
+            npc.velocity *= 0.98f;
+        }
+
+        public override void SetDirection(NPC npc)
+        {
+            if (Main.player[npc.target].Center.X < npc.Center.X)
+            {
+                npc.direction = -1;
+            }
+            else npc.direction = 1;
+            npc.spriteDirection = npc.direction;
+
+            npc.rotation = npc.velocity.X / 20;
+        }
+
+        bool aggro = false;
+
+        public override void AIState_Passive(NPC npc)
+        {
+            if (!aggro)
+            {
+                if (CanSeeTarget(npc) || npc.life < npc.lifeMax)
+                {
+                    aggro = true;
+                }
+            }
+            else if (attackTimer < 240)
+            {
+                int x = (int)(Main.player[npc.target].Center.X / 16) + Main.rand.Next(-32, 33);
+                int y = (int)(Main.player[npc.target].Center.Y / 16) + Main.rand.Next(-32, 33);
+                bool valid = true;
+
+                for (int j = y; j <= y + 3; j++)
+                {
+                    for (int i = x - 1; i <= x + 1; i++)
+                    {
+                        if (Main.tile[i, j].HasTile && Main.tileSolid[Main.tile[i, j].TileType] || Main.tile[i, j].LiquidAmount == 255)
+                        {
+                            valid = false;
+                            break;
+                        }
+                    }
+                    if (!valid)
+                    {
+                        break;
+                    }
+                }
+
+
+                Vector2 pos = new Vector2(x - 1, y) * 16;
+                if (valid && Vector2.Distance(pos + new Vector2(npc.width, npc.height) / 2, Main.player[npc.target].Center) > 8 * 16 && LineOfSight(pos + new Vector2(npc.width, npc.height) / 2, Main.player[npc.target].Center))
+                {
+                    for (int k = 0; k < 100; k++)
+                    {
+                        Dust dust = Dust.NewDustPerfect(npc.Center, DustID.ShimmerTorch, Main.rand.NextVector2Circular(10, 10), Scale: Main.rand.Next(1, 3));
+                        dust.noGravity = true;
+                    }
+                    SoundEngine.PlaySound(SoundID.Item8, npc.Center);
+                    npc.position = pos;
+                    for (int k = 0; k < 100; k++)
+                    {
+                        Dust dust = Dust.NewDustPerfect(npc.Center, DustID.ShimmerTorch, Main.rand.NextVector2Circular(10, 10), Scale: Main.rand.Next(1, 3));
+                        dust.noGravity = true;
+                    }
+                    SoundEngine.PlaySound(SoundID.Item8, npc.Center);
+                }
+            }
+        }
+
+        public override void AIState_Hostile(NPC npc)
+        {
+            if (CanSeeTarget(npc))
+            {
+                if (Vector2.Distance(npc.Center, Main.player[npc.target].Center) <= 16 * 16)
+                {
+                    npc.velocity -= Vector2.Normalize(Main.player[npc.target].Center - npc.Center) * speed;
+                }
+                else if (Vector2.Distance(npc.Center, Main.player[npc.target].Center) >= 32 * 16)
+                {
+                    npc.velocity += Vector2.Normalize(Main.player[npc.target].Center - npc.Center) * speed;
+                }
+
+                if (attackTimer >= 240)
+                {
+                    if (attackTimer == 240)
+                    {
+                        SoundStyle sound = SoundID.Item165;
+                        sound.MaxInstances = Main.maxNPCs;
+                        sound.PitchVariance = 1;
+                        SoundEngine.PlaySound(sound, npc.Center);
+                    }
+                    else if (attackTimer == 300)
+                    {
+                        SoundStyle sound = SoundID.Item164;
+                        sound.MaxInstances = Main.maxNPCs;
+                        SoundEngine.PlaySound(sound, npc.Center);
+                    }
+
+                    if (attackTimer % 4 == 0)
+                    {
+                        Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center + Main.rand.NextVector2Circular(32, 32), Vector2.Zero, ModContent.ProjectileType<AetherButterfly>(), 20, 0f, Main.myPlayer);
+                    }
+                }
+                if (++attackTimer >= 300)
+                {
+                    attackTimer = 0;
+                }
+            }
+            else aiState = 0;
+        }
+
+        public override bool CanSeeTarget(NPC npc)
+        {
+            return !Main.player[npc.target].DeadOrGhost && !Main.player[npc.target].invis && Vector2.Distance(npc.Center, Main.player[npc.target].Center) <= 64 * 16 && LineOfSight(npc.Center, Main.player[npc.target].Center);
+        }
+    }
 }

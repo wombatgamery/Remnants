@@ -541,6 +541,7 @@ Mods: {
 			Shocker.DisplayName: Шокер
 			Arcanist.DisplayName: Арканист
 			TomeofMending.DisplayName: Фолиант заживления
+			// TomeofSummoning.DisplayName: Tome of Summoning
 		}
 
 		Projectiles: {
@@ -611,6 +612,11 @@ Mods: {
 						Включает генерацию контента, который всё ещё находится в разработке
 						ТОЛЬКО ДЛЯ ТЕСТИРОВАНИЯ, НЕ ВКЛЮЧАЙТЕ ЭТО ДЛЯ ОБЫЧНЫХ ПРОХОЖДЕНИЙ
 						'''
+				}
+
+				LargerSky: {
+					// Label: Larger Sky
+					// Tooltip: ""
 				}
 			}
 

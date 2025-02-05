@@ -7,6 +7,7 @@ using Remnants.Biomes;
 using Remnants.Projectiles.Enemy;
 using Terraria.DataStructures;
 using System;
+using Terraria.Audio;
 
 namespace Remnants.NPCs.Monsters.MagicalLab
 {
@@ -16,7 +17,9 @@ namespace Remnants.NPCs.Monsters.MagicalLab
 		{
 			Main.npcFrameCount[NPC.type] = 6;
 
-			NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire] = true;
+            //NPCID.Sets.ShimmerTransformToNPC[Type] = ModContent.NPCType<TomeofSummoning>();
+
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire] = true;
 			NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire3] = true;
 			NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Poisoned] = true;
 			NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
@@ -29,7 +32,7 @@ namespace Remnants.NPCs.Monsters.MagicalLab
 			NPC.width = 22 * 2;
 			NPC.height = 16 * 2;
 
-			NPC.lifeMax = 100;
+			NPC.lifeMax = 80;
 			NPC.damage = 0;
 			NPC.defense = 8;
 
@@ -57,154 +60,13 @@ namespace Remnants.NPCs.Monsters.MagicalLab
 			}
 		}
 
-		Vector2 lastKnownTargetPosition;
-		Vector2 wanderVelocity;
-		ref float aiState => ref NPC.ai[0];
-		ref float attackTimer => ref NPC.ai[1];
-		float speed = 0.2f;
-		float bouncyness = 1;
-
-        public override void AI()
-		{
-			//bouncyness = aiState == 0 ? 1 : 0.5f;
-
-			if (NPC.collideX)
-			{
-				NPC.velocity.X *= -bouncyness;
-				//wanderVelocity.X *= -bouncyness;
-                wanderVelocity = Main.rand.NextVector2Circular(speed, speed);
-                NPC.netUpdate = true;
-			}
-			if (NPC.collideY)
-			{
-				NPC.velocity.Y *= -bouncyness;
-				//wanderVelocity.Y *= -bouncyness;
-                wanderVelocity = Main.rand.NextVector2Circular(speed, speed);
-                NPC.netUpdate = true;
-			}
-
-			if (NPC.target < 0 || NPC.target >= 255 || Main.player[NPC.target].dead)
-			{
-				NPC.TargetClosest();
-			}
-
-			if (Main.rand.NextBool((int)(3 / speed)))
-			{
-				wanderVelocity = Main.rand.NextVector2Circular(speed, speed);
-			}
-            if (Main.rand.NextBool((int)(3 / speed)))
+        public override void OnSpawn(IEntitySource source)
+        {
+            if (Main.rand.NextBool(3))
             {
-                wanderVelocity = Vector2.Zero;
+				ModContent.GetInstance<TomeofMending>().SpawnTome(NPC);
             }
-
-            if (aiState == 0)
-			{
-				NPC.velocity += wanderVelocity;
-
-				if (CanSeePlayer(NPC))
-				{
-					aiState = 1;
-				}
-			}
-			else if (aiState == 1)
-			{
-				if (!CanSeePlayer(NPC))
-				{
-					if (Vector2.Distance(NPC.Center, lastKnownTargetPosition) <= 16 || !CanSeePlayerLastPosition(NPC))
-					{
-						aiState = 0;
-					}
-					else NPC.velocity += Vector2.Normalize(lastKnownTargetPosition - NPC.Center) * speed;
-				}
-				else
-				{
-					lastKnownTargetPosition = Main.player[NPC.target].Center;
-
-					NPC.velocity += wanderVelocity * 0.5f;
-					if (Vector2.Distance(NPC.Center, lastKnownTargetPosition) <= 16 * 16)
-					{
-						NPC.velocity -= Vector2.Normalize(lastKnownTargetPosition - NPC.Center) * speed;
-					}
-					else if (Vector2.Distance(NPC.Center, lastKnownTargetPosition) >= 32 * 16)
-					{
-						NPC.velocity += Vector2.Normalize(lastKnownTargetPosition - NPC.Center) * speed;
-					}
-
-					if (attackTimer <= 60)
-                    {
-						if (attackTimer == 0 || attackTimer == 10 || attackTimer == 20)
-						{
-							Projectile.NewProjectile(NPC.GetSource_FromAI(), Main.player[NPC.target].Center + Vector2.UnitX * Main.rand.Next(-48, 49), Vector2.Zero, ModContent.ProjectileType<IceSpike>(), 30, 0f, Main.myPlayer);
-						}
-
-						//for (int i = 0; i < 3; i++)
-						//{
-						//	Dust dust = Dust.NewDustDirect(NPC.Center - Vector2.One * 2.5f + Main.rand.NextVector2CircularEdge(4, 4), 5, 5, DustID.IceTorch, 0, 0);
-						//	dust.noGravity = true;
-						//}
-					}
-					if (++attackTimer >= 120)
-					{
-						attackTimer = 0;
-					}
-				}
-			}
-
-            //for (int i = 0; i < 3; i++)
-            //{
-            //    for (int k = 0; k < 2; k++)
-            //    {
-            //        Vector2 offset = Vector2.UnitX * 32;
-            //        Dust dust = Dust.NewDustDirect(NPC.Center - Vector2.One * 2.5f + offset.RotatedBy(Main.GameUpdateCount * 0.15f + (i + 0.5f) * MathHelper.TwoPi * (1 / 3f)), 5, 5, DustID.IceTorch, 0, 0);
-            //        dust.noGravity = true;
-            //    }
-            //}
-
-            if (aiState == 0)
-            {
-				if (NPC.velocity.X < 0)
-				{
-					NPC.direction = -1;
-				}
-				else if (NPC.velocity.X > 0)
-				{
-					NPC.direction = 1;
-				}
-			}
-			else
-            {
-				if (lastKnownTargetPosition.X < NPC.Center.X)
-				{
-					NPC.direction = -1;
-				}
-				else NPC.direction = 1;
-			}
-			NPC.spriteDirection = NPC.direction;
-
-			NPC.rotation = NPC.velocity.X / 10 + (float)Math.Sin(Main.GameUpdateCount / 10f + NPC.whoAmI * 7) / 5;
-
-			NPC.velocity *= 0.97f;
-		}
-
-		//      public override float SpawnChance(NPCSpawnInfo spawnInfo)
-		//      {
-		//	Tile tile = Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY];
-		//	if (spawnInfo.Player.InModBiome<Vault>() && (tile.WallType == ModContent.WallType<vault>() || tile.WallType == ModContent.WallType<vaultwallunsafe>()))
-		//          {
-		//		return 0.1f;
-		//          }
-		//	return 0;
-		//}
-
-		private bool CanSeePlayer(NPC npc)
-		{
-			return !Main.player[npc.target].DeadOrGhost && !Main.player[npc.target].shimmering && Collision.CanHit(npc.Center - Vector2.One / 2, 1, 1, Main.player[npc.target].Center - Vector2.One / 2, 1, 1);
-		}
-
-		private bool CanSeePlayerLastPosition(NPC npc)
-		{
-			return Collision.CanHit(npc.Center - Vector2.One / 2, 1, 1, lastKnownTargetPosition - Vector2.One / 2, 1, 1);
-		}
+        }
 
 		public override bool? CanFallThroughPlatforms()
 		{
@@ -253,9 +115,103 @@ namespace Remnants.NPCs.Monsters.MagicalLab
 		{
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 
-				new FlavorTextBestiaryInfoElement("Created as both protectors of the magical lab and repositories of its knowledge, these enchanted books cast their own spells on intruders."),
+				new FlavorTextBestiaryInfoElement("A bizarre testament to the endless potential of magic - a tome with the ability to read and cast its own spells. This variant conjures towering ice spikes from the ground, viciously impaling their victims."),
 				new BestiaryPortraitBackgroundProviderPreferenceInfoElement(ModContent.GetInstance<Biomes.MagicalLab>().ModBiomeBestiaryInfoElement)
 			});
 		}
 	}
+
+    public class TomeofFrostAI : EnemyAI
+    {
+        public override bool AffectsModdedNPCS => true;
+
+        public override float bouncyness => 1;
+
+        public override bool IsValidNPC(NPC npc)
+        {
+            return npc.type == ModContent.NPCType<TomeofFrost>();
+        }
+
+        public override void ConstantBehaviour(NPC npc)
+        {
+            speed = 0.2f;
+
+            if (Main.rand.NextBool((int)(3 / speed)))
+            {
+                wanderAcceleration = Main.rand.NextVector2Circular(speed, speed);
+            }
+            if (Main.rand.NextBool((int)(3 / speed)))
+            {
+                wanderAcceleration = Vector2.Zero;
+            }
+
+            npc.velocity *= 0.97f;
+        }
+
+        public override void SetDirection(NPC npc)
+        {
+            if (aiState == 0)
+            {
+                if (npc.velocity.X < 0)
+                {
+                    npc.direction = -1;
+                }
+                else if (npc.velocity.X > 0)
+                {
+                    npc.direction = 1;
+                }
+            }
+            else
+            {
+                if (lastKnownTargetPosition.X < npc.Center.X)
+                {
+                    npc.direction = -1;
+                }
+                else npc.direction = 1;
+            }
+            npc.spriteDirection = npc.direction;
+
+            npc.rotation = npc.velocity.X / 10 + (float)Math.Sin(Main.GameUpdateCount / 10f + npc.whoAmI * 7) / 5;
+        }
+
+        public override void AIState_Passive(NPC npc)
+        {
+            npc.velocity += wanderAcceleration;
+        }
+
+        public override void AIState_Hostile(NPC npc)
+        {
+            if (CanSeeTarget(npc))
+            {
+                npc.velocity += wanderAcceleration * 0.5f;
+                if (Vector2.Distance(npc.Center, lastKnownTargetPosition) <= 16 * 16)
+                {
+                    npc.velocity -= Vector2.Normalize(lastKnownTargetPosition - npc.Center) * speed;
+                }
+                else if (Vector2.Distance(npc.Center, lastKnownTargetPosition) >= 32 * 16)
+                {
+                    npc.velocity += Vector2.Normalize(lastKnownTargetPosition - npc.Center) * speed;
+                }
+            }
+            else npc.velocity += Vector2.Normalize(lastKnownTargetPosition - npc.Center) * speed;
+
+            if (attackTimer <= 60)
+            {
+                if (attackTimer == 0 || attackTimer == 10 || attackTimer == 20)
+                {
+                    Projectile.NewProjectile(npc.GetSource_FromAI(), Main.player[npc.target].Center + Vector2.UnitX * Main.rand.Next(-48, 49) + Vector2.UnitY * 16, Vector2.Zero, ModContent.ProjectileType<IceSpike>(), 25, 0f, Main.myPlayer);
+                }
+
+                //for (int i = 0; i < 3; i++)
+                //{
+                //	Dust dust = Dust.NewDustDirect(NPC.Center - Vector2.One * 2.5f + Main.rand.NextVector2CircularEdge(4, 4), 5, 5, DustID.IceTorch, 0, 0);
+                //	dust.noGravity = true;
+                //}
+            }
+            if (++attackTimer >= 120)
+            {
+                attackTimer = 0;
+            }
+        }
+    }
 }
