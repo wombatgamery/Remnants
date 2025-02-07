@@ -115,7 +115,7 @@ namespace Remnants.NPCs.Monsters.MagicalLab
 		{
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 
-				new FlavorTextBestiaryInfoElement("A bizarre testament to the endless potential of magic - a tome with the ability to read and cast its own spells. This variant shoots balls of concentrated heat, engulfing their target in searing flames."),
+				new FlavorTextBestiaryInfoElement("Mods.Remnants.Bestiary.TomeofInferno"),
 				new BestiaryPortraitBackgroundProviderPreferenceInfoElement(ModContent.GetInstance<Biomes.MagicalLab>().ModBiomeBestiaryInfoElement)
 			});
 		}
