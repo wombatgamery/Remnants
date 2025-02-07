@@ -280,7 +280,7 @@ namespace Remnants.NPCs.Monsters.TheVault
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 
-                new FlavorTextBestiaryInfoElement("Originally designed to repair old machinery, these small maintenance drones don't appear dangerous. However, they are still part of the defense grid, and will use their welders against intruders."),
+                new FlavorTextBestiaryInfoElement("Mods.Remnants.Bestiary.Shocker"),
                 new BestiaryPortraitBackgroundProviderPreferenceInfoElement(ModContent.GetInstance<Vault>().ModBiomeBestiaryInfoElement)
             });
         }
