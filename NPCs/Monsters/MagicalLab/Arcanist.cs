@@ -19,7 +19,9 @@ namespace Remnants.NPCs.Monsters.MagicalLab
 		{
 			Main.npcFrameCount[NPC.type] = 6;
 
-			NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
+            NPCID.Sets.NeedsExpertScaling[Type] = true;
+
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
 		}
 
 		public override void SetDefaults()
@@ -228,7 +230,7 @@ namespace Remnants.NPCs.Monsters.MagicalLab
                     npc.velocity += Vector2.Normalize(Main.player[npc.target].Center - npc.Center) * speed;
                 }
 
-                if (attackTimer >= 240)
+                if (++attackTimer >= 240)
                 {
                     if (attackTimer == 240)
                     {
@@ -249,7 +251,7 @@ namespace Remnants.NPCs.Monsters.MagicalLab
                         Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center + Main.rand.NextVector2Circular(32, 32), Vector2.Zero, ModContent.ProjectileType<AetherButterfly>(), 20, 0f, Main.myPlayer);
                     }
                 }
-                if (++attackTimer >= 300)
+                if (attackTimer >= 300)
                 {
                     attackTimer = 0;
                 }

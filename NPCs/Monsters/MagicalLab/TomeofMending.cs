@@ -16,6 +16,8 @@ namespace Remnants.NPCs.Monsters.MagicalLab
 
             //NPCID.Sets.ShimmerTransformToNPC[Type] = ModContent.NPCType<TomeofSummoning>();
 
+            NPCID.Sets.NeedsExpertScaling[Type] = true;
+
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire] = true;
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire3] = true;
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Poisoned] = true;

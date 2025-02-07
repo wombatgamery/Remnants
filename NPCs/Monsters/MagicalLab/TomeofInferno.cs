@@ -17,9 +17,11 @@ namespace Remnants.NPCs.Monsters.MagicalLab
 		{
 			Main.npcFrameCount[NPC.type] = 6;
 
-			//NPCID.Sets.ShimmerTransformToNPC[Type] = ModContent.NPCType<TomeofSummoning>();
+            //NPCID.Sets.ShimmerTransformToNPC[Type] = ModContent.NPCType<TomeofSummoning>();
 
-			NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire] = true;
+            NPCID.Sets.NeedsExpertScaling[Type] = true;
+
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire] = true;
 			NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire3] = true;
 			NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Poisoned] = true;
 			NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
@@ -192,18 +194,18 @@ namespace Remnants.NPCs.Monsters.MagicalLab
                 {
                     npc.velocity += Vector2.Normalize(lastKnownTargetPosition - npc.Center) * speed;
                 }
+
+                if (++attackTimer >= 60)
+                {
+                    Vector2 num712 = Vector2.Normalize(Main.player[npc.target].Center - npc.Center) * 10f;
+
+                    Projectile proj = Projectile.NewProjectileDirect(npc.GetSource_FromAI(), npc.Center, num712, ModContent.ProjectileType<FireBolt>(), 15, 0f, Main.myPlayer);
+
+                    SoundEngine.PlaySound(SoundID.Item45, npc.Center);
+                    attackTimer = 0;
+                }
             }
 			else npc.velocity += Vector2.Normalize(lastKnownTargetPosition - npc.Center) * speed;
-
-            if (++attackTimer >= 60)
-            {
-                Vector2 num712 = Vector2.Normalize(Main.player[npc.target].Center - npc.Center) * 10f;
-
-                Projectile proj = Projectile.NewProjectileDirect(npc.GetSource_FromAI(), npc.Center, num712, ModContent.ProjectileType<FireBolt>(), 15, 0f, Main.myPlayer);
-
-                SoundEngine.PlaySound(SoundID.Item45, npc.Center);
-                attackTimer = 0;
-            }
         }
     }
 }

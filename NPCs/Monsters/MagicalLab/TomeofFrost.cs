@@ -19,6 +19,8 @@ namespace Remnants.NPCs.Monsters.MagicalLab
 
             //NPCID.Sets.ShimmerTransformToNPC[Type] = ModContent.NPCType<TomeofSummoning>();
 
+            NPCID.Sets.NeedsExpertScaling[Type] = true;
+
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire] = true;
 			NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire3] = true;
 			NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Poisoned] = true;
@@ -192,26 +194,26 @@ namespace Remnants.NPCs.Monsters.MagicalLab
                 {
                     npc.velocity += Vector2.Normalize(lastKnownTargetPosition - npc.Center) * speed;
                 }
+
+                if (attackTimer <= 60)
+                {
+                    if (attackTimer == 0 || attackTimer == 10 || attackTimer == 20)
+                    {
+                        Projectile.NewProjectile(npc.GetSource_FromAI(), Main.player[npc.target].Center + Vector2.UnitX * Main.rand.Next(-48, 49) + Vector2.UnitY * 16, Vector2.Zero, ModContent.ProjectileType<IceSpike>(), 25, 0f, Main.myPlayer);
+                    }
+
+                    //for (int i = 0; i < 3; i++)
+                    //{
+                    //	Dust dust = Dust.NewDustDirect(NPC.Center - Vector2.One * 2.5f + Main.rand.NextVector2CircularEdge(4, 4), 5, 5, DustID.IceTorch, 0, 0);
+                    //	dust.noGravity = true;
+                    //}
+                }
+                if (++attackTimer >= 120)
+                {
+                    attackTimer = 0;
+                }
             }
             else npc.velocity += Vector2.Normalize(lastKnownTargetPosition - npc.Center) * speed;
-
-            if (attackTimer <= 60)
-            {
-                if (attackTimer == 0 || attackTimer == 10 || attackTimer == 20)
-                {
-                    Projectile.NewProjectile(npc.GetSource_FromAI(), Main.player[npc.target].Center + Vector2.UnitX * Main.rand.Next(-48, 49) + Vector2.UnitY * 16, Vector2.Zero, ModContent.ProjectileType<IceSpike>(), 25, 0f, Main.myPlayer);
-                }
-
-                //for (int i = 0; i < 3; i++)
-                //{
-                //	Dust dust = Dust.NewDustDirect(NPC.Center - Vector2.One * 2.5f + Main.rand.NextVector2CircularEdge(4, 4), 5, 5, DustID.IceTorch, 0, 0);
-                //	dust.noGravity = true;
-                //}
-            }
-            if (++attackTimer >= 120)
-            {
-                attackTimer = 0;
-            }
         }
     }
 }
