@@ -239,7 +239,7 @@ namespace Remnants.NPCs.Monsters.TheVault
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 
-                new FlavorTextBestiaryInfoElement("The Icer is an infrequently sighted sister model to the Flamer, it is assumed that only a handful were finished before being abandoned for reasons yet unknown. The unproven but powerful technology installed in the Icers render them more dangerous than their common counterparts."),
+                new FlavorTextBestiaryInfoElement("Mods.Remnants.Bestiary.Icer"),
                 new BestiaryPortraitBackgroundProviderPreferenceInfoElement(ModContent.GetInstance<Vault>().ModBiomeBestiaryInfoElement)
             });
         }
