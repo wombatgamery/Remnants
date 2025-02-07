@@ -388,7 +388,7 @@ namespace Remnants.NPCs.Monsters
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 
-                new FlavorTextBestiaryInfoElement("A titanic mass of cold stone - and unrelenting fury. It stalks the winding labyrinth halls, fervently protecting whatever lies at its heart..."),
+                new FlavorTextBestiaryInfoElement("Mods.Remnants.Bestiary.Ward"),
                 new BestiaryPortraitBackgroundProviderPreferenceInfoElement(ModContent.GetInstance<EchoingHalls>().ModBiomeBestiaryInfoElement)
             });
 

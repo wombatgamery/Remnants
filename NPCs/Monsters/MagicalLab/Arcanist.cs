@@ -118,7 +118,7 @@ namespace Remnants.NPCs.Monsters.MagicalLab
 		{
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 
-				new FlavorTextBestiaryInfoElement("Once brilliant scientists, disfigured and made ruthless by a failed experiment - a demise of their own making. Regardless, their aptitude for magic remains, and they will not hesitate to use it."),
+				new FlavorTextBestiaryInfoElement("Mods.Remnants.Bestiary.Arcanist"),
 				new BestiaryPortraitBackgroundProviderPreferenceInfoElement(ModContent.GetInstance<Biomes.MagicalLab>().ModBiomeBestiaryInfoElement)
 			});
 		}

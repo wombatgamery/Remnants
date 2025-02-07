@@ -115,7 +115,7 @@ namespace Remnants.NPCs.Monsters.MagicalLab
 		{
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 
-				new FlavorTextBestiaryInfoElement("A bizarre testament to the endless potential of magic - a tome with the ability to read and cast its own spells. This variant conjures towering ice spikes from the ground, viciously impaling their victims."),
+				new FlavorTextBestiaryInfoElement("Mods.Remnants.Bestiary.TomeofFrost"),
 				new BestiaryPortraitBackgroundProviderPreferenceInfoElement(ModContent.GetInstance<Biomes.MagicalLab>().ModBiomeBestiaryInfoElement)
 			});
 		}

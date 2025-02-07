@@ -257,7 +257,7 @@ namespace Remnants.NPCs.Monsters.TheVault
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 
-                new FlavorTextBestiaryInfoElement("Blasters are heavy automatons carrying an explosive payload, which they fire at those who trespass on the ancient grounds it protects to this day."),
+                new FlavorTextBestiaryInfoElement("Mods.Remnants.Bestiary.Blaster"),
                 new BestiaryPortraitBackgroundProviderPreferenceInfoElement(ModContent.GetInstance<Vault>().ModBiomeBestiaryInfoElement)
             });
         }

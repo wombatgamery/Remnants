@@ -257,7 +257,7 @@ namespace Remnants.NPCs.Monsters.TheVault
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 
-                new FlavorTextBestiaryInfoElement("Despite their years of neglect, Gunners are still just as capable of shredding their targets in a storm of bullets."),
+                new FlavorTextBestiaryInfoElement("Mods.Remnants.Bestiary.Gunner"),
                 new BestiaryPortraitBackgroundProviderPreferenceInfoElement(ModContent.GetInstance<Vault>().ModBiomeBestiaryInfoElement)
             });
         }

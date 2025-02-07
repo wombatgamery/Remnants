@@ -254,7 +254,7 @@ namespace Remnants.NPCs.Monsters.TheVault
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 
-                new FlavorTextBestiaryInfoElement("Despite being supposedly non-sentient, Flamers carry out their grim duty of burning intruders to a crisp with a surprising amount of malice and glee."),
+                new FlavorTextBestiaryInfoElement("Mods.Remnants.Bestiary.Flamer"),
                 new BestiaryPortraitBackgroundProviderPreferenceInfoElement(ModContent.GetInstance<Vault>().ModBiomeBestiaryInfoElement)
             });
         }
