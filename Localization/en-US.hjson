@@ -1,5 +1,20 @@
 Mods: {
 	Remnants: {
+		Bestiary: {
+			Ward: "A titanic mass of cold stone - and unrelenting fury. It stalks the winding labyrinth halls, fervently protecting whatever lies at its heart..."
+			HoneySlime: "The honey absorbed by these slimes has greatly improved their vitality and endurance."
+			Blaster: "Blasters are heavy automatons carrying an explosive payload, which they fire at those who trespass on the ancient grounds it protects to this day."
+			Flamer: "Despite being supposedly non-sentient, Flamers carry out their grim duty of burning intruders to a crisp with a surprising amount of malice and glee."
+			Gunner: "Despite their years of neglect, Gunners are still just as capable of shredding their targets in a storm of bullets."
+			Icer: "The Icer is an infrequently sighted sister model to the Flamer, it is assumed that only a handful were finished before being abandoned for reasons yet unknown. The unproven but powerful technology installed in the Icers render them more dangerous than their common counterparts."
+			Shocker: "Originally designed to repair old machinery, these small maintenance drones don't appear dangerous. However, they are still part of the defense grid, and will use their welders against intruders."
+			Arcanist: "Once brilliant scientists, disfigured and made ruthless by a failed experiment - a demise of their own making. Regardless, their aptitude for magic remains, and they will not hesitate to use it."
+			TomeofFrost: "A bizarre testament to the endless potential of magic - a tome with the ability to read and cast its own spells. This variant conjures towering ice spikes from the ground, viciously impaling their victims."
+			TomeofInerno: "A bizarre testament to the endless potential of magic - a tome with the ability to read and cast its own spells. This variant shoots balls of concentrated heat, engulfing their target in searing flames."
+			TomeofMending: "A bizarre testament to the endless potential of magic - a tome with the ability to read and cast its own spells. This variant accompanies other units, restoring their vigor in the midst of battle."
+			TomeofSummoning: "A bizarre testament to the endless potential of magic - a tome with the ability to read and cast its own spells. This variant calls upon all other units, bringing unrelenting chaos to anything in its path."
+		}
+
 		Biomes: {
 			GoldenCity: {
 				DisplayName: Golden City
