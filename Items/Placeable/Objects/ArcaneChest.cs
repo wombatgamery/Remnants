@@ -17,8 +17,8 @@ namespace Remnants.Items.Placeable.Objects
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.Chest);
-			Item.width = 44;
-            Item.createTile = ModContent.TileType<Tiles.Objects.Furniture.ArcaneChest>();
+			//Item.width = 44;
+            Item.createTile = ModContent.TileType<Tiles.Objects.Furniture.ArcaneChest2>();
 		}
 	}
 }

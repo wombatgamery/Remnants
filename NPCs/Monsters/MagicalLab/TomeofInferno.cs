@@ -195,17 +195,17 @@ namespace Remnants.NPCs.Monsters.MagicalLab
                     npc.velocity += Vector2.Normalize(lastKnownTargetPosition - npc.Center) * speed;
                 }
 
-                if (++attackTimer >= 60)
-                {
-                    Vector2 num712 = Vector2.Normalize(Main.player[npc.target].Center - npc.Center) * 10f;
+				if (++attackTimer >= 60)
+				{
+					Vector2 num712 = Vector2.Normalize(Main.player[npc.target].Center - npc.Center) * 10f;
 
-                    Projectile proj = Projectile.NewProjectileDirect(npc.GetSource_FromAI(), npc.Center, num712, ModContent.ProjectileType<FireBolt>(), 15, 0f, Main.myPlayer);
+					Projectile proj = Projectile.NewProjectileDirect(npc.GetSource_FromAI(), npc.Center, num712, ModContent.ProjectileType<FireBolt>(), 15, 0f, Main.myPlayer);
 
-                    SoundEngine.PlaySound(SoundID.Item45, npc.Center);
-                    attackTimer = 0;
-                }
+					SoundEngine.PlaySound(SoundID.Item45, npc.Center);
+					attackTimer = 0;
+				}
             }
-			else npc.velocity += Vector2.Normalize(lastKnownTargetPosition - npc.Center) * speed;
+            else npc.velocity += Vector2.Normalize(lastKnownTargetPosition - npc.Center) * speed;
         }
     }
 }

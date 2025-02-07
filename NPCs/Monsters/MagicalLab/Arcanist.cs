@@ -20,7 +20,6 @@ namespace Remnants.NPCs.Monsters.MagicalLab
 			Main.npcFrameCount[NPC.type] = 6;
 
             NPCID.Sets.NeedsExpertScaling[Type] = true;
-
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
 		}
 
@@ -30,7 +29,7 @@ namespace Remnants.NPCs.Monsters.MagicalLab
 			NPC.height = 32 * 2;
 
 			NPC.lifeMax = 160;
-			NPC.damage = 0;
+			NPC.damage = 20;
 			NPC.defense = 4;
 
 			NPC.HitSound = SoundID.NPCHit37;

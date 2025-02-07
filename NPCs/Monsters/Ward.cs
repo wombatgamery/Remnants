@@ -27,6 +27,8 @@ namespace Remnants.NPCs.Monsters
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 1;
+
+            NPCID.Sets.NeedsExpertScaling[Type] = false;
         }
 
         public override void SetDefaults()
@@ -54,7 +56,6 @@ namespace Remnants.NPCs.Monsters
             SpawnModBiomes = new int[] { ModContent.GetInstance<EchoingHalls>().Type };
 
             NPCID.Sets.ImmuneToRegularBuffs[Type] = true;
-            NPCID.Sets.NeedsExpertScaling[Type] = false;
             NPCID.Sets.HurtingBees[Type] = true;
             NPCID.Sets.TeleportationImmune[Type] = true;
         }

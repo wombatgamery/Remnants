@@ -1,6 +1,7 @@
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Remnants.Dusts;
+using Remnants.Items.Weapons;
 using Remnants.NPCs;
 using Terraria;
 using Terraria.ID;
@@ -9,8 +10,7 @@ using Terraria.ModLoader;
 
 namespace Remnants.Items.Accessories
 {
-    [LegacyName("ringofelements")]
-    public class RingofElements : ModItem
+    public class StoneofElements : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -19,16 +19,18 @@ namespace Remnants.Items.Accessories
 
         public override void SetDefaults()
         {
-            Item.width = 14 * 2;
-            Item.height = 14 * 2;
+            Item.width = 12 * 2;
+            Item.height = 17 * 2;
             Item.accessory = true;
             Item.maxStack = 1;
-            Item.value = Item.sellPrice(gold: 1);
-            Item.rare = ItemRarityID.Green;
+            Item.value = Item.sellPrice(gold: 4);
+            Item.rare = ItemRarityID.LightPurple;
         }
 
         public override void UpdateEquip(Player player)
         {
+            player.pStone = true;
+
             int[] invalidBuffs = new int[2];
             invalidBuffs[0] = BuffID.PotionSickness;
             invalidBuffs[1] = BuffID.ManaSickness;
@@ -41,6 +43,17 @@ namespace Remnants.Items.Accessories
                     player.buffTime[i]--;
                 }
             }
+        }
+
+        public override void AddRecipes()
+        {
+            Recipe recipe;
+
+            recipe = Recipe.Create(Type);
+            recipe.AddIngredient(ModContent.ItemType<RingofElements>());
+            recipe.AddIngredient(ItemID.PhilosophersStone);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.Register();
         }
     }
 }

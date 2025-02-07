@@ -17,7 +17,8 @@ namespace Remnants.NPCs.Monsters.MagicalLab
 		{
 			Main.npcFrameCount[NPC.type] = 6;
 
-			NPCID.Sets.ImmuneToRegularBuffs[Type] = true;
+            NPCID.Sets.NeedsExpertScaling[Type] = true;
+            NPCID.Sets.ImmuneToRegularBuffs[Type] = true;
 		}
 
 

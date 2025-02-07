@@ -42,12 +42,6 @@ namespace Remnants.NPCs.Monsters.MagicalLab
 
             NPC.noGravity = true;
 
-            NPC.buffImmune[BuffID.OnFire] = true;
-            NPC.buffImmune[BuffID.OnFire3] = true;
-            NPC.buffImmune[BuffID.Poisoned] = true;
-            NPC.buffImmune[BuffID.Venom] = true;
-            NPC.buffImmune[BuffID.Bleeding] = true;
-
             SpawnModBiomes = new int[] { ModContent.GetInstance<Biomes.MagicalLab>().Type };
         }
 

@@ -2337,6 +2337,9 @@ namespace Remnants.Worldgen
                 position += new Vector2(velocity.X * 4, velocity.Y) * radius / 4;
                 position.Y -= radius / 2;
 
+                WGTools.Circle(position.X - velocity.X * 2, position.Y - velocity.Y / 2 + radius / 4, radius, TileID.LivingWood);
+                WGTools.Circle(position.X - velocity.X * 2, position.Y - velocity.Y / 2 + radius / 4, radius - 2, -2, WallID.LivingWoodUnsafe);
+
                 velocity += WorldGen.genRand.NextVector2Circular(1f, 1f);
                 velocity *= 0.85f;
 
@@ -7409,10 +7412,10 @@ namespace Remnants.Worldgen
 
                     Generator.GenerateStructure("Structures/special/magicallab/treasureroom", lab.roomPos, ModContent.GetInstance<Remnants>());
 
-                    int chestIndex = WorldGen.PlaceChest(lab.roomPos.X + 4, lab.roomPos.Y + 41, (ushort)ModContent.TileType<ArcaneChest>());
+                    int chestIndex = WorldGen.PlaceChest(lab.roomPos.X + 8, lab.roomPos.Y + 41, (ushort)ModContent.TileType<ArcaneChest2>());
                     ChestLoot(chestIndex, roomCount * 2 + 1, Main.maxTilesY / 600 * 2);
 
-                    chestIndex = WorldGen.PlaceChest(lab.roomPos.X + 49, lab.roomPos.Y + 41, (ushort)ModContent.TileType<ArcaneChest>());
+                    chestIndex = WorldGen.PlaceChest(lab.roomPos.X + 44, lab.roomPos.Y + 41, (ushort)ModContent.TileType<ArcaneChest2>());
                     ChestLoot(chestIndex, roomCount * 2, Main.maxTilesY / 600 * 2);
 
                     roomCount++;

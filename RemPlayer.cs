@@ -18,6 +18,7 @@ namespace Remnants
     {
         public float critDamageMult;
         public bool magicShield;
+        public float manaRegenStopTimer;
 
         public bool moving => !(Player.velocity.X < 0.05 && Player.velocity.Y < 0.05 && Player.velocity.X > -0.05 && Player.velocity.Y > -0.05);
 
@@ -108,6 +109,12 @@ namespace Remnants
                 Player.velocity.Y *= 0.95f;
                 Player.velocity.Y -= 0.2f;
             }
+
+            if (manaRegenStopTimer > 0)
+            {
+                Player.manaRegenCount = 0;
+                manaRegenStopTimer--;
+            }
         }
 
         public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
@@ -164,8 +171,6 @@ namespace Remnants
             }
         }
 
-        float magicAbsorbedDamage;
-
         public override void ModifyHurt(ref Player.HurtModifiers modifiers)
         {
             if (magicShield && !Player.HasBuff(ModContent.BuffType<ManaShieldCooldown>()) && Player.statMana > 0)
@@ -186,6 +191,8 @@ namespace Remnants
                     SoundEngine.PlaySound(new SoundStyle("Remnants/Sounds/omegac"), Player.Center);
                 }
                 Player.manaRegenDelay = (int)Player.maxRegenDelay;
+
+                manaRegenStopTimer = 160;
             }
         }
 

@@ -20,7 +20,6 @@ namespace Remnants.NPCs.Monsters.MagicalLab
             //NPCID.Sets.ShimmerTransformToNPC[Type] = ModContent.NPCType<TomeofSummoning>();
 
             NPCID.Sets.NeedsExpertScaling[Type] = true;
-
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire] = true;
 			NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire3] = true;
 			NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Poisoned] = true;
@@ -42,6 +41,8 @@ namespace Remnants.NPCs.Monsters.MagicalLab
 			NPC.DeathSound = SoundID.NPCDeath35;
 			NPC.value = 200f;
 			NPC.aiStyle = -1;
+
+            NPCID.Sets.NeedsExpertScaling[Type] = true;
 
 			NPC.noGravity = true;
 
@@ -201,7 +202,6 @@ namespace Remnants.NPCs.Monsters.MagicalLab
                     {
                         Projectile.NewProjectile(npc.GetSource_FromAI(), Main.player[npc.target].Center + Vector2.UnitX * Main.rand.Next(-48, 49) + Vector2.UnitY * 16, Vector2.Zero, ModContent.ProjectileType<IceSpike>(), 25, 0f, Main.myPlayer);
                     }
-
                     //for (int i = 0; i < 3; i++)
                     //{
                     //	Dust dust = Dust.NewDustDirect(NPC.Center - Vector2.One * 2.5f + Main.rand.NextVector2CircularEdge(4, 4), 5, 5, DustID.IceTorch, 0, 0);

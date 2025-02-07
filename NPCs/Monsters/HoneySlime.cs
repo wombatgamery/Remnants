@@ -14,8 +14,9 @@ namespace Remnants.NPCs.Monsters
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Honey Slime");
             Main.npcFrameCount[NPC.type] = 2;
+
+            NPCID.Sets.NeedsExpertScaling[Type] = true;
         }
 
         public override void SetDefaults()

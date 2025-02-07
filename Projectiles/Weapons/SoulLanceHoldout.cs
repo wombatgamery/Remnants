@@ -11,19 +11,19 @@ using Terraria.ModLoader;
 
 namespace Remnants.Projectiles.Weapons
 {
-	public class SpiritLanceHoldout : ModProjectile
+	public class SoulLanceHoldout : ModProjectile
 	{
 		//public override string Texture => ModContent.GetModItem(ModContent.ItemType<Items.weapon.spiritlance>()).Texture;
         // Define the range of the Spear Projectile. These are overrideable properties, in case you'll want to make a class inheriting from this one.
         protected virtual float HoldoutRangeMin => 48f;
-		protected virtual float HoldoutRangeMax => 128f;
+		protected virtual float HoldoutRangeMax => 160f;
 
 		public override void SetDefaults()
 		{
 			Projectile.CloneDefaults(ProjectileID.Spear); // Clone the default values for a vanilla spear. Spear specific values set for width, height, aiStyle, friendly, penetrate, tileCollide, scale, hide, ownerHitCheck, and melee.
 
-			Projectile.width = 48 * 2;
-			Projectile.height = 48 * 2;
+			Projectile.width = 60 * 2;
+			Projectile.height = 60 * 2;
 			Projectile.scale = 1;
 
 			Projectile.usesLocalNPCImmunity = true;
@@ -64,7 +64,7 @@ namespace Remnants.Projectiles.Weapons
 			// Avoid spawning dusts on dedicated servers
 			if (!Main.dedServ)
 			{
-				Dust dust = Dust.NewDustDirect(Projectile.Center - Vector2.One * 2.5f + Projectile.velocity * 16 + Main.rand.NextVector2Circular(16, 16), 5, 5, ModContent.DustType<SpiritLanceDust>(), 0, 0);
+				Dust dust = Dust.NewDustDirect(Projectile.Center - Vector2.One * 2.5f + Projectile.velocity * 16 + Main.rand.NextVector2Circular(16, 16), 5, 5, ModContent.DustType<SoulLanceDust>(), 0, 0);
 				dust.velocity = Projectile.velocity * 2;
 				if (Projectile.timeLeft < halfDuration)
                 {
@@ -73,7 +73,7 @@ namespace Remnants.Projectiles.Weapons
 				dust.velocity += Main.rand.NextVector2Circular(1, 1);
 			}
 
-			Lighting.AddLight(Projectile.Center, 0, 253f / 255f, 255f / 255f);
+			Lighting.AddLight(Projectile.Center, 1, 1, 1);
 
 			return false;
 		}
@@ -96,19 +96,19 @@ namespace Remnants.Projectiles.Weapons
 		{
 			if (Main.player[Projectile.owner].statMana < Main.player[Projectile.owner].statManaMax)
             {
-				Main.player[Projectile.owner].statMana += damageDone / 2;
+				Main.player[Projectile.owner].statMana += damageDone / 4;
 				if (Main.player[Projectile.owner].statMana > Main.player[Projectile.owner].statManaMax)
                 {
 					Main.player[Projectile.owner].statMana = Main.player[Projectile.owner].statManaMax;
 				}
 
-				Main.player[Projectile.owner].ManaEffect(damageDone / 2);
+				Main.player[Projectile.owner].ManaEffect(damageDone / 4);
 
                 float rotation = Main.rand.NextFloat(MathHelper.TwoPi);
-                for (int i = 0; i < 18; i++)
+                for (int i = 0; i < 32; i++)
                 {
-                    Dust dust = Dust.NewDustPerfect(target.Center, DustID.PortalBolt, newColor: Color.Aqua);
-                    dust.velocity = Main.rand.NextVector2CircularEdge(1.5f, 1.5f);
+                    Dust dust = Dust.NewDustPerfect(target.Center, DustID.PortalBolt, newColor: Color.White);
+                    dust.velocity = Main.rand.NextVector2CircularEdge(2, 2);
                     dust.noGravity = true;
                 }
                 SoundEngine.PlaySound(SoundID.Item158, Projectile.Center);

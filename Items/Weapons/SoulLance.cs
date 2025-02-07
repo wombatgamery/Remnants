@@ -7,8 +7,7 @@ using Terraria.ModLoader;
 
 namespace Remnants.Items.Weapons
 {
-	[LegacyName("spiritlance")]
-	public class SpiritLance : ModItem
+	public class SoulLance : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -22,22 +21,22 @@ namespace Remnants.Items.Weapons
 		{
 			Item.CloneDefaults(ItemID.Spear);
 
-			Item.width = 28 * 2;
-			Item.height = 28 * 2;
+			Item.width = 32 * 2;
+			Item.height = 32 * 2;
 
-			Item.damage = 12;
+			Item.damage = 24;
 			Item.crit = -4;
 			Item.knockBack = 4f;
 
-			Item.useAnimation = 20; // The length of the item's use animation in ticks (60 ticks == 1 second.)
-			Item.useTime = 20; // The length of the item's use time in ticks (60 ticks == 1 second.)
+			Item.useAnimation = 16; // The length of the item's use animation in ticks (60 ticks == 1 second.)
+			Item.useTime = 16; // The length of the item's use time in ticks (60 ticks == 1 second.)
 			Item.UseSound = SoundID.Item15; // The sound that this item plays when used.
 
-			Item.rare = ItemRarityID.Green;
+			Item.rare = ItemRarityID.LightRed;
 			Item.value = Item.sellPrice(gold: 1);
 
-			Item.shootSpeed = 2f; // The speed of the projectile measured in pixels per frame.
-			Item.shoot = ModContent.ProjectileType<Projectiles.Weapons.SpiritLanceHoldout>(); // The projectile that is fired from this weapon
+			Item.shootSpeed = 3f; // The speed of the projectile measured in pixels per frame.
+			Item.shoot = ModContent.ProjectileType<Projectiles.Weapons.SoulLanceHoldout>(); // The projectile that is fired from this weapon
 		}
 
 		public override bool CanUseItem(Player player)
@@ -56,5 +55,17 @@ namespace Remnants.Items.Weapons
 
 			return null;
 		}
-	}
+
+        public override void AddRecipes()
+        {
+            Recipe recipe;
+
+            recipe = Recipe.Create(Type);
+            recipe.AddIngredient(ModContent.ItemType<SpiritLance>());
+            recipe.AddIngredient(ItemID.SoulofLight, 8);
+            recipe.AddIngredient(ItemID.SoulofNight, 8);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
+        }
+    }
 }

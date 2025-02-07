@@ -25,7 +25,7 @@ namespace Remnants.Tiles.Objects.Furniture
 			TileObjectData.newTile.CoordinatePadding = 0;
 			TileObjectData.addTile(Type);
 
-			AddMapEntry(new Color(112, 72, 57), CreateMapEntryName());
+			AddMapEntry(new Color(136, 87, 69), CreateMapEntryName());
 
 			DustType = DustID.WoodFurniture;
 			HitSound = SoundID.Tink;

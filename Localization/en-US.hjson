@@ -1,18 +1,18 @@
 Mods: {
 	Remnants: {
 		Bestiary: {
-			Ward: "A titanic mass of cold stone - and unrelenting fury. It stalks the winding labyrinth halls, fervently protecting whatever lies at its heart..."
-			HoneySlime: "The honey absorbed by these slimes has greatly improved their vitality and endurance."
-			Blaster: "Blasters are heavy automatons carrying an explosive payload, which they fire at those who trespass on the ancient grounds it protects to this day."
-			Flamer: "Despite being supposedly non-sentient, Flamers carry out their grim duty of burning intruders to a crisp with a surprising amount of malice and glee."
-			Gunner: "Despite their years of neglect, Gunners are still just as capable of shredding their targets in a storm of bullets."
-			Icer: "The Icer is an infrequently sighted sister model to the Flamer, it is assumed that only a handful were finished before being abandoned for reasons yet unknown. The unproven but powerful technology installed in the Icers render them more dangerous than their common counterparts."
-			Shocker: "Originally designed to repair old machinery, these small maintenance drones don't appear dangerous. However, they are still part of the defense grid, and will use their welders against intruders."
-			Arcanist: "Once brilliant scientists, disfigured and made ruthless by a failed experiment - a demise of their own making. Regardless, their aptitude for magic remains, and they will not hesitate to use it."
-			TomeofFrost: "A bizarre testament to the endless potential of magic - a tome with the ability to read and cast its own spells. This variant conjures towering ice spikes from the ground, viciously impaling their victims."
-			TomeofInerno: "A bizarre testament to the endless potential of magic - a tome with the ability to read and cast its own spells. This variant shoots balls of concentrated heat, engulfing their target in searing flames."
-			TomeofMending: "A bizarre testament to the endless potential of magic - a tome with the ability to read and cast its own spells. This variant accompanies other units, restoring their vigor in the midst of battle."
-			TomeofSummoning: "A bizarre testament to the endless potential of magic - a tome with the ability to read and cast its own spells. This variant calls upon all other units, bringing unrelenting chaos to anything in its path."
+			Ward: A titanic mass of cold stone - and unrelenting fury. It stalks the winding labyrinth halls, fervently protecting whatever lies at its heart...
+			HoneySlime: The honey absorbed by these slimes has greatly improved their vitality and endurance.
+			Blaster: Blasters are heavy automatons carrying an explosive payload, which they fire at those who trespass on the ancient grounds it protects to this day.
+			Flamer: Despite being supposedly non-sentient, Flamers carry out their grim duty of burning intruders to a crisp with a surprising amount of malice and glee.
+			Gunner: Despite their years of neglect, Gunners are still just as capable of shredding their targets in a storm of bullets.
+			Icer: The Icer is an infrequently sighted sister model to the Flamer, it is assumed that only a handful were finished before being abandoned for reasons yet unknown. The unproven but powerful technology installed in the Icers render them more dangerous than their common counterparts.
+			Shocker: Originally designed to repair old machinery, these small maintenance drones don't appear dangerous. However, they are still part of the defense grid, and will use their welders against intruders.
+			Arcanist: Once brilliant scientists, disfigured and made ruthless by a failed experiment - a demise of their own making. Regardless, their aptitude for magic remains, and they will not hesitate to use it.
+			TomeofFrost: A bizarre testament to the endless potential of magic - a tome with the ability to read and cast its own spells. This variant conjures towering ice spikes from the ground, viciously impaling their victims.
+			TomeofInferno: A bizarre testament to the endless potential of magic - a tome with the ability to read and cast its own spells. This variant shoots balls of concentrated heat, engulfing their target in searing flames.
+			TomeofMending: A bizarre testament to the endless potential of magic - a tome with the ability to read and cast its own spells. This variant accompanies other units, restoring their vigor in the midst of battle.
+			TomeofSummoning: A bizarre testament to the endless potential of magic - a tome with the ability to read and cast its own spells. This variant calls upon all other units, bringing unrelenting chaos to anything in its path.
 		}
 
 		Biomes: {
@@ -123,7 +123,8 @@ Mods: {
 			SacrificialAltar.MapEntry: Sacrificial Altar
 			Eyeball.MapEntry: Evil Eye
 			VaultPipe.MapEntry: Vault Pipe
-			AlchemyBench.MapEntry: Alchemy Bench
+			AlchemyBench.MapEntry: Desk
+			ArcaneChest2.MapEntry: Arcane Chest
 		}
 
 		Buffs: {
@@ -158,9 +159,19 @@ Mods: {
 					'''
 			}
 
+			DivineShield: {
+				DisplayName: Divine Shield
+				Tooltip:
+					'''
+					Increases length of invincibility after taking damage
+					At the cost of mana, reduces final damage taken by 25%
+					Temporarily shuts down if it fully depletes your mana
+					'''
+			}
+
 			RingofElements: {
 				DisplayName: Ring of Elements
-				Tooltip: Debuffs wear off 100% faster, not including potion sickness
+				Tooltip: All debuffs wear off 100% faster, except for health and mana sickness
 			}
 
 			IronKey: {
@@ -315,7 +326,12 @@ Mods: {
 
 			SpiritLance: {
 				DisplayName: Spirit Lance
-				Tooltip: Restores mana based on damage dealt, but is much weaker when at full mana
+				Tooltip: When not at full mana, deals 4x damage and restores mana with successful hits
+			}
+
+			SoulLance: {
+				DisplayName: Soul Lance
+				Tooltip: When not at full mana, deals 4x damage and restores mana with successful hits
 			}
 
 			VintageSniper: {
@@ -548,8 +564,17 @@ Mods: {
 			}
 
 			AlchemyBench: {
-				DisplayName: Alchemy Bench
+				DisplayName: Arcane Desk
 				Tooltip: ""
+			}
+
+			StoneofElements: {
+				DisplayName: Stone of Elements
+				Tooltip:
+					'''
+					Reduces the cooldown of healing potions by 25%
+					All debuffs wear off 100% faster, except for health and mana sickness
+					'''
 			}
 		}
 
@@ -594,6 +619,7 @@ Mods: {
 			AetherButterfly.DisplayName: Aether Butterfly
 			FallingDreampod.DisplayName: Falling Dreampod
 			FallingEyeball.DisplayName: Falling Eyeball
+			SoulLanceHoldout.DisplayName: Soul Lance Holdout
 		}
 
 		Configs: {
