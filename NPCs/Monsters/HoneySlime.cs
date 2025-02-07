@@ -101,7 +101,7 @@ namespace Remnants.NPCs.Monsters
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 
-                new FlavorTextBestiaryInfoElement("The honey absorbed by these slimes has greatly improved their vitality and endurance."),
+                new FlavorTextBestiaryInfoElement("Mods.Remnants.Bestiary.HoneySlime"),
                 new BestiaryPortraitBackgroundProviderPreferenceInfoElement(ModContent.GetInstance<Biomes.Hive>().ModBiomeBestiaryInfoElement)
             });
         }
