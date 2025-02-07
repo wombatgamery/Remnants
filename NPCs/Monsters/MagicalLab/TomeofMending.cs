@@ -118,7 +118,7 @@ namespace Remnants.NPCs.Monsters.MagicalLab
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 
-                new FlavorTextBestiaryInfoElement("A bizarre testament to the endless potential of magic - a tome with the ability to read and cast its own spells. This variant accompanies other units, restoring their vigor in the midst of battle."),
+                new FlavorTextBestiaryInfoElement("Mods.Remnants.Bestiary.TomeofMending"),
                 new BestiaryPortraitBackgroundProviderPreferenceInfoElement(ModContent.GetInstance<Biomes.MagicalLab>().ModBiomeBestiaryInfoElement)
             });
         }
