@@ -20,16 +20,22 @@ namespace Remnants
 
 		[Header("Worldgen")]
 
-		[Range(0.5f, 1.5f)]
-		[Increment(.25f)]
-		[DrawTicks]
-		[DefaultValue(1f)]
-		//[BackgroundColor(125, 125, 100)]
-		public float TerrainAmplitude;
+        [Range(0.5f, 1.5f)]
+        [Increment(.25f)]
+        [DrawTicks]
+        [DefaultValue(1f)]
+        //[BackgroundColor(125, 125, 100)]
+        public float TerrainAmplitude;
 
-		//[Label("Ore Frequency")]
-		//[Tooltip("Controls the amount of ore generated in new worlds.")]
-		[Range(0f, 1f)]
+        [DefaultValue(true)]
+        public bool IceMountain;
+
+        [DefaultValue(true)]
+        public bool JungleValley;
+
+        //[Label("Ore Frequency")]
+        //[Tooltip("Controls the amount of ore generated in new worlds.")]
+        [Range(0f, 1f)]
 		[Increment(.25f)]
 		[DrawTicks]
 		[DefaultValue(1f)]
@@ -41,9 +47,9 @@ namespace Remnants
 		[DefaultValue(1f)]
 		public float TrapFrequency;
 
-		//[Label("Cloud Density")]
-		//[Tooltip("Controls the amount of clouds generated in new worlds.")]
-		[Range(0f, 1f)]
+        //[Label("Cloud Density")]
+        //[Tooltip("Controls the amount of clouds generated in new worlds.")]
+        [Range(0f, 1.5f)]
 		[Increment(.25f)]
 		[DrawTicks]
 		[DefaultValue(1f)]

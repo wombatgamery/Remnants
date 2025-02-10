@@ -160,7 +160,7 @@ Mods: {
 			}
 
 			DivineShield: {
-				DisplayName: Божественный Щит
+				DisplayName: Божественный щит
 				Tooltip:
 					'''
 					Увеличивает время неуязвимости после получения урона
@@ -674,6 +674,16 @@ Mods: {
 				LargerSky: {
 					// Label: Larger Sky
 					// Tooltip: ""
+				}
+
+				IceMountain: {
+					Label: Ледяная гора
+					Tooltip: ""
+				}
+
+				JungleValley: {
+					Label: Долина джунглей
+					Tooltip: ""
 				}
 			}
 

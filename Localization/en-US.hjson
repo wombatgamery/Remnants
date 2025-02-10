@@ -633,7 +633,7 @@ Mods: {
 
 				TerrainAmplitude: {
 					Label: "[i:3] Terrain Amplitude"
-					Tooltip: Directy controls the height variance of surface terrain
+					Tooltip: Directly controls the height variance of surface terrain
 				}
 
 				OreFrequency: {
@@ -669,6 +669,16 @@ Mods: {
 				LargerSky: {
 					Label: Larger Sky
 					Tooltip: ""
+				}
+
+				IceMountain: {
+					Label: "[i:664] Ice Mountain"
+					Tooltip: Enables the mountain in the ice biome
+				}
+
+				JungleValley: {
+					Label: "[i:176] Jungle Valley"
+					Tooltip: Enables the valley in the jungle biome
 				}
 			}
 
