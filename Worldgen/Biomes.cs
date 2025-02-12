@@ -257,6 +257,9 @@ namespace Remnants.Worldgen
             //    }
             //}
 
+
+            bool iceFlip = WorldGen.genRand.NextBool(2);
+
             bool lunarVeil = ModLoader.TryGetMod("Stellamod", out Mod lv);
 
             for (float y = startY; y < Main.maxTilesY - 40; y++)
@@ -356,7 +359,7 @@ namespace Remnants.Worldgen
 
                             if (tile.TileType == TileID.Dirt || tile.TileType == TileID.Grass || tile.TileType == TileID.ClayBlock || tile.TileType == TileID.Stone || tile.TileType == TileID.Silt)
                             {
-                                if (MaterialBlend(x, y, frequency: 2) < -0.15f)
+                                if (MaterialBlend(x, y, frequency: 2) < -0.1f)
                                 {
                                     if (WorldGen.genRand.NextBool(10))
                                     {
@@ -364,7 +367,7 @@ namespace Remnants.Worldgen
                                     }
                                     else tile.TileType = TileID.Stone;
                                 }
-                                else if (MaterialBlend(x, y, frequency: 2) <= 0.15f)
+                                else if (MaterialBlend(x, y, frequency: 2) <= 0.1f)
                                 {
                                     tile.TileType = TileID.Coralstone;// Stone;
                                 }
@@ -546,14 +549,14 @@ namespace Remnants.Worldgen
 
                         if (layer >= surfaceLayer)
                         {
-                            caves1.SetFractalPingPongStrength(caves2.GetNoise(x, y * 2) + 2);
-                            float _caves = caves1.GetNoise(x, y * 2);
-                            float _size = (caves3.GetNoise(x, y * 2) / 2) + 1;
+                            caves1.SetFractalPingPongStrength(caves2.GetNoise(x, y * 2 + (int)(Math.Sin(x / 30f + y / (60f * (iceFlip ? -1 : 1))) * 50)) + 2);
+                            float _caves = caves1.GetNoise(x, y * 2 + (int)(Math.Sin(x / 30f + y / (60f * (iceFlip ? -1 : 1))) * 50));
+                            float _size = (caves3.GetNoise(x, y * 2 + (int)(Math.Sin(x / 30f + y / (60f * (iceFlip ? -1 : 1))) * 50)) / 2) + 1;
 
                             if (_caves < -_size * 0.1f)
                             {
                                 tile.HasTile = false;
-                                if (WorldGen.genRand.NextBool(50) && y < GenVars.lavaLine)
+                                if (WorldGen.genRand.NextBool(25) && y < GenVars.lavaLine)
                                 {
                                     tile.LiquidAmount = 255;
                                 }
@@ -2566,7 +2569,7 @@ namespace Remnants.Worldgen
 
             for (int y = 40; y <= Main.maxTilesY - 200; y++)
             {
-                progress.Set(((float)y - 40) / (Main.maxTilesY - 200 - 40));
+                progress.Set((float)((y - 40) / (float)(Main.maxTilesY - 200 - 40)));
 
                 for (int x = 40; x < Main.maxTilesX - 40; x++)
                 {
@@ -2578,11 +2581,61 @@ namespace Remnants.Worldgen
                         {
                             if (RemTile.SolidTop(x, y + 1))
                             {
-                                if (WorldGen.genRand.NextBool(6) && tile.LiquidType == 0 && Framing.GetTileSafely(x, y + 1).TileType == TileID.JungleGrass)
+                                if (tile.LiquidType == 0)
                                 {
-                                    int style = Main.rand.Next(3);
-                                    WorldGen.PlaceTile(x, y, ModContent.TileType<jungleflowerstem>());
-                                    Framing.GetTileSafely(x, y).TileFrameX = (short)(style * 18);
+                                    if (Framing.GetTileSafely(x, y + 1).TileType == TileID.SnowBlock || Framing.GetTileSafely(x, y + 1).TileType == TileID.IceBlock)
+                                    {
+                                        if (WorldGen.genRand.NextBool(2) && tile.LiquidAmount == 255)
+                                        {
+                                            int style = Main.rand.Next(9);
+                                            WorldGen.PlaceTile(x, y, ModContent.TileType<Cryocoral>());
+                                            Framing.GetTileSafely(x, y).TileFrameX = (short)(style * 18);
+                                        }
+                                    }
+                                    else if (Framing.GetTileSafely(x, y + 1).TileType == TileID.JungleGrass)
+                                    {
+                                        if (WorldGen.genRand.NextBool(6))
+                                        {
+                                            WorldGen.PlaceTile(x, y, ModContent.TileType<PrismbudStem>());
+
+                                            for (int j = y - 1; j > (int)Main.worldSurface && !Framing.GetTileSafely(x, j).HasTile; j--)
+                                            {
+                                                if ((WorldGen.genRand.NextBool(10) || RemTile.FlowerGetLength(x, j + 1) >= 10 || Framing.GetTileSafely(x, j - 2).HasTile) && Framing.GetTileSafely(x, j).LiquidAmount == 0)
+                                                {
+                                                    WorldGen.PlaceTile(x, j, ModContent.TileType<PrismbudHead>(), style: Main.rand.Next(3));
+
+                                                    break;
+                                                }
+                                                else
+                                                {
+                                                    WorldGen.PlaceTile(x, j, ModContent.TileType<PrismbudStem>());
+                                                }
+                                            }
+                                        }
+                                    }
+                                    else if (Framing.GetTileSafely(x, y + 1).TileType == TileID.Sand)
+                                    {
+                                        WorldGen.PlaceTile(x, y, TileID.Seaweed);
+
+                                        for (int j = y - 1; j > (int)Main.worldSurface && !Framing.GetTileSafely(x, j).HasTile; j--)
+                                        {
+                                            WorldGen.PlaceTile(x, j, TileID.Seaweed);
+
+                                            if (WorldGen.genRand.NextBool(20) || Framing.GetTileSafely(x, j - 1).LiquidAmount == 0)
+                                            {
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    else if (Framing.GetTileSafely(x, y + 1).TileType == TileID.Coralstone)
+                                    {
+                                        if (WorldGen.genRand.NextBool(2) && tile.LiquidAmount == 255)
+                                        {
+                                            int style = Main.rand.Next(12);
+                                            WorldGen.PlaceTile(x, y, ModContent.TileType<Luminsponge>());
+                                            Framing.GetTileSafely(x, y).TileFrameX = (short)(style * 18);
+                                        }
+                                    }
                                 }
                                 //if (WorldGen.genRand.NextBool(6) && tile.LiquidAmount == 255 && tile.LiquidType == 0 && (Framing.GetTileSafely(x, y + 1).TileType == TileID.Stone || Main.tileMoss[Framing.GetTileSafely(x, y + 1).TileType]))
                                 //{
@@ -2590,15 +2643,6 @@ namespace Remnants.Worldgen
                                 //    WorldGen.PlaceTile(x, y, ModContent.TileType<thermopod>());
                                 //    Framing.GetTileSafely(x, y).TileFrameX = (short)(style * 22);
                                 //}
-                                if (WorldGen.genRand.NextBool(2))
-                                {
-                                    if (tile.LiquidAmount == 255 && tile.LiquidType == 0 && (Framing.GetTileSafely(x, y + 1).TileType == TileID.SnowBlock || Framing.GetTileSafely(x, y + 1).TileType == TileID.IceBlock))
-                                    {
-                                        int style = Main.rand.Next(9);
-                                        WorldGen.PlaceTile(x, y, ModContent.TileType<Cryocoral>());
-                                        Framing.GetTileSafely(x, y).TileFrameX = (short)(style * 18);
-                                    }
-                                }
                                 if (WorldGen.genRand.NextBool(6))
                                 {
                                     if (Framing.GetTileSafely(x, y + 1).TileType == TileID.Stone && biomes.FindBiome(x, y) == BiomeID.GemCave && Framing.GetTileSafely(x - 1, y).TileType != ModContent.TileType<Runestalk>() && Framing.GetTileSafely(x + 1, y).TileType != ModContent.TileType<Runestalk>())
@@ -2606,15 +2650,6 @@ namespace Remnants.Worldgen
                                         //int style = Main.rand.Next(3);
                                         WorldGen.PlaceTile(x, y, ModContent.TileType<Runestalk>());
                                         //Framing.GetTileSafely(x, y).TileFrameX = (short)(style * 22);
-                                    }
-                                }
-                                if (WorldGen.genRand.NextBool(2))
-                                {
-                                    if (tile.LiquidAmount == 255 && tile.LiquidType == 0 && Framing.GetTileSafely(x, y + 1).TileType == TileID.Coralstone)
-                                    {
-                                        int style = Main.rand.Next(12);
-                                        WorldGen.PlaceTile(x, y, ModContent.TileType<Luminsponge>());
-                                        Framing.GetTileSafely(x, y).TileFrameX = (short)(style * 18);
                                     }
                                 }
                             }
@@ -2829,27 +2864,6 @@ namespace Remnants.Worldgen
                         }
                     }
                     #endregion
-                }
-            }
-
-            for (int y = Main.maxTilesY - 200; y > (int)Main.worldSurface; y--)
-            {
-                for (int x = 40; x < Main.maxTilesX - 40; x++)
-                {
-                    if (Framing.GetTileSafely(x, y + 1).TileType == ModContent.TileType<jungleflowerstem>() && !Framing.GetTileSafely(x, y).HasTile)
-                    {
-                        if (WorldGen.genRand.NextBool(10) && Framing.GetTileSafely(x, y).LiquidAmount == 0 || RemTile.FlowerGetLength(x, y) >= 10)
-                        {
-                            WorldGen.PlaceTile(x, y, ModContent.TileType<jungleflowerhead>());//, style: Main.rand.Next(3));
-                            Framing.GetTileSafely(x, y).TileFrameX = 0;
-                            Framing.GetTileSafely(x, y).TileFrameY = (short)(Main.rand.Next(3) * 18);
-                        }
-                        else
-                        {
-                            WorldGen.PlaceTile(x, y, ModContent.TileType<jungleflowerstem>());
-                            Framing.GetTileSafely(x, y).TileFrameX = (short)(Main.rand.Next(3) * 18);
-                        }
-                    }
                 }
             }
         }

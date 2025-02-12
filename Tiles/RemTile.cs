@@ -302,7 +302,7 @@ namespace Remnants.Tiles
             int length = 0;
             for (int a = 0; !WGTools.Solid(i, j + a) && Main.tile[i, j + a].LiquidAmount != 255; a++)
             {
-                if (Main.tile[i, j + a].TileType == ModContent.TileType<jungleflowerstem>() || Main.tile[i, j + a].TileType == ModContent.TileType<jungleflowerhead>())
+                if (Main.tile[i, j + a].TileType == ModContent.TileType<PrismbudStem>() || Main.tile[i, j + a].TileType == ModContent.TileType<PrismbudHead>())
                 {
                     length++;
                 }

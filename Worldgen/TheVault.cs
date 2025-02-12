@@ -50,21 +50,14 @@ namespace Remnants.Worldgen
             bool devMode = false;
 
             #region setup
-            Structures.Dungeon vault = new Structures.Dungeon(0, 0, (int)(Main.maxTilesX / 4200f * 4) + 1, (int)(Main.maxTilesY / 1200f * 4), 60, 60, 5);
+            Structures.Dungeon vault = new Structures.Dungeon(0, 0, (int)(Main.maxTilesX / 4200f * 12), Main.maxTilesY / 600, 60, 60, 5);
 
-            if (PrimaryBiomes.Tundra.X < biomes.width / 2)
-            {
-                vault.X = (int)(((PrimaryBiomes.Tundra.X + 2) * biomes.scale + Main.maxTilesX * 0.4f) / 2f);
-            }
-            else
-            {
-                vault.X = (int)(((PrimaryBiomes.Tundra.X - 1) * biomes.scale + Main.maxTilesX * 0.6f) / 2f);
-            }
-            vault.X -= vault.area.Width / 2;
-            vault.Y = Main.maxTilesY - 310 - vault.area.Height;
+            vault.X = PrimaryBiomes.Jungle.Center * biomes.scale - vault.area.Width / 2;
+            vault.Y = Main.maxTilesY - 210 - vault.area.Height;
 
             WGTools.Rectangle(vault.area.Left - 1, vault.area.Top - 1, vault.area.Right, vault.area.Bottom, ModContent.TileType<VaultPlating>());
             WGTools.Rectangle(vault.area.Left, vault.area.Top, vault.area.Right - 1, vault.area.Bottom - 1, wall: ModContent.WallType<VaultWallUnsafe>(), liquid: 0);
+            Structures.FillEdges(vault.area.Left - 1, vault.area.Top - 1, vault.area.Right, vault.area.Bottom, ModContent.TileType<VaultPlating>());
             GenVars.structures.AddProtectedStructure(vault.area, 22);
             #endregion
 

@@ -28,12 +28,19 @@ namespace Remnants.Tiles.Plants
 			TileObjectData.newTile.RandomStyleRange = 9;
 			TileObjectData.addTile(Type);
 
-			AddMapEntry(new Color(130, 203, 245), CreateMapEntryName());
-			DustType = DustID.Stone;
+			AddMapEntry(new Color(146, 255, 204), CreateMapEntryName());
+            AddMapEntry(new Color(139, 254, 255), CreateMapEntryName());
+            AddMapEntry(new Color(255, 159, 255), CreateMapEntryName());
+            DustType = DustID.Stone;
 			//HitSound = SoundID.Grass;
 		}
 
-		public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
+        public override ushort GetMapOption(int i, int j)
+        {
+			return (ushort)(Main.tile[i, j].TileFrameX <= 18 * 2 ? 0 : Main.tile[i, j].TileFrameX >= 18 * 6 ? 2 : 1);
+        }
+
+        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
 		{
 			Tile tile = Main.tile[i, j];
 			if (tile.TileFrameX < 18 * 3)

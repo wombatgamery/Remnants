@@ -2914,7 +2914,7 @@ namespace Remnants.Worldgen
 
             #region setup
             Structures.Dungeon tomb = new Structures.Dungeon(0, 0, 1 + (int)(Main.maxTilesX / 4200f * 4), (int)(Main.maxTilesY / 1200f * 4), 42, 18, 3);
-            tomb.X = WorldGen.genRand.Next((int)(Main.maxTilesX * 0.4f), (int)(Main.maxTilesX * 0.6f) - tomb.area.Width);
+            tomb.X = WorldGen.genRand.Next((int)(Main.maxTilesX * 0.41f), (int)(Main.maxTilesX * 0.59f) - tomb.area.Width);
             tomb.Y = Main.maxTilesY - 320 - tomb.area.Height;
 
             GenVars.structures.AddProtectedStructure(tomb.area, 25);
@@ -4525,7 +4525,7 @@ namespace Remnants.Worldgen
 
                     bool closedLeft = lab.targetCell.X == lab.grid.Left || !lab.FindMarker(lab.targetCell.X - 1, lab.targetCell.Y) || lab.FindMarker(lab.targetCell.X - 1, lab.targetCell.Y, 2);
                     bool closedRight = lab.targetCell.X == lab.grid.Right - 1 || !lab.FindMarker(lab.targetCell.X + 1, lab.targetCell.Y) || lab.FindMarker(lab.targetCell.X + 1, lab.targetCell.Y, 4);
-                    bool closedTop = lab.targetCell.Y == 0 && lab.targetCell.X != lab.grid.Center.X || !lab.FindMarker(lab.targetCell.X, lab.targetCell.Y - 1) || lab.FindMarker(lab.targetCell.X, lab.targetCell.Y - 1, 3);
+                    bool closedTop = lab.targetCell.Y == 0 || !lab.FindMarker(lab.targetCell.X, lab.targetCell.Y - 1) || lab.FindMarker(lab.targetCell.X, lab.targetCell.Y - 1, 3);
                     bool closedBottom = lab.targetCell.Y == lab.grid.Bottom - 1 || !lab.FindMarker(lab.targetCell.X, lab.targetCell.Y + 1) || lab.FindMarker(lab.targetCell.X, lab.targetCell.Y + 1, 1);
 
                     if (openLeft & openRight)

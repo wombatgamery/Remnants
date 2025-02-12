@@ -1,5 +1,5 @@
 using Microsoft.Xna.Framework;
-using Remnants.Items.Placeable.Objects;
+using Remnants.Items.Placeable.Plants;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;

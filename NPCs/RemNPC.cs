@@ -143,6 +143,8 @@ namespace Remnants.NPCs
             }
             #endregion
 
+            npcLoot.RemoveWhere(rule => rule is CommonDrop drop && drop.itemId == ItemID.Binoculars);
+
             //if (npc.type == NPCID.Hornet)
             //{
             //	npcLoot.Add(ItemDropRule.ByCondition(new Conditions.IsPreHardmode(), ModContent.ItemType<hivekey>(), 50));

@@ -670,7 +670,7 @@ namespace Remnants.NPCs
 
         public override bool WillSearchForPlayer(NPC npc)
         {
-            if (!Main.player[npc.target].wet && (npc.type != NPCID.FlyingFish || !Main.raining) || npc.type == NPCID.Shark && Main.player[npc.target].statLife < Main.player[npc.target].statLifeMax2)
+            if (!Main.player[npc.target].wet && (npc.type != NPCID.FlyingFish || !Main.raining) || npc.type == NPCID.Shark && Main.player[npc.target].statLife >= Main.player[npc.target].statLifeMax2)
             {
                 return false;
             }

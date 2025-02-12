@@ -1869,7 +1869,7 @@ namespace Remnants.Worldgen
                             }
                             else
                             {
-                                if (WorldGen.genRand.NextBool(2) && WGTools.NoDoors(x - 1, y, 3) && WGTools.Tile(x, y + 1).TileType != TileID.Platforms && tile.TileType != ModContent.TileType<SacrificialAltar>())
+                                if (biomes.FindBiome(x, y) != BiomeID.OceanCave && WorldGen.genRand.NextBool(2) && WGTools.NoDoors(x - 1, y, 3) && WGTools.Tile(x, y + 1).TileType != TileID.Platforms && tile.TileType != ModContent.TileType<SacrificialAltar>())
                                 {
                                     LargePile(x, y);
                                 }

@@ -125,6 +125,7 @@ Mods: {
 			// VaultPipe.MapEntry: Vault Pipe
 			// AlchemyBench.MapEntry: Desk
 			// ArcaneChest2.MapEntry: Arcane Chest
+			// PrismbudHead.MapEntry: Prismbud
 		}
 
 		Buffs: {
@@ -340,6 +341,11 @@ Mods: {
 					Восстанавливает ману при нанесении урона
 					Наносит значительно больше урона, если ваш запас маны не полон
 					'''
+			}
+
+			SpectralLance: {
+				// DisplayName: Spectral Lance
+				// Tooltip: When not at full mana, deals 4x damage and restores mana with successful hits
 			}
 
 			VintageSniper: {
@@ -582,6 +588,21 @@ Mods: {
 					Снижает длительность всех дебаффов кроме послезельевой болезни и истощения маны на 100%
 					'''
 			}
+
+			CosmicStone: {
+				// DisplayName: Cosmic Stone
+				/* Tooltip:
+					'''
+					Minor improvements to a wide range of stats
+					Reduces the cooldown of healing potions by 25%
+					All debuffs wear off 100% faster, except for health and mana sickness
+					''' */
+			}
+
+			PrismbudSeed: {
+				// DisplayName: Prismbud Seed
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -626,6 +647,7 @@ Mods: {
 			FallingDreampod.DisplayName: Стручок грёз
 			FallingEyeball.DisplayName: Злобный глаз
 			// SoulLanceHoldout.DisplayName: Soul Lance Holdout
+			// SpectralLanceHoldout.DisplayName: Spectral Lance Holdout
 		}
 
 		Configs: {

@@ -73,7 +73,7 @@ namespace Remnants.Projectiles.Weapons
 				dust.velocity += Main.rand.NextVector2Circular(1, 1);
 			}
 
-			Lighting.AddLight(Projectile.Center, 0, 253f / 255f, 255f / 255f);
+			Lighting.AddLight(Projectile.Center, 58f / 255f, 156f / 255f, 255f / 255f);
 
 			return false;
 		}
