@@ -95,11 +95,11 @@ Mods: {
 		Tiles: {
 			Hardstone.MapEntry: Твердокамень
 			StarOre.MapEntry: Останки звезды
-			vaultpipe.MapEntry: Труба убежища
-			LockedIronDoor.MapEntry: Закрытая железная дверь
-			RustedChest.MapEntry: Проржавевший сундук
-			LabyrinthSpawner.MapEntry: Спавнер
-			PiranhaSpawner.MapEntry: Спавнер
+			vaultpipe.MapEntry: Труба
+			LockedIronDoor.MapEntry: Дверь
+			RustedChest.MapEntry: Сундук
+			LabyrinthSpawner.MapEntry: Око стража
+			PiranhaSpawner.MapEntry: Слив
 			Spitflower.MapEntry: Плевоцвет
 			LabyrinthAltar.MapEntry: Шепчущий алтарь
 			Minecart.MapEntry: Вагонетка
@@ -110,22 +110,22 @@ Mods: {
 			Runestalk.MapEntry: Руностебель
 
 			PyramidChest: {
-				MapEntry: Сундук пирамиды
-				MapEntry0: Закрытый сундук пирамиды
+				MapEntry: Сундук
+				MapEntry0: Закрытый сундук
 			}
 
-			PyramidPot.MapEntry: Горшок пирамиды
+			PyramidPot.MapEntry: Ваза пирамиды
 			Cryocoral.MapEntry: Криокоралл
 			Luminsponge.MapEntry: Губкосвет
 			Nightglow.MapEntry: Куст ночного сияния
 			Shroomcart.MapEntry: Вагонетка
-			ArcaneChest.MapEntry: Арканный сундук
+			ArcaneChest.MapEntry: Сундук
 			SacrificialAltar.MapEntry: Алтарь для жертвоприношений
 			Eyeball.MapEntry: Злобный глаз
-			// VaultPipe.MapEntry: Vault Pipe
-			// AlchemyBench.MapEntry: Desk
-			// ArcaneChest2.MapEntry: Arcane Chest
-			// PrismbudHead.MapEntry: Prismbud
+			VaultPipe.MapEntry: Труба
+			AlchemyBench.MapEntry: Тумбочка
+			ArcaneChest2.MapEntry: Сундук
+			PrismbudHead.MapEntry: Луковица-призмоцветка
 		}
 
 		Buffs: {
@@ -156,7 +156,8 @@ Mods: {
 				Tooltip:
 					'''
 					Поглощает 25% получаемого урона, расходуя при этом равное количество вашей маны
-					Щит на некоторое время сломается, если вы получите урон, не имея достаточно маны
+					Ненадолго приостанавливает регенерацию маны после получения урона
+					Щит сломается и перестанет поглощать урон в течение 30 секунд, если вы получите урон, не имея достаточно маны
 					'''
 			}
 
@@ -166,13 +167,14 @@ Mods: {
 					'''
 					Увеличивает время неуязвимости после получения урона
 					Поглощает 25% получаемого урона, расходуя при этом равное количество вашей маны
-					Щит на некоторое время сломается, если вы получите урон, не имея достаточно маны
+					Ненадолго приостанавливает регенерацию маны после получения урона
+					Щит сломается и перестанет поглощать урон в течение 30 секунд, если вы получите урон, не имея достаточно маны
 					'''
 			}
 
 			RingofElements: {
 				DisplayName: Кольцо элементов
-				Tooltip: Снижает длительность всех дебаффов кроме послезельевой болезни и истощения маны на 100%
+				Tooltip: Снижает длительность всех дебаффов кроме послезельевой болезни и истощения маны в два раза
 			}
 
 			IronKey: {
@@ -344,8 +346,12 @@ Mods: {
 			}
 
 			SpectralLance: {
-				// DisplayName: Spectral Lance
-				// Tooltip: When not at full mana, deals 4x damage and restores mana with successful hits
+				DisplayName: Спектральная алебарда
+				Tooltip:
+					'''
+					Восстанавливает ману при нанесении урона
+					Наносит значительно больше урона, если ваш запас маны не полон
+					'''
 			}
 
 			VintageSniper: {
@@ -566,18 +572,18 @@ Mods: {
 			}
 
 			ArcanePlatform: {
-				// DisplayName: Arcane Platform
-				// Tooltip: ""
+				DisplayName: Арканная платформа
+				Tooltip: ""
 			}
 
 			ArcaneChandelier: {
-				// DisplayName: Arcane Chandelier
-				// Tooltip: ""
+				DisplayName: Арканное светило
+				Tooltip: ""
 			}
 
 			AlchemyBench: {
-				// DisplayName: Arcane Desk
-				// Tooltip: ""
+				DisplayName: Арканная тумбочка
+				Tooltip: ""
 			}
 
 			StoneofElements: {
@@ -585,40 +591,40 @@ Mods: {
 				Tooltip:
 					'''
 					Уменьшает время восстановления зелий лечения на 25%
-					Снижает длительность всех дебаффов кроме послезельевой болезни и истощения маны на 100%
+					Снижает длительность всех дебаффов кроме послезельевой болезни и истощения маны в два раза
 					'''
 			}
 
 			CosmicStone: {
-				// DisplayName: Cosmic Stone
-				/* Tooltip:
+				DisplayName: Камень космоса
+				Tooltip:
 					'''
-					Minor improvements to a wide range of stats
-					Reduces the cooldown of healing potions by 25%
-					All debuffs wear off 100% faster, except for health and mana sickness
-					''' */
+					Немного увеличивает все характеристики
+					Уменьшает время восстановления зелий лечения на 25%
+					Снижает длительность всех дебаффов кроме послезельевой болезни и истощения маны в два раза
+					'''
 			}
 
 			PrismbudSeed: {
-				// DisplayName: Prismbud Seed
-				// Tooltip: ""
+				DisplayName: Семена луковицы-призмоцветки
+				Tooltip: ""
 			}
 		}
 
 		NPCs: {
 			HoneySlime.DisplayName: Медовый слизень
 			IlluminantDagger.DisplayName: Лучезарный кинжал
-			TomeofFrost.DisplayName: Фолиант мороза
+			TomeofFrost.DisplayName: Фолиант льда
 			TomeofInferno.DisplayName: Фолиант пламени
 			Ward.DisplayName: Страж
-			Blaster.DisplayName: Взрыватель
+			Blaster.DisplayName: Подрывник
 			Flamer.DisplayName: Огнемётчик
 			Gunner.DisplayName: Стрелок
 			Icer.DisplayName: Криомётчик
 			Shocker.DisplayName: Шокер
 			Arcanist.DisplayName: Арканист
-			TomeofMending.DisplayName: Фолиант заживления
-			// TomeofSummoning.DisplayName: Tome of Summoning
+			TomeofMending.DisplayName: Фолиант исцеления
+			TomeofSummoning.DisplayName: Фолиант призыва
 		}
 
 		Projectiles: {
@@ -646,8 +652,8 @@ Mods: {
 			AetherButterfly.DisplayName: Эфирная бабочка
 			FallingDreampod.DisplayName: Стручок грёз
 			FallingEyeball.DisplayName: Злобный глаз
-			// SoulLanceHoldout.DisplayName: Soul Lance Holdout
-			// SpectralLanceHoldout.DisplayName: Spectral Lance Holdout
+			SoulLanceHoldout.DisplayName: Протазан духов
+			SpectralLanceHoldout.DisplayName: Спектральная алебарда
 		}
 
 		Configs: {
@@ -689,7 +695,7 @@ Mods: {
 					Tooltip:
 						'''
 						Включает генерацию контента, всё ещё находящегося в процессе разработки и тестировки
-						КАТЕГОРИЧЕСКИ НЕ РЕКОМЕНДУЕТСЯ ВКЛЮЧАТЬ ЭТУ НАСТРОЙКУ ДЛЯ ОБЫЧНЫХ ПРОХОЖДЕНИЙ
+						[c/DC143C:Категорически не рекомендуется для обычных прохождений]
 						'''
 				}
 
@@ -699,13 +705,13 @@ Mods: {
 				}
 
 				IceMountain: {
-					Label: Ледяная гора
-					Tooltip: ""
+					Label: "[i:664] Заснеженная гора"
+					Tooltip: В снежном биоме будет генерироваться огромных размеров гора из блоков снега
 				}
 
 				JungleValley: {
-					Label: Долина джунглей
-					Tooltip: ""
+					Label: "[i:176] Долинообразный ландшафт джунглей"
+					Tooltip: Джунгли будут генерироваться немного ниже уровня поверхности
 				}
 			}
 
@@ -718,7 +724,7 @@ Mods: {
 					Tooltip:
 						'''
 						Делает игрока быстрее и подвижнее (18 миль/ч вместо 15 миль/ч) 
-						КРАЙНЕ РЕКОМЕНДУЕТСЯ
+						[c/98FB98:Крайне рекомендуется]
 						'''
 				}
 
@@ -727,7 +733,7 @@ Mods: {
 					Tooltip:
 						'''
 						Изменяет ИИ некоторым водоплавающим и летающим враждебным существам
-						НЕ РАБОТАЕТ В МУЛЬТИПЛЕЕРЕ
+						[c/DC143C:Не работает в мультиплеере]
 						'''
 				}
 
@@ -737,7 +743,7 @@ Mods: {
 						'''
 						Делает траекторию полёта некоторых видов метательного оружия чуть плавнее и предсказуемее
 						Изменяет баланс этих видов метательного оружия (например добавляет автоатаку сюрикенам) 
-						МОЖЕТ ВЫЗЫВАТЬ СТРАННЫЕ БАГИ
+						[c/DC143C:Может вызывать странные баги]
 						'''
 				}
 
@@ -746,7 +752,7 @@ Mods: {
 					Tooltip:
 						'''
 						Летучие мыши будут висеть на потолке и атаковать игрока только когда тот подойдет слишком близко
-						НЕ РАБОТАЕТ В МУЛЬТИПЛЕЕРЕ
+						[c/DC143C:Не работает в мультиплеере]
 						'''
 				}
 			}
