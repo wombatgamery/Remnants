@@ -84,8 +84,9 @@ namespace Remnants.Tiles.Plants
 				Main.mouseRightRelease = false;
 
 				WorldGen.KillTile(i, j);
+                NetMessage.SendTileSquare(-1, i, j, TileChangeType.None);
 
-				return true;
+                return true;
 			}
 			return false;
 		}

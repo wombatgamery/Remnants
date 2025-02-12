@@ -125,6 +125,7 @@ Mods: {
 			VaultPipe.MapEntry: Vault Pipe
 			AlchemyBench.MapEntry: Desk
 			ArcaneChest2.MapEntry: Arcane Chest
+			PrismbudHead.MapEntry: Prismbud
 		}
 
 		Buffs: {
@@ -331,6 +332,11 @@ Mods: {
 
 			SoulLance: {
 				DisplayName: Soul Lance
+				Tooltip: When not at full mana, deals 4x damage and restores mana with successful hits
+			}
+
+			SpectralLance: {
+				DisplayName: Spectral Lance
 				Tooltip: When not at full mana, deals 4x damage and restores mana with successful hits
 			}
 
@@ -576,6 +582,21 @@ Mods: {
 					All debuffs wear off 100% faster, except for health and mana sickness
 					'''
 			}
+
+			CosmicStone: {
+				DisplayName: Cosmic Stone
+				Tooltip:
+					'''
+					Minor improvements to a wide range of stats
+					Reduces the cooldown of healing potions by 25%
+					All debuffs wear off 100% faster, except for health and mana sickness
+					'''
+			}
+
+			PrismbudSeed: {
+				DisplayName: Prismbud Seed
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -620,6 +641,7 @@ Mods: {
 			FallingDreampod.DisplayName: Falling Dreampod
 			FallingEyeball.DisplayName: Falling Eyeball
 			SoulLanceHoldout.DisplayName: Soul Lance Holdout
+			SpectralLanceHoldout.DisplayName: Spectral Lance Holdout
 		}
 
 		Configs: {

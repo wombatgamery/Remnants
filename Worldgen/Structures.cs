@@ -448,7 +448,7 @@ namespace Remnants.Worldgen
                         }
                         else if (!WGTools.Tile(x, y).HasTile && WGTools.Tile(x, y - 1).HasTile && WGTools.Tile(x, y - 1).TileType == TileID.Mud)
                         {
-                            WGTools.Tile(x, y - 1).TileType = biomes.FindBiome(x, y) == BiomeID.Glowshroom ? TileID.MushroomGrass : TileID.JungleGrass;
+                            WGTools.Tile(x, y - 1).TileType = biomes.FindBiome(x, y) == BiomeID.Jungle ? TileID.JungleGrass : TileID.MushroomGrass;
                         }
                     }
                 }
@@ -2562,31 +2562,31 @@ namespace Remnants.Worldgen
             progressCounter++;
 
             structureCount = 0; // MINECART RAIL
-            while (structureCount < Main.maxTilesY / 120)
+            while (structureCount < Main.maxTilesY / 150)
             {
                 progress.Set((progressCounter + (structureCount / (float)(Main.maxTilesY / 120))) / (float)uniqueStructures);
 
                 #region spawnconditions
                 Structures.Dungeon rail = new Structures.Dungeon(0, WorldGen.genRand.Next((int)Main.rockLayer, GenVars.lavaLine - 50), WorldGen.genRand.Next(15, 30) * (Main.maxTilesX / 4200), 2, 12, 6, 2);
-                rail.X = (structureCount < Main.maxTilesY / 240 ^ Tundra.X > biomes.width / 2) ? WorldGen.genRand.Next(400, Main.maxTilesX / 2 - rail.area.Width / 2) : WorldGen.genRand.Next(Main.maxTilesX / 2 - rail.area.Width / 2, Main.maxTilesX - 400 - rail.area.Width);
+                rail.X = WorldGen.genRand.Next(400, Main.maxTilesX - 400 - rail.area.Width);// (structureCount < Main.maxTilesY / 240 ^ Tundra.X > biomes.width / 2) ? WorldGen.genRand.Next(400, Main.maxTilesX / 2 - rail.area.Width / 2) : WorldGen.genRand.Next(Main.maxTilesX / 2 - rail.area.Width / 2, Main.maxTilesX - 400 - rail.area.Width);
                 rail.X = (int)(rail.X / 4) * 4;
 
-                bool[] invalidTiles = TileID.Sets.Factory.CreateBoolSet(true, TileID.Ash, TileID.Ebonstone, TileID.Crimstone, TileID.Marble, TileID.LihzahrdBrick, TileID.LivingWood);
+                bool[] invalidTiles = TileID.Sets.Factory.CreateBoolSet(true, TileID.Ash, TileID.Ebonstone, TileID.Crimstone, TileID.LihzahrdBrick, TileID.LivingWood);
 
                 bool valid = true;
                 if (!GenVars.structures.CanPlace(rail.area, invalidTiles, 25))
                 {
                     valid = false;
                 }
-                else if (Structures.AvoidsBiomes(rail.area, new int[] { BiomeID.Granite }) && structureCount < Main.maxTilesY / 600f || !Structures.AvoidsBiomes(rail.area, new int[] { BiomeID.Granite }) && structureCount >= Main.maxTilesY / 600f)
+                //else if (Structures.AvoidsBiomes(rail.area, new int[] { BiomeID.Granite }) && structureCount < Main.maxTilesY / 600f || !Structures.AvoidsBiomes(rail.area, new int[] { BiomeID.Granite }) && structureCount >= Main.maxTilesY / 600f)
+                //{
+                //    valid = false;
+                //}
+                else if (!Structures.AvoidsBiomes(rail.area, new int[] { BiomeID.Tundra, BiomeID.Desert, BiomeID.Marble, BiomeID.Hive, BiomeID.GemCave, BiomeID.Toxic }))
                 {
                     valid = false;
                 }
-                else if (!Structures.AvoidsBiomes(rail.area, new int[] { BiomeID.Hive, BiomeID.GemCave, BiomeID.Toxic }))
-                {
-                    valid = false;
-                }
-                else if (structureCount > Main.maxTilesY / 240 && (!Structures.AvoidsBiomes(rail.area, new int[] { BiomeID.Jungle }) ^ structureCount % 2 == 0))
+                else if (!Structures.AvoidsBiomes(rail.area, new int[] { BiomeID.Jungle }) ^ structureCount % 5 == 0)
                 {
                     valid = false;
                 }
@@ -3900,7 +3900,7 @@ namespace Remnants.Worldgen
                     if (count >= countInitial / 2)
                     {
 
-                        Structures.Dungeon tower = new Structures.Dungeon(x + width / 2, y, 1, WorldGen.genRand.Next(2, 5), 23, 12);
+                        Structures.Dungeon tower = new Structures.Dungeon(x + width / 2, y, 1, count % 3 + 2, 23, 12);
 
                         while (true)
                         {

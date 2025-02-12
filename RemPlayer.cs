@@ -11,6 +11,7 @@ using System;
 using Remnants.Worldgen;
 using Remnants.Walls;
 using Terraria.DataStructures;
+using Remnants.Dusts;
 
 namespace Remnants
 {
@@ -98,6 +99,7 @@ namespace Remnants
             {
                 Player.ZoneGlowshroom = RemWorld.mushroomTiles >= 1000;
             }
+            Player.ZoneSkyHeight = Player.position.Y / 16 < Main.worldSurface / 2;
             if (Player.InModBiome<Biomes.MagicalLab>())
             {
                 Player.shimmerMonolithShader = true;
@@ -193,6 +195,12 @@ namespace Remnants
                 Player.manaRegenDelay = (int)Player.maxRegenDelay;
 
                 manaRegenStopTimer = 160;
+
+                int type = Player.longInvince ? ModContent.DustType<DivineShieldEffect>() : ModContent.DustType<MagicShieldEffect>();
+                for (int i = 0; i < 100; i++)
+                {
+                    Dust dust = Dust.NewDustPerfect(Player.Center + Main.rand.NextVector2CircularEdge(32, 32), type);
+                }
             }
         }
 

@@ -125,6 +125,7 @@ Mods: {
 			VaultPipe.MapEntry: Труба
 			AlchemyBench.MapEntry: Тумбочка
 			ArcaneChest2.MapEntry: Сундук
+			PrismbudHead.MapEntry: Луковица-призмоцветка
 		}
 
 		Buffs: {
@@ -337,6 +338,15 @@ Mods: {
 
 			SoulLance: {
 				DisplayName: Протазан духов
+				Tooltip:
+					'''
+					Восстанавливает ману при нанесении урона
+					Наносит значительно больше урона, если ваш запас маны не полон
+					'''
+			}
+
+			SpectralLance: {
+				DisplayName: Спектральная алебарда
 				Tooltip:
 					'''
 					Восстанавливает ману при нанесении урона
@@ -584,6 +594,21 @@ Mods: {
 					Снижает длительность всех дебаффов кроме послезельевой болезни и истощения маны в два раза
 					'''
 			}
+
+			CosmicStone: {
+				DisplayName: Камень космоса
+				Tooltip:
+					'''
+					Немного увеличивает все характеристики
+					Уменьшает время восстановления зелий лечения на 25%
+					Снижает длительность всех дебаффов кроме послезельевой болезни и истощения маны в два раза
+					'''
+			}
+
+			PrismbudSeed: {
+				DisplayName: Семена луковицы-призмоцветки
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -628,6 +653,7 @@ Mods: {
 			FallingDreampod.DisplayName: Стручок грёз
 			FallingEyeball.DisplayName: Злобный глаз
 			SoulLanceHoldout.DisplayName: Протазан духов
+			SpectralLanceHoldout.DisplayName: Спектральная алебарда
 		}
 
 		Configs: {
