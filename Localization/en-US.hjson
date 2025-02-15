@@ -1,18 +1,18 @@
 Mods: {
 	Remnants: {
-		UI: {
+		Messages: {
 			EssenceofMight: Acquired: Essence of Might
 			EssenceofEndurance: Acquired: Essence of Endurance
 			EssenceofFocus: Acquired: Essence of Focus
 
-			+20%health: +20% Max Health
-			-20%health: -20% Max Health
+			HealthIncrease: +20% Max Health
+			HealthDecrease: -20% Max Health
 
-			+10%damage: +10% Damage
-			-10%damage: -10% Damage
+			DamageIncrease: +10% Damage
+			DamageDecrease: -10% Damage
 
-			+20%speed: +20% Run Speed
-			-20%speed: -20% Run Speed
+			SpeedIncrease: +20% Run Speed
+			SpeedDecrease: -20% Run Speed
 
 			Deactivation: Essence Deactivated
 		}
