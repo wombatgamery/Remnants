@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.Audio;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -51,24 +52,24 @@ namespace Remnants.Tiles.Objects
 
                 if (style == 0)
 				{
-					Main.NewText("Acquired: Essence of Might", new Color(255, 255, 153));
-					Main.NewText("+20% Max Health", new Color(51, 204, 51));
-					Main.NewText("+10% Damage", new Color(51, 204, 51));
-					Main.NewText("-20% Run Speed", new Color(204, 51, 51));
+					Main.NewText(Language.GetTextValue("Mods.Remnants.UI.EssenceofMight"), new Color(255, 255, 153));
+					Main.NewText("Mods.Remnants.UI.+20%health", new Color(51, 204, 51));
+					Main.NewText("Mods.Remnants.UI.+10%damage", new Color(51, 204, 51));
+					Main.NewText("Mods.Remnants.UI.-20%speed", new Color(204, 51, 51));
 				}
 				else if (style == 1)
 				{
-					Main.NewText("Acquired: Essence of Endurance", new Color(255, 255, 153));
-					Main.NewText("+20% Max Health", new Color(51, 204, 51));
-					Main.NewText("+20% Run Speed", new Color(51, 204, 51));
-					Main.NewText("-10% Damage", new Color(204, 51, 51));
+					Main.NewText("Mods.Remnants.UI.EssenceofEndurance", new Color(255, 255, 153));
+					Main.NewText("Mods.Remnants.UI.+20%health", new Color(51, 204, 51));
+					Main.NewText("Mods.Remnants.UI.+20%speed", new Color(51, 204, 51));
+					Main.NewText("Mods.Remnants.UI.-10%damage", new Color(204, 51, 51));
 				}
 				else if (style == 2)
 				{
-					Main.NewText("Acquired: Essence of Focus", new Color(255, 255, 153));
-					Main.NewText("+10% Damage", new Color(51, 204, 51));
-					Main.NewText("+20% Run Speed", new Color(51, 204, 51));
-					Main.NewText("-20% Max Health", new Color(204, 51, 51));
+					Main.NewText("Mods.Remnants.UI.EssenceofFocus", new Color(255, 255, 153));
+					Main.NewText("Mods.Remnants.UI.+10%damage", new Color(51, 204, 51));
+					Main.NewText("Mods.Remnants.UI.+20%speed", new Color(51, 204, 51));
+					Main.NewText("Mods.Remnants.UI.-20%health", new Color(204, 51, 51));
 				}
 
                 Tile tile = Main.tile[i, j];
@@ -85,7 +86,7 @@ namespace Remnants.Tiles.Objects
 				Main.LocalPlayer.GetModPlayer<RemPlayer>().activeEssence = 0;
 
                 Main.NewText(".", new Color(51, 51, 51));
-                Main.NewText("Essence Deactivated", new Color(255, 204, 102));
+                Main.NewText("Mods.Remnants.UI.Deactivation", new Color(255, 204, 102));
             }
 
 			return true;
