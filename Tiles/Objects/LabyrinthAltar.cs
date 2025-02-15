@@ -52,24 +52,24 @@ namespace Remnants.Tiles.Objects
 
                 if (style == 0)
 				{
-					Main.NewText(Language.GetTextValue("Mods.Remnants.UI.EssenceofMight"), new Color(255, 255, 153));
-					Main.NewText(Language.GetTextValue("Mods.Remnants.UI.+20%health"), new Color(51, 204, 51));
-					Main.NewText(Language.GetTextValue("Mods.Remnants.UI.+10%damage"), new Color(51, 204, 51));
-					Main.NewText(Language.GetTextValue("Mods.Remnants.UI.-20%speed"), new Color(204, 51, 51));
+					Main.NewText(Language.GetTextValue("Mods.Remnants.Messages.EssenceofMight"), new Color(255, 255, 153));
+					Main.NewText(Language.GetTextValue("Mods.Remnants.Messages.HealthIncrease"), new Color(51, 204, 51));
+					Main.NewText(Language.GetTextValue("Mods.Remnants.Messages.DamageIncrease"), new Color(51, 204, 51));
+					Main.NewText(Language.GetTextValue("Mods.Remnants.Messages.SpeedDecrease"), new Color(204, 51, 51));
 				}
 				else if (style == 1)
 				{
-					Main.NewText(Language.GetTextValue("Mods.Remnants.UI.EssenceofEndurance"), new Color(255, 255, 153));
-					Main.NewText(Language.GetTextValue("Mods.Remnants.UI.+20%health"), new Color(51, 204, 51));
-					Main.NewText(Language.GetTextValue("Mods.Remnants.UI.+20%speed"), new Color(51, 204, 51));
-					Main.NewText(Language.GetTextValue("Mods.Remnants.UI.-10%damage"), new Color(204, 51, 51));
+					Main.NewText(Language.GetTextValue("Mods.Remnants.Messages.EssenceofEndurance"), new Color(255, 255, 153));
+					Main.NewText(Language.GetTextValue("Mods.Remnants.Messages.HealthIncrease"), new Color(51, 204, 51));
+					Main.NewText(Language.GetTextValue("Mods.Remnants.Messages.SpeedIncrease"), new Color(51, 204, 51));
+					Main.NewText(Language.GetTextValue("Mods.Remnants.Messages.DamageDecrease"), new Color(204, 51, 51));
 				}
 				else if (style == 2)
 				{
-					Main.NewText(Language.GetTextValue("Mods.Remnants.UI.EssenceofFocus"), new Color(255, 255, 153));
-					Main.NewText(Language.GetTextValue("Mods.Remnants.UI.+10%damage"), new Color(51, 204, 51));
-					Main.NewText(Language.GetTextValue("Mods.Remnants.UI.+20%speed"), new Color(51, 204, 51));
-					Main.NewText(Language.GetTextValue("Mods.Remnants.UI.-20%health"), new Color(204, 51, 51));
+					Main.NewText(Language.GetTextValue("Mods.Remnants.Messages.EssenceofFocus"), new Color(255, 255, 153));
+					Main.NewText(Language.GetTextValue("Mods.Remnants.Messages.DamageIncrease"), new Color(51, 204, 51));
+					Main.NewText(Language.GetTextValue("Mods.Remnants.Messages.SpeedIncrease"), new Color(51, 204, 51));
+					Main.NewText(Language.GetTextValue("Mods.Remnants.Messages.HealthDecrease"), new Color(204, 51, 51));
 				}
 
                 Tile tile = Main.tile[i, j];
@@ -86,7 +86,7 @@ namespace Remnants.Tiles.Objects
 				Main.LocalPlayer.GetModPlayer<RemPlayer>().activeEssence = 0;
 
                 Main.NewText(".", new Color(51, 51, 51));
-                Main.NewText(Language.GetTextValue("Mods.Remnants.UI.Deactivation"), new Color(255, 204, 102));
+                Main.NewText(Language.GetTextValue("Mods.Remnants.Messages.Deactivation"), new Color(255, 204, 102));
             }
 
 			return true;
