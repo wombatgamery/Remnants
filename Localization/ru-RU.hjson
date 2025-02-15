@@ -1,5 +1,22 @@
 Mods: {
 	Remnants: {
+		UI: {
+			EssenceofMight: Acquired: Essence of Might
+			EssenceofEndurance: Acquired: Essence of Endurance
+			EssenceofFocus: Acquired: Essence of Focus
+
+			+20%health: +20% Max Health
+			-20%health: -20% Max Health
+
+			+10%damage: +10% Damage
+			-10%damage: -10% Damage
+
+			+20%speed: +20% Run Speed
+			-20%speed: -20% Run Speed
+
+			Deactivation: Essence Deactivated
+		}
+
 		Bestiary: {
 			Ward: Колоссальных размеров груда камней, движимая одной лишь слепой яростью. Денно и нощно он патрулирует запутанные коридоры лабиринта, пытаясь сберечь то, что упрятано где-то там, на самом дне этого проклятого места...
 			HoneySlime: Удивительной вязкости смесь из геля и мёда лишь пошла на пользу живучести этих слизней.
