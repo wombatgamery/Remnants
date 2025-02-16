@@ -14,7 +14,7 @@ Mods: {
 			SpeedIncrease: +20% к скорости бега
 			SpeedDecrease: -20% к скорости бега
 
-			Deactivation: Вы вернули поглощённую эссенцию обратно алтарю
+			Deactivation: Вы отказались от дарованной алтарём силы...
 		}
 
 		Bestiary: {
