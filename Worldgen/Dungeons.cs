@@ -23,6 +23,7 @@ using Terraria.ID;
 using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
+using Remnants.Items.Materials;
 
 namespace Remnants.Worldgen
 {
@@ -4353,10 +4354,10 @@ namespace Remnants.Worldgen
 
                     Generator.GenerateStructure("Structures/special/magicallab/treasureroom", lab.roomPos, ModContent.GetInstance<Remnants>());
 
-                    int chestIndex = WorldGen.PlaceChest(lab.roomPos.X + 8, lab.roomPos.Y + 41, (ushort)ModContent.TileType<ArcaneChest2>());
+                    int chestIndex = WorldGen.PlaceChest(lab.roomPos.X + 8, lab.roomPos.Y + 41, (ushort)ModContent.TileType<ArcaneChest2>(), style: 1);
                     ChestLoot(chestIndex, roomCount * 2 + 1, Main.maxTilesY / 600 * 2);
 
-                    chestIndex = WorldGen.PlaceChest(lab.roomPos.X + 44, lab.roomPos.Y + 41, (ushort)ModContent.TileType<ArcaneChest2>());
+                    chestIndex = WorldGen.PlaceChest(lab.roomPos.X + 44, lab.roomPos.Y + 41, (ushort)ModContent.TileType<ArcaneChest2>(), style: 1);
                     ChestLoot(chestIndex, roomCount * 2, Main.maxTilesY / 600 * 2);
 
                     roomCount++;
@@ -4688,6 +4689,11 @@ namespace Remnants.Worldgen
 
             Structures.GenericLoot(chestIndex, itemsToAdd, 2, new int[] { ItemID.MagicPowerPotion, ItemID.ManaRegenerationPotion }, true);
 
+            if (WorldGen.genRand.NextBool(2))
+            {
+                itemsToAdd.Add((ModContent.ItemType<DreamJelly>(), Main.rand.Next(5, 11)));
+            }
+
             Structures.FillChest(chestIndex, itemsToAdd);
         }
     }
@@ -4712,7 +4718,7 @@ namespace Remnants.Worldgen
             if (WorldGen.gen)
             {
                 maze.X = GenVars.dungeonX - maze.area.Width / 2;
-                maze.Y = Math.Min(GenVars.lavaLine, Main.maxTilesY - 354 - maze.area.Height);
+                maze.Y = Main.maxTilesY - 354 - maze.area.Height;
 
                 WGTools.Terraform(new Vector2(maze.area.Center.X, maze.Y - 50), 50, killWall: true);
 

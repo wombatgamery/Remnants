@@ -46,7 +46,7 @@ namespace Remnants.Tiles.Plants
 
         public override IEnumerable<Item> GetItemDrops(int i, int j)
         {
-            yield return new Item(ModContent.ItemType<PrismbudSeed>(), Main.rand.Next(1, 4));
+            yield return new Item(ModContent.ItemType<PrismbudSeeds>(), Main.rand.Next(1, 4));
         }
 
         public override void MouseOver(int i, int j)
@@ -55,7 +55,7 @@ namespace Remnants.Tiles.Plants
 
             player.noThrow = 2;
             player.cursorItemIconEnabled = true;
-            player.cursorItemIconID = ModContent.ItemType<PrismbudSeed>();
+            player.cursorItemIconID = ModContent.ItemType<PrismbudSeeds>();
         }
 
         public override bool RightClick(int i, int j)
@@ -228,21 +228,18 @@ namespace Remnants.Tiles.Plants
 
 			if (Main.rand.NextBool(10) && Main.tile[i, j].LiquidAmount == 0) // turn into flower
 			{
-				if (!Main.tile[i, j - 1].HasTile || (Main.tile[i, j - 1].TileType != ModContent.TileType<PrismbudStem>() && Main.tile[i, j - 1].TileType != ModContent.TileType<PrismbudHead>()))
+				if (!Main.tile[i, j - 1].HasTile || Main.tile[i, j - 1].TileType != ModContent.TileType<PrismbudStem>() && Main.tile[i, j - 1].TileType != ModContent.TileType<PrismbudHead>())
 				{
 					tile.HasTile = false;
 					WorldGen.PlaceTile(i, j, (ushort)ModContent.TileType<PrismbudHead>(), true, style: Main.rand.Next(3));
 				}
 			}
-			else// if (Main.rand.NextBool(2)) // grow
-			{
+            else if (!Main.tile[i, j - 1].HasTile)
+            {
 				if (RemTile.FlowerGetLength(i, j) < 10)
 				{
-					if (!Main.tile[i, j - 1].HasTile)
-					{
-						WorldGen.PlaceTile(i, j - 1, ModContent.TileType<PrismbudStem>(), true);
-					}
-				}
+                    WorldGen.PlaceTile(i, j - 1, ModContent.TileType<PrismbudStem>(), true);
+                }
 			}
 		}
 

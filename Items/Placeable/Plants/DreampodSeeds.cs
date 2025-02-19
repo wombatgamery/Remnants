@@ -6,7 +6,7 @@ using Remnants.Items.Placeable.Blocks;
 
 namespace Remnants.Items.Placeable.Plants
 {
-    public class PrismbudSeed : ModItem
+    public class DreampodSeeds : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -16,9 +16,11 @@ namespace Remnants.Items.Placeable.Plants
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.WoodenChair);
-            Item.width = 8 * 2;
-            Item.height = 8 * 2;
-            Item.createTile = ModContent.TileType<Tiles.Plants.PrismbudStem>();
+            Item.width = 10 * 2;
+            Item.height = 10 * 2;
+            Item.rare = ItemRarityID.Green;
+            Item.value = Item.sellPrice(silver: 1);
+            Item.createTile = ModContent.TileType<Tiles.Plants.DreampodVine>();
         }
     }
 }

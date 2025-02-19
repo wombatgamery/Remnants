@@ -11,7 +11,6 @@ namespace Remnants.Items.Placeable.Objects
 			Item.CloneDefaults(ItemID.GoldChandelier);
 			Item.width = 16;
 			Item.height = 16;
-			Item.rare = 1;
 			Item.placeStyle = 0;
 			Item.createTile = ModContent.TileType<Tiles.Objects.Furniture.ArcaneChandelier>();
 		}

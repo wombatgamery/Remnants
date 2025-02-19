@@ -10,6 +10,8 @@ using Terraria.Audio;
 using System;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
+using Terraria.GameContent.ItemDropRules;
+using Remnants.Items.Consumable;
 
 namespace Remnants.NPCs.Monsters.MagicalLab
 {
@@ -42,7 +44,12 @@ namespace Remnants.NPCs.Monsters.MagicalLab
 			SpawnModBiomes = new int[] { ModContent.GetInstance<Biomes.MagicalLab>().Type };
 		}
 
-		public override void FindFrame(int frameHeight)
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ArcaneKey>()));
+        }
+
+        public override void FindFrame(int frameHeight)
 		{
 			if (++NPC.frameCounter > 2)
 			{

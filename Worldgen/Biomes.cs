@@ -1534,7 +1534,7 @@ namespace Remnants.Worldgen
             {
                 int orbY = alternate ? orbYSecondary : orbYPrimary;
 
-                int radius = 48;
+                int radius = (int)(20 * Main.maxTilesX / 4200f);
 
                 FastNoiseLite noise = new FastNoiseLite();
                 noise.SetNoiseType(FastNoiseLite.NoiseType.Cellular);
@@ -2311,8 +2311,8 @@ namespace Remnants.Worldgen
             #region aether
             Main.tileSolid[TileID.ShimmerBlock] = true;
 
-            GenVars.shimmerPosition.X = GenVars.dungeonSide == 1 ? Main.maxTilesX - 150 : 150;
-            GenVars.shimmerPosition.Y = GenVars.lavaLine;
+            GenVars.shimmerPosition.X = GenVars.dungeonSide != 1 ? Main.maxTilesX - 175 : 175;
+            GenVars.shimmerPosition.Y = Main.rockLayer + 200;
             #endregion
 
             FastNoiseLite growth = new FastNoiseLite(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
@@ -2600,7 +2600,7 @@ namespace Remnants.Worldgen
 
                                             for (int j = y - 1; j > (int)Main.worldSurface && !Framing.GetTileSafely(x, j).HasTile; j--)
                                             {
-                                                if ((WorldGen.genRand.NextBool(10) || RemTile.FlowerGetLength(x, j + 1) >= 10 || Framing.GetTileSafely(x, j - 2).HasTile) && Framing.GetTileSafely(x, j).LiquidAmount == 0)
+                                                if ((WorldGen.genRand.NextBool(10) || y - j >= 10 || Framing.GetTileSafely(x, j - 2).HasTile) && Framing.GetTileSafely(x, j).LiquidAmount == 0)
                                                 {
                                                     WorldGen.PlaceTile(x, j, ModContent.TileType<PrismbudHead>(), style: Main.rand.Next(3));
 
@@ -2655,13 +2655,25 @@ namespace Remnants.Worldgen
                             }
                             else if (RemTile.SolidBottom(x, y - 1))
                             {
-                                if (WorldGen.genRand.NextBool(2))
+                                if (WorldGen.genRand.NextBool(4))
                                 {
                                     if (biomes.FindBiome(x, y) == BiomeID.Aether && Framing.GetTileSafely(x, y - 1).TileType == TileID.VioletMoss && tile.LiquidAmount == 0)
                                     {
-                                        int style = Main.rand.Next(3);
                                         WorldGen.PlaceTile(x, y, ModContent.TileType<DreampodVine>());
-                                        Framing.GetTileSafely(x, y).TileFrameX = (short)(style * 18);
+
+                                        for (int j = y + 1; j < Main.maxTilesY - 300 && !Framing.GetTileSafely(x, j).HasTile && Framing.GetTileSafely(x, j).LiquidAmount == 0; j++)
+                                        {
+                                            if ((WorldGen.genRand.NextBool(20) || j - y >= 20 || Framing.GetTileSafely(x, j + 2).HasTile))
+                                            {
+                                                WorldGen.PlaceTile(x, j, ModContent.TileType<Dreampod>(), style: Main.rand.Next(3));
+
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                WorldGen.PlaceTile(x, j, ModContent.TileType<DreampodVine>());
+                                            }
+                                        }
                                     }
                                     else if ((biomes.FindBiome(x, y) == BiomeID.Corruption || biomes.FindBiome(x, y) == BiomeID.Crimson) && (TileID.Sets.Corrupt[Framing.GetTileSafely(x, y - 1).TileType] || TileID.Sets.Crimson[Framing.GetTileSafely(x, y - 1).TileType]) && tile.LiquidAmount == 0)
                                     {
@@ -2802,38 +2814,6 @@ namespace Remnants.Worldgen
 
                     if (!Framing.GetTileSafely(x, y).HasTile)
                     {
-                        if (Framing.GetTileSafely(x, y - 1).TileType == ModContent.TileType<DreampodVine>())
-                        {
-                            bool maxLength = true;
-
-                            for (int a = 1; a <= 20; a++)
-                            {
-                                if (Framing.GetTileSafely(x, y - a).TileType != ModContent.TileType<DreampodVine>())
-                                {
-                                    maxLength = false;
-                                    break;
-                                }
-                            }
-
-                            if (!maxLength && Framing.GetTileSafely(x, y).LiquidAmount == 0)
-                            {
-                                if (WorldGen.genRand.NextBool(20))
-                                {
-                                    WorldGen.PlaceTile(x, y, ModContent.TileType<Dreampod>());
-                                    Framing.GetTileSafely(x, y).TileType = (ushort)ModContent.TileType<Dreampod>();
-
-                                    Framing.GetTileSafely(x, y).TileFrameX = (short)(Main.rand.Next(3) * 20);
-                                }
-                                else
-                                {
-                                    WorldGen.PlaceTile(x, y, ModContent.TileType<DreampodVine>());
-                                    Framing.GetTileSafely(x, y).TileType = (ushort)ModContent.TileType<DreampodVine>();
-
-                                    Framing.GetTileSafely(x, y).TileFrameX = (short)(Main.rand.Next(3) * 18);
-                                }
-                            }
-                        }
-
                         if (Framing.GetTileSafely(x, y - 1).TileType == ModContent.TileType<EyeballVine>())
                         {
                             bool maxLength = true;

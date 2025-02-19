@@ -124,7 +124,12 @@ Mods: {
 			Eyeball.MapEntry: Злобный глаз
 			VaultPipe.MapEntry: Труба
 			AlchemyBench.MapEntry: Тумбочка
-			ArcaneChest2.MapEntry: Сундук
+
+			ArcaneChest2: {
+				MapEntry0: Арканный сундук
+				MapEntry1: Закрытый арканный сундук
+			}
+
 			PrismbudHead.MapEntry: Луковица-призмоцветка
 		}
 
@@ -606,8 +611,28 @@ Mods: {
 			}
 
 			PrismbudSeed: {
+				// DisplayName: Prismbud Seed
+				// Tooltip: ""
+			}
+
+			DreamJelly: {
+				// DisplayName: Dream Jelly
+				// Tooltip: Can be used to duplicate herbs
+			}
+
+			DreampodSeeds: {
+				// DisplayName: Dreampod Seeds
+				// Tooltip: ""
+			}
+
+			PrismbudSeeds: {
 				DisplayName: Семена луковицы-призмоцветки
 				Tooltip: ""
+			}
+
+			ArcaneKey: {
+				// DisplayName: Arcane Key
+				// Tooltip: Opens one Locked Arcane Chest
 			}
 		}
 

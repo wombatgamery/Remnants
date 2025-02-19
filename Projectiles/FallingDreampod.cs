@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Remnants.Items.Materials;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -30,27 +32,24 @@ namespace Remnants.Projectiles
 		{
 			Projectile.velocity.Y += 0.3f;
 			//Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.ShimmerTorch);
-			Lighting.AddLight(Projectile.Center, new Vector3((255f / 255f), (119f / 255f), (180f / 255f)));
+			//dust.velocity = Projectile.velocity;
+			Lighting.AddLight(Projectile.Center, new Vector3((255f / 255f), (119f / 255f), (232f / 255f)));
 
-			//if (Projectile.shimmerWet)
-   //         {
-			//	SoundEngine.PlaySound(SoundID.NPCDeath56, Projectile.position);
+			if (Projectile.shimmerWet)
+			{
+                for (int i = 0; i < 100; i++)
+                {
+                    Dust dust = Dust.NewDustDirect(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.ShimmerTorch);
+                    dust.velocity = new Vector2(Main.rand.NextFloat(-5, 5), -Main.rand.NextFloat(0, 5));
+                }
 
-			//	for (int i = 0; i < 20; i++)
-			//	{
-			//		Dust dust = Dust.NewDustDirect(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.ShimmerTorch);
-			//		dust.velocity = new Vector2(Main.rand.NextFloat(-Projectile.velocity.Y, Projectile.velocity.Y) / 2, -Main.rand.NextFloat(0, Projectile.velocity.Y)) / 2;
-			//	}
-
-			//	Projectile.Kill();
-			//}
+                Projectile.Kill();
+			}
 		}
 
 		public override bool OnTileCollide(Vector2 oldVelocity)
 		{
-			SoundEngine.PlaySound(SoundID.NPCDeath1, Projectile.position);
-
-			for (int i = 0; i < 20; i++)
+			for (int i = 0; i < 40; i++)
 			{
 				Dust dust = Dust.NewDustDirect(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.ShimmerSplash);
 				dust.velocity = new Vector2(Main.rand.NextFloat(-oldVelocity.Y, oldVelocity.Y) / 2, -Main.rand.NextFloat(0, oldVelocity.Y)) / 2;
@@ -63,6 +62,14 @@ namespace Remnants.Projectiles
 
 		public override void OnKill(int timeLeft)
 		{
+			int item = Item.NewItem(new EntitySource_Loot(Projectile), Projectile.getRect(), new Item(ModContent.ItemType<DreamJelly>(), Main.rand.Next(1, 4)));
+			if (Projectile.shimmerWet)
+			{
+				Main.item[item].velocity = Vector2.Zero;
+                SoundEngine.PlaySound(SoundID.NPCDeath56, Projectile.position);
+            }
+            else SoundEngine.PlaySound(SoundID.NPCDeath1, Projectile.position);
+            NetMessage.SendData(MessageID.SyncItem, number: item);
 		}
 
         public override bool PreDraw(ref Color lightColor)

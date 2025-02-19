@@ -217,7 +217,7 @@ namespace Remnants.NPCs
 
                     if (tile.WallType != ModContent.WallType<Ascension>())
                     {
-                        pool[ModContent.NPCType<Arcanist>()] = 0.5f;
+                        pool[ModContent.NPCType<Arcanist>()] = 1f;
                         pool[ModContent.NPCType<TomeofInferno>()] = 1f;
                         pool[ModContent.NPCType<TomeofFrost>()] = 1f;
                     }
@@ -236,10 +236,6 @@ namespace Remnants.NPCs
                         {
                             pool[NPCID.Ghost] = 2f;
                         }
-                        pool[NPCID.SandSlime] = 2f;
-
-                        pool[NPCID.Scorpion] = 1f;
-                        pool[NPCID.ScorpionBlack] = 1f;
                         //if (player.InModBiome(ModContent.GetInstance<Pyramid>()))
                         //{
                         //	pool[NPCID.Ghost] = 2f;
@@ -248,6 +244,11 @@ namespace Remnants.NPCs
                         //	pool[NPCID.ScorpionBlack] = 1f;
                         //}
                     }
+
+                    pool[NPCID.SandSlime] = 2f;
+
+                    pool[NPCID.Scorpion] = 1f;
+                    pool[NPCID.ScorpionBlack] = 1f;
                 }
                 else if (tile.WallType == ModContent.WallType<forgottentomb>() || tile.WallType == ModContent.WallType<TombBrickWallUnsafe>())
                 {
@@ -261,7 +262,7 @@ namespace Remnants.NPCs
                         pool[NPCID.WebbedStylist] = 1f;
                     }
                 }
-                else if (tile.TileType == TileID.Granite || tile.TileType == TileID.GraniteBlock)
+                else if ((tile.TileType == TileID.Granite || tile.TileType == TileID.GraniteBlock))
                 {
                     pool.Clear();
 

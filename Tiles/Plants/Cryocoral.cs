@@ -86,7 +86,7 @@ namespace Remnants.Tiles.Plants
 				effect = SpriteEffects.FlipHorizontally;
 			}
 
-			Main.spriteBatch.Draw(ModContent.Request<Texture2D>(Texture).Value, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - 4 - (int)Main.screenPosition.Y) + zero, new Rectangle(tile.TileFrameX, tile.TileFrameY + 24, 16, 20), Color.White, 0f, Vector2.Zero, 1f, effect, 0f);
+			Main.spriteBatch.Draw(ModContent.Request<Texture2D>(Texture).Value, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - 4 - (int)Main.screenPosition.Y) + zero, new Rectangle(tile.TileFrameX, tile.TileFrameY, 16, 22), Color.White, 0f, Vector2.Zero, 1f, effect, 0f);
 		}
 	}
 }

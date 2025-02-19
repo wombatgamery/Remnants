@@ -2699,9 +2699,6 @@ namespace Remnants.Worldgen
                     }
                 }
             }
-
-            GenVars.shimmerPosition.X = GenVars.dungeonSide != 1 ? Main.maxTilesX - 175 : 175;
-            GenVars.shimmerPosition.Y = Main.rockLayer + 200;
         }
     }
 

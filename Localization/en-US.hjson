@@ -124,7 +124,12 @@ Mods: {
 			Eyeball.MapEntry: Evil Eye
 			VaultPipe.MapEntry: Vault Pipe
 			AlchemyBench.MapEntry: Desk
-			ArcaneChest2.MapEntry: Arcane Chest
+
+			ArcaneChest2: {
+				MapEntry0: Arcane Chest
+				MapEntry1: Locked Arcane Chest
+			}
+
 			PrismbudHead.MapEntry: Prismbud
 		}
 
@@ -596,6 +601,26 @@ Mods: {
 			PrismbudSeed: {
 				DisplayName: Prismbud Seed
 				Tooltip: ""
+			}
+
+			DreamJelly: {
+				DisplayName: Dream Jelly
+				Tooltip: Can be used to duplicate herbs
+			}
+
+			DreampodSeeds: {
+				DisplayName: Dreampod Seeds
+				Tooltip: ""
+			}
+
+			PrismbudSeeds: {
+				DisplayName: Prismbud Seeds
+				Tooltip: ""
+			}
+
+			ArcaneKey: {
+				DisplayName: Arcane Key
+				Tooltip: Opens one Locked Arcane Chest
 			}
 		}
 

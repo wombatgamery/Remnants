@@ -14,7 +14,7 @@ namespace Remnants.Items.Documents
             Item.height = 11 * 2;
             Item.maxStack = 1;
             Item.value = 0;
-            Item.rare = ItemRarityID.Blue;
+            Item.rare = ItemRarityID.White;
         }
     }
 
@@ -51,6 +51,7 @@ namespace Remnants.Items.Documents
         public override void SetDefaults()
         {
             Item.CloneDefaults(ModContent.ItemType<ScientistNotes1>());
+            //Item.rare = ItemRarityID.Yellow;
         }
     }
 

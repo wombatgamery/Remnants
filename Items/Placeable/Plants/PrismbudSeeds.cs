@@ -6,8 +6,8 @@ using Remnants.Items.Placeable.Blocks;
 
 namespace Remnants.Items.Placeable.Plants
 {
-    [LegacyName("nightglowseed")]
-    public class NightglowSeed : ModItem
+    [LegacyName("PrismbudSeed")]
+    public class PrismbudSeeds : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -17,11 +17,11 @@ namespace Remnants.Items.Placeable.Plants
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.WoodenChair);
-            Item.width = 6 * 2;
-            Item.height = 6 * 2;
-            Item.value = Item.sellPrice(copper: 10);
-            Item.createTile = ModContent.TileType<Tiles.Plants.Nightglow>();
-            Item.placeStyle = 3;
+            Item.width = 10 * 2;
+            Item.height = 10 * 2;
+            Item.rare = ItemRarityID.Blue;
+            Item.value = Item.sellPrice(silver: 1);
+            Item.createTile = ModContent.TileType<Tiles.Plants.PrismbudStem>();
         }
     }
 }

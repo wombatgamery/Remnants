@@ -19,24 +19,14 @@ namespace Remnants
 
 		}
 
-		public override void Load() //test
+		public override void Load()
 		{
-            //TextureAssets.Item[ItemID.Shuriken].Value = GetTexture("Items/vanilla/shuriken");
-			//TextureAssets.Item[ItemID.ThrowingKnife].Value = GetTexture("Items/vanilla/throwingknife");
-			//TextureAssets.Item[ItemID.PoisonedKnife].Value = GetTexture("Items/vanilla/poisonknife");
+			On_WorldGen.ShimmerCleanUp += CancelShimmerCleanup;
 		}
 
-		//public override void AddRecipeGroups()/* tModPorter Note: Removed. Use ModSystem.AddRecipeGroups */
-		//{
-		//	RecipeGroup
-
-		//	group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Husk", new int[]
-		//	{
-		//		ItemID.RedHusk,
-		//		ItemID.CyanHusk,
-		//		ItemID.VioletHusk
-		//	});
-		//	RecipeGroup.RegisterGroup("Remnants:BeetleHusk", group);
-		//}
+		private void CancelShimmerCleanup(On_WorldGen.orig_ShimmerCleanUp orig)
+		{
+			return;
+		}
 	}
 }
