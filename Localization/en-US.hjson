@@ -1,5 +1,22 @@
 Mods: {
 	Remnants: {
+		Messages: {
+			EssenceofMight: Acquired: Essence of Might
+			EssenceofEndurance: Acquired: Essence of Endurance
+			EssenceofFocus: Acquired: Essence of Focus
+
+			HealthIncrease: +20% Max Health
+			HealthDecrease: -20% Max Health
+
+			DamageIncrease: +10% Damage
+			DamageDecrease: -10% Damage
+
+			SpeedIncrease: +20% Run Speed
+			SpeedDecrease: -20% Run Speed
+
+			Deactivation: Essence Deactivated
+		}
+
 		Bestiary: {
 			Ward: A titanic mass of cold stone - and unrelenting fury. It stalks the winding labyrinth halls, fervently protecting whatever lies at its heart...
 			HoneySlime: The honey absorbed by these slimes has greatly improved their vitality and endurance.
