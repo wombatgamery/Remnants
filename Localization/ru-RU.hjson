@@ -130,7 +130,7 @@ Mods: {
 			PyramidPot.MapEntry: Ваза пирамиды
 			Cryocoral.MapEntry: Криокоралл
 			Luminsponge.MapEntry: Губкосвет
-			Nightglow.MapEntry: Куст ночного сияния
+			Nightglow.MapEntry: Куст ягоды ночного сияния
 			ArcaneChest.MapEntry: Сундук
 			SacrificialAltar.MapEntry: Алтарь для жертвоприношений
 			Eyeball.MapEntry: Злобный глаз
@@ -138,8 +138,8 @@ Mods: {
 			AlchemyBench.MapEntry: Тумбочка
 
 			ArcaneChest2: {
-				MapEntry0: Арканный сундук
-				MapEntry1: Закрытый арканный сундук
+				MapEntry0: Сундук
+				MapEntry1: Закрытый сундук
 			}
 
 			PrismbudHead.MapEntry: Луковица-призмоцветка
@@ -179,7 +179,7 @@ Mods: {
 			}
 
 			DivineShield: {
-				DisplayName: Божественный щит
+				DisplayName: Серафимов щит
 				Tooltip:
 					'''
 					Увеличивает время неуязвимости после получения урона
@@ -354,7 +354,7 @@ Mods: {
 			}
 
 			SoulLance: {
-				DisplayName: Протазан духов
+				DisplayName: Душегуб
 				Tooltip:
 					'''
 					Восстанавливает ману при нанесении урона
@@ -363,7 +363,7 @@ Mods: {
 			}
 
 			SpectralLance: {
-				DisplayName: Спектральная алебарда
+				DisplayName: Спектральный пронзатель
 				Tooltip:
 					'''
 					Восстанавливает ману при нанесении урона
@@ -623,18 +623,18 @@ Mods: {
 			}
 
 			PrismbudSeed: {
-				// DisplayName: Prismbud Seed
-				// Tooltip: ""
+				DisplayName: Семена луковицы-призмоцветки
+				Tooltip: ""
 			}
 
 			DreamJelly: {
-				// DisplayName: Dream Jelly
-				// Tooltip: Can be used to duplicate herbs
+				DisplayName: Эфирная слизь
+				Tooltip: Мечта каждого алхимика — ей можно разбавлять любые микстуры, совсем не теряя в концентрации реагентов в них
 			}
 
 			DreampodSeeds: {
-				// DisplayName: Dreampod Seeds
-				// Tooltip: ""
+				DisplayName: Семена стручка грёз
+				Tooltip: ""
 			}
 
 			PrismbudSeeds: {
@@ -643,8 +643,8 @@ Mods: {
 			}
 
 			ArcaneKey: {
-				// DisplayName: Arcane Key
-				// Tooltip: Opens one Locked Arcane Chest
+				DisplayName: Арканный ключ
+				Tooltip: Позволяет открыть один сундук из магической лаборатории
 			}
 
 			RunestalkBlessingIcon: {
@@ -694,8 +694,8 @@ Mods: {
 			AetherButterfly.DisplayName: Эфирная бабочка
 			FallingDreampod.DisplayName: Стручок грёз
 			FallingEyeball.DisplayName: Злобный глаз
-			SoulLanceHoldout.DisplayName: Протазан духов
-			SpectralLanceHoldout.DisplayName: Спектральная алебарда
+			SoulLanceHoldout.DisplayName: Душегуб
+			SpectralLanceHoldout.DisplayName: Спектральный пронзатель
 		}
 
 		Configs: {
