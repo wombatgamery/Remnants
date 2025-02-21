@@ -30,7 +30,7 @@ namespace Remnants.Worldgen
 
         private float[,] blendingX;
         private float[,] blendingY;
-        private int blendDistance => ModContent.GetInstance<Client>().ExperimentalWorldgen ? 0 : 50;
+        private int blendDistance => ModContent.GetInstance<Client>().ExperimentalWorldgen ? 0 : 35;
 
         public FastNoiseLite materialsNoise = new FastNoiseLite();
 
@@ -1035,7 +1035,7 @@ namespace Remnants.Worldgen
                         SetDefaultValues(caves1);
 
                         caves1.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
-                        caves1.SetFrequency(0.02f);
+                        caves1.SetFrequency(0.03f);
                         caves1.SetFractalType(FastNoiseLite.FractalType.FBm);
 
                         float _caves = caves1.GetNoise(x, y * 2);
@@ -1060,7 +1060,7 @@ namespace Remnants.Worldgen
 
                         if (!WGTools.SurroundingTilesActive(x - 1, y - 1))
                         {
-                            if (WGTools.Tile(x - 1, y - 1).TileType == TileID.Stone && WGTools.Tile(x - 1, y - 2).TileType != TileID.GemSaplings && WorldGen.genRand.NextBool(3))
+                            if (WGTools.Tile(x - 1, y - 1).TileType == TileID.Stone && WGTools.Tile(x - 1, y - 2).TileType != TileID.GemSaplings && WorldGen.genRand.NextBool(5))
                             {
                                 WGTools.Tile(x - 1, y - 1).TileType = gemBlock;
                             }
@@ -2387,10 +2387,6 @@ namespace Remnants.Worldgen
                                 {
                                     biomes.AddBiome(i, j, BiomeID.Glowshroom);
                                 }
-                                else if (j >= biomes.caveLayer && gemcaves.GetNoise(i, j * 2) > 0.65f)
-                                {
-                                    biomes.AddBiome(i, j, BiomeID.GemCave);
-                                }
                                 //else if (flesh.GetNoise(i, j) > 0.5f && j >= WorldGen.lavaLine / biomes.scale - 1)
                                 //{
                                 //    biomes.AddBiome(i, j, "flesh");
@@ -2420,24 +2416,42 @@ namespace Remnants.Worldgen
                     }
                 }
             }
+
+            int count = 0;
+            while (count < (biomes.width * (biomes.height - 6 - biomes.caveLayer)) / 40)
+            {
+                int x = WorldGen.genRand.Next(7, biomes.width - 7);
+                int y = WorldGen.genRand.Next(biomes.caveLayer, biomes.height - 6);
+
+                if (biomes.biomeMap[x, y] == BiomeID.None)
+                {
+                    if (biomes.biomeMap[x - 1, y] != BiomeID.GemCave && biomes.biomeMap[x + 1, y] != BiomeID.GemCave && biomes.biomeMap[x, y - 1] != BiomeID.GemCave && biomes.biomeMap[x, y + 1] != BiomeID.GemCave && biomes.biomeMap[x - 1, y - 1] != BiomeID.GemCave && biomes.biomeMap[x + 1, y - 1] != BiomeID.GemCave && biomes.biomeMap[x - 1, y + 1] != BiomeID.GemCave && biomes.biomeMap[x + 1, y + 1] != BiomeID.GemCave)
+                    {
+                        biomes.AddBiome(x, y, BiomeID.GemCave);
+
+                        count++;
+                    }
+                }
+            }
+
             #region growth
-            //int growthSize = biomes.width / 16;
-            //int growthY = (int)(RemWorld.lavaLevel / biomes.scale) - growthSize / 2;
-            //int growthX = Tundra.X;
+                //int growthSize = biomes.width / 16;
+                //int growthY = (int)(RemWorld.lavaLevel / biomes.scale) - growthSize / 2;
+                //int growthX = Tundra.X;
 
-            //for (int j = (int)Main.worldSurface / biomes.scale + 2; j < WorldGen.lavaLine / biomes.scale; j++)
-            //{
-            //    for (int i = 0; i < biomes.width; i++)
-            //    {
-            //        float num = Vector2.Distance(new Vector2(growthX, growthY), new Vector2(i + (j - growthY) / 2, j)) / growthSize;
+                //for (int j = (int)Main.worldSurface / biomes.scale + 2; j < WorldGen.lavaLine / biomes.scale; j++)
+                //{
+                //    for (int i = 0; i < biomes.width; i++)
+                //    {
+                //        float num = Vector2.Distance(new Vector2(growthX, growthY), new Vector2(i + (j - growthY) / 2, j)) / growthSize;
 
-            //        if ((growth.GetNoise(i * biomes.scale, j * biomes.scale) + 1) / 2 >= num)
-            //        {
-            //            biomes.AddBiome(i, j, "growth");
-            //        }
-            //    }
-            //}
-            #endregion
+                //        if ((growth.GetNoise(i * biomes.scale, j * biomes.scale) + 1) / 2 >= num)
+                //        {
+                //            biomes.AddBiome(i, j, "growth");
+                //        }
+                //    }
+                //}
+                #endregion
 
             biomes.UpdateMap(new int[] { BiomeID.Glowshroom, BiomeID.Marble, BiomeID.Granite, BiomeID.Aether, BiomeID.Hive, BiomeID.GemCave, BiomeID.OceanCave }, progress);
 

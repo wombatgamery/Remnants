@@ -18,15 +18,5 @@ namespace Remnants
 		{
 
 		}
-
-		public override void Load()
-		{
-			On_WorldGen.ShimmerCleanUp += CancelShimmerCleanup;
-		}
-
-		private void CancelShimmerCleanup(On_WorldGen.orig_ShimmerCleanUp orig)
-		{
-			return;
-		}
 	}
 }

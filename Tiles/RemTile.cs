@@ -39,15 +39,6 @@ namespace Remnants.Tiles
             TileID.Sets.CanBeClearedDuringGeneration[TileID.Glass] = false;
 
             WallID.Sets.AllowsPlantsToGrow[WallID.LavaUnsafe4] = true;
-
-            for (int type = 0; type <= 300; type++)
-            {
-                if (Main.tileMergeDirt[type])
-                {
-                    Main.tileMerge[type][TileID.ClayBlock] = true;
-                    Main.tileMerge[TileID.ClayBlock][type] = true;
-                }
-            }
         }
 
         public override bool CanPlace(int i, int j, int type)
@@ -403,6 +394,9 @@ namespace Remnants.Tiles
             Main.tileMerge[TileID.Granite][TileID.Stalactite] = false;//true;
             Main.tileMerge[TileID.Marble][TileID.Stalactite] = false;//true;
 
+            TileMerge(TileID.Dirt, TileID.Ash);
+            TileMerge(TileID.ClayBlock, TileID.Ash);
+
             TileMerge(TileID.Silt, TileID.Stone);
             TileMerge(TileID.Slush, TileID.IceBlock);
 
@@ -432,8 +426,14 @@ namespace Remnants.Tiles
             TileMerge(TileID.Hellstone, TileID.ObsidianBrick);
             TileMerge(TileID.Hellstone, TileID.HellstoneBrick);
 
-            //Main.tileMergeDirt[TileID.SnowBlock] = true;
-            //Main.tileMerge[TileID.SnowBlock][TileID.IceBlock] = true;
+            for (int type = 0; type <= 300; type++)
+            {
+                if (Main.tileMergeDirt[type])
+                {
+                    Main.tileMerge[type][TileID.ClayBlock] = true;
+                    Main.tileMerge[TileID.ClayBlock][type] = true;
+                }
+            }
         }
 
         private void TileMerge(ushort tile1, ushort tile2)

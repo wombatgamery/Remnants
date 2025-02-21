@@ -52,24 +52,24 @@ namespace Remnants.Tiles.Objects
 
                 if (style == 0)
 				{
-					Main.NewText(Language.GetTextValue("Mods.Remnants.Messages.EssenceofMight"), new Color(255, 255, 153));
-					Main.NewText(Language.GetTextValue("Mods.Remnants.Messages.HealthIncrease"), new Color(51, 204, 51));
-					Main.NewText(Language.GetTextValue("Mods.Remnants.Messages.DamageIncrease"), new Color(51, 204, 51));
-					Main.NewText(Language.GetTextValue("Mods.Remnants.Messages.SpeedDecrease"), new Color(204, 51, 51));
+					Main.NewText(Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.Messages.EssenceofMight"), new Color(255, 255, 153));
+					Main.NewText("+20% " + Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.Messages.Health"), new Color(51, 204, 51));
+					Main.NewText("+10% " + Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.Messages.Damage"), new Color(51, 204, 51));
+					Main.NewText("-20% " + Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.Messages.Speed"), new Color(204, 51, 51));
 				}
 				else if (style == 1)
 				{
-					Main.NewText(Language.GetTextValue("Mods.Remnants.Messages.EssenceofEndurance"), new Color(255, 255, 153));
-					Main.NewText(Language.GetTextValue("Mods.Remnants.Messages.HealthIncrease"), new Color(51, 204, 51));
-					Main.NewText(Language.GetTextValue("Mods.Remnants.Messages.SpeedIncrease"), new Color(51, 204, 51));
-					Main.NewText(Language.GetTextValue("Mods.Remnants.Messages.DamageDecrease"), new Color(204, 51, 51));
+					Main.NewText(Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.Messages.EssenceofEndurance"), new Color(255, 255, 153));
+					Main.NewText("+20% " + Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.Messages.Health"), new Color(51, 204, 51));
+					Main.NewText("+20% " + Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.Messages.Speed"), new Color(51, 204, 51));
+					Main.NewText("-10% " + Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.Messages.Damage"), new Color(204, 51, 51));
 				}
 				else if (style == 2)
 				{
-					Main.NewText(Language.GetTextValue("Mods.Remnants.Messages.EssenceofFocus"), new Color(255, 255, 153));
-					Main.NewText(Language.GetTextValue("Mods.Remnants.Messages.DamageIncrease"), new Color(51, 204, 51));
-					Main.NewText(Language.GetTextValue("Mods.Remnants.Messages.SpeedIncrease"), new Color(51, 204, 51));
-					Main.NewText(Language.GetTextValue("Mods.Remnants.Messages.HealthDecrease"), new Color(204, 51, 51));
+					Main.NewText(Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.Messages.EssenceofFocus"), new Color(255, 255, 153));
+					Main.NewText("+10% " + Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.Messages.Damage"), new Color(51, 204, 51));
+					Main.NewText("+20% " + Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.Messages.Speed"), new Color(51, 204, 51));
+					Main.NewText("-20% " + Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.Messages.Health"), new Color(204, 51, 51));
 				}
 
                 Tile tile = Main.tile[i, j];
@@ -86,7 +86,7 @@ namespace Remnants.Tiles.Objects
 				Main.LocalPlayer.GetModPlayer<RemPlayer>().activeEssence = 0;
 
                 Main.NewText(".", new Color(51, 51, 51));
-                Main.NewText(Language.GetTextValue("Mods.Remnants.Messages.Deactivation"), new Color(255, 204, 102));
+                Main.NewText(Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.Messages.Deactivation"), new Color(255, 204, 102));
             }
 
 			return true;
@@ -113,11 +113,11 @@ namespace Remnants.Tiles.Objects
         {
 			int style = GetStyle(i, j);
 
-			bool stronger = Main.LocalPlayer.GetModPlayer<RemPlayer>().activeEssence == style + 1;
+			bool selected = Main.LocalPlayer.GetModPlayer<RemPlayer>().activeEssence == style + 1;
 
 			if (style == 0)
             {
-				if (stronger)
+				if (selected)
                 {
 					r = 255f;
 					g = 102f;
@@ -133,7 +133,7 @@ namespace Remnants.Tiles.Objects
 			}
 			else if (style == 1)
 			{
-				if (stronger)
+				if (selected)
 				{
 					r = 255f;
 					g = 56f;
@@ -149,7 +149,7 @@ namespace Remnants.Tiles.Objects
 			}
 			else if (style == 2)
 			{
-				if (stronger)
+				if (selected)
 				{
 					r = 184f;
 					g = 57f;

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Remnants.Buffs;
 using Remnants.Dusts;
+using Remnants.Items;
 using Remnants.Items.Materials;
 using Remnants.Items.Placeable.Objects;
 using System;
@@ -66,13 +67,15 @@ namespace Remnants.Tiles.Plants
 
         public override void MouseOver(int i, int j)
         {
+            Player player = Main.LocalPlayer;
+            Tile tile = Main.tile[i, j];
 
-			Player player = Main.LocalPlayer;
-			player.noThrow = 2;
-			player.cursorItemIconEnabled = true;
-			player.cursorItemIconID = -1;
-			player.cursorItemIconText = "Blessing";
-		}
+            player.cursorItemIconID = ModContent.ItemType<RunestalkBlessingIcon>();
+            player.cursorItemIconText = "";
+
+            player.noThrow = 2;
+            player.cursorItemIconEnabled = true;
+        }
 
         public override bool RightClick(int i, int j)
         {

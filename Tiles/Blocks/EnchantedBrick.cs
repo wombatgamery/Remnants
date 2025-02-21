@@ -22,8 +22,10 @@ namespace Remnants.Tiles.Blocks
 
 			TileID.Sets.CanBeClearedDuringGeneration[Type] = false;
 			TileID.Sets.CanBeClearedDuringOreRunner[Type] = false;
+			TileID.Sets.AvoidedByMeteorLanding[Type] = true;
 
-			MinPick = 110;
+
+            MinPick = 110;
 			MineResist = 3;
 			DustType = DustID.Stone;
 			HitSound = SoundID.Tink;

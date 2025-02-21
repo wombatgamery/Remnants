@@ -2,7 +2,7 @@ Remnants is a unique, innovative mod that rebuilds your Terraria world from the 
 
 In summary, this mod adds:
  . A complete overhaul to ALL vanilla world generation
- . An assortment of new content, including a massive expansion to the aether biome
+ . An assortment of new content, including a major expansion to the aether biome
  . Minor gameplay improvements, most notably reworks to some enemy AI
 
 See the steam workshop page for more details.

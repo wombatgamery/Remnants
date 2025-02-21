@@ -3310,7 +3310,7 @@ namespace Remnants.Worldgen
                 {
                     valid = false;
                 }
-                else if (!Structures.AvoidsBiomes(cabin.area, new int[] { BiomeID.Granite, BiomeID.Hive, BiomeID.Toxic, BiomeID.Obsidian }))
+                else if (!Structures.AvoidsBiomes(cabin.area, new int[] { BiomeID.GemCave, BiomeID.Granite, BiomeID.Hive, BiomeID.Toxic, BiomeID.Obsidian }))
                 {
                     valid = false;
                 }
@@ -4089,7 +4089,7 @@ namespace Remnants.Worldgen
                             {
                                 if (!WGTools.Tile(i, j - k).HasTile)
                                 {
-                                    tile.TileType = biomes.FindBiome(i, j) == BiomeID.Jungle ? TileID.Mud : TileID.Dirt;
+                                    tile.TileType = biomes.FindBiome(x, y) == BiomeID.Jungle ? TileID.Mud : TileID.Dirt;
                                     break;
                                 }
                             }

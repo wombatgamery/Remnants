@@ -17,8 +17,9 @@ namespace Remnants.Tiles.Blocks
 
 			TileID.Sets.DoesntGetReplacedWithTileReplacement[Type] = true;
 			TileID.Sets.CanBeClearedDuringOreRunner[Type] = false;
+            TileID.Sets.AvoidedByMeteorLanding[Type] = true;
 
-			MineResist = 4;
+            MineResist = 4;
 			MinPick = 9999;
 			DustType = DustID.Stone;
 			HitSound = SoundID.Tink;

@@ -55,6 +55,11 @@ namespace Remnants
 		[DefaultValue(1f)]
 		public float CloudDensity;
 
+        //[DefaultValue(true)]
+        //[BackgroundColor(90, 160, 140)]
+        //[ReloadRequired]
+        //public float MeteorRework;
+
         //[DefaultValue(false)]
         //[BackgroundColor(150, 150, 125)]
         //public bool LargerSky;

@@ -1,22 +1,5 @@
 Mods: {
 	Remnants: {
-		Messages: {
-			EssenceofMight: Acquired: Essence of Might
-			EssenceofEndurance: Acquired: Essence of Endurance
-			EssenceofFocus: Acquired: Essence of Focus
-
-			HealthIncrease: +20% Max Health
-			HealthDecrease: -20% Max Health
-
-			DamageIncrease: +10% Damage
-			DamageDecrease: -10% Damage
-
-			SpeedIncrease: +20% Run Speed
-			SpeedDecrease: -20% Run Speed
-
-			Deactivation: Essence Deactivated
-		}
-
 		Bestiary: {
 			Ward: A titanic mass of cold stone - and unrelenting fury. It stalks the winding labyrinth halls, fervently protecting whatever lies at its heart...
 			HoneySlime: The honey absorbed by these slimes has greatly improved their vitality and endurance.
@@ -118,8 +101,21 @@ Mods: {
 			LabyrinthSpawner.MapEntry: Spawner
 			PiranhaSpawner.MapEntry: Spawner
 			Spitflower.MapEntry: Spitflower
-			LabyrinthAltar.MapEntry: Labyrinth Altar
-			Minecart.MapEntry: Minecart
+
+			LabyrinthAltar: {
+				MapEntry: Labyrinth Altar
+
+				Messages: {
+					EssenceofMight: Acquired: Essence of Might
+					EssenceofEndurance: Acquired: Essence of Endurance
+					EssenceofFocus: Acquired: Essence of Focus
+					Health: Max Health
+					Damage: Damage
+					Speed: Run Speed
+					Deactivation: Essence Deactivated
+				}
+			}
+
 			Sarcophagus.MapEntry: Sarcophagus
 			Scrapper.MapEntry: Scrapper
 			spiritlamp.MapEntry: spiritlamp
@@ -135,7 +131,6 @@ Mods: {
 			Cryocoral.MapEntry: Cryocoral
 			Luminsponge.MapEntry: Luminsponge
 			Nightglow.MapEntry: Nightglow
-			Shroomcart.MapEntry: Shroomcart
 			ArcaneChest.MapEntry: Arcane Chest
 			SacrificialAltar.MapEntry: Sacrificial Altar
 			Eyeball.MapEntry: Evil Eye
@@ -639,6 +634,11 @@ Mods: {
 				DisplayName: Arcane Key
 				Tooltip: Opens one Locked Arcane Chest
 			}
+
+			RunestalkBlessingIcon: {
+				DisplayName: Runestalk Blessing Icon
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -682,8 +682,8 @@ Mods: {
 			AetherButterfly.DisplayName: Aether Butterfly
 			FallingDreampod.DisplayName: Falling Dreampod
 			FallingEyeball.DisplayName: Falling Eyeball
-			SoulLanceHoldout.DisplayName: Soul Lance Holdout
-			SpectralLanceHoldout.DisplayName: Spectral Lance Holdout
+			SoulLanceHoldout.DisplayName: Soul Lance
+			SpectralLanceHoldout.DisplayName: Spectral Lance
 		}
 
 		Configs: {
@@ -697,22 +697,22 @@ Mods: {
 
 				TerrainAmplitude: {
 					Label: "[i:3] Terrain Amplitude"
-					Tooltip: Directly controls the height variance of surface terrain
+					Tooltip: Controls the height variance of surface terrain
 				}
 
 				OreFrequency: {
 					Label: "[i:11] Ore Frequency"
-					Tooltip: Directly controls the amount of ore generated in new worlds
+					Tooltip: Controls the amount of ore generated in new worlds
 				}
 
 				TrapFrequency: {
 					Label: "[i:539] Trap Frequency"
-					Tooltip: Directly controls the amount of traps generated in new worlds
+					Tooltip: Controls the amount of traps generated in new worlds
 				}
 
 				CloudDensity: {
 					Label: "[i:751] Sky Density"
-					Tooltip: Directly controls the amount of floating isles and clouds generated in new worlds
+					Tooltip: Controls the amount of floating isles and clouds generated in new worlds
 				}
 
 				CustomMusic: {
@@ -726,7 +726,7 @@ Mods: {
 						'''
 						Enables worldgen still in development
 
-						Note: FOR TESTING PURPOSES ONLY, NEVER USE THIS FOR A NORMAL PLAYTHROUGH
+						Note: FOR TESTING PURPOSES ONLY - NEVER USE THIS FOR A NORMAL PLAYTHROUGH
 						'''
 				}
 

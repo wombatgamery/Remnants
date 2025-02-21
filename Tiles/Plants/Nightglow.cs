@@ -4,6 +4,7 @@ using Remnants.Dusts;
 using Remnants.Items.Consumable;
 using Remnants.Items.Materials;
 using System.Collections.Generic;
+using System.Reflection;
 using Terraria;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;

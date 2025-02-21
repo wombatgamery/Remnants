@@ -21,6 +21,7 @@ namespace Remnants.Tiles.Objects
 			Main.tileLavaDeath[Type] = false;
 
 			TileID.Sets.DisableSmartCursor[Type] = true;
+			TileID.Sets.CanDropFromRightClick[Type] = true;
 
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
 			TileObjectData.newTile.CoordinateHeights = new[] { 16, 16 };
@@ -28,35 +29,24 @@ namespace Remnants.Tiles.Objects
 			TileObjectData.newTile.DrawYOffset = 2;
 			TileObjectData.addTile(Type);
 
-			AddMapEntry(new Color(138, 121, 102), CreateMapEntryName());
+			AddMapEntry(new Color(138, 121, 102), Language.GetText("ItemName.Minecart"));
 
 			RegisterItemDrop(ItemID.Minecart);
 			DustType = 8;
 			HitSound = SoundID.Dig;
 		}
 
-		//public override void MouseOver(int i, int j)
-		//{
-		//	Player player = Main.LocalPlayer;
-		//	Tile tile = Main.tile[i, j];
+		public override void MouseOver(int i, int j)
+		{
+			Player player = Main.LocalPlayer;
+			Tile tile = Main.tile[i, j];
 
-		//	player.cursorItemIconID = ItemID.Minecart;
-		//	player.cursorItemIconText = "";
+			player.cursorItemIconID = ItemID.Minecart;
+			player.cursorItemIconText = "";
 
-		//	player.noThrow = 2;
-		//	player.cursorItemIconEnabled = true;
-		//}
-
-		//public override bool RightClick(int i, int j)
-		//{
-		//	Player player = Main.LocalPlayer;
-		//	Tile tile = Main.tile[i, j];
-		//	Main.mouseRightRelease = false;
-
-		//	WorldGen.KillTile(i, j);
-			
-		//	return true;
-		//}
+			player.noThrow = 2;
+			player.cursorItemIconEnabled = true;
+		}
 
 		public override void NumDust(int i, int j, bool fail, ref int num)
 		{
@@ -75,42 +65,32 @@ namespace Remnants.Tiles.Objects
 			Main.tileLavaDeath[Type] = false;
 
 			TileID.Sets.DisableSmartCursor[Type] = true;
+            TileID.Sets.CanDropFromRightClick[Type] = true;
 
-			TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
 			TileObjectData.newTile.CoordinateHeights = new[] { 16, 16 };
 			TileObjectData.newTile.CoordinatePadding = 0;
 			TileObjectData.newTile.DrawYOffset = 2;
 			TileObjectData.addTile(Type);
 
-			AddMapEntry(new Color(138, 121, 102), CreateMapEntryName());
+			AddMapEntry(new Color(138, 121, 102), Language.GetText("ItemName.ShroomMinecart"));
 
 			RegisterItemDrop(ItemID.ShroomMinecart);
 			DustType = DustID.GlowingMushroom;
 			HitSound = SoundID.Dig;
 		}
 
-		//public override void MouseOver(int i, int j)
-		//{
-		//	Player player = Main.LocalPlayer;
-		//	Tile tile = Main.tile[i, j];
-			
-		//	player.cursorItemIconID = ItemID.ShroomMinecart;
-		//	player.cursorItemIconText = "";
+		public override void MouseOver(int i, int j)
+		{
+			Player player = Main.LocalPlayer;
+			Tile tile = Main.tile[i, j];
 
-		//	player.noThrow = 2;
-		//	player.cursorItemIconEnabled = true;
-		//}
+			player.cursorItemIconID = ItemID.ShroomMinecart;
+			player.cursorItemIconText = "";
 
-		//public override bool RightClick(int i, int j)
-		//{
-		//	Player player = Main.LocalPlayer;
-		//	Tile tile = Main.tile[i, j];
-		//	Main.mouseRightRelease = false;
-
-		//	WorldGen.KillTile(i, j);
-
-		//	return true;
-		//}
+			player.noThrow = 2;
+			player.cursorItemIconEnabled = true;
+		}
 
 		public override void NumDust(int i, int j, bool fail, ref int num)
 		{

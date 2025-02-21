@@ -421,15 +421,15 @@ namespace Remnants.NPCs
 
         public override void SetDirection(NPC npc)
         {
-            bool radial = HasTag(npc, eye) || HasTag(npc, eater) || npc.type == NPCID.Probe;
-            bool point = HasTag(npc, ranged) || HasTag(npc, eater) || npc.aiStyle == 17;
+            bool radial = HasTag(npc, eye) || HasTag(npc, eater) || npc.type == NPCID.Probe || npc.type == NPCID.MeteorHead;
+            bool point = HasTag(npc, ranged) || HasTag(npc, eater) || npc.aiStyle == 17 || npc.type == NPCID.MeteorHead;
 
             if (point)
             {
                 if (radial)
                 {
                     npc.rotation = (lastKnownTargetPosition - npc.Center).ToRotation();
-                    if (npc.type != NPCID.Probe)
+                    if (npc.type != NPCID.Probe && npc.type != NPCID.MeteorHead)
                     {
                         npc.rotation -= MathHelper.PiOver2;
                     }
@@ -437,7 +437,7 @@ namespace Remnants.NPCs
                 if (lastKnownTargetPosition.X < npc.Center.X)
                 {
                     npc.direction = -1;
-                    if (npc.type == NPCID.Probe)
+                    if (npc.type == NPCID.Probe || npc.type == NPCID.MeteorHead)
                     {
                         npc.rotation -= MathHelper.Pi;
                     }
@@ -553,6 +553,10 @@ namespace Remnants.NPCs
                         speed *= 0.8f;
                         speed *= 0.5f;
                     }
+                }
+                else if (entity.type == NPCID.MeteorHead)
+                {
+                    speed = 0.025f;
                 }
                 else if (HasTag(entity, eater))
                 {

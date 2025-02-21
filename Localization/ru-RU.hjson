@@ -1,22 +1,5 @@
 Mods: {
 	Remnants: {
-		Messages: {
-			EssenceofMight: Вы поглотили эссенцию могущества!
-			EssenceofEndurance: Вы поглотили эссенцию выносливости!
-			EssenceofFocus: Вы поглотили эссенцию концентрации!
-
-			HealthIncrease: +20% к максимальному запасу здоровья
-			HealthDecrease: -20% к максимальному запасу здоровья
-
-			DamageIncrease: +10% к наносимому урону
-			DamageDecrease: -10% к наносимому урону
-
-			SpeedIncrease: +20% к скорости бега
-			SpeedDecrease: -20% к скорости бега
-
-			Deactivation: Вы отказались от дарованной алтарём силы...
-		}
-
 		Bestiary: {
 			Ward: Колоссальных размеров груда камней, движимая одной лишь слепой яростью. Денно и нощно он патрулирует запутанные коридоры лабиринта, пытаясь сберечь то, что упрятано где-то там, на самом дне этого проклятого места...
 			HoneySlime: Удивительной вязкости смесь из геля и мёда лишь пошла на пользу живучести этих слизней.
@@ -118,8 +101,21 @@ Mods: {
 			LabyrinthSpawner.MapEntry: Око стража
 			PiranhaSpawner.MapEntry: Слив
 			Spitflower.MapEntry: Плевоцвет
-			LabyrinthAltar.MapEntry: Шепчущий алтарь
-			Minecart.MapEntry: Вагонетка
+
+			LabyrinthAltar: {
+				MapEntry: Шепчущий алтарь
+
+				Messages: {
+					EssenceofMight: Вы поглотили эссенцию могущества!
+					EssenceofEndurance: Вы поглотили эссенцию выносливости!
+					EssenceofFocus: Вы поглотили эссенцию концентрации!
+					Health: к максимальному запасу здоровья
+					Damage: к наносимому урону
+					Speed: к скорости бега
+					Deactivation: Вы отказались от дарованной алтарём силы...
+				}
+			}
+
 			Sarcophagus.MapEntry: Саркофаг
 			Scrapper.MapEntry: Утилизатор
 			spiritlamp.MapEntry: Эфирная лампа
@@ -135,7 +131,6 @@ Mods: {
 			Cryocoral.MapEntry: Криокоралл
 			Luminsponge.MapEntry: Губкосвет
 			Nightglow.MapEntry: Куст ночного сияния
-			Shroomcart.MapEntry: Вагонетка
 			ArcaneChest.MapEntry: Сундук
 			SacrificialAltar.MapEntry: Алтарь для жертвоприношений
 			Eyeball.MapEntry: Злобный глаз
@@ -650,6 +645,11 @@ Mods: {
 			ArcaneKey: {
 				// DisplayName: Arcane Key
 				// Tooltip: Opens one Locked Arcane Chest
+			}
+
+			RunestalkBlessingIcon: {
+				// DisplayName: Runestalk Blessing Icon
+				// Tooltip: ""
 			}
 		}
 
