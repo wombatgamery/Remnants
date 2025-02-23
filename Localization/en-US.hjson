@@ -114,6 +114,13 @@ Mods: {
 					Speed: Run Speed
 					Deactivation: Essence Deactivated
 				}
+
+				MouseOver: {
+					Essence: Essence of
+					Focus: Focus
+					Endurance: Endurance
+					Might: Might
+				}
 			}
 
 			Sarcophagus.MapEntry: Sarcophagus
