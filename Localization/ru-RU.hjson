@@ -114,6 +114,13 @@ Mods: {
 					Speed: к скорости бега
 					Deactivation: Вы отказались от дарованной алтарём силы...
 				}
+
+				MouseOver: {
+					Essence: Получить эссенцию
+					Focus: концентрации
+					Endurance: выносливости
+					Might: могущества
+				}
 			}
 
 			Sarcophagus.MapEntry: Саркофаг
