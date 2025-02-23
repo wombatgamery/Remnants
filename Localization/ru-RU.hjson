@@ -152,7 +152,7 @@ Mods: {
 			}
 
 			RunestalkBlessing: {
-				DisplayName: Благославление руностебля
+				DisplayName: Благословение руностебля
 				Description: Увеличивает скорость копания на 50%
 			}
 		}
