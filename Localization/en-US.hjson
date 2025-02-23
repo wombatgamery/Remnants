@@ -116,7 +116,7 @@ Mods: {
 				}
 
 				MouseOver: {
-					Essence: Essence of
+					Essence: "Essence of "
 					Focus: Focus
 					Endurance: Endurance
 					Might: Might
