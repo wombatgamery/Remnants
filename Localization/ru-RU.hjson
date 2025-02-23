@@ -130,7 +130,7 @@ Mods: {
 			PyramidPot.MapEntry: Ваза пирамиды
 			Cryocoral.MapEntry: Криокоралл
 			Luminsponge.MapEntry: Губкосвет
-			Nightglow.MapEntry: Куст ягоды ночного сияния
+			Nightglow.MapEntry: Побег ягоды-фонаря
 			ArcaneChest.MapEntry: Сундук
 			SacrificialAltar.MapEntry: Алтарь для жертвоприношений
 			Eyeball.MapEntry: Злобный глаз
@@ -200,7 +200,7 @@ Mods: {
 			}
 
 			NightglowBerry: {
-				DisplayName: Ягода ночного сияния
+				DisplayName: Ягода-фонарь
 				Tooltip: Светящийся плод с кисловатым вкусом, кожурой и околомагическими свойствами
 			}
 
@@ -285,7 +285,7 @@ Mods: {
 			}
 
 			NightglowSeed: {
-				DisplayName: Семена ночного сияния
+				DisplayName: Семена ягоды-фонаря
 				Tooltip: ...и большую ямку посередине
 			}
 
@@ -354,7 +354,7 @@ Mods: {
 			}
 
 			SoulLance: {
-				DisplayName: Душегуб
+				DisplayName: Копьё душегуба
 				Tooltip:
 					'''
 					Восстанавливает ману при нанесении урона
@@ -524,68 +524,68 @@ Mods: {
 			}
 
 			VaultPlating: {
-				// DisplayName: Vault Plating
-				// Tooltip: ""
+				DisplayName: Обшивка убежища
+				Tooltip: ""
 			}
 
 			VaultWall: {
-				// DisplayName: Vault Wall
-				// Tooltip: ""
+				DisplayName: Стена убежища
+				Tooltip: ""
 			}
 
 			HeavyAlloy: {
-				// DisplayName: Heavy Alloy
-				// Tooltip: ""
+				DisplayName: Тяжёлый сплав
+				Tooltip: ""
 			}
 
 			VaultPlatform: {
-				// DisplayName: Vault Platform
-				// Tooltip: ""
+				DisplayName: Платформа убежища
+				Tooltip: ""
 			}
 
 			VaultPipe: {
-				// DisplayName: Vault Pipework
-				// Tooltip: ""
+				DisplayName: Труба убежища
+				Tooltip: ""
 			}
 
 			devwand2: {
-				// DisplayName: devwand2
-				// Tooltip: ""
+				DisplayName: devwand2
+				Tooltip: ""
 			}
 
 			HellishBrick: {
-				// Tooltip: ""
-				// DisplayName: Hellish Brick
+				Tooltip: ""
+				DisplayName: Кирпич пекла
 			}
 
 			HellishPlatform: {
-				// DisplayName: Hellish Platform
-				// Tooltip: ""
+				DisplayName: Платформа пекла
+				Tooltip: ""
 			}
 
 			HellishBrickWall: {
-				// DisplayName: Hellish Brick Wall
-				// Tooltip: ""
+				DisplayName: Стена из кирпича пекла
+				Tooltip: ""
 			}
 
 			MarineSlab: {
-				// DisplayName: Marine Slab
-				// Tooltip: ""
+				DisplayName: Плита затонувшего храма
+				Tooltip: ""
 			}
 
 			MarinePlatform: {
-				// DisplayName: Marine Platform
-				// Tooltip: ""
+				DisplayName: Платформа затонувшего храма
+				Tooltip: ""
 			}
 
 			MarineSlabWall: {
-				// DisplayName: Marine Slab Wall
-				// Tooltip: ""
+				DisplayName: Стена из плиты затонувшего храма
+				Tooltip: ""
 			}
 
 			NightglowBerryIcon: {
-				// DisplayName: Nightglow Berry Icon
-				// Tooltip: ""
+				DisplayName: Ягода-фонарь
+				Tooltip: ""
 			}
 
 			ArcanePlatform: {
@@ -648,8 +648,8 @@ Mods: {
 			}
 
 			RunestalkBlessingIcon: {
-				// DisplayName: Runestalk Blessing Icon
-				// Tooltip: ""
+				DisplayName: Благословение руностебля
+				Tooltip: ""
 			}
 		}
 
@@ -675,8 +675,8 @@ Mods: {
 			cursedflamejet.DisplayName: Струя проклятого пламени
 			deathbolt.DisplayName: Снаряд смерти
 			magicshieldhit.DisplayName: Магический щит
-			MazeGuardianTeleport.DisplayName: Телепорт Стража
-			blastermissile.DisplayName: Бластерная ракета
+			MazeGuardianTeleport.DisplayName: Телепорт стража
+			blastermissile.DisplayName: Ракета подрывника
 			fireball.DisplayName: Огненный шар
 			FireBolt.DisplayName: Огненный снаряд
 			iceball.DisplayName: Ледяной шар
@@ -694,7 +694,7 @@ Mods: {
 			AetherButterfly.DisplayName: Эфирная бабочка
 			FallingDreampod.DisplayName: Стручок грёз
 			FallingEyeball.DisplayName: Злобный глаз
-			SoulLanceHoldout.DisplayName: Душегуб
+			SoulLanceHoldout.DisplayName: Копьё душегуба
 			SpectralLanceHoldout.DisplayName: Спектральный пронзатель
 		}
 
