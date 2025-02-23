@@ -106,14 +106,20 @@ Mods: {
 				MapEntry: Labyrinth Altar
 
 				Messages: {
-					Acquired: Acquired 
-					EssenceofMight: Essence of Might
-					EssenceofEndurance: Essence of Endurance
-					EssenceofFocus: Essence of Focus
+					EssenceofMight: Acquired: Essence of Might
+					EssenceofEndurance: Acquired: Essence of Endurance
+					EssenceofFocus: Acquired: Essence of Focus
 					Health: Max Health
 					Damage: Damage
 					Speed: Run Speed
 					Deactivation: Essence Deactivated
+				}
+
+				MouseOver: {
+					Essence: "Essence of "
+					Focus: Focus
+					Endurance: Endurance
+					Might: Might
 				}
 			}
 
