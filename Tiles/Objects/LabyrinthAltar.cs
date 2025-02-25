@@ -185,7 +185,7 @@ namespace Remnants.Tiles.Objects
 			player.noThrow = 2;
 			player.cursorItemIconEnabled = true;
 			player.cursorItemIconID = -1;
-			player.cursorItemIconText = Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.MouseOver.Essence") + (style == 2 ? Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.MouseOver.Focus" : style == 1 ? Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.MouseOver.Endurance") : LanguageGetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.MouseOver.Might");
+			player.cursorItemIconText = Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.MouseOver.Essence") + " " + (style == 2 ? Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.MouseOver.Focus") : style == 1 ? Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.MouseOver.Endurance") : Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.MouseOver.Might"));
 		}
 
 		private int GetStyle(int i, int j)

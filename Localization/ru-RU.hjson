@@ -116,7 +116,7 @@ Mods: {
 				}
 
 				MouseOver: {
-					Essence: "Получить эссенцию "
+					Essence: Получить эссенцию
 					Focus: концентрации
 					Endurance: выносливости
 					Might: могущества
