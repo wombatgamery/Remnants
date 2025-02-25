@@ -114,6 +114,13 @@ Mods: {
 					Speed: к скорости бега
 					Deactivation: Вы отказались от дарованной алтарём силы...
 				}
+
+				MouseOver: {
+					Essence: "Получить эссенцию "
+					Focus: концентрации
+					Endurance: выносливости
+					Might: могущества
+				}
 			}
 
 			Sarcophagus.MapEntry: Саркофаг
@@ -130,7 +137,7 @@ Mods: {
 			PyramidPot.MapEntry: Ваза пирамиды
 			Cryocoral.MapEntry: Криокоралл
 			Luminsponge.MapEntry: Губкосвет
-			Nightglow.MapEntry: Куст ночного сияния
+			Nightglow.MapEntry: Побег ягоды-фонаря
 			ArcaneChest.MapEntry: Сундук
 			SacrificialAltar.MapEntry: Алтарь для жертвоприношений
 			Eyeball.MapEntry: Злобный глаз
@@ -138,8 +145,8 @@ Mods: {
 			AlchemyBench.MapEntry: Тумбочка
 
 			ArcaneChest2: {
-				MapEntry0: Арканный сундук
-				MapEntry1: Закрытый арканный сундук
+				MapEntry0: Сундук
+				MapEntry1: Закрытый сундук
 			}
 
 			PrismbudHead.MapEntry: Луковица-призмоцветка
@@ -152,7 +159,7 @@ Mods: {
 			}
 
 			RunestalkBlessing: {
-				DisplayName: Благославление руностебля
+				DisplayName: Благословение руностебля
 				Description: Увеличивает скорость копания на 50%
 			}
 		}
@@ -179,7 +186,7 @@ Mods: {
 			}
 
 			DivineShield: {
-				DisplayName: Божественный щит
+				DisplayName: Серафимов щит
 				Tooltip:
 					'''
 					Увеличивает время неуязвимости после получения урона
@@ -200,7 +207,7 @@ Mods: {
 			}
 
 			NightglowBerry: {
-				DisplayName: Ягода ночного сияния
+				DisplayName: Ягода-фонарь
 				Tooltip: Светящийся плод с кисловатым вкусом, кожурой и околомагическими свойствами
 			}
 
@@ -285,7 +292,7 @@ Mods: {
 			}
 
 			NightglowSeed: {
-				DisplayName: Семена ночного сияния
+				DisplayName: Семена ягоды-фонаря
 				Tooltip: ...и большую ямку посередине
 			}
 
@@ -354,7 +361,7 @@ Mods: {
 			}
 
 			SoulLance: {
-				DisplayName: Протазан духов
+				DisplayName: Копьё душегуба
 				Tooltip:
 					'''
 					Восстанавливает ману при нанесении урона
@@ -363,7 +370,7 @@ Mods: {
 			}
 
 			SpectralLance: {
-				DisplayName: Спектральная алебарда
+				DisplayName: Спектральный пронзатель
 				Tooltip:
 					'''
 					Восстанавливает ману при нанесении урона
@@ -524,68 +531,68 @@ Mods: {
 			}
 
 			VaultPlating: {
-				// DisplayName: Vault Plating
-				// Tooltip: ""
+				DisplayName: Обшивка убежища
+				Tooltip: ""
 			}
 
 			VaultWall: {
-				// DisplayName: Vault Wall
-				// Tooltip: ""
+				DisplayName: Стена убежища
+				Tooltip: ""
 			}
 
 			HeavyAlloy: {
-				// DisplayName: Heavy Alloy
-				// Tooltip: ""
+				DisplayName: Тяжёлый сплав
+				Tooltip: ""
 			}
 
 			VaultPlatform: {
-				// DisplayName: Vault Platform
-				// Tooltip: ""
+				DisplayName: Платформа убежища
+				Tooltip: ""
 			}
 
 			VaultPipe: {
-				// DisplayName: Vault Pipework
-				// Tooltip: ""
+				DisplayName: Труба убежища
+				Tooltip: ""
 			}
 
 			devwand2: {
-				// DisplayName: devwand2
-				// Tooltip: ""
+				DisplayName: devwand2
+				Tooltip: ""
 			}
 
 			HellishBrick: {
-				// Tooltip: ""
-				// DisplayName: Hellish Brick
+				Tooltip: ""
+				DisplayName: Кирпич пекла
 			}
 
 			HellishPlatform: {
-				// DisplayName: Hellish Platform
-				// Tooltip: ""
+				DisplayName: Платформа пекла
+				Tooltip: ""
 			}
 
 			HellishBrickWall: {
-				// DisplayName: Hellish Brick Wall
-				// Tooltip: ""
+				DisplayName: Стена из кирпича пекла
+				Tooltip: ""
 			}
 
 			MarineSlab: {
-				// DisplayName: Marine Slab
-				// Tooltip: ""
+				DisplayName: Плита затонувшего храма
+				Tooltip: ""
 			}
 
 			MarinePlatform: {
-				// DisplayName: Marine Platform
-				// Tooltip: ""
+				DisplayName: Платформа затонувшего храма
+				Tooltip: ""
 			}
 
 			MarineSlabWall: {
-				// DisplayName: Marine Slab Wall
-				// Tooltip: ""
+				DisplayName: Стена из плиты затонувшего храма
+				Tooltip: ""
 			}
 
 			NightglowBerryIcon: {
-				// DisplayName: Nightglow Berry Icon
-				// Tooltip: ""
+				DisplayName: Ягода-фонарь
+				Tooltip: ""
 			}
 
 			ArcanePlatform: {
@@ -623,18 +630,18 @@ Mods: {
 			}
 
 			PrismbudSeed: {
-				// DisplayName: Prismbud Seed
-				// Tooltip: ""
+				DisplayName: Семена луковицы-призмоцветки
+				Tooltip: ""
 			}
 
 			DreamJelly: {
-				// DisplayName: Dream Jelly
-				// Tooltip: Can be used to duplicate herbs
+				DisplayName: Эфирная слизь
+				Tooltip: Мечта каждого алхимика — ей можно разбавлять любые микстуры, совсем не теряя в концентрации реагентов в них
 			}
 
 			DreampodSeeds: {
-				// DisplayName: Dreampod Seeds
-				// Tooltip: ""
+				DisplayName: Семена стручка грёз
+				Tooltip: ""
 			}
 
 			PrismbudSeeds: {
@@ -643,13 +650,13 @@ Mods: {
 			}
 
 			ArcaneKey: {
-				// DisplayName: Arcane Key
-				// Tooltip: Opens one Locked Arcane Chest
+				DisplayName: Арканный ключ
+				Tooltip: Позволяет открыть один сундук из магической лаборатории
 			}
 
 			RunestalkBlessingIcon: {
-				// DisplayName: Runestalk Blessing Icon
-				// Tooltip: ""
+				DisplayName: Благословение руностебля
+				Tooltip: ""
 			}
 		}
 
@@ -675,8 +682,8 @@ Mods: {
 			cursedflamejet.DisplayName: Струя проклятого пламени
 			deathbolt.DisplayName: Снаряд смерти
 			magicshieldhit.DisplayName: Магический щит
-			MazeGuardianTeleport.DisplayName: Телепорт Стража
-			blastermissile.DisplayName: Бластерная ракета
+			MazeGuardianTeleport.DisplayName: Телепорт стража
+			blastermissile.DisplayName: Ракета подрывника
 			fireball.DisplayName: Огненный шар
 			FireBolt.DisplayName: Огненный снаряд
 			iceball.DisplayName: Ледяной шар
@@ -694,8 +701,8 @@ Mods: {
 			AetherButterfly.DisplayName: Эфирная бабочка
 			FallingDreampod.DisplayName: Стручок грёз
 			FallingEyeball.DisplayName: Злобный глаз
-			SoulLanceHoldout.DisplayName: Протазан духов
-			SpectralLanceHoldout.DisplayName: Спектральная алебарда
+			SoulLanceHoldout.DisplayName: Копьё душегуба
+			SpectralLanceHoldout.DisplayName: Спектральный пронзатель
 		}
 
 		Configs: {
