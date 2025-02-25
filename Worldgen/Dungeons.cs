@@ -573,6 +573,30 @@ namespace Remnants.Worldgen
                 }
             }
             #endregion
+            #region 1x1
+            roomCount = dungeon.grid.Height * dungeon.grid.Width / 27;
+            while (roomCount > 0)
+            {
+                dungeon.targetCell.X = WorldGen.genRand.Next(dungeon.grid.Left, dungeon.grid.Right - 1);
+                dungeon.targetCell.Y = WorldGen.genRand.Next(1, dungeon.grid.Height - 1);
+
+                bool valid = true;
+
+                if (dungeon.FindMarker(dungeon.targetCell.X, dungeon.targetCell.Y - 1, 2) || dungeon.FindMarker(dungeon.targetCell.X, dungeon.targetCell.Y + 1, 1))
+                {
+                    valid = false;
+                }
+
+                if (dungeon.AddRoom(1, 1, valid))
+                {
+                    dungeon.AddMarker(dungeon.targetCell.X, dungeon.targetCell.Y); dungeon.AddMarker(dungeon.targetCell.X, dungeon.targetCell.Y, 3);
+
+                    Generator.GenerateStructure("Structures/special/dungeon/shaft", dungeon.roomPos, ModContent.GetInstance<Remnants>());
+
+                    roomCount--;
+                }
+            }
+            #endregion
             #endregion
 
             #region standard
@@ -794,7 +818,7 @@ namespace Remnants.Worldgen
 
             if (!devMode)
             {
-                Spikes(dungeon);
+                Spikes(dungeon, 0.8f);
 
                 #region statuetraps
                 #endregion
