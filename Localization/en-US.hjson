@@ -1,5 +1,7 @@
 Mods: {
 	Remnants: {
+		Misc.WOTGWarning: Remnants detected Wrath of the Gods enabled on a multiplayer client. The latter does not work in multiplayer - disable it or use singleplayer.
+
 		Bestiary: {
 			Ward: A titanic mass of cold stone - and unrelenting fury. It stalks the winding labyrinth halls, fervently protecting whatever lies at its heart...
 			HoneySlime: The honey absorbed by these slimes has greatly improved their vitality and endurance.
@@ -751,6 +753,26 @@ Mods: {
 					Label: "[i:176] Jungle Valley"
 					Tooltip: Enables the valley in the jungle biome
 				}
+
+				Safeguard: {
+					Label: "[i:156] Safeguard"
+					Tooltip:
+						'''
+						Prevents the creation of worlds that use incompatible mods or settings
+
+						Note: Highly recommended - only disable if you know what you are doing
+						'''
+				}
+
+				SunkenSeaRework: {
+					Label: "[i:2625] Sunken Sea Rework"
+					Tooltip:
+						'''
+						Enables the sunken sea rework when used with the Calamity mod
+
+						Note: Will become obsolete after the biome is officially updated
+						'''
+				}
 			}
 
 			Server: {
@@ -762,8 +784,9 @@ Mods: {
 					Tooltip:
 						'''
 						The player is naturally faster and more agile (15mph > 18mph) 
+						If using the Calamity mod, you are advised to choose this movement buff over theirs
 
-						Note: Highly recommended - If using the Calamity mod, you are advised to keep this movement buff while disabling theirs
+						Note: Highly recommended
 						'''
 				}
 
@@ -792,7 +815,7 @@ Mods: {
 					Label: "[i:1621] Hanging Bats"
 					Tooltip:
 						'''
-						Bats will spawn hanging from the ceiling, only attacking when approached
+						Bats will spawn hanging from the ceiling and attack when approached
 
 						Note: Does nothing in multiplayer
 						'''

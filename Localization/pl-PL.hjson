@@ -1,0 +1,829 @@
+Mods: {
+	Remnants: {
+		Misc.WOTGWarning: Remnants wykrył włączoną opcję Wrath of the Gods w kliencie dla wielu graczy. To drugie nie działa w trybie wieloosobowym - wyłącz je lub użyj trybu jednoosobowego.
+
+		Bestiary: {
+			Ward: Tytaniczna masa zimnego kamienia - i nieustająca furia. Przemierza kręte korytarze labiryntu, żarliwie chroniąc to, co leży w jego sercu...
+			HoneySlime: Miód wchłaniany przez te szlamy znacznie poprawił ich witalność i wytrzymałość.
+			Blaster: Blastery to ciężkie automatony przenoszące ładunek wybuchowy, którym strzelają do osób wkraczających w te bardzo stare tereny, które chronią do dziś.
+			Flamer: Pomimo tego, że są rzekomo nieświadomi, Płomieńce wypełniają swój ponury obowiązek palenia intruzów na popiół z zaskakującą złośliwością i radością.
+			Gunner: Mimo lat zaniedbań, Kanonierzy nadal potrafią rozrywać swoje cele na strzępy gradem pocisków.
+			Icer: Lodowce to rzadko widywany siostrzany model Płomieńców, zakłada się, że tylko kilka zostało ukończonych, zanim zostały porzucone z nieznanych dotąd powodów. Niesprawdzona, ale potężna technologia zainstalowana w Lodowcach sprawia, że ​​są one bardziej niebezpieczne niż ich powszechne odpowiedniki.
+			Shocker: Pierwotnie zaprojektowane do naprawy starych maszyn, te małe drony konserwacyjne nie wydają się niebezpieczne. Nadal są jednak częścią siatki obronnej i będą używać swoich spawarek przeciwko intruzom.
+			Arcanist: Kiedyś genialni naukowcy, oszpeceni i bezwzględni przez nieudany eksperyment - upadek, który sami spowodowali. Niezależnie od tego, ich zdolności do magii pozostają i nie zawahają się ich użyć.
+			TomeofFrost: Niezwykły dowód nieograniczonego potencjału magii – księga, która potrafi czytać i rzucać własne zaklęcia. Ta odmiana polega na wystrzeliwaniu z ziemi potężnych lodowych kolców, które boleśnie przebijają swoje ofiary.
+			TomeofInferno: Niezwykły dowód nieograniczonego potencjału magii – księga, która potrafi czytać i rzucać własne zaklęcia. Ta odmiana strzela kulami skoncentrowanego ciepła, które pochłaniają cel palącymi płomieniami.
+			TomeofMending: Niezwykły dowód nieograniczonego potencjału magii – księga, która potrafi czytać i rzucać własne zaklęcia. Ta odmiana towarzyszy innym jednostkom, przywracając im wigor w środku bitwy.
+			TomeofSummoning: Niezwykły dowód nieograniczonego potencjału magii – księga, która potrafi czytać i rzucać własne zaklęcia. Ta odmiana wzywa wszystkie pozostałe jednostki, siejąc nieustający chaos wszędzie, gdzie stanie na swojej drodze.
+		}
+
+		Biomes: {
+			GoldenCity: {
+				DisplayName: Złote Miasto
+				TownNPCDialogueName: Złote Miasto
+			}
+
+			GraniteCave: {
+				DisplayName: Granitowa Jaskinia
+				TownNPCDialogueName: Granitowa Jaskinia
+			}
+
+			Growth: {
+				DisplayName: Narośl
+				TownNPCDialogueName: Narośl
+			}
+
+			Hive: {
+				DisplayName: Pszczele Gniazdo
+				TownNPCDialogueName: Pszczele Gniazdo
+			}
+
+			JungleTemple: {
+				DisplayName: Świątynia Dżungli
+				TownNPCDialogueName: Świątynia Dżungli
+			}
+
+			MagicalLab: {
+				DisplayName: Magiczne Laboratorium
+				TownNPCDialogueName: Magiczne Laboratorium
+			}
+
+			MarbleCave: {
+				DisplayName: Marmurowa Jaskinia
+				TownNPCDialogueName: Marmurowa Jaskinia
+			}
+
+			OceanCave: {
+				DisplayName: Oceaniczna Jaskinia
+				TownNPCDialogueName: Oceaniczna Jaskinia
+			}
+
+			Pyramid: {
+				DisplayName: Piramida
+				TownNPCDialogueName: Piramida
+			}
+
+			Vault: {
+				DisplayName: Krypta
+				TownNPCDialogueName: Krypta
+			}
+
+			EchoingHalls: {
+				DisplayName: Korytarze Echa
+				TownNPCDialogueName: Korytarze Echa
+			}
+
+			ForgottenTomb: {
+				DisplayName: Zapomniany Grobowiec
+				TownNPCDialogueName: Zapomniany Grobowiec
+			}
+
+			MagicalLabAscension: {
+				DisplayName: Wzniesienie Magicznego Laboratorium
+				TownNPCDialogueName: Wzniesienie Magicznego Laboratorium
+			}
+
+			Undergrowth: {
+				DisplayName: Runo Leśne
+				TownNPCDialogueName: Runo Leśne
+			}
+
+			AerialGarden: {
+				DisplayName: Powietrzny Ogród
+				TownNPCDialogueName: Powietrzny Ogród
+			}
+		}
+
+		Tiles: {
+			Hardstone.MapEntry: Lita Skała
+			StarOre.MapEntry: Gwiezdna Resztka
+			vaultpipe.MapEntry: Rura Krypty
+			LockedIronDoor.MapEntry: Zamknięte Żelazne Drzwi
+			RustedChest.MapEntry: Zardzewiały Kufer
+			LabyrinthSpawner.MapEntry: Spawner
+			PiranhaSpawner.MapEntry: Spawner
+			Spitflower.MapEntry: Plujkokwiat
+
+			LabyrinthAltar: {
+				MapEntry: Ołtarz Labiryntu
+
+				Messages: {
+					EssenceofMight: Nabyto: Esencję Siły
+					EssenceofEndurance: Nabyto: Esencję Wytrzymałości
+					EssenceofFocus: Nabyto: Esencję Skupienia
+					Health: Maksymalnego Zdrowia
+					Damage: Obrażeń
+					Speed: Prędkości Ruchu
+					Deactivation: Esencja Zdjęta
+				}
+
+				MouseOver: {
+					Essence: Esencja
+					Focus: Skupienia
+					Endurance: Wytrzymałości
+					Might: Siły
+				}
+			}
+
+			Sarcophagus.MapEntry: Sarkofag
+			Scrapper.MapEntry: Zgarniak
+			spiritlamp.MapEntry: Lampion Dusz
+			Dreampod.MapEntry: Marzenica
+			Runestalk.MapEntry: Kryształ Runiczny
+
+			PyramidChest: {
+				MapEntry: Kufer Piramidy
+				MapEntry0: Zamknięty Kufer Piramidy
+			}
+
+			PyramidPot.MapEntry: Dzbanek Piramidy
+			Cryocoral.MapEntry: Kriokoral
+			Luminsponge.MapEntry: Lumigąbka
+			Nightglow.MapEntry: Nocny Krzew
+			ArcaneChest.MapEntry: Kufer Arkanów
+			SacrificialAltar.MapEntry: Ołtarz Ofiarny
+			Eyeball.MapEntry: Złoko
+			VaultPipe.MapEntry: Rura Krypty
+			AlchemyBench.MapEntry: Biurko
+
+			ArcaneChest2: {
+				MapEntry0: Kufer Arkanów
+				MapEntry1: Zamknięty Kufer Arkanów
+			}
+
+			PrismbudHead.MapEntry: Pryzmik
+		}
+
+		Buffs: {
+			ManaShieldCooldown: {
+				DisplayName: Przełamanie Tarczy
+				Description: Twoja magiczna tarcza potrzebuje czasu, aby się zregenerować
+			}
+
+			RunestalkBlessing: {
+				DisplayName: Runiczne Błogosławieństwo
+				Description: Prędkość kopania zwiększona o 50%.
+			}
+		}
+
+		Items: {
+			alchemybook: {
+				DisplayName: alchemybook
+				Tooltip: ""
+			}
+
+			devtool: {
+				DisplayName: devtool
+				Tooltip: ""
+			}
+
+			ManaShield: {
+				DisplayName: Magiczna Tarcza
+				Tooltip:
+					'''
+					Kosztem many zmniejsza ostateczne obrażenia o 25%.
+					Tymczasowo wyłącza się, jeśli całkowicie wyczerpie twoją manę
+					'''
+			}
+
+			DivineShield: {
+				DisplayName: Boska Tarcza
+				Tooltip:
+					'''
+					Zwiększa długość nietykalności po otrzymaniu obrażeń
+					Kosztem many zmniejsza ostateczne obrażenia o 25%.
+					Tymczasowo wyłącza się, jeśli całkowicie wyczerpie twoją manę
+					'''
+			}
+
+			RingofElements: {
+				DisplayName: Pierścień Żywiołów
+				Tooltip: Wszystkie osłabienia ustępują o 100% szybciej, z wyjątkiem Wstrętu do mikstur i Zaburzenia many
+			}
+
+			IronKey: {
+				DisplayName: Żelazny Klucz
+				Tooltip: Otwiera jedne zamknięte żelazne drzwi
+			}
+
+			NightglowBerry: {
+				DisplayName: Nocna Jagoda
+				Tooltip: Aromatyczny, świetlisty owoc o niemal magicznych właściwościach...
+			}
+
+			PyramidKey: {
+				DisplayName: Klucz Piramidy
+				Tooltip: Otwiera kufer w pustynnej świątyni
+			}
+
+			CoinMold: {
+				DisplayName: Odlew do Monet
+				Tooltip: Umożliwia wykucie monety przy użyciu sztabki złota, ale pęka po pierwszym użyciu
+			}
+
+			SalvagedMetal: {
+				DisplayName: Odzyskany Metal
+				Tooltip: Można poddać recyklingowi w piecu, zamieniając go w sztaby żelaza
+			}
+
+			WandofRefinement: {
+				DisplayName: Różdżka Wyrafinowania
+				Tooltip: Migocząca magia tej różdżki sprawia, że niektóre ściany wyglądają ładniej
+			}
+
+			EnchantedBrick: {
+				DisplayName: Cegła Arkanów
+				Tooltip: ""
+			}
+
+			GardenBrick: {
+				DisplayName: Cegła Ogrodu
+				Tooltip: ""
+			}
+
+			GoldenPanel: {
+				DisplayName: Złoty Panel
+				Tooltip: ""
+			}
+
+			Hardstone: {
+				DisplayName: Lita Skała
+				Tooltip: Supergęsta skała o nieznanym pochodzeniu
+			}
+
+			PyramidBrick: {
+				DisplayName: Cegła Piramidy
+				Tooltip: ""
+			}
+
+			PyramidChest: {
+				DisplayName: Kufer Piramidy
+				Tooltip: ""
+			}
+
+			StarOre: {
+				DisplayName: Gwiezdna Resztka
+				Tooltip: Ostudzona i zestalona gwiazda, wciąż świecąca żywą energią
+			}
+
+			ToxicWaste: {
+				DisplayName: Toksyczne Odpady
+				Tooltip: ""
+			}
+
+			WaterBrick: {
+				DisplayName: Wodna Cegła
+				Tooltip: ""
+			}
+
+			EnergySpike: {
+				DisplayName: Kolec Energii
+				Tooltip: ""
+			}
+
+			LabyrinthDoor: {
+				DisplayName: Drzwi Labiryntu
+				Tooltip: ""
+			}
+
+			LabyrinthWallLamp: {
+				DisplayName: Lampion Ścienny Labiryntu
+				Tooltip: ""
+			}
+
+			NightglowSeed: {
+				DisplayName: Nasiono Nocnego Krzewu
+				Tooltip: ...i twardą pestką w środku
+			}
+
+			RustedChest: {
+				DisplayName: Zardzewiały Kufer
+				Tooltip: Zamek się zużył
+			}
+
+			Sarcophagus: {
+				DisplayName: Sarkofag
+				Tooltip: Starożytny grobowiec o prostym wyglądzie
+			}
+
+			Scrapper: {
+				DisplayName: Zgarniak
+				Tooltip: ""
+			}
+
+			sprout: {
+				DisplayName: sprout
+				Tooltip: ""
+			}
+
+			GardenBrickWall: {
+				DisplayName: Ściana Ogrodu
+				Tooltip: ""
+			}
+
+			GoldenPanelWall: {
+				DisplayName: Złota Ściana
+				Tooltip: ""
+			}
+
+			PyramidBrickWall: {
+				DisplayName: Ściana Piramidy
+				Tooltip: ""
+			}
+
+			WaterBrickWall: {
+				DisplayName: Wodna Ściana
+				Tooltip: ""
+			}
+
+			LuminousHook: {
+				DisplayName: Świecący Hak
+				Tooltip: Zapewnia światło
+			}
+
+			ArmCannon: {
+				DisplayName: Armata Ręczna
+				Tooltip: ""
+			}
+
+			CursedFlamethrower: {
+				DisplayName: Przeklęty Miotacz Płomieni
+				Tooltip: ""
+			}
+
+			SpiritLance: {
+				DisplayName: Włócznia Energii
+				Tooltip: Gdy nie ma pełnej many, zadaje 4-krotnie większe obrażenia i przywraca manę po udanych trafieniach
+			}
+
+			SoulLance: {
+				DisplayName: Włócznia Dusz
+				Tooltip: Gdy nie ma pełnej many, zadaje 4-krotnie większe obrażenia i przywraca manę po udanych trafieniach
+			}
+
+			SpectralLance: {
+				DisplayName: Włócznia Widm
+				Tooltip: Gdy nie ma pełnej many, zadaje 4-krotnie większe obrażenia i przywraca manę po udanych trafieniach
+			}
+
+			VintageSniper: {
+				DisplayName: Stara Strzelba Myśliwska
+				Tooltip:
+					'''
+					Strzela potężną, prędką kulą
+					Kliknij prawym przyciskiem, żeby oddalić
+					'''
+			}
+
+			SummonCrown: {
+				DisplayName: Korona Przewodnictwa
+				Tooltip: W zależności od obrażeń noszącego, słudzy zadają do 25% więcej obrażeń
+			}
+
+			TombBrick: {
+				DisplayName: Cegła Grobowca
+				Tooltip: ""
+			}
+
+			TombBrickWall: {
+				DisplayName: Ściana Grobowca
+				Tooltip: ""
+			}
+
+			EnchantedBrickWall: {
+				DisplayName: Ściana Arkanów
+				Tooltip: ""
+			}
+
+			ScientistNotes1: {
+				DisplayName: Notatki badacza: Przygotowanie
+				Tooltip:
+					'''
+					Tydzień 1, Dzień 1
+					-
+					Pośród świata nędzy i chaosu, nasze rodzime miasto zostało założone przez wizjonerów z pasją do
+					postępu i nauki. W ich imieniu pracowaliśmy niestrudzenie, aby poszerzać naszą wiedzę i
+					cywilizację, jedno pokolenie po drugim, przewyższając to, co wszyscy inni uważali za możliwe. Najnowszym
+					z naszych osiągnięć jest najnowocześniejszy ośrodek badawczy zlokalizowany w tropikalnym
+					regionie naszego kontynentu, zbudowany specjalnie w celu gromadzenia wiedzy z nieznanych środowisk. Ja i moi koledzy,
+					najwięksi naukowcy naszego miasta, zostaliśmy zakwalifikowani do tego programu i od tego czasu zostaliśmy przeniesieni,
+					aby prowadzić nasze badania. Dzisiaj się osiedlamy i oczekujemy, że zaczniemy jutro.
+					'''
+			}
+
+			ScientistNotes2: {
+				DisplayName: Notatki badacza: Zadanie
+				Tooltip:
+					'''
+					Tydzień 1, Dzień 2
+					-
+					Naszym pierwszym zadaniem jest eksperymentowanie z mieszankami alchemicznymi. 
+					Teren otaczający tę placówkę jest znacznie bogatszy w składniki,
+					dlatego teraz naszym zadaniem jest udoskonalenie ich właściwości lecznicze i wzmacniające organizm. 
+					Na początku każdego tygodnia konwój otrzyma nasze odkrycia w celu zintegrowania ich z rozwojem miasta. 
+					Mamy nadzieję, że wkrótce uzyskamy przydatne wyniki, ponieważ będą nam potrzebne, aby ten program przetrwał.
+					'''
+			}
+
+			ScientistNotes3: {
+				DisplayName: Notatki badacza: Symbioza
+				Tooltip:
+					'''
+					Tydzień 2, Dzień 6
+					-
+					Wzmocniony Magią Środek Naprawy Tkanek, znany pospulstwu jako Mikstura leczenia,
+					jest lekiem o niezwykłej mocy - kieruje życiodajną energię pospolitego Grzyba, aby wywołać szybką,
+					niemal natychmiastową naprawę tkanek, ale nie bez ogromnego obciążenia organizmu.
+					Jeśli organizm nie odzyska sił przed dalszym spożyciem, ryzykuje całkowitą niewydolnością serca.
+					Nasze ostatnie badania pokazują, że podziemny Lśniący grzyb dzieli osobliwą relację symbiotyczną ze swoim powszechnym odpowiednikiem,
+					a łącząc je w mieszance, możemy doładować proces naprawy tkanek. Rezultatem jest nowa substancja lecznicza,
+					która jest dokładnie dwa razy silniejsza od swojej poprzedniczki, bez dodatkowego obciążenia organizmu.
+					Dzisiaj zapisaliśmy się w historii i można śmiało powiedzieć, że zapewniliśmy przedłużenie programu.
+					Góra będzie zadowolona z naszej pracy, ale wciąż jest wiele do zrobienia.
+					'''
+			}
+
+			ScientistNotes4: {
+				DisplayName: Notatki badacza: Świadomość
+				Tooltip:
+					'''
+					Tydzień 5, Dzień 4
+					-
+					Dzięki skutecznemu zarządzaniu naszą pracą alchemiczną mieliśmy czas na dogłębne studiowanie magii,
+					a wyniki były... niezwykle intrygujące. Najbardziej intrygującym z naszych nowych zaklęć jest zdolność
+					do przekształcania zwykłej materii w podstawowe sieci neuronowe. Do tej pory ćwiczyliśmy i udoskonalaliśmy naszą technikę,
+					ale teraz rozpoczynamy testy terenowe. Napisaliśmy kilka magicznych tomów, aby uzyskać świadomość,
+					a jeśli wszystko pójdzie zgodnie z planem, powinny być w stanie czytać i rzucać zaklęcia w nich zapisane!
+					Dzięki niemal nieograniczonemu potencjałowi magicznemu, te tomy mogą być dostosowane do praktycznie każdej roli,
+					co daje im niesamowitą różnorodność zastosowań.
+
+					'''
+			}
+
+			ScientistNotes5: {
+				DisplayName: Notatki badacza: Geneza
+				Tooltip:
+					'''
+					Tydzień 13, Dzień 2
+					-
+					Narośl Zepsucia sąsiadująca z naszym rodzimym miastem nadal się rozprzestrzenia,
+					na szczęście kilka tygodni temu dostaliśmy w swoje ręce próbki zainfekowanych komórek,
+					które były kluczowe dla naszych najnowszych badań. Odkryliśmy, że infekcja jest spowodowana
+					przez szczep bakterii chorobotwórczych, a konkretnie przez szkodliwe toksyny, które uwalniają.
+					Wykorzystując ich informacje genetyczne, udało nam się stworzyć własne rekombinowane bakterie
+					ze zmodyfikowaną toksyną, która nie tylko jest nieszkodliwa dla zwykłych komórek,
+					ale także niszczy wszelkie złośliwe bakterie. Dzięki naszej nowo odkrytej wiedzy o magii możemy
+					zaczarować nasze bakterie, aby miały potencjalnie przydatne skutki uboczne.
+					Jesteśmy na dobrej drodze do stworzenia tego, co może być największym dziełem nauki i magii w znanej historii,
+					a niektórzy zaczynają nazywać to Bajkowem.
+					'''
+			}
+
+			ScientistNotes6: {
+				DisplayName: Notatki badacza: Strach
+				Tooltip:
+					'''
+					Tydzień 14, Dzień 1
+					-
+					Podczas gdy czekaliśmy na nasz konwój, nikt nie przyszedł. Miasto nigdy o nas nie zapomni,
+					nie z naszym ogromnym wkładem - coś musi być strasznie nie tak. Prawdopodobnie oznacza to,
+					że nie otrzymujemy już żadnych dostaw, więc musimy zacząć radzić sobie sami.
+					Powinniśmy zacząć od zrównoważonego źródła pożywienia, uprawiając owoce, warzywa i zboże z naszych zapasów.
+					Nadal jest to ledwo wystarczające, aby utrzymać naszą obecną populację i
+					być może będziemy musieli wdrożyć naszą wiedzę o magii i genetyce, aby zapewnić sobie przetrwanie...
+					Jaka szkoda, że ​​nasz wielki przełom nigdy nie doszedł do skutku.
+					'''
+			}
+
+			ScientistNotes7: {
+				DisplayName: Notatki badacza: Porzucenie
+				Tooltip:
+					'''
+					Tydzień ??, Dzień ?
+					-
+					Minęło sporo czasu od mojego ostatniego wpisu i straciłem rachubę, ile dni minęło.
+					Ostatnie wydarzenia dały mi mnóstwo zajęć, nie wspominając o tym, jak bardzo wpłynęły na mój umysł...
+					Wyruszyłem, aby zbadać to, co pozostało z naszego cudownego miasta, i nic nie mogło mnie przygotować na to,
+					co zobaczyłem - wszyscy, których kiedyś znałem, zostali zredukowani do bezmyślnych trupów,
+					bez celu błąkających się po ulicach, teraz zaśmieconych gruzem i stosami kości. Wszystko, na co pracowaliśmy...
+					zniszczone w ciągu kilku dni. Co więcej, pojawiły się pewne niespotykane skutki uboczne naszego magicznie
+					i genetycznie ulepszonego jedzenia. Niektórzy z nas doświadczają intensywnych pragnień i objawów odstawienia,
+					a w gorszych przypadkach utraty zmysłów. Powinienem był to przewidzieć. Jak mogliśmy być tak głupi?!
+					Niestety, nie ma tu dla mnie nic - ani nigdzie indziej, jeśli o to chodzi. Zabiorę ze sobą, co mogę,
+					i opuszczę to miejsce tej nocy, w poszukiwaniu nowego powołania.
+					'''
+			}
+
+			ArcaneChest: {
+				DisplayName: Kufer Arkanów
+				Tooltip: ""
+			}
+
+			SacrificialAltar: {
+				DisplayName: Ołtarz Ofiarny
+				Tooltip: Powierzchnię ołtarza pokrywają stare plamy krwi, upamiętniające jego straszliwą historię
+			}
+
+			VaultPlating: {
+				DisplayName: Pokrycie Krypty
+				Tooltip: ""
+			}
+
+			VaultWall: {
+				DisplayName: Ściana Krypty
+				Tooltip: ""
+			}
+
+			HeavyAlloy: {
+				DisplayName: Ciężki Stop
+				Tooltip: ""
+			}
+
+			VaultPlatform: {
+				DisplayName: Platforma Krypty
+				Tooltip: ""
+			}
+
+			VaultPipe: {
+				DisplayName: Rura Krypty
+				Tooltip: ""
+			}
+
+			devwand2: {
+				DisplayName: devwand2
+				Tooltip: ""
+			}
+
+			HellishBrick: {
+				Tooltip: ""
+				DisplayName: Piekielna Cegła
+			}
+
+			HellishPlatform: {
+				DisplayName: Piekielna Platforma
+				Tooltip: ""
+			}
+
+			HellishBrickWall: {
+				DisplayName: Hellish Brick Wall
+				Tooltip: ""
+			}
+
+			MarineSlab: {
+				DisplayName: Morska Płyta
+				Tooltip: ""
+			}
+
+			MarinePlatform: {
+				DisplayName: Morska Platforma
+				Tooltip: ""
+			}
+
+			MarineSlabWall: {
+				DisplayName: Morska Ściana
+				Tooltip: ""
+			}
+
+			NightglowBerryIcon: {
+				DisplayName: Ikona Nocnej Jagody
+				Tooltip: ""
+			}
+
+			ArcanePlatform: {
+				DisplayName: Platforma Arkanów
+				Tooltip: ""
+			}
+
+			ArcaneChandelier: {
+				DisplayName: Żyrandol Arkanów
+				Tooltip: ""
+			}
+
+			AlchemyBench: {
+				DisplayName: Biurko Arkanów
+				Tooltip: ""
+			}
+
+			StoneofElements: {
+				DisplayName: Kamień Żywiołów
+				Tooltip:
+					'''
+					Skraca czas odnowienia mikstur leczenia o 25%
+					Wszystkie osłabienia ustępują o 100% szybciej, z wyjątkiem Wstrętu do mikstur i Zaburzenia many
+					'''
+			}
+
+			CosmicStone: {
+				DisplayName: Kosmiczny Kamień
+				Tooltip:
+					'''
+					Niewielkie ulepszenie większości statystyk
+					Skraca czas odnowienia mikstur leczenia o 25%
+					Wszystkie osłabienia ustępują o 100% szybciej, z wyjątkiem Wstrętu do mikstur i Zaburzenia many
+					'''
+			}
+
+			PrismbudSeed: {
+				DisplayName: Nasiono Pryzmiku
+				Tooltip: ""
+			}
+
+			DreamJelly: {
+				DisplayName: Galaretka Marzeń
+				Tooltip: Można używać do duplikowania składników do tworzenia mikstur
+			}
+
+			DreampodSeeds: {
+				DisplayName: Nasiona Marzenicy
+				Tooltip: ""
+			}
+
+			PrismbudSeeds: {
+				DisplayName: Nasiona Pryzmiku
+				Tooltip: ""
+			}
+
+			ArcaneKey: {
+				DisplayName: Klucz Arkanów
+				Tooltip: Otwiera zamknięty Kufer Arkanów
+			}
+
+			RunestalkBlessingIcon: {
+				DisplayName: Ikona Runicznego Błogosławieństwa
+				Tooltip: ""
+			}
+		}
+
+		NPCs: {
+			HoneySlime.DisplayName: Miodny Szlam
+			IlluminantDagger.DisplayName: Iluminujący Sztylet
+			TomeofFrost.DisplayName: Księga Szronu
+			TomeofInferno.DisplayName: Księga Piekła
+			Ward.DisplayName: Obrońca
+			Blaster.DisplayName: Blaster
+			Flamer.DisplayName: Płomieniec
+			Gunner.DisplayName: Kanonier
+			Icer.DisplayName: Lodowiec
+			Shocker.DisplayName: Szoker
+			Arcanist.DisplayName: Arkanista
+			TomeofMending.DisplayName: Księga Naprawy
+			TomeofSummoning.DisplayName: Księga Przywołania
+		}
+
+		Projectiles: {
+			burn.DisplayName: burn
+			cursedburn.DisplayName: cursedburn
+			cursedflamejet.DisplayName: cursedflamejet
+			deathbolt.DisplayName: deathbolt
+			magicshieldhit.DisplayName: magicshieldhit
+			MazeGuardianTeleport.DisplayName: Teleportacja Strażnika Labiryntu
+			blastermissile.DisplayName: blastermissile
+			fireball.DisplayName: fireball
+			FireBolt.DisplayName: Ognisty Pocisk
+			iceball.DisplayName: iceball
+			IceSpike.DisplayName: Lodowy Kolec
+			PoisonSpit.DisplayName: Trujące Splunięcie
+			frostburn.DisplayName: frostburn
+			LuminousHook.DisplayName: Święcący Hak
+			ichorjet.DisplayName: ichorjet
+			shockbolt.DisplayName: shockbolt
+			uraniumbullet.DisplayName: uraniumbullet
+			flamejet.DisplayName: flamejet
+			minigunholdout.DisplayName: minigunholdout
+			pulsebolt.DisplayName: pulsebolt
+			SpiritLanceHoldout.DisplayName: Włócznia Energii
+			AetherButterfly.DisplayName: Motyl Eatheru
+			FallingDreampod.DisplayName: Spadająca Mrzenica
+			FallingEyeball.DisplayName: Spadające Złoko
+			SoulLanceHoldout.DisplayName: Włócznia Dusz
+			SpectralLanceHoldout.DisplayName: Włócznia Widm
+		}
+
+		Configs: {
+			Client: {
+				DisplayName: Ustawienia Klienta
+
+				Headers: {
+					Worldgen: Generator Świata
+					Audio: Dźwięki
+				}
+
+				TerrainAmplitude: {
+					Label: "[i:3] Amplituda Terenu"
+					Tooltip: Kontroluje zmienność wysokości powierzchni terenu
+				}
+
+				OreFrequency: {
+					Label: "[i:11] Częstotliwość Rud"
+					Tooltip: Kontroluje ilość rudy generowanej na nowych światach
+				}
+
+				TrapFrequency: {
+					Label: "[i:539] Częstotliwość Pułapek"
+					Tooltip: Kontroluje ilość pułapek generowanych w nowych światach
+				}
+
+				CloudDensity: {
+					Label: "[i:751] Gęstość Nieba"
+					Tooltip: Kontroluje ilość unoszących się wysp i chmur generowanych w nowych światach
+				}
+
+				CustomMusic: {
+					Label: "[i:576] Nestandardowa Muzyka"
+					Tooltip: Włącza niestandardową muzykę modyfikacji
+				}
+
+				ExperimentalWorldgen: {
+					Label: "[i:1344] Eksperymentalny Generator Świata"
+					Tooltip:
+						'''
+						Włącza generowanie świata, które jest nadal w fazie rozwoju
+
+						Uwaga: TYLKO W CELACH TESTOWYCH – NIGDY NIE UŻYWAJ TEGO DO NORMALNEJ GRY
+						'''
+				}
+
+				LargerSky: {
+					Label: Wyższe Niebo
+					Tooltip: ""
+				}
+
+				IceMountain: {
+					Label: "[i:664] Lodowa Góra"
+					Tooltip: Włącza górę w biomie Tundry
+				}
+
+				JungleValley: {
+					Label: "[i:176] Dżunglowa Dolina"
+					Tooltip: Włącza dolinę w biomie Dżungli
+				}
+
+				Safeguard: {
+					Label: "[i:156] Zabezpieczenie"
+					Tooltip:
+						'''
+						Zapobiega tworzeniu światów korzystających z niekompatybilnych modów lub ustawień
+
+						Uwaga: wysoce zalecane — wyłączaj tylko wtedy, gdy wiesz, co robisz
+						'''
+				}
+
+				SunkenSeaRework: {
+					// Label: "[i:2625] Sunken Sea Rework"
+					/* Tooltip:
+						'''
+						Enables the sunken sea rework when used with the Calamity mod
+
+						Note: Will become obsolete after the biome is officially updated
+						''' */
+				}
+			}
+
+			Server: {
+				DisplayName: Ustawienia Serwera
+				Headers.Gameplay: Rozgrywka
+
+				FreedomOfMovement: {
+					Label: "[i:54] Wolność Ruchu"
+					Tooltip:
+						'''
+						Gracz jest naturalnie szybszy i zwinniejszy (15 mil na godzinę > 18 mil na godzinę)
+
+						Uwaga: Bardzo polecane – przy włączonej modyfikacji "Calamity", zaleca się zachowanie tego wzmocnienia ruchu i wyłączanie ich
+						'''
+				}
+
+				EnemyAI: {
+					Label: "[i:1248] Ulepszenie SI Wrogów"
+					Tooltip:
+						'''
+						Większość wrogów latających i wodnych będzie miała ulepszoną sztuczną inteligencję
+
+						Uwaga: Nie działa w trybie wieloosobowym
+						'''
+				}
+
+				ProjectileAI: {
+					Label: "[i:1321] Ulepszenie SI Pocisków"
+					Tooltip:
+						'''
+						Rzucane bronie będą miały płynniejszą trajektorię lotu, dzięki czemu będą łatwiejsze w użyciu
+						Zawiera dodatkowe zmiany w balansie, takie jak automatyczne atakowanie Shurikenami
+
+						Uwaga: Zawiera niejasne błędy
+						'''
+				}
+
+				HangingBats: {
+					Label: "[i:1621] Wiszące Nietoperze"
+					Tooltip:
+						'''
+						Nietoperze będą pojawiać się wiszące pod sufitem i atakować tylko wtedy, gdy się do nich zbliżysz
+
+						Uwaga: Nie działa w trybie wieloosobowym
+						'''
+				}
+			}
+		}
+	}
+}

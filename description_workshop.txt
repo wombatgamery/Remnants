@@ -17,6 +17,7 @@ In summary, this mod adds:
 Remnants makes extremely drastic changes to the game's world generation, and it is important to know which mods break with these changes. Please do not report compatibility issues here, as most conflicts are unfixable on this mod's end.
 
 Fully compatible mods should be completely safe to use: [list]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2824688072][b]Calamity Mod[/b][/url]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416][b]Thorium Mod[/b][/url]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3015412343][b]Infernum Mode[/b][/url]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2893332653][b]Mod of Redemption[/b][/url]
@@ -24,7 +25,7 @@ Fully compatible mods should be completely safe to use: [list]
 [/list]
 
 Partially compatible mods will cause some problems, but otherwise may still be playable: [list]
-[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2824688072][b]Calamity Mod[/b][/url] (Golem enrages in the new jungle temple)
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2815540735][b]Fargo's Souls[/b][/url] (The Cursed Coffin arena will not generate)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2563862309][b]The Stars Above[/b][/url] (The Neon Veil overlaps other structures)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2984622072][b]Starlight River[/b][/url] (A few biome and structure conflicts)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2843112914][b]Secrets of the Shadows[/b][/url] (Conflicting pyramid reworks)
@@ -46,5 +47,6 @@ Thanks to the following sources for providing copyright-free assets: [list]
 
 Thanks to the following users for contributing directly to the mod: [list]
 [*]Russian localisation written by [url=https://steamcommunity.com/id/xenofite][b]Xenofite.[/b][/url]
+[*]Polish localisation written by [url=https://steamcommunity.com/id/nichiimishiari/][b]Nichiimishiari.[/b][/url]
 [/list]
 

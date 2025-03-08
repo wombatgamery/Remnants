@@ -20,6 +20,10 @@ namespace Remnants
 
 		[Header("Worldgen")]
 
+        [DefaultValue(true)]
+        [BackgroundColor(90, 160, 140)]
+        public bool Safeguard;
+
         [Range(0.5f, 1.5f)]
         [Increment(.25f)]
         [DrawTicks]
@@ -67,6 +71,10 @@ namespace Remnants
         [DefaultValue(false)]
         [BackgroundColor(150, 100, 125)]
         public bool ExperimentalWorldgen;
+
+        [DefaultValue(true)]
+        [BackgroundColor(150, 150, 125)]
+        public bool SunkenSeaRework;
 
         [Header("Audio")]
 

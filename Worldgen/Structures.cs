@@ -2582,7 +2582,7 @@ namespace Remnants.Worldgen
                 //{
                 //    valid = false;
                 //}
-                else if (!Structures.AvoidsBiomes(rail.area, new int[] { BiomeID.Tundra, BiomeID.Desert, BiomeID.Marble, BiomeID.Hive, BiomeID.GemCave, BiomeID.Toxic }))
+                else if (!Structures.AvoidsBiomes(rail.area, new int[] { BiomeID.Tundra, BiomeID.Desert, BiomeID.Marble, BiomeID.Hive, BiomeID.GemCave, BiomeID.Toxic, BiomeID.SunkenSea }))
                 {
                     valid = false;
                 }
@@ -3310,7 +3310,7 @@ namespace Remnants.Worldgen
                 {
                     valid = false;
                 }
-                else if (!Structures.AvoidsBiomes(cabin.area, new int[] { BiomeID.GemCave, BiomeID.Granite, BiomeID.Hive, BiomeID.Toxic, BiomeID.Obsidian }))
+                else if (!Structures.AvoidsBiomes(cabin.area, new int[] { BiomeID.GemCave, BiomeID.Granite, BiomeID.Hive, BiomeID.Toxic, BiomeID.Obsidian, BiomeID.SunkenSea }))
                 {
                     valid = false;
                 }
@@ -3694,7 +3694,7 @@ namespace Remnants.Worldgen
                 {
                     valid = false;
                 }
-                else if (!Structures.AvoidsBiomes(area, new int[] { BiomeID.Glowshroom, BiomeID.Granite, BiomeID.Hive, BiomeID.Toxic, BiomeID.Obsidian }))
+                else if (!Structures.AvoidsBiomes(area, new int[] { BiomeID.Glowshroom, BiomeID.Granite, BiomeID.Hive, BiomeID.Toxic, BiomeID.Obsidian, BiomeID.SunkenSea }))
                 {
                     valid = false;
                 }

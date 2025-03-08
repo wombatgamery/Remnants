@@ -137,11 +137,28 @@ namespace Remnants.Worldgen
                 return;
             }
 
+            int blocks = 0;
+            for (int y = 40; y < Main.worldSurface; y++)
+            {
+                for (int x = 40; x <= Main.maxTilesX - 40; x++)
+                {
+                    if (Main.tile[x, y].HasTile && Main.tile[x, y].TileType == TileID.Meteorite)
+                    {
+                        blocks++;
+
+                        if (blocks >= Main.maxTilesX / 1050)
+                        {
+                            return;
+                        }
+                    }
+                }
+            }
+
             bool success = false;
 
             while (!success)
             {
-                int x = WorldGen.genRand.Next(400, Main.maxTilesX - 400);
+                int x = WorldGen.genRand.NextBool(2) ? WorldGen.genRand.Next(400, (int)(Main.maxTilesX * 0.45f)) : WorldGen.genRand.Next((int)(Main.maxTilesX * 0.55f), Main.maxTilesX - 400);
                 int y = (int)(Main.worldSurface * 0.4f);
 
                 while (!IgnoredByMeteor(x, y))
@@ -176,7 +193,7 @@ namespace Remnants.Worldgen
 
                     for (int j = y - radius * 2; j <= y + radius; j++)
                     {
-                        for (int i = x - radius; i <= x + radius; i++)
+                        for (int i = x - radius * 2; i <= x + radius * 2; i++)
                         {
                             Tile tile = Main.tile[i, j];
                             if (TileID.Sets.BasicChest[tile.TileType] || TileID.Sets.AvoidedByMeteorLanding[tile.TileType])
@@ -595,6 +612,11 @@ namespace Remnants.Worldgen
 
             if (ModLoader.TryGetMod("CalamityMod", out Mod cal))
             {
+                if (ModContent.GetInstance<Client>().SunkenSeaRework)
+                {
+                    RemovePass(tasks, FindIndex(tasks, "Sunken Sea"));
+                }
+
                 RemovePass(tasks, FindIndex(tasks, "Giant Hive"));
                 //if (!ModContent.GetInstance<Client>().ExperimentalWorldgen)
                 //{
@@ -642,7 +664,10 @@ namespace Remnants.Worldgen
                 RemovePass(tasks, FindIndex(tasks, "Post Terrain"), true);
             }
 
-            InsertPass(tasks, new Safeguard("Safeguard", 1), 1);
+            if (ModContent.GetInstance<Client>().Safeguard)
+            {
+                InsertPass(tasks, new Safeguard("Safeguard", 1), 1);
+            }
         }
 
         public static void InsertPass(List<GenPass> tasks, GenPass item, int index, bool replace = false)
@@ -687,6 +712,15 @@ namespace Remnants.Worldgen
         public static Tile Tile(float x, float y)
         {
             return Framing.GetTileSafely((int)x, (int)y);
+        }
+
+        public static bool SolidTileOf(float x, float y, int type)
+        {
+            if (!WorldGen.SolidTile((int)x, (int)y) || Main.tile[(int)x, (int)y].TileType != type)
+            {
+                return false;
+            }
+            return true;
         }
 
         public static void CustomTileRunner(float x, float y, float radius, FastNoiseLite noise, int type = -2, int wall = -2, float strength = 1, float xFrequency = 1, float yFrequency = 1, bool add = true, bool replace = true)
@@ -1658,15 +1692,15 @@ namespace Remnants.Worldgen
             int rarity;
             int type;
 
-            for (int y = 40; y < Main.maxTilesY - 40; y++)
+            for (int y = 60; y < Main.maxTilesY - 60; y++)
             {
-                progress.Set(((float)y - 40) / (Main.maxTilesY - 40 - 40));
+                progress.Set(((float)y - 60) / (Main.maxTilesY - 60 - 60));
 
-                for (int x = 40; x < Main.maxTilesX - 40; x++)
+                for (int x = 60; x < Main.maxTilesX - 60; x++)
                 {
                     Tile tile = Main.tile[x, y];
 
-                    if (biomes.FindBiome(x, y, false) != BiomeID.Hive)
+                    if (biomes.FindBiome(x, y) != BiomeID.Hive && biomes.FindBiome(x, y) != BiomeID.SunkenSea)
                     {
                         float radius = 3;
                         while (radius < 15)
@@ -1876,7 +1910,7 @@ namespace Remnants.Worldgen
                 {
                     for (int x = 1; x < width - 1; x++)
                     {
-                        if (cellMap[x, y])
+                        if (cellMap[x, y] && WorldGen.InWorld(x + structureX, y + structureY))
                         {
                             Tile tile = WGTools.Tile(x + structureX, y + structureY);
                             if (tile.HasTile && blocksToReplace.Contains(tile.TileType) && (WGTools.Solid(x + structureX, y + structureY - 1) || structureY > Main.worldSurface))
@@ -2499,7 +2533,7 @@ namespace Remnants.Worldgen
                             if (Vector2.Distance(new Vector2(i, j), new Vector2(x, y)) + (noise.GetNoise(i, j) + 1) * 5 < radius && WorldGen.InWorld(i, j) && biomes.FindBiome(i, j) == BiomeID.None && !WGTools.SurroundingTilesActive(i, j, true))
                             {
                                 Tile tile = Main.tile[i, j];
-                                int mossType = x + (noise.GetNoise(i, j) + 1) * 10 <= Main.maxTilesX / 3 + Math.Cos(j / (Main.maxTilesY / 1050f)) * (Main.maxTilesX / 200f) ? 0 : x <= Main.maxTilesX / 1.5f + Math.Cos(j / (Main.maxTilesY / 1050f)) * (Main.maxTilesX / 200f) ? 1 : 2;
+                                int mossType = x + (noise.GetNoise(i, j) + 1) * 10 <= Main.maxTilesX / 3 + Math.Cos(j / (Main.maxTilesY / 120f)) * (Main.maxTilesX / 200f) ? 0 : x <= Main.maxTilesX / 1.5f + Math.Cos(j / (Main.maxTilesY / 120f)) * (Main.maxTilesX / 200f) ? 1 : 2;
 
                                 if (tile.HasTile && (tile.TileType == TileID.Stone || tile.TileType == TileID.GrayBrick))
                                 {
@@ -2865,7 +2899,7 @@ namespace Remnants.Worldgen
                             tile.HasTile = false;
                         }
                     }
-                    else if (biomes.FindBiome(x, y) == BiomeID.Glowshroom || biomes.FindBiome(x, y) == BiomeID.Desert || biomes.FindBiome(x, y) == BiomeID.Marble || biomes.FindBiome(x, y) == BiomeID.Granite || biomes.FindBiome(x, y) == BiomeID.Corruption || biomes.FindBiome(x, y) == BiomeID.Crimson || biomes.FindBiome(x, y) == BiomeID.Beach && y < Main.worldSurface + 50)
+                    else if (biomes.FindBiome(x, y) == BiomeID.Glowshroom || biomes.FindBiome(x, y) == BiomeID.Desert || biomes.FindBiome(x, y) == BiomeID.SunkenSea || biomes.FindBiome(x, y) == BiomeID.Marble || biomes.FindBiome(x, y) == BiomeID.Granite || biomes.FindBiome(x, y) == BiomeID.Corruption || biomes.FindBiome(x, y) == BiomeID.Crimson || biomes.FindBiome(x, y) == BiomeID.Beach && y < Main.worldSurface + 50)
                     {
                         tile.LiquidType = 0;
                         if (tile.TileType == TileID.Cobweb || tile.TileType == TileID.Obsidian)
@@ -2935,6 +2969,20 @@ namespace Remnants.Worldgen
             WorldGen.KillTile(GenVars.lAltarX + 3, GenVars.lAltarY + 1);
             WorldGen.PlaceTile(GenVars.lAltarX + 3, GenVars.lAltarY + 2, TileID.LihzahrdBrick);
             WorldGen.PlaceTile(GenVars.lAltarX + 3, GenVars.lAltarY + 1, TileID.Torches, style: 6);
+
+            if (ModLoader.TryGetMod("CalamityMod", out Mod cal))
+            {
+                for (int y = GenVars.lAltarY - 58; y <= GenVars.lAltarY + 2; y++)
+                {
+                    for (int x = GenVars.lAltarX - 78; x <= GenVars.lAltarX + 80; x++)
+                    {
+                        if (Main.tile[x, y].WallType == ModContent.WallType<temple>())
+                        {
+                            Main.tile[x, y].WallType = WallID.LihzahrdBrickUnsafe;
+                        }
+                    }
+                }
+            }
             #endregion
 
             for (int y = (int)Main.worldSurface - 40; y < Main.maxTilesY - 200; y++)

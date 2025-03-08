@@ -577,7 +577,7 @@ namespace Remnants.Worldgen
             roomCount = dungeon.grid.Height * dungeon.grid.Width / 27;
             while (roomCount > 0)
             {
-                dungeon.targetCell.X = WorldGen.genRand.Next(dungeon.grid.Left, dungeon.grid.Right - 1);
+                dungeon.targetCell.X = WorldGen.genRand.Next(dungeon.grid.Left + 1, dungeon.grid.Right - 1);
                 dungeon.targetCell.Y = WorldGen.genRand.Next(1, dungeon.grid.Height - 1);
 
                 bool valid = true;
@@ -3949,7 +3949,7 @@ namespace Remnants.Worldgen
             bool devMode = false;
 
             #region setup
-            Structures.Dungeon stronghold = new Structures.Dungeon(0, 0, Main.maxTilesX / 350, 2, 96, 66, 3);
+            Structures.Dungeon stronghold = new Structures.Dungeon(0, 0, Main.maxTilesX / 420, 2, 96, 66, 3);
             stronghold.X = Main.maxTilesX / 2 - stronghold.area.Width / 2;
             stronghold.Y = Main.maxTilesY - 190;
 
@@ -4081,6 +4081,36 @@ namespace Remnants.Worldgen
             if (!devMode)
             {
                 int objects;
+
+
+                objects = stronghold.grid.Width * stronghold.grid.Height * 4;
+                while (objects > 0)
+                {
+                    int x = WorldGen.genRand.Next(stronghold.area.Left, stronghold.area.Right);
+                    int y = WorldGen.genRand.Next(stronghold.area.Top, stronghold.area.Bottom);
+
+                    bool valid = true;
+
+                    for (int j = y - 2; j <= y + 2; j++)
+                    {
+                        for (int i = x - 2; i <= x + 2; i++)
+                        {
+                            Tile tile = Main.tile[i, j];
+                            if (tile.HasTile || tile.LiquidAmount > 0 || tile.WallType != ModContent.WallType<HellishBrickWallUnsafe>() && i >= x - 1 && i <= x + 1 && j == y - 1)
+                            {
+                                valid = false;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (valid)
+                    {
+                        WorldGen.Place3x3Wall(x, y, TileID.Painting3X3, style: WorldGen.genRand.Next(16, 18));
+
+                        objects--;
+                    }
+                }
 
                 objects = stronghold.grid.Width * stronghold.grid.Height;
                 while (objects > 0)

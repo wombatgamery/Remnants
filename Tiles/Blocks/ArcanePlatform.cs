@@ -53,7 +53,7 @@ namespace Remnants.Tiles.Blocks
 
             if (!Main.tile[i, j - 1].HasTile || !Main.tileSolid[Main.tile[i, j - 1].TileType] || Main.tile[i, j - 1].TileType == TileID.ClosedDoor)
             {
-                Color color = RemTile.MagicalLabLightColour(i);
+                Color color = RemTile.MagicalLabLightColour(i, true);
                 //RemTile.RGBLight(r, g, b, 112, 93, 133);
                 r = color.R / 255f;// (241f / 255f) * mult;
                 g = color.G / 255f;// (195f / 255f) * mult;

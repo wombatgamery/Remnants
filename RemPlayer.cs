@@ -12,6 +12,7 @@ using Remnants.Worldgen;
 using Remnants.Walls;
 using Terraria.DataStructures;
 using Remnants.Dusts;
+using Terraria.Localization;
 
 namespace Remnants
 {
@@ -31,6 +32,8 @@ namespace Remnants
         public bool ZoneFlesh;
         public bool ZoneMineshaft;
         public bool ZoneSkyJungle;
+
+        public bool WOTG;
 
         public Vector2 savedPosition;
 
@@ -117,6 +120,11 @@ namespace Remnants
                 Player.manaRegenCount = 0;
                 manaRegenStopTimer--;
             }
+
+            if (WOTG)
+            {
+                Main.NewText(Language.GetTextValue("Mods.Remnants.Misc.WOTGWarning"), Color.Red);
+            }
         }
 
         public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
@@ -158,6 +166,11 @@ namespace Remnants
             {
                 activeEssence = essence;
             }
+        }
+
+        public override void OnEnterWorld()
+        {
+            WOTG = ModLoader.TryGetMod("NoxusBoss", out Mod wotg) && Main.netMode == NetmodeID.MultiplayerClient;
         }
 
         public override void UpdateBadLifeRegen()
