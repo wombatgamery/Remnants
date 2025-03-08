@@ -132,8 +132,11 @@ Mods: {
 			Runestalk.MapEntry: Runestalk
 
 			PyramidChest: {
-				MapEntry: Pyramid Chest
-				MapEntry0: Locked Pyramid Chest
+				MapEntry: Сундук
+				MapEntry0: Закрытый сундук
+
+				Messages: {
+					KeysinUnderground: The keys are hidden in the caverns below...
 			}
 
 			PyramidPot.MapEntry: Pyramid Pot
