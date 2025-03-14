@@ -888,7 +888,7 @@ Mods: {
 				}
 
 				RatioIncrease: {
-					Label: "[i:751] Ammount of blocks to compress the world by"
+					Label: "[i:751] Amount of blocks to compress the world by"
 					Tooltip: DO NOT USE THIS WITHOUT ADVANCED WORLDGEN AND INCREASED WORLDSIZE
 				}
 
