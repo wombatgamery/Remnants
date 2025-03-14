@@ -883,12 +883,12 @@ Mods: {
 				}
 
 				RatioSafeguard: {
-					Label: "[i:156] Ratio Safeguard"
+					Label: "[i:156] Sky Safeguard"
 					Tooltip: Keeps everything working right, do not report errors if you turn this off
 				}
 
 				RatioIncrease: {
-					Label: "[i:751] Sky To Ground Ratio Increase"
+					Label: "[i:751] Ammount of blocks to compress the world by"
 					Tooltip: DO NOT USE THIS WITHOUT ADVANCED WORLDGEN AND INCREASED WORLDSIZE
 				}
 
