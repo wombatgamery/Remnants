@@ -134,10 +134,7 @@ Mods: {
 			PyramidChest: {
 				MapEntry: Pyramid Chest
 				MapEntry0: Locked Pyramid Chest
-
-				Messages: {
-					KeysinUnderground: The keys are hidden in the caverns below...
-				}
+				Messages.KeysinUnderground: The keys are hidden in the caverns below...
 			}
 
 			PyramidPot.MapEntry: Pyramid Pot
@@ -156,6 +153,13 @@ Mods: {
 			}
 
 			PrismbudHead.MapEntry: Prismbud
+			CloudyMusicBoxTile.MapEntry: Cloudy Music Box Tile
+			EchoingMusicBoxTile.MapEntry: Echoing Music Box Tile
+			ForgottenMusicBoxTile.MapEntry: Forgotten Music Box Tile
+			GraniteMusicBoxTile.MapEntry: Granite Music Box Tile
+			MagicalMusicBoxTile.MapEntry: Magical Music Box Tile
+			MarbleMusicBoxTile.MapEntry: Marble Music Box Tile
+			RootCoveredMusicBoxTile.MapEntry: Root Covered Music Box Tile
 		}
 
 		Buffs: {
@@ -652,6 +656,126 @@ Mods: {
 				DisplayName: Runestalk Blessing Icon
 				Tooltip: ""
 			}
+
+			LihzardPara: {
+				DisplayName: Paralax Lihzahrd Brick Wall
+				Tooltip: ""
+			}
+
+			Magic: {
+				DisplayName: Paralax Magic Brick Wall
+				Tooltip: ""
+			}
+
+			MazePara: {
+				DisplayName: Paralax Maze Brick Wall
+				Tooltip: ""
+			}
+
+			ParaHive: {
+				DisplayName: Paralax Hive Wall
+				Tooltip: ""
+			}
+
+			ParalaxDungeonB: {
+				DisplayName: Paralax Blue Dungeon Wall
+				Tooltip: ""
+			}
+
+			ParalaxDungeonG: {
+				DisplayName: Paralax Green Dungeon Wall
+				Tooltip: ""
+			}
+
+			ParalaxDungeonP: {
+				DisplayName: Paralax Pink Dungeon Wall
+				Tooltip: ""
+			}
+
+			PyramidPara: {
+				DisplayName: Paralax Pyramid Brick Wall
+				Tooltip: ""
+			}
+
+			StrongholdPara: {
+				DisplayName: Paralax Stronghold Wall
+				Tooltip: ""
+			}
+
+			Tomb: {
+				DisplayName: Paralax Tomb Wall
+				Tooltip: ""
+			}
+
+			TreePara: {
+				DisplayName: Paralax Undergrowth Wall
+				Tooltip: ""
+			}
+
+			VaultPara: {
+				DisplayName: Paralax Vault Wall
+				Tooltip: ""
+			}
+
+			WaterPara: {
+				DisplayName: Paralax Water Brick Wall
+				Tooltip: ""
+			}
+
+			MagicFly: {
+				DisplayName: Magic Lab Elevator
+				Tooltip: ""
+			}
+
+			LabFly: {
+				DisplayName: Magic Lab Elevator
+				Tooltip: ""
+			}
+
+			LabPara: {
+				DisplayName: Paralax Magic Lab Wall
+				Tooltip: ""
+			}
+
+			TemplePara: {
+				DisplayName: Paralax Temple Brick Wall
+				Tooltip: ""
+			}
+
+			CloudyMusicBox: {
+				DisplayName: Cloudy Music Box
+				Tooltip: ""
+			}
+
+			EchoingMusicBox: {
+				DisplayName: Echoing Music Box
+				Tooltip: ""
+			}
+
+			ForgottenMusicBox: {
+				DisplayName: Forgotten Music Box
+				Tooltip: ""
+			}
+
+			GraniteMusicBox: {
+				DisplayName: Granite Music Box
+				Tooltip: ""
+			}
+
+			MagicalMusicBox: {
+				DisplayName: Magical Music Box
+				Tooltip: ""
+			}
+
+			MarbleMusicBox: {
+				DisplayName: Marble Music Box
+				Tooltip: ""
+			}
+
+			RootCoveredMusicBox: {
+				DisplayName: Root Covered Music Box
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -756,6 +880,16 @@ Mods: {
 				JungleValley: {
 					Label: "[i:176] Jungle Valley"
 					Tooltip: Enables the valley in the jungle biome
+				}
+
+				RatioSafeguard: {
+					Label: "[i:156] Ratio Safeguard"
+					Tooltip: Keeps everything working right, do not report errors if you turn this off
+				}
+
+				RatioIncrease: {
+					Label: "[i:751] Sky To Ground Ratio Increase"
+					Tooltip: DO NOT USE THIS WITHOUT ADVANCED WORLDGEN AND INCREASED WORLDSIZE
 				}
 
 				Safeguard: {
