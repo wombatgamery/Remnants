@@ -153,13 +153,13 @@ Mods: {
 			}
 
 			PrismbudHead.MapEntry: Луковица-призмоцветка
-			CloudyMusicBoxTile.MapEntry: Музыкальная шкатулка
-			EchoingMusicBoxTile.MapEntry: Музыкальная шкатулка
-			ForgottenMusicBoxTile.MapEntry: Музыкальная шкатулка
-			GraniteMusicBoxTile.MapEntry: Музыкальная шкатулка
-			MagicalMusicBoxTile.MapEntry: Музыкальная шкатулка
-			MarbleMusicBoxTile.MapEntry: Музыкальная шкатулка
-			RootCoveredMusicBoxTile.MapEntry: Музыкальная шкатулка
+			// CloudyMusicBoxTile.MapEntry: Cloudy Music Box Tile
+			// EchoingMusicBoxTile.MapEntry: Echoing Music Box Tile
+			// ForgottenMusicBoxTile.MapEntry: Forgotten Music Box Tile
+			// GraniteMusicBoxTile.MapEntry: Granite Music Box Tile
+			// MagicalMusicBoxTile.MapEntry: Magical Music Box Tile
+			// MarbleMusicBoxTile.MapEntry: Marble Music Box Tile
+			// RootCoveredMusicBoxTile.MapEntry: Root Covered Music Box Tile
 		}
 
 		Buffs: {
@@ -669,114 +669,124 @@ Mods: {
 				Tooltip: ""
 			}
 
+			LihzardPara: {
+				// DisplayName: Paralax Lihzahrd Brick Wall
+				// Tooltip: ""
+			}
+
 			Magic: {
-				DisplayName: Задний фон магической лаборатории
-				Tooltip: ""
+				// DisplayName: Paralax Magic Brick Wall
+				// Tooltip: ""
 			}
 
 			MazePara: {
-				DisplayName: Задний фон шепчущих коридоров
-				Tooltip: ""
+				// DisplayName: Paralax Maze Brick Wall
+				// Tooltip: ""
 			}
 
 			ParaHive: {
-				DisplayName: Задний фон медового дворца
-				Tooltip: ""
+				// DisplayName: Paralax Hive Wall
+				// Tooltip: ""
 			}
 
 			ParalaxDungeonB: {
-				DisplayName: Задний фон синекирпичной темницы
-				Tooltip: ""
+				// DisplayName: Paralax Blue Dungeon Wall
+				// Tooltip: ""
 			}
 
 			ParalaxDungeonG: {
-				DisplayName: Задний фон зелёнокирпичной темницы
-				Tooltip: ""
+				// DisplayName: Paralax Green Dungeon Wall
+				// Tooltip: ""
 			}
 
 			ParalaxDungeonP: {
-				DisplayName: Задний фон розовокирпичной темницы
-				Tooltip: ""
+				// DisplayName: Paralax Pink Dungeon Wall
+				// Tooltip: ""
 			}
 
 			PyramidPara: {
-				DisplayName: Задний фон пирамиды
-				Tooltip: ""
+				// DisplayName: Paralax Pyramid Brick Wall
+				// Tooltip: ""
 			}
 
 			StrongholdPara: {
-				DisplayName: Задний фон крепости пекла
-				Tooltip: ""
+				// DisplayName: Paralax Stronghold Wall
+				// Tooltip: ""
 			}
 
 			Tomb: {
-				DisplayName: Задний фон забытого склепа
-				Tooltip: ""
+				// DisplayName: Paralax Tomb Wall
+				// Tooltip: ""
 			}
 
 			TreePara: {
-				DisplayName: Задний фон корневища
-				Tooltip: ""
+				// DisplayName: Paralax Undergrowth Wall
+				// Tooltip: ""
 			}
 
 			VaultPara: {
-				DisplayName: Задний фон убежища
-				Tooltip: ""
+				// DisplayName: Paralax Vault Wall
+				// Tooltip: ""
 			}
 
 			WaterPara: {
-				DisplayName: Задний фон затонувшего храма
-				Tooltip: ""
+				// DisplayName: Paralax Water Brick Wall
+				// Tooltip: ""
+			}
+
+			MagicFly: {
+				// DisplayName: Magic Lab Elevator
+				// Tooltip: ""
 			}
 
 			LabFly: {
-				DisplayName: Стена вознесения магической лаборатории
-				Tooltip: ""
+				// DisplayName: Magic Lab Elevator
+				// Tooltip: ""
 			}
 
 			LabPara: {
-				DisplayName: Задний фон магической лаборатории
-				Tooltip: ""
+				// DisplayName: Paralax Magic Lab Wall
+				// Tooltip: ""
 			}
 
 			TemplePara: {
-				DisplayName: Задний фон храма джунглей
-				Tooltip: ""
+				// DisplayName: Paralax Temple Brick Wall
+				// Tooltip: ""
 			}
 
 			CloudyMusicBox: {
-				DisplayName: Музыкальная шкатулка (Небесный сад)
-				Tooltip: ""
+				// DisplayName: Cloudy Music Box
+				// Tooltip: ""
 			}
 
 			EchoingMusicBox: {
-				DisplayName: Музыкальная шкатулка (Шепчущие коридоры)
-				Tooltip: ""
+				// DisplayName: Echoing Music Box
+				// Tooltip: ""
 			}
 
 			ForgottenMusicBox: {
-				DisplayName: Музыкальная шкатулка (Забытый склеп)
-				Tooltip: ""
+				// DisplayName: Forgotten Music Box
+				// Tooltip: ""
 			}
 
 			GraniteMusicBox: {
-				DisplayName: Музыкальная шкатулка (Гранитный разлом)
-				Tooltip: ""
+				// DisplayName: Granite Music Box
+				// Tooltip: ""
 			}
 
 			MagicalMusicBox: {
-				DisplayName: Музыкальная шкатулка (Магическая лаборатория)
-				Tooltip: ""
+				// DisplayName: Magical Music Box
+				// Tooltip: ""
 			}
 
 			MarbleMusicBox: {
-				DisplayName: Музыкальная шкатулка (Мраморное ущелье)
-				Tooltip: ""
+				// DisplayName: Marble Music Box
+				// Tooltip: ""
 			}
 
 			RootCoveredMusicBox: {
-				DisplayName: Музыкальная шкатулка (Корневище)
-				Tooltip: ""
+				// DisplayName: Root Covered Music Box
+				// Tooltip: ""
 			}
 		}
 
@@ -883,32 +893,12 @@ Mods: {
 					Tooltip: Джунгли будут генерироваться немного ниже уровня поверхности
 				}
 
-				RatioSafeguard: {
-					Label: "[i:156] Сохранение правильных пропорций мира"
-					Tooltip:
-						'''
-						Предотвращает изменения пропорций мира такими модами как Advanced World Generation
-						[c/F20D3B:Если вы всё же решитесь их менять — отключите эту настройку, но пожалуйста, не сообщайте разработчикам о возникающих ошибках при генерации]
-						'''
-				}
-
-				RatioIncrease: {
-					Label: "[i:751] Соотношение размеров неба и пещер"
-					Tooltip:
-						'''
-						Позволяет увеличивать высоту неба путём уменьшения высоты слоя пещер, сохраняя при этом одну и ту же общую высоту мира
-						Введите в это окошко количество блоков, на которые вы хотите увеличить небо и уменьшить пещеры
-						Вводить можно в том числе и отрицательные значения — в таком случае, соответственно, высота неба будет уменьшаться, а слой пещер — увеличиваться
-						[c/F20D3B:Используйте эту настройку ТОЛЬКО с модом Advanced World Generation]
-						'''
-				}
-
 				Safeguard: {
 					Label: "[i:156] Меры предосторожности"
 					Tooltip:
 						'''
 						Останавливает процесс генерации мира, если у вас установлены несовместимые с Remnants моды, сиды, размеры мира и т.п.
-						[c/98FB98:Крайне рекомендуется]
+						[c/80FF80:Крайне рекомендуется]
 						'''
 				}
 
@@ -919,6 +909,49 @@ Mods: {
 						Включает новую генерацию биома затерянного моря из Calamity мода
 						Исправляет баги с генерацией моря, делает его просторнее и лучше вписывает его в общую картину мира
 						'''
+				}
+
+				DoRails: {
+					// Label: "[i:2340] Spawn Rails?"
+					// Tooltip: Keep this on to spawn railways in the underground
+				}
+			}
+
+			LargerSky: {
+				// DisplayName: Sky Size Increase
+
+				SkySafeguard: {
+					// Label: "[i:156] World Ratio Safeguard"
+					// Tooltip: Keeps everything working right, do not report errors if you turn this off
+				}
+
+				DoPercentage: {
+					// Label: Use Percentage?
+					/* Tooltip:
+						'''
+						If On, will use the percentage slider
+						If Off, will use the flat values
+						''' */
+				}
+
+				PercentRatioIncrease: {
+					// Label: "[i:751] Percentage Sky Increase"
+					// Tooltip: ""
+				}
+
+				FlatSurfaceRatioIncrease: {
+					// Label: "[i:2] Surface Increase"
+					// Tooltip: How many blocks lower from the top of the map should the surface be?
+				}
+
+				FlatUndergroundRatioIncrease: {
+					// Label: "[i:3] Underground Increase"
+					// Tooltip: How many blocks lower from the top of the map should the underground be?
+				}
+
+				FlatLavaRatioIncrease: {
+					// Label: "[i:173] Lava Layer Increase"
+					// Tooltip: How many blocks lower from the top of the map should the lava layer be?
 				}
 			}
 
@@ -940,7 +973,7 @@ Mods: {
 					Tooltip:
 						'''
 						Изменяет поведение некоторых водоплавающих и летающих враждебных существ
-						[c/F20D3B:Не работает в мультиплеере]
+						[c/DC143C:Не работает в мультиплеере]
 						'''
 				}
 
@@ -950,7 +983,7 @@ Mods: {
 						'''
 						Изменяет траекторию полёта некоторых видов метательного оружия, делая её чуть плавнее и предсказуемее
 						Изменяет баланс этих видов метательного оружия (например добавляет автоатаку сюрикенам)
-						[c/F20D3B:Может вызывать странные баги]
+						[c/DC143C:Может вызывать странные баги]
 						'''
 				}
 
@@ -959,9 +992,56 @@ Mods: {
 					Tooltip:
 						'''
 						Летучие мыши будут висеть на потолке и атаковать игрока только когда тот подойдет слишком близко
-						[c/F20D3B:Не работает в мультиплеере]
+						[c/DC143C:Не работает в мультиплеере]
 						'''
 				}
+			}
+		}
+
+		Server: {
+			// DisplayName: Server Settings
+			// Headers.Gameplay: Gameplay
+
+			FreedomOfMovement: {
+				// Label: "[i:54] Freedom of Movement"
+				/* Tooltip:
+					'''
+					The player is naturally faster and more agile (15mph > 18mph) 
+					If using the Calamity mod, you are advised to choose this movement buff over theirs
+
+					Note: Highly recommended
+					''' */
+			}
+
+			EnemyAI: {
+				// Label: "[i:1248] Enemy AI Improvements"
+				/* Tooltip:
+					'''
+					Most airborne or aquatic enemies will have improved AI
+
+					Note: Does nothing in multiplayer
+					''' */
+			}
+
+			ProjectileAI: {
+				// Label: "[i:1321] Projectile AI Improvements"
+				/* Tooltip:
+					'''
+					Throwing weapons will have a smooth flight trajectory, making them easier to use
+					Comes with additional balance changes, like autoswing for shurikens
+
+					Note: Contains obscure bugs
+					''' */
+			}
+
+			HangingBats: {
+				// Label: "[i:1621] Hanging Bats"
+				/* Tooltip:
+					'''
+					Bats will spawn hanging from the ceiling and attack when approached
+
+					Note: Does nothing in multiplayer
+					''' */
 			}
 		}
 	}

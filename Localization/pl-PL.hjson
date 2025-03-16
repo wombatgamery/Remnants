@@ -886,16 +886,6 @@ Mods: {
 					Tooltip: Włącza dolinę w biomie Dżungli
 				}
 
-				RatioSafeguard: {
-					// Label: "[i:156] Ratio Safeguard"
-					// Tooltip: Keeps everything working right, do not report errors if you turn this off
-				}
-
-				RatioIncrease: {
-					// Label: "[i:751] Sky To Ground Ratio Increase"
-					// Tooltip: DO NOT USE THIS WITHOUT ADVANCED WORLDGEN AND INCREASED WORLDSIZE
-				}
-
 				Safeguard: {
 					Label: "[i:156] Zabezpieczenie"
 					Tooltip:
@@ -914,6 +904,49 @@ Mods: {
 
 						Note: Will become obsolete after the biome is officially updated
 						''' */
+				}
+
+				DoRails: {
+					// Label: "[i:2340] Spawn Rails?"
+					// Tooltip: Keep this on to spawn railways in the underground
+				}
+			}
+
+			LargerSky: {
+				// DisplayName: Sky Size Increase
+
+				SkySafeguard: {
+					// Label: "[i:156] World Ratio Safeguard"
+					// Tooltip: Keeps everything working right, do not report errors if you turn this off
+				}
+
+				DoPercentage: {
+					// Label: Use Percentage?
+					/* Tooltip:
+						'''
+						If On, will use the percentage slider
+						If Off, will use the flat values
+						''' */
+				}
+
+				PercentRatioIncrease: {
+					// Label: "[i:751] Percentage Sky Increase"
+					// Tooltip: ""
+				}
+
+				FlatSurfaceRatioIncrease: {
+					// Label: "[i:2] Surface Increase"
+					// Tooltip: How many blocks lower from the top of the map should the surface be?
+				}
+
+				FlatUndergroundRatioIncrease: {
+					// Label: "[i:3] Underground Increase"
+					// Tooltip: How many blocks lower from the top of the map should the underground be?
+				}
+
+				FlatLavaRatioIncrease: {
+					// Label: "[i:173] Lava Layer Increase"
+					// Tooltip: How many blocks lower from the top of the map should the lava layer be?
 				}
 			}
 
@@ -961,6 +994,53 @@ Mods: {
 						Uwaga: Nie działa w trybie wieloosobowym
 						'''
 				}
+			}
+		}
+
+		Server: {
+			// DisplayName: Server Settings
+			// Headers.Gameplay: Gameplay
+
+			FreedomOfMovement: {
+				// Label: "[i:54] Freedom of Movement"
+				/* Tooltip:
+					'''
+					The player is naturally faster and more agile (15mph > 18mph) 
+					If using the Calamity mod, you are advised to choose this movement buff over theirs
+
+					Note: Highly recommended
+					''' */
+			}
+
+			EnemyAI: {
+				// Label: "[i:1248] Enemy AI Improvements"
+				/* Tooltip:
+					'''
+					Most airborne or aquatic enemies will have improved AI
+
+					Note: Does nothing in multiplayer
+					''' */
+			}
+
+			ProjectileAI: {
+				// Label: "[i:1321] Projectile AI Improvements"
+				/* Tooltip:
+					'''
+					Throwing weapons will have a smooth flight trajectory, making them easier to use
+					Comes with additional balance changes, like autoswing for shurikens
+
+					Note: Contains obscure bugs
+					''' */
+			}
+
+			HangingBats: {
+				// Label: "[i:1621] Hanging Bats"
+				/* Tooltip:
+					'''
+					Bats will spawn hanging from the ceiling and attack when approached
+
+					Note: Does nothing in multiplayer
+					''' */
 			}
 		}
 	}
