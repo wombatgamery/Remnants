@@ -2245,6 +2245,7 @@ namespace Remnants.Worldgen
 
     public class Microdungeons : GenPass
     {
+        Client Rails = Client.Instance;
         public Microdungeons(string name, float loadWeight) : base(name, loadWeight)
         {
         }
@@ -2559,184 +2560,187 @@ namespace Remnants.Worldgen
                 }
             }
 
-            progressCounter++;
-
-            structureCount = 0; // MINECART RAIL
-            while (structureCount < Main.maxTilesY / 150)
+            if (Rails.DoRails)
             {
-                progress.Set((progressCounter + (structureCount / (float)(Main.maxTilesY / 120))) / (float)uniqueStructures);
+                progressCounter++;
 
-                #region spawnconditions
-                Structures.Dungeon rail = new Structures.Dungeon(0, WorldGen.genRand.Next((int)Main.rockLayer, GenVars.lavaLine - 50), WorldGen.genRand.Next(15, 30) * (Main.maxTilesX / 4200), 2, 12, 6, 2);
-                rail.X = WorldGen.genRand.Next(400, Main.maxTilesX - 400 - rail.area.Width);// (structureCount < Main.maxTilesY / 240 ^ Tundra.X > biomes.width / 2) ? WorldGen.genRand.Next(400, Main.maxTilesX / 2 - rail.area.Width / 2) : WorldGen.genRand.Next(Main.maxTilesX / 2 - rail.area.Width / 2, Main.maxTilesX - 400 - rail.area.Width);
-                rail.X = (int)(rail.X / 4) * 4;
+                structureCount = 0; // MINECART RAIL
+                while (structureCount < Main.maxTilesY / 150)
+                {
+                    progress.Set((progressCounter + (structureCount / (float)(Main.maxTilesY / 120))) / (float)uniqueStructures);
 
-                bool[] invalidTiles = TileID.Sets.Factory.CreateBoolSet(true, TileID.Ash, TileID.Ebonstone, TileID.Crimstone, TileID.LihzahrdBrick, TileID.LivingWood);
+                    #region spawnconditions
+                    Structures.Dungeon rail = new Structures.Dungeon(0, WorldGen.genRand.Next((int)Main.rockLayer, GenVars.lavaLine - 50), WorldGen.genRand.Next(15, 30) * (Main.maxTilesX / 4200), 2, 12, 6, 2);
+                    rail.X = WorldGen.genRand.Next(400, Main.maxTilesX - 400 - rail.area.Width);// (structureCount < Main.maxTilesY / 240 ^ Tundra.X > biomes.width / 2) ? WorldGen.genRand.Next(400, Main.maxTilesX / 2 - rail.area.Width / 2) : WorldGen.genRand.Next(Main.maxTilesX / 2 - rail.area.Width / 2, Main.maxTilesX - 400 - rail.area.Width);
+                    rail.X = (int)(rail.X / 4) * 4;
 
-                bool valid = true;
-                if (!GenVars.structures.CanPlace(rail.area, invalidTiles, 25))
-                {
-                    valid = false;
-                }
-                //else if (Structures.AvoidsBiomes(rail.area, new int[] { BiomeID.Granite }) && structureCount < Main.maxTilesY / 600f || !Structures.AvoidsBiomes(rail.area, new int[] { BiomeID.Granite }) && structureCount >= Main.maxTilesY / 600f)
-                //{
-                //    valid = false;
-                //}
-                else if (!Structures.AvoidsBiomes(rail.area, new int[] { BiomeID.Tundra, BiomeID.Desert, BiomeID.Marble, BiomeID.Hive, BiomeID.GemCave, BiomeID.Toxic, BiomeID.SunkenSea }))
-                {
-                    valid = false;
-                }
-                else if (!Structures.AvoidsBiomes(rail.area, new int[] { BiomeID.Jungle }) ^ structureCount % 5 == 0)
-                {
-                    valid = false;
-                }
-                else
-                {
-                    for (int i = rail.area.Left; i <= rail.area.Right; i++)
+                    bool[] invalidTiles = TileID.Sets.Factory.CreateBoolSet(true, TileID.Ash, TileID.Ebonstone, TileID.Crimstone, TileID.LihzahrdBrick, TileID.LivingWood);
+
+                    bool valid = true;
+                    if (!GenVars.structures.CanPlace(rail.area, invalidTiles, 25))
                     {
-                        for (int j = rail.area.Y - 100; j <= rail.area.Y + 100; j++)
+                        valid = false;
+                    }
+                    //else if (Structures.AvoidsBiomes(rail.area, new int[] { BiomeID.Granite }) && structureCount < Main.maxTilesY / 600f || !Structures.AvoidsBiomes(rail.area, new int[] { BiomeID.Granite }) && structureCount >= Main.maxTilesY / 600f)
+                    //{
+                    //    valid = false;
+                    //}
+                    else if (!Structures.AvoidsBiomes(rail.area, new int[] { BiomeID.Tundra, BiomeID.Desert, BiomeID.Marble, BiomeID.Hive, BiomeID.GemCave, BiomeID.Toxic, BiomeID.SunkenSea }))
+                    {
+                        valid = false;
+                    }
+                    else if (!Structures.AvoidsBiomes(rail.area, new int[] { BiomeID.Jungle }) ^ structureCount % 5 == 0)
+                    {
+                        valid = false;
+                    }
+                    else
+                    {
+                        for (int i = rail.area.Left; i <= rail.area.Right; i++)
                         {
-                            if (Main.tile[i, j].HasTile && Main.tile[i, j].TileType == TileID.MinecartTrack)
+                            for (int j = rail.area.Y - 100; j <= rail.area.Y + 100; j++)
                             {
-                                valid = false;
+                                if (Main.tile[i, j].HasTile && Main.tile[i, j].TileType == TileID.MinecartTrack)
+                                {
+                                    valid = false;
+                                    break;
+                                }
+                            }
+
+                            if (!valid)
+                            {
                                 break;
                             }
                         }
-
-                        if (!valid)
-                        {
-                            break;
-                        }
                     }
-                }
-                #endregion
+                    #endregion
 
-                if (valid)
-                {
-                    GenVars.structures.AddProtectedStructure(rail.area, 10);
-
-                    #region structure
-                    #region rooms
-
-                    for (int i = rail.area.Left; i <= rail.area.Right; i++)
+                    if (valid)
                     {
-                        for (int j = rail.area.Y - 5; j <= rail.area.Y - 1; j++)
+                        GenVars.structures.AddProtectedStructure(rail.area, 10);
+
+                        #region structure
+                        #region rooms
+
+                        for (int i = rail.area.Left; i <= rail.area.Right; i++)
                         {
-                            if (!TileID.Sets.IsBeam[Main.tile[i, j].TileType])
+                            for (int j = rail.area.Y - 5; j <= rail.area.Y - 1; j++)
                             {
-                                WorldGen.KillTile(i, j);
-                            }
-                        }
-
-                        WGTools.Terraform(new Vector2(i, rail.area.Y - 3), 5);
-                        WorldGen.PlaceTile(i, rail.area.Y - 1, TileID.MinecartTrack);
-                        WorldGen.TileFrame(i, rail.area.Y - 1);
-                    }
-
-                    bool hasStation = Structures.AvoidsBiomes(rail.area, new int[] { BiomeID.Desert, BiomeID.Granite });
-                    int stationWidth = 2;
-                    int stationX = WorldGen.genRand.Next(1, rail.grid.Width - stationWidth);
-                    if (hasStation)
-                    {
-                        int ladderX = WorldGen.genRand.Next(stationX, stationX + stationWidth);
-
-                        rail.targetCell.X = stationX;
-                        rail.targetCell.Y = 0;
-
-                        WGTools.Terraform(new Vector2(rail.room.Left, rail.room.Bottom - 3), 5);
-                        WGTools.Terraform(new Vector2(rail.room.Right + rail.room.Width, rail.room.Bottom - 3), 5);
-
-                        for (rail.targetCell.X = stationX; rail.targetCell.X < stationX + stationWidth; rail.targetCell.X++)
-                        {
-                            rail.AddMarker(rail.targetCell.X, 0);
-
-                            if (rail.targetCell.X == ladderX)
-                            {
-                                Generator.GenerateStructure("Structures/common/MinecartRail/ladder", new Point16(rail.roomPos.X, rail.roomPos.Y), ModContent.GetInstance<Remnants>());
-                            }
-                            else Generator.GenerateStructure("Structures/common/MinecartRail/room", new Point16(rail.roomPos.X, rail.roomPos.Y), ModContent.GetInstance<Remnants>());
-                        }
-
-                        rail.targetCell.X = stationX;
-                        Generator.GenerateStructure("Structures/common/MinecartRail/wall", new Point16(rail.roomPos.X, rail.roomPos.Y), ModContent.GetInstance<Remnants>());
-                        rail.targetCell.X = stationX + stationWidth;
-                        Generator.GenerateStructure("Structures/common/MinecartRail/wall", new Point16(rail.roomPos.X, rail.roomPos.Y), ModContent.GetInstance<Remnants>());
-                    }
-
-                    int roomCount = rail.grid.Width / 10;
-                    while (roomCount > 0)
-                    {
-                        rail.targetCell.X = WorldGen.genRand.Next(1, rail.grid.Width - 1);
-
-                        if (!rail.FindMarker(rail.targetCell.X - 1, 0) && !rail.FindMarker(rail.targetCell.X, 0) && !rail.FindMarker(rail.targetCell.X + 1, 0) && !rail.FindMarker(rail.targetCell.X, 0, 1))
-                        {
-                            rail.AddMarker(rail.targetCell.X, 0, 1);
-
-                            roomCount--;
-                        }
-                    }
-
-                    for (rail.targetCell.Y = 0; rail.targetCell.Y < rail.grid.Height; rail.targetCell.Y++)
-                    {
-                        for (rail.targetCell.X = 0; rail.targetCell.X < rail.grid.Width; rail.targetCell.X++)
-                        {
-                            if (rail.FindMarker(rail.targetCell.X, rail.targetCell.Y) || rail.FindMarker(rail.targetCell.X, rail.targetCell.Y, 1))
-                            {
-
-                            }
-                            else if (rail.targetCell.Y == 0 || rail.FindMarker(rail.targetCell.X, 0))
-                            {
-                                Generator.GenerateStructure("Structures/common/MinecartRail/bottom", new Point16(rail.roomPos.X, rail.roomPos.Y), ModContent.GetInstance<Remnants>());
-
-                                for (int i = rail.roomPos.X; i <= rail.room.Right; i += 4)
+                                if (!TileID.Sets.IsBeam[Main.tile[i, j].TileType])
                                 {
-                                    WGTools.WoodenBeam(i, rail.roomPos.Y + 1);
+                                    WorldGen.KillTile(i, j);
+                                }
+                            }
+
+                            WGTools.Terraform(new Vector2(i, rail.area.Y - 3), 5);
+                            WorldGen.PlaceTile(i, rail.area.Y - 1, TileID.MinecartTrack);
+                            WorldGen.TileFrame(i, rail.area.Y - 1);
+                        }
+
+                        bool hasStation = Structures.AvoidsBiomes(rail.area, new int[] { BiomeID.Desert, BiomeID.Granite });
+                        int stationWidth = 2;
+                        int stationX = WorldGen.genRand.Next(1, rail.grid.Width - stationWidth);
+                        if (hasStation)
+                        {
+                            int ladderX = WorldGen.genRand.Next(stationX, stationX + stationWidth);
+
+                            rail.targetCell.X = stationX;
+                            rail.targetCell.Y = 0;
+
+                            WGTools.Terraform(new Vector2(rail.room.Left, rail.room.Bottom - 3), 5);
+                            WGTools.Terraform(new Vector2(rail.room.Right + rail.room.Width, rail.room.Bottom - 3), 5);
+
+                            for (rail.targetCell.X = stationX; rail.targetCell.X < stationX + stationWidth; rail.targetCell.X++)
+                            {
+                                rail.AddMarker(rail.targetCell.X, 0);
+
+                                if (rail.targetCell.X == ladderX)
+                                {
+                                    Generator.GenerateStructure("Structures/common/MinecartRail/ladder", new Point16(rail.roomPos.X, rail.roomPos.Y), ModContent.GetInstance<Remnants>());
+                                }
+                                else Generator.GenerateStructure("Structures/common/MinecartRail/room", new Point16(rail.roomPos.X, rail.roomPos.Y), ModContent.GetInstance<Remnants>());
+                            }
+
+                            rail.targetCell.X = stationX;
+                            Generator.GenerateStructure("Structures/common/MinecartRail/wall", new Point16(rail.roomPos.X, rail.roomPos.Y), ModContent.GetInstance<Remnants>());
+                            rail.targetCell.X = stationX + stationWidth;
+                            Generator.GenerateStructure("Structures/common/MinecartRail/wall", new Point16(rail.roomPos.X, rail.roomPos.Y), ModContent.GetInstance<Remnants>());
+                        }
+
+                        int roomCount = rail.grid.Width / 10;
+                        while (roomCount > 0)
+                        {
+                            rail.targetCell.X = WorldGen.genRand.Next(1, rail.grid.Width - 1);
+
+                            if (!rail.FindMarker(rail.targetCell.X - 1, 0) && !rail.FindMarker(rail.targetCell.X, 0) && !rail.FindMarker(rail.targetCell.X + 1, 0) && !rail.FindMarker(rail.targetCell.X, 0, 1))
+                            {
+                                rail.AddMarker(rail.targetCell.X, 0, 1);
+
+                                roomCount--;
+                            }
+                        }
+
+                        for (rail.targetCell.Y = 0; rail.targetCell.Y < rail.grid.Height; rail.targetCell.Y++)
+                        {
+                            for (rail.targetCell.X = 0; rail.targetCell.X < rail.grid.Width; rail.targetCell.X++)
+                            {
+                                if (rail.FindMarker(rail.targetCell.X, rail.targetCell.Y) || rail.FindMarker(rail.targetCell.X, rail.targetCell.Y, 1))
+                                {
+
+                                }
+                                else if (rail.targetCell.Y == 0 || rail.FindMarker(rail.targetCell.X, 0))
+                                {
+                                    Generator.GenerateStructure("Structures/common/MinecartRail/bottom", new Point16(rail.roomPos.X, rail.roomPos.Y), ModContent.GetInstance<Remnants>());
+
+                                    for (int i = rail.roomPos.X; i <= rail.room.Right; i += 4)
+                                    {
+                                        WGTools.WoodenBeam(i, rail.roomPos.Y + 1);
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    bool[] tiles = TileID.Sets.Factory.CreateBoolSet(false, TileID.WoodBlock, TileID.WoodenBeam, TileID.BorealBeam, TileID.RichMahoganyBeam, TileID.MushroomBeam, TileID.GraniteColumn);
+                        bool[] tiles = TileID.Sets.Factory.CreateBoolSet(false, TileID.WoodBlock, TileID.WoodenBeam, TileID.BorealBeam, TileID.RichMahoganyBeam, TileID.MushroomBeam, TileID.GraniteColumn);
 
-                    for (rail.targetCell.X = 0; rail.targetCell.X < rail.grid.Width; rail.targetCell.X++)
-                    {
-                        if (rail.FindMarker(rail.targetCell.X, 0, 1))
+                        for (rail.targetCell.X = 0; rail.targetCell.X < rail.grid.Width; rail.targetCell.X++)
                         {
-                            for (int i = rail.roomPos.X + 1; i < rail.roomPos.X + rail.room.Width; i++)
+                            if (rail.FindMarker(rail.targetCell.X, 0, 1))
                             {
-                                WorldGen.KillTile(i, rail.area.Y - 1);
+                                for (int i = rail.roomPos.X + 1; i < rail.roomPos.X + rail.room.Width; i++)
+                                {
+                                    WorldGen.KillTile(i, rail.area.Y - 1);
+                                }
+                                WGTools.Tile(rail.roomPos.X, rail.area.Y - 1).TileFrameX = 1; WGTools.Tile(rail.roomPos.X + rail.room.Width, rail.area.Y - 1).TileFrameX = 1;
+
+                                WGTools.Terraform(new Vector2(rail.roomPos.X + 6, rail.area.Y + 1), 6, tiles);
+                                WGTools.Terraform(new Vector2(rail.roomPos.X + 6, rail.area.Y - 9), 8);
                             }
-                            WGTools.Tile(rail.roomPos.X, rail.area.Y - 1).TileFrameX = 1; WGTools.Tile(rail.roomPos.X + rail.room.Width, rail.area.Y - 1).TileFrameX = 1;
-
-                            WGTools.Terraform(new Vector2(rail.roomPos.X + 6, rail.area.Y + 1), 6, tiles);
-                            WGTools.Terraform(new Vector2(rail.roomPos.X + 6, rail.area.Y - 9), 8);
                         }
+
+                        #endregion
+
+                        #region cleanup
+                        if (hasStation)
+                        {
+                            rail.targetCell.X = stationX;
+                            rail.targetCell.Y = 0;
+
+                            WGTools.Rectangle(rail.roomPos.X - 2, rail.room.Bottom, rail.roomPos.X - 1, rail.room.Bottom, TileID.Platforms, replace: false);
+                            WGTools.Rectangle(rail.room.Right + rail.room.Width + 1, rail.room.Bottom, rail.room.Right + rail.room.Width + 2, rail.room.Bottom, TileID.Platforms, replace: false);
+
+                            WGTools.PlaceObjectsInArea(rail.roomPos.X + 1, rail.room.Bottom - 1, rail.room.Right + rail.room.Width - 1, rail.room.Bottom - 1, biomes.FindBiome(rail.room.Right, rail.room.Bottom) == BiomeID.Glowshroom ? ModContent.TileType<Shroomcart>() : ModContent.TileType<Tiles.Objects.Minecart>());
+                            //WGTools.PlaceObjectsInArea(rail.roomPos.X + 1, rail.room.Bottom - 1, rail.room.Right + rail.room.Width - 1, rail.room.Bottom - 1, TileID.GrandfatherClocks); 
+                            WGTools.PlaceObjectsInArea(rail.roomPos.X + 1, rail.room.Bottom - 1, rail.room.Right + rail.room.Width - 1, rail.room.Bottom - 1, TileID.WorkBenches);
+                            WGTools.PlaceObjectsInArea(rail.roomPos.X + 1, rail.room.Bottom - 1, rail.room.Right + rail.room.Width - 1, rail.room.Bottom - 1, TileID.Chairs);
+                        }
+
+                        Structures.AddDecorations(rail.area);
+                        Structures.AddTheming(rail.area);
+                        Structures.AddVariation(rail.area);
+                        #endregion
+                        #endregion
+
+                        structureCount++;
                     }
-
-                    #endregion
-
-                    #region cleanup
-                    if (hasStation)
-                    {
-                        rail.targetCell.X = stationX;
-                        rail.targetCell.Y = 0;
-
-                        WGTools.Rectangle(rail.roomPos.X - 2, rail.room.Bottom, rail.roomPos.X - 1, rail.room.Bottom, TileID.Platforms, replace: false);
-                        WGTools.Rectangle(rail.room.Right + rail.room.Width + 1, rail.room.Bottom, rail.room.Right + rail.room.Width + 2, rail.room.Bottom, TileID.Platforms, replace: false);
-
-                        WGTools.PlaceObjectsInArea(rail.roomPos.X + 1, rail.room.Bottom - 1, rail.room.Right + rail.room.Width - 1, rail.room.Bottom - 1, biomes.FindBiome(rail.room.Right, rail.room.Bottom) == BiomeID.Glowshroom ? ModContent.TileType<Shroomcart>() : ModContent.TileType<Tiles.Objects.Minecart>());
-                        //WGTools.PlaceObjectsInArea(rail.roomPos.X + 1, rail.room.Bottom - 1, rail.room.Right + rail.room.Width - 1, rail.room.Bottom - 1, TileID.GrandfatherClocks); 
-                        WGTools.PlaceObjectsInArea(rail.roomPos.X + 1, rail.room.Bottom - 1, rail.room.Right + rail.room.Width - 1, rail.room.Bottom - 1, TileID.WorkBenches);
-                        WGTools.PlaceObjectsInArea(rail.roomPos.X + 1, rail.room.Bottom - 1, rail.room.Right + rail.room.Width - 1, rail.room.Bottom - 1, TileID.Chairs);
-                    }
-
-                    Structures.AddDecorations(rail.area);
-                    Structures.AddTheming(rail.area);
-                    Structures.AddVariation(rail.area);
-                    #endregion
-                    #endregion
-
-                    structureCount++;
                 }
             }
 
