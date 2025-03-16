@@ -44,11 +44,6 @@ namespace Remnants.Walls.Parallax
 			return false;
 		}
 
-		public override void KillWall(int i, int j, ref bool fail)
-		{
-			fail = true;
-		}
-
 		public override bool CanExplode(int i, int j)
 		{
 			return false;
@@ -91,11 +86,6 @@ namespace Remnants.Walls.Parallax
 
 			Main.spriteBatch.Draw(texture, new Vector2((i * 16) - (int)Main.screenPosition.X, (j * 16) - (int)Main.screenPosition.Y) + zero, frame, Lighting.GetColor(i, j), 0f, Vector2.Zero, 1f, 0, 0f);
 			return false;
-		}
-
-		public override void KillWall(int i, int j, ref bool fail)
-		{
-			fail = true;
 		}
 
 		public override bool CanExplode(int i, int j)
@@ -142,10 +132,6 @@ namespace Remnants.Walls.Parallax
 			return false;
 		}
 
-		public override void KillWall(int i, int j, ref bool fail)
-		{
-			fail = true;
-		}
 
 		public override bool CanExplode(int i, int j)
 		{
