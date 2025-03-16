@@ -39,6 +39,9 @@ namespace Remnants
         [DefaultValue(true)]
         public bool JungleValley;
 
+        [DefaultValue(true)]
+        public bool DoRails;
+
         //[Label("Ore Frequency")]
         //[Tooltip("Controls the amount of ore generated in new worlds.")]
         [Range(0f, 1f)]
@@ -78,39 +81,64 @@ namespace Remnants
         [BackgroundColor(150, 150, 125)]
         public bool SunkenSeaRework;
 
-        [DefaultValue(true)]
-        public bool RatioSafeguard;
-
-        [Range(0, 10000)]
-        [DefaultValue(150)]
-        [BackgroundColor(192, 54, 64, 192)]
-        public int RatioIncrease;
-
         [Header("Audio")]
 
         [DefaultValue(true)]
         public bool CustomMusic;
     }
     public class Server : ModConfig
-	{
-		public override ConfigScope Mode => ConfigScope.ServerSide;
+    {
+        public override ConfigScope Mode => ConfigScope.ServerSide;
 
-		[Header("Gameplay")]
+        [Header("Gameplay")]
 
-		[DefaultValue(true)]
+        [DefaultValue(true)]
         [BackgroundColor(90, 160, 140)]
         public bool FreedomOfMovement;
 
-		[DefaultValue(true)]
+        [DefaultValue(true)]
         [BackgroundColor(150, 150, 125)]
         public bool EnemyAI;
 
-		[DefaultValue(false)]
+        [DefaultValue(false)]
         [BackgroundColor(150, 100, 125)]
         public bool ProjectileAI;
 
-		[DefaultValue(true)]
+        [DefaultValue(true)]
         [BackgroundColor(150, 150, 125)]
         public bool HangingBats;
-	}
+    }
+    public class LargerSky : ModConfig
+    {
+        public static LargerSky Instance;
+        public override ConfigScope Mode => ConfigScope.ClientSide;
+
+        [DefaultValue(true)]
+        [BackgroundColor(192, 54, 64, 192)]
+        public bool SkySafeguard;
+
+        [DefaultValue(true)]
+        public bool DoPercentage;
+
+        [Range(0.15f, 1f)]
+        [DefaultValue(0.15)]
+        [Increment(0.01f)]
+        [BackgroundColor(192, 54, 64, 192)]
+        public float PercentRatioIncrease;
+
+        [Range(0, 10000)]
+        [DefaultValue(150)]
+        [BackgroundColor(192, 54, 64, 192)]
+        public int FlatSurfaceRatioIncrease;
+
+        [Range(0, 10000)]
+        [DefaultValue(150)]
+        [BackgroundColor(192, 54, 64, 192)]
+        public int FlatUndergroundRatioIncrease;
+
+        [Range(0, 10000)]
+        [DefaultValue(150)]
+        [BackgroundColor(192, 54, 64, 192)]
+        public int FlatLavaRatioIncrease;
+    }
 }
