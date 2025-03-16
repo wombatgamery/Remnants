@@ -33,6 +33,7 @@ using Remnants.Walls.Vanity;
 using Terraria.Chat;
 using Terraria.Localization;
 using System.Reflection;
+using tModPorter;
 
 namespace Remnants.Worldgen
 {
@@ -1402,10 +1403,34 @@ namespace Remnants.Worldgen
 
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
+            LargerSky SkyChange = LargerSky.Instance;
+
+            int PercentChange = (int)SkyChange.PercentRatioIncrease;
+
+            int SurfaceChange = SkyChange.FlatSurfaceRatioIncrease;
+            int UndergroundChange = SkyChange.FlatUndergroundRatioIncrease;
+            int LavaChange = SkyChange.FlatLavaRatioIncrease;
+
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            Main.worldSurface = (int)(Main.maxTilesY / 3f / 6) * 6;
-            Main.rockLayer = (int)(Main.maxTilesY / 2.25f / 6) * 6;
+            if (SkyChange.SkySafeguard)
+            {
+                Main.worldSurface = (int)(Main.maxTilesY / 3f / 6) * 6;
+                Main.rockLayer = (int)(Main.maxTilesY / 2.25f / 6) * 6;
+            }
+            else if (SkyChange.DoPercentage)
+            {
+                Main.worldSurface = Main.maxTilesY * PercentChange;
+                Main.rockLayer = Main.maxTilesY * PercentChange;
+                GenVars.lavaLine = Main.maxTilesY * PercentChange;
+            }
+            else
+            {
+                Main.worldSurface = SurfaceChange;
+                Main.rockLayer = UndergroundChange;
+                GenVars.lavaLine = LavaChange;
+            }
+
             //GenVars.lavaLine = (int)((Main.maxTilesY * 0.75f) / 6) * 6;
 
             //if (ModContent.GetInstance<Client>().LargerSky)

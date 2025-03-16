@@ -35,7 +35,10 @@ namespace Remnants.Walls.Parallax
 
         public override void KillWall(int i, int j, ref bool fail)
         {
-            fail = true;
+            if (!NPC.downedMoonlord)
+            {
+                fail = true;
+            }
         }
 
         public override bool CanExplode(int i, int j) => false;

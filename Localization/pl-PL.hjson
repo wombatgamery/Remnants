@@ -134,6 +134,7 @@ Mods: {
 			PyramidChest: {
 				MapEntry: Kufer Piramidy
 				MapEntry0: Zamknięty Kufer Piramidy
+				// Messages.KeysinUnderground: The keys are hidden in the caverns below...
 			}
 
 			PyramidPot.MapEntry: Dzbanek Piramidy
@@ -152,6 +153,13 @@ Mods: {
 			}
 
 			PrismbudHead.MapEntry: Pryzmik
+			// CloudyMusicBoxTile.MapEntry: Cloudy Music Box Tile
+			// EchoingMusicBoxTile.MapEntry: Echoing Music Box Tile
+			// ForgottenMusicBoxTile.MapEntry: Forgotten Music Box Tile
+			// GraniteMusicBoxTile.MapEntry: Granite Music Box Tile
+			// MagicalMusicBoxTile.MapEntry: Magical Music Box Tile
+			// MarbleMusicBoxTile.MapEntry: Marble Music Box Tile
+			// RootCoveredMusicBoxTile.MapEntry: Root Covered Music Box Tile
 		}
 
 		Buffs: {
@@ -652,6 +660,126 @@ Mods: {
 				DisplayName: Ikona Runicznego Błogosławieństwa
 				Tooltip: ""
 			}
+
+			LihzardPara: {
+				// DisplayName: Paralax Lihzahrd Brick Wall
+				// Tooltip: ""
+			}
+
+			Magic: {
+				// DisplayName: Paralax Magic Brick Wall
+				// Tooltip: ""
+			}
+
+			MazePara: {
+				// DisplayName: Paralax Maze Brick Wall
+				// Tooltip: ""
+			}
+
+			ParaHive: {
+				// DisplayName: Paralax Hive Wall
+				// Tooltip: ""
+			}
+
+			ParalaxDungeonB: {
+				// DisplayName: Paralax Blue Dungeon Wall
+				// Tooltip: ""
+			}
+
+			ParalaxDungeonG: {
+				// DisplayName: Paralax Green Dungeon Wall
+				// Tooltip: ""
+			}
+
+			ParalaxDungeonP: {
+				// DisplayName: Paralax Pink Dungeon Wall
+				// Tooltip: ""
+			}
+
+			PyramidPara: {
+				// DisplayName: Paralax Pyramid Brick Wall
+				// Tooltip: ""
+			}
+
+			StrongholdPara: {
+				// DisplayName: Paralax Stronghold Wall
+				// Tooltip: ""
+			}
+
+			Tomb: {
+				// DisplayName: Paralax Tomb Wall
+				// Tooltip: ""
+			}
+
+			TreePara: {
+				// DisplayName: Paralax Undergrowth Wall
+				// Tooltip: ""
+			}
+
+			VaultPara: {
+				// DisplayName: Paralax Vault Wall
+				// Tooltip: ""
+			}
+
+			WaterPara: {
+				// DisplayName: Paralax Water Brick Wall
+				// Tooltip: ""
+			}
+
+			MagicFly: {
+				// DisplayName: Magic Lab Elevator
+				// Tooltip: ""
+			}
+
+			LabFly: {
+				// DisplayName: Magic Lab Elevator
+				// Tooltip: ""
+			}
+
+			LabPara: {
+				// DisplayName: Paralax Magic Lab Wall
+				// Tooltip: ""
+			}
+
+			TemplePara: {
+				// DisplayName: Paralax Temple Brick Wall
+				// Tooltip: ""
+			}
+
+			CloudyMusicBox: {
+				// DisplayName: Cloudy Music Box
+				// Tooltip: ""
+			}
+
+			EchoingMusicBox: {
+				// DisplayName: Echoing Music Box
+				// Tooltip: ""
+			}
+
+			ForgottenMusicBox: {
+				// DisplayName: Forgotten Music Box
+				// Tooltip: ""
+			}
+
+			GraniteMusicBox: {
+				// DisplayName: Granite Music Box
+				// Tooltip: ""
+			}
+
+			MagicalMusicBox: {
+				// DisplayName: Magical Music Box
+				// Tooltip: ""
+			}
+
+			MarbleMusicBox: {
+				// DisplayName: Marble Music Box
+				// Tooltip: ""
+			}
+
+			RootCoveredMusicBox: {
+				// DisplayName: Root Covered Music Box
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -777,6 +905,49 @@ Mods: {
 						Note: Will become obsolete after the biome is officially updated
 						''' */
 				}
+
+				DoRails: {
+					// Label: "[i:2340] Spawn Rails?"
+					// Tooltip: Keep this on to spawn railways in the underground
+				}
+			}
+
+			LargerSky: {
+				// DisplayName: Sky Size Increase
+
+				SkySafeguard: {
+					// Label: "[i:156] World Ratio Safeguard"
+					// Tooltip: Keeps everything working right, do not report errors if you turn this off
+				}
+
+				DoPercentage: {
+					// Label: Use Percentage?
+					/* Tooltip:
+						'''
+						If On, will use the percentage slider
+						If Off, will use the flat values
+						''' */
+				}
+
+				PercentRatioIncrease: {
+					// Label: "[i:751] Percentage Sky Increase"
+					// Tooltip: ""
+				}
+
+				FlatSurfaceRatioIncrease: {
+					// Label: "[i:2] Surface Increase"
+					// Tooltip: How many blocks lower from the top of the map should the surface be?
+				}
+
+				FlatUndergroundRatioIncrease: {
+					// Label: "[i:3] Underground Increase"
+					// Tooltip: How many blocks lower from the top of the map should the underground be?
+				}
+
+				FlatLavaRatioIncrease: {
+					// Label: "[i:173] Lava Layer Increase"
+					// Tooltip: How many blocks lower from the top of the map should the lava layer be?
+				}
 			}
 
 			Server: {
@@ -823,6 +994,53 @@ Mods: {
 						Uwaga: Nie działa w trybie wieloosobowym
 						'''
 				}
+			}
+		}
+
+		Server: {
+			// DisplayName: Server Settings
+			// Headers.Gameplay: Gameplay
+
+			FreedomOfMovement: {
+				// Label: "[i:54] Freedom of Movement"
+				/* Tooltip:
+					'''
+					The player is naturally faster and more agile (15mph > 18mph) 
+					If using the Calamity mod, you are advised to choose this movement buff over theirs
+
+					Note: Highly recommended
+					''' */
+			}
+
+			EnemyAI: {
+				// Label: "[i:1248] Enemy AI Improvements"
+				/* Tooltip:
+					'''
+					Most airborne or aquatic enemies will have improved AI
+
+					Note: Does nothing in multiplayer
+					''' */
+			}
+
+			ProjectileAI: {
+				// Label: "[i:1321] Projectile AI Improvements"
+				/* Tooltip:
+					'''
+					Throwing weapons will have a smooth flight trajectory, making them easier to use
+					Comes with additional balance changes, like autoswing for shurikens
+
+					Note: Contains obscure bugs
+					''' */
+			}
+
+			HangingBats: {
+				// Label: "[i:1621] Hanging Bats"
+				/* Tooltip:
+					'''
+					Bats will spawn hanging from the ceiling and attack when approached
+
+					Note: Does nothing in multiplayer
+					''' */
 			}
 		}
 	}

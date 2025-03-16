@@ -34,11 +34,6 @@ namespace Remnants.Walls.Parallax
             return false;
         }
 
-        public override void KillWall(int i, int j, ref bool fail)
-        {
-            fail = true;
-        }
-
         public override bool CanExplode(int i, int j) => false;
     }
 }
