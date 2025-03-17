@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Remnants.Items.Consumable;
-using Remnants.Worldgen;
+using Remnants.World;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;

@@ -5,7 +5,7 @@ using Terraria.Localization;
 using Remnants.Tiles;
 using Remnants.Walls;
 using System.IO;
-using Remnants.Worldgen;
+using Remnants.World;
 using Microsoft.Xna.Framework;
 
 namespace Remnants.Buffs

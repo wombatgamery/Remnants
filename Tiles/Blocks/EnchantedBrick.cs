@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Remnants.Tiles.Plants;
-using Remnants.Worldgen;
+using Remnants.World;
 using System;
 using Terraria;
 using Terraria.DataStructures;

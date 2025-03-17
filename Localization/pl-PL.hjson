@@ -701,12 +701,14 @@ Mods: {
 		}
 
 		Configs: {
-			Client: {
+			Worldgen: {
 				DisplayName: Ustawienia Klienta
 
 				Headers: {
-					Worldgen: Generator Świata
-					Audio: Dźwięki
+					// General: General
+					// Terrain: Terrain
+					// Structures: Structures
+					// Structure: Structure Header
 				}
 
 				TerrainAmplitude: {
@@ -727,11 +729,6 @@ Mods: {
 				CloudDensity: {
 					Label: "[i:751] Gęstość Nieba"
 					Tooltip: Kontroluje ilość unoszących się wysp i chmur generowanych w nowych światach
-				}
-
-				CustomMusic: {
-					Label: "[i:576] Nestandardowa Muzyka"
-					Tooltip: Włącza niestandardową muzykę modyfikacji
 				}
 
 				ExperimentalWorldgen: {
@@ -778,11 +775,25 @@ Mods: {
 						Note: Will become obsolete after the biome is officially updated
 						''' */
 				}
+
+				CabinFrequency: {
+					// Label: "[i:4080] Cabin Frequency"
+					// Tooltip: Controls the number of underground cabins generated in new worlds
+				}
+
+				RailroadFrequency: {
+					// Label: "[i:2340] Railroad Frequency"
+					// Tooltip: Controls the number of railroads generated in new worlds
+				}
 			}
 
-			Server: {
+			Gameplay: {
 				DisplayName: Ustawienia Serwera
-				Headers.Gameplay: Rozgrywka
+
+				Headers: {
+					// Functional: Functional
+					// Audio: Audio
+				}
 
 				FreedomOfMovement: {
 					Label: "[i:54] Wolność Ruchu"
@@ -823,6 +834,11 @@ Mods: {
 
 						Uwaga: Nie działa w trybie wieloosobowym
 						'''
+				}
+
+				CustomMusic: {
+					Label: "[i:576] Nestandardowa Muzyka"
+					Tooltip: Włącza niestandardową muzykę modyfikacji
 				}
 			}
 		}

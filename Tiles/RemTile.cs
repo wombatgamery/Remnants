@@ -7,7 +7,7 @@ using Remnants.Tiles.Objects;
 using Remnants.Tiles.Objects.Furniture;
 using Remnants.Tiles.Plants;
 using Remnants.Walls;
-using Remnants.Worldgen.Subworlds;
+using Remnants.World.Subworlds;
 using System;
 using System.Linq;
 //using SubworldLibrary;
@@ -18,7 +18,7 @@ using Terraria.ModLoader;
 using Remnants.Tiles.Objects.Hazards;
 using Terraria.ObjectData;
 using Remnants.Walls.Parallax;
-using Remnants.Worldgen;
+using Remnants.World;
 using Remnants.Dusts.Environment;
 
 namespace Remnants.Tiles
@@ -454,7 +454,7 @@ namespace Remnants.Tiles
             //	TryToPlaceGuardian(i, j);
             //}
 
-            if (ModContent.GetInstance<Server>().HangingBats && Main.netMode == NetmodeID.SinglePlayer)
+            if (ModContent.GetInstance<Gameplay>().HangingBats && Main.netMode == NetmodeID.SinglePlayer)
             {
                 int[] badWalls = new int[2];
 

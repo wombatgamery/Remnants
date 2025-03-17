@@ -5,7 +5,7 @@ using Remnants.Items.Consumable;
 using Remnants.NPCs.Monsters;
 using Remnants.NPCs.Monsters.MagicalLab;
 using Remnants.Walls;
-using Remnants.Worldgen.Subworlds;
+using Remnants.World.Subworlds;
 //using SubworldLibrary;
 using System;
 using System.Collections.Generic;
@@ -57,7 +57,7 @@ namespace Remnants.NPCs
 
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
-            if (IsValidNPC(npc) && (ModContent.GetInstance<Server>().EnemyAI && npc.type <= NPCID.Count || AffectsModdedNPCS) && Main.netMode == NetmodeID.SinglePlayer)
+            if (IsValidNPC(npc) && (ModContent.GetInstance<Gameplay>().EnemyAI && npc.type <= NPCID.Count || AffectsModdedNPCS) && Main.netMode == NetmodeID.SinglePlayer)
             {
                 npc.TargetClosest();
 
@@ -67,7 +67,7 @@ namespace Remnants.NPCs
 
         public override bool PreAI(NPC npc)
         {
-            if (IsValidNPC(npc) && (ModContent.GetInstance<Server>().EnemyAI && npc.type <= NPCID.Count || AffectsModdedNPCS) && Main.netMode == NetmodeID.SinglePlayer)
+            if (IsValidNPC(npc) && (ModContent.GetInstance<Gameplay>().EnemyAI && npc.type <= NPCID.Count || AffectsModdedNPCS) && Main.netMode == NetmodeID.SinglePlayer)
             {
                 timer++;
 

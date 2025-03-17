@@ -21,10 +21,10 @@ using Remnants.Tiles.Objects.Furniture;
 using Remnants.Tiles.Objects.chests;
 using Remnants.Items.Materials;
 using Remnants.Tiles.Objects.Hazards;
-using Remnants.Worldgen.Subworlds;
+using Remnants.World.Subworlds;
 using Terraria.ModLoader.Config;
-using static Remnants.Worldgen.PrimaryBiomes;
-using static Remnants.Worldgen.SecondaryBiomes;
+using static Remnants.World.PrimaryBiomes;
+using static Remnants.World.SecondaryBiomes;
 using Terraria.ModLoader.IO;
 using Terraria.Audio;
 using Remnants.NPCs.Monsters;
@@ -34,7 +34,7 @@ using Terraria.Chat;
 using Terraria.Localization;
 using System.Reflection;
 
-namespace Remnants.Worldgen
+namespace Remnants.World
 {
     public class RemWorld : ModSystem
     {
@@ -446,7 +446,7 @@ namespace Remnants.Worldgen
             RemovePass(tasks, FindIndex(tasks, "Lakes"));
 
             RemovePass(tasks, FindIndex(tasks, "Shinies"));
-            if (ModContent.GetInstance<Client>().OreFrequency > 0)
+            if (ModContent.GetInstance<Worldgen>().OreFrequency > 0)
             {
                 InsertPass(tasks, new Ores("Minerals", 1), FindIndex(tasks, "Dungeon") + 1);
             }
@@ -463,7 +463,7 @@ namespace Remnants.Worldgen
             RemovePass(tasks, FindIndex(tasks, "Clay"));
             //InsertPass(tasks, FindIndex(tasks, "Planting Trees"), new Clay("Clay", 1));
 
-            if (ModContent.GetInstance<Client>().CloudDensity > 0)
+            if (ModContent.GetInstance<Worldgen>().CloudDensity > 0)
             {
                 InsertPass(tasks, new Clouds("Clouds", 1), FindIndex(tasks, "Settle Liquids Again"));
             }
@@ -528,7 +528,7 @@ namespace Remnants.Worldgen
                 InsertPass(tasks, new Undergrowth("Undergrowth", 100), genIndex + 1);
                 InsertPass(tasks, new ForgottenTomb("Forgotten Tomb", 100), genIndex + 1);
 
-                if (ModContent.GetInstance<Client>().ExperimentalWorldgen)
+                if (ModContent.GetInstance<Worldgen>().ExperimentalWorldgen)
                 {
                     InsertPass(tasks, new InfernalStronghold("Infernal Stronghold", 100), genIndex + 1);
                     InsertPass(tasks, new WaterTemple("Water Temple", 100), genIndex + 1);
@@ -564,7 +564,7 @@ namespace Remnants.Worldgen
             RemovePass(tasks, FindIndex(tasks, "Living Trees"));
             RemovePass(tasks, FindIndex(tasks, "Wood Tree Walls"));
 
-            if (!ModContent.GetInstance<Client>().ExperimentalWorldgen)
+            if (!ModContent.GetInstance<Worldgen>().ExperimentalWorldgen)
             {
                 InsertPass(tasks, new HellStructures("Hell Structures", 0), FindIndex(tasks, "Underworld") + 1);
             }
@@ -612,7 +612,7 @@ namespace Remnants.Worldgen
 
             if (ModLoader.TryGetMod("CalamityMod", out Mod cal))
             {
-                if (ModContent.GetInstance<Client>().SunkenSeaRework)
+                if (ModContent.GetInstance<Worldgen>().SunkenSeaRework)
                 {
                     RemovePass(tasks, FindIndex(tasks, "Sunken Sea"));
                 }
@@ -664,7 +664,7 @@ namespace Remnants.Worldgen
                 RemovePass(tasks, FindIndex(tasks, "Post Terrain"), true);
             }
 
-            if (ModContent.GetInstance<Client>().Safeguard)
+            if (ModContent.GetInstance<Worldgen>().Safeguard)
             {
                 InsertPass(tasks, new Safeguard("Safeguard", 1), 1);
             }
@@ -1396,7 +1396,7 @@ namespace Remnants.Worldgen
         private static float scaleX => Main.maxTilesX / 4200f;
         private static float scaleY => Main.maxTilesY / 1200f;
 
-        public static int Minimum => (int)(Main.worldSurface - 60 - 150 * scaleY * ModContent.GetInstance<Client>().TerrainAmplitude);
+        public static int Minimum => (int)(Main.worldSurface - 60 - 150 * scaleY * ModContent.GetInstance<Worldgen>().TerrainAmplitude);
         public static int Maximum => (int)(Main.worldSurface - 60);
         public static int Middle => (Minimum + Maximum) / 2;
 
@@ -1469,7 +1469,7 @@ namespace Remnants.Worldgen
                         _altitude *= 0.5f;
                         _altitude += 1f;
 
-                        if (ModContent.GetInstance<Client>().IceMountain)
+                        if (ModContent.GetInstance<Worldgen>().IceMountain)
                         {
                             _altitude -= 1f;
                             _altitude *= mountainMultiplier2;
@@ -1480,7 +1480,7 @@ namespace Remnants.Worldgen
                             _altitude -= 0.5f;
                         }
 
-                        if (ModContent.GetInstance<Client>().JungleValley)
+                        if (ModContent.GetInstance<Worldgen>().JungleValley)
                         {
                             _altitude -= 0.5f;
                             _altitude *= valleyMultiplier2;
@@ -1498,9 +1498,9 @@ namespace Remnants.Worldgen
                         //_bumps *= (y - Minimum) / (Maximum - Minimum);
 
                         float _terrain = _altitude * 0.85f + _roughness * 0.2f;
-                        _terrain -= 1 - 0.5f / ModContent.GetInstance<Client>().TerrainAmplitude;
+                        _terrain -= 1 - 0.5f / ModContent.GetInstance<Worldgen>().TerrainAmplitude;
                         _terrain *= MathHelper.Clamp(Vector2.Distance(new Vector2(x, 0), new Vector2(MathHelper.Clamp(x, Main.maxTilesX / 2 - 50 * scaleX, Main.maxTilesX / 2 + 50 * scaleX), 0)) / (100 * scaleX), 0.25f, 1);
-                        _terrain += 1 - 0.5f / ModContent.GetInstance<Client>().TerrainAmplitude;
+                        _terrain += 1 - 0.5f / ModContent.GetInstance<Worldgen>().TerrainAmplitude;
 
                         float threshold = _terrain * (Maximum - Minimum) + Minimum;
                         threshold -= (int)Main.worldSurface;
@@ -1818,9 +1818,9 @@ namespace Remnants.Worldgen
 
         private void OreVein(int structureX, int structureY, int size, float rarity, int type, int[] blocksToReplace, int steps, float weight = 0.5f, int birthLimit = 4, int deathLimit = 4)
         {
-            if (ModContent.GetInstance<Client>().OreFrequency == 0) { return; }
+            if (ModContent.GetInstance<Worldgen>().OreFrequency == 0) { return; }
 
-            rarity /= ModContent.GetInstance<Client>().OreFrequency;
+            rarity /= ModContent.GetInstance<Worldgen>().OreFrequency;
             if (WorldGen.genRand.NextBool((int)(rarity * 100)) && !Main.wallDungeon[WGTools.Tile(structureX, structureY).WallType])
             {
                 int width = size;
@@ -1925,9 +1925,9 @@ namespace Remnants.Worldgen
 
         private void AddFossil(int x, int y, float rarity)
         {
-            if (ModContent.GetInstance<Client>().OreFrequency == 0) { return; }
+            if (ModContent.GetInstance<Worldgen>().OreFrequency == 0) { return; }
 
-            rarity /= ModContent.GetInstance<Client>().OreFrequency;
+            rarity /= ModContent.GetInstance<Worldgen>().OreFrequency;
             if (WorldGen.genRand.NextBool((int)(rarity * 100)))
             {
                 int lifetime = WorldGen.genRand.Next(12, 25);

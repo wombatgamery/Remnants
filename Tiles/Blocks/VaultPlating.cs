@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Remnants.Dusts;
-using Remnants.Worldgen;
+using Remnants.World;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;

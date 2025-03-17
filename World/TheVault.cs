@@ -20,7 +20,7 @@ using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 
-namespace Remnants.Worldgen
+namespace Remnants.World
 {
     public class VaultWorld : ModSystem
     {
@@ -29,7 +29,7 @@ namespace Remnants.Worldgen
             int genIndex;
 
             genIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Dungeon"));
-            if (genIndex != -1 && ModContent.GetInstance<Client>().ExperimentalWorldgen)
+            if (genIndex != -1 && ModContent.GetInstance<Worldgen>().ExperimentalWorldgen)
             {
                 tasks.Insert(genIndex + 1, new Vault("The Vault", 0));
             }

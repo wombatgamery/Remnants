@@ -15,7 +15,7 @@ using Terraria.DataStructures;
 using Remnants.Walls.Vanity;
 using System;
 
-namespace Remnants.Worldgen.Subworlds
+namespace Remnants.World.Subworlds
 {
     public class SubworldGenPass : GenPass
     {

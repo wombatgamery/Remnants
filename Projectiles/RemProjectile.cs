@@ -12,7 +12,7 @@ namespace Remnants.Projectiles
     {
         public override void SetDefaults(Projectile projectile)
         {
-            if (ModContent.GetInstance<Server>().ProjectileAI)
+            if (ModContent.GetInstance<Gameplay>().ProjectileAI)
             {
                 if (projectile.type == ProjectileID.ThrowingKnife || projectile.type == ProjectileID.PoisonedKnife)
                 {
@@ -46,7 +46,7 @@ namespace Remnants.Projectiles
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
-            if (ModContent.GetInstance<Server>().ProjectileAI && projectile.hostile)
+            if (ModContent.GetInstance<Gameplay>().ProjectileAI && projectile.hostile)
             {
                 if (projectile.type == ProjectileID.JavelinHostile)
                 {
@@ -61,7 +61,7 @@ namespace Remnants.Projectiles
 
         public override bool PreAI(Projectile projectile)
         {
-            if (ModContent.GetInstance<Server>().ProjectileAI)
+            if (ModContent.GetInstance<Gameplay>().ProjectileAI)
             {
                 if (projectile.aiStyle == 1 && (projectile.type == ProjectileID.JavelinFriendly || projectile.type == ProjectileID.JavelinHostile || projectile.type == ProjectileID.BoneJavelin))
                 {
@@ -107,7 +107,7 @@ namespace Remnants.Projectiles
 
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if (ModContent.GetInstance<Server>().ProjectileAI && projectile.type == ProjectileID.BoneJavelin)
+            if (ModContent.GetInstance<Gameplay>().ProjectileAI && projectile.type == ProjectileID.BoneJavelin)
             {
                 projectile.aiStyle = 113;
             }

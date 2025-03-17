@@ -709,12 +709,14 @@ Mods: {
 		}
 
 		Configs: {
-			Client: {
+			Worldgen: {
 				DisplayName: Клиентская конфигурация
 
 				Headers: {
-					Worldgen: Генерация мира
-					Audio: Аудио
+					// General: General
+					// Terrain: Terrain
+					// Structures: Structures
+					// Structure: Structure Header
 				}
 
 				TerrainAmplitude: {
@@ -735,11 +737,6 @@ Mods: {
 				CloudDensity: {
 					Label: "[i:751] Плотность облаков"
 					Tooltip: Устанавливает количество генерируемых облаков в новых мирах
-				}
-
-				CustomMusic: {
-					Label: "[i:576] Саундтрек"
-					Tooltip: Включает собственный саундтрек этого мода
 				}
 
 				ExperimentalWorldgen: {
@@ -783,11 +780,25 @@ Mods: {
 						Исправляет баги с генерацией моря, делает его просторнее и лучше вписывает его в общую картину мира
 						'''
 				}
+
+				CabinFrequency: {
+					// Label: "[i:4080] Cabin Frequency"
+					// Tooltip: Controls the number of underground cabins generated in new worlds
+				}
+
+				RailroadFrequency: {
+					// Label: "[i:2340] Railroad Frequency"
+					// Tooltip: Controls the number of railroads generated in new worlds
+				}
 			}
 
-			Server: {
+			Gameplay: {
 				DisplayName: Серверная конфигурация
-				Headers.Gameplay: Геймплей
+
+				Headers: {
+					// Functional: Functional
+					// Audio: Audio
+				}
 
 				FreedomOfMovement: {
 					Label: "[i:54] Свобода передвижения"
@@ -824,6 +835,11 @@ Mods: {
 						Летучие мыши будут висеть на потолке и атаковать игрока только когда тот подойдет слишком близко
 						[c/DC143C:Не работает в мультиплеере]
 						'''
+				}
+
+				CustomMusic: {
+					Label: "[i:576] Саундтрек"
+					Tooltip: Включает собственный саундтрек этого мода
 				}
 			}
 		}

@@ -8,7 +8,7 @@ using Remnants.Items.Tools;
 using Remnants.Buffs;
 using Terraria.Audio;
 using System;
-using Remnants.Worldgen;
+using Remnants.World;
 using Remnants.Walls;
 using Terraria.DataStructures;
 using Remnants.Dusts;
@@ -88,7 +88,7 @@ namespace Remnants
                 Lighting.AddLight(Player.Center, (117f / 255f), (77f / 255f), (31f / 255f));
             }
 
-            if (ModContent.GetInstance<Server>().FreedomOfMovement && !Player.mount.Active)
+            if (ModContent.GetInstance<Gameplay>().FreedomOfMovement && !Player.mount.Active)
             {
                 //Player.runAcceleration *= 1.4f;
                 //Player.maxRunSpeed *= 1.2f;

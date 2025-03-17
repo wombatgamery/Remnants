@@ -10,9 +10,9 @@ using Terraria.ID;
 using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
-using static Remnants.Worldgen.PrimaryBiomes;
+using static Remnants.World.PrimaryBiomes;
 
-namespace Remnants.Worldgen
+namespace Remnants.World
 {
     public class JungleTemple : GenPass
     {

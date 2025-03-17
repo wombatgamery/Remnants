@@ -18,7 +18,7 @@ using Remnants.Tiles.Plants;
 using Remnants.Tiles.Objects;
 using Remnants.Walls;
 using Remnants.Walls.Parallax;
-using Remnants.Worldgen;
+using Remnants.World;
 
 namespace Remnants.NPCs.Monsters
 {

@@ -25,11 +25,13 @@ using Terraria.ID;
 using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
-using static Remnants.Worldgen.PrimaryBiomes;
-using static Remnants.Worldgen.SecondaryBiomes;
+using static Remnants.World.PrimaryBiomes;
+using static Remnants.World.SecondaryBiomes;
 using Remnants.Items.Documents;
+using MonoMod.Core.Platforms;
+using System.Reflection;
 
-namespace Remnants.Worldgen
+namespace Remnants.World
 {
     public class Structures : ModSystem
     {
@@ -308,7 +310,7 @@ namespace Remnants.Worldgen
                 if (grade < 3)
                 {
                     if (y > Main.worldSurface * 0.5 && Main.rand.NextBool(2) && !magicalLab)
-                        itemsToAdd.Add((tomb ? ItemID.WebRope : Main.wallDungeon[WGTools.Tile(x, y).WallType] || y >= Main.maxTilesY - 200 ? ItemID.Chain : biomes.FindBiome(x, y) == BiomeID.None && y < Main.worldSurface ? ItemID.VineRope : ItemID.Rope, Main.rand.Next(50, 100)));
+                        itemsToAdd.Add((tomb ? ItemID.WebRope : Main.wallDungeon[WGTools.Tile(x, y).WallType] || y >= Main.maxTilesY - 200 ? ItemID.Chain : ItemID.Rope, Main.rand.Next(50, 100)));
 
                     if (Main.rand.NextBool(2))
                     {
@@ -459,7 +461,7 @@ namespace Remnants.Worldgen
         {
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            int count = (int)((location.Width * location.Height * multiplier / 2000) * ModContent.GetInstance<Client>().TrapFrequency);
+            int count = (int)((location.Width * location.Height * multiplier / 2000) * ModContent.GetInstance<Worldgen>().TrapFrequency);
             while (count > 0)
             {
                 int x = WorldGen.genRand.Next(location.Left, location.Right);
@@ -2256,7 +2258,7 @@ namespace Remnants.Worldgen
             progress.Message = "Building microdungeons";
             int structureCount;
 
-            int uniqueStructures = 6;
+            int uniqueStructures = 7;
             int progressCounter = 0;
 
             structureCount = 0; // MARBLE BATHHOUSE
@@ -2562,9 +2564,9 @@ namespace Remnants.Worldgen
             progressCounter++;
 
             structureCount = 0; // MINECART RAIL
-            while (structureCount < Main.maxTilesY / 150)
+            while (structureCount < Main.maxTilesY / 150 * ModContent.GetInstance<Worldgen>().RailroadFrequency)
             {
-                progress.Set((progressCounter + (structureCount / (float)(Main.maxTilesY / 120))) / (float)uniqueStructures);
+                progress.Set((progressCounter + (structureCount / (float)(Main.maxTilesY / 150))) / (float)uniqueStructures);
 
                 #region spawnconditions
                 Structures.Dungeon rail = new Structures.Dungeon(0, WorldGen.genRand.Next((int)Main.rockLayer, GenVars.lavaLine - 50), WorldGen.genRand.Next(15, 30) * (Main.maxTilesX / 4200), 2, 12, 6, 2);
@@ -2953,9 +2955,9 @@ namespace Remnants.Worldgen
             progressCounter++;
 
             structureCount = 0; // OVERGROWN CABIN
-            while (structureCount < (Main.maxTilesX * Main.maxTilesY / 1200f) / (ModContent.GetInstance<Client>().ExperimentalWorldgen ? 840 : 420))
+            while (structureCount < (Main.maxTilesX * Main.maxTilesY / 1200f) / (ModContent.GetInstance<Worldgen>().ExperimentalWorldgen ? 840 : 420) * ModContent.GetInstance<Worldgen>().CabinFrequency)
             {
-                progress.Set((progressCounter + (structureCount / (float)(Main.maxTilesX * Main.maxTilesY / 1200f) / (ModContent.GetInstance<Client>().ExperimentalWorldgen ? 840 : 420))) / (float)uniqueStructures);
+                progress.Set((progressCounter + (structureCount / (float)(Main.maxTilesX * Main.maxTilesY / 1200f) / (ModContent.GetInstance<Worldgen>().ExperimentalWorldgen ? 840 : 420))) / (float)uniqueStructures);
 
                 #region spawnconditions
                 Structures.Dungeon cabin = new Structures.Dungeon(WorldGen.genRand.Next(400, Main.maxTilesX - 400), 0, WorldGen.genRand.Next(2, 4), WorldGen.genRand.Next(1, 3), 12, 9, 3);
@@ -3293,7 +3295,7 @@ namespace Remnants.Worldgen
             progressCounter++;
 
             structureCount = 0; // BURIED CABIN
-            while (structureCount < (Main.maxTilesX * Main.maxTilesY / 1200f) / 300)
+            while (structureCount < (Main.maxTilesX * Main.maxTilesY / 1200f) / 300 * ModContent.GetInstance<Worldgen>().CabinFrequency)
             {
                 progress.Set((progressCounter + (structureCount / (float)((Main.maxTilesX * Main.maxTilesY / 1200f) / 300))) / (float)uniqueStructures);
 
@@ -3675,6 +3677,108 @@ namespace Remnants.Worldgen
 
             progressCounter++;
 
+            structureCount = 0; // CACHE
+            while (structureCount < (Main.maxTilesX) / 84)
+            {
+                progress.Set((progressCounter + (structureCount / (float)(Main.maxTilesY / 84))) / (float)uniqueStructures);
+
+                #region spawnconditions
+                Structures.Dungeon cache = new Structures.Dungeon(0, 0, WorldGen.genRand.Next(1, 4), 1, 7, 6, 1);
+                cache.X = WorldGen.genRand.Next(400, Main.maxTilesX - 400 - cache.area.Width);
+                cache.Y = WorldGen.genRand.Next((int)(Main.worldSurface * 0.5f), (int)Main.worldSurface - cache.area.Height);
+
+                bool[] invalidTiles = TileID.Sets.Factory.CreateBoolSet(true, TileID.Ash, TileID.Ebonstone, TileID.Crimstone, TileID.LihzahrdBrick, TileID.LivingWood);
+
+                bool openLeft = true;
+                bool openRight = true;
+
+                bool valid = true;
+                if (!GenVars.structures.CanPlace(cache.area, invalidTiles, 25))
+                {
+                    valid = false;
+                }
+                else if (!Structures.AvoidsBiomes(cache.area, new int[] { BiomeID.Desert }))
+                {
+                    valid = false;
+                }
+                else
+                {
+                    for (int j = cache.area.Top; j < cache.area.Bottom; j++)
+                    {
+                        for (int i = cache.area.Left + 1; i <= cache.area.Right - 1; i++)
+                        {
+                            if (!Main.tile[i, j].HasTile)
+                            {
+                                valid = false;
+                            }
+                        }
+                    }
+
+                    if (valid)
+                    {
+                        for (int j = cache.area.Top + 2; j < cache.area.Bottom - 1; j++)
+                        {
+                            if (Main.tile[cache.area.Left - 1, j].HasTile || Main.tile[cache.area.Left - 1, j].WallType == 0)
+                            {
+                                openLeft = false;
+                            }
+                            if (Main.tile[cache.area.Right + 1, j].HasTile || Main.tile[cache.area.Right + 1, j].WallType == 0)
+                            {
+                                openRight = false;
+                            }
+                        }
+
+                        if (!openLeft && !openRight)
+                        {
+                            valid = false;
+                        }
+                    }
+                }
+                #endregion
+
+                if (valid)
+                {
+                    GenVars.structures.AddProtectedStructure(cache.area, 10);
+
+                    #region structure
+                    #region rooms
+                    cache.targetCell.Y = 0;
+                    int chestRoom = WorldGen.genRand.Next(cache.grid.Width);
+
+                    WGTools.Rectangle(cache.area.Left, cache.area.Top, cache.area.Right, cache.area.Bottom - 1, TileID.WoodBlock, liquid: 0);
+                    WGTools.Rectangle(cache.area.Left, cache.area.Top + 1, cache.area.Right, cache.area.Bottom - 2, TileID.Dirt, ModContent.WallType<Wood>());
+                    WGTools.Rectangle(cache.area.Left, cache.area.Top + 1, cache.area.Right, cache.area.Bottom - 2, -1);
+
+                    for (cache.targetCell.X = 0; cache.targetCell.X < cache.grid.Width; cache.targetCell.X++)
+                    {
+                        WGTools.Rectangle(cache.room.Left + 2, cache.room.Top + 1, cache.room.Right - 2, cache.room.Bottom - 2, wall: ModContent.WallType<BrickStone>());
+
+                        WGTools.Rectangle(cache.room.Left, cache.room.Top + 1, cache.room.Left, cache.room.Bottom - 2, !openLeft && cache.targetCell.X == 0 ? TileID.WoodBlock : TileID.WoodenBeam);
+                        WGTools.Rectangle(cache.room.Right, cache.room.Top + 1, cache.room.Right, cache.room.Bottom - 2, !openRight && cache.targetCell.X == cache.grid.Width - 1 ? TileID.WoodBlock : TileID.WoodenBeam);
+                        if (cache.targetCell.X == chestRoom)
+                        {
+                            int chestIndex = WorldGen.PlaceChest(cache.room.X + 3, cache.room.Bottom - 2);
+                            var itemsToAdd = new List<(int type, int stack)>();
+
+                            Structures.GenericLoot(chestIndex, itemsToAdd, 1);
+                            Structures.FillChest(chestIndex, itemsToAdd);
+                        }
+                    }
+                    #endregion
+
+                    #region cleanup
+                    WGTools.PlaceObjectsInArea(cache.area.Left + 1, cache.room.Bottom - 2, cache.area.Right - 2, cache.room.Bottom - 2, TileID.WorkBenches);
+                    WGTools.PlaceObjectsInArea(cache.area.Left + 1, cache.room.Bottom - 2, cache.area.Right - 1, cache.room.Bottom - 2, TileID.Chairs);
+                    Structures.AddDecorations(cache.area);
+                    Structures.AddTheming(cache.area);
+                    Structures.AddVariation(cache.area);
+                    #endregion
+                    #endregion
+
+                    structureCount++;
+                }
+            }
+            progressCounter++;
             structureCount = 0; // MINING PLATFORM
             while (structureCount < (Main.maxTilesX * Main.maxTilesY / 1200f) / 175)
             {
@@ -3686,7 +3790,6 @@ namespace Remnants.Worldgen
                 int y = WorldGen.genRand.Next((int)Main.rockLayer, Main.maxTilesY - 200);
                 int height = Math.Max(WorldGen.genRand.Next(2, 7), WorldGen.genRand.Next(2, 7));
                 Rectangle area = new Rectangle(x - 3, y - height * 6 - 8, 7, height * 6 + 8);
-
                 bool[] validTiles = TileID.Sets.Factory.CreateBoolSet(true, TileID.Sand, TileID.HardenedSand, TileID.Sandstone, TileID.Ebonstone, TileID.Crimstone, TileID.Ash, TileID.LihzahrdBrick);
 
                 bool valid = true;
@@ -4013,7 +4116,7 @@ namespace Remnants.Worldgen
                     }
 
                     int islands = 0;
-                    while (islands < ModContent.GetInstance<Client>().CloudDensity * 4)
+                    while (islands < ModContent.GetInstance<Worldgen>().CloudDensity * 4)
                     {
                         int size = WorldGen.genRand.Next(width / 12, width / 6);
 
@@ -4126,9 +4229,9 @@ namespace Remnants.Worldgen
 
             int count = 0;
 
-            while (count < ((Main.maxTilesX * Main.maxTilesY / 1200f) / 21) * ModContent.GetInstance<Client>().TrapFrequency)
+            while (count < ((Main.maxTilesX * Main.maxTilesY / 1200f) / 21) * ModContent.GetInstance<Worldgen>().TrapFrequency)
             {
-                progress.Set(count / (float)(((Main.maxTilesX * Main.maxTilesY / 1200f) / 21) * ModContent.GetInstance<Client>().TrapFrequency));
+                progress.Set(count / (float)(((Main.maxTilesX * Main.maxTilesY / 1200f) / 21) * ModContent.GetInstance<Worldgen>().TrapFrequency));
 
                 int x = WorldGen.genRand.Next((int)(Main.maxTilesX * 0.1f), (int)(Main.maxTilesX * 0.9f));
                 int y = WorldGen.genRand.Next((int)(Main.worldSurface), Main.maxTilesY - 300);

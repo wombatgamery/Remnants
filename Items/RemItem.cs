@@ -7,7 +7,7 @@ using Remnants.Projectiles.vanilla;
 using Remnants.Tiles.Objects;
 using Remnants.Walls;
 using Remnants.Walls.Parallax;
-using Remnants.Worldgen;
+using Remnants.World;
 //using SubworldLibrary;
 using System.Collections.Generic;
 using System.Media;
@@ -28,7 +28,7 @@ namespace Remnants.Items
             //	item.createTile = ModContent.TileType<placedminecart>();
             //	item.useStyle = 1;
             //}
-            if (ModContent.GetInstance<Server>().ProjectileAI)
+            if (ModContent.GetInstance<Gameplay>().ProjectileAI)
             {
                 if (item.type == ItemID.Shuriken)
                 {

@@ -12,7 +12,7 @@ using Remnants.Tiles.Objects.Hazards;
 using Remnants.Tiles.Plants;
 using Remnants.Walls;
 using Remnants.Walls.Parallax;
-using static Remnants.Worldgen.SecondaryBiomes;
+using static Remnants.World.SecondaryBiomes;
 using StructureHelper;
 using System;
 using System.Collections.Generic;
@@ -25,7 +25,7 @@ using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 using Remnants.Items.Materials;
 
-namespace Remnants.Worldgen
+namespace Remnants.World
 {
     public class TheDungeon : GenPass
     {

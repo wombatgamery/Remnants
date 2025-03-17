@@ -5,7 +5,7 @@ using Remnants.Items.Consumable;
 using Remnants.NPCs.Monsters;
 using Remnants.NPCs.Monsters.MagicalLab;
 using Remnants.Walls;
-using Remnants.Worldgen.Subworlds;
+using Remnants.World.Subworlds;
 //using SubworldLibrary;
 using System;
 using System.Collections.Generic;
@@ -21,7 +21,7 @@ using Terraria.ModLoader;
 using Remnants.Tiles.Blocks;
 using Remnants.NPCs.Monsters.TheVault;
 using Remnants.Walls.Parallax;
-using Remnants.Worldgen;
+using Remnants.World;
 
 namespace Remnants.NPCs
 {
@@ -109,7 +109,7 @@ namespace Remnants.NPCs
 
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
-            if (ModContent.GetInstance<Server>().HangingBats && Main.netMode == NetmodeID.SinglePlayer)
+            if (ModContent.GetInstance<Gameplay>().HangingBats && Main.netMode == NetmodeID.SinglePlayer)
             {
                 if (npc.type == NPCID.CaveBat || npc.type == NPCID.JungleBat || npc.type == NPCID.Hellbat || npc.type == NPCID.GiantBat || npc.type == NPCID.IlluminantBat || npc.type == NPCID.IceBat || npc.type == NPCID.Lavabat || npc.type == NPCID.GiantFlyingFox || npc.type == NPCID.SporeBat)
                 {
@@ -257,6 +257,15 @@ namespace Remnants.NPCs
                     if (!NPC.savedStylist && !NPC.AnyNPCs(NPCID.WebbedStylist))
                     {
                         pool[NPCID.WebbedStylist] = 1f;
+                    }
+                }
+                else if (tile.WallType == ModContent.WallType<undergrowth>() || tile.WallType == WallID.LivingWoodUnsafe)
+                {
+                    pool.Clear();
+
+                    if (spawnInfo.Player.InModBiome<Biomes.Undergrowth>())
+                    {
+                        pool[NPCID.Gnome] = 1f;
                     }
                 }
                 else if ((tile.TileType == TileID.Granite || tile.TileType == TileID.GraniteBlock) && spawnInfo.SpawnTileY > Main.worldSurface)

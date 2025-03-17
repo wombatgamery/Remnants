@@ -14,9 +14,9 @@ using Terraria.ID;
 using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
-using static Remnants.Worldgen.PrimaryBiomes;
+using static Remnants.World.PrimaryBiomes;
 
-namespace Remnants.Worldgen
+namespace Remnants.World
 {
     public class BiomeMap : ModSystem
     {
@@ -30,7 +30,7 @@ namespace Remnants.Worldgen
 
         private float[,] blendingX;
         private float[,] blendingY;
-        private int blendDistance => ModContent.GetInstance<Client>().ExperimentalWorldgen ? 0 : 35;
+        private int blendDistance => ModContent.GetInstance<Worldgen>().ExperimentalWorldgen ? 0 : 35;
 
         public FastNoiseLite materialsNoise = new FastNoiseLite();
 
@@ -1880,7 +1880,7 @@ namespace Remnants.Worldgen
                     {
                         if (i >= Desert.Center - Desert.Size && i <= Desert.Center + Desert.Size && j < Desert.Bottom)
                         {
-                            if (ModContent.GetInstance<Client>().SunkenSeaRework && calamity && j >= (biomes.lavaLayer - biomes.caveLayer) / 2 + biomes.caveLayer)
+                            if (ModContent.GetInstance<Worldgen>().SunkenSeaRework && calamity && j >= (biomes.lavaLayer - biomes.caveLayer) / 2 + biomes.caveLayer)
                             {
                                 biomes.AddBiome(x, y, BiomeID.SunkenSea);
                             }
@@ -1890,7 +1890,7 @@ namespace Remnants.Worldgen
                         {
                             if (y < biomes.height - 4)
                             {
-                                if (ModContent.GetInstance<Client>().ExperimentalWorldgen && j > biomes.lavaLayer)
+                                if (ModContent.GetInstance<Worldgen>().ExperimentalWorldgen && j > biomes.lavaLayer)
                                 {
                                     biomes.AddBiome(x, y, BiomeID.Toxic);
                                 }
@@ -2171,7 +2171,7 @@ namespace Remnants.Worldgen
                 }
             }
 
-            if (ModContent.GetInstance<Client>().SunkenSeaRework && calamity)
+            if (ModContent.GetInstance<Worldgen>().SunkenSeaRework && calamity)
             {
                 area = GenVars.UndergroundDesertLocation.Width * (int)((GenVars.lavaLine - Main.rockLayer) / 2);
 
@@ -3186,7 +3186,7 @@ namespace Remnants.Worldgen
 
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            int countInitial = (int)(Main.maxTilesX / 350f * ModContent.GetInstance<Client>().CloudDensity);// (int)(((Main.maxTilesX / 4200f * Main.worldSurface * 0.5f) / 20f) * ModContent.GetInstance<Client>().CloudDensity);
+            int countInitial = (int)(Main.maxTilesX / 350f * ModContent.GetInstance<Worldgen>().CloudDensity);// (int)(((Main.maxTilesX / 4200f * Main.worldSurface * 0.5f) / 20f) * ModContent.GetInstance<Client>().CloudDensity);
             int count = countInitial;
             while (count > 0)
             {

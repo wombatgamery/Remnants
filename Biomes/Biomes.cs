@@ -3,8 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Remnants.Backgrounds;
 using Remnants.Walls;
 using Remnants.Walls.Parallax;
-using Remnants.Worldgen;
-using Remnants.Worldgen.Subworlds;
+using Remnants.World;
+using Remnants.World.Subworlds;
 //using SubworldLibrary;
 using System;
 using Terraria;
@@ -81,7 +81,7 @@ namespace Remnants.Biomes
 		int music = -1;
 		public override void OnEnter(Player player)
 		{
-			music = ModContent.GetInstance<Client>().CustomMusic ? MusicLoader.GetMusicSlot(Mod, "Sounds/Music/music_dark_fog") : -1;
+			music = ModContent.GetInstance<Gameplay>().CustomMusic ? MusicLoader.GetMusicSlot(Mod, "Sounds/Music/music_dark_fog") : -1;
 		}
 
         public override void OnInBiome(Player player)
@@ -114,7 +114,7 @@ namespace Remnants.Biomes
 		int music = -1;
 		public override void OnEnter(Player player)
 		{
-			music = ModContent.GetInstance<Client>().CustomMusic ? MusicLoader.GetMusicSlot(Mod, "Sounds/Music/music_dark_somethingominous") : -1;
+			music = ModContent.GetInstance<Gameplay>().CustomMusic ? MusicLoader.GetMusicSlot(Mod, "Sounds/Music/music_dark_somethingominous") : -1;
 		}
 
 		public override void OnInBiome(Player player)
@@ -232,7 +232,7 @@ namespace Remnants.Biomes
 		int music = -1;
 		public override void OnEnter(Player player)
 		{
-			music = ModContent.GetInstance<Client>().CustomMusic ? MusicLoader.GetMusicSlot(Mod, "Sounds/Music/archaic_vault") : MusicID.Shimmer;
+			music = ModContent.GetInstance<Gameplay>().CustomMusic ? MusicLoader.GetMusicSlot(Mod, "Sounds/Music/archaic_vault") : MusicID.Shimmer;
 		}
 
         public override bool IsBiomeActive(Player player)
@@ -280,7 +280,7 @@ namespace Remnants.Biomes
 		int music = -1;
 		public override void OnEnter(Player player)
 		{
-			music = ModContent.GetInstance<Client>().CustomMusic ? MusicLoader.GetMusicSlot(Mod, "Sounds/Music/fog") : MusicID.Eerie;
+			music = ModContent.GetInstance<Gameplay>().CustomMusic ? MusicLoader.GetMusicSlot(Mod, "Sounds/Music/fog") : MusicID.Eerie;
 		}
         public override bool IsBiomeActive(Player player)
 		{
@@ -303,7 +303,7 @@ namespace Remnants.Biomes
 		int music = -1;
 		public override void OnEnter(Player player)
 		{
-			music = ModContent.GetInstance<Client>().CustomMusic ? MusicLoader.GetMusicSlot(Mod, "Sounds/Music/growth") : MusicID.JungleNight;
+			music = ModContent.GetInstance<Gameplay>().CustomMusic ? MusicLoader.GetMusicSlot(Mod, "Sounds/Music/growth") : MusicID.JungleNight;
 		}
 		public override bool IsBiomeActive(Player player)
 		{
@@ -328,7 +328,7 @@ namespace Remnants.Biomes
 		int music = -1;
 		public override void OnEnter(Player player)
 		{
-			music = ModContent.GetInstance<Client>().CustomMusic ? MusicLoader.GetMusicSlot(Mod, "Sounds/Music/depthsOfDespair") : MusicID.JungleNight;
+			music = ModContent.GetInstance<Gameplay>().CustomMusic ? MusicLoader.GetMusicSlot(Mod, "Sounds/Music/depthsOfDespair") : MusicID.JungleNight;
 		}
 		public override bool IsBiomeActive(Player player)
 		{
@@ -351,7 +351,7 @@ namespace Remnants.Biomes
 		int music = -1;
         public override void OnEnter(Player player)
 		{
-			music = ModContent.GetInstance<Client>().CustomMusic ? MusicLoader.GetMusicSlot(Mod, "Sounds/Music/darkambient2b") : MusicID.Eerie;
+			music = ModContent.GetInstance<Gameplay>().CustomMusic ? MusicLoader.GetMusicSlot(Mod, "Sounds/Music/darkambient2b") : MusicID.Eerie;
 		}
 
         public override bool IsBiomeActive(Player player)

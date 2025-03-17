@@ -697,12 +697,13 @@ Mods: {
 		}
 
 		Configs: {
-			Client: {
-				DisplayName: Client Settings
+			Worldgen: {
+				DisplayName: " World Generation"
 
 				Headers: {
-					Worldgen: World Generation
-					Audio: Audio
+					General: General
+					Terrain: Terrain
+					Structure: Structure
 				}
 
 				TerrainAmplitude: {
@@ -723,11 +724,6 @@ Mods: {
 				CloudDensity: {
 					Label: "[i:751] Sky Density"
 					Tooltip: Controls the amount of floating isles and clouds generated in new worlds
-				}
-
-				CustomMusic: {
-					Label: "[i:576] Custom Music"
-					Tooltip: Enables the mod's custom music
 				}
 
 				ExperimentalWorldgen: {
@@ -774,11 +770,25 @@ Mods: {
 						Note: Will become obsolete after the biome is officially updated
 						'''
 				}
+
+				CabinFrequency: {
+					Label: "[i:4080] Cabin Frequency"
+					Tooltip: Controls the number of underground cabins generated in new worlds
+				}
+
+				RailroadFrequency: {
+					Label: "[i:2340] Railroad Frequency"
+					Tooltip: Controls the number of railroads generated in new worlds
+				}
 			}
 
-			Server: {
-				DisplayName: Server Settings
-				Headers.Gameplay: Gameplay
+			Gameplay: {
+				DisplayName: Gameplay
+
+				Headers: {
+					Functional: Functional
+					Audio: Audio
+				}
 
 				FreedomOfMovement: {
 					Label: "[i:54] Freedom of Movement"
@@ -820,6 +830,11 @@ Mods: {
 
 						Note: Does nothing in multiplayer
 						'''
+				}
+
+				CustomMusic: {
+					Label: "[i:576] Custom Music"
+					Tooltip: Enables the mod's custom music
 				}
 			}
 		}

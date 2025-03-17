@@ -7,7 +7,7 @@ using Terraria.Localization;
 using Remnants.Tiles;
 using Terraria.Graphics.Shaders;
 using Terraria.Graphics.Effects;
-using Remnants.Worldgen;
+using Remnants.World;
 //using SubworldLibrary;
 
 namespace Remnants

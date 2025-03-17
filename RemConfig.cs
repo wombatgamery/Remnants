@@ -7,22 +7,40 @@ using Terraria.Localization;
 using Remnants.Tiles;
 using Terraria.Graphics.Shaders;
 using Terraria.Graphics.Effects;
-using Remnants.Worldgen;
+using Remnants.World;
 //using SubworldLibrary;
 using Terraria.ModLoader.Config;
 using System.ComponentModel;
 
 namespace Remnants
 {
-	public class Client : ModConfig
+	public class Worldgen : ModConfig
 	{
-		public override ConfigScope Mode => ConfigScope.ClientSide;
+		public override ConfigScope Mode => ConfigScope.ServerSide;
 
-		[Header("Worldgen")]
+        [Header("General")]
 
         [DefaultValue(true)]
         [BackgroundColor(90, 160, 140)]
         public bool Safeguard;
+
+        [DefaultValue(false)]
+        [BackgroundColor(150, 100, 125)]
+        public bool ExperimentalWorldgen;
+
+        [Header("Terrain")]
+
+        [Range(0f, 1f)]
+        [Increment(.25f)]
+        [DrawTicks]
+        [DefaultValue(1f)]
+        public float OreFrequency;
+
+        [Range(0f, 1.5f)]
+        [Increment(.25f)]
+        [DrawTicks]
+        [DefaultValue(1f)]
+        public float CloudDensity;
 
         [Range(0.5f, 1.5f)]
         [Increment(.25f)]
@@ -37,13 +55,11 @@ namespace Remnants
         [DefaultValue(true)]
         public bool JungleValley;
 
-        //[Label("Ore Frequency")]
-        //[Tooltip("Controls the amount of ore generated in new worlds.")]
-        [Range(0f, 1f)]
-		[Increment(.25f)]
-		[DrawTicks]
-		[DefaultValue(1f)]
-		public float OreFrequency;
+        [DefaultValue(true)]
+        [BackgroundColor(150, 150, 125)]
+        public bool SunkenSeaRework;
+
+        [Header("Structure")]
 
 		[Range(0f, 2f)]
 		[Increment(.25f)]
@@ -51,13 +67,17 @@ namespace Remnants
 		[DefaultValue(1f)]
 		public float TrapFrequency;
 
-        //[Label("Cloud Density")]
-        //[Tooltip("Controls the amount of clouds generated in new worlds.")]
-        [Range(0f, 1.5f)]
-		[Increment(.25f)]
-		[DrawTicks]
-		[DefaultValue(1f)]
-		public float CloudDensity;
+        [Range(0f, 1f)]
+        [Increment(.25f)]
+        [DrawTicks]
+        [DefaultValue(1f)]
+        public float CabinFrequency;
+
+        [Range(0f, 1f)]
+        [Increment(.25f)]
+        [DrawTicks]
+        [DefaultValue(1f)]
+        public float RailroadFrequency;
 
         //[DefaultValue(true)]
         //[BackgroundColor(90, 160, 140)]
@@ -67,28 +87,14 @@ namespace Remnants
         //[DefaultValue(false)]
         //[BackgroundColor(150, 150, 125)]
         //public bool LargerSky;
-
-        [DefaultValue(false)]
-        [BackgroundColor(150, 100, 125)]
-        public bool ExperimentalWorldgen;
-
-        [DefaultValue(true)]
-        [BackgroundColor(150, 150, 125)]
-        public bool SunkenSeaRework;
-
-        [Header("Audio")]
-
-		[DefaultValue(true)]
-		public bool CustomMusic;
-
-	}
-	public class Server : ModConfig
+    }
+	public class Gameplay : ModConfig
 	{
 		public override ConfigScope Mode => ConfigScope.ServerSide;
 
-		[Header("Gameplay")]
+        [Header("Functional")]
 
-		[DefaultValue(true)]
+        [DefaultValue(true)]
         [BackgroundColor(90, 160, 140)]
         public bool FreedomOfMovement;
 
@@ -103,5 +109,10 @@ namespace Remnants
 		[DefaultValue(true)]
         [BackgroundColor(150, 150, 125)]
         public bool HangingBats;
-	}
+
+        [Header("Audio")]
+
+        [DefaultValue(true)]
+        public bool CustomMusic;
+    }
 }
