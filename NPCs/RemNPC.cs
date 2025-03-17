@@ -181,14 +181,11 @@ namespace Remnants.NPCs
                 {
                     pool.Clear();
                 }
-                else if (tile.WallType == WallID.LihzahrdBrickUnsafe || tile.WallType == ModContent.WallType<temple>())
+                else if (tile.TileType != TileID.LihzahrdBrick && (tile.WallType == WallID.LihzahrdBrickUnsafe || tile.WallType == ModContent.WallType<temple>()))
                 {
                     pool.Clear();
-                    if (spawnInfo.Player.ZoneLihzhardTemple)
-                    {
-                        pool[NPCID.Lihzahrd] = 2f;
-                        pool[NPCID.FlyingSnake] = 1f;
-                    }
+                    pool[NPCID.Lihzahrd] = 2f;
+                    pool[NPCID.FlyingSnake] = 1f;
                 }
                 else if (tile.WallType == ModContent.WallType<vault>() || tile.WallType == ModContent.WallType<VaultWallUnsafe>())
                 {
@@ -262,7 +259,7 @@ namespace Remnants.NPCs
                         pool[NPCID.WebbedStylist] = 1f;
                     }
                 }
-                else if ((tile.TileType == TileID.Granite || tile.TileType == TileID.GraniteBlock))
+                else if ((tile.TileType == TileID.Granite || tile.TileType == TileID.GraniteBlock) && spawnInfo.SpawnTileY > Main.worldSurface)
                 {
                     pool.Clear();
 
@@ -299,8 +296,8 @@ namespace Remnants.NPCs
                         pool[NPCID.PinkJellyfish] = 1.5f;
                         pool[NPCID.Shark] = 0.5f;
 
-                        pool[NPCID.Goldfish] = 1f;
-                        pool[NPCID.Seahorse] = 1f;
+                        pool[NPCID.Goldfish] = 0.5f;
+                        pool[NPCID.Seahorse] = 0.5f;
                     }
                 }
             }
@@ -328,7 +325,7 @@ namespace Remnants.NPCs
             //	}
             //}
 
-            if (!NPC.AnyNPCs(NPCID.BoundMechanic) && !NPC.savedMech && Main.wallDungeon[tile.WallType] && spawnInfo.SpawnTileY > Main.worldSurface && tile.TileType != TileID.Spikes)
+            if (!NPC.savedMech && NPC.downedBoss3 && !NPC.AnyNPCs(NPCID.BoundMechanic) && Main.wallDungeon[tile.WallType] && spawnInfo.SpawnTileY > Main.worldSurface + 15 && tile.TileType != TileID.Spikes)
             {
                 pool[NPCID.BoundMechanic] = 1f;
             }

@@ -134,10 +134,7 @@ Mods: {
 			PyramidChest: {
 				MapEntry: Pyramid Chest
 				MapEntry0: Locked Pyramid Chest
-
-				Messages: {
-					KeysinUnderground: The keys are hidden in the caverns below...
-				}
+				Messages.KeysinUnderground: The keys are hidden in the caverns below...
 			}
 
 			PyramidPot.MapEntry: Pyramid Pot

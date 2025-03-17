@@ -4062,11 +4062,15 @@ namespace Remnants.Worldgen
                 for (int i = x - size / 2 - thickness; i <= x + size / 2 + thickness; i++)
                 {
                     point.X = Math.Clamp(i, x - size / 2 + (point.Y - y), x + size / 2 - (point.Y - y));
+                    Tile tile = Main.tile[i, j];
+
+                    if (!tile.HasTile)
+                    {
+                        tile.TileType = TileID.Dirt;
+                    }
 
                     if (noise.GetNoise(i * 2, j) / 2 + 0.5f > Vector2.Distance(new Vector2(i, j), point) / thickness)
-                    {
-                        Tile tile = Main.tile[i, j];
-
+                    {          
                         tile.HasTile = true;
 
                         if (biomes.MaterialBlend(i, j, frequency: 2) <= -0.2f)
@@ -4081,7 +4085,6 @@ namespace Remnants.Worldgen
                         {
                             tile.TileType = TileID.ClayBlock;
                         }
-                        else tile.TileType = TileID.Dirt;
 
                         if (tile.TileType == TileID.Stone || tile.TileType == TileID.ClayBlock)
                         {

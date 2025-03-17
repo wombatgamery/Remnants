@@ -134,6 +134,7 @@ Mods: {
 			PyramidChest: {
 				MapEntry: Kufer Piramidy
 				MapEntry0: Zamknięty Kufer Piramidy
+				// Messages.KeysinUnderground: The keys are hidden in the caverns below...
 			}
 
 			PyramidPot.MapEntry: Dzbanek Piramidy
