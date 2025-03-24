@@ -49,7 +49,7 @@ namespace Remnants.World
             }
             protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
             {
-                progress.Message = Main.NewText(Language.GetTextValue("Mods.Remnants.WorldgenMessages.Setup"));
+                progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Setup");
 
                 BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
@@ -199,7 +199,7 @@ namespace Remnants.World
 
         public void UpdateMap(int[] biomes, GenerationProgress progress)
         {
-            progress.Message = Main.NewText(Language.GetTextValue("Mods.Remnants.WorldgenMessages.BiomeUpdate"));
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.BiomeUpdate");
 
             FastNoiseLite caves1 = new FastNoiseLite(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
             FastNoiseLite caves2 = new FastNoiseLite(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
@@ -1812,7 +1812,7 @@ namespace Remnants.World
             bool calamity = ModLoader.TryGetMod("CalamityMod", out Mod cal);
             bool lunarVeil = ModLoader.TryGetMod("Stellamod", out Mod lv);
 
-            progress.Message = Main.NewText(Language.GetTextValue("Mods.Remnants.WorldgenMessages.MajorBiomes"));
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.MajorBiomes");
 
             #region tundra
             Tundra.Y = (int)Main.worldSurface / biomes.scale;
@@ -1949,7 +1949,7 @@ namespace Remnants.World
 
             biomes.UpdateMap(new int[] { BiomeID.Tundra, BiomeID.Jungle, BiomeID.Desert, BiomeID.Corruption, BiomeID.Crimson, BiomeID.Underworld, BiomeID.AshForest, BiomeID.Obsidian, BiomeID.Beach, BiomeID.Toxic, BiomeID.SunkenSea, BiomeID.Abysm }, progress);
 
-            progress.Message = Main.NewText(Language.GetTextValue("Mods.Remnants.WorldgenMessages.EvilBiomes"));
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.EvilBiomes");
 
             #region corruption
             for (int k = 0; k < 10; k++)
@@ -2044,7 +2044,7 @@ namespace Remnants.World
             }
             #endregion
 
-            progress.Message = Main.NewText(Language.GetTextValue("Mods.Remnants.WorldgenMessages.Cleanup"));
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Cleanup");
 
             //#region desertrocks
             //FastNoiseLite materials = new FastNoiseLite();
@@ -2386,7 +2386,7 @@ namespace Remnants.World
             #endregion
 
             #region underworld
-            progress.Message = Main.NewText(Language.GetTextValue("Mods.Remnants.WorldgenMessages.Underworld"));
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Underworld");
 
             FastNoiseLite terrain = new FastNoiseLite(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
             terrain.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
@@ -2555,7 +2555,7 @@ namespace Remnants.World
         {
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            progress.Message = Main.NewText(Language.GetTextValue("Mods.Remnants.WorldgenMessages.MinorBiomes"));
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.MinorBiomes");
 
             #region glowshroom
             FastNoiseLite glowshroom = new FastNoiseLite(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
@@ -2768,7 +2768,7 @@ namespace Remnants.World
 
             biomes.UpdateMap(new int[] { BiomeID.Glowshroom, BiomeID.Marble, BiomeID.Granite, BiomeID.Aether, BiomeID.Hive, BiomeID.GemCave, BiomeID.OceanCave }, progress);
 
-            progress.Message = Main.NewText(Language.GetTextValue("Mods.Remnants.WorldgenMessages.MarbleCave"));
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.MarbleCave");
 
             Vector2 point;
             float threshold;
@@ -2814,7 +2814,7 @@ namespace Remnants.World
                 }
             }
 
-            progress.Message = Main.NewText(Language.GetTextValue("Mods.Remnants.WorldgenMessages.GraniteCave"));
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.GraniteCave");
 
             terrain = new FastNoiseLite(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
             terrain.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
@@ -2892,7 +2892,7 @@ namespace Remnants.World
         {
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            progress.Message = Main.NewText(Language.GetTextValue("Mods.Remnants.WorldgenMessages.SpecialPlants"));
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.SpecialPlants");
 
             for (int y = 40; y <= Main.maxTilesY - 200; y++)
             {
@@ -3183,7 +3183,7 @@ namespace Remnants.World
         }
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
-            progress.Message = Main.NewText(Language.GetTextValue("Mods.Remnants.WorldgenMessages.Clouds"));
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Clouds");
 
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
@@ -3435,7 +3435,7 @@ namespace Remnants.World
         {
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            progress.Message = Main.NewText(Language.GetTextValue("Mods.Remnants.WorldgenMessages.Gems"));
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Gems");
 
             for (int y = 40; y < Main.maxTilesY - 40; y++)
             {
@@ -3514,7 +3514,7 @@ namespace Remnants.World
         {
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            progress.Message = Main.NewText(Language.GetTextValue("Mods.Remnants.WorldgenMessages.Underworld"));
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Underworld");
 
             FastNoiseLite terrain = new FastNoiseLite(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
             terrain.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
