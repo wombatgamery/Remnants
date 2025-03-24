@@ -1195,7 +1195,7 @@ namespace Remnants.World
 
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
-            progress.Message = Main.NewText(Language.GetTextValue("Mods.Remnants.WorldgenMessages.Safeguard"));
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Safeguard");
 
             VerifyCompatibility();
         }
@@ -1203,29 +1203,29 @@ namespace Remnants.World
         public void VerifyCompatibility()
         {
             bool issuesFound = false;
-            string message = Main.NewText(Language.GetTextValue("Mods.Remnants.Safeguard.IssuesFound"));
+            string message = Language.GetTextValue("Mods.Remnants.Safeguard.IssuesFound");
 
             if (Main.maxTilesX < 6300 || Main.maxTilesY < 1800)
             {
                 issuesFound = true;
-                message = message + Main.NewText(Language.GetTextValue("Mods.Remnants.Safeguard.SmallWorlds"));
+                message = message + Language.GetTextValue("Mods.Remnants.Safeguard.SmallWorlds");
             }
             if (Main.specialSeedWorld)
             {
                 issuesFound = true;
-                message = message + Main.NewText(Language.GetTextValue("Mods.Remnants.Safeguard.SecretSeeds"));
+                message = message + Language.GetTextValue("Mods.Remnants.Safeguard.SecretSeeds");
             }
             if (ModLoader.TryGetMod("ContinentOfJourney", out Mod hwj))
             {
                 issuesFound = true;
-                message = message + Main.NewText(Language.GetTextValue("Mods.Remnants.Safeguard.HomewardJourney"));
+                message = message + Language.GetTextValue("Mods.Remnants.Safeguard.HomewardJourney");
             }
             if (ModLoader.TryGetMod("Aequus", out Mod aq))
             {
                 issuesFound = true;
-                message = message + Main.NewText(Language.GetTextValue("Mods.Remnants.Safeguard.Aequus"));
+                message = message + Language.GetTextValue("Mods.Remnants.Safeguard.Aequus");
             }
-            message = message + Main.NewText(Language.GetTextValue("Mods.Remnants.Safeguard.Solution"));
+            message = message + Language.GetTextValue("Mods.Remnants.Safeguard.Solution");
 
             if (issuesFound)
             {
@@ -1242,7 +1242,7 @@ namespace Remnants.World
 
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
-            progress.Message = Main.NewText(Language.GetTextValue("Mods.Remnants.WorldgenMessages.Caves"));
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Caves");
 
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
@@ -1358,7 +1358,7 @@ namespace Remnants.World
                 }
             }
 
-            progress.Message = Main.NewText(Language.GetTextValue("Mods.Remnants.WorldgenMessages.FloodedCaves"));
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.FloodedCaves");
 
             int structureCount = Main.maxTilesX * (Main.maxTilesY - 200 - (int)Main.rockLayer) / 50000;
             while (structureCount > 0)
@@ -1416,7 +1416,7 @@ namespace Remnants.World
             //}
 
             #region terrain
-            progress.Message = Main.NewText(Language.GetTextValue("Mods.Remnants.WorldgenMessages.Terrain"));
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Terrain");
 
             FastNoiseLite altitude = new FastNoiseLite(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
             altitude.SetNoiseType(FastNoiseLite.NoiseType.Cellular);
@@ -1563,7 +1563,7 @@ namespace Remnants.World
             #endregion
 
             #region swamps
-            progress.Message = Main.NewText(Language.GetTextValue("Mods.Remnants.WorldgenMessages.Swamps"));
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Swamps");
 
             FastNoiseLite distribution = new FastNoiseLite(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
             distribution.SetNoiseType(FastNoiseLite.NoiseType.Value);
@@ -1683,7 +1683,7 @@ namespace Remnants.World
 
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
-            progress.Message = Main.NewText(Language.GetTextValue("Mods.Remnants.WorldgenMessages.Ores"));
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Ores");
 
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
@@ -2123,7 +2123,7 @@ namespace Remnants.World
         {
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            progress.Message = Main.NewText(Language.GetTextValue("Mods.Remnants.WorldgenMessages.Piles"));
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Piles");
 
             //Main.tileSolid[229] = false;
             //Main.tileSolid[190] = false;
@@ -2411,7 +2411,7 @@ namespace Remnants.World
         {
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            progress.Message = Main.NewText(Language.GetTextValue("Mods.Remnants.WorldgenMessages.Grass"));
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Grass");
 
             for (int y = 40; y < Main.worldSurface; y++)
             {
@@ -2449,7 +2449,7 @@ namespace Remnants.World
                 }
             }
 
-            progress.Message = Main.NewText(Language.GetTextValue("Mods.Remnants.WorldgenMessages.Grass"));
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Grass");
 
             int[] mossToChoose = new int[5];
             mossToChoose[0] = TileID.GreenMoss;
@@ -2563,7 +2563,7 @@ namespace Remnants.World
         {
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            progress.Message = Main.NewText(Language.GetTextValue("Mods.Remnants.WorldgenMessages.Touchups"));
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Touchups");
 
             Main.tileSolid[162] = false;
             Main.tileSolid[226] = true;
@@ -3033,7 +3033,7 @@ namespace Remnants.World
 
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
-            progress.Message = Main.NewText(Language.GetTextValue("Mods.Remnants.WorldgenMessages.Spawnpoint"));
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Spawnpoint");
 
             Main.spawnTileX = Main.maxTilesX / 2 + (WorldGen.genRand.NextBool(2) ? -25 : 25);
             if (Main.spawnTileY < Main.worldSurface * 0.5f)
