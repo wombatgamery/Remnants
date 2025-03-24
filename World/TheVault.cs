@@ -45,7 +45,7 @@ namespace Remnants.World
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
-            progress.Message = "Building the Vault";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Vault");
 
             bool devMode = false;
 
