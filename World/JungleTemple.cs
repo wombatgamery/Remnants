@@ -41,7 +41,7 @@ namespace Remnants.World
         {
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            progress.Message = Main.NewText(Language.GetTextValue("Mods.Remnants.WorldgenMessages.JungleTemple"));
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.JungleTemple");
 
             Main.tileSolid[TileID.LihzahrdBrick] = true;
             Main.tileSolid[TileID.WoodenSpikes] = true;
