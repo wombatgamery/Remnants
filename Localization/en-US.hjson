@@ -2,11 +2,11 @@ Mods: {
 	Remnants: {
 		Safeguard: {
 			IssuesFound: Remnants found one or more compatibility issues, and cannot create the following world. Issues found:
-			SmallWorlds: \n- The world size is too small.
-			SecretSeeds: \n- A secret seed has been selected.
-			HomewardJourney: \n- The Homeward Journey mod is enabled.
-			Aequus: \n- The Aequus mod is enabled.
-			Solution: \nTo safely finish world creation, please remove these issues or disable Remnants.
+			SmallWorlds: The world size is too small.
+			SecretSeeds: A secret seed has been selected.
+			HomewardJourney: The Homeward Journey mod is enabled.
+			Aequus: The Aequus mod is enabled.
+			Solution: To safely finish world creation, please remove these issues or disable Remnants.
 
 			WOTGMultiplayer: Remnants detected Wrath of the Gods enabled on a multiplayer client. The latter does not work in multiplayer - disable it or use singleplayer.
 		}
