@@ -1203,7 +1203,7 @@ namespace Remnants.World
         public void VerifyCompatibility()
         {
             bool issuesFound = false;
-            string message = message + "\n- " + Language.GetTextValue("Mods.Remnants.Safeguard.IssuesFound");
+            string message = Language.GetTextValue("Mods.Remnants.Safeguard.IssuesFound");
 
             if (Main.maxTilesX < 6300 || Main.maxTilesY < 1800)
             {
