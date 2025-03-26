@@ -4362,7 +4362,7 @@ namespace Remnants.World
 
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            progress.Message = anguage.GetTextValue("Mods.Remnants.WorldgenMessages.MagicalLab");
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.MagicalLab");
 
             #region setup
             if (GenVars.dungeonSide != 1)
