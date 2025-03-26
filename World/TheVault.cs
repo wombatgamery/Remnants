@@ -16,6 +16,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Generation;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
