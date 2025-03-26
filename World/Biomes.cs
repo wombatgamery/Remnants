@@ -39,7 +39,7 @@ namespace Remnants.World
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
         {
-            RemWorld.InsertPass(tasks, new BiomeMapSetup(Language.GetTextValue(Mods.Remnants.WorldgenMessages.WorldgenPreviewer.Setup), 1), 1);
+            RemWorld.InsertPass(tasks, new BiomeMapSetup("Biome Map Setup", 1), 1);
         }
 
         internal class BiomeMapSetup : GenPass
