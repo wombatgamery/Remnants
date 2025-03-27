@@ -22,6 +22,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Generation;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
@@ -1467,7 +1468,7 @@ namespace Remnants.World
         {
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            progress.Message = "Building mineshafts";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Mineshafts");
 
             int structureCount = 0;
             while (structureCount < Main.maxTilesX / 2100)
@@ -2255,7 +2256,7 @@ namespace Remnants.World
         {
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            progress.Message = "Building microdungeons";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Microdungeons");
             int structureCount;
 
             int uniqueStructures = 7;
@@ -3939,7 +3940,7 @@ namespace Remnants.World
         }
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
-            progress.Message = "Raising islands";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.SkyIslands");
 
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
@@ -4225,7 +4226,7 @@ namespace Remnants.World
         {
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            progress.Message = "Setting boulders";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Boulders");
 
             int count = 0;
 
@@ -4313,7 +4314,7 @@ namespace Remnants.World
         {
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            progress.Message = "Microdungeons: Ice Temples";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.IceTemples");
 
             int structureCount;
 
@@ -4673,7 +4674,7 @@ namespace Remnants.World
         {
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            progress.Message = "Building geothermal rigs";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.ThermalRigs");
 
             int structureCount;
 

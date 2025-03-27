@@ -16,6 +16,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Generation;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
@@ -45,7 +46,7 @@ namespace Remnants.World
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
-            progress.Message = "Building the Vault";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Vault");
 
             bool devMode = false;
 

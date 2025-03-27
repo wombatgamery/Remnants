@@ -123,7 +123,7 @@ namespace Remnants
 
             if (WOTG)
             {
-                Main.NewText(Language.GetTextValue("Mods.Remnants.Misc.WOTGWarning"), Color.Red);
+                Main.NewText(Language.GetTextValue("Mods.Remnants.Safeguard.WOTGMultiplayer"), Color.Red);
             }
         }
 
