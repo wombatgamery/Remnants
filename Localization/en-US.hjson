@@ -15,11 +15,13 @@ Mods: {
 			TomeofInferno: A bizarre testament to the endless potential of magic - a tome with the ability to read and cast its own spells. This variant shoots balls of concentrated heat, engulfing their target in searing flames.
 			TomeofMending: A bizarre testament to the endless potential of magic - a tome with the ability to read and cast its own spells. This variant accompanies other units, restoring their vigor in the midst of battle.
 			TomeofSummoning: A bizarre testament to the endless potential of magic - a tome with the ability to read and cast its own spells. This variant calls upon all other units, bringing unrelenting chaos to anything in its path.
+			Centipede: The uncanny insects swarming beneath the ancient tree are as vicious as they are massive. The centipedes will stalk their prey before delivering a powerful, venomous bite.
+			ResinSlime: Slimes infused with the blood of the ancient tree will harden as they sustain injury, and explode into shrapnel as their life expires.
 		}
 
 		Biomes: {
 			GoldenCity: {
-				DisplayName: Golden City
+				DisplayName: The Golden City
 				TownNPCDialogueName: the Golden City
 			}
 
@@ -44,7 +46,7 @@ Mods: {
 			}
 
 			MagicalLab: {
-				DisplayName: Magical Lab
+				DisplayName: The Magical Lab
 				TownNPCDialogueName: the Magical Lab
 			}
 
@@ -59,22 +61,22 @@ Mods: {
 			}
 
 			Pyramid: {
-				DisplayName: Pyramid
+				DisplayName: The Pyramid
 				TownNPCDialogueName: the Pyramid
 			}
 
 			Vault: {
-				DisplayName: Vault
+				DisplayName: The Vault
 				TownNPCDialogueName: the Vault
 			}
 
 			EchoingHalls: {
-				DisplayName: Echoing Halls
+				DisplayName: The Echoing Halls
 				TownNPCDialogueName: the Echoing Halls
 			}
 
 			ForgottenTomb: {
-				DisplayName: Forgotten Tomb
+				DisplayName: The Forgotten Tomb
 				TownNPCDialogueName: the Forgotten Tomb
 			}
 
@@ -84,12 +86,12 @@ Mods: {
 			}
 
 			Undergrowth: {
-				DisplayName: Undergrowth
+				DisplayName: The Undergrowth
 				TownNPCDialogueName: the Undergrowth
 			}
 
 			AerialGarden: {
-				DisplayName: Aerial Garden
+				DisplayName: The Aerial Garden
 				TownNPCDialogueName: the Aerial Garden
 			}
 		}
@@ -665,6 +667,8 @@ Mods: {
 			Arcanist.DisplayName: Enchanter
 			TomeofMending.DisplayName: Tome of Mending
 			TomeofSummoning.DisplayName: Tome of Summoning
+			CentipedeHead.DisplayName: Centipede
+			ResinSlime.DisplayName: Resin Slime
 		}
 
 		Projectiles: {
@@ -694,6 +698,7 @@ Mods: {
 			FallingEyeball.DisplayName: Falling Eyeball
 			SoulLanceHoldout.DisplayName: Soul Lance
 			SpectralLanceHoldout.DisplayName: Spectral Lance
+			ResinShrapnel.DisplayName: Resin Shrapnel
 		}
 
 		Configs: {

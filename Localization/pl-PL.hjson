@@ -15,6 +15,8 @@ Mods: {
 			TomeofInferno: Niezwykły dowód nieograniczonego potencjału magii – księga, która potrafi czytać i rzucać własne zaklęcia. Ta odmiana strzela kulami skoncentrowanego ciepła, które pochłaniają cel palącymi płomieniami.
 			TomeofMending: Niezwykły dowód nieograniczonego potencjału magii – księga, która potrafi czytać i rzucać własne zaklęcia. Ta odmiana towarzyszy innym jednostkom, przywracając im wigor w środku bitwy.
 			TomeofSummoning: Niezwykły dowód nieograniczonego potencjału magii – księga, która potrafi czytać i rzucać własne zaklęcia. Ta odmiana wzywa wszystkie pozostałe jednostki, siejąc nieustający chaos wszędzie, gdzie stanie na swojej drodze.
+			Centipede: Dziwaczne owady rojące się pod antycznym drzewem są równie okrutne, co ogromne. Będą one śledzić swoją ofiarę, aż dostarczą jej swe jadowite ukąszenie.
+			ResinSlime: Szlam nasączony krwią antycznego drzewa twardnieje pod wpływem obrażeń, by wybuchnąć swymi odłamkami, w momencie gdy jego życie gaśnie.
 		}
 
 		Biomes: {
@@ -669,6 +671,8 @@ Mods: {
 			Arcanist.DisplayName: Arkanista
 			TomeofMending.DisplayName: Księga Naprawy
 			TomeofSummoning.DisplayName: Księga Przywołania
+			// CentipedeHead.DisplayName: Centipede
+			// ResinSlime.DisplayName: Resin Slime
 		}
 
 		Projectiles: {
@@ -698,6 +702,7 @@ Mods: {
 			FallingEyeball.DisplayName: Spadające Złoko
 			SoulLanceHoldout.DisplayName: Włócznia Dusz
 			SpectralLanceHoldout.DisplayName: Włócznia Widm
+			// ResinShrapnel.DisplayName: Resin Shrapnel
 		}
 
 		Configs: {
@@ -707,8 +712,7 @@ Mods: {
 				Headers: {
 					// General: General
 					// Terrain: Terrain
-					// Structures: Structures
-					// Structure: Structure Header
+					// Structure: Structure
 				}
 
 				TerrainAmplitude: {

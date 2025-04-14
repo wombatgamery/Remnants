@@ -1215,6 +1215,11 @@ namespace Remnants.World
                 issuesFound = true;
                 message = message + "\n- A secret seed has been selected.";
             }
+            if (ModLoader.TryGetMod("StartWithBase", out Mod swb))
+            {
+                issuesFound = true;
+                message = message + "\n- The Start With Base mod is enabled.";
+            }
             if (ModLoader.TryGetMod("ContinentOfJourney", out Mod hwj))
             {
                 issuesFound = true;

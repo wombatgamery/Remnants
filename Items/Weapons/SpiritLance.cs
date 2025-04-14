@@ -1,3 +1,5 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Remnants.Buffs;
 using Remnants.Projectiles;
 using Terraria;
@@ -56,5 +58,16 @@ namespace Remnants.Items.Weapons
 
 			return null;
 		}
-	}
+
+        public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
+        {
+            Main.GetItemDrawFrame(Item.type, out var itemTexture, out var itemFrame);
+            Vector2 origin = itemFrame.Size() / 2f;
+            Vector2 drawPosition = Item.Bottom - Main.screenPosition - new Vector2(0, origin.Y);
+
+            spriteBatch.Draw(ModContent.Request<Texture2D>(Texture).Value, drawPosition, itemFrame, Color.White, rotation, origin, scale, SpriteEffects.None, 0);
+
+            return false;
+        }
+    }
 }

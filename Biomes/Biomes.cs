@@ -295,7 +295,7 @@ namespace Remnants.Biomes
 
 		public override int Music => music;
 
-		public override string BestiaryIcon => base.BestiaryIcon;
+		public override string BestiaryIcon => "Remnants/Biomes/UndergrowthIcon";
         public override string MapBackground => "Terraria/Images/MapBG13";
         public override string BackgroundPath => "Terraria/Images/MapBG13";
         public override Color? BackgroundColor => base.BackgroundColor;

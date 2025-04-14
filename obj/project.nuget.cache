@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "swUQ7j0dsoQ=",
+  "dgSpecHash": "UVVBUmECGfg=",
   "success": true,
-  "projectFilePath": "C:\\Users\\WOMBAT\\Dropbox\\PC\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Remnants.csproj",
+  "projectFilePath": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Remnants.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\WOMBAT\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
+    "C:\\Users\\womba\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
   ],
   "logs": []
 }

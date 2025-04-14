@@ -3778,7 +3778,9 @@ namespace Remnants.World
                     structureCount++;
                 }
             }
+
             progressCounter++;
+
             structureCount = 0; // MINING PLATFORM
             while (structureCount < (Main.maxTilesX * Main.maxTilesY / 1200f) / 175)
             {

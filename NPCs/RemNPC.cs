@@ -4,6 +4,7 @@ using Remnants.Items.Materials;
 using Remnants.Items.Consumable;
 using Remnants.NPCs.Monsters;
 using Remnants.NPCs.Monsters.MagicalLab;
+using Remnants.NPCs.Monsters.Undergrowth;
 using Remnants.Walls;
 using Remnants.World.Subworlds;
 //using SubworldLibrary;
@@ -219,9 +220,16 @@ namespace Remnants.NPCs
                         pool[ModContent.NPCType<TomeofFrost>()] = 1f;
                     }
                 }
-                else if (tile.WallType == ModContent.WallType<stronghold>() || tile.WallType == ModContent.WallType<HellishBrickWallUnsafe>())
+                else if (tile.WallType == ModContent.WallType<undergrowth>() || tile.WallType == WallID.LivingWoodUnsafe)
                 {
-                    pool[NPCID.BlazingWheel] = 0.5f;
+                    pool.Clear();
+
+                    pool[ModContent.NPCType<ResinSlime>()] = 3f;
+
+                    if (spawnInfo.Player.InModBiome<Biomes.Undergrowth>())
+                    {
+                        pool[ModContent.NPCType<CentipedeHead>()] = 1f;
+                    }
                 }
                 else if (tile.TileType == ModContent.TileType<PyramidBrick>() || tile.WallType == ModContent.WallType<pyramid>() || tile.WallType == ModContent.WallType<PyramidBrickWallUnsafe>())
                 {
@@ -259,14 +267,9 @@ namespace Remnants.NPCs
                         pool[NPCID.WebbedStylist] = 1f;
                     }
                 }
-                else if (tile.WallType == ModContent.WallType<undergrowth>() || tile.WallType == WallID.LivingWoodUnsafe)
+                else if (tile.WallType == ModContent.WallType<stronghold>() || tile.WallType == ModContent.WallType<HellishBrickWallUnsafe>())
                 {
-                    pool.Clear();
-
-                    if (spawnInfo.Player.InModBiome<Biomes.Undergrowth>())
-                    {
-                        pool[NPCID.Gnome] = 1f;
-                    }
+                    pool[NPCID.BlazingWheel] = 0.5f;
                 }
                 else if ((tile.TileType == TileID.Granite || tile.TileType == TileID.GraniteBlock) && spawnInfo.SpawnTileY > Main.worldSurface)
                 {
@@ -340,13 +343,17 @@ namespace Remnants.NPCs
             }
         }
 
-        //      public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
-        //      {
-        //	if (player.InModBiome(ModContent.GetInstance<OceanCave>()))
-        //	{
-        //		spawnRate = 2;
-        //	}
-        //}
+        public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
+        {
+            if (player.InModBiome(ModContent.GetInstance<Biomes.Undergrowth>()))
+            {
+                spawnRate /= 2;
+            }
+            if (player.InModBiome(ModContent.GetInstance<OceanCave>()))
+            {
+                spawnRate /= 2;
+            }
+        }
 
         public override void SetBestiary(NPC npc, BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {

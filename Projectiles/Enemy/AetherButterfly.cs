@@ -97,6 +97,8 @@ namespace Remnants.Projectiles.Enemy
 
 			dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.ShimmerTorch);
 			dust.noGravity = true;
+
+			Projectile.netUpdate = true;
 		}
 
   //      public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
