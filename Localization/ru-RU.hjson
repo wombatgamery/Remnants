@@ -680,7 +680,7 @@ Mods: {
 			TomeofMending.DisplayName: Фолиант исцеления
 			TomeofSummoning.DisplayName: Фолиант призыва
 			CentipedeHead.DisplayName: Сороконожка
-			ResinSlime.DisplayName: Слизь из смолы
+			ResinSlime.DisplayName: Смоляной слизень
 		}
 
 		Projectiles: {
@@ -710,7 +710,7 @@ Mods: {
 			FallingEyeball.DisplayName: Злобный глаз
 			SoulLanceHoldout.DisplayName: Копьё душегуба
 			SpectralLanceHoldout.DisplayName: Спектральный пронзатель
-			// ResinShrapnel.DisplayName: Resin Shrapnel
+			ResinShrapnel.DisplayName: Осколок затвердевшей смолы
 		}
 
 		Configs: {
