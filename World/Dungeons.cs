@@ -35,7 +35,7 @@ namespace Remnants.World
 
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
-            progress.Message = "Building a cursed city";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Dungeon");
 
             Main.tileSolid[TileID.BlueDungeonBrick] = true;
             Main.tileSolid[TileID.GreenDungeonBrick] = true;
@@ -1544,7 +1544,7 @@ namespace Remnants.World
 
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
-            progress.Message = "Growing ancient roots";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Undergrowth");
 
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
@@ -2212,7 +2212,7 @@ namespace Remnants.World
 
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
-            progress.Message = "Building a heavenly garden";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.AerialGarden");
 
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
@@ -2491,7 +2491,7 @@ namespace Remnants.World
         {
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            progress.Message = "Building desert pyramid";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Pyramid");
 
             #region setup
             int height = Main.maxTilesY / 300 + 1;
@@ -2931,7 +2931,7 @@ namespace Remnants.World
 
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
-            progress.Message = "Building a haunted tomb";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Tomb");
 
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
@@ -3300,7 +3300,7 @@ namespace Remnants.World
 
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            progress.Message = "Building a honey sanctum";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.HoneySanctum");
 
             #region setup
             hive.X = Hive.X * biomes.scale + biomes.scale / 2 - hive.area.Width / 2;
@@ -3543,7 +3543,7 @@ namespace Remnants.World
 
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
-            progress.Message = "Carving an underwater temple";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.WaterTemple");
 
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
@@ -3942,7 +3942,7 @@ namespace Remnants.World
 
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
-            progress.Message = "Building a hellish stronghold";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Stronghold");
 
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
@@ -4361,7 +4361,7 @@ namespace Remnants.World
 
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            progress.Message = "Building a magical lab";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.MagicalLab");
 
             #region setup
             if (GenVars.dungeonSide != 1)
@@ -4760,7 +4760,7 @@ namespace Remnants.World
 
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
-            progress.Message = "Building an ancient labyrinth";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Labyrinth");
 
             BuildMaze();
         }
