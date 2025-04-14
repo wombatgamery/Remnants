@@ -14,6 +14,7 @@ using System.IO;
 using Terraria.GameContent.ItemDropRules;
 using Remnants.World;
 using Terraria.Localization;
+using Remnants.Items.Consumable;
 
 namespace Remnants.NPCs.Monsters.Undergrowth
 {
@@ -22,6 +23,7 @@ namespace Remnants.NPCs.Monsters.Undergrowth
         public override void SetStaticDefaults()
         {
             NPCID.Sets.NeedsExpertScaling[Type] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Poisoned] = true;
 
             var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
@@ -45,13 +47,15 @@ namespace Remnants.NPCs.Monsters.Undergrowth
             NPC.height = 18;
 
             NPC.lifeMax = 50;
-            NPC.defense = 6;
+            NPC.defense = 3;
             NPC.damage = 16;
 
             NPC.value = 100;
 
             NPC.HitSound = SoundID.NPCHit31;
             NPC.DeathSound = SoundID.NPCDeath34;
+
+            NPC.buffImmune[BuffID.Poisoned] = true;
 
             SpawnModBiomes = new int[] { ModContent.GetInstance<Biomes.Undergrowth>().Type };
         }
@@ -91,14 +95,18 @@ namespace Remnants.NPCs.Monsters.Undergrowth
 
             if (collision || Main.tile[tileCoordX, tileCoordY].WallType != 0 || (tileCoordY > Main.worldSurface && tileCoordY < Main.maxTilesY - 200))
             {
+                bool attacking = false;
+
                 if (Main.player[NPC.target].InModBiome<Biomes.Undergrowth>() || Main.player[NPC.target].Center.Y / 16 > Main.worldSurface)
                 {
-                    Vector2 target = (Main.GameUpdateCount + NPC.whoAmI * 37) % 360 < 120 ? Main.player[NPC.target].Center : Main.player[NPC.target].Center + new Vector2((float)Math.Sin(Main.GameUpdateCount / 50), (float)Math.Cos(Main.GameUpdateCount / 50) * (NPC.whoAmI % 2 == 0 ? -1 : 1)) * 16 * (16 + (NPC.whoAmI % 3) * 8);
-                    NPC.velocity += Vector2.Normalize(target - NPC.Center) / 8;
-                }
-                else NPC.velocity.Y += 1f / 8;
+                    attacking = (Main.GameUpdateCount + NPC.whoAmI * 37) % 480 < 60 + (NPC.whoAmI % 3) * 30;
 
-                NPC.velocity *= 0.98f;
+                    Vector2 target = attacking ? Main.player[NPC.target].Center : Main.player[NPC.target].Center + new Vector2((float)Math.Sin(Main.GameUpdateCount / 50), (float)Math.Cos(Main.GameUpdateCount / 50) * (NPC.whoAmI % 2 == 0 ? -1 : 1)) * 16 * (16 + (NPC.whoAmI % 3) * 8);
+                    NPC.velocity += Vector2.Normalize(target - NPC.Center) / (attacking ? 5 : 9);
+                }
+                else NPC.velocity.Y += 1f / 9;
+
+                NPC.velocity *= attacking ? 0.96f : 0.98f;
 
                 if (collision)
                 {
@@ -126,6 +134,11 @@ namespace Remnants.NPCs.Monsters.Undergrowth
             }
 
             NPC.rotation = NPC.velocity.ToRotation() + MathHelper.PiOver2;
+        }
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ItemID.Bezoar, 100));
         }
 
         public override void HitEffect(NPC.HitInfo hit)
@@ -178,6 +191,7 @@ namespace Remnants.NPCs.Monsters.Undergrowth
         public override void SetStaticDefaults()
         {
             NPCID.Sets.NeedsExpertScaling[Type] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Poisoned] = true;
 
             Main.npcFrameCount[NPC.type] = 6;
         }
@@ -190,8 +204,10 @@ namespace Remnants.NPCs.Monsters.Undergrowth
             NPC.height = 18;
 
             NPC.lifeMax = 50;
-            NPC.defense = 9;
+            NPC.defense = 12;
             NPC.damage = 8;
+
+            NPC.buffImmune[BuffID.Poisoned] = true;
 
             NPC.HitSound = SoundID.NPCHit31;
             NPC.DeathSound = SoundID.NPCDeath34;
@@ -270,6 +286,7 @@ namespace Remnants.NPCs.Monsters.Undergrowth
         public override void SetStaticDefaults()
         {
             NPCID.Sets.NeedsExpertScaling[Type] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Poisoned] = true;
         }
 
         public override void SetDefaults()
@@ -280,8 +297,10 @@ namespace Remnants.NPCs.Monsters.Undergrowth
             NPC.height = 18;
 
             NPC.lifeMax = 50;
-            NPC.defense = 9;
+            NPC.defense = 12;
             NPC.damage = 8;
+
+            NPC.buffImmune[BuffID.Poisoned] = true;
 
             NPC.HitSound = SoundID.NPCHit31;
             NPC.DeathSound = SoundID.NPCDeath34;

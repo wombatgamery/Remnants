@@ -23,11 +23,10 @@ namespace Remnants.Items
     {
         public override void SetDefaults(Item item)
         {
-            //if (item.type == ItemID.Minecart)
-            //{
-            //	item.createTile = ModContent.TileType<placedminecart>();
-            //	item.useStyle = 1;
-            //}
+            if (item.type == ItemID.Amethyst || item.type == ItemID.Topaz || item.type == ItemID.Sapphire || item.type == ItemID.Emerald || item.type == ItemID.Ruby || item.type == ItemID.Diamond || item.type == ItemID.Amber)
+            {
+                item.value /= 2;
+            }
             if (ModContent.GetInstance<Gameplay>().ProjectileAI)
             {
                 if (item.type == ItemID.Shuriken)

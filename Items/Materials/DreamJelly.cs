@@ -53,7 +53,7 @@ namespace Remnants.Items.Materials
 
             recipe = Recipe.Create(type, 2);
             recipe.AddIngredient(type);
-            recipe.AddIngredient(Type, 5);
+            recipe.AddIngredient(Type, 10);
             recipe.AddTile(TileID.Bottles);
             recipe.Register();
         }

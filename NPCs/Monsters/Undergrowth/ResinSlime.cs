@@ -37,9 +37,9 @@ namespace Remnants.NPCs.Monsters.Undergrowth
 
             NPC.width = 32;
 
-            NPC.lifeMax = 75;
+            NPC.lifeMax = 60;
             NPC.damage = 10;
-            NPC.defense = 6;
+            NPC.defense = 4;
             NPC.knockBackResist = 0.7f;
 
             NPC.alpha = 50;

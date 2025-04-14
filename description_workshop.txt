@@ -20,7 +20,8 @@ Fully compatible mods should be completely safe to use: [list]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2824688072][b]Calamity Mod[/b][/url] (Includes unofficial Sunken Sea rework!)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416][b]Thorium Mod[/b][/url]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2893332653][b]Mod of Redemption[/b][/url]
-[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2982372319][b]Spirit Mod[/b][/url]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2982372319][b]Spirit Classic[/b][/url]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3449156562][b]Calamity Fables[/b][/url]
 [/list]
 
 Partially compatible mods will cause some problems, but otherwise may still be playable: [list]
@@ -30,12 +31,13 @@ Partially compatible mods will cause some problems, but otherwise may still be p
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2984622072][b]Starlight River[/b][/url] (A few biome and structure conflicts)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2843112914][b]Secrets of the Shadows[/b][/url] (Conflicting pyramid reworks)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3019925104][b]Lunar Veil[/b][/url] (Numerous biome and structure conflicts)
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3449158983][b]Spirit Reforged[/b][/url] (The savannah does not currently generate)
 [/list]
 
 Incompatible mods will result in a guaranteed crash or unplayable world: [list]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2807309918][b]Start With Base[/b][/url]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2930931197][b]Homeward Journey[/b][/url]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2833852432][b]Spooky Mod[/b][/url]
-[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2787632488][b]Aequus[/b][/url]
 [/list]
 
 Note that the compatibility of these mods are evaluated only by their individual changes, and not that of any dependencies they might have. 
