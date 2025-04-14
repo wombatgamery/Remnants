@@ -729,8 +729,8 @@ Mods: {
 			Arcanist.DisplayName: Arkanista
 			TomeofMending.DisplayName: Księga Naprawy
 			TomeofSummoning.DisplayName: Księga Przywołania
-			CentipedeHead.DisplayName: Centipede
-			ResinSlime.DisplayName: Resin Slime
+			CentipedeHead.DisplayName: Stonoga
+			ResinSlime.DisplayName: Żywiczny Szlam
 		}
 
 		Projectiles: {
@@ -760,7 +760,7 @@ Mods: {
 			FallingEyeball.DisplayName: Spadające Złoko
 			SoulLanceHoldout.DisplayName: Włócznia Dusz
 			SpectralLanceHoldout.DisplayName: Włócznia Widm
-			ResinShrapnel.DisplayName: Resin Shrapnel
+			ResinShrapnel.DisplayName: Odłamki Żywicy
 		}
 
 		Configs: {
