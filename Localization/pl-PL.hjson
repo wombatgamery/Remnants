@@ -1,6 +1,64 @@
 Mods: {
 	Remnants: {
-		Misc.WOTGWarning: Remnants wykrył włączoną opcję Wrath of the Gods w kliencie dla wielu graczy. To drugie nie działa w trybie wieloosobowym - wyłącz je lub użyj trybu jednoosobowego.
+		Safeguard: {
+			IssuesFound: Remnants wykryło jeden lub więcej problemów ze kompatybilnością i nie może utworzyć następującego świata. Znalezione problemy:
+			SmallWorlds: Rozmiar świata jest za mały.
+			SecretSeeds: Wybrano sekretne ziarno świata.
+			HomewardJourney: Modyfikacja "Homeward Journey" jest włączona.
+			Aequus: Modyfikacja "Aequus" jest włączona.
+			StartWithBase: Modyfikacja "Start with base" jest włączona.
+			Solution: Aby bezpiecznie dokończyć tworzenie świata, usuń te problemy lub wyłącz Remnants.
+
+			WOTGMultiplayer: Remnants wykryło modyfikację "Wrath of the Gods" która nie działa w tryie wieloosobym - wyłącz ją lub graj w trybie jednoosobowym.
+		}
+
+		WorldgenMessages: {
+			Safeguard: Weryfikacja zgodności
+
+			Setup: Konfigurowanie mapy biomu
+			Cleanup: Oczyszczanie terenu
+			Touchups: Końcowe poprawki
+			Spawnpoint: Regulacja punktu odradzania
+			BiomeUpdate: Aktualizowanie mapy biomu
+
+			MajorBiomes: Dodawanie głównych biomów
+			MinorBiomes: Dodawanie mniejszych biomów
+			EvilBiomes: Wylęganie się infekcji
+			Underworld: Tworzenie piekła
+
+			Dungeon: Budowanie przeklętego miasta
+			JungleTemple: Budowanie piramidy w dżungli
+			Vault: Budowanie krypty
+			Pyramid: Budowanie piramidy pustynnej
+			MarbleCave: Rzeźbienie marmuru
+			GraniteCave: Rzeźbienie granitu
+			Tomb: Budowanie nawiedzonego grobowca
+			Undergrowth: Uprawa starożytnych korzeni
+			WaterTemple: Rzeźbienie podwodnej świątyni
+			HoneySanctum: Budowanie miodowego sanktuarium
+			MagicalLab: Budowanie magicznego laboratorium
+			Labyrinth: Budowanie antycznego labiryntu
+			Stronghold: Budowanie piekielnej fortecy
+			AerialGarden: Budowanie niebiańskiego ogrodu
+
+			Clouds: Tworzenie chmur
+			SkyIslands: Podnoszenie wysp
+			Mineshafts: Budowanie kopalni
+			Microdungeons: Budowanie mikrolochów
+			IceTemples: Rzeźbienie lodowych świątyń
+			ThermalRigs: Budowanie instalacji geotermalnych
+
+			Terrain: Generowanie terenu świata
+			Caves: Wietrzenie jaskiń
+			FloodedCaves: Zalewanie jaskiń
+			FloodedTerrain: Tworzenie bagien
+			Grass: Sianie trawy
+			Ores: Rozpraszanie minerałów
+			Gems: Umieszczanie klejnotów
+			Piles: Układanie obiektów
+			Boulders: Ustawianie głazów
+			SpecialPlants: Uprawa obcych roślin
+		}
 
 		Bestiary: {
 			Ward: Tytaniczna masa zimnego kamienia - i nieustająca furia. Przemierza kręte korytarze labiryntu, żarliwie chroniąc to, co leży w jego sercu...
@@ -136,7 +194,7 @@ Mods: {
 			PyramidChest: {
 				MapEntry: Kufer Piramidy
 				MapEntry0: Zamknięty Kufer Piramidy
-				// Messages.KeysinUnderground: The keys are hidden in the caverns below...
+				Messages.KeysinUnderground: Klucze są ukryte w jaskiniach pod tobą...
 			}
 
 			PyramidPot.MapEntry: Dzbanek Piramidy
@@ -671,8 +729,8 @@ Mods: {
 			Arcanist.DisplayName: Arkanista
 			TomeofMending.DisplayName: Księga Naprawy
 			TomeofSummoning.DisplayName: Księga Przywołania
-			// CentipedeHead.DisplayName: Centipede
-			// ResinSlime.DisplayName: Resin Slime
+			CentipedeHead.DisplayName: Stonoga
+			ResinSlime.DisplayName: Żywiczny Szlam
 		}
 
 		Projectiles: {
@@ -702,7 +760,7 @@ Mods: {
 			FallingEyeball.DisplayName: Spadające Złoko
 			SoulLanceHoldout.DisplayName: Włócznia Dusz
 			SpectralLanceHoldout.DisplayName: Włócznia Widm
-			// ResinShrapnel.DisplayName: Resin Shrapnel
+			ResinShrapnel.DisplayName: Odłamki Żywicy
 		}
 
 		Configs: {
@@ -710,9 +768,9 @@ Mods: {
 				DisplayName: Ustawienia Klienta
 
 				Headers: {
-					// General: General
-					// Terrain: Terrain
-					// Structure: Structure
+					General: Ogólne
+					Terrain: Teren
+					Structure: Struktury
 				}
 
 				TerrainAmplitude: {
@@ -770,24 +828,24 @@ Mods: {
 						'''
 				}
 
-				SunkenSeaRework: {
-					// Label: "[i:2625] Sunken Sea Rework"
-					/* Tooltip:
+								SunkenSeaRework: {
+					Label: "[i:2625] Odnowienie Zatopionego Morza"
+					Tooltip:
 						'''
-						Enables the sunken sea rework when used with the Calamity mod
+						Zatopione Morze z modyfikacji "Calamity" staje się odnowione
 
-						Note: Will become obsolete after the biome is officially updated
-						''' */
+						Uwaga: Zostanie wycofane po oficjalnej aktualizacji biomu
+						'''
 				}
 
 				CabinFrequency: {
-					// Label: "[i:4080] Cabin Frequency"
-					// Tooltip: Controls the number of underground cabins generated in new worlds
+					Label: "[i:4080] Częstotliwość Domów"
+					Tooltip: Kontroluje ilość podziemnych domów generowanych w nowych światach
 				}
 
 				RailroadFrequency: {
-					// Label: "[i:2340] Railroad Frequency"
-					// Tooltip: Controls the number of railroads generated in new worlds
+					Label: "[i:2340] Częstotliwość Torowisk"
+					Tooltip: Kontroluje ilość torowisk generowanych w nowych światach
 				}
 			}
 
@@ -795,8 +853,8 @@ Mods: {
 				DisplayName: Ustawienia Serwera
 
 				Headers: {
-					// Functional: Functional
-					// Audio: Audio
+					Functional: Funkcje
+					Audio: Dźwięk
 				}
 
 				FreedomOfMovement: {

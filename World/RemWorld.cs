@@ -1195,7 +1195,7 @@ namespace Remnants.World
 
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
-            progress.Message = "Verifying compatibility";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Safeguard");
 
             VerifyCompatibility();
         }
@@ -1203,34 +1203,34 @@ namespace Remnants.World
         public void VerifyCompatibility()
         {
             bool issuesFound = false;
-            string message = "Remnants found one or more compatibility issues, and cannot create the following world. Issues found:";
+            string message = Language.GetTextValue("Mods.Remnants.Safeguard.IssuesFound");
 
             if (Main.maxTilesX < 6300 || Main.maxTilesY < 1800)
             {
                 issuesFound = true;
-                message = message + "\n- The world size is too small.";
+                message = message + "\n- " + Language.GetTextValue("Mods.Remnants.Safeguard.SmallWorlds");
             }
             if (Main.specialSeedWorld)
             {
                 issuesFound = true;
-                message = message + "\n- A secret seed has been selected.";
+                message = message + "\n- " + Language.GetTextValue("Mods.Remnants.Safeguard.SecretSeeds");
             }
             if (ModLoader.TryGetMod("StartWithBase", out Mod swb))
             {
                 issuesFound = true;
-                message = message + "\n- The Start With Base mod is enabled.";
+                message = message + "\n- " + Language.GetTextValue("Mods.Remnants.Safeguard.StartWithBase");
             }
             if (ModLoader.TryGetMod("ContinentOfJourney", out Mod hwj))
             {
                 issuesFound = true;
-                message = message + "\n- The Homeward Journey mod is enabled.";
+                message = message + "\n- " + Language.GetTextValue("Mods.Remnants.Safeguard.HomewardJourney");
             }
             if (ModLoader.TryGetMod("Aequus", out Mod aq))
             {
                 issuesFound = true;
-                message = message + "\n- The Aequus mod is enabled.";
+                message = message + "\n- " + Language.GetTextValue("Mods.Remnants.Safeguard.Aequus");
             }
-            message = message + "\nTo safely finish world creation, please remove these issues or disable Remnants.";
+            message = message + "\n " + Language.GetTextValue("Mods.Remnants.Safeguard.Solution");
 
             if (issuesFound)
             {
@@ -1247,7 +1247,7 @@ namespace Remnants.World
 
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
-            progress.Message = "Weathering caves";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Caves");
 
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
@@ -1363,7 +1363,7 @@ namespace Remnants.World
                 }
             }
 
-            progress.Message = "Flooding the caves";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.FloodedCaves");
 
             int structureCount = Main.maxTilesX * (Main.maxTilesY - 200 - (int)Main.rockLayer) / 50000;
             while (structureCount > 0)
@@ -1421,7 +1421,7 @@ namespace Remnants.World
             //}
 
             #region terrain
-            progress.Message = "Generating world terrain";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Terrain");
 
             FastNoiseLite altitude = new FastNoiseLite(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
             altitude.SetNoiseType(FastNoiseLite.NoiseType.Cellular);
@@ -1568,7 +1568,7 @@ namespace Remnants.World
             #endregion
 
             #region swamps
-            progress.Message = "Creating swamps";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Swamps");
 
             FastNoiseLite distribution = new FastNoiseLite(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
             distribution.SetNoiseType(FastNoiseLite.NoiseType.Value);
@@ -1688,7 +1688,7 @@ namespace Remnants.World
 
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
-            progress.Message = "Scattering minerals";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Ores");
 
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
@@ -2128,7 +2128,7 @@ namespace Remnants.World
         {
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            progress.Message = "Placing objects";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Piles");
 
             //Main.tileSolid[229] = false;
             //Main.tileSolid[190] = false;
@@ -2416,7 +2416,7 @@ namespace Remnants.World
         {
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            progress.Message = "Growing grass";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Grass");
 
             for (int y = 40; y < Main.worldSurface; y++)
             {
@@ -2454,7 +2454,7 @@ namespace Remnants.World
                 }
             }
 
-            progress.Message = "Growing moss";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Grass");
 
             int[] mossToChoose = new int[5];
             mossToChoose[0] = TileID.GreenMoss;
@@ -2568,7 +2568,7 @@ namespace Remnants.World
         {
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            progress.Message = "Finishing touches";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Touchups");
 
             Main.tileSolid[162] = false;
             Main.tileSolid[226] = true;
@@ -3038,7 +3038,7 @@ namespace Remnants.World
 
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
-            progress.Message = "Adjusting spawn point";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Spawnpoint");
 
             Main.spawnTileX = Main.maxTilesX / 2 + (WorldGen.genRand.NextBool(2) ? -25 : 25);
             if (Main.spawnTileY < Main.worldSurface * 0.5f)

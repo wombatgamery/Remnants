@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
@@ -40,7 +41,7 @@ namespace Remnants.World
         {
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            progress.Message = "Building jungle pyramid";
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.JungleTemple");
 
             Main.tileSolid[TileID.LihzahrdBrick] = true;
             Main.tileSolid[TileID.WoodenSpikes] = true;
