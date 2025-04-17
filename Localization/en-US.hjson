@@ -8,24 +8,20 @@ Mods: {
 			Aequus: The Aequus mod is enabled.
 			StartWithBase: The Start With Base mod is enabled.
 			Solution: To safely finish world creation, please remove these issues or disable Remnants.
-
 			WOTGMultiplayer: Remnants detected Wrath of the Gods enabled on a multiplayer client. The latter does not work in multiplayer - disable it or use singleplayer.
 		}
 
 		WorldgenMessages: {
 			Safeguard: Verifying compatibility
-
 			Setup: Setting up biome map
 			Cleanup: Cleaning up ground
-			Touchups: Finishing toches
+			Touchups: Finishing touches
 			Spawnpoint: Adjusting spawn point
 			BiomeUpdate: Updating biome map
-
 			MajorBiomes: Adding major biomes
 			MinorBiomes: Adding minor biomes
 			EvilBiomes: Incubating infection
 			Underworld: Creating the underworld
-
 			Dungeon: Building a cursed city
 			JungleTemple: Building a jungle pyramid
 			Vault: Building the Vault
@@ -40,14 +36,12 @@ Mods: {
 			Labyrinth: Building an ancient labyrinth
 			Stronghold: Building a hellish stronghold
 			AerialGarden: Building a heavenly garden
-
 			Clouds: Forming clouds
 			SkyIslands: Raising islands
 			Mineshafts: Building mineshafts
 			Microdungeons: Building microdungeons
 			IceTemples: Sculpting ice temples
 			ThermalRigs: Building geothermal rigs
-
 			Terrain: Generating world terrain
 			Caves: Weathering caves
 			FloodedCaves: Flooding the caves
@@ -73,8 +67,8 @@ Mods: {
 			TomeofInferno: A bizarre testament to the endless potential of magic - a tome with the ability to read and cast its own spells. This variant shoots balls of concentrated heat, engulfing their target in searing flames.
 			TomeofMending: A bizarre testament to the endless potential of magic - a tome with the ability to read and cast its own spells. This variant accompanies other units, restoring their vigor in the midst of battle.
 			TomeofSummoning: A bizarre testament to the endless potential of magic - a tome with the ability to read and cast its own spells. This variant calls upon all other units, bringing unrelenting chaos to anything in its path.
-			Centipede: The uncanny insects swarming beneath the ancient tree are as vicious as they are massive. The centipedes will stalk their prey before delivering a powerful, venomous bite.
-			ResinSlime: Slimes infused with the blood of the ancient tree will harden as they sustain injury, and explode into shrapnel as their life expires.
+			Centipede: The uncanny insects lining the damp grottoes beneath the ancient tree are as vicious as they are massive. The centipedes will stalk their prey before delivering a powerful, venomous bite.
+			ResinSlime: The coating of these slimes, infused with the blood of the ancient tree, will increasingly harden as they sustain injury. When their life gives out, it becomes the shrapnel of a violent explosion.
 		}
 
 		Biomes: {
@@ -93,7 +87,7 @@ Mods: {
 				TownNPCDialogueName: the Growth
 			}
 
-			Hive: {
+			TheHive: {
 				DisplayName: The Hive
 				TownNPCDialogueName: the Hive
 			}
@@ -766,7 +760,7 @@ Mods: {
 				Headers: {
 					General: General
 					Terrain: Terrain
-					Structure: Structure
+					Structure: Structures
 				}
 
 				TerrainAmplitude: {
@@ -849,7 +843,7 @@ Mods: {
 				DisplayName: Gameplay
 
 				Headers: {
-					Functional: Functional
+					Functional: Functionality
 					Audio: Audio
 				}
 

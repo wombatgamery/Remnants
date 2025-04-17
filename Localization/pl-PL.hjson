@@ -8,24 +8,20 @@ Mods: {
 			Aequus: Modyfikacja "Aequus" jest włączona.
 			StartWithBase: Modyfikacja "Start with base" jest włączona.
 			Solution: Aby bezpiecznie dokończyć tworzenie świata, usuń te problemy lub wyłącz Remnants.
-
 			WOTGMultiplayer: Remnants wykryło modyfikację "Wrath of the Gods" która nie działa w tryie wieloosobym - wyłącz ją lub graj w trybie jednoosobowym.
 		}
 
 		WorldgenMessages: {
 			Safeguard: Weryfikacja zgodności
-
 			Setup: Konfigurowanie mapy biomu
 			Cleanup: Oczyszczanie terenu
 			Touchups: Końcowe poprawki
 			Spawnpoint: Regulacja punktu odradzania
 			BiomeUpdate: Aktualizowanie mapy biomu
-
 			MajorBiomes: Dodawanie głównych biomów
 			MinorBiomes: Dodawanie mniejszych biomów
 			EvilBiomes: Wylęganie się infekcji
 			Underworld: Tworzenie piekła
-
 			Dungeon: Budowanie przeklętego miasta
 			JungleTemple: Budowanie piramidy w dżungli
 			Vault: Budowanie krypty
@@ -40,14 +36,12 @@ Mods: {
 			Labyrinth: Budowanie antycznego labiryntu
 			Stronghold: Budowanie piekielnej fortecy
 			AerialGarden: Budowanie niebiańskiego ogrodu
-
 			Clouds: Tworzenie chmur
 			SkyIslands: Podnoszenie wysp
 			Mineshafts: Budowanie kopalni
 			Microdungeons: Budowanie mikrolochów
 			IceTemples: Rzeźbienie lodowych świątyń
 			ThermalRigs: Budowanie instalacji geotermalnych
-
 			Terrain: Generowanie terenu świata
 			Caves: Wietrzenie jaskiń
 			FloodedCaves: Zalewanie jaskiń
@@ -93,7 +87,7 @@ Mods: {
 				TownNPCDialogueName: Narośl
 			}
 
-			Hive: {
+			TheHive: {
 				DisplayName: Pszczele Gniazdo
 				TownNPCDialogueName: Pszczele Gniazdo
 			}
@@ -828,7 +822,7 @@ Mods: {
 						'''
 				}
 
-								SunkenSeaRework: {
+				SunkenSeaRework: {
 					Label: "[i:2625] Odnowienie Zatopionego Morza"
 					Tooltip:
 						'''

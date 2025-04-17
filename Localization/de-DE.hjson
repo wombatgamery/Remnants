@@ -1,0 +1,899 @@
+Mods: {
+	Remnants: {
+		Safeguard: {
+			// IssuesFound: Remnants found one or more compatibility issues, and cannot create the following world. Issues found:
+			// SmallWorlds: The world size is too small.
+			// SecretSeeds: A secret seed has been selected.
+			// HomewardJourney: The Homeward Journey mod is enabled.
+			// Aequus: The Aequus mod is enabled.
+			// StartWithBase: The Start With Base mod is enabled.
+			// Solution: To safely finish world creation, please remove these issues or disable Remnants.
+			// WOTGMultiplayer: Remnants detected Wrath of the Gods enabled on a multiplayer client. The latter does not work in multiplayer - disable it or use singleplayer.
+		}
+
+		WorldgenMessages: {
+			// Safeguard: Verifying compatibility
+			// Setup: Setting up biome map
+			// Cleanup: Cleaning up ground
+			// Touchups: Finishing touches
+			// Spawnpoint: Adjusting spawn point
+			// BiomeUpdate: Updating biome map
+			// MajorBiomes: Adding major biomes
+			// MinorBiomes: Adding minor biomes
+			// EvilBiomes: Incubating infection
+			// Underworld: Creating the underworld
+			// Dungeon: Building a cursed city
+			// JungleTemple: Building a jungle pyramid
+			// Vault: Building the Vault
+			// Pyramid: Building a desert pyramid
+			// MarbleCave: Carving marble
+			// GraniteCave: Carving granite
+			// Tomb: Building a haunted tomb
+			// Undergrowth: Growing ancient roots
+			// WaterTemple: Carving an underwater temple
+			// HoneySanctum: Building a honey sanctum
+			// MagicalLab: Building a magical lab
+			// Labyrinth: Building an ancient labyrinth
+			// Stronghold: Building a hellish stronghold
+			// AerialGarden: Building a heavenly garden
+			// Clouds: Forming clouds
+			// SkyIslands: Raising islands
+			// Mineshafts: Building mineshafts
+			// Microdungeons: Building microdungeons
+			// IceTemples: Sculpting ice temples
+			// ThermalRigs: Building geothermal rigs
+			// Terrain: Generating world terrain
+			// Caves: Weathering caves
+			// FloodedCaves: Flooding the caves
+			// FloodedTerrain: Creating swamps
+			// Grass: Growing grass
+			// Ores: Scattering minerals
+			// Gems: Placing gems
+			// Piles: Placing objects
+			// Boulders: Setting boulders
+			// SpecialPlants: Growing alien plants
+		}
+
+		Bestiary: {
+			Ward: Eine titanische Masse aus kaltem Stein - und unerbittlicher Wut. Er streift durch die gewundenen Labyrinthgänge und beschützt leidenschaftlich, was auch immer in seinem Herzen liegt...
+			HoneySlime: Der von diesen Schleimen absorbierte Honig hat ihre Vitalität und Ausdauer stark verbessert.
+			Blaster: Blaster sind schwere Automaten mit einer explosiven Ladung, die sie auf diejenigen abfeuern, die auf das alte Gelände eindringen, das sie bis heute beschützen.
+			Flamer: Obwohl sie angeblich nicht empfindungsfähig sind, führen Flamer ihre grimmige Pflicht, Eindringlinge zu verbrennen, mit überraschender Boshaftigkeit und Freude aus.
+			Gunner: Trotz ihrer jahrelangen Vernachlässigung sind Gunner immer noch in der Lage, ihre Ziele in einem Kugelhagel zu zerfetzen.
+			Icer: Der Icer ist ein selten gesichtetes Schwestermodell des Flamers. Es wird angenommen, dass nur eine Handvoll fertiggestellt wurden, bevor sie aus noch unbekannten Gründen aufgegeben wurden. Die unerprobte, aber leistungsstarke Technologie, die in den Icers installiert ist, macht sie gefährlicher als ihre gewöhnlichen Gegenstücke.
+			Shocker: Ursprünglich für die Reparatur alter Maschinen konzipiert, wirken diese kleinen Wartungsdrohnen nicht gefährlich. Sie sind jedoch immer noch Teil des Verteidigungsnetzes und setzen ihre Schweißgeräte gegen Eindringlinge ein.
+			Arcanist: Einst brillante Wissenschaftler, entstellt und durch ein gescheitertes Experiment skrupellos gemacht - ein Untergang ihrer eigenen Schöpfung. Dennoch bleibt ihre Begabung für Magie bestehen, und sie werden nicht zögern, sie einzusetzen.
+			TomeofFrost: Ein bizarres Zeugnis des endlosen Potenzials der Magie - ein Foliant mit der Fähigkeit, seine eigenen Zauber zu lesen und zu wirken. Diese Variante beschwört riesige Eisspitzen aus dem Boden, die ihre Opfer grausam aufspießen.
+			TomeofInferno: Ein bizarres Zeugnis des endlosen Potenzials der Magie - ein Foliant mit der Fähigkeit, seine eigenen Zauber zu lesen und zu wirken. Diese Variante schießt Kugeln konzentrierter Hitze, die ihr Ziel in sengende Flammen hüllen.
+			TomeofMending: Ein bizarres Zeugnis des endlosen Potenzials der Magie - ein Foliant mit der Fähigkeit, seine eigenen Zauber zu lesen und zu wirken. Diese Variante begleitet andere Einheiten und stellt ihre Kraft mitten im Kampf wieder her.
+			TomeofSummoning: Ein bizarres Zeugnis des endlosen Potenzials der Magie - ein Foliant mit der Fähigkeit, seine eigenen Zauber zu lesen und zu wirken. Diese Variante ruft alle anderen Einheiten herbei und bringt unerbittliches Chaos über alles, was sich ihr in den Weg stellt.
+			Centipede: Die unheimlichen Insekten, die die feuchten Grotten unter dem uralten Baum säumen, sind ebenso bösartig wie gewaltig. Die Tausendfüßler pirschen sich an ihre Beute heran, bevor sie einen kräftigen, giftigen Biss ausstoßen.
+			ResinSlime: Die Hülle dieser Schleime, die mit dem Blut des alten Baumes durchtränkt ist, verhärtet sich zunehmend, wenn sie verletzt werden. Wenn ihr Leben versiegt, wird sie zum Schrapnell einer gewaltigen Explosion.
+		}
+
+		Biomes: {
+			GoldenCity: {
+				DisplayName: Goldene Stadt
+				TownNPCDialogueName: die Goldene Stadt
+			}
+
+			GraniteCave: {
+				DisplayName: Granithöhle
+				TownNPCDialogueName: die Granithöhle
+			}
+
+			Growth: {
+				DisplayName: Wachstum
+				TownNPCDialogueName: das Wachstum
+			}
+
+			TheHive: {
+				DisplayName: Der Bienenstock
+				TownNPCDialogueName: den Bienenstock
+			}
+
+			JungleTemple: {
+				DisplayName: Dschungeltempel
+				TownNPCDialogueName: den Dschungeltempel
+			}
+
+			MagicalLab: {
+				DisplayName: Magisches Labor
+				TownNPCDialogueName: das Magische Labor
+			}
+
+			MarbleCave: {
+				DisplayName: Marmorhöhle
+				TownNPCDialogueName: die Marmorhöhle
+			}
+
+			OceanCave: {
+				DisplayName: Ozeanhöhle
+				TownNPCDialogueName: die Ozeanhöhle
+			}
+
+			Pyramid: {
+				DisplayName: Pyramide
+				TownNPCDialogueName: die Pyramide
+			}
+
+			Vault: {
+				DisplayName: Gewölbe
+				TownNPCDialogueName: das Gewölbe
+			}
+
+			EchoingHalls: {
+				DisplayName: Hallende Hallen
+				TownNPCDialogueName: die Hallenden Hallen
+			}
+
+			ForgottenTomb: {
+				DisplayName: Vergessenes Grab
+				TownNPCDialogueName: das Vergessene Grab
+			}
+
+			MagicalLabAscension: {
+				DisplayName: Magischer Labor-Aufstieg
+				TownNPCDialogueName: den Magischen Labor-Aufstieg
+			}
+
+			Undergrowth: {
+				DisplayName: Unterholz
+				TownNPCDialogueName: das Unterholz
+			}
+
+			AerialGarden: {
+				DisplayName: Luftgarten
+				TownNPCDialogueName: den Luftgarten
+			}
+		}
+
+		Tiles: {
+			Hardstone.MapEntry: Hartstein
+			StarOre.MapEntry: Stellarer Überrest
+			vaultpipe.MapEntry: Gewölberohr
+			LockedIronDoor.MapEntry: Abgeschlossene Eisentür
+			RustedChest.MapEntry: Verrostete Truhe
+			LabyrinthSpawner.MapEntry: Spawner
+			PiranhaSpawner.MapEntry: Spawner
+			Spitflower.MapEntry: Spuckblume
+
+			LabyrinthAltar: {
+				MapEntry: Labyrinth-Altar
+
+				Messages: {
+					EssenceofMight: Erhalten: Essenz der Macht
+					EssenceofEndurance: Erhalten: Essenz der Ausdauer
+					EssenceofFocus: Erhalten: Essenz des Fokus
+					Health: Max. Gesundheit
+					Damage: Schaden
+					Speed: Laufgeschwindigkeit
+					Deactivation: Essenz deaktiviert
+				}
+
+				MouseOver: {
+					Essence: Essenz von
+					Focus: Fokus
+					Endurance: Ausdauer
+					Might: Macht
+				}
+			}
+
+			Sarcophagus.MapEntry: Sarkophag
+			Scrapper.MapEntry: Verschrotter
+			spiritlamp.MapEntry: Geisterlampe
+			Dreampod.MapEntry: Traumschote
+			Runestalk.MapEntry: Runenstängel
+
+			PyramidChest: {
+				MapEntry: Pyramiden-Truhe
+				MapEntry0: Abgeschlossene Pyramiden-Truhe
+				Messages.KeysinUnderground: Die Schlüssel sind in den Höhlen darunter verborgen...
+			}
+
+			PyramidPot.MapEntry: Pyramiden-Topf
+			Cryocoral.MapEntry: Kryokoralle
+			Luminsponge.MapEntry: Leuchtschwamm
+			Nightglow.MapEntry: Nachtleuchten
+			ArcaneChest.MapEntry: Arkane Truhe
+			SacrificialAltar.MapEntry: Opferaltar
+			Eyeball.MapEntry: Böses Auge
+			VaultPipe.MapEntry: Gewölberohr
+			AlchemyBench.MapEntry: Schreibtisch
+
+			ArcaneChest2: {
+				MapEntry0: Arkane Truhe
+				MapEntry1: Abgeschlossene Arkane Truhe
+			}
+
+			PrismbudHead.MapEntry: Prismaknospe
+		}
+
+		Buffs: {
+			ManaShieldCooldown: {
+				DisplayName: Schildbruch
+				Description: Dein magischer Schild braucht Zeit zur Erholung
+			}
+
+			RunestalkBlessing: {
+				DisplayName: Runenstängel-Segen
+				Description: 50% erhöhte Abbaugeschwindigkeit
+			}
+		}
+
+		Items: {
+			alchemybook: {
+				DisplayName: Alchemiebuch
+				Tooltip: ""
+			}
+
+			devtool: {
+				DisplayName: Entwicklungswerkzeug
+				Tooltip: ""
+			}
+
+			ManaShield: {
+				DisplayName: Magischer Schild
+				Tooltip:
+					'''
+					Auf Kosten von Mana reduziert den endgültigen Schaden um 25%
+					Schaltet sich vorübergehend ab, wenn es dein Mana vollständig erschöpft
+					'''
+			}
+
+			DivineShield: {
+				DisplayName: Göttlicher Schild
+				Tooltip:
+					'''
+					Erhöht die Dauer der Unverwundbarkeit nach Schadensnahme
+					Auf Kosten von Mana reduziert den endgültigen Schaden um 25%
+					Schaltet sich vorübergehend ab, wenn es dein Mana vollständig erschöpft
+					'''
+			}
+
+			RingofElements: {
+				DisplayName: Ring der Elemente
+				Tooltip: Alle Debuffs klingen 100% schneller ab, außer Gesundheits- und Manakrankheit
+			}
+
+			IronKey: {
+				DisplayName: Eisenschlüssel
+				Tooltip: Öffnet eine abgeschlossene Eisentür
+			}
+
+			NightglowBerry: {
+				DisplayName: Nachtleuchtbeere
+				Tooltip: Eine würzige, leuchtende Frucht mit fast magischen Eigenschaften...
+			}
+
+			PyramidKey: {
+				DisplayName: Pyramidenschlüssel
+				Tooltip: Schließt eine Truhe im Wüstentempel auf
+			}
+
+			CoinMold: {
+				DisplayName: Münzform
+				Tooltip: Ermöglicht das Schmieden einer Münze aus einem Goldbarren, bricht aber nach einmaligem Gebrauch
+			}
+
+			SalvagedMetal: {
+				DisplayName: Geborgenes Metall
+				Tooltip: Kann an einem Ofen zu Eisenbarren recycelt werden
+			}
+
+			WandofRefinement: {
+				DisplayName: Stab der Verfeinerung
+				Tooltip: Die Schimmermagie in diesem Stab lässt bestimmte Wände schöner aussehen
+			}
+
+			EnchantedBrick: {
+				DisplayName: Arkaner Ziegel
+				Tooltip: ""
+			}
+
+			GardenBrick: {
+				DisplayName: Gartenziegel
+				Tooltip: ""
+			}
+
+			GoldenPanel: {
+				DisplayName: Goldene Platte
+				Tooltip: ""
+			}
+
+			Hardstone: {
+				DisplayName: Hartstein
+				Tooltip: Ein superdichter Fels unbekannten Ursprungs
+			}
+
+			PyramidBrick: {
+				DisplayName: Pyramidenziegel
+				Tooltip: ""
+			}
+
+			PyramidChest: {
+				DisplayName: Pyramiden-Truhe
+				Tooltip: ""
+			}
+
+			StarOre: {
+				DisplayName: Stellarer Überrest
+				Tooltip: Ein abgekühlter und verfestigter Stern, der immer noch mit lebendiger Energie glüht
+			}
+
+			ToxicWaste: {
+				DisplayName: Giftmüll
+				Tooltip: ""
+			}
+
+			WaterBrick: {
+				DisplayName: Wasserziegel
+				Tooltip: ""
+			}
+
+			EnergySpike: {
+				DisplayName: Energiedorn
+				Tooltip: ""
+			}
+
+			LabyrinthDoor: {
+				DisplayName: Labyrinth-Tür
+				Tooltip: ""
+			}
+
+			LabyrinthWallLamp: {
+				DisplayName: Labyrinth-Wandlaterne
+				Tooltip: ""
+			}
+
+			NightglowSeed: {
+				DisplayName: Nachtleuchtsamen
+				Tooltip: ...und ein harter Kern in der Mitte
+			}
+
+			RustedChest: {
+				DisplayName: Verrostete Truhe
+				Tooltip: Das Schloss ist abgenutzt
+			}
+
+			Sarcophagus: {
+				DisplayName: Sarkophag
+				Tooltip: Ein antikes Grab mit einem einfachen Design
+			}
+
+			Scrapper: {
+				DisplayName: Verschrotter
+				Tooltip: ""
+			}
+
+			sprout: {
+				DisplayName: Spross
+				Tooltip: ""
+			}
+
+			GardenBrickWall: {
+				DisplayName: Gartenziegel-Wand
+				Tooltip: ""
+			}
+
+			GoldenPanelWall: {
+				DisplayName: Goldene Platten-Wand
+				Tooltip: ""
+			}
+
+			PyramidBrickWall: {
+				DisplayName: Pyramidenziegel-Wand
+				Tooltip: ""
+			}
+
+			WaterBrickWall: {
+				DisplayName: Wasserziegel-Wand
+				Tooltip: ""
+			}
+
+			LuminousHook: {
+				DisplayName: Leuchtender Haken
+				Tooltip: Spendet Licht
+			}
+
+			ArmCannon: {
+				DisplayName: Armkanone
+				Tooltip: ""
+			}
+
+			CursedFlamethrower: {
+				DisplayName: Verfluchter Flammenwerfer
+				Tooltip: ""
+			}
+
+			SpiritLance: {
+				DisplayName: Geisterlanze
+				Tooltip: Wenn nicht bei vollem Mana, verursacht 4x Schaden und stellt Mana bei erfolgreichen Treffern wieder her
+			}
+
+			SoulLance: {
+				DisplayName: Seelenlanze
+				Tooltip: Wenn nicht bei vollem Mana, verursacht 4x Schaden und stellt Mana bei erfolgreichen Treffern wieder her
+			}
+
+			SpectralLance: {
+				DisplayName: Spektrallanze
+				Tooltip: Wenn nicht bei vollem Mana, verursacht 4x Schaden und stellt Mana bei erfolgreichen Treffern wieder her
+			}
+
+			VintageSniper: {
+				DisplayName: Vintage-Scharfschützengewehr
+				Tooltip:
+					'''
+					Schießt eine mächtige, hochgeschwindigkeits Kugel
+					Rechtsklick zum Herauszoomen
+					'''
+			}
+
+			SummonCrown: {
+				DisplayName: Krone der Führung
+				Tooltip: Je nach Verletzungen des Trägers verursachen Begleiter bis zu 25% mehr Schaden
+			}
+
+			TombBrick: {
+				DisplayName: Grabziegel
+				Tooltip: ""
+			}
+
+			TombBrickWall: {
+				DisplayName: Grabziegel-Wand
+				Tooltip: ""
+			}
+
+			EnchantedBrickWall: {
+				DisplayName: Arkane Ziegel-Wand
+				Tooltip: ""
+			}
+
+			ScientistNotes1: {
+				DisplayName: Forscher-Notizen: Vorbereitung
+				Tooltip:
+					'''
+					Woche 1, Tag 1
+					-
+					Inmitten einer Welt von Elend und Chaos wurde unsere Heimatstadt von Visionären mit einer Leidenschaft für
+					Fortschritt und Wissenschaft gegründet. In ihrem Namen haben wir unermüdlich daran gearbeitet, unser Wissen und
+					unsere Zivilisation zu erweitern, eine Generation nach der anderen, und dabei das übertroffen, was alle anderen für möglich hielten. Die neueste
+					unserer Entwicklungen ist eine hochmoderne Forschungseinrichtung in der tropischen Region
+					unseres Kontinents, speziell gebaut, um Wissen aus unbekannten Umgebungen zu sammeln. Ich und meine Kollegen, die
+					größten Wissenschaftler unserer Stadt, wurden für dieses Programm ausgewählt und wurden seitdem hierher verlegt,
+					um unsere Forschung durchzuführen. Wir siedeln uns heute an und werden voraussichtlich morgen beginnen.
+					'''
+			}
+
+			ScientistNotes2: {
+				DisplayName: Forscher-Notizen: Auftrag
+				Tooltip:
+					'''
+					Woche 1, Tag 2
+					-
+					Unsere erste Aufgabe ist das Experimentieren mit alchemistischen Mischungen. Das Land rund um diese 
+					Einrichtung ist viel reicher an alchemistischen Zutaten, daher ist es jetzt unsere Aufgabe, ihre Heil- und
+					körperverbessernden Medikamente zu verbessern. Zu Beginn jeder Woche wird ein Konvoi unsere Ergebnisse für
+					die Integration in die Entwicklung der Stadt erhalten. Wir hoffen, bald nützliche Ergebnisse zu erzielen, denn wir werden
+					sie brauchen, damit dieses Programm überlebt.
+					'''
+			}
+
+			ScientistNotes3: {
+				DisplayName: Forscher-Notizen: Symbiose
+				Tooltip:
+					'''
+					Woche 2, Tag 6
+					-
+					Das Magisch-Verstärkte Gewebeheilmittel, oder von gewöhnlichen Leuten als Heiltrank bezeichnet, ist ein Medikament
+					von außerordentlicher Kraft - es kanalisiert die lebensspendende Energie des Gewöhnlichen Pilzes, um schnelle,
+					fast sofortige Gewebereparatur zu induzieren, jedoch nicht ohne immensen Druck auf den Körper auszuüben. Wenn der Körper
+					seine Kraft nicht vor weiterem Konsum zurückgewinnt, riskiert er einen vollständigen Herzstillstand. Unsere jüngsten Studien
+					zeigen, dass der unterirdische Leuchtpilz eine merkwürdige symbiotische Beziehung zu seinem gewöhnlichen
+					Gegenstück hat, und durch ihre Kombination in der Mischung können wir den Gewebereparaturprozess aufladen. Das
+					Ergebnis ist eine neue Heilsubstanz, die genau doppelt so stark ist wie ihr Vorgänger, ohne zusätzlichen
+					Druck auf den Körper. Heute haben wir Geschichte geschrieben, und es ist sicher zu sagen, dass wir die Langlebigkeit von
+					diesem Programm gesichert haben. Die Behörden werden mit unserer Arbeit zufrieden sein, aber es gibt noch viel zu tun.
+					'''
+			}
+
+			ScientistNotes4: {
+				DisplayName: Forscher-Notizen: Bewusstsein
+				Tooltip:
+					'''
+					Woche 5, Tag 4
+					-
+					Da unsere Alchemiearbeit effektiv verwaltet wird, hatten wir Zeit, Magie ausgiebig zu studieren, und die
+					Ergebnisse waren... äußerst faszinierend. Der merkwürdigste unserer neuen Zauber ist die Fähigkeit, gewöhnliche Materie
+					in grundlegende neuronale Netzwerke zu verwandeln. Bisher haben wir unsere Technik geübt und verfeinert,
+					aber jetzt beginnt der Feldtest. Wir haben einige magische Folianten geschrieben, um Bewusstsein zu erhalten, und wenn
+					die Dinge wie geplant verlaufen, sollten sie in der Lage sein, die darin gespeicherten Zauber zu lesen und zu wirken! Mit
+					nahezu unbegrenztem magischen Potenzial könnten diese Folianten für praktisch jede Rolle geeignet sein, was ihnen
+					eine unglaubliche Vielfalt an Anwendungen verleiht.
+					'''
+			}
+
+			ScientistNotes5: {
+				DisplayName: Forscher-Notizen: Genesis
+				Tooltip:
+					'''
+					Woche 13, Tag 2
+					-
+					Das krebsartige Wachstum in der Nähe unserer Heimatstadt breitet sich weiter aus, aber vor einigen Wochen
+					haben wir einige infizierte Zellproben erhalten, die für unsere neueste Forschung entscheidend waren. Wir
+					entdeckten, dass die Infektion durch einen Stamm pathogener Bakterien verursacht wird, insbesondere durch die schädlichen
+					Toxine, die sie freisetzen. Mit ihren genetischen Informationen ist es uns gelungen, unsere eigenen rekombinanten
+					Bakterien mit einem modifizierten Toxin zu schaffen, das nicht nur für gewöhnliche Zellen harmlos ist, sondern speziell
+					bösartige Bakterien zerstört. Mit unserem neuen Wissen über Magie können wir unsere Bakterien verzaubern, um
+					einige potenziell nützliche Nebenwirkungen zu haben. Wir sind auf dem besten Weg, das vielleicht größte Werk
+					der Wissenschaft und Magie in der bekannten Geschichte zu schaffen, und einige beginnen, es Das Heilige zu nennen.
+					'''
+			}
+
+			ScientistNotes6: {
+				DisplayName: Forscher-Notizen: Furcht
+				Tooltip:
+					'''
+					Woche 14, Tag 1
+					-
+					Als wir auf unseren Konvoi warteten, kam niemand. Die Stadt würde uns nie vergessen, nicht mit den immensen
+					Beiträgen, die wir geleistet haben - etwas muss schrecklich falsch sein. Dies bedeutet wahrscheinlich, dass wir keine
+					weiteren Versorgungslieferungen bekommen, also müssen wir anfangen, für uns selbst zu sorgen. Wir sollten mit einer nachhaltigen
+					Nahrungsquelle beginnen, indem wir die Früchte, Gemüse und Getreide aus unseren Vorräten anbauen. Dennoch ist es kaum
+					ausreichend, um unsere aktuelle Bevölkerung zu erhalten, und wir müssen vielleicht unser Wissen über Magie
+					und Genetik einsetzen, um unser Überleben zu sichern... Was für eine Schande, dass unser großer Durchbruch nie zum Tragen kam.
+					'''
+			}
+
+			ScientistNotes7: {
+				DisplayName: Forscher-Notizen: Verlassenheit
+				Tooltip:
+					'''
+					Woche ??, Tag ?
+					-
+					Es ist einige Zeit seit meinem letzten Eintrag vergangen, und ich habe den Überblick darüber verloren, wie viele Tage vergangen sind.
+					Kürzliche Ereignisse haben mich sehr beschäftigt, ganz zu schweigen von der Belastung, die sie für meinen Geist bedeutet haben... Ich machte mich auf,
+					zu untersuchen, was von unserer wunderbaren Stadt übrig geblieben war, und nichts hätte mich auf das vorbereiten können, was ich sah -
+					jeder, den ich einst kannte, war zu einer geistlosen Leiche reduziert worden, die ziellos durch die Stadthallen wanderte, die jetzt
+					mit Schutt und aufgestapelten Knochen übersät waren. Alles, wofür wir gearbeitet hatten... in wenigen Tagen zerstört. Darüber hinaus
+					gab es einige unvorhergesehene Nebenwirkungen von unserer magisch und genetisch verbesserten Nahrung. Einige von
+					uns erleben intensive Gelüste und Entzugserscheinungen, und in schlimmeren Fällen den Verlust des Verstandes. Ich
+					hätte das kommen sehen müssen. Wie konnten wir nur so dumm sein?! Leider bleibt mir nichts mehr
+					hier - oder irgendwo, was das betrifft. Ich werde nehmen, was ich kann, und diesen Ort heute Nacht verlassen,
+					auf der Suche nach einer neuen Berufung.
+					'''
+			}
+
+			ArcaneChest: {
+				DisplayName: Arkane Truhe
+				Tooltip: ""
+			}
+
+			SacrificialAltar: {
+				DisplayName: Opferaltar
+				Tooltip: Alte Blutflecken bedecken die Oberfläche des Altars und gedenken seiner schrecklichen Geschichte
+			}
+
+			VaultPlating: {
+				DisplayName: Gewölbeplatte
+				Tooltip: ""
+			}
+
+			VaultWall: {
+				DisplayName: Gewölbewand
+				Tooltip: ""
+			}
+
+			HeavyAlloy: {
+				DisplayName: Schwere Legierung
+				Tooltip: ""
+			}
+
+			VaultPlatform: {
+				DisplayName: Gewölbeplattform
+				Tooltip: ""
+			}
+
+			VaultPipe: {
+				DisplayName: Gewölberohrwerk
+				Tooltip: ""
+			}
+
+			devwand2: {
+				DisplayName: Entwicklungsstab2
+				Tooltip: ""
+			}
+
+			HellishBrick: {
+				Tooltip: ""
+				DisplayName: Höllischer Ziegel
+			}
+
+			HellishPlatform: {
+				DisplayName: Höllische Plattform
+				Tooltip: ""
+			}
+
+			HellishBrickWall: {
+				DisplayName: Höllische Ziegel-Wand
+				Tooltip: ""
+			}
+
+			MarineSlab: {
+				DisplayName: Meeresplatte
+				Tooltip: ""
+			}
+
+			MarinePlatform: {
+				DisplayName: Meeresplattform
+				Tooltip: ""
+			}
+
+			MarineSlabWall: {
+				DisplayName: Meeresplatten-Wand
+				Tooltip: ""
+			}
+
+			NightglowBerryIcon: {
+				DisplayName: Nachtleuchtbeeren-Symbol
+				Tooltip: ""
+			}
+
+			ArcanePlatform: {
+				DisplayName: Arkane Plattform
+				Tooltip: ""
+			}
+
+			ArcaneChandelier: {
+				DisplayName: Arkaner Kronleuchter
+				Tooltip: ""
+			}
+
+			AlchemyBench: {
+				DisplayName: Arkaner Schreibtisch
+				Tooltip: ""
+			}
+
+			StoneofElements: {
+				DisplayName: Stein der Elemente
+				Tooltip:
+					'''
+					Reduziert die Abklingzeit von Heiltränken um 25%
+					Alle Debuffs klingen 100% schneller ab, außer Gesundheits- und Manakrankheit
+					'''
+			}
+
+			CosmicStone: {
+				DisplayName: Kosmischer Stein
+				Tooltip:
+					'''
+					Geringfügige Verbesserungen für eine breite Palette von Werten
+					Reduziert die Abklingzeit von Heiltränken um 25%
+					Alle Debuffs klingen 100% schneller ab, außer Gesundheits- und Manakrankheit
+					'''
+			}
+
+			PrismbudSeed: {
+				DisplayName: Prismaknospen-Samen
+				Tooltip: ""
+			}
+
+			DreamJelly: {
+				DisplayName: Traumgelee
+				Tooltip: Kann verwendet werden, um Kräuter zu duplizieren
+			}
+
+			DreampodSeeds: {
+				DisplayName: Traumschoten-Samen
+				Tooltip: ""
+			}
+
+			PrismbudSeeds: {
+				DisplayName: Prismaknospen-Samen
+				Tooltip: ""
+			}
+
+			ArcaneKey: {
+				DisplayName: Arkaner Schlüssel
+				Tooltip: Öffnet eine Abgeschlossene Arkane Truhe
+			}
+
+			RunestalkBlessingIcon: {
+				DisplayName: Runenstängel-Segen-Symbol
+				Tooltip: ""
+			}
+		}
+
+		NPCs: {
+			HoneySlime.DisplayName: Honigschleim
+			IlluminantDagger.DisplayName: Leuchtender Dolch
+			TomeofFrost.DisplayName: Foliant des Frosts
+			TomeofInferno.DisplayName: Foliant des Infernos
+			Ward.DisplayName: Wächter
+			Blaster.DisplayName: Blaster
+			Flamer.DisplayName: Entflammer
+			Gunner.DisplayName: Schütze
+			Icer.DisplayName: Vereiser
+			Shocker.DisplayName: Schocker
+			Arcanist.DisplayName: Verzauberer
+			TomeofMending.DisplayName: Foliant der Heilung
+			TomeofSummoning.DisplayName: Foliant der Beschwörung
+			CentipedeHead.DisplayName: Tausendfüßler
+			ResinSlime.DisplayName: Harz Schleim
+		}
+
+		Projectiles: {
+			burn.DisplayName: Verbrennung
+			cursedburn.DisplayName: Verfluchte Verbrennung
+			cursedflamejet.DisplayName: Verfluchter Flammenstrahl
+			deathbolt.DisplayName: Todesbolzen
+			magicshieldhit.DisplayName: Magischer Schildtreffer
+			MazeGuardianTeleport.DisplayName: Labyrinthwächter-Teleport
+			blastermissile.DisplayName: Blasterrakete
+			fireball.DisplayName: Feuerball
+			FireBolt.DisplayName: Feuerbolzen
+			iceball.DisplayName: Eisball
+			IceSpike.DisplayName: Eisspitze
+			PoisonSpit.DisplayName: Giftspucke
+			frostburn.DisplayName: Frostbrand
+			LuminousHook.DisplayName: Leuchtender Haken
+			ichorjet.DisplayName: Ichorstrahl
+			shockbolt.DisplayName: Schockbolzen
+			uraniumbullet.DisplayName: Urankugel
+			flamejet.DisplayName: Flammenstrahl
+			minigunholdout.DisplayName: Minigun-Haltepunkt
+			pulsebolt.DisplayName: Pulsbolzen
+			SpiritLanceHoldout.DisplayName: Geisterlanze-Haltepunkt
+			AetherButterfly.DisplayName: Ätherschmetterling
+			FallingDreampod.DisplayName: Fallende Traumschote
+			FallingEyeball.DisplayName: Fallendes Auge
+			SoulLanceHoldout.DisplayName: Seelenlanze
+			SpectralLanceHoldout.DisplayName: Spektrallanze
+			ResinShrapnel.DisplayName: Granatsplitter aus Harz
+		}
+
+		Configs: {
+			Worldgen: {
+				DisplayName: " Weltgenerierung"
+
+				Headers: {
+					General: Allgemein
+					Terrain: Gelände
+					Structure: Struktur
+				}
+
+				TerrainAmplitude: {
+					Label: "[i:3] Gelände-Amplitude"
+					Tooltip: Steuert die Höhenvariation des Oberflächengeländes
+				}
+
+				OreFrequency: {
+					Label: "[i:11] Erzhäufigkeit"
+					Tooltip: Steuert die Menge an Erz, die in neuen Welten generiert wird
+				}
+
+				TrapFrequency: {
+					Label: "[i:539] Fallenhäufigkeit"
+					Tooltip: Steuert die Anzahl der Fallen, die in neuen Welten generiert werden
+				}
+
+				CloudDensity: {
+					Label: "[i:751] Himmelsdichte"
+					Tooltip: Steuert die Anzahl der schwebenden Inseln und Wolken, die in neuen Welten generiert werden
+				}
+
+				ExperimentalWorldgen: {
+					Label: "[i:1344] Experimentelle Weltgenerierung"
+					Tooltip:
+						'''
+						Aktiviert Weltgenerierung, die sich noch in Entwicklung befindet
+
+						Hinweis: NUR FÜR TESTZWECKE - NIEMALS FÜR EINEN NORMALEN DURCHLAUF VERWENDEN
+						'''
+				}
+
+				LargerSky: {
+					Label: Größerer Himmel
+					Tooltip: ""
+				}
+
+				IceMountain: {
+					Label: "[i:664] Eisberg"
+					Tooltip: Aktiviert den Berg im Eisbiom
+				}
+
+				JungleValley: {
+					Label: "[i:176] Dschungeltal"
+					Tooltip: Aktiviert das Tal im Dschungelbiom
+				}
+
+				Safeguard: {
+					Label: "[i:156] Sicherung"
+					Tooltip:
+						'''
+						Verhindert die Erstellung von Welten, die inkompatible Mods oder Einstellungen verwenden
+
+						Hinweis: Dringend empfohlen - nur deaktivieren, wenn du weißt, was du tust
+						'''
+				}
+
+				SunkenSeaRework: {
+					Label: "[i:2625] Überarbeitung des Versunkenen Meeres"
+					Tooltip:
+						'''
+						Aktiviert die Überarbeitung des Versunkenen Meeres, wenn es mit der Calamity-Mod verwendet wird
+
+						Hinweis: Wird überflüssig, nachdem das Biom offiziell aktualisiert wurde
+						'''
+				}
+
+				CabinFrequency: {
+					Label: "[i:4080] Hüttenhäufigkeit"
+					Tooltip: Steuert die Anzahl der unterirdischen Hütten, die in neuen Welten generiert werden
+				}
+
+				RailroadFrequency: {
+					Label: "[i:2340] Eisenbahnhäufigkeit"
+					Tooltip: Steuert die Anzahl der Eisenbahnen, die in neuen Welten generiert werden
+				}
+			}
+
+			Gameplay: {
+				DisplayName: Gameplay
+
+				Headers: {
+					Functional: Funktional
+					Audio: Audio
+				}
+
+				FreedomOfMovement: {
+					Label: "[i:54] Bewegungsfreiheit"
+					Tooltip:
+						'''
+						Der Spieler ist von Natur aus schneller und wendiger (15mph > 18mph) 
+						Wenn du die Calamity-Mod verwendest, wird empfohlen, diesen Bewegungsbonus statt ihrem zu wählen
+
+						Hinweis: Dringend empfohlen
+						'''
+				}
+
+				EnemyAI: {
+					Label: "[i:1248] Verbesserungen der Gegner-KI"
+					Tooltip:
+						'''
+						Die meisten Luft- oder Wassergegner haben eine verbesserte KI
+
+						Hinweis: Funktioniert nicht im Mehrspielermodus
+						'''
+				}
+
+				ProjectileAI: {
+					Label: "[i:1321] Verbesserungen der Projektil-KI"
+					Tooltip:
+						'''
+						Wurfwaffen haben eine glatte Flugbahn, was sie leichter zu benutzen macht
+						Kommt mit zusätzlichen Balanceänderungen, wie Autoswing für Shurikens
+
+						Hinweis: Enthält obskure Fehler
+						'''
+				}
+
+				HangingBats: {
+					Label: "[i:1621] Hängende Fledermäuse"
+					Tooltip:
+						'''
+						Fledermäuse spawnen hängend von der Decke und greifen an, wenn man sich nähert
+
+						Hinweis: Funktioniert nicht im Mehrspielermodus
+						'''
+				}
+
+				CustomMusic: {
+					Label: "[i:576] Benutzerdefinierte Musik"
+					Tooltip: Aktiviert die benutzerdefinierte Musik der Mod
+				}
+			}
+		}
+	}
+}
