@@ -129,7 +129,7 @@ public class GardenMusicBox : ModItem
     public override void SetStaticDefaults()
     {
         Item.ResearchUnlockCount = 1;
-        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Garden"), ModContent.ItemType<GardenMusicBox>(), ModContent.TileType<GardenMusicBoxTile>());
+        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/AerialGarden"), ModContent.ItemType<GardenMusicBox>(), ModContent.TileType<GardenMusicBoxTile>());
     }
 
     public override void SetDefaults()
