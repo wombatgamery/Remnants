@@ -3679,7 +3679,7 @@ namespace Remnants.Content.World
             progressCounter++;
 
             structureCount = 0; // CACHE
-            while (structureCount < Main.maxTilesX / 84)
+            while (structureCount < Main.maxTilesX / 84 * ModContent.GetInstance<Worldgen>().CacheFrequency)
             {
                 progress.Set((progressCounter + structureCount / (float)(Main.maxTilesY / 84)) / uniqueStructures);
 
@@ -3783,7 +3783,7 @@ namespace Remnants.Content.World
             progressCounter++;
 
             structureCount = 0; // MINING PLATFORM
-            while (structureCount < Main.maxTilesX * Main.maxTilesY / 1200f / 175)
+            while (structureCount < Main.maxTilesX * Main.maxTilesY / 1200f / 175 * ModContent.GetInstance<Worldgen>().PlatformFrequency)
             {
                 progress.Set((progressCounter + structureCount / (float)(Main.maxTilesX * Main.maxTilesY / 1200f / 175)) / uniqueStructures);
 
