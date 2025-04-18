@@ -549,7 +549,12 @@ namespace Remnants.Content.World
             //}
 
             InsertPass(tasks, new Mineshafts("Mineshafts", 1), FindIndex(tasks, "Living Trees") + 1);
-            RemovePass(tasks, FindIndex(tasks, "Living Trees"));
+
+            if (!ModContent.GetInstance<Worldgen>().DoLivingTrees)
+            {
+              RemovePass(tasks, FindIndex(tasks, "Living Trees"));
+            }
+
             RemovePass(tasks, FindIndex(tasks, "Wood Tree Walls"));
 
             if (!ModContent.GetInstance<Worldgen>().ExperimentalWorldgen)
@@ -1408,8 +1413,24 @@ namespace Remnants.Content.World
         {
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            Main.worldSurface = (int)(Main.maxTilesY / 3f / 6) * 6;
-            Main.rockLayer = (int)(Main.maxTilesY / 2.25f / 6) * 6;
+            Worldgen WorldgenConfig = Worldgen.Instance;
+
+            int SurfaceChange = WorldgenConfig.FlatSurfaceRatioIncrease;
+            int UndergroundChange = WorldgenConfig.FlatUndergroundRatioIncrease;
+            int LavaChange = WorldgenConfig.FlatLavaRatioIncrease;
+
+            if (WorldgenConfig.Safeguard)
+            {
+                Main.worldSurface = (int)(Main.maxTilesY / 3f / 6) * 6;
+                Main.rockLayer = (int)(Main.maxTilesY / 2.25f / 6) * 6;
+            }
+            else
+            {
+                Main.worldSurface += SurfaceChange;
+                Main.rockLayer += UndergroundChange;
+                GenVars.lavaLine += LavaChange;
+            }
+
             //GenVars.lavaLine = (int)((Main.maxTilesY * 0.75f) / 6) * 6;
 
             //if (ModContent.GetInstance<Client>().LargerSky)

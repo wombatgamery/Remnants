@@ -774,6 +774,8 @@ Mods: {
 					General: Общее
 					Terrain: Ландшафт и пещеры
 					Structure: Структуры
+					// Compatability: Compatability
+					// LargerSky: World Layer Sizes
 				}
 
 				TerrainAmplitude: {
@@ -841,6 +843,48 @@ Mods: {
 				RailroadFrequency: {
 					Label: "[i:2340] Количество рельс для вагонеток"
 					Tooltip: Устанавливает количество генерируемых железнодорожных путей в пещерах
+				}
+
+				DoLivingTrees: {
+					// Label: "[i:5044] Living Trees"
+					// Tooltip: Controls if living trees generate in new worlds
+				}
+
+				PlatformFrequency: {
+					// Label: "[i:94] Platform Frequency"
+					// Tooltip: Controls the number of mining platforms generated in new worlds
+				}
+
+				CacheFrequency: {
+					// Label: "[i:48] Cache Frequency"
+					// Tooltip: Controls the number of hidden caches generated in new worlds
+				}
+
+				FlatSurfaceRatioIncrease: {
+					// Label: "[i:2] Surface Height Reduction"
+					/* Tooltip:
+						'''
+						Does nothing if safeguard is on
+						Controls how many blocks lower than normal should the surface layer be
+						''' */
+				}
+
+				FlatUndergroundRatioIncrease: {
+					// Label: "[i:3] Cavern Height Reduction"
+					/* Tooltip:
+						'''
+						Does nothing if safeguard is on
+						Controls how many blocks lower than normal should the cavern layer be
+						''' */
+				}
+
+				FlatLavaRatioIncrease: {
+					// Label: "[i:173] Lava Height Reduction"
+					/* Tooltip:
+						'''
+						Does nothing if safeguard is on
+						Controls how many blocks lower than normal should the lava layer be
+						''' */
 				}
 			}
 
