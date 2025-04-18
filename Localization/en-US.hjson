@@ -208,6 +208,13 @@ Mods: {
 			}
 
 			PrismbudHead.MapEntry: Prismbud
+			EchoingHallsMusicBoxTile.MapEntry: Music Box (Echoing Halls)
+			ForgottenTombMusicBoxTile.MapEntry: Music Box (Forgotten Tomb)
+			GardenMusicBoxTile.MapEntry: Music Box (Aerial Garden)
+			GraniteMusicBoxTile.MapEntry: Music Box (Granite Crevace)
+			MagicalLabMusicBoxTile.MapEntry: Music Box (Magical Lab)
+			MarbleMusicBoxTile.MapEntry: Music Box (Marble Cavern)
+			UndergrowthMusicBoxTile.MapEntry: Music Box (Undergrowth)
 		}
 
 		Buffs: {
@@ -702,6 +709,41 @@ Mods: {
 
 			RunestalkBlessingIcon: {
 				DisplayName: Runestalk Blessing Icon
+				Tooltip: ""
+			}
+
+			EchoingHallsMusicBox: {
+				DisplayName: Music Box (Echoing Halls)
+				Tooltip: ""
+			}
+
+			ForgottenTombMusicBox: {
+				DisplayName: Music Box (Forgotten Tomb)
+				Tooltip: ""
+			}
+
+			GardenMusicBox: {
+				DisplayName: Music Box (Aerial Garden)
+				Tooltip: ""
+			}
+
+			GraniteMusicBox: {
+				DisplayName: Music Box (Granite Crevace)
+				Tooltip: ""
+			}
+
+			MagicalLabMusicBox: {
+				DisplayName: Music Box (Magical Lab)
+				Tooltip: ""
+			}
+
+			MarbleMusicBox: {
+				DisplayName: Music Box (Marble Cavern)
+				Tooltip: ""
+			}
+
+			UndergrowthMusicBox: {
+				DisplayName: Music Box (Undergrowth)
 				Tooltip: ""
 			}
 		}
