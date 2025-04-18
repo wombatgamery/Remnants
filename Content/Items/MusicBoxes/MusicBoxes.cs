@@ -21,7 +21,7 @@ public class EchoingHallsMusicBox : ModItem
     public override void SetStaticDefaults()
     {
         Item.ResearchUnlockCount = 1;
-        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Sounds/Music/EchoingHalls"), ModContent.ItemType<EchoingHallsMusicBox>(), ModContent.TileType<EchoingHallsMusicBoxTile>());
+        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/EchoingHalls"), ModContent.ItemType<EchoingHallsMusicBox>(), ModContent.TileType<EchoingHallsMusicBoxTile>());
     }
 
     public override void SetDefaults()
@@ -48,7 +48,7 @@ public class MagicalLabMusicBox : ModItem
     public override void SetStaticDefaults()
     {
         Item.ResearchUnlockCount = 1;
-        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Sounds/Music/MagicalLab"), ModContent.ItemType<MagicalLabMusicBox>(), ModContent.TileType<MagicalLabMusicBoxTile>());
+        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/MagicalLab"), ModContent.ItemType<MagicalLabMusicBox>(), ModContent.TileType<MagicalLabMusicBoxTile>());
     }
 
     public override void SetDefaults()
@@ -75,7 +75,7 @@ public class ForgottenTombMusicBox : ModItem
     public override void SetStaticDefaults()
     {
         Item.ResearchUnlockCount = 1;
-        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Sounds/Music/Tomb"), ModContent.ItemType<ForgottenTombMusicBox>(), ModContent.TileType<ForgottenTombMusicBoxTile>());
+        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Tomb"), ModContent.ItemType<ForgottenTombMusicBox>(), ModContent.TileType<ForgottenTombMusicBoxTile>());
     }
 
     public override void SetDefaults()
@@ -102,7 +102,7 @@ public class UndergrowthMusicBox : ModItem
     public override void SetStaticDefaults()
     {
         Item.ResearchUnlockCount = 1;
-        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Sounds/Music/Growth"), ModContent.ItemType<UndergrowthMusicBox>(), ModContent.TileType<UndergrowthMusicBoxTile>());
+        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Growth"), ModContent.ItemType<UndergrowthMusicBox>(), ModContent.TileType<UndergrowthMusicBoxTile>());
     }
 
     public override void SetDefaults()
@@ -129,7 +129,7 @@ public class GardenMusicBox : ModItem
     public override void SetStaticDefaults()
     {
         Item.ResearchUnlockCount = 1;
-        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Sounds/Music/Garden"), ModContent.ItemType<GardenMusicBox>(), ModContent.TileType<GardenMusicBoxTile>());
+        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Garden"), ModContent.ItemType<GardenMusicBox>(), ModContent.TileType<GardenMusicBoxTile>());
     }
 
     public override void SetDefaults()
@@ -156,7 +156,7 @@ public class GraniteMusicBox : ModItem
     public override void SetStaticDefaults()
     {
         Item.ResearchUnlockCount = 1;
-        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Sounds/Music/GraniteCave"), ModContent.ItemType<GraniteMusicBox>(), ModContent.TileType<GraniteMusicBoxTile>());
+        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/GraniteCave"), ModContent.ItemType<GraniteMusicBox>(), ModContent.TileType<GraniteMusicBoxTile>());
     }
 
     public override void SetDefaults()
@@ -183,7 +183,7 @@ public class MarbleMusicBox : ModItem
     public override void SetStaticDefaults()
     {
         Item.ResearchUnlockCount = 1;
-        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Sounds/Music/MarbleCave"), ModContent.ItemType<MarbleMusicBox>(), ModContent.TileType<MarbleMusicBoxTile>());
+        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/MarbleCave"), ModContent.ItemType<MarbleMusicBox>(), ModContent.TileType<MarbleMusicBoxTile>());
     }
 
     public override void SetDefaults()
