@@ -11,6 +11,7 @@ using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Microsoft.Xna.Framework;
 using Remnants.Content.Tiles.MusicBoxes;
+using System.IO;
 
 namespace Remnants.Content.Items.MusicBoxes;
 
@@ -18,26 +19,23 @@ namespace Remnants.Content.Items.MusicBoxes;
 #region Echoing Halls
 public class EchoingHallsMusicBox : ModItem
 {
+    public override LocalizedText DisplayName => Language.GetText("{0} ({1})").WithFormatArgs(Language.GetText("ItemName.MusicBox"), Language.GetText("Mods.Remnants.Biomes.EchoingHalls.DisplayName"));
+
+    public override LocalizedText Tooltip => null;
+
     public override void SetStaticDefaults()
     {
-        Item.ResearchUnlockCount = 1;
-        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/EchoingHalls"), ModContent.ItemType<EchoingHallsMusicBox>(), ModContent.TileType<EchoingHallsMusicBoxTile>());
+        ItemID.Sets.CanGetPrefixes[Type] = false;
+        ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.MusicBox;
+
+        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/EchoingHalls"), ModContent.ItemType<EchoingHallsMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.EchoingHallsMusicBox>());
     }
 
     public override void SetDefaults()
     {
-        Item.useStyle = ItemUseStyleID.Swing;
-        Item.useTurn = true;
-        Item.useAnimation = 15;
-        Item.useTime = 10;
-        Item.autoReuse = true;
-        Item.consumable = true;
-        Item.createTile = ModContent.TileType<EchoingHallsMusicBoxTile>();
-        Item.width = 24;
-        Item.height = 24;
-        Item.rare = ItemRarityID.Yellow;
-        Item.value = 100000;
-        Item.accessory = true;
+        Item.CloneDefaults(ItemID.MusicBoxAltOverworldDay);
+        Item.createTile = ModContent.TileType<Tiles.MusicBoxes.EchoingHallsMusicBox>();
+        Item.placeStyle = 0;
     }
 }
 #endregion
@@ -45,26 +43,23 @@ public class EchoingHallsMusicBox : ModItem
 #region Magical Labs
 public class MagicalLabMusicBox : ModItem
 {
+    public override LocalizedText DisplayName => Language.GetText("{0} ({1})").WithFormatArgs(Language.GetText("ItemName.MusicBox"), Language.GetText("Mods.Remnants.Biomes.MagicalLab.DisplayName"));
+
+    public override LocalizedText Tooltip => null;
+
     public override void SetStaticDefaults()
     {
-        Item.ResearchUnlockCount = 1;
-        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/MagicalLab"), ModContent.ItemType<MagicalLabMusicBox>(), ModContent.TileType<MagicalLabMusicBoxTile>());
+        ItemID.Sets.CanGetPrefixes[Type] = false;
+        ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.MusicBox;
+
+        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/MagicalLab"), ModContent.ItemType<MagicalLabMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.MagicalLabMusicBox>());
     }
 
     public override void SetDefaults()
     {
-        Item.useStyle = ItemUseStyleID.Swing;
-        Item.useTurn = true;
-        Item.useAnimation = 15;
-        Item.useTime = 10;
-        Item.autoReuse = true;
-        Item.consumable = true;
-        Item.createTile = ModContent.TileType<MagicalLabMusicBoxTile>();
-        Item.width = 24;
-        Item.height = 24;
-        Item.rare = ItemRarityID.Yellow;
-        Item.value = 100000;
-        Item.accessory = true;
+        Item.CloneDefaults(ItemID.MusicBoxAltOverworldDay);
+        Item.createTile = ModContent.TileType<Tiles.MusicBoxes.MagicalLabMusicBox>();
+        Item.placeStyle = 0;
     }
 }
 #endregion
@@ -72,26 +67,23 @@ public class MagicalLabMusicBox : ModItem
 #region Forgotten Tomb
 public class ForgottenTombMusicBox : ModItem
 {
+    public override LocalizedText DisplayName => Language.GetText("{0} ({1})").WithFormatArgs(Language.GetText("ItemName.MusicBox"), Language.GetText("Mods.Remnants.Biomes.ForgottenTomb.DisplayName"));
+
+    public override LocalizedText Tooltip => null;
+
     public override void SetStaticDefaults()
     {
-        Item.ResearchUnlockCount = 1;
-        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Tomb"), ModContent.ItemType<ForgottenTombMusicBox>(), ModContent.TileType<ForgottenTombMusicBoxTile>());
+        ItemID.Sets.CanGetPrefixes[Type] = false;
+        ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.MusicBox;
+
+        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Tomb"), ModContent.ItemType<ForgottenTombMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.ForgottenTombMusicBox>());
     }
 
     public override void SetDefaults()
     {
-        Item.useStyle = ItemUseStyleID.Swing;
-        Item.useTurn = true;
-        Item.useAnimation = 15;
-        Item.useTime = 10;
-        Item.autoReuse = true;
-        Item.consumable = true;
-        Item.createTile = ModContent.TileType<ForgottenTombMusicBoxTile>();
-        Item.width = 24;
-        Item.height = 24;
-        Item.rare = ItemRarityID.Yellow;
-        Item.value = 100000;
-        Item.accessory = true;
+        Item.CloneDefaults(ItemID.MusicBoxAltOverworldDay);
+        Item.createTile = ModContent.TileType<Tiles.MusicBoxes.ForgottenTombMusicBox>();
+        Item.placeStyle = 0;
     }
 }
 #endregion
@@ -99,26 +91,23 @@ public class ForgottenTombMusicBox : ModItem
 #region Undergrowth
 public class UndergrowthMusicBox : ModItem
 {
+    public override LocalizedText DisplayName => Language.GetText("{0} ({1})").WithFormatArgs(Language.GetText("ItemName.MusicBox"), Language.GetText("Mods.Remnants.Biomes.Undergrowth.DisplayName"));
+
+    public override LocalizedText Tooltip => null;
+
     public override void SetStaticDefaults()
     {
-        Item.ResearchUnlockCount = 1;
-        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Growth"), ModContent.ItemType<UndergrowthMusicBox>(), ModContent.TileType<UndergrowthMusicBoxTile>());
+        ItemID.Sets.CanGetPrefixes[Type] = false;
+        ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.MusicBox;
+
+        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Undergrowth"), ModContent.ItemType<UndergrowthMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.UndergrowthMusicBox>());
     }
 
     public override void SetDefaults()
     {
-        Item.useStyle = ItemUseStyleID.Swing;
-        Item.useTurn = true;
-        Item.useAnimation = 15;
-        Item.useTime = 10;
-        Item.autoReuse = true;
-        Item.consumable = true;
-        Item.createTile = ModContent.TileType<UndergrowthMusicBoxTile>();
-        Item.width = 24;
-        Item.height = 24;
-        Item.rare = ItemRarityID.Yellow;
-        Item.value = 100000;
-        Item.accessory = true;
+        Item.CloneDefaults(ItemID.MusicBoxAltOverworldDay);
+        Item.createTile = ModContent.TileType<Tiles.MusicBoxes.UndergrowthMusicBox>();
+        Item.placeStyle = 0;
     }
 }
 #endregion
@@ -126,26 +115,23 @@ public class UndergrowthMusicBox : ModItem
 #region Aerial Garden
 public class GardenMusicBox : ModItem
 {
+    public override LocalizedText DisplayName => Language.GetText("{0} ({1})").WithFormatArgs(Language.GetText("ItemName.MusicBox"), Language.GetText("Mods.Remnants.Biomes.AerialGarden.DisplayName"));
+
+    public override LocalizedText Tooltip => null;
+
     public override void SetStaticDefaults()
     {
-        Item.ResearchUnlockCount = 1;
-        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/AerialGarden"), ModContent.ItemType<GardenMusicBox>(), ModContent.TileType<GardenMusicBoxTile>());
+        ItemID.Sets.CanGetPrefixes[Type] = false;
+        ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.MusicBox;
+
+        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/AerialGarden"), ModContent.ItemType<GardenMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.GardenMusicBox>());
     }
 
     public override void SetDefaults()
     {
-        Item.useStyle = ItemUseStyleID.Swing;
-        Item.useTurn = true;
-        Item.useAnimation = 15;
-        Item.useTime = 10;
-        Item.autoReuse = true;
-        Item.consumable = true;
-        Item.createTile = ModContent.TileType<GardenMusicBoxTile>();
-        Item.width = 24;
-        Item.height = 24;
-        Item.rare = ItemRarityID.Yellow;
-        Item.value = 100000;
-        Item.accessory = true;
+        Item.CloneDefaults(ItemID.MusicBoxAltOverworldDay);
+        Item.createTile = ModContent.TileType<Tiles.MusicBoxes.GardenMusicBox>();
+        Item.placeStyle = 0;
     }
 }
 #endregion
@@ -153,26 +139,23 @@ public class GardenMusicBox : ModItem
 #region Granite Cave
 public class GraniteMusicBox : ModItem
 {
+    public override LocalizedText DisplayName => Language.GetText("{0} ({1})").WithFormatArgs(Language.GetText("ItemName.MusicBox"), Language.GetText("Mods.Remnants.Biomes.GraniteCave.DisplayName"));
+
+    public override LocalizedText Tooltip => null;
+
     public override void SetStaticDefaults()
     {
-        Item.ResearchUnlockCount = 1;
-        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/GraniteCave"), ModContent.ItemType<GraniteMusicBox>(), ModContent.TileType<GraniteMusicBoxTile>());
+        ItemID.Sets.CanGetPrefixes[Type] = false;
+        ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.MusicBox;
+
+        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/GraniteCave"), ModContent.ItemType<GraniteMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.GraniteMusicBox>());
     }
 
     public override void SetDefaults()
     {
-        Item.useStyle = ItemUseStyleID.Swing;
-        Item.useTurn = true;
-        Item.useAnimation = 15;
-        Item.useTime = 10;
-        Item.autoReuse = true;
-        Item.consumable = true;
-        Item.createTile = ModContent.TileType<GraniteMusicBoxTile>();
-        Item.width = 24;
-        Item.height = 24;
-        Item.rare = ItemRarityID.Yellow;
-        Item.value = 100000;
-        Item.accessory = true;
+        Item.CloneDefaults(ItemID.MusicBoxAltOverworldDay);
+        Item.createTile = ModContent.TileType<Tiles.MusicBoxes.GraniteMusicBox>();
+        Item.placeStyle = 0;
     }
 }
 #endregion
@@ -180,26 +163,23 @@ public class GraniteMusicBox : ModItem
 #region Marble Cave
 public class MarbleMusicBox : ModItem
 {
+    public override LocalizedText DisplayName => Language.GetText("{0} ({1})").WithFormatArgs(Language.GetText("ItemName.MusicBox"), Language.GetText("Mods.Remnants.Biomes.MarbleCave.DisplayName"));
+
+    public override LocalizedText Tooltip => null;
+
     public override void SetStaticDefaults()
     {
-        Item.ResearchUnlockCount = 1;
-        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/MarbleCave"), ModContent.ItemType<MarbleMusicBox>(), ModContent.TileType<MarbleMusicBoxTile>());
+        ItemID.Sets.CanGetPrefixes[Type] = false;
+        ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.MusicBox;
+
+        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/MarbleCave"), ModContent.ItemType<MarbleMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.MarbleMusicBox>());
     }
 
     public override void SetDefaults()
     {
-        Item.useStyle = ItemUseStyleID.Swing;
-        Item.useTurn = true;
-        Item.useAnimation = 15;
-        Item.useTime = 10;
-        Item.autoReuse = true;
-        Item.consumable = true;
-        Item.createTile = ModContent.TileType<MarbleMusicBoxTile>();
-        Item.width = 24;
-        Item.height = 24;
-        Item.rare = ItemRarityID.Yellow;
-        Item.value = 100000;
-        Item.accessory = true;
+        Item.CloneDefaults(ItemID.MusicBoxAltOverworldDay);
+        Item.createTile = ModContent.TileType<Tiles.MusicBoxes.MarbleMusicBox>();
+        Item.placeStyle = 0;
     }
 }
 #endregion

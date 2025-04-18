@@ -15,6 +15,7 @@ using Remnants.Content.Tiles.Blocks;
 using Remnants.Content.Tiles.Plants;
 using Remnants.Content.Tiles.Objects.Furniture;
 using Remnants.Content.Tiles.Objects.Hazards;
+using Terraria.Audio;
 
 namespace Remnants.Content.Tiles
 {
@@ -46,6 +47,15 @@ namespace Remnants.Content.Tiles
                 }
             }
             return base.CanPlace(i, j, type);
+        }
+
+        public override bool KillSound(int i, int j, int tile, bool fail)
+        {
+            if (tile == TileID.ShimmerBlock)
+            {
+                SoundEngine.PlaySound(SoundID.Shatter);
+            }
+            return base.KillSound(i, j, tile, fail);
         }
 
         private bool AdjacentTiles(int i, int j, bool diagonal, bool torch)

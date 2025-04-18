@@ -208,13 +208,6 @@ Mods: {
 			}
 
 			PrismbudHead.MapEntry: Pryzmik
-			// EchoingHallsMusicBoxTile.MapEntry: Echoing Halls Music Box Tile
-			// ForgottenTombMusicBoxTile.MapEntry: Forgotten Tomb Music Box Tile
-			// GardenMusicBoxTile.MapEntry: Garden Music Box Tile
-			// GraniteMusicBoxTile.MapEntry: Granite Music Box Tile
-			// MagicalLabMusicBoxTile.MapEntry: Magical Lab Music Box Tile
-			// MarbleMusicBoxTile.MapEntry: Marble Music Box Tile
-			// UndergrowthMusicBoxTile.MapEntry: Undergrowth Music Box Tile
 		}
 
 		Buffs: {
@@ -712,42 +705,7 @@ Mods: {
 			}
 
 			RunestalkBlessingIcon: {
-				DisplayName: Ikona Runicznego Błogosławieństwa
-				Tooltip: ""
-			}
-
-			EchoingHallsMusicBox: {
-				// DisplayName: Echoing Halls Music Box
-				// Tooltip: ""
-			}
-
-			ForgottenTombMusicBox: {
-				// DisplayName: Forgotten Tomb Music Box
-				// Tooltip: ""
-			}
-
-			GardenMusicBox: {
-				// DisplayName: Garden Music Box
-				// Tooltip: ""
-			}
-
-			GraniteMusicBox: {
-				// DisplayName: Granite Music Box
-				// Tooltip: ""
-			}
-
-			MagicalLabMusicBox: {
-				// DisplayName: Magical Lab Music Box
-				// Tooltip: ""
-			}
-
-			MarbleMusicBox: {
-				// DisplayName: Marble Music Box
-				// Tooltip: ""
-			}
-
-			UndergrowthMusicBox: {
-				// DisplayName: Undergrowth Music Box
+				// DisplayName: Runestalk Blessing Icon
 				// Tooltip: ""
 			}
 		}
@@ -838,11 +796,6 @@ Mods: {
 
 						Uwaga: TYLKO W CELACH TESTOWYCH – NIGDY NIE UŻYWAJ TEGO DO NORMALNEJ GRY
 						'''
-				}
-
-				LargerSky: {
-					Label: Wyższe Niebo
-					Tooltip: ""
 				}
 
 				IceMountain: {

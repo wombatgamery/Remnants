@@ -208,13 +208,6 @@ Mods: {
 			}
 
 			PrismbudHead.MapEntry: Луковица-призмоцветка
-			// EchoingHallsMusicBoxTile.MapEntry: Echoing Halls Music Box Tile
-			// ForgottenTombMusicBoxTile.MapEntry: Forgotten Tomb Music Box Tile
-			// GardenMusicBoxTile.MapEntry: Garden Music Box Tile
-			// GraniteMusicBoxTile.MapEntry: Granite Music Box Tile
-			// MagicalLabMusicBoxTile.MapEntry: Magical Lab Music Box Tile
-			// MarbleMusicBoxTile.MapEntry: Marble Music Box Tile
-			// UndergrowthMusicBoxTile.MapEntry: Undergrowth Music Box Tile
 		}
 
 		Buffs: {
@@ -723,41 +716,6 @@ Mods: {
 				DisplayName: Иконка благословения руностебля
 				Tooltip: ""
 			}
-
-			EchoingHallsMusicBox: {
-				// DisplayName: Echoing Halls Music Box
-				// Tooltip: ""
-			}
-
-			ForgottenTombMusicBox: {
-				// DisplayName: Forgotten Tomb Music Box
-				// Tooltip: ""
-			}
-
-			GardenMusicBox: {
-				// DisplayName: Garden Music Box
-				// Tooltip: ""
-			}
-
-			GraniteMusicBox: {
-				// DisplayName: Granite Music Box
-				// Tooltip: ""
-			}
-
-			MagicalLabMusicBox: {
-				// DisplayName: Magical Lab Music Box
-				// Tooltip: ""
-			}
-
-			MarbleMusicBox: {
-				// DisplayName: Marble Music Box
-				// Tooltip: ""
-			}
-
-			UndergrowthMusicBox: {
-				// DisplayName: Undergrowth Music Box
-				// Tooltip: ""
-			}
 		}
 
 		NPCs: {
@@ -845,11 +803,6 @@ Mods: {
 						Включает генерацию контента, который всё ещё находится в процессе разработки и тестировки
 						[c/F20D3B:Категорически не рекомендуется для обычных прохождений]
 						'''
-				}
-
-				LargerSky: {
-					// Label: Larger Sky
-					// Tooltip: ""
 				}
 
 				IceMountain: {

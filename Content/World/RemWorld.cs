@@ -20,7 +20,6 @@ using Remnants.Content.Walls.Parallax;
 using Remnants.Content.Tiles.Blocks;
 using Remnants.Content.Tiles.Plants;
 using Remnants.Content.Tiles.Objects.Furniture;
-using RemnantsTemp.World.AltPlanetoids;
 using Terraria.GameContent.Generation;
 
 namespace Remnants.Content.World
@@ -604,12 +603,6 @@ namespace Remnants.Content.World
                 if (ModContent.GetInstance<Worldgen>().SunkenSeaRework)
                 {
                     RemovePass(tasks, FindIndex(tasks, "Sunken Sea"));
-                }
-
-                if (ModContent.GetInstance<Worldgen>().AltPlanetoids)
-                {
-                    RemovePass(tasks, FindIndex(tasks, "Planetoids"));
-                    tasks.Insert(tasks.FindIndex(genpass => genpass.Name.Equals("Clouds")) - 1, new PassLegacy("Planetoids", AltPlanetoids.GenerateNewPlanetoids));
                 }
 
                 RemovePass(tasks, FindIndex(tasks, "Giant Hive"));

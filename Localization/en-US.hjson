@@ -208,13 +208,6 @@ Mods: {
 			}
 
 			PrismbudHead.MapEntry: Prismbud
-			EchoingHallsMusicBoxTile.MapEntry: Music Box (Echoing Halls)
-			ForgottenTombMusicBoxTile.MapEntry: Music Box (Forgotten Tomb)
-			GardenMusicBoxTile.MapEntry: Music Box (Aerial Garden)
-			GraniteMusicBoxTile.MapEntry: Music Box (Granite Crevace)
-			MagicalLabMusicBoxTile.MapEntry: Music Box (Magical Lab)
-			MarbleMusicBoxTile.MapEntry: Music Box (Marble Cavern)
-			UndergrowthMusicBoxTile.MapEntry: Music Box (Undergrowth)
 		}
 
 		Buffs: {
@@ -711,41 +704,6 @@ Mods: {
 				DisplayName: Runestalk Blessing Icon
 				Tooltip: ""
 			}
-
-			EchoingHallsMusicBox: {
-				DisplayName: Music Box (Echoing Halls)
-				Tooltip: ""
-			}
-
-			ForgottenTombMusicBox: {
-				DisplayName: Music Box (Forgotten Tomb)
-				Tooltip: ""
-			}
-
-			GardenMusicBox: {
-				DisplayName: Music Box (Aerial Garden)
-				Tooltip: ""
-			}
-
-			GraniteMusicBox: {
-				DisplayName: Music Box (Granite Crevace)
-				Tooltip: ""
-			}
-
-			MagicalLabMusicBox: {
-				DisplayName: Music Box (Magical Lab)
-				Tooltip: ""
-			}
-
-			MarbleMusicBox: {
-				DisplayName: Music Box (Marble Cavern)
-				Tooltip: ""
-			}
-
-			UndergrowthMusicBox: {
-				DisplayName: Music Box (Undergrowth)
-				Tooltip: ""
-			}
 		}
 
 		NPCs: {
@@ -864,20 +822,6 @@ Mods: {
 
 						Note: Will become obsolete after the biome is officially updated
 						'''
-				}
-
-				DoLava: {
-					Label: "[i:1518] Liquid Varient"
-					Tooltip:
-						'''
-						If On, will use lava and obsidian
-						If Off, will use shimmer and atherium
-						'''
-				}
-
-				AltPlanetoids: {
-					Label: "[i:2767] Alt Planetoids"
-					Tooltip: Enable Meteorite Planetoids?
 				}
 
 				CabinFrequency: {

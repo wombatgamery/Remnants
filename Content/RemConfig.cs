@@ -48,12 +48,6 @@ namespace Remnants.Content
         [BackgroundColor(150, 150, 125)]
         public bool SunkenSeaRework;
 
-        [DefaultValue(true)]
-        public bool AltPlanetoids;
-
-        [DefaultValue(false)]
-        public bool DoLava;
-
         [Header("Structure")]
 
 		[Range(0f, 2f)]

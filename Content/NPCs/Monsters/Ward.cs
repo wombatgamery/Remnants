@@ -29,7 +29,6 @@ namespace Remnants.Content.NPCs.Monsters
             Main.npcFrameCount[NPC.type] = 1;
 
             NPCID.Sets.ImmuneToRegularBuffs[Type] = true;
-            NPCID.Sets.HurtingBees[Type] = true;
             NPCID.Sets.TeleportationImmune[Type] = true;
             NPCID.Sets.NeedsExpertScaling[Type] = false;
         }
@@ -59,7 +58,6 @@ namespace Remnants.Content.NPCs.Monsters
             SpawnModBiomes = new int[] { ModContent.GetInstance<EchoingHalls>().Type };
 
             NPCID.Sets.ImmuneToRegularBuffs[Type] = true;
-            NPCID.Sets.HurtingBees[Type] = true;
             NPCID.Sets.TeleportationImmune[Type] = true;
             NPCID.Sets.NeedsExpertScaling[Type] = false;
         }
