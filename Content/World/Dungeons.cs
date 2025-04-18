@@ -4883,6 +4883,7 @@ namespace Remnants.Content.World
                 for (int i = (int)maze.targetCell.X; i <= maze.targetCell.X + 2; i++)
                 {
                     maze.AddMarker(i, j);
+                    maze.AddMarker(i, j, 5);
                 }
             }
 
@@ -4899,7 +4900,7 @@ namespace Remnants.Content.World
 
                 if (!maze.FindMarker(maze.targetCell.X, maze.targetCell.Y))
                 {
-                    maze.AddMarker(maze.targetCell.X, maze.targetCell.Y); maze.AddMarker(maze.targetCell.X, maze.targetCell.Y, 5);
+                    maze.AddMarker(maze.targetCell.X, maze.targetCell.Y);
                     cellStack.Add(maze.targetCell);
 
                     if (adjacencies.Count == 0)
@@ -4950,15 +4951,21 @@ namespace Remnants.Content.World
 
             for (maze.targetCell.Y = maze.grid.Top; maze.targetCell.Y < maze.grid.Bottom; maze.targetCell.Y++)
             {
-                for (maze.targetCell.X = maze.grid.Left; maze.targetCell.X <= maze.grid.Right; maze.targetCell.X++)
+                for (maze.targetCell.X = maze.grid.Left; maze.targetCell.X < maze.grid.Right; maze.targetCell.X++)
                 {
-                    if (maze.FindMarker(maze.targetCell.X, maze.targetCell.Y) && maze.FindMarker(maze.targetCell.X, maze.targetCell.Y, 5))
+                    if (maze.FindMarker(maze.targetCell.X, maze.targetCell.Y) && !maze.FindMarker(maze.targetCell.X, maze.targetCell.Y, 5))
                     {
                         StructureHelper.API.MultiStructureGenerator.GenerateMultistructureSpecific("Content/World/Structures/Special/EchoingHalls/room", maze.FindMarker(maze.targetCell.X, maze.targetCell.Y, 6) ? 1 : 0, maze.roomPos, ModContent.GetInstance<Remnants>());
 
                         if (maze.FindMarker(maze.targetCell.X, maze.targetCell.Y, 1))
                         {
                             StructureHelper.API.MultiStructureGenerator.GenerateMultistructureSpecific("Content/World/Structures/Special/EchoingHalls/ladder", maze.targetCell == new Vector2(maze.grid.Center.X, maze.grid.Top) || maze.targetCell == new Vector2(maze.grid.Center.X, maze.grid.Height - 1) ? 1 : 0, new Point16(maze.room.X + 4, maze.room.Y), ModContent.GetInstance<Remnants>());
+
+                            if (!maze.FindMarker(maze.targetCell.X, maze.targetCell.Y - 1, 1) && maze.FindMarker(maze.targetCell.X, maze.targetCell.Y - 1, 3))
+                            {
+                                WGTools.Rectangle(maze.room.Left + 4, maze.room.Top + 7 - maze.room.Height, maze.room.Left + 6, maze.room.Bottom - maze.room.Height, -2, ModContent.WallType<LabyrinthTileWall>());
+                                WGTools.Rectangle(maze.room.Right - 6, maze.room.Top + 7 - maze.room.Height, maze.room.Right - 4, maze.room.Bottom - maze.room.Height, -2, ModContent.WallType<LabyrinthTileWall>());
+                            }
                         }
 
                         if (!maze.FindMarker(maze.targetCell.X, maze.targetCell.Y, 2))
@@ -4986,13 +4993,157 @@ namespace Remnants.Content.World
                 }
             }
 
-            int roomCount = maze.grid.Width * maze.grid.Height / 16;
+            int roomCount = 5;
+            while (roomCount > 0)
+            {
+                int width = (int)((roomCount <= 4 ? 2 : 4) * Main.maxTilesX / 4200f);
+                int height = (int)((roomCount <= 4 ? 2 : 4) * Main.maxTilesY / 1200f);
+                int x = WorldGen.genRand.Next(maze.grid.Left + 1, maze.grid.Right - width);
+                int y = WorldGen.genRand.Next(maze.grid.Top + 1, maze.grid.Bottom - height);
+
+                bool valid = true;
+
+                if (roomCount == 5)
+                {
+                    int score = 0;
+                    for (int i = x; i < x + width; i++)
+                    {
+                        int j = y - 1;
+                        while (maze.FindMarker(i, j, 1) && maze.FindMarker(i, j, 3))
+                        {
+                            j--;
+                        }
+                        if (maze.FindMarker(i, j, 6) && maze.FindMarker(i, j, 3))
+                        {
+                            score++;
+                        }
+
+                        j = y + height;
+                        while (maze.FindMarker(i, j, 1) && maze.FindMarker(i, j, 3))
+                        {
+                            j++;
+                        }
+                        if (maze.FindMarker(i, j, 6) && maze.FindMarker(i, j, 1))
+                        {
+                            score++;
+                        }
+                    }
+
+                    for (int j = y; j < y + height; j++)
+                    {
+                        int i = x - 1;
+                        while (maze.FindMarker(i, j, 2) && maze.FindMarker(i, j, 4))
+                        {
+                            i--;
+                        }
+                        if (maze.FindMarker(i, j, 6) && maze.FindMarker(i, j, 2))
+                        {
+                            score++;
+                        }
+
+                        i = x + width;
+                        while (maze.FindMarker(i, j, 2) && maze.FindMarker(i, j, 4))
+                        {
+                            i++;
+                        }
+                        if (maze.FindMarker(i, j, 6) && maze.FindMarker(i, j, 4))
+                        {
+                            score++;
+                        }
+                    }
+
+                    if (score < Math.Sqrt(width * height) / 2 - (WorldGen.genRand.NextBool(1000) ? 1 : 0))
+                    {
+                        valid = false;
+                    }
+                }
+
+                if (valid)
+                {
+                    for (int j = y; j < y + height; j++)
+                    {
+                        for (int i = x; i < x + width; i++)
+                        {
+                            if (maze.FindMarker(i, j, 5) || maze.FindMarker(i, j, 6) && roomCount <= 4 && !WorldGen.genRand.NextBool(1000))
+                            {
+                                valid = false;
+                            }
+                        }
+                    }
+                }
+
+                if (valid)
+                {
+                    for (int j = y; j < y + height; j++)
+                    {
+                        for (int i = x; i < x + width; i++)
+                        {
+                            maze.AddMarker(i, j, 5);
+                        }
+                    }
+
+                    maze.targetCell.X = x;
+                    maze.targetCell.Y = y;
+
+                    WGTools.Rectangle(maze.room.Left + 4, maze.room.Top + 7, maze.room.Right + maze.room.Width * (width - 1) - 4, maze.room.Bottom + maze.room.Height * (height - 1) - 1, -1, ModContent.WallType<LabyrinthTileWall>());
+
+                    for (maze.targetCell.X = x; maze.targetCell.X < x + width; maze.targetCell.X++)
+                    {
+                        maze.targetCell.Y = y;
+
+                        WGTools.Rectangle(maze.room.X + maze.room.Width - 3, maze.room.Top + 7, maze.room.X + maze.room.Width - 3, maze.room.Bottom + maze.room.Height * (height - 1) - 1, -2, ModContent.WallType<LabyrinthBrickWall>());
+                        WGTools.Rectangle(maze.room.X + maze.room.Width + 3, maze.room.Top + 7, maze.room.X + maze.room.Width + 3, maze.room.Bottom + maze.room.Height * (height - 1) - 1, -2, ModContent.WallType<LabyrinthBrickWall>());
+
+                        for (int j = maze.room.Top + 7; j <= maze.room.Bottom + maze.room.Height * (height - 1) - 1; j++)
+                        {
+                            WGTools.Rectangle(maze.room.X + (WorldGen.genRand.NextBool(3) ? 4 : 5), j, maze.room.X + maze.room.Width - (WorldGen.genRand.NextBool(3) ? 4 : 5), j, -2, ModContent.WallType<whisperingmaze>());
+                            //WGTools.Rectangle(maze.room.X + 4, j, maze.room.X + maze.room.Width - 4, j, -2, ModContent.WallType<whisperingmaze>());
+                        }
+
+                        for (maze.targetCell.Y = y; maze.targetCell.Y < y + height - 1; maze.targetCell.Y++)
+                        {
+                            WorldGen.PlaceTile(maze.room.Left + 4, maze.room.Bottom, ModContent.TileType<LabyrinthPlatform>());
+                            WorldGen.PlaceTile(maze.room.Right - 4, maze.room.Bottom, ModContent.TileType<LabyrinthPlatform>());
+                        }
+                    }
+
+                    for (maze.targetCell.Y = y; maze.targetCell.Y < y + height; maze.targetCell.Y++)
+                    {
+                        for (maze.targetCell.X = x; maze.targetCell.X < x + width - 1; maze.targetCell.X++)
+                        {
+                            //if (WorldGen.genRand.NextBool(2))
+                                WorldGen.PlaceTile(maze.room.Right, maze.room.Bottom - 3, ModContent.TileType<LabyrinthWallLamp>(), style: 1);
+                            //if (WorldGen.genRand.NextBool(2))
+                                WorldGen.PlaceTile(maze.room.Right, maze.room.Bottom - 5, ModContent.TileType<LabyrinthWallLamp>(), style: 1);
+                            //if (WorldGen.genRand.NextBool(2))
+                                WorldGen.PlaceTile(maze.room.Right, maze.room.Bottom - 7, ModContent.TileType<LabyrinthWallLamp>(), style: 1);
+                            //if (WorldGen.genRand.NextBool(2))
+                                WorldGen.PlaceTile(maze.room.Right, maze.room.Bottom - 9, ModContent.TileType<LabyrinthWallLamp>(), style: 1);
+                        }
+                    }
+
+                    for (maze.targetCell.Y = y; maze.targetCell.Y < y + height - 1; maze.targetCell.Y++)
+                    {
+                        for (maze.targetCell.X = x; maze.targetCell.X < x + width - 1; maze.targetCell.X++)
+                        {
+                            for (int k = 0; k < 7; k++)
+                            {
+                                WGTools.Rectangle(maze.room.X + maze.room.Width - 3 + k, maze.room.Y + maze.room.Height, maze.room.X + maze.room.Width - 3 + k, maze.room.Y + maze.room.Height + WorldGen.genRand.Next(3, 7), ModContent.TileType<LabyrinthBrick>());
+                            }
+                        }
+                    }
+
+                    roomCount--;
+                }
+            }
+
+            roomCount = maze.grid.Width * maze.grid.Height / 16;
             while (roomCount > 0)
             {
                 maze.targetCell.X = WorldGen.genRand.Next(maze.grid.Left + 1, maze.grid.Right);
                 maze.targetCell.Y = WorldGen.genRand.Next(maze.grid.Top, maze.grid.Bottom);
 
-                if (maze.FindMarker(maze.targetCell.X - 1, maze.targetCell.Y, 5) && maze.FindMarker(maze.targetCell.X, maze.targetCell.Y, 5) && !maze.FindMarker(maze.targetCell.X - 1, maze.targetCell.Y, 6) && !maze.FindMarker(maze.targetCell.X, maze.targetCell.Y, 6))
+                if (!maze.FindMarker(maze.targetCell.X - 1, maze.targetCell.Y, 5) && !maze.FindMarker(maze.targetCell.X, maze.targetCell.Y, 5) && !maze.FindMarker(maze.targetCell.X - 1, maze.targetCell.Y, 6) && !maze.FindMarker(maze.targetCell.X, maze.targetCell.Y, 6))
                 {
                     if (!maze.FindMarker(maze.targetCell.X - 1, maze.targetCell.Y, 2) && !maze.FindMarker(maze.targetCell.X, maze.targetCell.Y, 4))
                     {
@@ -5009,6 +5160,11 @@ namespace Remnants.Content.World
                     Tile tile = Main.tile[x, y];
                     if (!tile.HasTile)
                     {
+                        if (tile.WallType == ModContent.WallType<LabyrinthBrickWall>() && WorldGen.genRand.NextBool(5))
+                        {
+                            tile.WallType = (ushort)ModContent.WallType<LabyrinthTileWall>();
+                        }
+
                         if (!WorldGen.genRand.NextBool(4))
                         {
                             if (RemTile.SolidTop(x, y + 1))

@@ -4,6 +4,7 @@ Mods: {
 			IssuesFound: Remnants wykryło jeden lub więcej problemów ze kompatybilnością i nie może utworzyć następującego świata. Znalezione problemy:
 			SmallWorlds: Rozmiar świata jest za mały.
 			SecretSeeds: Wybrano sekretne ziarno świata.
+			BadRatio: Używany jest niestandardowy stosunek szerokości do wysokości.
 			HomewardJourney: Modyfikacja "Homeward Journey" jest włączona.
 			Aequus: Modyfikacja "Aequus" jest włączona.
 			StartWithBase: Modyfikacja "Start with base" jest włączona.
@@ -45,7 +46,7 @@ Mods: {
 			Terrain: Generowanie terenu świata
 			Caves: Wietrzenie jaskiń
 			FloodedCaves: Zalewanie jaskiń
-			FloodedTerrain: Tworzenie bagien
+			Swamps: Tworzenie bagien
 			Grass: Sianie trawy
 			Ores: Rozpraszanie minerałów
 			Gems: Umieszczanie klejnotów

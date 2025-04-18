@@ -4,6 +4,7 @@ Mods: {
 			IssuesFound: Remnants found one or more compatibility issues, and cannot create the following world. Issues found:
 			SmallWorlds: The world size is too small.
 			SecretSeeds: A secret seed has been selected.
+			BadRatio: A non-standard width-to-height ratio is in use.
 			HomewardJourney: The Homeward Journey mod is enabled.
 			Aequus: The Aequus mod is enabled.
 			StartWithBase: The Start With Base mod is enabled.
@@ -45,7 +46,7 @@ Mods: {
 			Terrain: Generating world terrain
 			Caves: Weathering caves
 			FloodedCaves: Flooding the caves
-			FloodedTerrain: Creating swamps
+			Swamps: Creating swamps
 			Grass: Growing grass
 			Ores: Scattering minerals
 			Gems: Placing gems

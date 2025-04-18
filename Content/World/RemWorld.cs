@@ -1195,29 +1195,34 @@ namespace Remnants.Content.World
             if (Main.maxTilesX < 6300 || Main.maxTilesY < 1800)
             {
                 issuesFound = true;
-                message = message + "\n- " + Language.GetTextValue("Mods.Remnants.Safeguard.SmallWorlds");
+                message = message + "\n. " + Language.GetTextValue("Mods.Remnants.Safeguard.SmallWorlds");
             }
             if (Main.specialSeedWorld)
             {
                 issuesFound = true;
-                message = message + "\n- " + Language.GetTextValue("Mods.Remnants.Safeguard.SecretSeeds");
+                message = message + "\n. " + Language.GetTextValue("Mods.Remnants.Safeguard.SecretSeeds");
+            }
+            if (Main.maxTilesX != (int)(Main.maxTilesY * 84f/24f) && Main.maxTilesX != (int)(Main.maxTilesY * 64f / 18f))
+            {
+                issuesFound = true;
+                message = message + "\n. " + Language.GetTextValue("Mods.Remnants.Safeguard.BadRatio");
             }
             if (ModLoader.TryGetMod("StartWithBase", out Mod swb))
             {
                 issuesFound = true;
-                message = message + "\n- " + Language.GetTextValue("Mods.Remnants.Safeguard.StartWithBase");
+                message = message + "\n. " + Language.GetTextValue("Mods.Remnants.Safeguard.StartWithBase");
             }
             if (ModLoader.TryGetMod("ContinentOfJourney", out Mod hwj))
             {
                 issuesFound = true;
-                message = message + "\n- " + Language.GetTextValue("Mods.Remnants.Safeguard.HomewardJourney");
+                message = message + "\n. " + Language.GetTextValue("Mods.Remnants.Safeguard.HomewardJourney");
             }
             if (ModLoader.TryGetMod("Aequus", out Mod aq))
             {
                 issuesFound = true;
-                message = message + "\n- " + Language.GetTextValue("Mods.Remnants.Safeguard.Aequus");
+                message = message + "\n. " + Language.GetTextValue("Mods.Remnants.Safeguard.Aequus");
             }
-            message = message + "\n " + Language.GetTextValue("Mods.Remnants.Safeguard.Solution");
+            message = message + "\n" + Language.GetTextValue("Mods.Remnants.Safeguard.Solution");
 
             if (issuesFound)
             {

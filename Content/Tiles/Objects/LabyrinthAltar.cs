@@ -52,24 +52,24 @@ namespace Remnants.Content.Tiles.Objects
 
                 if (style == 0)
 				{
-					Main.NewText(Language.GetTextValue("Mods.Remnants.Content.Tiles.LabyrinthAltar.Messages.EssenceofMight"), new Color(255, 255, 153));
-					Main.NewText("+20% " + Language.GetTextValue("Mods.Remnants.Content.Tiles.LabyrinthAltar.Messages.Health"), new Color(51, 204, 51));
-					Main.NewText("+10% " + Language.GetTextValue("Mods.Remnants.Content.Tiles.LabyrinthAltar.Messages.Damage"), new Color(51, 204, 51));
-					Main.NewText("-20% " + Language.GetTextValue("Mods.Remnants.Content.Tiles.LabyrinthAltar.Messages.Speed"), new Color(204, 51, 51));
+					Main.NewText(Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.Messages.EssenceofMight"), new Color(255, 255, 153));
+					Main.NewText("+20% " + Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.Messages.Health"), new Color(51, 204, 51));
+					Main.NewText("+10% " + Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.Messages.Damage"), new Color(51, 204, 51));
+					Main.NewText("-20% " + Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.Messages.Speed"), new Color(204, 51, 51));
 				}
 				else if (style == 1)
 				{
-					Main.NewText(Language.GetTextValue("Mods.Remnants.Content.Tiles.LabyrinthAltar.Messages.EssenceofEndurance"), new Color(255, 255, 153));
-					Main.NewText("+20% " + Language.GetTextValue("Mods.Remnants.Content.Tiles.LabyrinthAltar.Messages.Health"), new Color(51, 204, 51));
-					Main.NewText("+20% " + Language.GetTextValue("Mods.Remnants.Content.Tiles.LabyrinthAltar.Messages.Speed"), new Color(51, 204, 51));
-					Main.NewText("-10% " + Language.GetTextValue("Mods.Remnants.Content.Tiles.LabyrinthAltar.Messages.Damage"), new Color(204, 51, 51));
+					Main.NewText(Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.Messages.EssenceofEndurance"), new Color(255, 255, 153));
+					Main.NewText("+20% " + Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.Messages.Health"), new Color(51, 204, 51));
+					Main.NewText("+20% " + Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.Messages.Speed"), new Color(51, 204, 51));
+					Main.NewText("-10% " + Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.Messages.Damage"), new Color(204, 51, 51));
 				}
 				else if (style == 2)
 				{
-					Main.NewText(Language.GetTextValue("Mods.Remnants.Content.Tiles.LabyrinthAltar.Messages.EssenceofFocus"), new Color(255, 255, 153));
-					Main.NewText("+10% " + Language.GetTextValue("Mods.Remnants.Content.Tiles.LabyrinthAltar.Messages.Damage"), new Color(51, 204, 51));
-					Main.NewText("+20% " + Language.GetTextValue("Mods.Remnants.Content.Tiles.LabyrinthAltar.Messages.Speed"), new Color(51, 204, 51));
-					Main.NewText("-20% " + Language.GetTextValue("Mods.Remnants.Content.Tiles.LabyrinthAltar.Messages.Health"), new Color(204, 51, 51));
+					Main.NewText(Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.Messages.EssenceofFocus"), new Color(255, 255, 153));
+					Main.NewText("+10% " + Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.Messages.Damage"), new Color(51, 204, 51));
+					Main.NewText("+20% " + Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.Messages.Speed"), new Color(51, 204, 51));
+					Main.NewText("-20% " + Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.Messages.Health"), new Color(204, 51, 51));
 				}
 
                 Tile tile = Main.tile[i, j];
@@ -80,13 +80,20 @@ namespace Remnants.Content.Tiles.Objects
 					dust.noGravity = true;
 					dust.velocity.Y = -Main.rand.NextFloat(7.5f);
 				}
-			}
+
+                for (int k = 0; k < 50; k++)
+                {
+                    Dust dust = Dust.NewDustPerfect(new Vector2(i - tile.TileFrameX / 16 % 3 + 1.5f, j - tile.TileFrameY / 16 + 2f) * 16, GetDustType(GetStyle(i, j)), Scale: Main.rand.NextFloat(1, 2));
+                    dust.noGravity = true;
+					dust.velocity = Main.rand.NextVector2CircularEdge(2f, 2f);
+                }
+            }
 			else
 			{
 				Main.LocalPlayer.GetModPlayer<RemPlayer>().activeEssence = 0;
 
                 Main.NewText(".", new Color(51, 51, 51));
-                Main.NewText(Language.GetTextValue("Mods.Remnants.Content.Tiles.LabyrinthAltar.Messages.Deactivation"), new Color(255, 204, 102));
+                Main.NewText(Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.Messages.Deactivation"), new Color(255, 204, 102));
             }
 
 			return true;
@@ -185,7 +192,7 @@ namespace Remnants.Content.Tiles.Objects
 			player.noThrow = 2;
 			player.cursorItemIconEnabled = true;
 			player.cursorItemIconID = -1;
-			player.cursorItemIconText = Language.GetTextValue("Mods.Remnants.Content.Tiles.LabyrinthAltar.MouseOver.Essence") + " " + (style == 2 ? Language.GetTextValue("Mods.Remnants.Content.Tiles.LabyrinthAltar.MouseOver.Focus") : style == 1 ? Language.GetTextValue("Mods.Remnants.Content.Tiles.LabyrinthAltar.MouseOver.Endurance") : Language.GetTextValue("Mods.Remnants.Content.Tiles.LabyrinthAltar.MouseOver.Might"));
+			player.cursorItemIconText = Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.MouseOver.Essence") + " " + (style == 2 ? Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.MouseOver.Focus") : style == 1 ? Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.MouseOver.Endurance") : Language.GetTextValue("Mods.Remnants.Tiles.LabyrinthAltar.MouseOver.Might"));
 		}
 
 		private int GetStyle(int i, int j)

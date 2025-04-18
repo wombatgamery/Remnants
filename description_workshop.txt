@@ -50,5 +50,6 @@ Thanks to the following sources for providing copyright-free assets: [list]
 Thanks to the following users for contributing directly to the mod: [list]
 [*]Russian localisation written by [url=https://steamcommunity.com/id/xenofite][b]Xenofite.[/b][/url]
 [*]Polish localisation written by [url=https://steamcommunity.com/id/nichiimishiari/][b]Nichiimishiari.[/b][/url]
+[*]German localisation written by [url=https://steamcommunity.com/id/Cracky-XXX/][b]Cracky.[/b][/url]
 [/list]
 

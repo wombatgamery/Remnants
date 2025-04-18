@@ -38,7 +38,7 @@ namespace Remnants.Content.Tiles.Blocks
 
 		public override void RandomUpdate(int i, int j)
 		{
-			if (Main.rand.NextBool(5))
+			if (Main.rand.NextBool(5))// && j > Main.worldSurface)
             {
 				Tile tile = Main.tile[i, j - 1];
 				if (!tile.HasTile)

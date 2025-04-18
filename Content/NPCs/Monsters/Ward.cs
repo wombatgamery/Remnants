@@ -64,6 +64,12 @@ namespace Remnants.Content.NPCs.Monsters
             NPCID.Sets.NeedsExpertScaling[Type] = false;
         }
 
+        public override bool CheckActive()
+        {
+            Player target = Main.player[NPC.target];
+            return direction == 1 && target.Center.Y > NPC.Center.Y || direction == 3 && target.Center.Y < NPC.Center.Y || direction == 2 && target.Center.X < NPC.Center.X || direction == 4 && target.Center.X > NPC.Center.X;
+        }
+
         ref float direction => ref NPC.ai[0];
         ref float collisionFrames => ref NPC.ai[1];
 

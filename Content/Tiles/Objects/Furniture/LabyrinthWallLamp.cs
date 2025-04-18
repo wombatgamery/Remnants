@@ -26,7 +26,7 @@ namespace Remnants.Content.Tiles.Objects.Furniture
 			TileObjectData.newTile.CopyFrom(TileObjectData.StyleTorch);
 			TileObjectData.newTile.CoordinateHeights = new int[1] { 22 };
 			TileObjectData.newTile.CoordinateWidth = 24;
-			TileObjectData.newTile.DrawYOffset = -4;
+			TileObjectData.newTile.DrawYOffset = -2;
 			TileObjectData.newTile.AnchorWall = true;
 			TileObjectData.newTile.WaterDeath = false;
 			TileObjectData.newTile.LavaDeath = false;
@@ -35,11 +35,17 @@ namespace Remnants.Content.Tiles.Objects.Furniture
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
 
 			AddMapEntry(new Color(120, 242, 255), Language.GetText("MapObject.Lantern"));
+            AddMapEntry(new Color(47, 50, 85), Language.GetText("MapObject.Lantern"));
 
-			DustType = DustID.Iron;
+            DustType = DustID.Iron;
 		}
 
-		public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
+        public override ushort GetMapOption(int i, int j)
+        {
+            return (ushort)(Main.tile[i, j].TileFrameY == 24 ? 1 : 0);
+        }
+
+        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
 		{
 			Tile tile = Main.tile[i, j];
 			if (tile.TileFrameY == 0)
@@ -130,7 +136,7 @@ namespace Remnants.Content.Tiles.Objects.Furniture
 				{
 					zero = Vector2.Zero;
 				}
-				Main.spriteBatch.Draw(ModContent.Request<Texture2D>(Texture).Value, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero, new Rectangle(tile.TileFrameX + 26 + 4, tile.TileFrameY + 4, 14, 14), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+				Main.spriteBatch.Draw(ModContent.Request<Texture2D>(Texture).Value, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y + 2) + zero, new Rectangle(tile.TileFrameX + 26 + 4, tile.TileFrameY + 4, 14, 14), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 			}
 		}
 	}
