@@ -836,11 +836,6 @@ Mods: {
 						'''
 				}
 
-				LargerSky: {
-					Label: Larger Sky
-					Tooltip: ""
-				}
-
 				IceMountain: {
 					Label: "[i:664] Ice Mountain"
 					Tooltip: Enables the mountain in the ice biome
@@ -869,6 +864,20 @@ Mods: {
 
 						Note: Will become obsolete after the biome is officially updated
 						'''
+				}
+
+				DoLava: {
+					Label: "[i:1518] Liquid Varient"
+					Tooltip:
+						'''
+						If On, will use lava and obsidian
+						If Off, will use shimmer and atherium
+						'''
+				}
+
+				AltPlanetoids: {
+					Label: "[i:2767] Alt Planetoids"
+					Tooltip: Enable Meteorite Planetoids?
 				}
 
 				CabinFrequency: {
