@@ -851,6 +851,11 @@ Mods: {
 					Tooltip: Controls the number of hidden caches generated in new worlds
 				}
 
+				IceHouseFrequency: {
+					Label: "[i:48] Ice Temple Frequency"
+					Tooltip: Controls the number of ice temples generated in new worlds
+				}
+
 				FlatSurfaceRatioIncrease: {
 					Label: "[i:2] Surface Height Reduction"
 					Tooltip:
