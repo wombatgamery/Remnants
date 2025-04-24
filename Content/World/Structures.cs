@@ -4321,7 +4321,7 @@ namespace Remnants.Content.World
             int structureCount;
 
             structureCount = 0;
-            while (structureCount <= Main.maxTilesX * (Main.maxTilesY / 1200) / 1400)
+            while (structureCount <= Main.maxTilesX * (Main.maxTilesY / 1200) / 1400 * ModContent.GetInstance<Worldgen>().IceHouseFrequency)
             {
                 #region spawnconditions
                 int structureX = WorldGen.genRand.Next((int)(Main.maxTilesX * 0.1f), (int)(Main.maxTilesX * 0.9f));
