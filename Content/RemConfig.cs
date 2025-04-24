@@ -87,6 +87,12 @@ namespace Remnants.Content
         [DefaultValue(1f)]
         public float CacheFrequency;
 
+        [Range(0f, 1f)]
+        [Increment(.25f)]
+        [DrawTicks]
+        [DefaultValue(1f)]
+        public float IceHouseFrequency;
+
         [Header("LargerSky")]
 
         [Range(0, 10000)]
