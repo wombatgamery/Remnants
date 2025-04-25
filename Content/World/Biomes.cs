@@ -105,6 +105,8 @@ namespace Remnants.Content.World
                 //    }
                 //}
 
+                bool spiritReforged = ModLoader.TryGetMod("SpiritReforged", out Mod sr);
+
                 float tundraCorruptionDistance = 0.225f;
                 bool tundraCorruptionSwap = WorldGen.genRand.NextBool(2); //GenVars.dungeonSide == 1;
 
@@ -116,16 +118,16 @@ namespace Remnants.Content.World
                 Corruption.X += (int)(biomes.width * tundraCorruptionDistance * (Tundra.X < biomes.width / 2 ? -1 : 1));
                 Corruption.X += (int)(biomes.width * 0.075f * (tundraCorruptionSwap ? -1 : 1));
 
-                float jungleDesertDistance = 0.25f;// WorldGen.genRand.NextFloat(0.275f, 0.325f);
+                float jungleDesertDistance = 0.25f;
                 bool jungleDesertSwap = WorldGen.genRand.NextBool(2); //GenVars.dungeonSide == 1;
 
                 Jungle.Center = biomes.width / 2;
                 Jungle.Center += (int)(biomes.width * jungleDesertDistance * (GenVars.dungeonSide == 1 ? -1 : 1));
-                Jungle.Center += (int)(biomes.width * 0.05f * (!jungleDesertSwap ? -1 : 1));
+                Jungle.Center += (int)(biomes.width * (spiritReforged ? 0.085f : 0.05f) * (!jungleDesertSwap ? -1 : 1));
 
                 Desert.Center = biomes.width / 2;
                 Desert.Center += (int)(biomes.width * jungleDesertDistance * (Jungle.Center < biomes.width / 2 ? -1 : 1));
-                Desert.Center += (int)(biomes.width * 0.1f * (jungleDesertSwap ? -1 : 1));
+                Desert.Center += (int)(biomes.width * (spiritReforged ? 0.115f : 0.1f) * (jungleDesertSwap ? -1 : 1));
 
                 for (int y = biomes.height - 4; y < biomes.height; y++)
                 {
@@ -1810,6 +1812,7 @@ namespace Remnants.Content.World
             FastNoiseLite noise;
 
             bool calamity = ModLoader.TryGetMod("CalamityMod", out Mod cal);
+            bool spiritReforged = ModLoader.TryGetMod("SpiritReforged", out Mod sr);
             bool lunarVeil = ModLoader.TryGetMod("Stellamod", out Mod lv);
 
             progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.MajorBiomes");
@@ -1859,7 +1862,7 @@ namespace Remnants.Content.World
             #endregion
 
             #region jungle
-            Jungle.Size = biomes.width / 10;
+            Jungle.Size = biomes.width / (spiritReforged ? 11 : 10);
             Desert.Size = biomes.width / 20;
             Desert.Bottom = biomes.lavaLayer + 1;
 
@@ -2582,24 +2585,29 @@ namespace Remnants.Content.World
             Main.tileSolid[TileID.Hive] = true;
             Main.tileSolid[TileID.BeeHive] = false;
 
-            //if (Jungle.Center > Desert.X)
-            //{
-            //    //X = WorldGen.genRand.Next((int)(biomes.width * 0.85), (int)(biomes.width * 0.9));
-            //    Hive.X = GenVars.UndergroundDesertLocation.Right / biomes.scale + (Jungle.Center);
-            //}
-            //else
-            //{
-            //    //X = WorldGen.genRand.Next((int)(biomes.width * 0.1), (int)(biomes.width * 0.15));
-            //    Hive.X = GenVars.UndergroundDesertLocation.Left / biomes.scale + (Jungle.Center);
-            //}
-            //Hive.X /= 2;
-
-            Hive.X = Jungle.Center;
-            if (Jungle.Center > Desert.Center)
+            if (ModLoader.TryGetMod("SpiritReforged", out Mod sr))
             {
-                Hive.X -= (int)(Jungle.Size * 0.75f);
+                if (Jungle.Center > Desert.Center)
+                {
+                    //X = WorldGen.genRand.Next((int)(biomes.width * 0.85), (int)(biomes.width * 0.9));
+                    Hive.X = GenVars.UndergroundDesertLocation.Right / biomes.scale + (Jungle.Center - Jungle.Size);
+                }
+                else
+                {
+                    //X = WorldGen.genRand.Next((int)(biomes.width * 0.1), (int)(biomes.width * 0.15));
+                    Hive.X = GenVars.UndergroundDesertLocation.Left / biomes.scale + (Jungle.Center + Jungle.Size);
+                }
+                Hive.X /= 2;
             }
-            else Hive.X += (int)(Jungle.Size * 0.75f);
+            else
+            {
+                Hive.X = Jungle.Center;
+                if (Jungle.Center > Desert.Center)
+                {
+                    Hive.X -= (int)(Jungle.Size * 0.75f);
+                }
+                else Hive.X += (int)(Jungle.Size * 0.75f);
+            }
 
             Hive.Size = biomes.width / 32;
             Hive.Y = (int)(Main.rockLayer / biomes.scale + Hive.Size);

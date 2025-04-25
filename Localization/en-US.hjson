@@ -264,7 +264,7 @@ Mods: {
 
 			NightglowBerry: {
 				DisplayName: Nightglow Berry
-				Tooltip: A zesty, luminous fruit with almost magical properties...
+				Tooltip: "'A zesty, luminous fruit with almost magical properties...'"
 			}
 
 			PyramidKey: {
@@ -304,7 +304,7 @@ Mods: {
 
 			Hardstone: {
 				DisplayName: Hardstone
-				Tooltip: A superdense rock of unknown origin
+				Tooltip: "'A superdense rock of unknown origin'"
 			}
 
 			PyramidBrick: {
@@ -319,7 +319,7 @@ Mods: {
 
 			StarOre: {
 				DisplayName: Stellar Remnant
-				Tooltip: A cooled and solidified star, still glowing with vibrant energy
+				Tooltip: "'A cooled and solidified star, still glowing with vibrant energy'"
 			}
 
 			ToxicWaste: {
@@ -349,7 +349,7 @@ Mods: {
 
 			NightglowSeed: {
 				DisplayName: Nightglow Seed
-				Tooltip: ...and a hard pit in the center
+				Tooltip: "'...and a hard pit in the center'"
 			}
 
 			RustedChest: {
@@ -359,7 +359,7 @@ Mods: {
 
 			Sarcophagus: {
 				DisplayName: Sarcophagus
-				Tooltip: An ancient tomb with a simple design
+				Tooltip: "'An ancient tomb with a simple design'"
 			}
 
 			Scrapper: {
@@ -573,7 +573,7 @@ Mods: {
 
 			SacrificialAltar: {
 				DisplayName: Sacrificial Altar
-				Tooltip: Old bloodstains cover the altar's surface, memorialising its terrible history
+				Tooltip: "'Old bloodstains cover the altar's surface, memorialising its terrible history'"
 			}
 
 			VaultPlating: {
@@ -704,6 +704,21 @@ Mods: {
 				DisplayName: Runestalk Blessing Icon
 				Tooltip: ""
 			}
+
+			ResinGel: {
+				DisplayName: Resin Gel
+				Tooltip: "'Pulses with strange viscosity'"
+			}
+
+			FragmentGrenade: {
+				DisplayName: Fragment Grenade
+				Tooltip: ""
+			}
+
+			FragmentGlowstick: {
+				DisplayName: Fragment Glowstick
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -752,6 +767,8 @@ Mods: {
 			SoulLanceHoldout.DisplayName: Soul Lance
 			SpectralLanceHoldout.DisplayName: Spectral Lance
 			ResinShrapnel.DisplayName: Resin Shrapnel
+			FragmentGrenade.DisplayName: Shrapnel Grenade
+			FragmentGlowstick.DisplayName: Fragment Glowstick
 		}
 
 		Configs: {
@@ -762,8 +779,7 @@ Mods: {
 					General: General
 					Terrain: Terrain
 					Structure: Structures
-					Compatability: Compatability
-					LargerSky: World Layer Sizes
+					LargerSky: World Proportions (Advanced)
 				}
 
 				TerrainAmplitude: {
@@ -837,8 +853,14 @@ Mods: {
 				}
 
 				DoLivingTrees: {
-					Label: "[i:5044] Living Trees"
-					Tooltip: Controls if living trees generate in new worlds
+					Label: "[i:1182] Vanilla Living Trees"
+					Tooltip:
+						'''
+						Enables the vanilla living trees
+
+						Note: Does NOT replace the giant tree added by Remnants
+						Note: These frequently generate on floating islands due to their programming
+						'''
 				}
 
 				PlatformFrequency: {
@@ -851,35 +873,38 @@ Mods: {
 					Tooltip: Controls the number of hidden caches generated in new worlds
 				}
 
-				IceHouseFrequency: {
-					Label: "[i:48] Ice Temple Frequency"
+				FrozenRuinFrequency: {
+					Label: "[i:2059] Ice Temple Frequency"
 					Tooltip: Controls the number of ice temples generated in new worlds
 				}
 
 				FlatSurfaceRatioIncrease: {
-					Label: "[i:2] Surface Height Reduction"
+					Label: Surface Height Reduction
 					Tooltip:
 						'''
-						Does nothing if safeguard is on
-						Controls how many blocks lower than normal should the surface layer be
+						Lowers the surface threshold by the given number of blocks
+
+						Note: Does nothing with the safeguard enabled
 						'''
 				}
 
 				FlatUndergroundRatioIncrease: {
-					Label: "[i:3] Cavern Height Reduction"
+					Label: Cavern Height Reduction
 					Tooltip:
 						'''
-						Does nothing if safeguard is on
-						Controls how many blocks lower than normal should the cavern layer be
+						Lowers the cavern threshold by the given number of blocks
+
+						Note: Does nothing with the safeguard enabled
 						'''
 				}
 
 				FlatLavaRatioIncrease: {
-					Label: "[i:173] Lava Height Reduction"
+					Label: Lava Height Reduction
 					Tooltip:
 						'''
-						Does nothing if safeguard is on
-						Controls how many blocks lower than normal should the lava layer be
+						Lowers the lava threshold by the given number of blocks
+
+						Note: Does nothing with the safeguard enabled
 						'''
 				}
 			}

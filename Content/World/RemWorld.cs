@@ -21,6 +21,7 @@ using Remnants.Content.Tiles.Blocks;
 using Remnants.Content.Tiles.Plants;
 using Remnants.Content.Tiles.Objects.Furniture;
 using Terraria.GameContent.Generation;
+using System.Threading;
 
 namespace Remnants.Content.World
 {
@@ -405,6 +406,8 @@ namespace Remnants.Content.World
         {
             int genIndex;
 
+            bool spiritReforged = ModLoader.TryGetMod("SpiritReforged", out Mod sr);
+
             //genIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Settle Liquids"));
             //if (genIndex != -1)
             //{
@@ -436,7 +439,7 @@ namespace Remnants.Content.World
             RemovePass(tasks, FindIndex(tasks, "Shinies"));
             if (ModContent.GetInstance<Worldgen>().OreFrequency > 0)
             {
-                InsertPass(tasks, new Ores("Minerals", 1), FindIndex(tasks, "Dungeon") + 1);
+                InsertPass(tasks, new Ores("Minerals", 1), spiritReforged ? FindIndex(tasks, "Savanna") + 1 : FindIndex(tasks, "Dungeon") + 1);
             }
 
             //InsertPass(tasks, FindIndex(tasks, "Gems"), new Ores("Ores", 1));
@@ -511,7 +514,7 @@ namespace Remnants.Content.World
             genIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Dungeon"));
             if (genIndex != -1)
             {
-                InsertPass(tasks, new FloatingIslands("Sky Islands", 1), genIndex + 1);
+                InsertPass(tasks, new FloatingIslands("Sky Islands", 1), (spiritReforged ? FindIndex(tasks, "Savanna") : genIndex) + 1);
                 InsertPass(tasks, new AerialGarden("Aerial Garden", 100), genIndex + 1);
                 InsertPass(tasks, new Undergrowth("Undergrowth", 100), genIndex + 1);
                 InsertPass(tasks, new ForgottenTomb("Forgotten Tomb", 100), genIndex + 1);
@@ -552,7 +555,7 @@ namespace Remnants.Content.World
 
             if (!ModContent.GetInstance<Worldgen>().DoLivingTrees)
             {
-              RemovePass(tasks, FindIndex(tasks, "Living Trees"));
+                RemovePass(tasks, FindIndex(tasks, "Living Trees"));
             }
 
             RemovePass(tasks, FindIndex(tasks, "Wood Tree Walls"));
@@ -620,6 +623,12 @@ namespace Remnants.Content.World
                 RemovePass(tasks, FindIndex(tasks, "Gem Depth Adjustment"));
 
                 RemovePass(tasks, FindIndex(tasks, "Growing garden"));
+            }
+
+            if (spiritReforged)
+            {
+                RemovePass(tasks, FindIndex(tasks, "Beaches"), true);
+                RemovePass(tasks, FindIndex(tasks, "Create Ocean Caves"), true);
             }
 
             RemovePass(tasks, FindIndex(tasks, "PlentifulOres"), true);
@@ -695,9 +704,9 @@ namespace Remnants.Content.World
             }
         }
 
-        public static int FindIndex(List<GenPass> tasks, string value)
+        public static int FindIndex(List<GenPass> tasks, string value, bool last = false)
         {
-            return tasks.FindIndex(genpass => genpass.Name.Equals(value));
+            return last ? tasks.FindLastIndex(genpass => genpass.Name.Equals(value)) : tasks.FindIndex(genpass => genpass.Name.Equals(value));
         }
 
         public static Tile Tile(int x, int y)
@@ -1415,21 +1424,22 @@ namespace Remnants.Content.World
 
             Worldgen WorldgenConfig = Worldgen.Instance;
 
-            int SurfaceChange = WorldgenConfig.FlatSurfaceRatioIncrease;
-            int UndergroundChange = WorldgenConfig.FlatUndergroundRatioIncrease;
-            int LavaChange = WorldgenConfig.FlatLavaRatioIncrease;
+            int SurfaceChange = (int)WorldgenConfig.FlatSurfaceRatioIncrease;
+            int UndergroundChange = (int)WorldgenConfig.FlatUndergroundRatioIncrease;
+            int LavaChange = (int)WorldgenConfig.FlatLavaRatioIncrease;
 
-            if (WorldgenConfig.Safeguard)
-            {
-                Main.worldSurface = (int)(Main.maxTilesY / 3f / 6) * 6;
-                Main.rockLayer = (int)(Main.maxTilesY / 2.25f / 6) * 6;
-            }
-            else
+            Main.worldSurface = (int)(Main.maxTilesY / 3f);
+            Main.rockLayer = (int)(Main.maxTilesY / 2.25f);
+
+            if (!WorldgenConfig.Safeguard)
             {
                 Main.worldSurface += SurfaceChange;
                 Main.rockLayer += UndergroundChange;
                 GenVars.lavaLine += LavaChange;
             }
+
+            Main.worldSurface = (int)(Main.worldSurface / 6) * 6;
+            Main.rockLayer = (int)(Main.rockLayer / 6) * 6;
 
             //GenVars.lavaLine = (int)((Main.maxTilesY * 0.75f) / 6) * 6;
 

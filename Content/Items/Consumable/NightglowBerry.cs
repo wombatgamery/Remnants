@@ -3,6 +3,7 @@ using Remnants.Content.Items.Placeable.Plants;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Remnants.Content.Items.Consumable
@@ -21,6 +22,8 @@ namespace Remnants.Content.Items.Consumable
                 new Color(80, 120, 47),
                 new Color(63, 255, 90)
             };
+
+            ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.Ambrosia;
         }
 
         public override void SetDefaults()
@@ -44,6 +47,9 @@ namespace Remnants.Content.Items.Consumable
 
     public class NightglowBerryIcon : ModItem
     {
+        public override LocalizedText DisplayName => null;
+        public override LocalizedText Tooltip => null;
+
         public override void SetStaticDefaults()
         {
             ItemID.Sets.Deprecated[Type] = true;

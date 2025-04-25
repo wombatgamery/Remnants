@@ -104,16 +104,9 @@ namespace Remnants.Content.Tiles.Objects.Hazards
 				Vector2 tileCenter = new Vector2(Position.X + 1.5f, Position.Y + 4.5f) * 16;
 
                 bool valid = false;
-                float closestDistance = 9999;
-                for (int k = 0; k < Main.maxPlayers; k++)
+                foreach (var player in Main.ActivePlayers)
                 {
-                    var player = Main.player[k];
-
-                    if (!player.active)
-                    {
-                        break;
-                    }
-                    else if (player.InModBiome<EchoingHalls>() && !player.DeadOrGhost)
+                    if (player.InModBiome<EchoingHalls>() && !player.DeadOrGhost)
                     {
 						Vector2 difference = tileCenter - player.Center;
 

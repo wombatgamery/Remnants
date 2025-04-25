@@ -3783,7 +3783,7 @@ namespace Remnants.Content.World
             progressCounter++;
 
             structureCount = 0; // MINING PLATFORM
-            while (structureCount < Main.maxTilesX * Main.maxTilesY / 1200f / 175 * ModContent.GetInstance<Worldgen>().PlatformFrequency)
+            while (structureCount < Main.maxTilesX * Main.maxTilesY / 1200f / 175)// * ModContent.GetInstance<Worldgen>().PlatformFrequency)
             {
                 progress.Set((progressCounter + structureCount / (float)(Main.maxTilesX * Main.maxTilesY / 1200f / 175)) / uniqueStructures);
 
@@ -4321,7 +4321,7 @@ namespace Remnants.Content.World
             int structureCount;
 
             structureCount = 0;
-            while (structureCount <= Main.maxTilesX * (Main.maxTilesY / 1200) / 1400 * ModContent.GetInstance<Worldgen>().IceHouseFrequency)
+            while (structureCount <= Main.maxTilesX * (Main.maxTilesY / 1200) / 1400 * ModContent.GetInstance<Worldgen>().FrozenRuinFrequency)
             {
                 #region spawnconditions
                 int structureX = WorldGen.genRand.Next((int)(Main.maxTilesX * 0.1f), (int)(Main.maxTilesX * 0.9f));

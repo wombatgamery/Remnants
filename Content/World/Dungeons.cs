@@ -4994,6 +4994,7 @@ namespace Remnants.Content.World
             }
 
             int roomCount = 5;
+            int attempts = 0;
             while (roomCount > 0)
             {
                 int width = (int)((roomCount <= 4 ? 2 : 4) * Main.maxTilesX / 4200f);
@@ -5052,9 +5053,10 @@ namespace Remnants.Content.World
                         }
                     }
 
-                    if (score < Math.Sqrt(width * height) / 2 - (WorldGen.genRand.NextBool(1000) ? 1 : 0))
+                    if (score < Math.Sqrt(width * height) / 2 - attempts / 1000)
                     {
                         valid = false;
+                        attempts++;
                     }
                 }
 
@@ -5064,9 +5066,10 @@ namespace Remnants.Content.World
                     {
                         for (int i = x; i < x + width; i++)
                         {
-                            if (maze.FindMarker(i, j, 5) || maze.FindMarker(i, j, 6) && roomCount <= 4 && !WorldGen.genRand.NextBool(1000))
+                            if (maze.FindMarker(i, j, 5) || maze.FindMarker(i, j, 6) && roomCount <= 4 && attempts < 1000)
                             {
                                 valid = false;
+                                attempts++;
                             }
                         }
                     }
@@ -5074,6 +5077,8 @@ namespace Remnants.Content.World
 
                 if (valid)
                 {
+                    attempts = 0;
+
                     for (int j = y; j < y + height; j++)
                     {
                         for (int i = x; i < x + width; i++)
@@ -5111,14 +5116,10 @@ namespace Remnants.Content.World
                     {
                         for (maze.targetCell.X = x; maze.targetCell.X < x + width - 1; maze.targetCell.X++)
                         {
-                            //if (WorldGen.genRand.NextBool(2))
-                                WorldGen.PlaceTile(maze.room.Right, maze.room.Bottom - 3, ModContent.TileType<LabyrinthWallLamp>(), style: 1);
-                            //if (WorldGen.genRand.NextBool(2))
-                                WorldGen.PlaceTile(maze.room.Right, maze.room.Bottom - 5, ModContent.TileType<LabyrinthWallLamp>(), style: 1);
-                            //if (WorldGen.genRand.NextBool(2))
-                                WorldGen.PlaceTile(maze.room.Right, maze.room.Bottom - 7, ModContent.TileType<LabyrinthWallLamp>(), style: 1);
-                            //if (WorldGen.genRand.NextBool(2))
-                                WorldGen.PlaceTile(maze.room.Right, maze.room.Bottom - 9, ModContent.TileType<LabyrinthWallLamp>(), style: 1);
+                            WorldGen.PlaceTile(maze.room.Right, maze.room.Bottom - 3, ModContent.TileType<LabyrinthWallLamp>(), style: 1);
+                            WorldGen.PlaceTile(maze.room.Right, maze.room.Bottom - 5, ModContent.TileType<LabyrinthWallLamp>(), style: 1);
+                            WorldGen.PlaceTile(maze.room.Right, maze.room.Bottom - 7, ModContent.TileType<LabyrinthWallLamp>(), style: 1);
+                            WorldGen.PlaceTile(maze.room.Right, maze.room.Bottom - 9, ModContent.TileType<LabyrinthWallLamp>(), style: 1);
                         }
                     }
 

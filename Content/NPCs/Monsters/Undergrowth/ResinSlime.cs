@@ -11,6 +11,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent;
 using Terraria.Audio;
 using Remnants.Content.Projectiles.Enemy;
+using Remnants.Content.Items.Materials;
 
 namespace Remnants.Content.NPCs.Monsters.Undergrowth
 {
@@ -100,7 +101,7 @@ namespace Remnants.Content.NPCs.Monsters.Undergrowth
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ItemID.Amber));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ResinGel>(), 1, 1, 2));
         }
 
         int deathTimer = -1;
@@ -158,7 +159,7 @@ namespace Remnants.Content.NPCs.Monsters.Undergrowth
             for (int k = 0; k < 5; k++)
             {
                 Projectile proj = Projectile.NewProjectileDirect(NPC.GetSource_Death(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<ResinShrapnel>(), 10, 0);
-                proj.velocity = Main.rand.NextVector2Circular(8, 8);
+                proj.velocity = Main.rand.NextVector2Circular(6, 6);
                 if (proj.velocity.Y > 0)
                 {
                     proj.velocity.Y *= -1;

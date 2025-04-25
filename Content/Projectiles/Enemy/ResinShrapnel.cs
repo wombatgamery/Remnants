@@ -10,7 +10,7 @@ namespace Remnants.Content.Projectiles.Enemy
 {
 	public class ResinShrapnel : ModProjectile
 	{
-		public override void SetDefaults()
+        public override void SetDefaults()
 		{
 			Projectile.width = 5 * 2;
 			Projectile.height = 5 * 2;

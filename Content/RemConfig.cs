@@ -46,11 +46,6 @@ namespace Remnants.Content
         [DefaultValue(true)]
         public bool JungleValley;
 
-        [DefaultValue(false)]
-        public bool DoLivingTrees;
-
-        [Header("Compatability")]
-
         [DefaultValue(true)]
         [BackgroundColor(150, 150, 125)]
         public bool SunkenSeaRework;
@@ -75,11 +70,11 @@ namespace Remnants.Content
         [DefaultValue(1f)]
         public float RailroadFrequency;
 
-        [Range(0f, 1f)]
-        [Increment(.25f)]
-        [DrawTicks]
-        [DefaultValue(1f)]
-        public float PlatformFrequency;
+        //[Range(0f, 1f)]
+        //[Increment(.25f)]
+        //[DrawTicks]
+        //[DefaultValue(1f)]
+        //public float PlatformFrequency;
 
         [Range(0f, 1f)]
         [Increment(.25f)]
@@ -91,25 +86,33 @@ namespace Remnants.Content
         [Increment(.25f)]
         [DrawTicks]
         [DefaultValue(1f)]
-        public float IceHouseFrequency;
+        public float FrozenRuinFrequency;
+
+        [DefaultValue(false)]
+        [BackgroundColor(150, 100, 125)]
+        public bool DoLivingTrees;
 
         [Header("LargerSky")]
 
-        [Range(0, 10000)]
-        [DefaultValue(150)]
-        [BackgroundColor(192, 54, 64, 192)]
-        public int FlatSurfaceRatioIncrease;
+        [Range(0f, 2400f)]
+        [Increment(50f)]
+        [DefaultValue(0f)]
+        [BackgroundColor(100, 100, 150)]
+        public float FlatSurfaceRatioIncrease;
 
-        [Range(0, 10000)]
-        [DefaultValue(150)]
-        [BackgroundColor(192, 54, 64, 192)]
-        public int FlatUndergroundRatioIncrease;
+        [Range(0f, 2400f)]
+        [Increment(50f)]
+        [DefaultValue(0f)]
+        [BackgroundColor(100, 100, 150)]
+        public float FlatUndergroundRatioIncrease;
 
-        [Range(0, 10000)]
-        [DefaultValue(150)]
-        [BackgroundColor(192, 54, 64, 192)]
-        public int FlatLavaRatioIncrease;
+        [Range(0f, 2400f)]
+        [Increment(50f)]
+        [DefaultValue(0f)]
+        [BackgroundColor(100, 100, 150)]
+        public float FlatLavaRatioIncrease;
     }
+
     public class Gameplay : ModConfig
 	{
 		public override ConfigScope Mode => ConfigScope.ServerSide;

@@ -637,8 +637,8 @@ Mods: {
 			}
 
 			NightglowBerryIcon: {
-				DisplayName: Nachtleuchtbeeren-Symbol
-				Tooltip: ""
+				// DisplayName: Nightglow Berry Icon
+				// Tooltip: ""
 			}
 
 			ArcanePlatform: {
@@ -701,8 +701,27 @@ Mods: {
 			}
 
 			RunestalkBlessingIcon: {
-				DisplayName: Runenstängel-Segen-Symbol
-				Tooltip: ""
+				// DisplayName: Runestalk Blessing Icon
+				// Tooltip: ""
+			}
+
+			ResinGel: {
+				// DisplayName: Resin Gel
+				/* Tooltip:
+					'''
+					Can be solidified into amber
+					'Oddly soothing'
+					''' */
+			}
+
+			FragmentGrenade: {
+				// DisplayName: Fragment Grenade
+				// Tooltip: ""
+			}
+
+			FragmentGlowstick: {
+				// DisplayName: Fragment Glowstick
+				// Tooltip: ""
 			}
 		}
 
@@ -752,6 +771,8 @@ Mods: {
 			SoulLanceHoldout.DisplayName: Seelenlanze
 			SpectralLanceHoldout.DisplayName: Spektrallanze
 			ResinShrapnel.DisplayName: Granatsplitter aus Harz
+			// FragmentGrenade.DisplayName: Shrapnel Grenade
+			// FragmentGlowstick.DisplayName: Fragment Glowstick
 		}
 
 		Configs: {
@@ -762,8 +783,7 @@ Mods: {
 					General: Allgemein
 					Terrain: Gelände
 					Structure: Struktur
-					// Compatability: Compatability
-					// LargerSky: World Layer Sizes
+					// LargerSky: World Proportions (Advanced)
 				}
 
 				TerrainAmplitude: {
@@ -837,8 +857,14 @@ Mods: {
 				}
 
 				DoLivingTrees: {
-					// Label: "[i:5044] Living Trees"
-					// Tooltip: Controls if living trees generate in new worlds
+					// Label: "[i:1182] Vanilla Living Trees"
+					/* Tooltip:
+						'''
+						Enables the vanilla living trees
+
+						Note: Does NOT replace the giant tree added by Remnants
+						Note: These frequently generate on floating islands due to their programming
+						''' */
 				}
 
 				PlatformFrequency: {
@@ -851,30 +877,38 @@ Mods: {
 					// Tooltip: Controls the number of hidden caches generated in new worlds
 				}
 
+				FrozenRuinFrequency: {
+					// Label: "[i:2059] Ice Temple Frequency"
+					// Tooltip: Controls the number of ice temples generated in new worlds
+				}
+
 				FlatSurfaceRatioIncrease: {
-					// Label: "[i:2] Surface Height Reduction"
+					// Label: Surface Height Reduction
 					/* Tooltip:
 						'''
-						Does nothing if safeguard is on
-						Controls how many blocks lower than normal should the surface layer be
+						Lowers the surface threshold by the given number of blocks
+
+						Note: Does nothing with the safeguard enabled
 						''' */
 				}
 
 				FlatUndergroundRatioIncrease: {
-					// Label: "[i:3] Cavern Height Reduction"
+					// Label: Cavern Height Reduction
 					/* Tooltip:
 						'''
-						Does nothing if safeguard is on
-						Controls how many blocks lower than normal should the cavern layer be
+						Lowers the cavern threshold by the given number of blocks
+
+						Note: Does nothing with the safeguard enabled
 						''' */
 				}
 
 				FlatLavaRatioIncrease: {
-					// Label: "[i:173] Lava Height Reduction"
+					// Label: Lava Height Reduction
 					/* Tooltip:
 						'''
-						Does nothing if safeguard is on
-						Controls how many blocks lower than normal should the lava layer be
+						Lowers the lava threshold by the given number of blocks
+
+						Note: Does nothing with the safeguard enabled
 						''' */
 				}
 			}
