@@ -3,9 +3,11 @@ using System.ComponentModel;
 
 namespace Remnants.Content
 {
-	public class Worldgen : ModConfig
-	{
-		public override ConfigScope Mode => ConfigScope.ServerSide;
+    public class Worldgen : ModConfig
+    {
+        public static Worldgen Instance;
+
+        public override ConfigScope Mode => ConfigScope.ServerSide;
 
         //[Header("General")]
 
@@ -44,17 +46,22 @@ namespace Remnants.Content
         [DefaultValue(true)]
         public bool JungleValley;
 
+        [DefaultValue(false)]
+        public bool DoLivingTrees;
+
+        [Header("Compatability")]
+
         [DefaultValue(true)]
         [BackgroundColor(150, 150, 125)]
         public bool SunkenSeaRework;
 
         [Header("Structure")]
 
-		[Range(0f, 2f)]
-		[Increment(.25f)]
-		[DrawTicks]
-		[DefaultValue(1f)]
-		public float TrapFrequency;
+        [Range(0f, 2f)]
+        [Increment(.25f)]
+        [DrawTicks]
+        [DefaultValue(1f)]
+        public float TrapFrequency;
 
         [Range(0f, 1f)]
         [Increment(.25f)]
@@ -68,16 +75,42 @@ namespace Remnants.Content
         [DefaultValue(1f)]
         public float RailroadFrequency;
 
-        //[DefaultValue(true)]
-        //[BackgroundColor(90, 160, 140)]
-        //[ReloadRequired]
-        //public float MeteorRework;
+        [Range(0f, 1f)]
+        [Increment(.25f)]
+        [DrawTicks]
+        [DefaultValue(1f)]
+        public float PlatformFrequency;
 
-        //[DefaultValue(false)]
-        //[BackgroundColor(150, 150, 125)]
-        //public bool LargerSky;
+        [Range(0f, 1f)]
+        [Increment(.25f)]
+        [DrawTicks]
+        [DefaultValue(1f)]
+        public float CacheFrequency;
+
+        [Range(0f, 1f)]
+        [Increment(.25f)]
+        [DrawTicks]
+        [DefaultValue(1f)]
+        public float IceHouseFrequency;
+
+        [Header("LargerSky")]
+
+        [Range(0, 10000)]
+        [DefaultValue(150)]
+        [BackgroundColor(192, 54, 64, 192)]
+        public int FlatSurfaceRatioIncrease;
+
+        [Range(0, 10000)]
+        [DefaultValue(150)]
+        [BackgroundColor(192, 54, 64, 192)]
+        public int FlatUndergroundRatioIncrease;
+
+        [Range(0, 10000)]
+        [DefaultValue(150)]
+        [BackgroundColor(192, 54, 64, 192)]
+        public int FlatLavaRatioIncrease;
     }
-	public class Gameplay : ModConfig
+    public class Gameplay : ModConfig
 	{
 		public override ConfigScope Mode => ConfigScope.ServerSide;
 
