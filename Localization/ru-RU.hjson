@@ -649,8 +649,8 @@ Mods: {
 			}
 
 			NightglowBerryIcon: {
-				// DisplayName: Nightglow Berry Icon
-				// Tooltip: ""
+				DisplayName: Иконка ягоды-фонаря
+				Tooltip: ""
 			}
 
 			ArcanePlatform: {
@@ -713,27 +713,27 @@ Mods: {
 			}
 
 			RunestalkBlessingIcon: {
-				// DisplayName: Runestalk Blessing Icon
-				// Tooltip: ""
+				DisplayName: Иконка благословения руностебля
+				Tooltip: ""
 			}
 
 			ResinGel: {
-				// DisplayName: Resin Gel
-				/* Tooltip:
+				DisplayName: Смола
+				Tooltip:
 					'''
-					Can be solidified into amber
-					'Oddly soothing'
-					''' */
+					Можно превратить в янтарь на отвердителе
+					«Залипательно»
+					'''
 			}
 
 			FragmentGrenade: {
-				// DisplayName: Fragment Grenade
-				// Tooltip: ""
+				DisplayName: Осколочная граната
+				Tooltip: ""
 			}
 
 			FragmentGlowstick: {
-				// DisplayName: Fragment Glowstick
-				// Tooltip: ""
+				DisplayName: Осколочная светящаяся палочка
+				Tooltip: ""
 			}
 		}
 
@@ -783,8 +783,8 @@ Mods: {
 			SoulLanceHoldout.DisplayName: Копьё душегуба
 			SpectralLanceHoldout.DisplayName: Спектральный пронзатель
 			ResinShrapnel.DisplayName: Осколок затвердевшей смолы
-			// FragmentGrenade.DisplayName: Shrapnel Grenade
-			// FragmentGlowstick.DisplayName: Fragment Glowstick
+			FragmentGrenade.DisplayName: Осколочная граната
+			FragmentGlowstick.DisplayName: Осколочная светящаяся палочка
 		}
 
 		Configs: {
@@ -795,11 +795,11 @@ Mods: {
 					General: Общее
 					Terrain: Ландшафт и пещеры
 					Structure: Структуры
-					// LargerSky: World Proportions (Advanced)
+					LargerSky: Пропорции мира
 				}
 
 				TerrainAmplitude: {
-					Label: "[i:3] Амплитуда поверхности"
+					Label: "[i:3722] Амплитуда поверхности"
 					Tooltip: Устанавливает разницу высот генерируемого ландшафта
 				}
 
@@ -866,59 +866,54 @@ Mods: {
 				}
 
 				DoLivingTrees: {
-					// Label: "[i:1182] Vanilla Living Trees"
-					/* Tooltip:
+					Label: "[i:1182] Живые деревья из ваниллы"
+					Tooltip:
 						'''
-						Enables the vanilla living trees
-
-						Note: Does NOT replace the giant tree added by Remnants
-						Note: These frequently generate on floating islands due to their programming
-						''' */
+						Включает генерацию живых деревьев из ваниллы на поверхности
+						[c/808080:Эти деревья не заменяют новую структуру корневища из Remnants, которая задумывалась как замена живым деревьям]
+						'''
 				}
 
 				PlatformFrequency: {
-					// Label: "[i:94] Platform Frequency"
-					// Tooltip: Controls the number of mining platforms generated in new worlds
+					Label: "[i:94] Количество платформ"
+					Tooltip: Устанавливает количество генерируемых шахтёрских платформ в пещерах
 				}
 
 				CacheFrequency: {
-					// Label: "[i:48] Cache Frequency"
-					// Tooltip: Controls the number of hidden caches generated in new worlds
+					Label: "[i:48] Количество укрытий"
+					Tooltip: Устанавливает количество генерируемых маленьких укрытий с сундуками на поверхности
 				}
 
 				FrozenRuinFrequency: {
-					// Label: "[i:2059] Ice Temple Frequency"
-					// Tooltip: Controls the number of ice temples generated in new worlds
+					Label: "[i:2059] Количество ледяных дворцов"
+					Tooltip: Устанавливает количество генерируемых дворцов в ледяных пещерах
 				}
 
 				FlatSurfaceRatioIncrease: {
-					// Label: Surface Height Reduction
-					/* Tooltip:
+					Label: "[i:2] Уменьшение размера неба и поверхности"
+					Tooltip:
 						'''
-						Lowers the surface threshold by the given number of blocks
-
-						Note: Does nothing with the safeguard enabled
-						''' */
+						Уменьшает высоту неба и поверхности в мире на установленное количество блоков
+						[c/808080:Отключите настройку «Меры предосторожности», чтобы изменения этой настройки вступили в силу]
+						'''
 				}
 
 				FlatUndergroundRatioIncrease: {
-					// Label: Cavern Height Reduction
-					/* Tooltip:
+					Label: "[i:3] Уменьшения размера слоя пещер"
+					Tooltip:
 						'''
-						Lowers the cavern threshold by the given number of blocks
-
-						Note: Does nothing with the safeguard enabled
-						''' */
+						Уменьшает высоту слоя пещер кроме лавого слоя в мире на установленное количество блоков
+						[c/808080:Отключите настройку «Меры предосторожности», чтобы изменения этой настройки вступили в силу]
+						'''
 				}
 
 				FlatLavaRatioIncrease: {
-					// Label: Lava Height Reduction
-					/* Tooltip:
+					Label: "[i:173] Уменьшение размера лавового слоя"
+					Tooltip:
 						'''
-						Lowers the lava threshold by the given number of blocks
-
-						Note: Does nothing with the safeguard enabled
-						''' */
+						Уменьшает высоту слоя с лавой кроме преисподней на установленное количество блоков
+						[c/808080:Отключите настройку «Меры предосторожности», чтобы изменения этой настройки вступили в силу]
+						'''
 				}
 			}
 
@@ -936,6 +931,7 @@ Mods: {
 						'''
 						Увеличивает базовую скорость и подвижность игрока
 						[c/98FB98:Крайне рекомендуется]
+						[c/808080:Если у вас включён мод Calamity, советуем отключить увеличение скорости игрока в его настройках в целях баланса]
 						'''
 				}
 
