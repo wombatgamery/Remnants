@@ -711,22 +711,11 @@ Mods: {
 
 			ResinGel: {
 				// DisplayName: Resin Gel
-				/* Tooltip:
-					'''
-					Can be solidified into amber
-					'Oddly soothing'
-					''' */
+				// Tooltip: "'Pulses with strange viscosity'"
 			}
 
-			FragmentGrenade: {
-				// DisplayName: Fragment Grenade
-				// Tooltip: ""
-			}
-
-			FragmentGlowstick: {
-				// DisplayName: Fragment Glowstick
-				// Tooltip: ""
-			}
+			// FragmentGrenade.DisplayName: Fragment Grenade
+			// FragmentGlowstick.DisplayName: Fragment Glowstick
 		}
 
 		NPCs: {
@@ -777,6 +766,7 @@ Mods: {
 			ResinShrapnel.DisplayName: Odłamki Żywicy
 			// FragmentGrenade.DisplayName: Shrapnel Grenade
 			// FragmentGlowstick.DisplayName: Fragment Glowstick
+			// FragmentGlowstickFragment.DisplayName: Fragment Glowstick Fragment
 		}
 
 		Configs: {
