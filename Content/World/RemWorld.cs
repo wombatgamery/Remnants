@@ -1819,7 +1819,7 @@ namespace Remnants.Content.World
                                 {
                                     rarity = 5;
 
-                                    type = biomes.FindBiome(x, y) == BiomeID.Jungle || biomes.FindBiome(x, y, false) == BiomeID.Desert ? TileID.Platinum : TileID.Gold; //TileID.Gold;
+                                    type = biomes.FindBiome(x, y) == BiomeID.Jungle ? TileID.Platinum : TileID.Gold; //TileID.Gold;
 
                                     OreVein(x, y, WorldGen.genRand.Next(12, 18), rarity, type, blocksToReplace, 3, 0.5f, 5, 3);
                                 }

@@ -3688,7 +3688,7 @@ namespace Remnants.Content.World
                 cache.X = WorldGen.genRand.Next(400, Main.maxTilesX - 400 - cache.area.Width);
                 cache.Y = WorldGen.genRand.Next((int)(Main.worldSurface * 0.5f), (int)Main.worldSurface - cache.area.Height);
 
-                bool[] invalidTiles = TileID.Sets.Factory.CreateBoolSet(true, TileID.Ash, TileID.Ebonstone, TileID.Crimstone, TileID.LihzahrdBrick, TileID.LivingWood);
+                bool[] invalidTiles = TileID.Sets.Factory.CreateBoolSet(true, TileID.HardenedSand, TileID.Sandstone, TileID.Ash, TileID.Ebonstone, TileID.Crimstone, TileID.LihzahrdBrick, TileID.LivingWood);
 
                 bool openLeft = true;
                 bool openRight = true;

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Remnants")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c31656c37398d030927166bca4da294574337f42")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+483861c61b85c9edef34dd6d7c004479ef1e21ff")]
 [assembly: System.Reflection.AssemblyProductAttribute("Remnants")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Remnants")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

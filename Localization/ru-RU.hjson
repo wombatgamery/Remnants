@@ -648,11 +648,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			NightglowBerryIcon: {
-				DisplayName: Иконка ягоды-фонаря
-				Tooltip: ""
-			}
-
 			ArcanePlatform: {
 				DisplayName: Арканная платформа
 				Tooltip: ""
@@ -712,23 +707,13 @@ Mods: {
 				Tooltip: Позволяет открыть один сундук из магической лаборатории
 			}
 
-			RunestalkBlessingIcon: {
-				DisplayName: Иконка благословения руностебля
-				Tooltip: ""
-			}
-
 			ResinGel: {
 				DisplayName: Смола
-				Tooltip: "«Импульсы со странной вязкостью»"
+				Tooltip: «Импульсы со странной вязкостью»
 			}
 
-			FragmentGrenade: {
-				DisplayName: Осколочная граната
-			}
-
-			FragmentGlowstick: {
-				DisplayName: Осколочная светящаяся палочка
-			}
+			FragmentGrenade.DisplayName: Осколочная граната
+			FragmentGlowstick.DisplayName: Осколочная светящаяся палочка
 		}
 
 		NPCs: {

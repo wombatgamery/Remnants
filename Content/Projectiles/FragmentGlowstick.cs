@@ -34,8 +34,7 @@ namespace Remnants.Content.Projectiles
                 {
                     Projectile fragment = Projectile.NewProjectileDirect(Projectile.GetSource_Death(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<FragmentGlowstickFragment>(), 0, 0, Projectile.owner);
 
-                    float length = oldVelocity.Length();
-                    fragment.velocity = (Projectile.velocity + Main.rand.NextVector2Circular(length, length)) / 2;
+                    fragment.velocity = Projectile.velocity + Main.rand.NextVector2Circular(4, 4);
 
                     if (oldVelocity.Y > 0 && fragment.velocity.Y > 0)
                     {

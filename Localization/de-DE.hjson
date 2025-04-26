@@ -636,11 +636,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			NightglowBerryIcon: {
-				// DisplayName: Nightglow Berry Icon
-				// Tooltip: ""
-			}
-
 			ArcanePlatform: {
 				DisplayName: Arkane Plattform
 				Tooltip: ""
@@ -698,11 +693,6 @@ Mods: {
 			ArcaneKey: {
 				DisplayName: Arkaner Schlüssel
 				Tooltip: Öffnet eine Abgeschlossene Arkane Truhe
-			}
-
-			RunestalkBlessingIcon: {
-				// DisplayName: Runestalk Blessing Icon
-				// Tooltip: ""
 			}
 
 			ResinGel: {

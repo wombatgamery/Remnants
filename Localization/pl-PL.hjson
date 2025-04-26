@@ -704,13 +704,8 @@ Mods: {
 				Tooltip: "'Impulsy o dziwnej lepkości'"
 			}
 
-			FragmentGrenade: {
-				DisplayName: Granat Odłamkowy
-			}
-
-			FragmentGlowstick: {
-				DisplayName: Świetlik Odłamkowy
-			}
+			FragmentGrenade.DisplayName: Granat Odłamkowy
+			FragmentGlowstick.DisplayName: Świetlik Odłamkowy
 		}
 
 		NPCs: {

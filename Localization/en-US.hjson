@@ -636,11 +636,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			NightglowBerryIcon: {
-				DisplayName: Nightglow Berry Icon
-				Tooltip: ""
-			}
-
 			ArcanePlatform: {
 				DisplayName: Arcane Platform
 				Tooltip: ""
@@ -698,11 +693,6 @@ Mods: {
 			ArcaneKey: {
 				DisplayName: Arcane Key
 				Tooltip: Opens one Locked Arcane Chest
-			}
-
-			RunestalkBlessingIcon: {
-				DisplayName: Runestalk Blessing Icon
-				Tooltip: ""
 			}
 
 			ResinGel: {

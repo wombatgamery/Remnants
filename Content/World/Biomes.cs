@@ -1875,7 +1875,7 @@ namespace Remnants.Content.World
             {
                 for (int x = 6; x < biomes.width - 6; x++)
                 {
-                    int i = x + (int)(noise.GetNoise(x, y + 999) * (Main.maxTilesX / 1050f));
+                    int i = spiritReforged && y < biomes.surfaceLayer ? x : x + (int)(noise.GetNoise(x, y + 999) * (Main.maxTilesX / 1050f));
                     int j = y + (int)(noise.GetNoise(x + 999, y) * (Main.maxTilesY / 600f));
 
                     Vector2 point = new Vector2(Jungle.Center, y);
