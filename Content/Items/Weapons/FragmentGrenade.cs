@@ -4,12 +4,15 @@ using Remnants.Content.Dusts;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace Remnants.Content.Items.Weapons
 {
 	public class FragmentGrenade : ModItem
 	{
-		public override void SetStaticDefaults() 
+		public override LocalizedText Tooltip => Language.GetText("ItemTooltip.Grenade");
+
+        public override void SetStaticDefaults() 
 		{
 			Item.ResearchUnlockCount = 99;
 		}

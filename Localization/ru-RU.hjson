@@ -719,21 +719,15 @@ Mods: {
 
 			ResinGel: {
 				DisplayName: Смола
-				Tooltip:
-					'''
-					Можно превратить в янтарь на отвердителе
-					«Залипательно»
-					'''
+				Tooltip: "«Импульсы со странной вязкостью»"
 			}
 
 			FragmentGrenade: {
 				DisplayName: Осколочная граната
-				Tooltip: ""
 			}
 
 			FragmentGlowstick: {
 				DisplayName: Осколочная светящаяся палочка
-				Tooltip: ""
 			}
 		}
 
@@ -785,6 +779,7 @@ Mods: {
 			ResinShrapnel.DisplayName: Осколок затвердевшей смолы
 			FragmentGrenade.DisplayName: Осколочная граната
 			FragmentGlowstick.DisplayName: Осколочная светящаяся палочка
+			// FragmentGlowstickFragment.DisplayName: Fragment Glowstick Fragment
 		}
 
 		Configs: {

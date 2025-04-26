@@ -547,7 +547,7 @@ Mods: {
 					Powinniśmy zacząć od zrównoważonego źródła pożywienia, uprawiając owoce, warzywa i zboże z naszych zapasów.
 					Nadal jest to ledwo wystarczające, aby utrzymać naszą obecną populację i
 					być może będziemy musieli wdrożyć naszą wiedzę o magii i genetyce, aby zapewnić sobie przetrwanie...
-					Jaka szkoda, że ​​nasz wielki przełom nigdy nie doszedł do skutku.
+					Jaka szkoda, że nasz wielki przełom nigdy nie doszedł do skutku.
 					'''
 			}
 
@@ -640,11 +640,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			NightglowBerryIcon: {
-				// DisplayName: Nightglow Berry Icon
-				// Tooltip: ""
-			}
-
 			ArcanePlatform: {
 				DisplayName: Platforma Arkanów
 				Tooltip: ""
@@ -704,28 +699,17 @@ Mods: {
 				Tooltip: Otwiera zamknięty Kufer Arkanów
 			}
 
-			RunestalkBlessingIcon: {
-				// DisplayName: Runestalk Blessing Icon
-				// Tooltip: ""
-			}
-
 			ResinGel: {
 				DisplayName: Żywiczny Żeł
-				Tooltip:
-					'''
-					Można zestalić w bursztyn
-					'Dziwnie kojący'
-					'''
+				Tooltip: "'Impulsy o dziwnej lepkości'"
 			}
 
 			FragmentGrenade: {
 				DisplayName: Granat Odłamkowy
-				Tooltip: ""
 			}
 
 			FragmentGlowstick: {
 				DisplayName: Świetlik Odłamkowy
-				Tooltip: ""
 			}
 		}
 
@@ -777,6 +761,7 @@ Mods: {
 			ResinShrapnel.DisplayName: Odłamki Żywicy
 			FragmentGrenade.DisplayName: Granat Odłamkowy
 			FragmentGlowstick.DisplayName: Świetlik Odłamkowy
+			// FragmentGlowstickFragment.DisplayName: Fragment Glowstick Fragment
 		}
 
 		Configs: {
