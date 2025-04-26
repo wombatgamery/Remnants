@@ -547,7 +547,7 @@ Mods: {
 					Powinniśmy zacząć od zrównoważonego źródła pożywienia, uprawiając owoce, warzywa i zboże z naszych zapasów.
 					Nadal jest to ledwo wystarczające, aby utrzymać naszą obecną populację i
 					być może będziemy musieli wdrożyć naszą wiedzę o magii i genetyce, aby zapewnić sobie przetrwanie...
-					Jaka szkoda, że ​​nasz wielki przełom nigdy nie doszedł do skutku.
+					Jaka szkoda, że nasz wielki przełom nigdy nie doszedł do skutku.
 					'''
 			}
 
@@ -640,11 +640,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			NightglowBerryIcon: {
-				// DisplayName: Nightglow Berry Icon
-				// Tooltip: ""
-			}
-
 			ArcanePlatform: {
 				DisplayName: Platforma Arkanów
 				Tooltip: ""
@@ -704,18 +699,18 @@ Mods: {
 				Tooltip: Otwiera zamknięty Kufer Arkanów
 			}
 
-			RunestalkBlessingIcon: {
-				// DisplayName: Runestalk Blessing Icon
-				// Tooltip: ""
-			}
-
 			ResinGel: {
-				// DisplayName: Resin Gel
-				// Tooltip: "'Pulses with strange viscosity'"
+				DisplayName: Żywiczny Żeł
+				Tooltip: "'Impulsy o dziwnej lepkości'"
 			}
 
-			// FragmentGrenade.DisplayName: Fragment Grenade
-			// FragmentGlowstick.DisplayName: Fragment Glowstick
+			FragmentGrenade: {
+				DisplayName: Granat Odłamkowy
+			}
+
+			FragmentGlowstick: {
+				DisplayName: Świetlik Odłamkowy
+			}
 		}
 
 		NPCs: {
@@ -764,8 +759,8 @@ Mods: {
 			SoulLanceHoldout.DisplayName: Włócznia Dusz
 			SpectralLanceHoldout.DisplayName: Włócznia Widm
 			ResinShrapnel.DisplayName: Odłamki Żywicy
-			// FragmentGrenade.DisplayName: Shrapnel Grenade
-			// FragmentGlowstick.DisplayName: Fragment Glowstick
+			FragmentGrenade.DisplayName: Granat Odłamkowy
+			FragmentGlowstick.DisplayName: Świetlik Odłamkowy
 			// FragmentGlowstickFragment.DisplayName: Fragment Glowstick Fragment
 		}
 
@@ -777,7 +772,7 @@ Mods: {
 					General: Ogólne
 					Terrain: Teren
 					Structure: Struktury
-					// LargerSky: World Proportions (Advanced)
+					LargerSky: Proporcje Swiata (Dla zaawansowanych)
 				}
 
 				TerrainAmplitude: {
@@ -826,7 +821,7 @@ Mods: {
 						'''
 						Zapobiega tworzeniu światów korzystających z niekompatybilnych modów lub ustawień
 
-						Uwaga: wysoce zalecane — wyłączaj tylko wtedy, gdy wiesz, co robisz
+						Uwaga: Wysoce zalecane — Wyłączaj tylko wtedy, gdy wiesz, co robisz
 						'''
 				}
 
@@ -851,59 +846,59 @@ Mods: {
 				}
 
 				DoLivingTrees: {
-					// Label: "[i:1182] Vanilla Living Trees"
-					/* Tooltip:
+					Label: "[i:1182] Żywe Drzewa z Vanilii"
+					Tooltip:
 						'''
-						Enables the vanilla living trees
+						Włącza Żywe Drzewa z Vanilii
 
-						Note: Does NOT replace the giant tree added by Remnants
-						Note: These frequently generate on floating islands due to their programming
-						''' */
+						Uwaga: NIE zastępuje gigantycznego drzewa dodanego przez Remnants
+						Uwaga: Często generowane na Podniebnych Wyspach ze względu na ich zaprogramowanie
+						'''
 				}
 
 				PlatformFrequency: {
-					// Label: "[i:94] Platform Frequency"
-					// Tooltip: Controls the number of mining platforms generated in new worlds
+					Label: "[i:94] Częstotliwość Platform"
+					Tooltip: Kontroluje ilość platform wydobywczych generowanych w nowych światach
 				}
 
 				CacheFrequency: {
-					// Label: "[i:48] Cache Frequency"
-					// Tooltip: Controls the number of hidden caches generated in new worlds
+					Label: "[i:48] Częstotliwość Kryjówek"
+					Tooltip: Kontroluje ilość kryjówek generowanych w nowych światach
 				}
 
 				FrozenRuinFrequency: {
-					// Label: "[i:2059] Ice Temple Frequency"
-					// Tooltip: Controls the number of ice temples generated in new worlds
+					Label: "[i:2059] Częstotliwość Lodowej Świątyni"
+					Tooltip: Kontroluje ilość lodowych świątyń generowanych w nowych światach
 				}
 
 				FlatSurfaceRatioIncrease: {
-					// Label: Surface Height Reduction
-					/* Tooltip:
+					Label: Zmniejszenie Wysokości Powierzchni
+					Tooltip:
 						'''
-						Lowers the surface threshold by the given number of blocks
+						Obniża próg powierzchni o podaną liczbę bloków
 
-						Note: Does nothing with the safeguard enabled
-						''' */
+						Uwaga: Nic nie robi przy włączonym Zabezpieczeniu
+						'''
 				}
 
 				FlatUndergroundRatioIncrease: {
-					// Label: Cavern Height Reduction
-					/* Tooltip:
+					Label: Zmniejszenie Wysokości Jaskiń
+					Tooltip:
 						'''
-						Lowers the cavern threshold by the given number of blocks
+						Obniża próg jaskiń o podaną liczbę bloków
 
-						Note: Does nothing with the safeguard enabled
-						''' */
+						Uwaga: Nic nie robi przy włączonym Zabezpieczeniu
+						'''
 				}
 
 				FlatLavaRatioIncrease: {
-					// Label: Lava Height Reduction
-					/* Tooltip:
+					Label: Zmniejszenie Wysokości Lawy
+					Tooltip:
 						'''
-						Lowers the lava threshold by the given number of blocks
+						Obniża próg lawy o podaną liczbę bloków
 
-						Note: Does nothing with the safeguard enabled
-						''' */
+						Uwaga: Nic nie robi przy włączonym Zabezpieczeniu
+						'''
 				}
 			}
 
