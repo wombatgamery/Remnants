@@ -1,6 +1,6 @@
 displayName = [c/81FEFF:Remnants]
 author = Wombat
-version = 1.5.50.1
+version = 1.5.50.2
 
 dllReferences = StructureHelper
 modReferences = WombatQOL

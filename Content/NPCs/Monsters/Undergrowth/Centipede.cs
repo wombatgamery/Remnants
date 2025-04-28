@@ -59,13 +59,13 @@ namespace Remnants.Content.NPCs.Monsters.Undergrowth
             SpawnModBiomes = new int[] { ModContent.GetInstance<Biomes.Undergrowth>().Type };
         }
 
+        ref float aiTimer => ref NPC.ai[1];
+
+        ref float stalkDuration => ref NPC.ai[2];
+
         public override void AI()
         {
-            if (!NPC.HasValidTarget)
-            {
-                NPC.TargetClosest();
-            }
-
+            #region segments
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 if (!TailSpawned)
@@ -89,43 +89,38 @@ namespace Remnants.Content.NPCs.Monsters.Undergrowth
                     TailSpawned = true;
                 }
             }
+            #endregion
 
+            #region behaviour
+            if (!NPC.HasValidTarget)
+            {
+                NPC.TargetClosest();
+            }
+
+            Player target = Main.player[NPC.target];
             Point point = NPC.Center.ToTileCoordinates();
             Tile tile = Framing.GetTileSafely(point);
             bool collision = Collision.SolidCollision(NPC.position, NPC.width, NPC.height);
+            int orbitRadius = 16 * (16 + NPC.whoAmI % 3 * 8);
+
+            bool attacking = stalkDuration <= 0 && Vector2.Distance(NPC.Center, target.Center) < orbitRadius + 64;
 
             if (collision || tile.WallType != 0 || point.Y > Main.worldSurface && point.Y < Main.maxTilesY - 200)
             {
-                bool attacking = false;
-
-                if (Main.player[NPC.target].InModBiome<Biomes.Undergrowth>() || Main.player[NPC.target].Center.Y / 16 > Main.worldSurface)
+                if (target.InModBiome<Biomes.Undergrowth>() || target.Center.Y / 16 > Main.worldSurface)
                 {
-                    attacking = (Main.GameUpdateCount + NPC.whoAmI * 37) % 480 < 60 + NPC.whoAmI % 3 * 30;
-
-                    Vector2 target = attacking ? Main.player[NPC.target].Center : Main.player[NPC.target].Center + new Vector2((float)Math.Sin(Main.GameUpdateCount / 50), (float)Math.Cos(Main.GameUpdateCount / 50) * (NPC.whoAmI % 2 == 0 ? -1 : 1)) * 16 * (16 + NPC.whoAmI % 3 * 8);
-                    NPC.velocity += Vector2.Normalize(target - NPC.Center) / (attacking ? 5 : 9);
+                    Vector2 destination = attacking ? target.Center : target.Center + new Vector2((float)Math.Sin((target.miscCounter + NPC.whoAmI * 50) % 300 / (300 / MathHelper.TwoPi)), (float)Math.Cos((target.miscCounter + NPC.whoAmI * 50) % 300 / (300 / MathHelper.TwoPi)) * (NPC.whoAmI % 2 == 0 ? -1 : 1)) * orbitRadius;
+                    NPC.velocity += Vector2.Normalize(destination - NPC.Center) / (attacking ? 5 : 9);
                 }
                 else NPC.velocity.Y += 1f / 9;
 
                 NPC.velocity *= attacking ? 0.96f : 0.98f;
 
-                if (collision)
+                if (collision && NPC.soundDelay == 0)
                 {
-                    if (NPC.soundDelay == 0)
-                    {
-                        // Play sounds quicker the closer the NPC is to the target location
-                        float num1 = Vector2.Distance(NPC.Center, Main.player[NPC.target].Center) / 40f;
+                    NPC.soundDelay = (int)Math.Clamp(Vector2.Distance(NPC.Center, target.Center) / 40f, 10, 20);
 
-                        if (num1 < 10)
-                            num1 = 10f;
-
-                        if (num1 > 20)
-                            num1 = 20f;
-
-                        NPC.soundDelay = (int)num1;
-
-                        SoundEngine.PlaySound(SoundID.WormDig, NPC.position);
-                    }
+                    SoundEngine.PlaySound(SoundID.WormDig, NPC.position);
                 }
             }
             else
@@ -135,11 +130,37 @@ namespace Remnants.Content.NPCs.Monsters.Undergrowth
             }
 
             NPC.rotation = NPC.velocity.ToRotation() + MathHelper.PiOver2;
+            #endregion
 
-            if (((NPC.velocity.X > 0f && NPC.oldVelocity.X < 0f) || (NPC.velocity.X < 0f && NPC.oldVelocity.X > 0f) || (NPC.velocity.Y > 0f && NPC.oldVelocity.Y < 0f) || (NPC.velocity.Y < 0f && NPC.oldVelocity.Y > 0f)) && !NPC.justHit)
+            #region aistate
+            aiTimer++;
+
+            if (attacking)
             {
-                NPC.netUpdate = true;
+                if (aiTimer >= 60 + NPC.whoAmI % 3 * 30)
+                {
+                    aiTimer = 0;
+                    stalkDuration = Main.rand.Next(300, 601);
+
+                    NPC.netUpdate = true;
+                }
             }
+            else
+            {
+                if (aiTimer >= stalkDuration)
+                {
+                    stalkDuration = 0;
+                    aiTimer = 0;
+
+                    NPC.netUpdate = true;
+                }
+            }
+            #endregion
+
+            //if (((NPC.velocity.X > 0f && NPC.oldVelocity.X < 0f) || (NPC.velocity.X < 0f && NPC.oldVelocity.X > 0f) || (NPC.velocity.Y > 0f && NPC.oldVelocity.Y < 0f) || (NPC.velocity.Y < 0f && NPC.oldVelocity.Y > 0f)) && !NPC.justHit)
+            //{
+            //    NPC.netUpdate = true;
+            //}
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)

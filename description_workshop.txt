@@ -48,6 +48,7 @@ Thanks to the following sources for providing copyright-free assets: [list]
 [/list]
 
 Thanks to the following users for contributing directly to the mod: [list]
+[*]Custom music boxes by [url=https://steamcommunity.com/id/CrayonEater69][b]KingOblivion.[/b]
 [*]Russian localisation written by [url=https://steamcommunity.com/id/xenofite][b]Xenofite.[/b][/url]
 [*]Polish localisation written by [url=https://steamcommunity.com/id/nichiimishiari/][b]Nichiimishiari.[/b][/url]
 [*]German localisation written by [url=https://steamcommunity.com/id/Cracky-XXX/][b]Cracky.[/b][/url]
