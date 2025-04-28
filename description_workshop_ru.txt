@@ -1,7 +1,7 @@
-[url=https://discord.gg/cbK6rVC][b]Заходите в наш дискорд сервер, если у вас остались какие-либо вопросы по моду[/b][/url]
-[url=https://ko-fi.com/wombatgamery][b]Поддержать разработчика копейкой можно на его странице Ko-fi[/b][/url]
-[url=https://terrariamods.wiki.gg/wiki/Remnants][b]У мода также есть и (отчасти неактуальная) фанатская вики, на которой тоже можно узнать про всякое[/b][/url]
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3308342945][b]Рекомендуем заодно заценить и другой мод от нас — Challenge Vaults![/b][/url]
+[url=https://discord.gg/cbK6rVC][img]https://imgur.com/RF3SON0.png[/img][/url]
+[url=https://ko-fi.com/wombatgamery][img]https://imgur.com/HMNxjJ6.png[/img][/url]
+[url=https://terrariamods.wiki.gg/wiki/Remnants][img]https://imgur.com/VUm3yP9.png[/img][/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3308342945][img]https://imgur.com/iKwGXQN.png[/img][/url]
 
 [h2]Описание[/h2] [img]https://i.imgur.com/jdunrUl.png[/img]
 Remnants — уникальный проект, перерабатывающий [b]весь[/b] процесс генерации миров в Террарии, выводя его на совершенно новый уровень. Вас ждут ранее невиданные биомы и структуры, каждая со своими особенностями и секретами.
@@ -14,7 +14,7 @@ Remnants — уникальный проект, перерабатывающий
 [/list]
 
 [h2]Совместимость с другими модами и секретными сидами[/h2] [img]https://i.imgur.com/jdunrUl.png[/img]
-Не все моды работают должным образом с новым процессом генерации мира — рекомендуем вам внимательно ознакомиться со списком поддерживаемых модов ниже перед тем, как начать полноценное прохождение. Не спешите сообщать в дискорде или в комментариях ошибки, возникающие при игре с другими модами — как правило, исправить такие со стороны этого мода не выйдет и докладывать о них лучше разработчикам других модов, вызывающих проблемы.
+Не все моды работают должным образом с новым процессом генерации мира — рекомендуем вам внимательно ознакомиться со списком поддерживаемых модов ниже, перед тем как начать полноценное прохождение. Не спешите сообщать в дискорде или в комментариях ошибки, возникающие при игре с другими модами — как правило, исправить такие со стороны этого мода не выйдет, и докладывать о них лучше разработчикам других модов, вызывающих проблемы в одной сборке с Remnants.
 
 Также учтите, что [b]ни один[/b] секретный сид этим модом не поддерживается.
 
@@ -45,14 +45,13 @@ Remnants — уникальный проект, перерабатывающий
 
 [h2]Благодарности[/h2] [img]https://i.imgur.com/jdunrUl.png[/img]
 Выражаем безмерную благодарность следующим библиотекам бесплатных ассетов: [list]
-[*][url=https://www.bluezone-corporation.com][b]Bluezone Corporation.[/b][/url] за бесплатные звуковые эффекты и саундтрек
+[*][url=https://www.bluezone-corporation.com][b]Bluezone Corporation[/b][/url] за звуковые эффекты и саундтрек
 [/list]
 
 Отдаём должное следующим пользователям, как-либо оказавшим поддержку в разработке этого проекта: [list]
-[*][url=https://steamcommunity.com/id/xenofite][b]Xenofite[/b][/url] за создание русской локализации мода и её поддержку постоянными обновлениями
-[*][url=https://steamcommunity.com/id/nichiimishiari/][b]Nichiimishiari[/b][/url] за создание польской локализации мода и её поддержку постоянными обновлениями
-[*][url=https://steamcommunity.com/id/Cracky-XXX/][b]Cracky[/b][/url]
+[*][url=https://steamcommunity.com/id/xenofite][b]Xenofite[/b][/url] за создание русской локализации мода
+[*][url=https://steamcommunity.com/id/Cracky-XXX/][b]Cracky[/b][/url] за создание немецкой локализации мода
+[*][url=https://steamcommunity.com/id/nichiimishiari/][b]Nichiimishiari[/b][/url] за создание польской локализации мода и спрайтов для музыкальных шкатулок
+[*][url=https://steamcommunity.com/id/CrayonEater69][b]KingOblivion[/b] за создание некоторых фич по собственной инициативе
 [/list]
 
-[quote=tModLoader Remnants]
-Developed By Wombat[/quote]
