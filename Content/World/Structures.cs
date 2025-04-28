@@ -3962,7 +3962,7 @@ namespace Remnants.Content.World
 
                 int padding = 40;
 
-                int x = WorldGen.genRand.NextBool(2) ? WorldGen.genRand.Next(500 + padding, Main.maxTilesX / 2 - 200 - width) : WorldGen.genRand.Next(Main.maxTilesX / 2 + 200, Main.maxTilesX - 500 - width - padding);
+                int x = WorldGen.genRand.NextBool(2) ? WorldGen.genRand.Next(600 + padding, Main.maxTilesX / 2 - 200 - width) : WorldGen.genRand.Next(Main.maxTilesX / 2 + 200, Main.maxTilesX - 600 - width - padding);
                 int y = WorldGen.genRand.Next(100, (int)(Main.worldSurface * 0.5f) - height);
 
                 if (!Structures.AvoidsBiomes(new Rectangle(x, y, width, height), new[] { BiomeID.Tundra }))
