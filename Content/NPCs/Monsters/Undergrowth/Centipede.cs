@@ -61,38 +61,40 @@ namespace Remnants.Content.NPCs.Monsters.Undergrowth
 
         public override void AI()
         {
-            if (!TailSpawned)
-            {
-                int thisSegment = NPC.whoAmI;
-                int segmentAmt = (int)(20 + Main.GameUpdateCount % 10);
-
-                for (int j = 0; j <= segmentAmt; j++)
-                {
-                    int segmentType = j == segmentAmt ? ModContent.NPCType<CentipedeTail>() : ModContent.NPCType<CentipedeBody>();
-
-                    int newSegment = NPC.NewNPC(NPC.GetSource_FromAI(), (int)(NPC.position.X + NPC.width / 2), (int)(NPC.position.Y + NPC.height), segmentType, NPC.whoAmI);
-
-                    Main.npc[newSegment].ai[3] = NPC.whoAmI;
-                    Main.npc[newSegment].realLife = NPC.whoAmI;
-                    Main.npc[newSegment].ai[1] = thisSegment;
-                    Main.npc[thisSegment].ai[0] = newSegment;
-                    NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, newSegment, 0f, 0f, 0f, 0, 0, 0);
-                    thisSegment = newSegment;
-                }
-                TailSpawned = true;
-            }
-
             if (!NPC.HasValidTarget)
             {
                 NPC.TargetClosest();
             }
 
-            int tileCoordX = (int)(NPC.Center.X / 16);
-            int tileCoordY = (int)(NPC.Center.Y / 16);
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                if (!TailSpawned)
+                {
+                    int thisSegment = NPC.whoAmI;
+                    int segmentAmt = Main.rand.Next(20, 31);
 
+                    for (int j = 0; j <= segmentAmt; j++)
+                    {
+                        int segmentType = j == segmentAmt ? ModContent.NPCType<CentipedeTail>() : ModContent.NPCType<CentipedeBody>();
+
+                        int newSegment = NPC.NewNPC(NPC.GetSource_FromAI(), (int)(NPC.position.X + NPC.width / 2), (int)(NPC.position.Y + NPC.height), segmentType, NPC.whoAmI);
+
+                        Main.npc[newSegment].ai[3] = NPC.whoAmI;
+                        Main.npc[newSegment].realLife = NPC.whoAmI;
+                        Main.npc[newSegment].ai[1] = thisSegment;
+                        Main.npc[thisSegment].ai[0] = newSegment;
+                        NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, newSegment, 0f, 0f, 0f, 0, 0, 0);
+                        thisSegment = newSegment;
+                    }
+                    TailSpawned = true;
+                }
+            }
+
+            Point point = NPC.Center.ToTileCoordinates();
+            Tile tile = Framing.GetTileSafely(point);
             bool collision = Collision.SolidCollision(NPC.position, NPC.width, NPC.height);
 
-            if (collision || Main.tile[tileCoordX, tileCoordY].WallType != 0 || tileCoordY > Main.worldSurface && tileCoordY < Main.maxTilesY - 200)
+            if (collision || tile.WallType != 0 || point.Y > Main.worldSurface && point.Y < Main.maxTilesY - 200)
             {
                 bool attacking = false;
 
@@ -128,11 +130,16 @@ namespace Remnants.Content.NPCs.Monsters.Undergrowth
             }
             else
             {
-                NPC.velocity.Y += Main.tile[tileCoordX, tileCoordY].LiquidAmount > 64 ? 0.05f : 0.1f;
+                NPC.velocity.Y += tile.LiquidAmount > 64 ? 0.05f : 0.1f;
                 NPC.velocity *= 0.99f;
             }
 
             NPC.rotation = NPC.velocity.ToRotation() + MathHelper.PiOver2;
+
+            if (((NPC.velocity.X > 0f && NPC.oldVelocity.X < 0f) || (NPC.velocity.X < 0f && NPC.oldVelocity.X > 0f) || (NPC.velocity.Y > 0f && NPC.oldVelocity.Y < 0f) || (NPC.velocity.Y < 0f && NPC.oldVelocity.Y > 0f)) && !NPC.justHit)
+            {
+                NPC.netUpdate = true;
+            }
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)

@@ -573,6 +573,19 @@ namespace Remnants.Content.World
                             WGTools.Tile(x - 1, y - 1).TileFrameX = (short)(WorldGen.genRand.Next(3) * 18);
                         }
                     }
+                    else if (UpdatingBiome(x, y, biomesToUpdate, BiomeID.Savanna))
+                    {
+                        if (MaterialBlend(x, y, frequency: 2) <= 0.2f)
+                        {
+                            WGTools.Tile(x, y).TileType = TileID.HardenedSand;
+                        }
+                        else tile.TileType = TileID.Sand;
+
+                        if (tile.WallType != 0)
+                        {
+                            tile.WallType = WallID.HardenedSand;
+                        }
+                    }
                     //else if (UpdatingBiome(x, y, biomesToUpdate, BiomeID.Flesh))
                     //{
                     //    caves1.SetNoiseType(FastNoiseLite.NoiseType.Cellular);
@@ -898,7 +911,7 @@ namespace Remnants.Content.World
                         }
                         else
                         {
-                            if (MaterialBlend(x, y, frequency: 2) <= 0)
+                            if (MaterialBlend(x, y, frequency: 2) <= 0.2f)
                             {
                                 WGTools.Tile(x, y).TileType = TileID.HardenedSand;
                             }
@@ -1643,7 +1656,9 @@ namespace Remnants.Content.World
 
         public const int SunkenSea = 100;
 
-        public const int Abysm = 101;
+        public const int Savanna = 101;
+
+        public const int Abysm = 102;
     }
 
     public class PrimaryBiomes : GenPass
@@ -1875,7 +1890,7 @@ namespace Remnants.Content.World
             {
                 for (int x = 6; x < biomes.width - 6; x++)
                 {
-                    int i = spiritReforged && y < biomes.surfaceLayer ? x : x + (int)(noise.GetNoise(x, y + 999) * (Main.maxTilesX / 1050f));
+                    int i = x + (int)(noise.GetNoise(x, y + 999) * (Main.maxTilesX / (y < biomes.surfaceLayer ? 2100f : 1050f)));
                     int j = y + (int)(noise.GetNoise(x + 999, y) * (Main.maxTilesY / 600f));
 
                     Vector2 point = new Vector2(Jungle.Center, y);
@@ -1902,6 +1917,13 @@ namespace Remnants.Content.World
                             }
                             else biomes.AddBiome(x, y, BiomeID.AshForest);
                         }
+                        //else if (spiritReforged && y < biomes.surfaceLayer)
+                        //{
+                        //    if (i > Desert.Center && i < Jungle.Center || i < Desert.Center && i > Jungle.Center)
+                        //    {
+                        //        biomes.AddBiome(x, y, BiomeID.Savanna);
+                        //    }
+                        //}
                     }
                 }
             }
@@ -1950,7 +1972,7 @@ namespace Remnants.Content.World
 
             #endregion
 
-            biomes.UpdateMap(new int[] { BiomeID.Tundra, BiomeID.Jungle, BiomeID.Desert, BiomeID.Corruption, BiomeID.Crimson, BiomeID.Underworld, BiomeID.AshForest, BiomeID.Obsidian, BiomeID.Beach, BiomeID.Toxic, BiomeID.SunkenSea, BiomeID.Abysm }, progress);
+            biomes.UpdateMap(new int[] { BiomeID.Tundra, BiomeID.Jungle, BiomeID.Desert, BiomeID.Corruption, BiomeID.Crimson, BiomeID.Underworld, BiomeID.AshForest, BiomeID.Obsidian, BiomeID.Beach, BiomeID.Toxic, BiomeID.SunkenSea, BiomeID.Savanna, BiomeID.Abysm }, progress);
 
             progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.EvilBiomes");
 

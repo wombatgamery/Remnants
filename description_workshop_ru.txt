@@ -20,11 +20,11 @@ Remnants — уникальный проект, перерабатывающий
 
 Полностью совместимые моды, использование Remnants в связке с которыми не должно вызывать у вас особых проблем: [list]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2824688072][b]Calamity Mod[/b][/url]
-[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3449156562][b]Calamity Fables[/b][/url]
-[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2982372319][b]Spirit Mod[/b][/url]
-[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3449158983][b]Spirit Reforged[/b][/url]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416][b]Thorium Mod[/b][/url]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2982372319][b]Spirit Classic[/b][/url]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2893332653][b]Mod of Redemption[/b][/url]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3449156562][b]Calamity Fables[/b][/url]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3449158983][b]Spirit Reforged[/b][/url]
 [/list]
 
 Частично совместимые моды, генерация мира с которыми скорее всего не пройдёт так гладко, как хотелось бы, но с которыми всё ещё можно будет сделать полноценное прохождение: [list]
@@ -51,7 +51,7 @@ Remnants — уникальный проект, перерабатывающий
 Отдаём должное следующим пользователям, как-либо оказавшим поддержку в разработке этого проекта: [list]
 [*][url=https://steamcommunity.com/id/xenofite][b]Xenofite[/b][/url] за создание русской локализации мода и её поддержку постоянными обновлениями
 [*][url=https://steamcommunity.com/id/nichiimishiari/][b]Nichiimishiari[/b][/url] за создание польской локализации мода и её поддержку постоянными обновлениями
-[*][url=https://steamcommunity.com/id/nichiimishiari/][b]Cracky[/b][/url]
+[*][url=https://steamcommunity.com/id/Cracky-XXX/][b]Cracky[/b][/url]
 [/list]
 
 [quote=tModLoader Remnants]
