@@ -49,9 +49,10 @@ Remnants — уникальный проект, перерабатывающий
 [/list]
 
 Отдаём должное следующим пользователям, как-либо оказавшим поддержку в разработке этого проекта: [list]
+[*][url=https://www.youtube.com/c/ProVISIO][b]ProduceVGM[/b] за потрясающий саундтрек для Корневища и Магической лаборатории
+[*][url=https://steamcommunity.com/id/CrayonEater69][b]KingOblivion[/b] за создание некоторых фич по собственной инициативе
 [*][url=https://steamcommunity.com/id/xenofite][b]Xenofite[/b][/url] за создание русской локализации мода
 [*][url=https://steamcommunity.com/id/Cracky-XXX/][b]Cracky[/b][/url] за создание немецкой локализации мода
 [*][url=https://steamcommunity.com/id/nichiimishiari/][b]Nichiimishiari[/b][/url] за создание польской локализации мода и спрайтов для музыкальных шкатулок
-[*][url=https://steamcommunity.com/id/CrayonEater69][b]KingOblivion[/b] за создание некоторых фич по собственной инициативе
 [/list]
 
