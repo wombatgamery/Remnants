@@ -88,9 +88,9 @@ namespace Remnants.Content
         [DefaultValue(1f)]
         public float FrozenRuinFrequency;
 
-        [DefaultValue(false)]
-        [BackgroundColor(150, 100, 125)]
-        public bool DoLivingTrees;
+        //[DefaultValue(false)]
+        //[BackgroundColor(150, 100, 125)]
+        //public bool DoLivingTrees;
 
         [Header("LargerSky")]
 

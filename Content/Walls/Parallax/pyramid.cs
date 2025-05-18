@@ -32,8 +32,8 @@ namespace Remnants.Content.Walls.Parallax
             //}
             //return true;
 
-            int width = 6;
-            int height = 8;
+            int width = 8;
+            int height = 6;
             int parallax = 8;
 
             Texture2D texture = ModContent.Request<Texture2D>(Texture).Value;

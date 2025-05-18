@@ -702,6 +702,16 @@ Mods: {
 
 			// FragmentGrenade.DisplayName: Fragment Grenade
 			// FragmentGlowstick.DisplayName: Fragment Glowstick
+
+			WoodenSpike: {
+				// DisplayName: Punji Stick
+				// Tooltip: ""
+			}
+
+			PyramidPlatform: {
+				// DisplayName: Pyramid Platform
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {

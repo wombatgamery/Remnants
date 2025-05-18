@@ -59,13 +59,14 @@ namespace Remnants.Content.NPCs.Monsters.Undergrowth
 
         public override void AI()
         {
-            if (deathTimer > -1)
+            if ((int)deathTimer > 1)
             {
                 deathTimer--;
-                if (deathTimer == 0)
+                if ((int)deathTimer == 1)
                 {
                     NPC.life = 0;
                     NPC.checkDead();
+                    NPC.netUpdate = true;
                 }
                 else if (NPC.velocity.Y == 0)
                 {
@@ -82,7 +83,8 @@ namespace Remnants.Content.NPCs.Monsters.Undergrowth
             }
             else NPC.defense = 4;
 
-            if (NPC.life <= NPC.lifeMax / 3f && oldLife > NPC.lifeMax / 3f || NPC.life <= NPC.lifeMax / 1.5f && oldLife > NPC.lifeMax / 1.5f || deathTimer == 59)
+            #region hpeffects
+            if (NPC.life <= NPC.lifeMax / 3f && oldLife > NPC.lifeMax / 3f || NPC.life <= NPC.lifeMax / 1.5f && oldLife > NPC.lifeMax / 1.5f || deathTimer == 60)
             {
                 SoundEngine.PlaySound(SoundID.Item51, NPC.Center);
 
@@ -97,6 +99,7 @@ namespace Remnants.Content.NPCs.Monsters.Undergrowth
             }
 
             oldLife = NPC.life;
+            #endregion
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
@@ -104,19 +107,13 @@ namespace Remnants.Content.NPCs.Monsters.Undergrowth
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ResinGel>(), 1, 1, 2));
         }
 
-        int deathTimer = -1;
+        int deathTimer;
 
         public override void OnHitByItem(Player player, Item item, NPC.HitInfo hit, int damageDone)
         {
             if (damageDone >= NPC.life)
             {
-                deathTimer = 60;
-
-                NPC.life = 1;
-                NPC.damage = 0;
-                NPC.aiStyle = -1;
-                NPC.dontTakeDamage = true;
-                NPC.chaseable = false;
+                DeathSequence();
             }
         }
 
@@ -124,21 +121,28 @@ namespace Remnants.Content.NPCs.Monsters.Undergrowth
         {
             if (damageDone >= NPC.life)
             {
-                deathTimer = 60;
-
-                NPC.life = 1;
-                NPC.damage = 0;
-                NPC.aiStyle = -1;
-                NPC.dontTakeDamage = true;
-                NPC.chaseable = false;
+                DeathSequence();
             }
+        }
+
+        private void DeathSequence()
+        {
+            deathTimer = 61;
+
+            NPC.life = 1;
+            NPC.damage = 0;
+            NPC.aiStyle = -1;
+            NPC.dontTakeDamage = true;
+            NPC.chaseable = false;
+
+            NPC.netUpdate = true;
         }
 
         public override void FindFrame(int frameHeight)
         {
             NPC.frame.Width = 32;
 
-            if (deathTimer > -1)
+            if (deathTimer > 0)
             {
                 NPC.frame.X = 96;
                 NPC.frame.Y = Main.GameUpdateCount % 8 < 4 ? 0 : 26;
@@ -183,7 +187,7 @@ namespace Remnants.Content.NPCs.Monsters.Undergrowth
             {
                 Vector2 drawPos = NPC.Center - Main.screenPosition;
 
-                Main.spriteBatch.Draw(ModContent.Request<Texture2D>(Texture).Value, drawPos - Vector2.UnitY * NPC.height / 2 + Vector2.UnitY, NPC.frame, drawColor, NPC.rotation, new Vector2(NPC.width / 2, NPC.height / 2), NPC.scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(ModContent.Request<Texture2D>(Texture).Value, drawPos - Vector2.UnitY * NPC.height / 2 + Vector2.UnitY * 3, NPC.frame, drawColor, NPC.rotation, new Vector2(NPC.width / 2, NPC.height / 2), NPC.scale, SpriteEffects.None, 0f);
 
                 return false;
             }

@@ -306,7 +306,7 @@ namespace Remnants.Content.Biomes
 		public override bool IsBiomeActive(Player player)
 		{
 			int wall = Main.tile[(int)player.Center.X / 16, (int)player.Center.Y / 16].WallType;
-			return player.position.Y / 16 > Main.worldSurface - (int)(Main.maxTilesY / 1200f * 2) * 42 && (wall == ModContent.WallType<undergrowth>() || wall == WallID.LivingWoodUnsafe);
+			return player.position.Y / 16 > Main.worldSurface - Main.maxTilesY / 12 && (wall == ModContent.WallType<undergrowth>() || wall == WallID.LivingWoodUnsafe);
 		}
 	}
 

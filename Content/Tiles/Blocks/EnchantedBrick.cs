@@ -44,7 +44,7 @@ namespace Remnants.Content.Tiles.Blocks
 
         public override ushort GetMapOption(int i, int j)
         {
-			return (ushort)(!WGTools.Solid(i, j - 1) ? 1 : 0);
+			return (ushort)(!MiscTools.Solid(i, j - 1) ? 1 : 0);
         }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)

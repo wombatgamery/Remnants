@@ -1,21 +1,12 @@
 using Microsoft.Xna.Framework;
 using Remnants.Content.Walls;
 using Remnants.Content.Walls.Parallax;
-using Remnants.Content.Tiles;
-using Remnants.Content.Tiles.Blocks;
-using Remnants.Content.Walls.Vanity;
-using StructureHelper;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria;
-using Terraria.DataStructures;
-using Terraria.GameContent.Generation;
 using Terraria.ID;
 using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
-using static Remnants.Content.World.PrimaryBiomes;
 
 namespace Remnants.Content.World
 {

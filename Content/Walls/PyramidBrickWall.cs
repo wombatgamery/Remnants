@@ -16,7 +16,7 @@ namespace Remnants.Content.Walls
 
 			DustType = DustID.Sand;
 
-			AddMapEntry(new Color(116, 63, 48));
+			AddMapEntry(new Color(127, 75, 50));
 		}
 
 		public override void KillWall(int i, int j, ref bool fail)

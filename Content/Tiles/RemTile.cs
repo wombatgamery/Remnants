@@ -34,6 +34,8 @@ namespace Remnants.Content.Tiles
             TileID.Sets.CanBeClearedDuringGeneration[TileID.HellstoneBrick] = false;
             TileID.Sets.CanBeClearedDuringGeneration[TileID.Glass] = false;
 
+            WallID.Sets.AllowsPlantsToGrow[WallID.LivingWoodUnsafe] = true;
+            WallID.Sets.AllowsPlantsToGrow[WallID.JungleUnsafe3] = true;
             WallID.Sets.AllowsPlantsToGrow[WallID.LavaUnsafe4] = true;
         }
 
@@ -296,7 +298,7 @@ namespace Remnants.Content.Tiles
         public static int FlowerGetLength(int i, int j)
         {
             int length = 0;
-            for (int a = 0; !WGTools.Solid(i, j + a) && Main.tile[i, j + a].LiquidAmount != 255; a++)
+            for (int a = 0; !MiscTools.Solid(i, j + a) && Main.tile[i, j + a].LiquidAmount != 255; a++)
             {
                 if (Main.tile[i, j + a].TileType == ModContent.TileType<PrismbudStem>() || Main.tile[i, j + a].TileType == ModContent.TileType<PrismbudHead>())
                 {
@@ -476,7 +478,7 @@ namespace Remnants.Content.Tiles
                 badWalls[1] = WallID.CrimsonUnsafe3;
 
                 Player player = Main.LocalPlayer;
-                if (Main.rand.NextBool(50) && !tile.HasTile && WGTools.Solid(i, j - 1) && !WGTools.Solid(i, j + 1) && tile.LiquidAmount == 0 && Main.tileOreFinderPriority[Main.tile[i, j - 1].TileType] == 0 && Vector2.Distance(new Vector2(i * 16 + 8, j * 16 + 8), player.Center) > 80 * 16)
+                if (Main.rand.NextBool(50) && !tile.HasTile && MiscTools.Solid(i, j - 1) && !MiscTools.Solid(i, j + 1) && tile.LiquidAmount == 0 && Main.tileOreFinderPriority[Main.tile[i, j - 1].TileType] == 0 && Vector2.Distance(new Vector2(i * 16 + 8, j * 16 + 8), player.Center) > 80 * 16)
                 {
                     if (!Main.wallHouse[tile.WallType] && tile.WallType < WallID.Count)
                     {

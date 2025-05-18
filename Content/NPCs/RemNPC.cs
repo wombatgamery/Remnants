@@ -21,6 +21,7 @@ using Remnants.Content.NPCs.Monsters.Undergrowth;
 using Remnants.Content.Walls;
 using Remnants.Content.Walls.Parallax;
 using Remnants.Content.Tiles.Blocks;
+using Remnants.Content.Walls.Vanity;
 
 namespace Remnants.Content.NPCs
 {
@@ -222,9 +223,9 @@ namespace Remnants.Content.NPCs
                 {
                     pool.Clear();
 
-                    pool[ModContent.NPCType<ResinSlime>()] = 3f;
+                    pool[ModContent.NPCType<ResinSlime>()] = 5f;
 
-                    if (spawnInfo.Player.InModBiome<Biomes.Undergrowth>())
+                    if (spawnInfo.Player.InModBiome<Undergrowth>())
                     {
                         pool[ModContent.NPCType<CentipedeHead>()] = 1f;
                     }
@@ -264,10 +265,6 @@ namespace Remnants.Content.NPCs
                     {
                         pool[NPCID.WebbedStylist] = 1f;
                     }
-                }
-                else if (tile.WallType == ModContent.WallType<stronghold>() || tile.WallType == ModContent.WallType<HellishBrickWallUnsafe>())
-                {
-                    pool[NPCID.BlazingWheel] = 0.5f;
                 }
                 else if ((tile.TileType == TileID.Granite || tile.TileType == TileID.GraniteBlock) && spawnInfo.SpawnTileY > Main.worldSurface)
                 {
@@ -335,6 +332,14 @@ namespace Remnants.Content.NPCs
             //	}
             //}
 
+            if (tile.WallType == ModContent.WallType<stronghold>() || tile.WallType == ModContent.WallType<HellishBrickWallUnsafe>())
+            {
+                pool[NPCID.BlazingWheel] = 0.5f;
+            }
+            if (spawnInfo.SpawnTileY > Main.worldSurface && spawnInfo.SpawnTileY < Main.rockLayer && Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY - 1].WallType == ModContent.WallType<Wood>())
+            {
+                pool[NPCID.UndeadMiner] = 0.5f;
+            }
             if (!NPC.savedMech && NPC.downedBoss3 && !NPC.AnyNPCs(NPCID.BoundMechanic) && Main.wallDungeon[tile.WallType] && spawnInfo.SpawnTileY > Main.worldSurface + 15 && tile.TileType != TileID.Spikes)
             {
                 pool[NPCID.BoundMechanic] = 1f;

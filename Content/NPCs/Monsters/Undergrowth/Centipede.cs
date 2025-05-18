@@ -63,6 +63,8 @@ namespace Remnants.Content.NPCs.Monsters.Undergrowth
 
         ref float stalkDuration => ref NPC.ai[2];
 
+        ref float orbitDirection => ref NPC.ai[3];
+
         public override void AI()
         {
             #region segments
@@ -109,7 +111,7 @@ namespace Remnants.Content.NPCs.Monsters.Undergrowth
             {
                 if (target.InModBiome<Biomes.Undergrowth>() || target.Center.Y / 16 > Main.worldSurface)
                 {
-                    Vector2 destination = attacking ? target.Center : target.Center + new Vector2((float)Math.Sin((target.miscCounter + NPC.whoAmI * 50) % 300 / (300 / MathHelper.TwoPi)), (float)Math.Cos((target.miscCounter + NPC.whoAmI * 50) % 300 / (300 / MathHelper.TwoPi)) * (NPC.whoAmI % 2 == 0 ? -1 : 1)) * orbitRadius;
+                    Vector2 destination = attacking ? target.Center : target.Center + new Vector2((float)Math.Sin((aiTimer + NPC.whoAmI * 50) % 300 / (300 / MathHelper.TwoPi)), (float)Math.Cos((aiTimer + NPC.whoAmI * 50) % 300 / (300 / MathHelper.TwoPi)) * orbitDirection) * orbitRadius;
                     NPC.velocity += Vector2.Normalize(destination - NPC.Center) / (attacking ? 5 : 9);
                 }
                 else NPC.velocity.Y += 1f / 9;
@@ -135,12 +137,13 @@ namespace Remnants.Content.NPCs.Monsters.Undergrowth
             #region aistate
             aiTimer++;
 
-            if (attacking)
+            if (stalkDuration <= 0)
             {
                 if (aiTimer >= 60 + NPC.whoAmI % 3 * 30)
                 {
                     aiTimer = 0;
                     stalkDuration = Main.rand.Next(300, 601);
+                    orbitDirection = Main.rand.NextBool(2) ? -1 : 1;
 
                     NPC.netUpdate = true;
                 }

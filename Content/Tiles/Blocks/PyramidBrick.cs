@@ -16,11 +16,11 @@ namespace Remnants.Content.Tiles.Blocks
 			TileID.Sets.CanBeClearedDuringGeneration[Type] = false;
 			TileID.Sets.AvoidedByMeteorLanding[Type] = true;
 
-			AddMapEntry(new Color(190, 109, 73));
+			AddMapEntry(new Color(188, 121, 76));
 
 			MinPick = 65;
 			MineResist = 2;
-			DustType = DustID.Dirt;
+			DustType = DustID.Sand;
 			HitSound = SoundID.Tink;
 		}
 

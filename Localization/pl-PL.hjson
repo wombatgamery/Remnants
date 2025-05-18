@@ -706,6 +706,16 @@ Mods: {
 
 			FragmentGrenade.DisplayName: Granat Odłamkowy
 			FragmentGlowstick.DisplayName: Świetlik Odłamkowy
+
+			WoodenSpike: {
+				// DisplayName: Punji Stick
+				// Tooltip: ""
+			}
+
+			PyramidPlatform: {
+				// DisplayName: Pyramid Platform
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {

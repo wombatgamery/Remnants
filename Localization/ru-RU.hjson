@@ -714,6 +714,16 @@ Mods: {
 
 			FragmentGrenade.DisplayName: Осколочная граната
 			FragmentGlowstick.DisplayName: Осколочная светящаяся палочка
+
+			WoodenSpike: {
+				// DisplayName: Punji Stick
+				// Tooltip: ""
+			}
+
+			PyramidPlatform: {
+				// DisplayName: Pyramid Platform
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {

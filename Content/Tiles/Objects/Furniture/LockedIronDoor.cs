@@ -64,7 +64,7 @@ namespace Remnants.Content.Tiles.Objects.Furniture
 
 				for (int k = 0; k <= 2; k++)
 				{
-					Tile tile = WGTools.Tile(origin.X, origin.Y + k);
+					Tile tile = MiscTools.Tile(origin.X, origin.Y + k);
 					tile.TileType = TileID.ClosedDoor;
 					tile.TileFrameX = 0;
 					tile.TileFrameY = (short)(15 * 54 + k * 18);
