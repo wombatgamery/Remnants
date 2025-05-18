@@ -4,10 +4,9 @@
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3308342945][img]https://imgur.com/iKwGXQN.png[/img][/url]
 
 [h2]Описание[/h2] [img]https://i.imgur.com/jdunrUl.png[/img]
-Remnants — уникальный проект, перерабатывающий [b]весь[/b] процесс генерации миров в Террарии, выводя его на совершенно новый уровень. Вас ждут ранее невиданные биомы и структуры, каждая со своими особенностями и секретами.
+Remnants — уникальный проект, перерабатывающий [b]весь[/b] процесс генерации миров в Террарии, выводя его на совершенно новый уровень. Будьте готовы погрузиться в настоящее сказочное приключение по ранее невиданным биомам и структурам, каждая из которых со своими особенностями и секретами.
 
-Говоря вкратце, этот мод:
-[list]
+Говоря вкратце, этот мод: [list]
 [*]Полностью переделывает генерацию всех ванильных биомов и структур
 [*]Добавляет ряд новых структур со своим уникальным контентом, исследовать которые будет интересно даже самым закалённым игрокам
 [*]Улучшает некоторые аспекты геймплея, в основном перерабатывая поведение нескольких врагов
@@ -44,14 +43,21 @@ Remnants — уникальный проект, перерабатывающий
 [/list]
 
 [h2]Благодарности[/h2] [img]https://i.imgur.com/jdunrUl.png[/img]
-Выражаем безмерную благодарность следующим библиотекам бесплатных ассетов: [list]
-[*][url=https://www.bluezone-corporation.com][b]Bluezone Corporation[/b][/url] за звуковые эффекты и саундтрек
+Выражаем безмерную благодарность следующим пользователям и проектам за их вклад в разработку этого мода:
+
+Музыка/Звуки: [list]
+[*][url=https://www.youtube.com/c/ProVISIO][b]ProduceVGM[/b][/url] за потрясающий саундтрек для Корневища и Магической лаборатории
+[*]Моду [url=https://steamcommunity.com/app/1281930/workshop/][b]Frackin' Universe[/b][/url] на игру [url=https://store.steampowered.com/app/211820/Starbound/][b]Starbound[/b][/url] за весь остальной саундтрек
+[*]Библиотеке [url=https://www.bluezone-corporation.com][b]Bluezone Corporation[/b][/url] за звуковые эффекты
 [/list]
 
-Отдаём должное следующим пользователям, как-либо оказавшим поддержку в разработке этого проекта: [list]
-[*][url=https://steamcommunity.com/id/xenofite][b]Xenofite[/b][/url] за создание русской локализации мода
+Код/Спрайты: [list]
+[*][url=https://steamcommunity.com/id/CrayonEater69][b]KingOblivion[/b][/url] за создание некоторых фич по собственной инициативе
+[*][url=https://steamcommunity.com/id/nichiimishiari/][b]Nichiimishiari[/b][/url] за создание спрайтов для музыкальных шкатулок
+[/list]
+
+Локализация: [list]
+[*][url=https://steamcommunity.com/id/xenofite][b]Xenofite[/b][/url] из [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3479684937][b]Nana team[/b][/url] за создание русской локализации мода
+[*][url=https://steamcommunity.com/id/nichiimishiari/][b]Nichiimishiari[/b][/url] за создание польской локализации мода
 [*][url=https://steamcommunity.com/id/Cracky-XXX/][b]Cracky[/b][/url] за создание немецкой локализации мода
-[*][url=https://steamcommunity.com/id/nichiimishiari/][b]Nichiimishiari[/b][/url] за создание польской локализации мода и спрайтов для музыкальных шкатулок
-[*][url=https://steamcommunity.com/id/CrayonEater69][b]KingOblivion[/b] за создание некоторых фич по собственной инициативе
 [/list]
-
