@@ -709,7 +709,11 @@ Mods: {
 
 			ResinGel: {
 				DisplayName: Смола
-				Tooltip: «Залипательно»
+				Tooltip:
+					'''
+					Можно превратить в янтарь на отвердителе
+					«Залипательно»
+					'''
 			}
 
 			FragmentGrenade.DisplayName: Осколочная граната
