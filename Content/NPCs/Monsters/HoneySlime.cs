@@ -39,7 +39,7 @@ namespace Remnants.Content.NPCs.Monsters
             AIType = NPCID.JungleSlime;
             AnimationType = NPCID.BlueSlime;
 
-            SpawnModBiomes = new int[] { ModContent.GetInstance<Biomes.TheHive>().Type };
+            SpawnModBiomes = new int[] { ModContent.GetInstance<Biomes.Beehive>().Type };
         }
 
         public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
@@ -102,7 +102,7 @@ namespace Remnants.Content.NPCs.Monsters
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 
                 new FlavorTextBestiaryInfoElement("Mods.Remnants.Bestiary.HoneySlime"),
-                new BestiaryPortraitBackgroundProviderPreferenceInfoElement(ModContent.GetInstance<Biomes.TheHive>().ModBiomeBestiaryInfoElement)
+                new BestiaryPortraitBackgroundProviderPreferenceInfoElement(ModContent.GetInstance<Biomes.Beehive>().ModBiomeBestiaryInfoElement)
             });
         }
     }

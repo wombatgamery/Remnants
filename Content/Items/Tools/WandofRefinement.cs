@@ -49,8 +49,15 @@ namespace Remnants.Content.Items.Tools
 
             Tile tile = Main.tile[x, y];
 
+            Main.NewText(tile.TileFrameX);
+            Main.NewText(tile.TileFrameY);
+
             bool success = true;
 
+            //if (tile.WallType == ModContent.WallType<PyramidBrickWallUnsafe>())
+            //{
+            //    tile.WallType = (ushort)ModContent.WallType<PyramidRuneWall>();
+            //}
             if (tile.WallType == WallID.Wood)
             {
                 tile.WallType = (ushort)ModContent.WallType<WoodSafe>();

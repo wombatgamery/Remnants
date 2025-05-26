@@ -43,13 +43,17 @@ Incompatible mods will result in a guaranteed crash or unplayable world: [list]
 Note that the compatibility of these mods are evaluated only by their individual changes, and not that of any dependencies they might have. 
 
 [h2]Credits[/h2] [img]https://i.imgur.com/jdunrUl.png[/img]
-Thanks to the following sources for providing copyright-free assets: [list]
-[*]Some soundtracks by [url=https://www.youtube.com/c/ProVISIO][b]ProduceVGM.[/b][/url]
-[*]Sound effects from [url=https://www.bluezone-corporation.com][b]Bluezone Corporation.[/b][/url]
+Music/Sounds: [list]
+[*]Undergrowth and Magical Lab soundtracks by [url=https://www.youtube.com/c/ProVISIO][b]ProduceVGM.[/b][/url]
+[*]Some sound effects from [url=https://www.bluezone-corporation.com][b]Bluezone Corporation.[/b][/url]
+[*]All other audio files of unknown origin.
 [/list]
 
-Thanks to the following users for contributing directly to the mod: [list]
-[*]Custom music boxes [url=https://steamcommunity.com/id/CrayonEater69][b]KingOblivion.[/b]
+Features/Mechanics: [list]
+[*]Custom music boxes by [url=https://steamcommunity.com/id/CrayonEater69][b]KingOblivion.[/b][/url]
+[/list]
+
+Localisation: [list]
 [*]Russian localisation by [url=https://steamcommunity.com/id/xenofite][b]Xenofite.[/b][/url]
 [*]Polish localisation by [url=https://steamcommunity.com/id/nichiimishiari/][b]Nichiimishiari.[/b][/url]
 [*]German localisation by [url=https://steamcommunity.com/id/Cracky-XXX/][b]Cracky.[/b][/url]

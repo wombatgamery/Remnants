@@ -424,20 +424,6 @@ namespace Remnants.Content.NPCs.Monsters
             return result;
         }
 
-        public static BestiaryEntryUnlockState GetUnlockState(int kills)
-        {
-            //if (kills > 0)
-            //{
-            //    return BestiaryEntryUnlockState.CanShowDropsWithDropRates_4;
-            //}
-            //else
-            if (RemWorld.sightedWard)
-            {
-                return BestiaryEntryUnlockState.CanShowDropsWithDropRates_4;
-                //return BestiaryEntryUnlockState.CanShowPortraitOnly_1;
-            }
-
-            return BestiaryEntryUnlockState.NotKnownAtAll_0;
-        }
+        public static BestiaryEntryUnlockState GetUnlockState(int kills) => RemSystem.sightedWard ? BestiaryEntryUnlockState.CanShowDropsWithDropRates_4 : BestiaryEntryUnlockState.NotKnownAtAll_0;
     }
 }

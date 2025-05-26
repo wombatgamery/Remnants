@@ -18,41 +18,37 @@ Mods: {
 			// Cleanup: Cleaning up ground
 			// Touchups: Finishing touches
 			// Spawnpoint: Adjusting spawn point
-			// BiomeUpdate: Updating biome map
-			// MajorBiomes: Adding major biomes
-			// MinorBiomes: Adding minor biomes
-			// EvilBiomes: Incubating infection
-			// Underworld: Creating the underworld
-			// Dungeon: Building a cursed city
-			// JungleTemple: Building a jungle pyramid
-			// Vault: Building the Vault
-			// Pyramid: Building a desert pyramid
-			// MarbleCave: Carving marble
-			// GraniteCave: Carving granite
-			// Tomb: Building a haunted tomb
-			// Undergrowth: Growing ancient roots
-			// WaterTemple: Carving an underwater temple
-			// HoneySanctum: Building a honey sanctum
-			// MagicalLab: Building a magical lab
-			// Labyrinth: Building an ancient labyrinth
-			// Stronghold: Building a hellish stronghold
-			// AerialGarden: Building a heavenly garden
-			// Clouds: Forming clouds
-			// SkyIslands: Raising islands
-			// Mineshafts: Building mineshafts
-			// Microdungeons: Building microdungeons
+			// BiomeUpdate: Simulating extreme climates
+			// Terrain: Absorbing cosmic debris
+			// Caves: Dissolving limestone
+			// Ores: Forming mineral deposits
+			// Clouds: Concentrating water vapours
+			// SpecialPlants: Growing mutant plants
+			// Grass: Growing grass
+			// Moss: Growing moss
+			// Piles: Placing objects
+			// Underworld: Forming a volcanic hellscape
+			// MarbleCave: Weathering marble
+			// GraniteCave: Weathering granite
+			// LivingTrees: Growing ancient roots
+			// Mineshafts: Overseeing mining operations
+			// Pyramid: Enshrining sacred relics
+			// Beehives: Mutating hornet genomes
+			// SkyIslands: Distorting gravity
+			// GemCaves: Forming resplendent geodes
+			// Microdungeons: Expanding infrastructure
+			// Boulders: Rigging boulder traps
 			// IceTemples: Sculpting ice temples
 			// ThermalRigs: Building geothermal rigs
-			// Terrain: Generating world terrain
-			// Caves: Weathering caves
-			// FloodedCaves: Flooding the caves
-			// Swamps: Creating swamps
-			// Grass: Growing grass
-			// Ores: Scattering minerals
-			// Gems: Placing gems
-			// Piles: Placing objects
-			// Boulders: Setting boulders
-			// SpecialPlants: Growing alien plants
+			// Dungeon: Building a prosperous city
+			// JungleTemple: Raising a jungle tribe
+			// Tomb: Performing ungodly rituals
+			// MagicalLab: Making supernatural discoveries
+			// Labyrinth: Opening a portal to cosmic depths
+			// Stronghold: Multiplying hellish beasts
+			// WaterTemple: Carving an underwater temple
+			// AerialGarden: Raising a lush sanctuary
+			// Vault: Transcending humankind
 		}
 
 		Bestiary: {
@@ -88,9 +84,9 @@ Mods: {
 				TownNPCDialogueName: das Wachstum
 			}
 
-			TheHive: {
-				DisplayName: Der Bienenstock
-				TownNPCDialogueName: den Bienenstock
+			Beehive: {
+				// DisplayName: Beehive
+				// TownNPCDialogueName: the Hive
 			}
 
 			JungleTemple: {
@@ -219,6 +215,11 @@ Mods: {
 			RunestalkBlessing: {
 				DisplayName: Runenstängel-Segen
 				Description: 50% erhöhte Abbaugeschwindigkeit
+			}
+
+			PyramidAntiCheese: {
+				// DisplayName: Arcane Protection
+				// Description: Cannot place solid tiles, platforms or ropes
 			}
 		}
 

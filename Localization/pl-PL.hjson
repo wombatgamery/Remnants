@@ -19,40 +19,36 @@ Mods: {
 			Touchups: Końcowe poprawki
 			Spawnpoint: Regulacja punktu odradzania
 			BiomeUpdate: Aktualizowanie mapy biomu
-			MajorBiomes: Dodawanie głównych biomów
-			MinorBiomes: Dodawanie mniejszych biomów
-			EvilBiomes: Wylęganie się infekcji
+			Terrain: Generowanie terenu świata
+			Caves: Wietrzenie jaskiń
+			Ores: Rozpraszanie minerałów
+			Clouds: Tworzenie chmur
+			SpecialPlants: Uprawa obcych roślin
+			Grass: Sianie trawy
+			// Moss: Growing moss
+			Piles: Układanie obiektów
 			Underworld: Tworzenie piekła
-			Dungeon: Budowanie przeklętego miasta
-			JungleTemple: Budowanie piramidy w dżungli
-			Vault: Budowanie krypty
-			Pyramid: Budowanie piramidy pustynnej
 			MarbleCave: Rzeźbienie marmuru
 			GraniteCave: Rzeźbienie granitu
+			// LivingTrees: Growing ancient roots
+			Mineshafts: Budowanie kopalni
+			Pyramid: Budowanie piramidy pustynnej
+			// Beehives: Mutating hornet genomes
+			SkyIslands: Podnoszenie wysp
+			// GemCaves: Forming resplendent geodes
+			Microdungeons: Budowanie mikrolochów
+			Boulders: Ustawianie głazów
+			IceTemples: Rzeźbienie lodowych świątyń
+			ThermalRigs: Budowanie instalacji geotermalnych
+			Dungeon: Budowanie przeklętego miasta
+			JungleTemple: Budowanie piramidy w dżungli
 			Tomb: Budowanie nawiedzonego grobowca
-			Undergrowth: Uprawa starożytnych korzeni
-			WaterTemple: Rzeźbienie podwodnej świątyni
-			HoneySanctum: Budowanie miodowego sanktuarium
 			MagicalLab: Budowanie magicznego laboratorium
 			Labyrinth: Budowanie antycznego labiryntu
 			Stronghold: Budowanie piekielnej fortecy
+			WaterTemple: Rzeźbienie podwodnej świątyni
 			AerialGarden: Budowanie niebiańskiego ogrodu
-			Clouds: Tworzenie chmur
-			SkyIslands: Podnoszenie wysp
-			Mineshafts: Budowanie kopalni
-			Microdungeons: Budowanie mikrolochów
-			IceTemples: Rzeźbienie lodowych świątyń
-			ThermalRigs: Budowanie instalacji geotermalnych
-			Terrain: Generowanie terenu świata
-			Caves: Wietrzenie jaskiń
-			FloodedCaves: Zalewanie jaskiń
-			Swamps: Tworzenie bagien
-			Grass: Sianie trawy
-			Ores: Rozpraszanie minerałów
-			Gems: Umieszczanie klejnotów
-			Piles: Układanie obiektów
-			Boulders: Ustawianie głazów
-			SpecialPlants: Uprawa obcych roślin
+			Vault: Budowanie krypty
 		}
 
 		Bestiary: {
@@ -88,9 +84,9 @@ Mods: {
 				TownNPCDialogueName: Narośl
 			}
 
-			TheHive: {
-				DisplayName: Pszczele Gniazdo
-				TownNPCDialogueName: Pszczele Gniazdo
+			Beehive: {
+				// DisplayName: Beehive
+				// TownNPCDialogueName: the Hive
 			}
 
 			JungleTemple: {
@@ -219,6 +215,11 @@ Mods: {
 			RunestalkBlessing: {
 				DisplayName: Runiczne Błogosławieństwo
 				Description: Prędkość kopania zwiększona o 50%.
+			}
+
+			PyramidAntiCheese: {
+				// DisplayName: Arcane Protection
+				// Description: Cannot place solid tiles, platforms or ropes
 			}
 		}
 

@@ -170,7 +170,7 @@ namespace Remnants.Content.Tiles.Objects.Furniture
                             NetMessage.SendData(MessageID.LockAndUnlock, -1, -1, null, player.whoAmI, 1f, left, top);
                         }
                     }
-                    else Main.NewText(Language.GetTextValue("Mods.Remnants.Tiles.PyramidChest.Messages.KeysinUnderground"), new Color(255, 204, 102));
+                    //else Main.NewText(Language.GetTextValue("Mods.Remnants.Tiles.PyramidChest.Messages.KeysinUnderground"), new Color(255, 204, 102));
                 }
                 else
                 {

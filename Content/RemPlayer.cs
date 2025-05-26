@@ -81,6 +81,19 @@ namespace Remnants.Content
             }
         }
 
+        public override bool CanUseItem(Item item)
+        {
+            if (Player.HasBuff(ModContent.BuffType<PyramidAntiCheese>()) && item.createTile != -1)
+            {
+                if (Main.tileSolid[item.createTile] || TileID.Sets.Platforms[item.createTile] || Main.tileRope[item.createTile] || Main.tileSolidTop[item.createTile])
+                {
+                    return false;
+                }
+            }
+
+            return base.CanUseItem(item);
+        }
+
         public override void PostUpdateMiscEffects()
         {
             if (Player.miscEquips[4].type == ModContent.ItemType<Items.Tools.LuminousHook>() && Player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Hooks.LuminousHook>()] == 0)
@@ -93,16 +106,17 @@ namespace Remnants.Content
                 //Player.runAcceleration *= 1.4f;
                 //Player.maxRunSpeed *= 1.2f;
 
-                Player.maxRunSpeed += 0.5f;
+                Player.maxRunSpeed += 0.45f;
                 Player.runAcceleration += 0.2f;
                 Player.runSlowdown += 0.1f;
             }
 
             if (Player.ZoneDirtLayerHeight || Player.ZoneRockLayerHeight)
             {
-                Player.ZoneGlowshroom = RemWorld.mushroomTiles >= 1000;
+                Player.ZoneGlowshroom = RemSystem.mushroomTiles >= 1000;
             }
-            Player.ZoneSkyHeight = Player.position.Y / 16 < Main.worldSurface / 2;
+
+            //Player.ZoneSkyHeight = Player.position.Y / 16 < Main.worldSurface / 2;
             if (Player.InModBiome<Biomes.MagicalLab>())
             {
                 Player.shimmerMonolithShader = true;

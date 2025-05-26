@@ -1,4 +1,6 @@
 using Microsoft.Xna.Framework;
+using Remnants.Content.Biomes;
+using Remnants.Content.Walls;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -16,7 +18,7 @@ namespace Remnants.Content.Tiles.Blocks
 			TileID.Sets.CanBeClearedDuringGeneration[Type] = false;
 			TileID.Sets.AvoidedByMeteorLanding[Type] = true;
 
-			AddMapEntry(new Color(188, 121, 76));
+			AddMapEntry(new Color(207, 136, 79));
 
 			MinPick = 65;
 			MineResist = 2;
@@ -24,8 +26,31 @@ namespace Remnants.Content.Tiles.Blocks
 			HitSound = SoundID.Tink;
 		}
 
-		public override bool CanKillTile(int i, int j, ref bool blockDamaged) => !WorldGen.gen;
+		//public override bool CanKillTile(int i, int j, ref bool blockDamaged) => !WorldGen.gen;
 
 		public override bool CanExplode(int i, int j) => false;
-	}
+
+        public override void NearbyEffects(int i, int j, bool closer)
+        {
+			if (Main.tile[i, j].WallType == ModContent.WallType<PyramidBrickWallUnsafe>())
+			{
+                if (Main.tile[i, j].IsActuated)
+                {
+                    if (closer)
+                    {
+                        return;
+                    }
+
+                    foreach (var player in Main.ActivePlayers)
+                    {
+                        if (player.HasBuff(BuffID.Suffocation))
+                        {
+                            Framing.GetTileSafely(i, j).IsActuated = false;
+                            NetMessage.SendTileSquare(-1, i, j);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

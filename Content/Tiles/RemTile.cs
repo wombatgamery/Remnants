@@ -36,6 +36,7 @@ namespace Remnants.Content.Tiles
 
             WallID.Sets.AllowsPlantsToGrow[WallID.LivingWoodUnsafe] = true;
             WallID.Sets.AllowsPlantsToGrow[WallID.JungleUnsafe3] = true;
+            WallID.Sets.AllowsPlantsToGrow[WallID.EbonstoneUnsafe] = true;
             WallID.Sets.AllowsPlantsToGrow[WallID.LavaUnsafe4] = true;
         }
 

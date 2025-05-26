@@ -230,26 +230,15 @@ namespace Remnants.Content.NPCs
                         pool[ModContent.NPCType<CentipedeHead>()] = 1f;
                     }
                 }
-                else if (tile.TileType == ModContent.TileType<PyramidBrick>() || tile.WallType == ModContent.WallType<pyramid>() || tile.WallType == ModContent.WallType<PyramidBrickWallUnsafe>())
+                else if (tile.TileType == ModContent.TileType<PyramidBrick>() || tile.TileType == ModContent.TileType<PyramidPlatform>() || tile.TileType == TileID.HardenedSand && spawnInfo.SpawnTileY < Main.worldSurface)
                 {
                     pool.Clear();
 
-                    if (spawnInfo.Player.InModBiome<Biomes.Pyramid>())
+                    if (tile.WallType != ModContent.WallType<pyramid>() && tile.WallType != ModContent.WallType<PyramidBrickWallUnsafe>() && tile.WallType != ModContent.WallType<PyramidRuneWall>())
                     {
-                        if (tile.WallType == ModContent.WallType<pyramid>() || tile.WallType == ModContent.WallType<PyramidBrickWallUnsafe>())
-                        {
-                            pool[NPCID.Ghost] = 2f;
-                        }
-                        //if (player.InModBiome(ModContent.GetInstance<Pyramid>()))
-                        //{
-                        //	pool[NPCID.Ghost] = 2f;
-
-                        //	pool[NPCID.Scorpion] = 1f;
-                        //	pool[NPCID.ScorpionBlack] = 1f;
-                        //}
+                        pool[NPCID.SandSlime] = 2f;
+                        pool[NPCID.Vulture] = 2f;
                     }
-
-                    pool[NPCID.SandSlime] = 2f;
 
                     pool[NPCID.Scorpion] = 1f;
                     pool[NPCID.ScorpionBlack] = 1f;
@@ -273,26 +262,14 @@ namespace Remnants.Content.NPCs
                     pool[NPCID.GraniteGolem] = 2f;
                     pool[NPCID.GraniteFlyer] = 1f;
                 }
-                else if (spawnInfo.Player.InModBiome(ModContent.GetInstance<TheHive>()) || tile.TileType == TileID.Hive || tile.WallType == ModContent.WallType<hive>() || tile.WallType == WallID.HiveUnsafe)
+                else if (tile.TileType == TileID.Hive && tile.WallType == WallID.HiveUnsafe)
                 {
                     pool.Clear();
 
-                    if (Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY - 1].WallType == 0)
-                    {
-                        pool[ModContent.NPCType<HoneySlime>()] = 3f;
-                    }
-                    else
-                    {
-                        pool[NPCID.LittleHornetHoney] = 1f;
-                        pool[NPCID.HornetHoney] = 1f;
-                        pool[NPCID.BigHornetHoney] = 1f;
-                    }
-                    //if (!spawnInfo.Water)
-                    //{
-                    //	pool[NPCID.LittleHornetHoney] = 0.3f / 3;
-                    //	pool[NPCID.HornetHoney] = 0.3f / 3;
-                    //	pool[NPCID.BigHornetHoney] = 0.3f / 3;
-                    //}
+                    pool[ModContent.NPCType<HoneySlime>()] = 3f;
+                    pool[NPCID.LittleHornetHoney] = 1f;
+                    pool[NPCID.HornetHoney] = 1f;
+                    pool[NPCID.BigHornetHoney] = 1f;
                 }
                 else if (spawnInfo.Player.InModBiome(ModContent.GetInstance<OceanCave>()) && spawnInfo.SpawnTileY > Main.worldSurface)
                 {

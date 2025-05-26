@@ -31,7 +31,7 @@ namespace Remnants.Content.Tiles.Blocks
 			HitSound = SoundID.Tink;
             AdjTiles = new int[] { TileID.Platforms };
 
-            AddMapEntry(new Color(222, 148, 86));
+            AddMapEntry(new Color(244, 165, 89));
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)

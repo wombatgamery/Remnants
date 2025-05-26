@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Remnants.Content.Biomes.Backgrounds;
+using Remnants.Content.Buffs;
 using Remnants.Content.Walls;
 using Remnants.Content.Walls.Parallax;
 using Remnants.Content.World;
@@ -13,10 +14,8 @@ using Terraria.WorldBuilding;
 
 namespace Remnants.Content.Biomes
 {
-    public class TheHive : ModBiome
+    public class Beehive : ModBiome
 	{
-		public override int Music => MusicID.JungleUnderground;// MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/ambient_reformed");
-
 		public override ModUndergroundBackgroundStyle UndergroundBackgroundStyle => ModContent.GetInstance<honeycomb>();
 
 		public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
@@ -27,38 +26,14 @@ namespace Remnants.Content.Biomes
 		public override string BackgroundPath => "Terraria/Images/MapBG16";
 		public override Color? BackgroundColor => base.BackgroundColor;
 
-		public override void SetStaticDefaults()
+        public override void OnInBiome(Player player)
+        {
+            player.ZoneHive = true;
+        }
+
+        public override bool IsBiomeActive(Player player)
 		{
-			// DisplayName.SetDefault("The Hive");
-		}
-
-		//public override void OnEnter(Player player)
-		//{
-		//	if (ModLoader.TryGetMod("RemnantsMusic", out Mod musicMod))
-		//	{
-		//		music = MusicLoader.GetMusicSlot(musicMod, "Content/Sounds/Music/ambient_reformed");
-		//	}
-		//	else music = MusicID.JungleUnderground;
-
-		//	//ambienceTimer = 0;
-		//}
-
-		//SoundStyle ambience = new SoundStyle("Remnants/Content/Sounds/ambience/shoggoth_drone", SoundType.Ambient) with { Volume = 0.25f, IsLooped = true, SoundLimitBehavior = SoundLimitBehavior.IgnoreNew, MaxInstances = 1 };
-		//ReLogic.Utilities.SlotId ambienceSlot;
-
-		//public override void OnInBiome(Player player)
-		//{
-		//	ambienceSlot = SoundEngine.PlaySound(ambience);
-		//}
-
-		//public override void OnLeave(Player player)
-		//{
-		//	SoundEngine.StopTrackedSounds();
-		//}
-
-		public override bool IsBiomeActive(Player player)
-		{
-			return RemWorld.hiveTiles >= 3000;
+			return RemSystem.hiveTiles >= 5000;
 		}
 	}
 
@@ -84,14 +59,14 @@ namespace Remnants.Content.Biomes
 
         public override void OnInBiome(Player player)
         {
-			player.ZoneGlowshroom = false;
-			player.ZoneSnow = false;
-			player.ZoneJungle = false;
-		}
+            player.ZoneGlowshroom = false;
+            player.ZoneSnow = false;
+            player.ZoneJungle = false;
+        }
 
         public override bool IsBiomeActive(Player player)
 		{
-			return RemWorld.marbleTiles >= 5000;
+			return (player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight) && RemSystem.marbleTiles >= 5000;
 		}
 	}
 
@@ -117,14 +92,14 @@ namespace Remnants.Content.Biomes
 
 		public override void OnInBiome(Player player)
 		{
-			player.ZoneGlowshroom = false;
-			player.ZoneSnow = false;
-			player.ZoneJungle = false;
-		}
+            player.ZoneGlowshroom = false;
+            player.ZoneSnow = false;
+            player.ZoneJungle = false;
+        }
 
 		public override bool IsBiomeActive(Player player)
 		{
-			return RemWorld.graniteTiles >= 5000;
+			return (player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight) && RemSystem.graniteTiles >= 5000;
 		}
 	}
 
@@ -141,7 +116,7 @@ namespace Remnants.Content.Biomes
 
 		public override bool IsBiomeActive(Player player)
 		{
-			return player.ZoneBeach && player.ZoneDirtLayerHeight && RemWorld.oceanCaveTiles >= 100;
+			return player.ZoneBeach && player.ZoneDirtLayerHeight && RemSystem.oceanCaveTiles >= 100;
 		}
 	}
 
@@ -324,6 +299,7 @@ namespace Remnants.Content.Biomes
         public override Color? BackgroundColor => base.BackgroundColor;
 
 		int music = -1;
+
 		public override void OnEnter(Player player)
 		{
 			music = ModContent.GetInstance<Gameplay>().CustomMusic ? MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/AerialGarden") : MusicID.JungleNight;
@@ -331,7 +307,7 @@ namespace Remnants.Content.Biomes
 		public override bool IsBiomeActive(Player player)
 		{
 			int wall = Main.tile[(int)player.Center.X / 16, (int)player.Center.Y / 16].WallType;
-			return RemWorld.gardenTiles > 500;
+			return RemSystem.gardenTiles > 500;
 		}
 	}
 
@@ -400,21 +376,26 @@ namespace Remnants.Content.Biomes
 
 	public class Pyramid : ModBiome
 	{
-		public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
+        public override int Music => -1;
 
-		public override int Music => MusicID.Temple;
+        public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
 
 		public override string MapBackground => "Terraria/Images/MapBG15";
 
         public override void OnInBiome(Player player)
         {
 			player.ZoneDesert = true;
+
+			if (player.GetBestPickaxe().pick < 65 && player.position.Y / 16 > Main.worldSurface - 48 * 2 - 6 && player.position.Y / 16 < Main.worldSurface + 6)
+			{
+                player.AddBuff(ModContent.BuffType<PyramidAntiCheese>(), 2);
+            }
         }
 
         public override bool IsBiomeActive(Player player)
 		{
 			int wall = Main.tile[(int)player.Center.X / 16, (int)player.Center.Y / 16].WallType;
-			return wall == ModContent.WallType<pyramid>() || wall == ModContent.WallType<PyramidBrickWallUnsafe>();
+			return wall == ModContent.WallType<pyramid>() || wall == ModContent.WallType<PyramidBrickWallUnsafe>() || wall == ModContent.WallType<PyramidRuneWall>();
 		}
 	}
 }

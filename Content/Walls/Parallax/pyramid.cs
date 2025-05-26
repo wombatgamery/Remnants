@@ -16,7 +16,7 @@ namespace Remnants.Content.Walls.Parallax
 
             DustType = DustID.Sand;
 
-            AddMapEntry(new Color(53, 25, 22));
+            AddMapEntry(new Color(70, 35, 24));
         }
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)

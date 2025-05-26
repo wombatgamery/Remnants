@@ -24,6 +24,7 @@ namespace Remnants.Content.Tiles.Plants
 		{
 			Main.tileLighted[Type] = true;
 			Main.tileFrameImportant[Type] = true;
+			Main.tileShine2[Type] = true;
 
 			TileID.Sets.HasOutlines[Type] = true;
 			TileID.Sets.DisableSmartCursor[Type] = true;
