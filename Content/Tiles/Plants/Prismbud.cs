@@ -36,6 +36,8 @@ namespace Remnants.Content.Tiles.Plants
             AddMapEntry(new Color(255, 140, 255), CreateMapEntryName());
 
             DustType = DustID.Shadewood;
+
+			VanillaFallbackOnModDeletion = TileID.JungleThorns;
 		}
 
 		//public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
@@ -198,7 +200,9 @@ namespace Remnants.Content.Tiles.Plants
 
 			AddMapEntry(new Color(162, 82, 109));
 			DustType = DustID.RichMahogany;
-		}
+
+            VanillaFallbackOnModDeletion = TileID.JungleThorns;
+        }
 
         public override bool CanDrop(int i, int j)
         {

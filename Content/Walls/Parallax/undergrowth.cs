@@ -19,6 +19,8 @@ namespace Remnants.Content.Walls.Parallax
             DustType = DustID.t_LivingWood;
 
             AddMapEntry(new Color(33, 18, 12));
+
+            VanillaFallbackOnModDeletion = WallID.LivingWoodUnsafe;
         }
 
         public const int Width = 8;

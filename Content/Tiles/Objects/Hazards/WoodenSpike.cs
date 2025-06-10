@@ -31,9 +31,13 @@ namespace Remnants.Content.Tiles.Objects.Hazards
 			DustType = DustID.WoodFurniture;
 
 			AddMapEntry(new Color(160, 107, 80));
-		}
 
-		public override bool IsTileDangerous(int i, int j, Player player) => true;
+            VanillaFallbackOnModDeletion = TileID.Spikes;
+        }
+
+        public override bool CanDrop(int i, int j) => false;
+
+        public override bool IsTileDangerous(int i, int j, Player player) => true;
 
         public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects)
         {

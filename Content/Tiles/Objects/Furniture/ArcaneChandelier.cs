@@ -30,12 +30,14 @@ namespace Remnants.Content.Tiles.Objects.Furniture
             TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidTile, 2, 1);
             TileObjectData.addTile(Type);
 
+			DustType = DustID.Silver;
+			HitSound = SoundID.Tink;
+
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
             AddMapEntry(new Color(255, 255, 63), Language.GetText("MapObject.Chandelier"));
 
-			DustType = DustID.Silver;
-			HitSound = SoundID.Tink;
-		}
+            VanillaFallbackOnModDeletion = TileID.AmethystGemspark;
+        }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {

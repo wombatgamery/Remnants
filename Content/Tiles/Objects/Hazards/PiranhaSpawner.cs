@@ -28,9 +28,11 @@ namespace Remnants.Content.Tiles.Objects.Hazards
 			TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(ModContent.GetInstance<TEpiranhaspawner>().Hook_AfterPlacement, -1, 0, false);
 			TileObjectData.addTile(Type);
 
+            DustType = 8;
+
             AddMapEntry(new Color(75, 74, 70), CreateMapEntryName());
 
-            DustType = 8;
+            VanillaFallbackOnModDeletion = TileID.Grate;
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)

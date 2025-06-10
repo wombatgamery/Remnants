@@ -1,6 +1,6 @@
-displayName = [c/81FEFF:Remnants]
-author = Wombat
-version = 1.5.51
+displayName = [c/FF99CC:Remnants]
+author = lazywombat
+version = 2.0
 
 dllReferences = StructureHelper
 modReferences = WombatQOL

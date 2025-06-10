@@ -28,9 +28,13 @@ namespace Remnants.Content.Tiles.Objects.Hazards
 			HitSound = SoundID.NPCHit1;
 
 			AddMapEntry(new Color(235, 81, 54), CreateMapEntryName());
-		}
 
-		public override void KillMultiTile(int i, int j, int frameX, int frameY)
+            VanillaFallbackOnModDeletion = TileID.Vines;
+        }
+
+		public override bool IsTileDangerous(int i, int j, Player player) => true;
+
+        public override void KillMultiTile(int i, int j, int frameX, int frameY)
 		{
 			Point16 origin = TileUtils.GetTileOrigin(i, j);
 			ModContent.GetInstance<TESpitflower>().Kill(origin.X, origin.Y);
@@ -85,7 +89,7 @@ namespace Remnants.Content.Tiles.Objects.Hazards
 		public override void Update()
 		{
 			int targetPlayer = -1;
-			float closestDistance = 64 * 16;
+			float closestDistance = 48 * 16;
 
 			Vector2 tilePos = new Vector2(Position.X * 16 + 7, Position.Y * 16 + 7);
 
@@ -115,7 +119,7 @@ namespace Remnants.Content.Tiles.Objects.Hazards
 
 				if (attackTimer <= 0)
 				{
-					int proj = Projectile.NewProjectile(Entity.GetSource_None(), tilePos, Vector2.Normalize(direction) * 12, ModContent.ProjectileType<PoisonSpit>(), 17, 0f);
+					int proj = Projectile.NewProjectile(Entity.GetSource_None(), tilePos, Vector2.Normalize(direction) * 12, ModContent.ProjectileType<PoisonSpit>(), 12, 0f);
 					NetMessage.SendData(MessageID.SyncProjectile, number: proj);
 
 					SoundEngine.PlaySound(SoundID.Item17, Position.ToVector2() * 16 + Vector2.One * 8);

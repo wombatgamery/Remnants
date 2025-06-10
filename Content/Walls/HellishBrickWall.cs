@@ -20,7 +20,9 @@ namespace Remnants.Content.Walls
 			DustType = DustID.Ash;
 
 			AddMapEntry(new Color(62, 49, 44));
-		}
+
+            VanillaFallbackOnModDeletion = WallID.ObsidianBrickUnsafe;
+        }
 
 		public override void KillWall(int i, int j, ref bool fail)
 		{
@@ -41,6 +43,8 @@ namespace Remnants.Content.Walls
 			DustType = DustID.Ash;
 
             AddMapEntry(new Color(62, 49, 44));
+
+            VanillaFallbackOnModDeletion = WallID.ObsidianBrick;
         }
 
         public override bool CanExplode(int i, int j) => false;

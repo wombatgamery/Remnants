@@ -33,13 +33,15 @@ namespace Remnants.Content.Tiles.Blocks
 
 			AddMapEntry(new Color(136, 119, 149));
             AddMapEntry(new Color(255, 178, 248));
-            //TileBlend(TileID.Stone);
-            //TileBlend(TileID.Dirt);
-            //TileBlend(TileID.Mud);
-            //TileBlend(TileID.Silt);
-            //TileBlend(TileID.Ebonstone);
-            //TileBlend(TileID.Crimstone);
-            //TileBlend(TileID.Pearlstone);
+			//TileBlend(TileID.Stone);
+			//TileBlend(TileID.Dirt);
+			//TileBlend(TileID.Mud);
+			//TileBlend(TileID.Silt);
+			//TileBlend(TileID.Ebonstone);
+			//TileBlend(TileID.Crimstone);
+			//TileBlend(TileID.Pearlstone);
+
+			VanillaFallbackOnModDeletion = TileID.VioletMossBrick;
         }
 
         public override ushort GetMapOption(int i, int j)

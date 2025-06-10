@@ -103,11 +103,16 @@ namespace Remnants.Content.NPCs.Monsters
 
                         RemPlayer.ScreenShake(NPC.Center, 2);
 
-                        if (Vector2.Distance(NPC.Center, Main.LocalPlayer.Center) <= 64 * 16)
+                        float dist = Vector2.Distance(NPC.Center, Main.LocalPlayer.Center) / 16f;
+
+                        SoundStyle impactSound = SoundID.Item14;
+                        impactSound.PitchVariance = 0.5f;
+                        impactSound.Pitch = -0.5f;
+                        SoundEngine.PlaySound(impactSound, position: NPC.Center);
+
+                        if (dist <= 64)
                         {
-                            SoundStyle impactSound = SoundID.Item62;
-                            impactSound.PitchVariance = 0.5f;
-                            SoundEngine.PlaySound(impactSound, position: NPC.Center);
+
 
                             //if (direction == 1)
                             //{
@@ -133,9 +138,9 @@ namespace Remnants.Content.NPCs.Monsters
                                 {
                                     dust = Dust.NewDustDirect(new Vector2(NPC.position.X, NPC.position.Y), 8, NPC.height, DustID.Smoke);
                                 }
-                                dust.velocity = Main.rand.NextVector2Circular(1, 1);
-                                dust.alpha = 102;
-                                dust.scale = Main.rand.NextFloat(1, 2);
+                                dust.velocity = Main.rand.NextVector2Circular(1, 1);// * 0.5f;
+                                dust.alpha = 204;
+                                dust.scale = Main.rand.NextFloat(1, 3);
                             }
                         }
                     }

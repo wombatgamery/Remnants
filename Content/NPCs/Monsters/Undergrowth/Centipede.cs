@@ -201,7 +201,7 @@ namespace Remnants.Content.NPCs.Monsters.Undergrowth
 
         public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
-            target.AddBuff(BuffID.Poisoned, Main.expertMode ? 1200 : 600, true);
+            target.AddBuff(BuffID.Poisoned, 600, true);
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

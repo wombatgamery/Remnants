@@ -123,5 +123,13 @@ namespace Remnants.Content.Projectiles.Weapons
                 smokeGore.velocity -= Vector2.One;
             }
         }
-	}
+
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+        {
+            if (Main.expertMode && target.type >= 13 && target.type <= 15)
+            {
+                modifiers.FinalDamage /= 5;
+            }
+        }
+    }
 }

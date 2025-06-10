@@ -59,7 +59,7 @@ namespace Remnants.Content.Projectiles.Hooks
 		// Amethyst Hook is 300, Static Hook is 600.
 		public override float GrappleRange()
 		{
-			return 360f;
+			return 390f;
 		}
 
 		public override void NumGrappleHooks(Player player, ref int numHooks)
@@ -70,12 +70,12 @@ namespace Remnants.Content.Projectiles.Hooks
 		// default is 11, Lunar is 24
 		public override void GrappleRetreatSpeed(Player player, ref float speed)
 		{
-			speed = 11f; // How fast the grapple returns to you after meeting its max shoot distance
+			speed = 11.5f; // How fast the grapple returns to you after meeting its max shoot distance
 		}
 
 		public override void GrapplePullSpeed(Player player, ref float speed)
 		{
-			speed = 11; // How fast you get pulled to the grappling hook projectile's landing position
+			speed = 11.5f; // How fast you get pulled to the grappling hook projectile's landing position
 		}
 
         // Draws the grappling hook's chain.

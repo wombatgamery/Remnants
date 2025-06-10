@@ -153,7 +153,18 @@ namespace Remnants.Content
         public static float shakeIntensity = 0;
         public static void ScreenShake(Vector2 position, float intensity)
         {
-            shakeIntensity += intensity * 5 * (1 - MathHelper.Clamp(Vector2.Distance(position, Main.LocalPlayer.Center) / (64 * 16), 0, 1));
+            float decay = (1 - MathHelper.Clamp(Vector2.Distance(position, Main.LocalPlayer.Center) / (256 * 16), 0, 1));
+
+            if (decay == 0)
+            {
+                return;
+            }
+
+            shakeIntensity += intensity * 5 * decay;
+
+            SoundStyle impactSound = new SoundStyle("Remnants/Content/Sounds/lowimpact");
+            impactSound.Volume = decay;
+            SoundEngine.PlaySound(impactSound);
         }
 
         public override void ModifyScreenPosition()
@@ -161,7 +172,7 @@ namespace Remnants.Content
             if (shakeIntensity > 0)
             {
                 Main.screenPosition += new Vector2(Main.rand.NextFloat(shakeIntensity), Main.rand.NextFloat(shakeIntensity));
-                shakeIntensity *= 0.85f;
+                shakeIntensity *= 0.9f;
                 if (shakeIntensity < 0.1f)
                 {
                     shakeIntensity = 0;

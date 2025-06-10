@@ -17,7 +17,9 @@ namespace Remnants.Content.Walls.Parallax
 			DustType = DustID.DungeonBlue;
 
 			AddMapEntry(new Color(24, 24, 37));
-		}
+
+            VanillaFallbackOnModDeletion = WallID.BlueDungeonUnsafe;
+        }
 
 		public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
 		{
@@ -66,7 +68,9 @@ namespace Remnants.Content.Walls.Parallax
 			DustType = DustID.DungeonGreen;
 
 			AddMapEntry(new Color(27, 36, 38));
-		}
+
+            VanillaFallbackOnModDeletion = WallID.GreenDungeonUnsafe;
+        }
 
 		public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
 		{
@@ -115,7 +119,9 @@ namespace Remnants.Content.Walls.Parallax
 			DustType = DustID.DungeonPink;
 
 			AddMapEntry(new Color(41, 25, 36));
-		}
+
+            VanillaFallbackOnModDeletion = WallID.PinkDungeonUnsafe;
+        }
 
 		public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
 		{

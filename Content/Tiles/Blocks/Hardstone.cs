@@ -24,9 +24,11 @@ namespace Remnants.Content.Tiles.Blocks
 
 			AddMapEntry(new Color(107, 47, 47), CreateMapEntryName());
 			//TileBlend(TileID.Stone);
-   //         TileBlend(TileID.Mud);
+			//         TileBlend(TileID.Mud);
 			//TileBlend(TileID.ClayBlock);
 			//TileBlend(TileID.Ash);
+
+			VanillaFallbackOnModDeletion = TileID.Obsidian;
         }
 
 		public override bool CanExplode(int i, int j) => false;

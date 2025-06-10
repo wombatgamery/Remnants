@@ -34,11 +34,13 @@ namespace Remnants.Content.Tiles.Objects
 			TileObjectData.newTile.CoordinatePadding = 0;
 			TileObjectData.addTile(Type);
 
-			AddMapEntry(new Color(238, 194, 156), CreateMapEntryName());
-
 			RegisterItemDrop(ModContent.ItemType<PyramidKey>());
 			DustType = DustID.BeachShell;
-		}
+
+            AddMapEntry(new Color(238, 194, 156), CreateMapEntryName());
+
+            VanillaFallbackOnModDeletion = TileID.GoldCoinPile;
+        }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {

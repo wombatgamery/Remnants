@@ -48,6 +48,8 @@ namespace Remnants.Content.NPCs
 
         public virtual float bouncyness => 0;
 
+        public bool bypassInvis;
+
         public virtual bool IsValidNPC(NPC npc)
         {
             return false;
@@ -178,7 +180,7 @@ namespace Remnants.Content.NPCs
             {
                 return false;
             }
-            if (npc.confused || Main.player[npc.target].invis || Main.player[npc.target].shimmering)
+            if (npc.confused || Main.player[npc.target].invis && !bypassInvis || Main.player[npc.target].shimmering)
             {
                 return false;
             }
@@ -266,10 +268,14 @@ namespace Remnants.Content.NPCs
                 }
             }
 
-            if (attackMode == 0)
+            bool canSeeTarget = CanSeeTarget(npc);
+            if (attackMode == 0 || !canSeeTarget)
             {
                 npc.velocity += Vector2.Normalize(lastKnownTargetPosition - npc.Center) * speed;
-                npc.velocity += wanderAcceleration * 0.1f;
+                if (canSeeTarget)
+                {
+                    npc.velocity += wanderAcceleration * 0.1f;
+                }
                 attackTimer = 0;
             }
             else if (attackMode == 1)
@@ -562,6 +568,10 @@ namespace Remnants.Content.NPCs
                 }
                 else if (HasTag(entity, bat) || entity.type == NPCID.RedDevil)
                 {
+                    if (HasTag(entity, bat))
+                    {
+                        bypassInvis = true;
+                    }
                     speed = 0.15f;
                 }
                 else if (entity.type == NPCID.TheHungryII)
@@ -634,7 +644,11 @@ namespace Remnants.Content.NPCs
                 else
                 {
                     npc.velocity += Vector2.Normalize(lastKnownTargetPosition - npc.Center) * speed;
-                    npc.velocity += wanderAcceleration * 0.1f;
+                    bool canSeeTarget = CanSeeTarget(npc);
+                    if (canSeeTarget)
+                    {
+                        npc.velocity += wanderAcceleration * 0.1f;
+                    }
                 }
             }
         }

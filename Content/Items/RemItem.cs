@@ -23,50 +23,46 @@ namespace Remnants.Content.Items
     {
         public override void SetDefaults(Item item)
         {
-            if (item.type == ItemID.Amethyst || item.type == ItemID.Topaz || item.type == ItemID.Sapphire || item.type == ItemID.Emerald || item.type == ItemID.Ruby || item.type == ItemID.Diamond || item.type == ItemID.Amber)
-            {
-                item.value /= 2;
-            }
-            if (ModContent.GetInstance<Gameplay>().ProjectileAI)
-            {
-                if (item.type == ItemID.Shuriken)
-                {
-                    item.crit = 4;
-                    item.shootSpeed *= 1.2f;
-                    item.autoReuse = true;
-                }
-                else if (item.type == ItemID.PoisonedKnife)
-                {
-                    item.CloneDefaults(ItemID.ThrowingKnife);
-                    item.damage += 2;
-                    item.shoot = ProjectileID.PoisonedKnife;
-                }
-                //else if (item.type == ItemID.MolotovCocktail)
-                //{
-                //	item.shoot = ModContent.ProjectileType<molotovcocktail>();
-                //	item.shootSpeed *= 1.2f;
-                //}
-                else if (item.type == ItemID.ShadowFlameKnife)
-                {
-                    item.shootSpeed *= 1.4f;
-                }
-                else if (item.type == ItemID.Javelin || item.type == ItemID.BoneJavelin)
-                {
-                    item.crit = 8;
-                }
-                else if (item.type == ItemID.BoneDagger)
-                {
-                    item.damage += 2;
-                    item.crit = 4;
-                    item.knockBack = 4;
-                }
+            //if (ModContent.GetInstance<Gameplay>().ProjectileAI)
+            //{
+            //    if (item.type == ItemID.Shuriken)
+            //    {
+            //        item.crit = 4;
+            //        item.shootSpeed *= 1.2f;
+            //        item.autoReuse = true;
+            //    }
+            //    else if (item.type == ItemID.PoisonedKnife)
+            //    {
+            //        item.CloneDefaults(ItemID.ThrowingKnife);
+            //        item.damage += 2;
+            //        item.shoot = ProjectileID.PoisonedKnife;
+            //    }
+            //    //else if (item.type == ItemID.MolotovCocktail)
+            //    //{
+            //    //	item.shoot = ModContent.ProjectileType<molotovcocktail>();
+            //    //	item.shootSpeed *= 1.2f;
+            //    //}
+            //    else if (item.type == ItemID.ShadowFlameKnife)
+            //    {
+            //        item.shootSpeed *= 1.4f;
+            //    }
+            //    else if (item.type == ItemID.Javelin || item.type == ItemID.BoneJavelin)
+            //    {
+            //        item.crit = 8;
+            //    }
+            //    else if (item.type == ItemID.BoneDagger)
+            //    {
+            //        item.damage += 2;
+            //        item.crit = 4;
+            //        item.knockBack = 4;
+            //    }
 
-                if (item.type == ItemID.Flamethrower || item.type == ItemID.ElfMelter)
-                {
-                    item.damage = item.damage * 2;
-                    item.shoot = ModContent.ProjectileType<flamejet>();
-                }
-            }
+            //    if (item.type == ItemID.Flamethrower || item.type == ItemID.ElfMelter)
+            //    {
+            //        item.damage = item.damage * 2;
+            //        item.shoot = ModContent.ProjectileType<flamejet>();
+            //    }
+            //}
 
             //if (item.type == ItemID.CobaltNaginata || item.type == ItemID.PalladiumPike || item.type == ItemID.MythrilHalberd || item.type == ItemID.OrichalcumHalberd || item.type == ItemID.AdamantiteGlaive || item.type == ItemID.TitaniumTrident || item.type == ItemID.Gungnir)
             //{

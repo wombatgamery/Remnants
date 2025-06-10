@@ -31,7 +31,9 @@ namespace Remnants.Content.Tiles.Blocks
 			HitSound = SoundID.Tink;
 
 			AddMapEntry(new Color(99, 82, 75));
-		}
+
+            VanillaFallbackOnModDeletion = TileID.ObsidianBrick;
+        }
 
 		public override bool CanExplode(int i, int j) => false;
 	}

@@ -38,8 +38,16 @@ namespace Remnants.Content.Walls.Vanity
 			Main.wallBlend[Type] = 2;
 			DustType = 0;
 			RegisterItemDrop(ItemID.WoodenFence);
-		}
-	}
+
+			//AddMapEntry(new Color(66, 45, 35));
+   //         AddMapEntry(new Color(0, 0, 0, 0));
+        }
+
+   //     public override ushort GetMapOption(int i, int j)
+   //     {
+			//return (ushort)((i + j) % 2);
+   //     }
+    }
 
 	[LegacyName("woodboreal")]
 	public class WoodBoreal : ModWall

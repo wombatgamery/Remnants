@@ -33,7 +33,7 @@ namespace Remnants.Content.Items.Accessories
 
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Summon) *= 1 + (float)(player.statLifeMax2 - player.statLife) / player.statLifeMax2 * 0.25f;
+            player.GetDamage(DamageClass.Summon) *= 1 + (float)(player.statLifeMax2 - player.statLife) / player.statLifeMax2 * 0.33f;
         }
     }
 

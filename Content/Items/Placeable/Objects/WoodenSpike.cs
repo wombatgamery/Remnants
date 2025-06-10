@@ -22,5 +22,15 @@ namespace Remnants.Content.Items.Placeable.Objects
 			Item.maxStack = 99;
 			Item.createTile = ModContent.TileType<Tiles.Objects.Hazards.WoodenSpike>();
 		}
-	}
+
+        public override void AddRecipes()
+        {
+            Recipe recipe;
+
+            recipe = Recipe.Create(Type);
+            recipe.AddIngredient(ItemID.Wood);
+			recipe.AddTile(TileID.Sawmill);
+            recipe.Register();
+        }
+    }
 }

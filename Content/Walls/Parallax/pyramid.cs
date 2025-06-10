@@ -17,6 +17,8 @@ namespace Remnants.Content.Walls.Parallax
             DustType = DustID.Sand;
 
             AddMapEntry(new Color(70, 35, 24));
+
+            VanillaFallbackOnModDeletion = WallID.SandstoneBrick;
         }
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)

@@ -35,8 +35,15 @@ namespace Remnants.Content.Tiles
             TileID.Sets.CanBeClearedDuringGeneration[TileID.Glass] = false;
 
             WallID.Sets.AllowsPlantsToGrow[WallID.LivingWoodUnsafe] = true;
+            WallID.Sets.AllowsPlantsToGrow[WallID.SnowWallUnsafe] = true;
+            WallID.Sets.AllowsPlantsToGrow[WallID.IceUnsafe] = true;
             WallID.Sets.AllowsPlantsToGrow[WallID.JungleUnsafe3] = true;
+            WallID.Sets.AllowsPlantsToGrow[WallID.CaveUnsafe] = true;
             WallID.Sets.AllowsPlantsToGrow[WallID.EbonstoneUnsafe] = true;
+            WallID.Sets.AllowsPlantsToGrow[WallID.CorruptionUnsafe1] = true;
+            WallID.Sets.AllowsPlantsToGrow[WallID.CorruptionUnsafe4] = true;
+            WallID.Sets.AllowsPlantsToGrow[WallID.CrimsonUnsafe2] = true;
+            WallID.Sets.AllowsPlantsToGrow[WallID.CrimsonUnsafe4] = true;
             WallID.Sets.AllowsPlantsToGrow[WallID.LavaUnsafe4] = true;
         }
 

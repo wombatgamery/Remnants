@@ -19,6 +19,8 @@ namespace Remnants.Content.Walls.Parallax
             DustType = DustID.Ash;
 
             AddMapEntry(new Color(38, 30, 28));
+
+            VanillaFallbackOnModDeletion = WallID.ObsidianBrickUnsafe;
         }
 
         //public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)

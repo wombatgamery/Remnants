@@ -18,7 +18,9 @@ namespace Remnants.Content.Walls
 
 			DustType = DustID.Stone;
 
-			AddMapEntry(new Color(103, 70, 63));
-		}
+			AddMapEntry(new Color(99, 61, 51));
+
+            VanillaFallbackOnModDeletion = WallID.MarbleBlock;
+        }
 	}
 }

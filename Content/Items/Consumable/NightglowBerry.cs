@@ -31,7 +31,7 @@ namespace Remnants.Content.Items.Consumable
             Item.width = 16;
             Item.height = 16;
 
-            Item.DefaultToFood(14, 16, BuffID.WellFed2, 1 * 1800);
+            Item.DefaultToFood(14, 16, BuffID.WellFed2, 1 * 1200);
 
             Item.value = Item.sellPrice(copper: 20);
             Item.rare = ItemRarityID.Blue;

@@ -27,7 +27,9 @@ namespace Remnants.Content.Tiles.Blocks
 			HitSound = SoundID.Item52;// Tink;
 
 			AddMapEntry(new Color(251, 251, 91), CreateMapEntryName());
-		}
+
+            VanillaFallbackOnModDeletion = TileID.Cloud;
+        }
 
 		public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
 		{

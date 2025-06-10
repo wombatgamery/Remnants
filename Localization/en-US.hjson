@@ -28,8 +28,6 @@ Mods: {
 			Moss: Growing moss
 			Piles: Placing objects
 			Underworld: Forming a volcanic hellscape
-			MarbleCave: Weathering marble
-			GraniteCave: Weathering granite
 			LivingTrees: Growing ancient roots
 			Mineshafts: Overseeing mining operations
 			Pyramid: Enshrining sacred relics
@@ -40,14 +38,14 @@ Mods: {
 			Boulders: Rigging boulder traps
 			IceTemples: Sculpting ice temples
 			ThermalRigs: Building geothermal rigs
-			Dungeon: Building a prosperous city
+			Dungeon: Building a doomed city
 			JungleTemple: Raising a jungle tribe
 			Tomb: Performing ungodly rituals
 			MagicalLab: Making supernatural discoveries
-			Labyrinth: Opening a portal to cosmic depths
+			Labyrinth: Opening a portal to outer spheres
 			Stronghold: Multiplying hellish beasts
-			WaterTemple: Carving an underwater temple
-			AerialGarden: Raising a lush sanctuary
+			WaterTemple: Carving an underwater labyrinth
+			AerialGarden: Cultivating arcane flora
 			Vault: Transcending humankind
 		}
 
@@ -218,7 +216,7 @@ Mods: {
 			}
 
 			PyramidAntiCheese: {
-				DisplayName: Arcane Protection
+				DisplayName: Quiet Grounds
 				Description: Cannot place solid tiles, platforms or ropes
 			}
 		}
@@ -393,10 +391,7 @@ Mods: {
 				Tooltip: ""
 			}
 
-			LuminousHook: {
-				DisplayName: Luminous Hook
-				Tooltip: Provides light
-			}
+			LuminousHook.DisplayName: Luminous Hook
 
 			ArmCannon: {
 				DisplayName: Arm Cannon
@@ -433,8 +428,8 @@ Mods: {
 			}
 
 			SummonCrown: {
-				DisplayName: Crown of Guidance
-				Tooltip: Depending on the wearer's injuries, minions deal up to 25% more damage
+				DisplayName: Crown of Loyalty
+				Tooltip: Depending on the wearer's injuries, minions deal up to 33% more damage
 			}
 
 			TombBrick: {
@@ -713,6 +708,16 @@ Mods: {
 				DisplayName: Pyramid Platform
 				Tooltip: ""
 			}
+
+			GardenPlatform: {
+				DisplayName: Garden Platform
+				Tooltip: ""
+			}
+
+			hivekey: {
+				DisplayName: hivekey
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -956,7 +961,7 @@ Mods: {
 
 				CustomMusic: {
 					Label: "[i:576] Custom Music"
-					Tooltip: Enables the mod's custom music
+					Tooltip: Enables the mod's unique music
 				}
 			}
 		}

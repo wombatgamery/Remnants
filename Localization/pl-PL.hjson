@@ -28,8 +28,6 @@ Mods: {
 			// Moss: Growing moss
 			Piles: Układanie obiektów
 			Underworld: Tworzenie piekła
-			MarbleCave: Rzeźbienie marmuru
-			GraniteCave: Rzeźbienie granitu
 			// LivingTrees: Growing ancient roots
 			Mineshafts: Budowanie kopalni
 			Pyramid: Budowanie piramidy pustynnej
@@ -218,7 +216,7 @@ Mods: {
 			}
 
 			PyramidAntiCheese: {
-				// DisplayName: Arcane Protection
+				// DisplayName: Quiet Grounds
 				// Description: Cannot place solid tiles, platforms or ropes
 			}
 		}
@@ -393,10 +391,7 @@ Mods: {
 				Tooltip: ""
 			}
 
-			LuminousHook: {
-				DisplayName: Świecący Hak
-				Tooltip: Zapewnia światło
-			}
+			LuminousHook.DisplayName: Świecący Hak
 
 			ArmCannon: {
 				DisplayName: Armata Ręczna
@@ -434,7 +429,7 @@ Mods: {
 
 			SummonCrown: {
 				DisplayName: Korona Przewodnictwa
-				Tooltip: W zależności od obrażeń noszącego, słudzy zadają do 25% więcej obrażeń
+				Tooltip: W zależności od obrażeń noszącego, słudzy zadają do 33% więcej obrażeń
 			}
 
 			TombBrick: {
@@ -715,6 +710,16 @@ Mods: {
 
 			PyramidPlatform: {
 				// DisplayName: Pyramid Platform
+				// Tooltip: ""
+			}
+
+			GardenPlatform: {
+				// DisplayName: Garden Platform
+				// Tooltip: ""
+			}
+
+			hivekey: {
+				// DisplayName: hivekey
 				// Tooltip: ""
 			}
 		}

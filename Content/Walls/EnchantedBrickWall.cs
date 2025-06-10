@@ -15,7 +15,9 @@ namespace Remnants.Content.Walls
 			HitSound = SoundID.Tink;
 
 			AddMapEntry(new Color(71, 65, 99));
-		}
+
+            VanillaFallbackOnModDeletion = WallID.VioletMossBlockWall;
+        }
 	}
 
 	[LegacyName("labtilewallunsafe")]
@@ -31,7 +33,9 @@ namespace Remnants.Content.Walls
 			HitSound = SoundID.Tink;
 
 			AddMapEntry(new Color(71, 65, 99));
-		}
+
+            VanillaFallbackOnModDeletion = WallID.VioletMossBlockWall;
+        }
 
         public override void KillWall(int i, int j, ref bool fail)
         {

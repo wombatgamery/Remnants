@@ -194,7 +194,7 @@ namespace Remnants.Content.Tiles.Plants
 
 			if (Main.rand.NextBool(20) && Main.tile[i, j].LiquidAmount == 0)
 			{
-				if (!Main.tile[i, j + 1].HasTile || Main.tile[i, j + 1].TileType != ModContent.TileType<DreampodVine>() && Main.tile[i, j + 1].TileType != ModContent.TileType<Dreampod>())
+				if (!Main.tile[i, j + 1].HasTile || Main.tile[i, j + 1].TileType != Type && Main.tile[i, j + 1].TileType != ModContent.TileType<Dreampod>())
 				{
                     tile.HasTile = false;
                     WorldGen.PlaceTile(i, j, (ushort)ModContent.TileType<Dreampod>(), style: Main.rand.Next(3));
@@ -206,7 +206,7 @@ namespace Remnants.Content.Tiles.Plants
 
 				for (int a = 0; a < 20; a++)
 				{
-					if (Main.tile[i, j - a].TileType != ModContent.TileType<DreampodVine>())
+					if (Main.tile[i, j - a].TileType != Type)
 					{
 						maxLength = false;
 						break;
@@ -215,7 +215,7 @@ namespace Remnants.Content.Tiles.Plants
 
 				if (!maxLength)
 				{
-					WorldGen.PlaceTile(i, j + 1, ModContent.TileType<DreampodVine>(), true);
+					WorldGen.PlaceTile(i, j + 1, Type, true);
 				}
 			}
 		}
@@ -255,7 +255,7 @@ namespace Remnants.Content.Tiles.Plants
 			b = (float)(206f / 255f);
 		}
 
-		public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects)
+        public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects)
 		{
 			if (i % 2 == 1)
 			{

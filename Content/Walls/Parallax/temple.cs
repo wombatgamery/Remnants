@@ -17,6 +17,8 @@ namespace Remnants.Content.Walls.Parallax
             DustType = 148;
 
             AddMapEntry(new Color(17, 5, 4));
+
+            VanillaFallbackOnModDeletion = WallID.LihzahrdBrickUnsafe;
         }
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)

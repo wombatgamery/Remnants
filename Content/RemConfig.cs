@@ -33,18 +33,18 @@ namespace Remnants.Content
         [DefaultValue(1f)]
         public float CloudDensity;
 
-        [Range(0.5f, 1.5f)]
-        [Increment(.25f)]
-        [DrawTicks]
-        [DefaultValue(1f)]
-        //[BackgroundColor(125, 125, 100)]
-        public float TerrainAmplitude;
+        //[Range(0.5f, 1.5f)]
+        //[Increment(.25f)]
+        //[DrawTicks]
+        //[DefaultValue(1f)]
+        ////[BackgroundColor(125, 125, 100)]
+        //public float TerrainAmplitude;
 
-        [DefaultValue(true)]
-        public bool IceMountain;
+        //[DefaultValue(true)]
+        //public bool IceMountain;
 
-        [DefaultValue(true)]
-        public bool JungleValley;
+        //[DefaultValue(true)]
+        //public bool JungleValley;
 
         [DefaultValue(true)]
         [BackgroundColor(150, 150, 125)]
@@ -76,11 +76,11 @@ namespace Remnants.Content
         //[DefaultValue(1f)]
         //public float PlatformFrequency;
 
-        [Range(0f, 1f)]
-        [Increment(.25f)]
-        [DrawTicks]
-        [DefaultValue(1f)]
-        public float CacheFrequency;
+        //[Range(0f, 1f)]
+        //[Increment(.25f)]
+        //[DrawTicks]
+        //[DefaultValue(1f)]
+        //public float CacheFrequency;
 
         [Range(0f, 1f)]
         [Increment(.25f)]
@@ -127,9 +127,9 @@ namespace Remnants.Content
         [BackgroundColor(150, 150, 125)]
         public bool EnemyAI;
 
-		[DefaultValue(false)]
-        [BackgroundColor(150, 100, 125)]
-        public bool ProjectileAI;
+		//[DefaultValue(false)]
+  //      [BackgroundColor(150, 100, 125)]
+  //      public bool ProjectileAI;
 
 		[DefaultValue(true)]
         [BackgroundColor(150, 150, 125)]

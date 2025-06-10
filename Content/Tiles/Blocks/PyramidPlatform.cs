@@ -32,6 +32,8 @@ namespace Remnants.Content.Tiles.Blocks
             AdjTiles = new int[] { TileID.Platforms };
 
             AddMapEntry(new Color(244, 165, 89));
+
+            VanillaFallbackOnModDeletion = TileID.Platforms;
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)

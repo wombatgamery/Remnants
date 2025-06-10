@@ -16,7 +16,9 @@ namespace Remnants.Content.Biomes
 {
     public class Beehive : ModBiome
 	{
-		public override ModUndergroundBackgroundStyle UndergroundBackgroundStyle => ModContent.GetInstance<honeycomb>();
+        public override int Music => -1;
+
+        public override ModUndergroundBackgroundStyle UndergroundBackgroundStyle => ModContent.GetInstance<honeycomb>();
 
 		public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
 
@@ -90,22 +92,22 @@ namespace Remnants.Content.Biomes
 			music = ModContent.GetInstance<Gameplay>().CustomMusic ? MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/GraniteCave") : -1;
 		}
 
-		public override void OnInBiome(Player player)
-		{
+        public override void OnInBiome(Player player)
+        {
             player.ZoneGlowshroom = false;
             player.ZoneSnow = false;
             player.ZoneJungle = false;
         }
 
-		public override bool IsBiomeActive(Player player)
+        public override bool IsBiomeActive(Player player)
 		{
-			return (player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight) && RemSystem.graniteTiles >= 5000;
+			return player.position.Y / 16 > Main.worldSurface + 50 && RemSystem.graniteTiles >= 5000;
 		}
 	}
 
 	public class OceanCave : ModBiome
 	{
-		public override int Music => -1;
+		public override int Music => music;
 
 		public override SceneEffectPriority Priority => SceneEffectPriority.BiomeLow;
 
@@ -114,7 +116,14 @@ namespace Remnants.Content.Biomes
 			// DisplayName.SetDefault("Ocean Cave");
 		}
 
-		public override bool IsBiomeActive(Player player)
+        int music = -1;
+
+        public override void OnEnter(Player player)
+        {
+            music = ModContent.GetInstance<Gameplay>().CustomMusic ? MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/OceanCave") : -1;
+        }
+
+        public override bool IsBiomeActive(Player player)
 		{
 			return player.ZoneBeach && player.ZoneDirtLayerHeight && RemSystem.oceanCaveTiles >= 100;
 		}
@@ -386,7 +395,7 @@ namespace Remnants.Content.Biomes
         {
 			player.ZoneDesert = true;
 
-			if (player.GetBestPickaxe().pick < 65 && player.position.Y / 16 > Main.worldSurface - 48 * 2 - 6 && player.position.Y / 16 < Main.worldSurface + 6)
+			if (player.GetBestPickaxe().pick < 65)
 			{
                 player.AddBuff(ModContent.BuffType<PyramidAntiCheese>(), 2);
             }
@@ -395,7 +404,7 @@ namespace Remnants.Content.Biomes
         public override bool IsBiomeActive(Player player)
 		{
 			int wall = Main.tile[(int)player.Center.X / 16, (int)player.Center.Y / 16].WallType;
-			return wall == ModContent.WallType<pyramid>() || wall == ModContent.WallType<PyramidBrickWallUnsafe>() || wall == ModContent.WallType<PyramidRuneWall>();
+            return player.position.Y / 16 > Main.worldSurface - 48 * 2 - 6 && player.position.Y / 16 < Main.worldSurface + 6 && (wall == ModContent.WallType<pyramid>() || wall == ModContent.WallType<PyramidBrickWallUnsafe>() || wall == ModContent.WallType<PyramidRuneWall>());
 		}
 	}
 }
