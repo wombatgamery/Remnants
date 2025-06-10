@@ -28,6 +28,8 @@ Mods: {
 			Moss: Выращиваем мох...
 			Piles: Мусорим...
 			Underworld: Разогреваем Преисподнюю...
+			MarbleCave: Проводим лёгкую резьбу по мрамору...
+			GraniteCave: Проводим лёгкую резьбу по граниту...
 			LivingTrees: Выращиваем корни первозданного древа...
 			Mineshafts: Начинаем шахтёрские раскопки...
 			Pyramid: Строим гробницы посреди дюн...
@@ -393,7 +395,10 @@ Mods: {
 				Tooltip: ""
 			}
 
-			LuminousHook.DisplayName: Светящийся крюк
+			LuminousHook: {
+				DisplayName: Светящийся крюк
+				Tooltip: Излучает свет
+			}
 
 			ArmCannon: {
 				DisplayName: Ручная пушка
@@ -443,7 +448,7 @@ Mods: {
 
 			SummonCrown: {
 				DisplayName: Тиара предводителя
-				Tooltip: Чем меньше у вас здоровья, тем больше урона будут наносить ваши миньоны, вплоть до прибавки в 33%
+				Tooltip: Чем меньше у вас здоровья, тем больше урона будут наносить ваши миньоны, вплоть до прибавки в 25%
 			}
 
 			TombBrick: {
@@ -723,16 +728,6 @@ Mods: {
 			PyramidPlatform: {
 				DisplayName: Платформа храма пустыни
 				Tooltip: ""
-			}
-
-			GardenPlatform: {
-				// DisplayName: Garden Platform
-				// Tooltip: ""
-			}
-
-			hivekey: {
-				// DisplayName: hivekey
-				// Tooltip: ""
 			}
 		}
 
