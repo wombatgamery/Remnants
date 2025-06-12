@@ -4,7 +4,7 @@
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3308342945][img]https://imgur.com/NDcAjBg.png[/img][/url]
 
 [h2]Overview[/h2] [img]https://i.imgur.com/jdunrUl.png[/img]
-Remnants is the only mod of its kind - a complete reformation of your Terraria world that pushes procedural generation to groundbreaking levels. Journey through a once familiar, now foreign land, rich with new environments to explore and secrets to discover.
+Remnants is the only mod of its kind - a complete reconstruction of your Terraria world that pushes procedural generation to groundbreaking levels. Journey through a once familiar, now foreign land, rich with new environments to explore and secrets to discover.
 
 [h2]Compatibility[/h2] [img]https://i.imgur.com/jdunrUl.png[/img]
 Due to the nature of this mod, compatibility with other mods is not guaranteed. Refer to the comprehensive list below when building your modpack.
@@ -15,13 +15,13 @@ Supported mods have been built around to ensure an ideal experience: [list]
 [/list]
 
 Fully compatible mods should be completely safe to use: [list]
-[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2824688072][b]Calamity Mod[/b][/url]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416][b]Thorium Mod[/b][/url]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2893332653][b]Mod of Redemption[/b][/url]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2982372319][b]Spirit Classic[/b][/url]
 [/list]
 
 Partially compatible mods will cause some minor problems, but otherwise may still be playable: [list]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2824688072][b]Calamity Mod[/b][/url] (The Sulphurous Sea is highly destructive)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2815540735][b]Fargo's Souls[/b][/url] (The Cursed Coffin arena will not generate)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3015412343][b]Infernum Mode[/b][/url] (The Golem rework does not suit the new arena)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2563862309][b]The Stars Above[/b][/url] (The Neon Veil overlaps other structures)

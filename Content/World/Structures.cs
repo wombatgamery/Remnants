@@ -30,6 +30,8 @@ using Microsoft.Xna.Framework.Audio;
 using System.Security.Policy;
 using Remnants.Content.Items.Accessories;
 using Remnants.Content.Items.Tools;
+using MonoMod.Core.Platforms;
+using Humanizer;
 
 namespace Remnants.Content.World
 {
@@ -45,7 +47,6 @@ namespace Remnants.Content.World
             {
                 RemWorld.InsertPass(tasks, new ThermalRigs("Thermal Engines", 0), genIndex + 1);
                 RemWorld.InsertPass(tasks, new GemCaves("Gem Caves", 0), genIndex);
-                RemWorld.InsertPass(tasks, new IceTemples("Ice Temples", 0), genIndex);
                 RemWorld.InsertPass(tasks, new Microdungeons("Microdungeons", 0), genIndex);
                 RemWorld.InsertPass(tasks, new SwordShrines("Enchanted Swords", 0), genIndex);
             }
@@ -80,8 +81,6 @@ namespace Remnants.Content.World
         {
         }
 
-        public static int JungleEntranceY;
-
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
@@ -104,16 +103,16 @@ namespace Remnants.Content.World
 
                     #region entrance
                     int entranceX = mines.area.Center.X - 1;
-                    int entranceY = (int)(Main.worldSurface * 0.5f);
-                    bool left = true;
-                    while (!WorldGen.SolidTile(entranceX - 32, entranceY) || !WorldGen.SolidTile(entranceX + 32, entranceY))
+                    int entranceY = Terrain.Maximum;
+                    bool left = false;
+                    while (WorldGen.SolidTile(entranceX - 32, entranceY) && WorldGen.SolidTile(entranceX + 32, entranceY))
                     {
-                        if (WorldGen.SolidTile(entranceX - 32, entranceY))
-                        {
-                            left = false;
-                        }
+                        entranceY--;
 
-                        entranceY++;
+                        if (!WorldGen.SolidTile(entranceX - 32, entranceY))
+                        {
+                            left = true;
+                        }
                     }
 
 
@@ -222,7 +221,9 @@ namespace Remnants.Content.World
 
                                         mines.AddMarker(mines.targetCell.X + (index == 0 ? 1 : 0), mines.targetCell.Y, index == 0 ? 2 : 4);
 
-                                        StructureHelper.API.MultiStructureGenerator.GenerateMultistructureSpecific("Content/World/Structures/Common/Mines/flooded", index, mines.roomPos, ModContent.GetInstance<Remnants>());
+										mines.AddMarker(mines.targetCell.X, mines.targetCell.Y - 1, 2); mines.AddMarker(mines.targetCell.X + 1, mines.targetCell.Y - 1, 4);
+
+										StructureHelper.API.MultiStructureGenerator.GenerateMultistructureSpecific("Content/World/Structures/Common/Mines/flooded", index, mines.roomPos, ModContent.GetInstance<Remnants>());
 
                                         roomCount++;
                                     }
@@ -271,10 +272,10 @@ namespace Remnants.Content.World
                         mines.targetCell.Y = WorldGen.genRand.Next(0, mines.grid.Bottom);
                         if (!mines.FindMarker(mines.targetCell.X, mines.targetCell.Y))
                         {
-                            bool openLeft = mines.targetCell.X > mines.grid.Left && (!mines.FindMarker(mines.targetCell.X - 1, mines.targetCell.Y) || !mines.FindMarker(mines.targetCell.X - 1, mines.targetCell.Y, 2));
-                            bool openRight = mines.targetCell.X < mines.grid.Right - 1 && (!mines.FindMarker(mines.targetCell.X + 1, mines.targetCell.Y) || !mines.FindMarker(mines.targetCell.X + 1, mines.targetCell.Y, 4));
-                            bool openTop = (mines.targetCell.Y > 0 || mines.targetCell.X == mines.grid.Center.X) && (!mines.FindMarker(mines.targetCell.X, mines.targetCell.Y - 1) || !mines.FindMarker(mines.targetCell.X, mines.targetCell.Y - 1, 3));
-                            bool openBottom = (mines.targetCell.Y < mines.grid.Bottom - 1 || mines.targetCell.X == mines.grid.Center.X) && (!mines.FindMarker(mines.targetCell.X, mines.targetCell.Y + 1) || !mines.FindMarker(mines.targetCell.X, mines.targetCell.Y + 1, 1));
+                            bool openLeft = mines.targetCell.X > mines.grid.Left && (!mines.FindMarker(mines.targetCell.X - 1, mines.targetCell.Y, 2));
+                            bool openRight = mines.targetCell.X < mines.grid.Right - 1 && (!mines.FindMarker(mines.targetCell.X + 1, mines.targetCell.Y, 4));
+                            bool openTop = (mines.targetCell.Y > 0 || mines.targetCell.X == mines.grid.Center.X) && (!mines.FindMarker(mines.targetCell.X, mines.targetCell.Y - 1, 3));
+                            bool openBottom = (mines.targetCell.Y < mines.grid.Bottom - 1 || mines.targetCell.X == mines.grid.Center.X) && (!mines.FindMarker(mines.targetCell.X, mines.targetCell.Y + 1, 1));
 
                             bool closedLeft = mines.targetCell.X == mines.grid.Left || !mines.FindMarker(mines.targetCell.X - 1, mines.targetCell.Y) || mines.FindMarker(mines.targetCell.X - 1, mines.targetCell.Y, 2);
                             bool closedRight = mines.targetCell.X == mines.grid.Right - 1 || !mines.FindMarker(mines.targetCell.X + 1, mines.targetCell.Y) || mines.FindMarker(mines.targetCell.X + 1, mines.targetCell.Y, 4);
@@ -308,7 +309,7 @@ namespace Remnants.Content.World
                                     mines.AddMarker(mines.targetCell.X, mines.targetCell.Y);
                                     mines.AddMarker(mines.targetCell.X, mines.targetCell.Y, 3); mines.AddMarker(mines.targetCell.X, mines.targetCell.Y, 4);
 
-                                    StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Common/Mines/ne", mines.roomPos, ModContent.GetInstance<Remnants>());
+                                    StructureHelper.API.MultiStructureGenerator.GenerateMultistructureRandom("Content/World/Structures/Common/Mines/ne", mines.roomPos, ModContent.GetInstance<Remnants>());
                                 }
                             }
                             else if (roomID == 3)
@@ -663,7 +664,7 @@ namespace Remnants.Content.World
                     while (objects > 0)
                     {
                         int x = WorldGen.genRand.Next(mines.area.Left, mines.area.Right);
-                        int y = WorldGen.genRand.Next(mines.area.Top, mines.area.Bottom);
+                        int y = WorldGen.genRand.Next(mines.area.Top + mines.room.Height, mines.area.Bottom);
 
                         if (Framing.GetTileSafely(x, y).TileType != TileID.Extractinator && Framing.GetTileSafely(x, y + 1).TileType == TileID.WoodBlock && MiscTools.SolidInArea(x - 2, y + 1, x + 2, y + 1))
                         {
@@ -1706,32 +1707,35 @@ namespace Remnants.Content.World
                         }
                     }
 
+                    //int roomCount = 1;
+                    //if (ModLoader.HasMod("FargowiltasSouls") && count == 0)
+                    //{
+                    //    while (roomCount > 0)
+                    //    {
+                    //        if (far.)
+                    //        {
+                                
+                    //        }
+                    //        if (far.TryFind<ModSystem>("WorldSavingSystem", out ModSystem sys))
+                    //        {
+                    //            sys.co
+                    //        }
+                    //        FargowiltasSouls.WorldSavingSystem.CoffinArenaCenter;
+                    //        bool right = WorldGen.genRand.NextBool(2);
+                    //        ruins.targetCell.X = right ? 4 : 1;
+                    //        ruins.targetCell.Y = WorldGen.genRand.Next(ruins.grid.Bottom);
+
+                    //        if (ruins.AddRoom(2))
+                    //        {
+                    //            StructureHelper.API.MultiStructureGenerator.GenerateMultistructureRandom("Content/World/Structures/Special/DesertRuins/large" + room, ruins.roomPos, ModContent.GetInstance<Remnants>());
+
+                    //            roomCount--;
+                    //        }
+                    //    }
+                    //}
+
+
                     List<int> rooms = new List<int>();
-                    for (int k = 1; k <= 1; k++)
-                    {
-                        rooms.Add(k);
-                    }
-
-                    int roomCount = 0;
-                    while (roomCount > 0)
-                    {
-                        bool right = WorldGen.genRand.NextBool(2);
-                        ruins.targetCell.X = right ? 4 : 1;
-                        ruins.targetCell.Y = WorldGen.genRand.Next(ruins.grid.Bottom);
-
-                        if (ruins.AddRoom(2))
-                        {
-                            int room = rooms[WorldGen.genRand.Next(rooms.Count)];
-
-                            StructureHelper.API.MultiStructureGenerator.GenerateMultistructureRandom("Content/World/Structures/Special/DesertRuins/large" + room, ruins.roomPos, ModContent.GetInstance<Remnants>());
-
-                            rooms.Remove(room);
-
-                            roomCount--;
-                        }
-                    }
-
-                    rooms = new List<int>();
                     for (int k = 1; k <= 9; k++)
                     {
                         rooms.Add(k);
@@ -1769,6 +1773,8 @@ namespace Remnants.Content.World
 
                         if (StructureTools.InsideBiome(rect, BiomeID.Desert) && GenVars.structures.CanPlace(rect, validTiles, 5) && MiscTools.SolidInArea(x - 10, y + 7, x + 11, y + 9) && (MiscTools.NonSolidInArea(x - 12, y - 7, x - 10, y) || MiscTools.NonSolidInArea(x + 12, y - 7, x + 30, y)))
                         {
+                            MiscTools.Terraform(new Vector2(x - 10, y - 3), 4);
+                            MiscTools.Terraform(new Vector2(x + 12, y - 3), 4);
                             StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Special/DesertRuins/shrine", new Point16(x - 10, y - 11), ModContent.GetInstance<Remnants>());
 
                             WorldGen.PlaceTile(x - 11, y + 1, ModContent.TileType<PyramidPlatform>());
@@ -2573,7 +2579,7 @@ namespace Remnants.Content.World
                 progress.Set((float)count / (float)countTotal);
 
                 float radius = 36;// WorldGen.genRand.NextFloat(48, 60);
-                int x = WorldGen.genRand.NextBool(2) ? WorldGen.genRand.Next(400, (int)(Main.maxTilesX * 0.35f)) : WorldGen.genRand.Next((int)(Main.maxTilesX * 0.65f), Main.maxTilesX - 400);
+                int x = WorldGen.genRand.NextBool(2) ? WorldGen.genRand.Next(500, (int)(Main.maxTilesX * 0.35f)) : WorldGen.genRand.Next((int)(Main.maxTilesX * 0.65f), Main.maxTilesX - 500);
                 int y = (int)(Main.worldSurface - radius);
 
                 bool[] validTiles = TileID.Sets.Factory.CreateBoolSet(true, TileID.LivingWood, TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick);
@@ -2696,6 +2702,8 @@ namespace Remnants.Content.World
                         }
                     }
 
+                    StructureTools.AddVariation(new Rectangle((int)(x - radius), (int)(y - radius / 2), (int)(radius * 2), (int)(radius)));
+
                     GenVars.structures.AddProtectedStructure(new Rectangle((int)(x - radius), (int)(y - radius / 2), (int)(radius * 2), (int)(radius)));
 
                     count++;
@@ -2724,7 +2732,7 @@ namespace Remnants.Content.World
 
                 float radius = WorldGen.genRand.NextFloat(24, 36);
 
-                float waterLavaRatio = (float)((GenVars.lavaLine - Main.rockLayer) / (Main.maxTilesY - 200 - Main.rockLayer));
+                float waterLavaRatio = (float)((GenVars.lavaLine - Main.rockLayer) / (Main.maxTilesY - 300 - Main.rockLayer));
 
                 int x = WorldGen.genRand.Next(400, Main.maxTilesX - 400);
                 int y = ((float)count / (float)countTotal > waterLavaRatio) ? WorldGen.genRand.Next((int)GenVars.lavaLine, Main.maxTilesY - 200) : WorldGen.genRand.Next((int)Main.rockLayer, GenVars.lavaLine);
@@ -2837,95 +2845,102 @@ namespace Remnants.Content.World
             progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Microdungeons");
             int structureCount;
             int attempts;
+			float waterLavaRatio = (float)((GenVars.lavaLine - Main.rockLayer) / (Main.maxTilesY - 300 - Main.rockLayer));
 
-            int uniqueStructures = 7;
+			int uniqueStructures = 7;
             int progressCounter = 0;
 
-            attempts = 0; // JUNGLE PLATFORM
-            while (attempts < 10000)
+            structureCount = 0; // FOREST TOWER
+            while (structureCount < Main.maxTilesX / 2100)
             {
-                int x = WorldGen.genRand.Next((Jungle.Left + 1) * biomes.CellSize, Jungle.Right * biomes.CellSize);
-                int y = WorldGen.genRand.Next(attempts < 500 ? (Terrain.Middle + Terrain.Maximum * 2) / 3 : (Terrain.Middle + Terrain.Maximum) / 2, (Terrain.Middle + Terrain.Maximum * 5) / 6);
+                progress.Set((progressCounter + structureCount / Main.maxTilesX / 2100 / uniqueStructures));
 
-                int left = x - WorldGen.genRand.Next(3, 10);
-                int right = x + WorldGen.genRand.Next(3, 10);
+                #region spawnconditions
+                StructureTools.Dungeon tower = new StructureTools.Dungeon(0, 0, 1, 3, 19, 18, 1);
 
-                int stacks = WorldGen.genRand.Next(1, 3);
-
-                bool goLeft = WorldGen.genRand.NextBool(2);
-
-                if (GenVars.structures.CanPlace(new Rectangle(left, Terrain.Minimum, right - left, Terrain.Maximum - Terrain.Minimum), 15) && CreatePlatform(left, right, y))
+                if (structureCount < Main.maxTilesX / 4200)
                 {
-                    while (stacks > 0)
+                    tower.X = WorldGen.genRand.NextBool(2) ? WorldGen.genRand.Next(Main.maxTilesX / 2 + 100, (int)(Main.maxTilesX * 0.6f) - tower.area.Width) : WorldGen.genRand.Next((int)(Main.maxTilesX * 0.4f), Main.maxTilesX / 2 - 100 - tower.area.Width);
+                }
+                else tower.X = WorldGen.genRand.NextBool(2) ? WorldGen.genRand.Next((int)(Main.maxTilesX * 0.6f), Main.maxTilesX - 400 - tower.area.Width) : WorldGen.genRand.Next(400, (int)(Main.maxTilesX * 0.4f) - tower.area.Width);
+
+                tower.Y = Terrain.Minimum;
+                while (!MiscTools.SolidInArea(tower.area.Left, tower.area.Bottom + 4, tower.area.Right - 1, tower.area.Bottom + 7))
+                {
+                    tower.Y++;
+                }
+
+                bool valid = true;
+                if (!StructureTools.InsideBiome(tower.area, BiomeID.None) || !GenVars.structures.CanPlace(tower.area, 25) || biomes.FindBiome(tower.area.Left - 100, tower.area.Bottom, false) != BiomeID.None || biomes.FindBiome(tower.area.Right + 100, tower.area.Bottom, false) != BiomeID.None)
+                {
+                    valid = false;
+                }
+                else if (!MiscTools.NonSolidInArea(tower.area.Left - 2, tower.area.Bottom - 5, tower.area.Left - 1, tower.area.Bottom - 2) || !MiscTools.NonSolidInArea(tower.area.Right, tower.area.Bottom - 5, tower.area.Right + 1, tower.area.Bottom - 2))
+                {
+                    valid = false;
+                }
+                else if (!MiscTools.NonSolidInArea(tower.area.Left - 1, tower.area.Top + 4, tower.area.Left, tower.area.Top + 11) || !MiscTools.NonSolidInArea(tower.area.Right - 1, tower.area.Top + 4, tower.area.Right, tower.area.Top + 11))
+                {
+                    valid = false;
+                }
+                #endregion
+
+                if (valid)
+                {
+                    GenVars.structures.AddProtectedStructure(tower.area, 10);
+
+                    List<int> rooms = new List<int>() { 1, 2, 3 };
+
+                    #region structure
+                    for (tower.targetCell.Y = tower.grid.Bottom - 1; tower.targetCell.Y >= tower.grid.Top; tower.targetCell.Y--)
                     {
-                        if (goLeft)
+                        if (tower.targetCell.Y == tower.grid.Top)
                         {
-                            right = left;
-                            left -= WorldGen.genRand.Next(6, 19);
+                            StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Common/ForestTower/top", tower.roomPos, ModContent.GetInstance<Remnants>());
+
+                            WorldGen.PlaceTile(tower.area.Left - 1, tower.room.Bottom - 6, TileID.Platforms, style: 43);
+                            WorldGen.PlaceTile(tower.area.Right, tower.room.Bottom - 6, TileID.Platforms, style: 43);
+
+                            int chestIndex = WorldGen.PlaceChest(WorldGen.genRand.Next(tower.room.Left + 5, tower.room.Right - 6), tower.room.Bottom - 7);
+
+                            var itemsToAdd = new List<(int type, int stack)>();
+
+                            StructureTools.GenericLoot(chestIndex, itemsToAdd, 1);
+
+                            StructureTools.FillChest(chestIndex, itemsToAdd);
                         }
                         else
                         {
-                            left = right;
-                            right += WorldGen.genRand.Next(6, 19);
-                        }
-                        y -= WorldGen.genRand.Next(2, 5) * 3;
+                            int room = rooms[WorldGen.genRand.Next(rooms.Count)];
+                            StructureHelper.API.MultiStructureGenerator.GenerateMultistructureRandom("Content/World/Structures/Common/ForestTower/" + room, tower.roomPos, ModContent.GetInstance<Remnants>());
 
-                        if (CreatePlatform(left, right, y))
-                        {
-                            stacks--;
-                        }
-                        else break;
-                    }
-                }
-                else attempts++;
-            }
+                            //MiscTools.Rectangle(tower.room.Center.X - 1, tower.room.Top, tower.room.Center.X + 1, tower.room.Bottom, wall: ModContent.WallType<BrickStone>());
 
-            attempts = 0; // ICE PILLAR
-            while (attempts < 10000)
-            {
-                int x = WorldGen.genRand.Next((Tundra.Left + 1) * biomes.CellSize, Tundra.Right * biomes.CellSize);
-                int y = WorldGen.genRand.Next((int)(Main.worldSurface * 0.5f), (int)Main.worldSurface);
-
-                attempts++;
-
-                if (!MiscTools.Tile(x, y - 1).HasTile && WorldGen.SolidTile(x, y) && MiscTools.SolidInArea(x - 2, y + 7, x + 2, y + 7))
-                {
-                    int height = attempts < 2000 ? 6 : attempts < 4000 ? 5 : attempts < 6000 ? 4 : attempts < 8000 ? 3 : 2;
-
-                    if (MiscTools.NonSolidInArea(x - 3, y - 5 - height * 6, x + 3, y - 6) && (!MiscTools.NonSolidInArea(x - 2, y - 24 - height * 6, x + 2, y - 6 - height * 6)))
-                    {
-                        if (GenVars.structures.CanPlace(new Rectangle(x - 2, y - height * 6, 5, height * 6 + 7), 4) && StructureTools.AvoidsBiomes(new Rectangle(x - 2, y - height * 6, 5, height * 6 + 7), new int[] { BiomeID.Granite }))
-                        {
-                            GenVars.structures.AddProtectedStructure(new Rectangle(x - 2, y - height * 6, 5, height * 6 + 7), 4);
-
-                            MiscTools.Rectangle(x - 1, y - height * 6, x + 1, y + 6, TileID.IceBrick, ModContent.WallType<BrickIce>());
-                            //WorldGen.PlaceTile(x, y - height * 6 - 1, TileID.Torches, style: 9);
-
-                            for (int k = 0; k <= height; k++)
+                            if (tower.targetCell.Y == tower.grid.Bottom - 1)
                             {
-                                WorldGen.PlaceTile(x - 2, y - (height - k) * 6, TileID.Platforms, style: 35);
-                                WorldGen.PlaceTile(x + 2, y - (height - k) * 6, TileID.Platforms, style: 35);
+                                StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Common/ForestTower/base", new Point16(tower.roomPos.X, tower.area.Bottom - 6), ModContent.GetInstance<Remnants>());
 
-                                MiscTools.Rectangle(x - 2, y - (height - k) * 6 - 1, x + 2, y - (height - k) * 6 - 1, wall: ModContent.WallType<BrickIce>());
+                                WorldGen.PlaceTile(tower.area.Left - 1, tower.area.Bottom, TileID.Platforms, style: 43);
+                                WorldGen.PlaceTile(tower.area.Right, tower.area.Bottom, TileID.Platforms, style: 43);
                             }
 
-                            MiscTools.Rectangle(x, y - height * 6 + 1, x, y + 6, TileID.IceBlock, WallID.IceUnsafe);
-
-                            if (height >= 3)
-                            {
-                                int k = WorldGen.genRand.Next(1, height - 1);
-
-                                MiscTools.Rectangle(x - 1, y - (height - k) * 6, x + 1, y - (height - k - 1) * 6, TileID.IceBrick);
-                                MiscTools.Rectangle(x - 1, y - (height - k) * 6 + 1, x + 1, y - (height - k - 1) * 6 - 1, -1);
-                            }
-
-                            //StructureTools.AddVariation(new Rectangle(x - 2, y - height * 6 - 1, 5, height * 6 + 7), 0);
-
-                            attempts = 0;
+                            rooms.Remove(room);
                         }
+
+                        WorldGen.PlaceTile(tower.area.Left - 1, tower.roomPos.Y, TileID.Platforms, style: 43);
+                        WorldGen.PlaceTile(tower.area.Right, tower.roomPos.Y, TileID.Platforms, style: 43);
+
                     }
+                    #endregion
+
+                    StructureTools.AddWeathering(tower.area);
+                    StructureTools.AddVariation(tower.area);
+
+                    structureCount++;
                 }
             }
+
+            progressCounter++;
 
             structureCount = 0; // MARBLE BATHHOUSE
             while (structureCount < Main.maxTilesX / 2100)
@@ -3488,7 +3503,7 @@ namespace Remnants.Content.World
                         {
                             if (tower.FindMarker(tower.targetCell.X, tower.targetCell.Y) && !tower.FindMarker(tower.targetCell.X, tower.targetCell.Y, 1))
                             {
-                                StructureHelper.API.MultiStructureGenerator.GenerateMultistructureSpecific("Content/World/Structures/Common/GraniteTower/room", !tower.FindMarker(tower.targetCell.X, tower.targetCell.Y - 1, 1) && tower.targetCell.Y > 0 && tower.FindMarker(tower.targetCell.X, tower.targetCell.Y - 1) ? 1 : 0, tower.roomPos, ModContent.GetInstance<Remnants>());
+                                StructureHelper.API.MultiStructureGenerator.GenerateMultistructureSpecific("Content/World/Structures/Common/GraniteCliffDwelling/room", !tower.FindMarker(tower.targetCell.X, tower.targetCell.Y - 1, 1) && tower.targetCell.Y > 0 && tower.FindMarker(tower.targetCell.X, tower.targetCell.Y - 1) ? 1 : 0, tower.roomPos, ModContent.GetInstance<Remnants>());
 
                                 if (WorldGen.genRand.NextBool(2))
                                 {
@@ -3524,14 +3539,14 @@ namespace Remnants.Content.World
                             {
                                 if (tower.FindMarker(tower.targetCell.X, tower.targetCell.Y, 1))
                                 {
-                                    StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Common/GraniteTower/ladder", tower.roomPos, ModContent.GetInstance<Remnants>());
+                                    StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Common/GraniteCliffDwelling/ladder", tower.roomPos, ModContent.GetInstance<Remnants>());
                                 }
 
                                 if (tower.FindMarker(tower.targetCell.X, tower.targetCell.Y) && (tower.targetCell.X == 0 || !tower.FindMarker(tower.targetCell.X - 1, tower.targetCell.Y)))
                                 {
                                     if (!left)
                                     {
-                                        StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Common/GraniteTower/left", new Point16(tower.roomPos.X - 6, tower.roomPos.Y), ModContent.GetInstance<Remnants>());
+                                        StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Common/GraniteCliffDwelling/left", new Point16(tower.roomPos.X - 6, tower.roomPos.Y), ModContent.GetInstance<Remnants>());
                                         WorldGen.PlaceTile(tower.roomPos.X - 7, tower.roomPos.Y, TileID.Platforms, style: 28);
                                     }
 
@@ -3545,7 +3560,7 @@ namespace Remnants.Content.World
                                 {
                                     if (left)
                                     {
-                                        StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Common/GraniteTower/right", new Point16(tower.roomPos.X + tower.room.Width, tower.roomPos.Y), ModContent.GetInstance<Remnants>());
+                                        StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Common/GraniteCliffDwelling/right", new Point16(tower.roomPos.X + tower.room.Width, tower.roomPos.Y), ModContent.GetInstance<Remnants>());
                                         WorldGen.PlaceTile(tower.roomPos.X + tower.room.Width + 6, tower.roomPos.Y, TileID.Platforms, style: 28);
                                     }
 
@@ -3625,12 +3640,113 @@ namespace Remnants.Content.World
                 }
             }
 
-            progressCounter++;
+			progressCounter++;
+
+			structureCount = 0; // FROZEN WATCHTOWER
+			while (structureCount < Main.maxTilesX * Main.maxTilesY / 1200f / 1200f)
+			{
+				progress.Set((progressCounter + structureCount / (float)(Main.maxTilesX * Main.maxTilesY / 1200f) / 1200f / uniqueStructures));
+
+				#region spawnconditions
+				StructureTools.Dungeon tower = new StructureTools.Dungeon(WorldGen.genRand.Next(400, Main.maxTilesX - 400), 0, 1, WorldGen.genRand.Next(3, 8), 12, 6, 1);
+
+				tower.Y = WorldGen.genRand.Next((int)Main.worldSurface + 50, Main.maxTilesY - 300 - tower.area.Height);
+
+				bool valid = true;
+				if (!GenVars.structures.CanPlace(tower.area, 25) || !MiscTools.SolidInArea(tower.area.Left, tower.area.Bottom + 4, tower.area.Right - 1, tower.area.Bottom + 7))
+				{
+					valid = false;
+				}
+                else if (!MiscTools.NonSolidInArea(tower.area.Left, tower.area.Bottom - 5, tower.area.Left + 1, tower.area.Bottom - 3) || !MiscTools.NonSolidInArea(tower.area.Right - 2, tower.area.Bottom - 5, tower.area.Right - 2, tower.area.Bottom - 3))
+                {
+                    valid = false;
+                }
+				else if (!MiscTools.NonSolidInArea(tower.area.Left, tower.area.Top - 8, tower.area.Left + 1, tower.area.Top - 1) || !MiscTools.NonSolidInArea(tower.area.Right - 2, tower.area.Top - 8, tower.area.Right - 1, tower.area.Top - 1))
+				{
+					valid = false;
+				}
+				else if (!StructureTools.InsideBiome(tower.area, BiomeID.Tundra))
+                {
+                    valid = false;
+                }
+				#endregion
+
+				if (valid)
+				{
+					GenVars.structures.AddProtectedStructure(tower.area, 10);
+
+					#region structure
+                    for (tower.targetCell.Y = tower.grid.Bottom - 1; tower.targetCell.Y >= tower.grid.Top; tower.targetCell.Y--)
+                    {
+                        if (tower.targetCell.Y == tower.grid.Bottom - 1)
+                        {
+							StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Common/FrozenWatchtower/base", tower.roomPos, ModContent.GetInstance<Remnants>());
+
+                            WorldGen.PlaceTile(tower.area.Left - 1, tower.area.Bottom, TileID.Platforms, style: 35);
+							WorldGen.PlaceTile(tower.area.Right, tower.area.Bottom, TileID.Platforms, style: 35);
+						}
+						else if (tower.targetCell.Y == tower.grid.Top)
+						{
+							StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Common/FrozenWatchtower/head", tower.roomPos - new Point16(0, 18), ModContent.GetInstance<Remnants>());
+
+							WorldGen.PlaceTile(tower.area.Left - 1, tower.roomPos.Y, TileID.Platforms, style: 35);
+							WorldGen.PlaceTile(tower.area.Right, tower.roomPos.Y, TileID.Platforms, style: 35);
+
+                            WorldGen.PlaceTile(tower.area.Left - 1, tower.roomPos.Y - 15, TileID.Platforms, style: 35);
+                            WorldGen.PlaceTile(tower.area.Right, tower.roomPos.Y - 15, TileID.Platforms, style: 35);
+
+                            int chestIndex = WorldGen.PlaceChest(tower.room.Center.X - 1, tower.roomPos.Y - 1, style: 11);
+
+                            var itemsToAdd = new List<(int type, int stack)>();
+
+                            int[] specialItems = new int[6];
+                            specialItems[0] = ItemID.IceSkates;
+                            specialItems[1] = ItemID.BlizzardinaBottle;
+                            specialItems[2] = ItemID.IceBoomerang;
+                            specialItems[3] = ItemID.SnowballCannon;
+                            specialItems[4] = ItemID.IceBlade;
+                            specialItems[5] = ItemID.IceMirror;
+
+                            int specialItem = specialItems[WorldGen.genRand.Next(0, specialItems.Length)];
+                            if (structureCount < specialItems.Length)
+                            {
+                                specialItem = specialItems[structureCount];
+                            }
+
+                            itemsToAdd.Add((specialItem, 1));
+                            if (specialItem == ItemID.SnowballCannon)
+                            {
+                                itemsToAdd.Add((ItemID.Snowball, Main.rand.Next(25, 50)));
+                            }
+
+                            if (WorldGen.genRand.NextBool(25))
+                            {
+                                itemsToAdd.Add((ItemID.Fish, 1));
+                            }
+
+                            StructureTools.GenericLoot(chestIndex, itemsToAdd, 2);
+
+                            StructureTools.FillChest(chestIndex, itemsToAdd);
+                        }
+						else
+                        {
+							StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Common/FrozenWatchtower/spine", tower.roomPos + new Point16(2, 0), ModContent.GetInstance<Remnants>());
+						}
+					}
+                    #endregion
+
+                    StructureTools.AddWeathering(tower.area, 12);
+
+					structureCount++;
+				}
+			}
+
+			progressCounter++;
 
             structureCount = 0; // OVERGROWN CABIN
-            while (structureCount < Main.maxTilesX * Main.maxTilesY / 1200f / (ModContent.GetInstance<Worldgen>().ExperimentalWorldgen ? 840 : 420) * ModContent.GetInstance<Worldgen>().CabinFrequency)
+            while (structureCount < Main.maxTilesX * Main.maxTilesY / 1200f / (ModContent.GetInstance<Worldgen>().ExperimentalWorldgen ? 1200 : 600) * ModContent.GetInstance<Worldgen>().CabinFrequency)
             {
-                progress.Set((progressCounter + structureCount / (float)(Main.maxTilesX * Main.maxTilesY / 1200f) / (ModContent.GetInstance<Worldgen>().ExperimentalWorldgen ? 840 : 420)) / uniqueStructures);
+                progress.Set((progressCounter + structureCount / (float)(Main.maxTilesX * Main.maxTilesY / 1200f) / (ModContent.GetInstance<Worldgen>().ExperimentalWorldgen ? 1200 : 600)) / uniqueStructures);
 
                 #region spawnconditions
                 StructureTools.Dungeon cabin = new StructureTools.Dungeon(WorldGen.genRand.Next(400, Main.maxTilesX - 400), 0, WorldGen.genRand.Next(2, 4), WorldGen.genRand.Next(1, 3), 12, 6, 3);
@@ -3977,8 +4093,6 @@ namespace Remnants.Content.World
 
                 #region spawnconditions
                 StructureTools.Dungeon cabin = new StructureTools.Dungeon(0, 0, WorldGen.genRand.Next(3, 5), WorldGen.genRand.Next(1, 3), 8, 6, 3);
-
-                float waterLavaRatio = (float)((GenVars.lavaLine - Main.rockLayer) / (Main.maxTilesY - 200 - Main.rockLayer));
 
                 cabin.X = WorldGen.genRand.Next((int)(Main.maxTilesX * 0.1f), (int)(Main.maxTilesX * 0.9f) - cabin.area.Width);
                 cabin.Y = ((float)structureCount / (float)structureCountTotal < waterLavaRatio) ? WorldGen.genRand.Next((int)Main.rockLayer, GenVars.lavaLine - cabin.area.Height) : WorldGen.genRand.Next(GenVars.lavaLine, Main.maxTilesY - 200 - cabin.area.Height);
@@ -4495,15 +4609,15 @@ namespace Remnants.Content.World
             progressCounter++;
 
             structureCount = 0; // MINING PLATFORM
-            while (false)//structureCount < Main.maxTilesX * Main.maxTilesY / 1200f / 175)// * ModContent.GetInstance<Worldgen>().PlatformFrequency)
+			structureCountTotal = (int)(Main.maxTilesX * Main.maxTilesY / 1200f / 420);
+			while (structureCount < structureCountTotal)
             {
-                progress.Set((progressCounter + structureCount / (float)(Main.maxTilesX * Main.maxTilesY / 1200f / 175)) / uniqueStructures);
+                progress.Set((progressCounter + structureCount / (float)(Main.maxTilesX * Main.maxTilesY / 1200f / 420)) / uniqueStructures);
 
-                #region spawnconditions
-
-                int x = structureCount < Main.maxTilesX * Main.maxTilesY / 1200f / (175 * 5) ? WorldGen.genRand.Next((int)(Main.maxTilesX * 0.4f), (int)(Main.maxTilesX * 0.6f)) : WorldGen.genRand.NextBool(2) ? WorldGen.genRand.Next((int)(Main.maxTilesX * 0.1f), (int)(Main.maxTilesX * 0.4f)) : WorldGen.genRand.Next((int)(Main.maxTilesX * 0.6f), (int)(Main.maxTilesX * 0.9f));
-                int y = WorldGen.genRand.Next((int)Main.rockLayer, Main.maxTilesY - 200);
-                int height = Math.Max(WorldGen.genRand.Next(2, 7), WorldGen.genRand.Next(2, 7));
+				#region spawnconditions
+				int x = WorldGen.genRand.Next((int)(Main.maxTilesX * 0.1f), (int)(Main.maxTilesX * 0.9f));
+                int y = ((float)structureCount / (float)structureCountTotal < waterLavaRatio) ? WorldGen.genRand.Next((int)Main.rockLayer, GenVars.lavaLine) : WorldGen.genRand.Next(GenVars.lavaLine, Main.maxTilesY - 300);
+				int height = Math.Max(WorldGen.genRand.Next(2, 7), WorldGen.genRand.Next(2, 7));
                 Rectangle area = new Rectangle(x - 3, y - height * 6 - 8, 7, height * 6 + 8);
                 bool[] validTiles = TileID.Sets.Factory.CreateBoolSet(true, TileID.Sand, TileID.HardenedSand, TileID.Sandstone, TileID.Ebonstone, TileID.Crimstone, TileID.Ash, TileID.LihzahrdBrick);
 
@@ -4512,7 +4626,7 @@ namespace Remnants.Content.World
                 {
                     valid = false;
                 }
-                else if (!StructureTools.AvoidsBiomes(area, new int[] { BiomeID.Glowshroom, BiomeID.Granite, BiomeID.Toxic, BiomeID.Obsidian, BiomeID.SunkenSea }))
+                else if (!StructureTools.AvoidsBiomes(area, new int[] { BiomeID.Tundra, BiomeID.Jungle, BiomeID.Glowshroom, BiomeID.Granite, BiomeID.Toxic, BiomeID.Obsidian, BiomeID.SunkenSea }))
                 {
                     valid = false;
                 }
@@ -4522,7 +4636,7 @@ namespace Remnants.Content.World
                     {
                         for (int i = x - 3; i <= x + 3; i++)
                         {
-                            if (j < y - 1)
+                            if (j < y - 3)
                             {
                                 if (MiscTools.Solid(i, j))
                                 {
@@ -4568,7 +4682,6 @@ namespace Remnants.Content.World
 
                     #region structure
                     MiscTools.Rectangle(x - 3, y, x + 3, y, TileID.WoodBlock);
-                    MiscTools.Rectangle(x - 3, y - 1, x + 3, y - 1, wall: ModContent.WallType<Wood>());
                     for (int k = 0; k < height; k++)
                     {
                         y -= 6;
@@ -4578,18 +4691,22 @@ namespace Remnants.Content.World
                     {
                         MiscTools.Tile(i, y).TileType = biomes.FindBiome(i, y) == BiomeID.Glowshroom ? TileID.MushroomBlock : biomes.FindBiome(i, y) == BiomeID.Jungle ? TileID.RichMahogany : biomes.FindBiome(i, y) == BiomeID.Tundra ? TileID.BorealWood : TileID.WoodBlock;
                         MiscTools.Tile(i, y).HasTile = true;
-                    }
+						MiscTools.Tile(i, y - 1).WallType = (ushort)(biomes.FindBiome(i, y) == BiomeID.Glowshroom ? WallID.MushroomUnsafe : biomes.FindBiome(i, y) == BiomeID.Jungle ? ModContent.WallType<WoodMahogany>() : biomes.FindBiome(i, y) == BiomeID.Tundra ? ModContent.WallType<WoodBoreal>() : ModContent.WallType<Wood>());
+					}
                     for (int i = x - 2; !MiscTools.Solid(i, y); i--)
                     {
                         MiscTools.Tile(i, y).TileType = biomes.FindBiome(i, y) == BiomeID.Glowshroom ? TileID.MushroomBlock : biomes.FindBiome(i, y) == BiomeID.Jungle ? TileID.RichMahogany : biomes.FindBiome(i, y) == BiomeID.Tundra ? TileID.BorealWood : TileID.WoodBlock;
-                        MiscTools.Tile(i, y).HasTile = true;
-                    }
+						MiscTools.Tile(i, y).HasTile = true;
+						MiscTools.Tile(i, y - 1).WallType = (ushort)(biomes.FindBiome(i, y) == BiomeID.Glowshroom ? WallID.MushroomUnsafe : biomes.FindBiome(i, y) == BiomeID.Jungle ? ModContent.WallType<WoodMahogany>() : biomes.FindBiome(i, y) == BiomeID.Tundra ? ModContent.WallType<WoodBoreal>() : ModContent.WallType<Wood>());
+					}
 
                     StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Common/Platform/cabin", new Point16(x - 5, y - 8), ModContent.GetInstance<Remnants>());
 
-                    #region cleanup
+					#region cleanup
 
-                    StructureTools.AddTheming(area);
+					StructureTools.AddWeathering(area);
+
+					StructureTools.AddTheming(area);
                     StructureTools.AddVariation(area);
                     #endregion
                     #endregion
@@ -4597,15 +4714,107 @@ namespace Remnants.Content.World
                     structureCount++;
                 }
             }
-        }
+
+			attempts = 0; // JUNGLE PLATFORM
+			while (attempts < 10000)
+			{
+				int x = WorldGen.genRand.Next((Jungle.Left + 1) * biomes.CellSize, Jungle.Right * biomes.CellSize);
+				int y = WorldGen.genRand.NextBool(2) ? WorldGen.genRand.Next((int)Main.worldSurface, (int)Main.maxTilesY - 300) : WorldGen.genRand.Next(attempts < 500 ? (Terrain.Middle + Terrain.Maximum * 2) / 3 : (Terrain.Middle + Terrain.Maximum) / 2, (Terrain.Middle + Terrain.Maximum * 5) / 6);
+
+				int left = x - WorldGen.genRand.Next(3, 10);
+				int right = x + WorldGen.genRand.Next(3, 10);
+
+				int stacks = WorldGen.genRand.Next(1, 3);
+
+				bool goLeft = WorldGen.genRand.NextBool(2);
+
+				if (biomes.FindBiome(x, y) == BiomeID.Jungle && (y >= (int)Main.worldSurface || GenVars.structures.CanPlace(new Rectangle(left, Terrain.Minimum, right - left, Terrain.Maximum - Terrain.Minimum), 15)) && CreatePlatform(left, right, y))
+				{
+					while (stacks > 0)
+					{
+						if (goLeft)
+						{
+							right = left;
+							left -= WorldGen.genRand.Next(6, 19);
+						}
+						else
+						{
+							left = right;
+							right += WorldGen.genRand.Next(6, 19);
+						}
+						y -= WorldGen.genRand.Next(2, 5) * 3;
+
+						if (CreatePlatform(left, right, y))
+						{
+							stacks--;
+						}
+						else break;
+					}
+				}
+				else attempts++;
+			}
+
+			attempts = 0; // ICE PILLAR
+			while (attempts < 10000)
+			{
+				int x = WorldGen.genRand.Next((Tundra.Left + 1) * biomes.CellSize, Tundra.Right * biomes.CellSize);
+				int y = WorldGen.genRand.Next((int)(Main.worldSurface * 0.5f), (int)Main.worldSurface); //WorldGen.genRand.NextBool(2) ? WorldGen.genRand.Next((int)(Main.worldSurface), (int)GenVars.lavaLine) : WorldGen.genRand.Next((int)(Main.worldSurface * 0.5f), (int)Main.worldSurface);
+
+				attempts++;
+
+				if (!MiscTools.Tile(x, y - 1).HasTile && WorldGen.SolidTile(x, y) && MiscTools.SolidInArea(x - 2, y + 7, x + 2, y + 7))
+				{
+					int height = attempts < 2000 ? 6 : attempts < 4000 ? 5 : attempts < 6000 ? 4 : attempts < 8000 ? 3 : 2;
+
+					if (MiscTools.NonSolidInArea(x - 3, y - 5 - height * 6, x + 3, y - 6) && (!MiscTools.NonSolidInArea(x - 2, y - 24 - height * 6, x + 2, y - 6 - height * 6)))
+					{
+						if (GenVars.structures.CanPlace(new Rectangle(x - 2, y - height * 6, 5, height * 6 + 7), 4) && StructureTools.AvoidsBiomes(new Rectangle(x - 2, y - height * 6, 5, height * 6 + 7), new int[] { BiomeID.Granite }))
+						{
+							GenVars.structures.AddProtectedStructure(new Rectangle(x - 2, y - height * 6, 5, height * 6 + 7), 4);
+
+							MiscTools.Rectangle(x - 1, y - height * 6, x + 1, y + 6, TileID.IceBrick, ModContent.WallType<BrickIce>());
+							//WorldGen.PlaceTile(x, y - height * 6 - 1, TileID.Torches, style: 9);
+
+							for (int k = 0; k <= height; k++)
+							{
+								WorldGen.PlaceTile(x - 2, y - (height - k) * 6, TileID.Platforms, style: 35);
+								WorldGen.PlaceTile(x + 2, y - (height - k) * 6, TileID.Platforms, style: 35);
+
+								MiscTools.Rectangle(x - 2, y - (height - k) * 6 - 1, x + 2, y - (height - k) * 6 - 1, wall: ModContent.WallType<BrickIce>());
+							}
+
+							MiscTools.Rectangle(x, y - height * 6 + 1, x, y + 6, TileID.IceBlock, WallID.IceUnsafe);
+
+							if (height >= 3)
+							{
+								int k = WorldGen.genRand.Next(1, height - 1);
+
+								MiscTools.Rectangle(x - 1, y - (height - k) * 6, x + 1, y - (height - k - 1) * 6, TileID.IceBrick);
+								MiscTools.Rectangle(x - 1, y - (height - k) * 6 + 1, x + 1, y - (height - k - 1) * 6 - 1, -1);
+							}
+
+							//StructureTools.AddVariation(new Rectangle(x - 2, y - height * 6 - 1, 5, height * 6 + 7), 0);
+
+							attempts = 0;
+						}
+					}
+				}
+			}
+		}
 
         private bool CreatePlatform(int left, int right, int y)
         {
-            if (!GenVars.structures.CanPlace(new Rectangle(left, y, right - left, 1), 1))
+			BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
+
+			if (!GenVars.structures.CanPlace(new Rectangle(left, y, right - left, 1), 1))
             {
                 return false;
             }
-            else if (MiscTools.NonSolidInArea(left, y + 1, left, (int)Main.worldSurface) || MiscTools.NonSolidInArea(right, y + 1, right, (int)Main.worldSurface))
+            else if (y < Main.worldSurface && (MiscTools.NonSolidInArea(left, y + 1, left, (int)Main.worldSurface) || MiscTools.NonSolidInArea(right, y + 1, right, (int)Main.worldSurface)))
+            {
+                return false;
+            }
+            else if (y >= (int)Main.worldSurface && y < Main.rockLayer - 50 && MathHelper.Distance((left + right) / 2, (Jungle.Center + 0.5f) * biomes.CellSize) < 25)
             {
                 return false;
             }
@@ -4615,7 +4824,7 @@ namespace Remnants.Content.World
                 {
                     for (int i = left - 3; i <= right + 3; i++)
                     {
-                        if (WorldGen.SolidTile(i, j))
+                        if (WorldGen.SolidTile(i, j) || j < y && MiscTools.HasTile(i, j, TileID.RichMahoganyBeam))
                         {
                             return false;
                         }
@@ -4623,7 +4832,7 @@ namespace Remnants.Content.World
                 }
             }
 
-            GenVars.structures.AddProtectedStructure(new Rectangle(left, y, right - left + 1, Terrain.Maximum - y), 1);
+            GenVars.structures.AddProtectedStructure(new Rectangle(left, y, right - left + 1, 1), 1);
 
             MiscTools.Rectangle(left - 1, y, right + 1, y, TileID.Platforms, style: 2);
             MiscTools.Rectangle(left, y, right, y, wall: ModContent.WallType<WoodLattice>(), replace: false);
@@ -5687,351 +5896,6 @@ namespace Remnants.Content.World
                 position = _position;
                 direction = _direction;
                 type = _type;
-            }
-        }
-    }
-
-    public class IceTemples : GenPass
-    {
-        public IceTemples(string name, float loadWeight) : base(name, loadWeight)
-        {
-        }
-
-        List<Marker> markers;
-
-        protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
-        {
-            BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
-
-            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.IceTemples");
-
-            int structureCount;
-
-            structureCount = 0;
-            while (structureCount <= Main.maxTilesX * (Main.maxTilesY / 1200) / 2100 * ModContent.GetInstance<Worldgen>().FrozenRuinFrequency)
-            {
-                #region spawnconditions
-                int structureX = WorldGen.genRand.Next((int)(Main.maxTilesX * 0.1f), (int)(Main.maxTilesX * 0.9f));
-                int structureY = WorldGen.genRand.Next((int)(Main.worldSurface + 50), Main.maxTilesY - 300);
-
-                bool valid = true;
-                if (!GenVars.structures.CanPlace(new Rectangle(structureX - 13, structureY - 25, 28, 27), 50))
-                {
-                    valid = false;
-                }
-                else if (biomes.FindBiome(structureX, structureY) != BiomeID.Tundra)
-                {
-                    valid = false;
-                }
-                else if (ModLoader.TryGetMod("Stellamod", out Mod lv) && lv.TryFind("AbyssalDirt", out ModTile aDirt) && Main.tile[structureX, structureY].TileType == aDirt.Type)
-                {
-                    valid = false;
-                }
-                #endregion
-
-                #region structure
-                if (valid)
-                {
-                    markers = new List<Marker>();
-
-                    int chestIndex;
-                    if (WorldGen.genRand.NextBool(2))
-                    {
-                        StructureHelper.API.MultiStructureGenerator.GenerateMultistructureSpecific("Content/World/Structures/Common/icetemple/treasureroom", 0, new Point16(structureX - 13, structureY - 33), ModContent.GetInstance<Remnants>());
-                        chestIndex = WorldGen.PlaceChest(structureX + 2, structureY - 2, style: 11);
-                    }
-                    else
-                    {
-                        StructureHelper.API.MultiStructureGenerator.GenerateMultistructureSpecific("Content/World/Structures/Common/icetemple/treasureroom", 1, new Point16(structureX - 13, structureY - 33), ModContent.GetInstance<Remnants>());
-                        chestIndex = WorldGen.PlaceChest(structureX - 2, structureY - 2, style: 11);
-                    }
-                    #region chestloot
-                    var itemsToAdd = new List<(int type, int stack)>();
-
-                    int[] specialItems = new int[6];
-                    specialItems[0] = ItemID.IceSkates;
-                    specialItems[1] = ItemID.BlizzardinaBottle;
-                    specialItems[2] = ItemID.IceBoomerang;
-                    specialItems[3] = ItemID.SnowballCannon;
-                    specialItems[4] = ItemID.IceBlade;
-                    specialItems[5] = ItemID.IceMirror;
-
-                    int specialItem = specialItems[WorldGen.genRand.Next(0, specialItems.Length)];
-                    if (structureCount < specialItems.Length)
-                    {
-                        specialItem = specialItems[structureCount];
-                    }
-
-                    itemsToAdd.Add((specialItem, 1));
-                    if (specialItem == ItemID.SnowballCannon)
-                    {
-                        itemsToAdd.Add((ItemID.Snowball, Main.rand.Next(25, 50)));
-                    }
-
-                    if (WorldGen.genRand.NextBool(25))
-                    {
-                        itemsToAdd.Add((ItemID.Fish, 1));
-                    }
-
-                    StructureTools.GenericLoot(chestIndex, itemsToAdd, 2);
-
-                    StructureTools.FillChest(chestIndex, itemsToAdd);
-                    #endregion
-                    GenVars.structures.AddProtectedStructure(new Rectangle(structureX - 13, structureY - 33, 28, 35));
-                    AddMarker(structureX - 14, structureY - 2, 4, true);
-                    AddMarker(structureX + 15, structureY - 2, 2, true);
-                    AddMarker(structureX - 14, structureY - 19, 4, true);
-                    AddMarker(structureX + 15, structureY - 19, 2, true);
-
-                    #region rooms
-                    int index = WorldGen.genRand.Next(0, markers.Count);
-                    //PlaceRoom(4);
-                    for (int i = 0; i < 20; i++)
-                    {
-                        index = WorldGen.genRand.Next(0, markers.Count);
-                        PlaceRoom(index);
-                    }
-                    #endregion
-
-                    while (markers.Count > 0)
-                    {
-                        int x = (int)markers[0].position.X;
-                        int y = (int)markers[0].position.Y;
-                        if (markers[0].direction == 2 || markers[0].direction == 4)
-                        {
-                            Tunnel(new Vector2(x, y - 5.5f), 7f, 3);
-
-                            if (markers[0].direction == 2)
-                            {
-                                WorldGen.PlaceTile(x, y + 2, TileID.Platforms, style: 35);
-                            }
-                            else WorldGen.PlaceTile(x, y + 2, TileID.Platforms, style: 35);
-                        }
-                        else Tunnel(new Vector2(x, y), 1.5f, scaleY: 2);
-
-                        RemoveMarker(0);
-                    }
-
-                    structureCount++;
-                }
-                #endregion
-            }
-            //Spikes();
-            #region cleanup
-            FastNoiseLite weathering = new FastNoiseLite();
-            weathering.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
-            weathering.SetFrequency(0.2f);
-            weathering.SetFractalType(FastNoiseLite.FractalType.FBm);
-            weathering.SetFractalOctaves(3);
-
-            for (int y = (int)Main.worldSurface; y < Main.maxTilesY - 200; y++)
-            {
-                for (int x = 40; x < Main.maxTilesX - 40; x++)
-                {
-                    Tile tile = MiscTools.Tile(x, y);
-
-                    if (MiscTools.Tile(x, y + 1).TileType == TileID.PlanterBox && MiscTools.Tile(x, y + 1).TileFrameY == 6 * 18 && WorldGen.genRand.NextBool(2))
-                    {
-                        WorldGen.PlaceTile(x, y, TileID.ImmatureHerbs, style: 6);
-                    }
-
-                    if (tile.WallType == ModContent.WallType<BrickIce>())
-                    {
-                        if (tile.TileType == TileID.Platforms)
-                        {
-                            WorldGen.KillTile(x, y, true);
-                        }
-                        else if (MiscTools.Solid(x, y) && !MiscTools.Tile(x, y + 1).HasTile && weathering.GetNoise(x + WorldGen.genRand.Next(-3, 4), y + WorldGen.genRand.Next(-3, 4)) > 0)
-                        {
-                            if (tile.TileType == TileID.IceBrick)
-                            {
-                                tile.TileType = TileID.IceBlock;
-                            }
-                        }
-                        if (MiscTools.Tile(x, y - 1).TileType == TileID.Torches && !WorldGen.genRand.NextBool(4))
-                        {
-                            MiscTools.Tile(x, y - 1).TileFrameX += 18 * 3;
-                        }
-                    }
-                }
-            }
-            #endregion
-        }
-
-        #region functions
-        private void PlaceRoom(int index, int id = -1)
-        {
-            Marker savedMarker = markers[index];
-
-            #region setup
-            int x = (int)savedMarker.position.X;
-            int y = (int)savedMarker.position.Y;
-
-            if (id == -1)
-            {
-                if (savedMarker.direction == 3)
-                {
-                    id = 2;
-                }
-                else if (savedMarker.direction == 1)
-                {
-                    id = 3;
-                }
-                else if (savedMarker.door)
-                {
-                    id = 0;
-                }
-                else if (WorldGen.genRand.NextBool(2))
-                {
-                    id = WorldGen.genRand.Next(2, 4);
-                }
-                //else if (WorldGen.genRand.NextBool(3))
-                //{
-                //    id = 4;
-                //}
-                else id = 1;
-            }
-
-            Rectangle room = new Rectangle(x, y, 7, 18);
-            if (id == 4)
-            {
-                room.Width *= 2;
-            }
-
-            int doorY = 0;
-
-            doorY += room.Height - 4;
-
-            if (savedMarker.direction == 4)
-            {
-                room.X -= room.Width - 1;
-            }
-            if (savedMarker.direction == 1)
-            {
-                room.Y -= room.Height - 1;
-            }
-            if (savedMarker.direction == 1 || savedMarker.direction == 3)
-            {
-                room.X -= (room.Width - 1) / 2;
-            }
-            else room.Y -= doorY;
-            #endregion
-
-            bool[] tiles = TileID.Sets.Factory.CreateBoolSet(true, TileID.Granite);
-            if (GenVars.structures.CanPlace(new Rectangle(room.X + 1, room.Y + 1, room.Width - 2, room.Height - 2), tiles))
-            {
-                Point16 position = new Point16(room.X, room.Y);
-
-                //Fill(room.Center.ToVector2(), room.Height);
-
-                RemoveMarker(index);
-                if (id == 0)
-                {
-                    StructureHelper.API.MultiStructureGenerator.GenerateMultistructureRandom("Content/World/Structures/Common/icetemple/doorway", position, ModContent.GetInstance<Remnants>());
-                }
-                else if (id == 1)
-                {
-                    StructureHelper.API.MultiStructureGenerator.GenerateMultistructureRandom("Content/World/Structures/Common/icetemple/basic", position, ModContent.GetInstance<Remnants>());
-                }
-                else if (id == 2)
-                {
-                    StructureHelper.API.MultiStructureGenerator.GenerateMultistructureRandom("Content/World/Structures/Common/icetemple/shaft-bottom", position, ModContent.GetInstance<Remnants>());
-                    if (savedMarker.direction != 3)
-                    {
-                        AddMarker(room.X + (room.Width - 1) / 2, room.Y, 1, false);
-                    }
-                }
-                else if (id == 3)
-                {
-                    StructureHelper.API.MultiStructureGenerator.GenerateMultistructureRandom("Content/World/Structures/Common/icetemple/shaft-top", position, ModContent.GetInstance<Remnants>());
-                    if (savedMarker.direction != 1)
-                    {
-                        AddMarker(room.X + (room.Width - 1) / 2, room.Y + (room.Height - 1), 3, false);
-                    }
-                }
-                else if (id == 4)
-                {
-                    StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Common/icetemple/pool", position, ModContent.GetInstance<Remnants>());
-                    //WGTools.DrawRectangle(position.X + 5, position.Y + 11, position.X + 8, position.Y + 11, liquid: 255, liquidType: 0);
-                }
-
-                if (savedMarker.direction != 2)
-                {
-                    AddMarker(room.X - 1, room.Y + doorY, 4, id != 0 && WorldGen.genRand.NextBool(2));
-                }
-                if (savedMarker.direction != 4)
-                {
-                    AddMarker(room.X + room.Width, room.Y + doorY, 2, id != 0 && WorldGen.genRand.NextBool(2));
-                }
-
-                GenVars.structures.AddProtectedStructure(room);
-            }
-        }
-
-        private void Tunnel(Vector2 position, float size, float scaleX = 1, float scaleY = 1)
-        {
-            FastNoiseLite noise = new FastNoiseLite();
-            noise.SetNoiseType(FastNoiseLite.NoiseType.ValueCubic);
-            noise.SetFrequency(0.2f);
-            noise.SetFractalType(FastNoiseLite.FractalType.FBm);
-            noise.SetFractalLacunarity(1.75f);
-
-            for (int y = (int)(position.Y - size * 2 * scaleY); y <= position.Y + size * 2 * scaleY; y++)
-            {
-                for (int x = (int)(position.X - size * 2 * scaleX); x <= position.X + size * 2 * scaleX; x++)
-                {
-                    float threshold = Vector2.Distance(position, new Vector2((x - position.X) / scaleX + position.X, (y - position.Y) / scaleY + position.Y)) / size;
-                    Tile tile = MiscTools.Tile(x, y);
-                    if (GenVars.structures.CanPlace(new Rectangle(x, y, 1, 1)) && MiscTools.Solid(x, y) && tile.TileType != TileID.IceBrick && tile.TileType != TileID.ClosedDoor)
-                    {
-                        if (noise.GetNoise(x, y) <= 1 - threshold)
-                        {
-                            tile.HasTile = false;
-                        }
-                    }
-                }
-            }
-        }
-
-        private void AddMarker(int x, int y, int direction, bool shaft)
-        {
-            markers.Add(new Marker(new Vector2(x, y), direction, shaft));
-
-            if (x <= Main.maxTilesX * 0.1f || x >= Main.maxTilesX * 0.9f)
-            {
-                RemoveMarker(markers.Count - 1);
-            }
-        }
-
-        private void RemoveMarker(int index)
-        {
-            int x = (int)markers[index].position.X;
-            int y = (int)markers[index].position.Y;
-
-            if (markers[index].direction == 1)
-            {
-                MiscTools.Rectangle(x - 1, y + 1, x + 1, y + 1, type: -1, style: 35);
-                WorldGen.PlaceTile(x, y + 1, TileID.Chain);
-            }
-            else if (markers[index].direction == 3)
-            {
-                MiscTools.Rectangle(x - 1, y - 1, x + 1, y - 1, TileID.Platforms, style: 35, replace: false);
-            }
-
-            markers.RemoveAt(index);
-        }
-        #endregion
-
-        internal struct Marker
-        {
-            public Vector2 position;
-            public int direction;
-            public bool door;
-            public Marker(Vector2 _position, int _direction, bool _shaft)
-            {
-                position = _position;
-                direction = _direction;
-                door = _shaft;
             }
         }
     }

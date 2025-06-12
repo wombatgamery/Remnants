@@ -2164,8 +2164,6 @@ namespace Remnants.Content.World
 
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
-            return;
-
             progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Tomb");
 
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();

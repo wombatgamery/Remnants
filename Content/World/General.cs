@@ -1268,9 +1268,9 @@ namespace Remnants.Content.World
 
             FastNoiseLite weathering = new FastNoiseLite();
             weathering.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
-            weathering.SetFrequency(0.2f);
-            weathering.SetFractalType(FastNoiseLite.FractalType.FBm);
-            weathering.SetFractalOctaves(3);
+            weathering.SetFrequency(0.3f);
+            weathering.SetFractalType(FastNoiseLite.FractalType.Ridged);
+            weathering.SetFractalOctaves(1);
 
             int statue = WorldGen.genRand.Next(4);
 
@@ -1333,24 +1333,24 @@ namespace Remnants.Content.World
                                 MiscTools.Tile(x, y).TileFrameX = (short)(style * 18);
                             }
                         }
-                        else if (tile.TileType == TileID.Statues)
-                        {
-                            if (tile.TileFrameX <= 18 * 2)
-                            {
-                                if (statue == 1)
-                                {
-                                    tile.TileFrameX += 36 * 1;
-                                }
-                                if (statue == 2)
-                                {
-                                    tile.TileFrameX += 36 * 11;
-                                }
-                                if (statue == 3)
-                                {
-                                    tile.TileFrameX += 36 * 15;
-                                }
-                            }
-                        }
+                        //else if (tile.TileType == TileID.Statues)
+                        //{
+                        //    if (tile.TileFrameX <= 18 * 2)
+                        //    {
+                        //        if (statue == 1)
+                        //        {
+                        //            tile.TileFrameX += 36 * 1;
+                        //        }
+                        //        if (statue == 2)
+                        //        {
+                        //            tile.TileFrameX += 36 * 11;
+                        //        }
+                        //        if (statue == 3)
+                        //        {
+                        //            tile.TileFrameX += 36 * 15;
+                        //        }
+                        //    }
+                        //}
                         else if (tile.TileType == TileID.Painting3X3)
                         {
                             if (tile.TileFrameX == 54 * 16 && tile.TileFrameY == 0)
@@ -1395,15 +1395,15 @@ namespace Remnants.Content.World
                         }
                     }
 
-                    if (weathering.GetNoise(x + WorldGen.genRand.Next(-3, 4), y + WorldGen.genRand.Next(-3, 4)) > 0)
+                    if (weathering.GetNoise(x, y) > 0.55f)
                     {
                         if (tile.TileType == TileID.GrayBrick || tile.TileType == TileID.WoodBlock || tile.TileType == TileID.RichMahogany)
                         {
-                            if (biomes.FindBiome(x, y) == BiomeID.Jungle)
+                            if (biomes.FindBiome(x, y) == BiomeID.Jungle && !MiscTools.SurroundingTilesActive(x, y, true))
                             {
                                 tile.TileType = TileID.JungleGrass;
                             }
-                            else if (y < Main.worldSurface)
+                            else if (y < Main.worldSurface && !MiscTools.SurroundingTilesActive(x, y, true))
                             {
                                 tile.TileType = TileID.Grass;
                             }
@@ -1440,11 +1440,11 @@ namespace Remnants.Content.World
                         //else
                         if (tile.WallType == ModContent.WallType<BrickStone>() || tile.WallType == ModContent.WallType<Wood>() || tile.WallType == ModContent.WallType<WoodMahogany>())
                         {
-                            if (biomes.FindBiome(x, y) == BiomeID.Jungle)
+                            if (biomes.FindBiome(x, y) == BiomeID.Jungle && !MiscTools.SurroundingTilesActive(x, y, true))
                             {
                                 tile.WallType = tile.WallType == ModContent.WallType<BrickStone>() ? WallID.JungleUnsafe3 : WallID.JungleUnsafe;
                             }
-                            else if (y < Main.worldSurface)
+                            else if (y < Main.worldSurface && !MiscTools.SurroundingTilesActive(x, y, true))
                             {
                                 tile.WallType = WallID.GrassUnsafe;
                             }
@@ -1482,9 +1482,9 @@ namespace Remnants.Content.World
         {
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            FastNoiseLite weathering = new FastNoiseLite();
+            FastNoiseLite weathering = new FastNoiseLite(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
             weathering.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
-            weathering.SetFrequency(0.1f);
+            weathering.SetFrequency(0.15f);
             weathering.SetFractalType(FastNoiseLite.FractalType.FBm);
             weathering.SetFractalOctaves(2);
 
@@ -1495,19 +1495,19 @@ namespace Remnants.Content.World
                     Tile tile = Main.tile[x, y];
 
                     float _weathering = Math.Abs(weathering.GetNoise(x, y));
-                    if (_weathering > 0.1f)
+                    if (_weathering > 0.2f)
                     {
-                        if (_weathering > 0.225f)
+                        if (_weathering > 0.3f)
                         {
-                            if (MiscTools.HasTile(x, y, TileID.IronBrick) || MiscTools.HasTile(x, y, TileID.LeadBrick))
+                            if (MiscTools.HasTile(x, y, TileID.IronBrick) || MiscTools.HasTile(x, y, TileID.LeadBrick) || MiscTools.HasTile(x, y, TileID.CopperBrick) || MiscTools.HasTile(x, y, TileID.TinBrick))
                             {
-                                if (!MiscTools.HasTile(x, y - 1, TileID.IronBrick) && !MiscTools.HasTile(x, y - 1, TileID.LeadBrick))
+                                if (!MiscTools.HasTile(x, y - 1, TileID.IronBrick) && !MiscTools.HasTile(x, y - 1, TileID.LeadBrick) && !MiscTools.HasTile(x, y - 1, TileID.CopperBrick) && !MiscTools.HasTile(x, y - 1, TileID.TinBrick))
                                 {
                                     tile.TileType = biomes.FindBiome(x, y) == BiomeID.Jungle ? TileID.RichMahogany : TileID.WoodBlock;
                                 }
                                 else WorldGen.KillTile(x, y);
                             }
-                            else if (!MiscTools.HasTile(x, y, TileID.Painting3X3) && (tile.WallType == ModContent.WallType<Wood>() || tile.WallType == ModContent.WallType<WoodLattice>() || tile.WallType == ModContent.WallType<BrickStone>() || tile.WallType == ModContent.WallType<WoodMahogany>()))
+                            else if (!MiscTools.HasTile(x, y, TileID.Painting3X3) && (tile.WallType == ModContent.WallType<Wood>() || tile.WallType == ModContent.WallType<WoodLattice>() || tile.WallType == ModContent.WallType<BrickStone>() || tile.WallType == ModContent.WallType<WoodMahogany>() || tile.WallType == ModContent.WallType<BrickIce>()))
                             {
                                 tile.WallType = 0;
                             }
@@ -1515,6 +1515,10 @@ namespace Remnants.Content.World
                         else if (tile.WallType == ModContent.WallType<BrickStone>())
                         {
                             tile.WallType = biomes.FindBiome(x, y) == BiomeID.Jungle ? WallID.JungleUnsafe3 : biomes.GetLayer(x, y) >= biomes.lavaLayer ? WallID.Cave8Unsafe : WallID.RocksUnsafe1;
+                        }
+                        else if (tile.WallType == ModContent.WallType<BrickIce>())
+                        {
+                            tile.WallType = WallID.IceUnsafe;
                         }
                         else if (tile.WallType == ModContent.WallType<WoodLattice>())
                         {
@@ -2356,7 +2360,7 @@ namespace Remnants.Content.World
                                     tile.HasTile = false;
                                 }
                             }
-                            else if (tile.TileType == TileID.Pots && MiscTools.Tile(x - 1, y).TileType != TileID.Pots && MiscTools.Tile(x, y - 1).TileType != TileID.Pots && biomes.FindBiome(x, y) == BiomeID.Tundra)
+                            else if (tile.TileType == TileID.Pots && MiscTools.Tile(x - 1, y).TileType != TileID.Pots && MiscTools.Tile(x, y - 1).TileType != TileID.Pots && MiscTools.HasTile(x, y + 2, TileID.IceBrick))
                             {
                                 int style = Main.rand.Next(4, 7);
                                 for (int j = 0; j < 2; j++)

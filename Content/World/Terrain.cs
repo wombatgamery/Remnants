@@ -141,6 +141,8 @@ namespace Remnants.Content.World
             junglePools.SetFrequency(0.05f);
             junglePools.SetFractalType(FastNoiseLite.FractalType.FBm);
 
+            int oceanSpan = 325;
+
             int seaStack1Position = WorldGen.genRand.Next(70, 110);
             int seaStack2Position = WorldGen.genRand.Next(140, 180);
             int seaStack3Position = WorldGen.genRand.Next(210, 250);
@@ -154,9 +156,9 @@ namespace Remnants.Content.World
             FastNoiseLite savannaSpires = new FastNoiseLite(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
             savannaSpires.SetNoiseType(FastNoiseLite.NoiseType.Cellular);
             savannaSpires.SetFrequency(0.005f);
-            savannaSpires.SetFractalType(FastNoiseLite.FractalType.FBm);
-            savannaSpires.SetFractalOctaves(2);
-            savannaSpires.SetCellularJitter(0.5f);
+            savannaSpires.SetFractalType(FastNoiseLite.FractalType.None);
+            //savannaSpires.SetFractalOctaves(2);
+            //savannaSpires.SetCellularJitter(0.75f);
 
             FastNoiseLite corruptionHills = new FastNoiseLite(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
             corruptionHills.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
@@ -221,7 +223,7 @@ namespace Remnants.Content.World
 
                     #region terrain
                     float i = x + roughness.GetNoise(x, y + 999) * 10;
-                    float j = y + roughness.GetNoise(x + 999, y) * 10;
+                    float j = y + roughness.GetNoise(x + 999, y) * 10 * Math.Clamp(MathHelper.Distance(x, (Desert.Center + 0.5f) * biomes.CellSize) / 25 - 1, 0, 1);
 
                     if (y < Main.worldSurface)
                     {
@@ -241,9 +243,9 @@ namespace Remnants.Content.World
                             float mult = 1;
                             if (Jungle.Center >= biomes.Width / 2)
                             {
-                                mult *= MathHelper.Clamp(MathHelper.Distance(x, MathHelper.Clamp(x, 0, 325)) / (150 * scaleX), 0, 1);
+                                mult *= MathHelper.Clamp(MathHelper.Distance(x, MathHelper.Clamp(x, 0, oceanSpan)) / (150 * scaleX), 0, 1);
                             }
-                            else mult *= MathHelper.Clamp(MathHelper.Distance(x, MathHelper.Clamp(x, Main.maxTilesX - 325, Main.maxTilesX)) / (150 * scaleX), 0, 1);
+                            else mult *= MathHelper.Clamp(MathHelper.Distance(x, MathHelper.Clamp(x, Main.maxTilesX - oceanSpan, Main.maxTilesX)) / (150 * scaleX), 0, 1);
                             beachFactor = 1 - (float)MiscTools.LessSmoothStep(0, 1, mult);
                         }
 
@@ -267,7 +269,7 @@ namespace Remnants.Content.World
                         bool carve = false;
                         if (biomes.FindBiome(x, y, false) == BiomeID.None)
                         {
-                            _terrain += forestHills.GetNoise(i, 0) / 4 * MathHelper.Clamp(forestDistance / (Main.maxTilesX / 2100f), 0, 1) * MathHelper.Clamp(MathHelper.Distance(i / biomes.CellSize, biomes.Width / 2) / (Main.maxTilesX / 2100f), 0, 1);
+                            _terrain += forestHills.GetNoise(i, 0) / 4 * (1 - beachFactor) * MathHelper.Clamp(forestDistance / (Main.maxTilesX / 2100f), 0, 1) * MathHelper.Clamp(MathHelper.Distance(i / biomes.CellSize, biomes.Width / 2) / (Main.maxTilesX / 2100f), 0, 1);
                         }
                         else if (biomes.FindBiome(x, y, false) == BiomeID.Tundra)
                         {
@@ -294,14 +296,6 @@ namespace Remnants.Content.World
                                 if (j >= tunnel1Height - 11 && j < tunnel1Height || j >= tunnel2Height - 11 && j < tunnel2Height || j >= tunnel3Height - 11 && j < tunnel3Height && jungleDistance > (Main.maxTilesX / 8400f) * 1.5f)// && !junglePool)
                                 {
                                     carve = true;
-
-                                    if (x == (Jungle.Center + 0.5f) * biomes.CellSize)
-                                    {
-                                        if (j >= tunnel1Height - 11 && j < tunnel1Height && WorldGen.SolidTile(x, y - 1))
-                                        {
-                                            Mineshafts.JungleEntranceY = y + 3;
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -360,7 +354,7 @@ namespace Remnants.Content.World
                         }
                         else if (biomes.FindBiome(x, y, false) == BiomeID.Savanna)
                         {
-                            float _savannaSpires = (-savannaSpires.GetNoise(i, 0) - 0.9f) * MathHelper.Clamp(forestDistance / (Main.maxTilesX / 4200f), 0, 1);
+                            float _savannaSpires = (-savannaSpires.GetNoise(i, 0) - 0.75f) / 3 * MathHelper.Clamp(forestDistance / (Main.maxTilesX / 4200f), 0, 1);
                             _terrain += _savannaSpires;
                         }
 
@@ -382,7 +376,11 @@ namespace Remnants.Content.World
 
                         if (biomes.FindBiome(x, y, false) == BiomeID.None || biomes.FindBiome(x, y, false) == BiomeID.Savanna)
                         {
-                            j = j * (1 - Math.Clamp(forestDistance, 0, 1)) + (float)MiscTools.LessSmoothStep((float)Math.Floor((float)j / 24) * 24, (float)Math.Ceiling((float)j / 24) * 24, (j % 24) / 24) * Math.Clamp(forestDistance, 0, 1);
+                            int spacing = 24;// biomes.FindBiome(x, y, false) == BiomeID.Savanna ? 24 : 12;
+                            for (int k = 0; k < (biomes.FindBiome(x, y, false) == BiomeID.Savanna ? 2 : 1); k++)
+                            {
+                                j = j * (1 - Math.Clamp(forestDistance, 0, 1)) + (float)MiscTools.LessSmoothStep((float)Math.Floor((float)j / spacing) * spacing, (float)Math.Ceiling((float)j / spacing) * spacing, (j % spacing) / spacing) * Math.Clamp(forestDistance, 0, 1);
+                            }
                         }
 
                         if (j >= threshold && !carve)
@@ -478,7 +476,7 @@ namespace Remnants.Content.World
             int count = 0;
             while (count < Main.maxTilesX / 840)
             {
-                int x = count == 0 ? (int)((Desert.Center + 0.5f) * biomes.CellSize) + WorldGen.genRand.Next(-40, 41) : WorldGen.genRand.NextBool(2) ? WorldGen.genRand.Next(400, Main.maxTilesX / 2 - 75) : WorldGen.genRand.Next(Main.maxTilesX / 2 + 75, Main.maxTilesX - 400);
+                int x = count == 0 ? (int)((Desert.Center + 0.5f) * biomes.CellSize) + WorldGen.genRand.Next(-50, 51) : WorldGen.genRand.NextBool(2) ? WorldGen.genRand.Next(400, Main.maxTilesX / 2 - 75) : WorldGen.genRand.Next(Main.maxTilesX / 2 + 75, Main.maxTilesX - 400);
                 int y = Minimum;
                 float radius = count == 0 ? 20 : WorldGen.genRand.NextFloat(10, 20);
 
@@ -1300,7 +1298,7 @@ namespace Remnants.Content.World
                 int x = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
                 int y = WorldGen.genRand.Next((int)Main.rockLayer, Main.maxTilesY - 300);
 
-                if (!MiscTools.Tile(x, y).HasTile && MiscTools.Tile(x, y).LiquidAmount != 255 && biomes.FindBiome(x, y) != BiomeID.Tundra && (biomes.FindBiome(x, y) != BiomeID.Jungle || y < GenVars.lavaLine - 50))
+                if (!MiscTools.Tile(x, y).HasTile && MiscTools.Tile(x, y).LiquidAmount != 255 && (biomes.FindBiome(x, y) == BiomeID.None || biomes.FindBiome(x, y) != BiomeID.Jungle && y < GenVars.lavaLine - 50))
                 {
                     int radius = WorldGen.genRand.Next(25, 50);
 
@@ -2064,220 +2062,6 @@ namespace Remnants.Content.World
                     }
                 }
             }
-
-            #region sunkensea
-            if (ModContent.GetInstance<Worldgen>().SunkenSeaRework && ModLoader.TryGetMod("CalamityMod", out Mod cal))
-            {
-                area = GenVars.UndergroundDesertLocation.Width * (int)((GenVars.lavaLine - Main.rockLayer) / 2);
-
-                ushort eutrophicSand = 0;
-                ushort seaPrism = 0;
-                if (cal.TryFind("EutrophicSand", out ModTile sand))
-                {
-                    eutrophicSand = sand.Type;
-                }
-                if (cal.TryFind("SeaPrism", out ModTile prism))
-                {
-                    seaPrism = prism.Type;
-                }
-
-                if (cal.TryFind("FanCoral", out ModTile fanCoral) && cal.TryFind("BrainCoral", out ModTile brainCoralLarge) && cal.TryFind("CoralPileLarge", out ModTile coralPileLarge) && cal.TryFind("SmallBrainCoral", out ModTile brainCoralSmall) && cal.TryFind("MediumCoral", out ModTile mediumCoral) && cal.TryFind("MediumCoral2", out ModTile mediumCoral2) && cal.TryFind("SmallTubeCoral", out ModTile smallTubeCoral) && cal.TryFind("SeaAnemone", out ModTile seaAnemone) && cal.TryFind("SmallCorals", out ModTile smallCoral) && cal.TryFind("TableCoral", out ModTile tableCoral))
-                {
-                    objects = area / 1600;
-                    while (objects > 0)
-                    {
-                        int x = WorldGen.genRand.Next(GenVars.UndergroundDesertLocation.Left, GenVars.UndergroundDesertLocation.Right + 1);
-                        int y = WorldGen.genRand.Next((int)Main.rockLayer, GenVars.UndergroundDesertLocation.Bottom + 1);
-
-                        if (biomes.FindBiome(x, y) == BiomeID.SunkenSea)
-                        {
-                            bool valid = true;
-                            for (int j = y - 1; j <= y; j++)
-                            {
-                                for (int i = x - 1; i <= x + 1; i++)
-                                {
-                                    if (Main.tile[i, j].HasTile)
-                                    {
-                                        valid = false;
-                                    }
-                                }
-                            }
-
-                            if (MiscTools.SolidTileOf(x - 2, y, seaPrism) || MiscTools.SolidTileOf(x + 2, y, seaPrism) || WorldGen.SolidTile(x, y - 2) || WorldGen.SolidTile(x, y - 3))
-                            {
-                                valid = false;
-                            }
-
-                            if (valid)
-                            {
-                                WorldGen.PlaceTile(x, y, tableCoral.Type);
-                                if (Framing.GetTileSafely(x, y).TileType == tableCoral.Type)
-                                {
-                                    objects--;
-                                }
-                            }
-                        }
-                    }
-
-                    objects = area / 3200;
-                    while (objects > 0)
-                    {
-                        int x = WorldGen.genRand.Next(GenVars.UndergroundDesertLocation.Left, GenVars.UndergroundDesertLocation.Right + 1);
-                        int y = WorldGen.genRand.Next((int)Main.rockLayer, GenVars.UndergroundDesertLocation.Bottom + 1);
-
-                        if (biomes.FindBiome(x, y) == BiomeID.SunkenSea)
-                        {
-                            bool valid = true;
-                            for (int j = y - 2; j <= y + 1; j++)
-                            {
-                                for (int i = x - 1; i <= x + 1; i++)
-                                {
-                                    if (j == y + 1)
-                                    {
-                                        if (!MiscTools.SolidTileOf(i, j, eutrophicSand))
-                                        {
-                                            valid = false;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (Main.tile[i, j].HasTile)
-                                        {
-                                            valid = false;
-                                        }
-                                    }
-                                }
-                            }
-
-                            if (valid)
-                            {
-                                WorldGen.PlaceObject(x, y, fanCoral.Type);
-                                if (Framing.GetTileSafely(x, y).TileType == fanCoral.Type)
-                                {
-                                    objects--;
-                                }
-                            }
-                        }
-                    }
-
-                    objects = area / 1600;
-                    while (objects > 0)
-                    {
-                        int x = WorldGen.genRand.Next(GenVars.UndergroundDesertLocation.Left, GenVars.UndergroundDesertLocation.Right + 1);
-                        int y = WorldGen.genRand.Next((int)Main.rockLayer, GenVars.UndergroundDesertLocation.Bottom + 1);
-
-                        if (biomes.FindBiome(x, y) == BiomeID.SunkenSea)
-                        {
-                            bool valid = true;
-                            for (int j = y - 1; j <= y + 1; j++)
-                            {
-                                for (int i = x - 1; i <= x + 1; i++)
-                                {
-                                    if (j == y + 1)
-                                    {
-                                        if (!MiscTools.SolidTileOf(i, j, eutrophicSand))
-                                        {
-                                            valid = false;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (Main.tile[i, j].HasTile)
-                                        {
-                                            valid = false;
-                                        }
-                                    }
-                                }
-                            }
-
-                            if (valid)
-                            {
-                                int type = WorldGen.genRand.NextBool(2) ? brainCoralLarge.Type : coralPileLarge.Type;
-                                WorldGen.PlaceObject(x, y, type);
-                                if (Framing.GetTileSafely(x, y).TileType == type)
-                                {
-                                    objects--;
-                                }
-                            }
-                        }
-                    }
-
-                    objects = area / 800;
-                    while (objects > 0)
-                    {
-                        int x = WorldGen.genRand.Next(GenVars.UndergroundDesertLocation.Left, GenVars.UndergroundDesertLocation.Right + 1);
-                        int y = WorldGen.genRand.Next((int)Main.rockLayer, GenVars.UndergroundDesertLocation.Bottom + 1);
-
-                        if (biomes.FindBiome(x, y) == BiomeID.SunkenSea)
-                        {
-                            bool valid = true;
-                            for (int j = y - 1; j <= y + 1; j++)
-                            {
-                                for (int i = x; i <= x + 1; i++)
-                                {
-                                    if (j == y + 1)
-                                    {
-                                        if (!MiscTools.SolidTileOf(i, j, eutrophicSand))
-                                        {
-                                            valid = false;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (Main.tile[i, j].HasTile)
-                                        {
-                                            valid = false;
-                                        }
-                                    }
-                                }
-                            }
-
-                            if (valid)
-                            {
-                                int type = WorldGen.genRand.NextBool(5) ? seaAnemone.Type : WorldGen.genRand.NextBool(4) ? smallTubeCoral.Type : WorldGen.genRand.NextBool(3) ? brainCoralSmall.Type : WorldGen.genRand.NextBool(2) ? mediumCoral.Type : mediumCoral2.Type;
-                                WorldGen.PlaceObject(x, y, type);
-                                if (Framing.GetTileSafely(x, y).TileType == type)
-                                {
-                                    objects--;
-                                }
-                            }
-                        }
-                    }
-                    objects = area / 400;
-                    while (objects > 0)
-                    {
-                        int x = WorldGen.genRand.Next(GenVars.UndergroundDesertLocation.Left, GenVars.UndergroundDesertLocation.Right + 1);
-                        int y = WorldGen.genRand.Next((int)Main.rockLayer, GenVars.UndergroundDesertLocation.Bottom + 1);
-
-                        if (biomes.FindBiome(x, y) == BiomeID.SunkenSea)
-                        {
-                            bool valid = true;
-                            if (Main.tile[x, y].HasTile)
-                            {
-                                valid = false;
-                            }
-                            else if (!MiscTools.SolidTileOf(x, y + 1, eutrophicSand))
-                            {
-                                valid = false;
-                            }
-
-                            if (valid)
-                            {
-                                WorldGen.PlaceTile(x, y, smallCoral.Type);
-                                if (Framing.GetTileSafely(x, y).TileType == smallCoral.Type)
-                                {
-                                    int style = WorldGen.genRand.Next(6);
-                                    Main.tile[x, y].TileFrameX = (short)(style * 18);
-                                    Main.tile[x, y].TileFrameY = 0;
-
-                                    objects--;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            #endregion
 
             objects = 0;
             while (objects < 3)

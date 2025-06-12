@@ -1,4 +1,4 @@
-Remnants is the only mod of its kind - a complete revival of your Terraria world that pushes procedural generation to groundbreaking levels. Journey through a once familiar, now foreign land, rich with new environments to explore and secrets to discover.
+Remnants is the only mod of its kind - a complete reconstruction of your Terraria world that pushes procedural generation to groundbreaking levels. Journey through a once familiar, now foreign land, rich with new environments to explore and secrets to discover.
 
 In summary, this mod adds:
  . A complete overhaul to ALL vanilla world generation
