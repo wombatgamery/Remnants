@@ -916,6 +916,11 @@ Mods: {
 						[c/808080:Отключите настройку «Меры предосторожности», чтобы изменения этой настройки вступили в силу]
 						'''
 				}
+
+				LifeCrystalReduction: {
+					Label: "[i:29] Уменьшение кристаллов жизни"
+					Tooltip: Контролирует долю кристаллов жизни, которые будут удалены из мира.
+				}
 			}
 
 			Gameplay: {
@@ -923,7 +928,7 @@ Mods: {
 
 				Headers: {
 					Functional: Изменения механик
-					Audio: Аудио
+					Music: Музыка
 				}
 
 				FreedomOfMovement: {
@@ -964,9 +969,19 @@ Mods: {
 						'''
 				}
 
-				CustomMusic: {
-					Label: "[i:576] Саундтрек"
-					Tooltip: Включает уникальный саундтрек этого мода
+				MarbleMusic: {
+					Label: "[i:3081] Мраморная музыка"
+					// Tooltip: Enables the custom music for the marble cave
+				}
+
+				GraniteMusic: {
+					Label: "[i:3086] Гранитная музыка"
+					// Tooltip: Enables the custom music for the granite cave
+				}
+
+				OceanMusic: {
+					Label: "[i:2435] Океанская пещерная музыка"
+					// Tooltip: Enables the custom music for the ocean cave
 				}
 			}
 		}

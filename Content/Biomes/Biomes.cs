@@ -56,7 +56,7 @@ namespace Remnants.Content.Biomes
 		int music = -1;
 		public override void OnEnter(Player player)
 		{
-			music = ModContent.GetInstance<Gameplay>().CustomMusic ? MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/MarbleCave") : -1;
+			music = ModContent.GetInstance<Gameplay>().MarbleMusic ? MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/MarbleCave") : -1;
 		}
 
         public override void OnInBiome(Player player)
@@ -89,7 +89,7 @@ namespace Remnants.Content.Biomes
 		int music = -1;
 		public override void OnEnter(Player player)
 		{
-			music = ModContent.GetInstance<Gameplay>().CustomMusic ? MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/GraniteCave") : -1;
+			music = ModContent.GetInstance<Gameplay>().GraniteMusic ? MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/GraniteCave") : -1;
 		}
 
         public override void OnInBiome(Player player)
@@ -120,7 +120,7 @@ namespace Remnants.Content.Biomes
 
         public override void OnEnter(Player player)
         {
-            music = ModContent.GetInstance<Gameplay>().CustomMusic ? MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/OceanCave") : -1;
+            music = ModContent.GetInstance<Gameplay>().OceanMusic ? MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/OceanCave") : -1;
         }
 
         public override bool IsBiomeActive(Player player)
@@ -204,18 +204,12 @@ namespace Remnants.Content.Biomes
 	{
 		public override SceneEffectPriority Priority => SceneEffectPriority.Environment;
 
-		public override int Music => music;
+		public override int Music => MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/MagicalLab");
 
 		public override string BestiaryIcon => "Remnants/Content/Biomes/MagicalLabIcon";
         public override string MapBackground => "Terraria/Images/MapBG32";
         public override string BackgroundPath => "Terraria/Images/MapBG32";
 		public override Color? BackgroundColor => base.BackgroundColor;
-
-		int music = -1;
-		public override void OnEnter(Player player)
-		{
-			music = ModContent.GetInstance<Gameplay>().CustomMusic ? MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/MagicalLab") : MusicID.Shimmer;
-		}
 
         public override bool IsBiomeActive(Player player)
 		{
@@ -252,18 +246,14 @@ namespace Remnants.Content.Biomes
 	{
 		public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
 
-		public override int Music => music;
+		public override int Music => MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Tomb");
 
 		public override string BestiaryIcon => base.BestiaryIcon;
         public override string MapBackground => "Terraria/Images/MapBG19";
         public override string BackgroundPath => "Terraria/Images/MapBG19";
         public override Color? BackgroundColor => base.BackgroundColor;
 
-		int music = -1;
-		public override void OnEnter(Player player)
-		{
-			music = ModContent.GetInstance<Gameplay>().CustomMusic ? MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Tomb") : MusicID.Eerie;
-		}
+
         public override bool IsBiomeActive(Player player)
 		{
 			int wall = Main.tile[(int)player.Center.X / 16, (int)player.Center.Y / 16].WallType;
@@ -275,18 +265,13 @@ namespace Remnants.Content.Biomes
 	{
 		public override SceneEffectPriority Priority => SceneEffectPriority.Environment;
 
-		public override int Music => music;
+		public override int Music => MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Undergrowth");
 
 		public override string BestiaryIcon => "Remnants/Content/Biomes/UndergrowthIcon";
         public override string MapBackground => "Terraria/Images/MapBG13";
         public override string BackgroundPath => "Terraria/Images/MapBG13";
         public override Color? BackgroundColor => base.BackgroundColor;
 
-		int music = -1;
-		public override void OnEnter(Player player)
-		{
-			music = ModContent.GetInstance<Gameplay>().CustomMusic ? MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Undergrowth") : MusicID.JungleNight;
-		}
 		public override bool IsBiomeActive(Player player)
 		{
 			int wall = Main.tile[(int)player.Center.X / 16, (int)player.Center.Y / 16].WallType;
@@ -298,7 +283,7 @@ namespace Remnants.Content.Biomes
 	{
 		public override SceneEffectPriority Priority => SceneEffectPriority.Environment;
 
-		public override int Music => music;
+		public override int Music => MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/AerialGarden");
 
 		public override ModWaterStyle WaterStyle => ModContent.Find<ModWaterStyle>("Remnants/GardenWater");
 
@@ -307,12 +292,6 @@ namespace Remnants.Content.Biomes
         public override string BackgroundPath => "Terraria/Images/MapBG33";
         public override Color? BackgroundColor => base.BackgroundColor;
 
-		int music = -1;
-
-		public override void OnEnter(Player player)
-		{
-			music = ModContent.GetInstance<Gameplay>().CustomMusic ? MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/AerialGarden") : MusicID.JungleNight;
-		}
 		public override bool IsBiomeActive(Player player)
 		{
 			int wall = Main.tile[(int)player.Center.X / 16, (int)player.Center.Y / 16].WallType;
@@ -324,18 +303,12 @@ namespace Remnants.Content.Biomes
 	{
 		public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
 
-		public override int Music => music;
+		public override int Music => MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/EchoingHalls");
 
 		public override string BestiaryIcon => "Remnants/Content/Biomes/MazeIcon";
         public override string MapBackground => "Terraria/Images/MapBG32";
         public override string BackgroundPath => "Terraria/Images/MapBG32";
         public override Color? BackgroundColor => base.BackgroundColor;
-
-		int music = -1;
-        public override void OnEnter(Player player)
-		{
-			music = ModContent.GetInstance<Gameplay>().CustomMusic ? MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/EchoingHalls") : MusicID.Eerie;
-		}
 
         public override bool IsBiomeActive(Player player)
 		{

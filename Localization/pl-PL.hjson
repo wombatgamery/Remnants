@@ -911,6 +911,11 @@ Mods: {
 						Uwaga: Nic nie robi przy włączonym Zabezpieczeniu
 						'''
 				}
+
+				LifeCrystalReduction: {
+					// Label: "[i:29]Life Crystal Reduction"
+					// Tooltip: Controls the proportion of life crystals to be removed from the world
+				}
 			}
 
 			Gameplay: {
@@ -918,7 +923,7 @@ Mods: {
 
 				Headers: {
 					Functional: Funkcje
-					Audio: Dźwięk
+					// Music: Music
 				}
 
 				FreedomOfMovement: {
@@ -962,9 +967,19 @@ Mods: {
 						'''
 				}
 
-				CustomMusic: {
-					Label: "[i:576] Nestandardowa Muzyka"
-					Tooltip: Włącza niestandardową muzykę modyfikacji
+				MarbleMusic: {
+					// Label: "[i:3081] Marble Music"
+					// Tooltip: Enables the custom music for the marble cave
+				}
+
+				GraniteMusic: {
+					// Label: "[i:3086] Granite Music"
+					// Tooltip: Enables the custom music for the granite cave
+				}
+
+				OceanMusic: {
+					// Label: "[i:2435] Ocean Music"
+					// Tooltip: Enables the custom music for the ocean cave
 				}
 			}
 		}

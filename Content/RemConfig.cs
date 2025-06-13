@@ -70,6 +70,12 @@ namespace Remnants.Content
         [DefaultValue(1f)]
         public float RailroadFrequency;
 
+        [Range(0f, 1f)]
+        [Increment(.125f)]
+        [DrawTicks]
+        [DefaultValue(0.5f)]
+        public float LifeCrystalReduction;
+
         //[Range(0f, 1f)]
         //[Increment(.25f)]
         //[DrawTicks]
@@ -135,9 +141,18 @@ namespace Remnants.Content
         [BackgroundColor(150, 150, 125)]
         public bool HangingBats;
 
-        [Header("Audio")]
+        [Header("Music")]
+
+        //[DefaultValue(true)]
+        //public bool CustomMusic;
 
         [DefaultValue(true)]
-        public bool CustomMusic;
+        public bool MarbleMusic;
+
+        [DefaultValue(true)]
+        public bool GraniteMusic;
+
+        [DefaultValue(true)]
+        public bool OceanMusic;
     }
 }
