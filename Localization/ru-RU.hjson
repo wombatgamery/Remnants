@@ -900,7 +900,7 @@ Mods: {
 				}
 
 				FlatUndergroundRatioIncrease: {
-					Label: "[i:3] Уменьшения размера слоя пещер"
+					Label: "[i:3] Уменьшение размера слоя пещер"
 					Tooltip:
 						'''
 						Уменьшает высоту слоя пещер кроме лавого слоя в мире на установленное количество блоков
@@ -918,8 +918,8 @@ Mods: {
 				}
 
 				LifeCrystalReduction: {
-					Label: "[i:29] Уменьшение кристаллов жизни"
-					Tooltip: Контролирует долю кристаллов жизни, которые будут удалены из мира.
+					Label: "[i:29] Количество кристаллов жизни"
+					Tooltip: Устанавливает количество генерируемых кристаллов жизни в пещерах
 				}
 			}
 
@@ -970,18 +970,18 @@ Mods: {
 				}
 
 				MarbleMusic: {
-					Label: "[i:3081] Мраморная музыка"
-					// Tooltip: Enables the custom music for the marble cave
+					Label: "[i:3081] Саундтрек мраморного ущелья"
+					Tooltip: Включает кастомный саундтрек для мраморного биома
 				}
 
 				GraniteMusic: {
-					Label: "[i:3086] Гранитная музыка"
-					// Tooltip: Enables the custom music for the granite cave
+					Label: "[i:3086] Саундтрек гранитного разлома"
+					Tooltip: Включает кастомный саундтрек для гранитного биома
 				}
 
 				OceanMusic: {
-					Label: "[i:2435] Океанская пещерная музыка"
-					// Tooltip: Enables the custom music for the ocean cave
+					Label: "[i:2435] Саундтрек кораллового рифа"
+					Tooltip: Включает кастомный саундтрек для пещеры под океаном
 				}
 			}
 		}
