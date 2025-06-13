@@ -45,9 +45,9 @@ namespace Remnants.Content.NPCs.Monsters.Undergrowth
             NPC.width = 10;
             NPC.height = 18;
 
-            NPC.lifeMax = 50;
-            NPC.defense = 3;
-            NPC.damage = 16;
+            NPC.lifeMax = 60;
+            NPC.defense = 4;
+            NPC.damage = 12;
 
             NPC.value = 100;
 
@@ -233,8 +233,8 @@ namespace Remnants.Content.NPCs.Monsters.Undergrowth
             NPC.width = 10;
             NPC.height = 18;
 
-            NPC.lifeMax = 50;
-            NPC.defense = 12;
+            NPC.lifeMax = 60;
+            NPC.defense = 8;
             NPC.damage = 8;
 
             NPC.buffImmune[BuffID.Poisoned] = true;
@@ -326,8 +326,8 @@ namespace Remnants.Content.NPCs.Monsters.Undergrowth
             NPC.width = 10;
             NPC.height = 18;
 
-            NPC.lifeMax = 50;
-            NPC.defense = 12;
+            NPC.lifeMax = 60;
+            NPC.defense = 8;
             NPC.damage = 8;
 
             NPC.buffImmune[BuffID.Poisoned] = true;

@@ -439,8 +439,11 @@ namespace Remnants.Content.World
                 Main.worldSurface = (int)(Main.worldSurface / 6) * 6;
                 Main.rockLayer = (int)(Main.rockLayer / 6) * 6;
 
-                GenVars.worldSurfaceLow = GenVars.worldSurfaceHigh = GenVars.worldSurface = Main.worldSurface;
-                GenVars.rockLayerLow = GenVars.rockLayerHigh = GenVars.rockLayer = Main.rockLayer;
+                GenVars.worldSurfaceHigh = GenVars.worldSurface = Main.worldSurface;
+                GenVars.rockLayerLow = GenVars.rockLayer = Main.rockLayer;
+
+                GenVars.worldSurfaceLow = Main.worldSurface / 2;
+                GenVars.rockLayerHigh = Main.maxTilesY - 300;
                 #endregion
 
                 bool calamity = ModLoader.TryGetMod("CalamityMod", out Mod cal);
@@ -573,9 +576,9 @@ namespace Remnants.Content.World
                 {
                     if (Jungle.Center > Desert.Center)
                     {
-                        sr.Call("SetSavannaArea", new Rectangle((Desert.Right + 1) * biomes.CellSize, Terrain.Minimum, (Jungle.Left - Desert.Right) * biomes.CellSize, Terrain.Maximum - Terrain.Minimum));
+                        sr.Call("SetSavannaArea", new Rectangle((Desert.Right) * biomes.CellSize, Terrain.Minimum, (Jungle.Left - Desert.Right + 2) * biomes.CellSize, Terrain.Maximum - Terrain.Minimum));
                     }
-                    else sr.Call("SetSavannaArea", new Rectangle((Jungle.Right + 1) * biomes.CellSize, Terrain.Minimum, (Desert.Left - Jungle.Right) * biomes.CellSize, Terrain.Maximum - Terrain.Minimum));
+                    else sr.Call("SetSavannaArea", new Rectangle((Jungle.Right) * biomes.CellSize, Terrain.Minimum, (Desert.Left - Jungle.Right + 2) * biomes.CellSize, Terrain.Maximum - Terrain.Minimum));
                 }
                 #endregion
 
@@ -601,9 +604,10 @@ namespace Remnants.Content.World
                     for (int x = 0; x <= 6; x++)
                     {
                         bool jungleSide = GenVars.dungeonSide == 1 && x <= 5 || GenVars.dungeonSide != 1 && x >= biomes.Width - 6;
+                        bool calamityCompat = !jungleSide && calamity;
                         bool thoriumCompat = jungleSide && thorium;
 
-                        if (!thoriumCompat && x <= 5 && x > 0 && y < biomes.caveLayer - 1 && y > biomes.surfaceLayer)
+                        if (!calamityCompat && !thoriumCompat && x <= 5 && x > 0 && y < biomes.caveLayer - 1 && y > biomes.surfaceLayer)
                         {
                             biomes.AddBiome(x, y, BiomeID.OceanCave);
                         }
@@ -613,9 +617,10 @@ namespace Remnants.Content.World
                     for (int x = biomes.Width - 7; x < biomes.Width; x++)
                     {
                         bool jungleSide = GenVars.dungeonSide == 1 && x <= 5 || GenVars.dungeonSide != 1 && x >= biomes.Width - 6;
+                        bool calamityCompat = !jungleSide && calamity;
                         bool thoriumCompat = jungleSide && thorium;
 
-                        if (!thoriumCompat && x >= biomes.Width - 6 && x < biomes.Width - 1 && y < biomes.caveLayer - 1 && y > biomes.surfaceLayer)
+                        if (!calamityCompat && !thoriumCompat && x >= biomes.Width - 6 && x < biomes.Width - 1 && y < biomes.caveLayer - 1 && y > biomes.surfaceLayer)
                         {
                             biomes.AddBiome(x, y, BiomeID.OceanCave);
                         }
@@ -779,11 +784,11 @@ namespace Remnants.Content.World
                         //    biomes.AddBiome(i, j, "meadow");
                         //}
 
-                        if (GenVars.dungeonSide != 1 || !thorium)
+                        if ((GenVars.dungeonSide == 1 || !calamity) && (GenVars.dungeonSide != 1 || !thorium))
                         {
                             biomes.AddBiome(1, biomes.surfaceLayer, BiomeID.OceanCave); biomes.AddBiome(1, biomes.surfaceLayer - 1, BiomeID.OceanCave);
                         }
-                        if (GenVars.dungeonSide == 1 || !thorium)
+                        if ((GenVars.dungeonSide != 1 || !calamity) && (GenVars.dungeonSide == 1 || !thorium))
                         {
                             biomes.AddBiome(biomes.Width - 2, biomes.surfaceLayer, BiomeID.OceanCave); biomes.AddBiome(biomes.Width - 2, biomes.surfaceLayer - 1, BiomeID.OceanCave);
                         }
@@ -956,9 +961,39 @@ namespace Remnants.Content.World
                 }
             }
             #endregion
+            #region sulphursea
+            ushort sulphurousSand = 0;
+            ushort sulphurousSandstone = 0;
+            ushort sulphurousSandstoneWall = 0;
+            ushort hardenedSulphurousSandstone = 0;
+            ushort hardenedSulphurousSandstoneWall = 0;
+            if (calamity && biomesToUpdate[BiomeID.SunkenSea])
+            {
+                if (cal.TryFind("SulphurousSand", out ModTile sand))
+                {
+                    sulphurousSand = sand.Type;
+                }
+                if (cal.TryFind("SulphurousSandstone", out ModTile sandstone))
+                {
+                    sulphurousSandstone = sandstone.Type;
+                }
+                if (cal.TryFind("SulphurousSandstoneWall", out ModWall sandstoneWall))
+                {
+                    sulphurousSandstoneWall = sandstoneWall.Type;
+                }
+                if (cal.TryFind("HardenedSulphurousSandstone", out ModTile hardenedSandstone))
+                {
+                    hardenedSulphurousSandstone = hardenedSandstone.Type;
+                }
+                if (cal.TryFind("HardenedSulphurousSandstoneWall", out ModWall hardenedSandstoneWall))
+                {
+                    hardenedSulphurousSandstoneWall = hardenedSandstoneWall.Type;
+                }
+            }
+            #endregion
 
             #region savanna
-            ushort savannaDirt = 0;
+                ushort savannaDirt = 0;
             ushort savannaDirtWall = 0;
             if (spiritReforged && biomesToUpdate[BiomeID.Savanna])
             {
@@ -1361,6 +1396,25 @@ namespace Remnants.Content.World
                     }
                     else if (IsUpdatingBiome(x, y, biomesToUpdate, BiomeID.Beach))
                     {
+                        //bool sulphurSea = false;
+                        //if (calamity)
+                        //{
+                        //    if (GenVars.dungeonSide == 1)
+                        //    {
+                        //        if (i > Main.maxTilesX / 2)
+                        //        {
+                        //            sulphurSea = true;
+                        //        }
+                        //    }
+                        //    else
+                        //    {
+                        //        if (i < Main.maxTilesX / 2)
+                        //        {
+                        //            sulphurSea = true;
+                        //        }
+                        //    }
+                        //}
+
                         if (layer >= surfaceLayer)
                         {
                             if (layer < caveLayer)
@@ -1377,23 +1431,50 @@ namespace Remnants.Content.World
                                 tile.TileType = TileID.Mud;
                             }
                         }
+                        //if (sulphurSea)
+                        //{
+                        //    if (layer < caveLayer)
+                        //    {
+                        //        if (layer < surfaceLayer)
+                        //        {
+                        //            tile.TileType = sulphurousSandstone;
+
+                        //            if (tile.WallType != 0)
+                        //            {
+                        //                tile.WallType = sulphurousSandstoneWall;
+                        //            }
+                        //        }
+                        //        else
+                        //        {
+                        //            tile.TileType = hardenedSulphurousSandstone;
+
+                        //            if (tile.WallType != 0)
+                        //            {
+                        //                tile.WallType = hardenedSulphurousSandstoneWall;
+                        //            }
+                        //        }
+                        //    }
+                        //}
 
                         if (layer > surfaceLayer)
                         {
                             tile.HasTile = true;
                         }
-                        else if (y >= Terrain.Maximum - 10 && tile.TileType != TileID.ShellPile)
+                        else
                         {
-                            for (int k = 1; k <= WorldGen.genRand.Next(5, 7); k++)
+                            if (y >= Terrain.Maximum - 10 && tile.TileType != TileID.ShellPile)
                             {
-                                if (!MiscTools.Tile(x, y - k).HasTile)
+                                for (int k = 1; k <= WorldGen.genRand.Next(5, 7); k++)
                                 {
-                                    tile.TileType = TileID.Sand;
-                                    if (tile.WallType == WallID.DirtUnsafe)
+                                    if (!MiscTools.Tile(x, y - k).HasTile)
                                     {
-                                        tile.WallType = WallID.RocksUnsafe1;
+                                        tile.TileType = TileID.Sand; //sulphurSea ? sulphurousSand : TileID.Sand;
+                                        if (tile.WallType == WallID.DirtUnsafe)
+                                        {
+                                            tile.WallType = WallID.RocksUnsafe1;
+                                        }
+                                        break;
                                     }
-                                    break;
                                 }
                             }
                         }

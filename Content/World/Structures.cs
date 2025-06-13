@@ -620,7 +620,7 @@ namespace Remnants.Content.World
                     #endregion
 
                     #region objects
-                    int objects = (int)(mines.grid.Height * (Main.maxTilesX / 4200f));
+                    int objects = 5;// (int)(mines.grid.Height * (Main.maxTilesX / 4200f));
                     while (objects > 0)
                     {
                         int x = WorldGen.genRand.Next(mines.area.Left, mines.area.Right);
@@ -2570,6 +2570,8 @@ namespace Remnants.Content.World
         {
             //progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.GemCaves");
 
+            bool calamity = ModLoader.TryGetMod("CalamityMod", out Mod cal);
+
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
             int count = 0;
@@ -2579,7 +2581,7 @@ namespace Remnants.Content.World
                 progress.Set((float)count / (float)countTotal);
 
                 float radius = 36;// WorldGen.genRand.NextFloat(48, 60);
-                int x = WorldGen.genRand.NextBool(2) ? WorldGen.genRand.Next(500, (int)(Main.maxTilesX * 0.35f)) : WorldGen.genRand.Next((int)(Main.maxTilesX * 0.65f), Main.maxTilesX - 500);
+                int x = WorldGen.genRand.NextBool(2) ? WorldGen.genRand.Next(calamity ? 600 : 500, (int)(Main.maxTilesX * 0.35f)) : WorldGen.genRand.Next((int)(Main.maxTilesX * 0.65f), Main.maxTilesX - (calamity ? 600 : 500));
                 int y = (int)(Main.worldSurface - radius);
 
                 bool[] validTiles = TileID.Sets.Factory.CreateBoolSet(true, TileID.LivingWood, TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick);
@@ -2847,7 +2849,7 @@ namespace Remnants.Content.World
             int attempts;
 			float waterLavaRatio = (float)((GenVars.lavaLine - Main.rockLayer) / (Main.maxTilesY - 300 - Main.rockLayer));
 
-			int uniqueStructures = 7;
+			int uniqueStructures = 8;
             int progressCounter = 0;
 
             structureCount = 0; // FOREST TOWER
@@ -2933,7 +2935,7 @@ namespace Remnants.Content.World
                     }
                     #endregion
 
-                    StructureTools.AddWeathering(tower.area);
+                    //StructureTools.AddWeathering(tower.area);
                     StructureTools.AddVariation(tower.area);
 
                     structureCount++;
@@ -3741,7 +3743,7 @@ namespace Remnants.Content.World
 				}
 			}
 
-			progressCounter++;
+            progressCounter++;
 
             structureCount = 0; // OVERGROWN CABIN
             while (structureCount < Main.maxTilesX * Main.maxTilesY / 1200f / (ModContent.GetInstance<Worldgen>().ExperimentalWorldgen ? 1200 : 600) * ModContent.GetInstance<Worldgen>().CabinFrequency)
@@ -3974,38 +3976,6 @@ namespace Remnants.Content.World
 
                     #region objects
                     int objects;
-
-                    //objects = 1;
-                    //while (objects > 0)
-                    //{
-                    //    int x = WorldGen.genRand.Next(cabin.area.Left, cabin.area.Right);
-                    //    int y = WorldGen.genRand.Next(cabin.area.Top, cabin.area.Bottom);
-
-                    //    if (Framing.GetTileSafely(x, y).TileType != TileID.Containers && WGTools.Tile(x, y + 1).TileType == TileID.GrayBrick && WGTools.Tile(x + 1, y + 1).TileType == TileID.GrayBrick && WGTools.NoDoors(x, y, 2))
-                    //    {
-                    //        int chestIndex = WorldGen.PlaceChest(x, y, style: 1, notNearOtherChests: true);
-                    //        if (Framing.GetTileSafely(x, y).TileType == TileID.Containers)
-                    //        {
-                    //            #region chestloot
-                    //            var itemsToAdd = new List<(int type, int stack)>();
-
-                    //            int[] specialItems = new int[3];
-                    //            specialItems[0] = ItemID.HermesBoots;
-                    //            specialItems[1] = ItemID.CloudinaBottle;
-                    //            specialItems[2] = ItemID.MagicMirror;
-
-                    //            int specialItem = specialItems[structureCount % specialItems.Length];
-                    //            itemsToAdd.Add((specialItem, 1));
-
-                    //            StructureTools.GenericLoot(chestIndex, itemsToAdd, 2);
-
-                    //            StructureTools.FillChest(chestIndex, itemsToAdd);
-                    //            #endregion
-
-                    //            objects--;
-                    //        }
-                    //    }
-                    //}
 
                     objects = cabin.grid.Height * cabin.grid.Width / 2;
                     while (objects > 0)
@@ -4502,7 +4472,7 @@ namespace Remnants.Content.World
                 }
             }
 
-            progressCounter++;
+            //progressCounter++;
 
             //structureCount = 0; // CACHE
             //while (structureCount < Main.maxTilesX / 84 * ModContent.GetInstance<Worldgen>().CacheFrequency)
@@ -4524,7 +4494,7 @@ namespace Remnants.Content.World
             //    {
             //        valid = false;
             //    }
-            //    else if (!Structures.AvoidsBiomes(cache.area, new int[] { BiomeID.Desert }))
+            //    else if (!Structures.AvoidsBiomes(cache.area, new int[] { BiomeID.Desert, BiomeID.SunkenSea }))
             //    {
             //        valid = false;
             //    }
@@ -4715,92 +4685,92 @@ namespace Remnants.Content.World
                 }
             }
 
-			attempts = 0; // JUNGLE PLATFORM
-			while (attempts < 10000)
-			{
-				int x = WorldGen.genRand.Next((Jungle.Left + 1) * biomes.CellSize, Jungle.Right * biomes.CellSize);
-				int y = WorldGen.genRand.NextBool(2) ? WorldGen.genRand.Next((int)Main.worldSurface, (int)Main.maxTilesY - 300) : WorldGen.genRand.Next(attempts < 500 ? (Terrain.Middle + Terrain.Maximum * 2) / 3 : (Terrain.Middle + Terrain.Maximum) / 2, (Terrain.Middle + Terrain.Maximum * 5) / 6);
+            attempts = 0; // JUNGLE PLATFORM
+            while (attempts < 10000)
+            {
+                int x = WorldGen.genRand.Next((Jungle.Left + 1) * biomes.CellSize, Jungle.Right * biomes.CellSize);
+                int y = WorldGen.genRand.NextBool(2) ? WorldGen.genRand.Next((int)Main.worldSurface, (int)Main.maxTilesY - 300) : WorldGen.genRand.Next(attempts < 500 ? (Terrain.Middle + Terrain.Maximum * 2) / 3 : (Terrain.Middle + Terrain.Maximum) / 2, (Terrain.Middle + Terrain.Maximum * 5) / 6);
 
-				int left = x - WorldGen.genRand.Next(3, 10);
-				int right = x + WorldGen.genRand.Next(3, 10);
+                int left = x - WorldGen.genRand.Next(3, 10);
+                int right = x + WorldGen.genRand.Next(3, 10);
 
-				int stacks = WorldGen.genRand.Next(1, 3);
+                int stacks = WorldGen.genRand.Next(1, 3);
 
-				bool goLeft = WorldGen.genRand.NextBool(2);
+                bool goLeft = WorldGen.genRand.NextBool(2);
 
-				if (biomes.FindBiome(x, y) == BiomeID.Jungle && (y >= (int)Main.worldSurface || GenVars.structures.CanPlace(new Rectangle(left, Terrain.Minimum, right - left, Terrain.Maximum - Terrain.Minimum), 15)) && CreatePlatform(left, right, y))
-				{
-					while (stacks > 0)
-					{
-						if (goLeft)
-						{
-							right = left;
-							left -= WorldGen.genRand.Next(6, 19);
-						}
-						else
-						{
-							left = right;
-							right += WorldGen.genRand.Next(6, 19);
-						}
-						y -= WorldGen.genRand.Next(2, 5) * 3;
+                if (biomes.FindBiome(x, y) == BiomeID.Jungle && (y >= (int)Main.worldSurface || GenVars.structures.CanPlace(new Rectangle(left, Terrain.Minimum, right - left, Terrain.Maximum - Terrain.Minimum), 15)) && CreatePlatform(left, right, y))
+                {
+                    while (stacks > 0)
+                    {
+                        if (goLeft)
+                        {
+                            right = left;
+                            left -= WorldGen.genRand.Next(6, 19);
+                        }
+                        else
+                        {
+                            left = right;
+                            right += WorldGen.genRand.Next(6, 19);
+                        }
+                        y -= WorldGen.genRand.Next(2, 5) * 3;
 
-						if (CreatePlatform(left, right, y))
-						{
-							stacks--;
-						}
-						else break;
-					}
-				}
-				else attempts++;
-			}
+                        if (CreatePlatform(left, right, y))
+                        {
+                            stacks--;
+                        }
+                        else break;
+                    }
+                }
+                else attempts++;
+            }
 
-			attempts = 0; // ICE PILLAR
-			while (attempts < 10000)
-			{
-				int x = WorldGen.genRand.Next((Tundra.Left + 1) * biomes.CellSize, Tundra.Right * biomes.CellSize);
-				int y = WorldGen.genRand.Next((int)(Main.worldSurface * 0.5f), (int)Main.worldSurface); //WorldGen.genRand.NextBool(2) ? WorldGen.genRand.Next((int)(Main.worldSurface), (int)GenVars.lavaLine) : WorldGen.genRand.Next((int)(Main.worldSurface * 0.5f), (int)Main.worldSurface);
+            attempts = 0; // ICE PILLAR
+            while (attempts < 10000)
+            {
+                int x = WorldGen.genRand.Next((Tundra.Left + 1) * biomes.CellSize, Tundra.Right * biomes.CellSize);
+                int y = WorldGen.genRand.Next((int)(Main.worldSurface * 0.5f), (int)Main.worldSurface); //WorldGen.genRand.NextBool(2) ? WorldGen.genRand.Next((int)(Main.worldSurface), (int)GenVars.lavaLine) : WorldGen.genRand.Next((int)(Main.worldSurface * 0.5f), (int)Main.worldSurface);
 
-				attempts++;
+                attempts++;
 
-				if (!MiscTools.Tile(x, y - 1).HasTile && WorldGen.SolidTile(x, y) && MiscTools.SolidInArea(x - 2, y + 7, x + 2, y + 7))
-				{
-					int height = attempts < 2000 ? 6 : attempts < 4000 ? 5 : attempts < 6000 ? 4 : attempts < 8000 ? 3 : 2;
+                if (!MiscTools.Tile(x, y - 1).HasTile && WorldGen.SolidTile(x, y) && MiscTools.SolidInArea(x - 2, y + 7, x + 2, y + 7))
+                {
+                    int height = attempts < 2000 ? 6 : attempts < 4000 ? 5 : attempts < 6000 ? 4 : attempts < 8000 ? 3 : 2;
 
-					if (MiscTools.NonSolidInArea(x - 3, y - 5 - height * 6, x + 3, y - 6) && (!MiscTools.NonSolidInArea(x - 2, y - 24 - height * 6, x + 2, y - 6 - height * 6)))
-					{
-						if (GenVars.structures.CanPlace(new Rectangle(x - 2, y - height * 6, 5, height * 6 + 7), 4) && StructureTools.AvoidsBiomes(new Rectangle(x - 2, y - height * 6, 5, height * 6 + 7), new int[] { BiomeID.Granite }))
-						{
-							GenVars.structures.AddProtectedStructure(new Rectangle(x - 2, y - height * 6, 5, height * 6 + 7), 4);
+                    if (MiscTools.NonSolidInArea(x - 3, y - 5 - height * 6, x + 3, y - 6) && (!MiscTools.NonSolidInArea(x - 2, y - 24 - height * 6, x + 2, y - 6 - height * 6)))
+                    {
+                        if (GenVars.structures.CanPlace(new Rectangle(x - 2, y - height * 6, 5, height * 6 + 7), 4) && StructureTools.AvoidsBiomes(new Rectangle(x - 2, y - height * 6, 5, height * 6 + 7), new int[] { BiomeID.Granite }))
+                        {
+                            GenVars.structures.AddProtectedStructure(new Rectangle(x - 2, y - height * 6, 5, height * 6 + 7), 4);
 
-							MiscTools.Rectangle(x - 1, y - height * 6, x + 1, y + 6, TileID.IceBrick, ModContent.WallType<BrickIce>());
-							//WorldGen.PlaceTile(x, y - height * 6 - 1, TileID.Torches, style: 9);
+                            MiscTools.Rectangle(x - 1, y - height * 6, x + 1, y + 6, TileID.IceBrick, ModContent.WallType<BrickIce>());
+                            //WorldGen.PlaceTile(x, y - height * 6 - 1, TileID.Torches, style: 9);
 
-							for (int k = 0; k <= height; k++)
-							{
-								WorldGen.PlaceTile(x - 2, y - (height - k) * 6, TileID.Platforms, style: 35);
-								WorldGen.PlaceTile(x + 2, y - (height - k) * 6, TileID.Platforms, style: 35);
+                            for (int k = 0; k <= height; k++)
+                            {
+                                WorldGen.PlaceTile(x - 2, y - (height - k) * 6, TileID.Platforms, style: 35);
+                                WorldGen.PlaceTile(x + 2, y - (height - k) * 6, TileID.Platforms, style: 35);
 
-								MiscTools.Rectangle(x - 2, y - (height - k) * 6 - 1, x + 2, y - (height - k) * 6 - 1, wall: ModContent.WallType<BrickIce>());
-							}
+                                MiscTools.Rectangle(x - 2, y - (height - k) * 6 - 1, x + 2, y - (height - k) * 6 - 1, wall: ModContent.WallType<BrickIce>());
+                            }
 
-							MiscTools.Rectangle(x, y - height * 6 + 1, x, y + 6, TileID.IceBlock, WallID.IceUnsafe);
+                            MiscTools.Rectangle(x, y - height * 6 + 1, x, y + 6, TileID.IceBlock, WallID.IceUnsafe);
 
-							if (height >= 3)
-							{
-								int k = WorldGen.genRand.Next(1, height - 1);
+                            if (height >= 3)
+                            {
+                                int k = WorldGen.genRand.Next(1, height - 1);
 
-								MiscTools.Rectangle(x - 1, y - (height - k) * 6, x + 1, y - (height - k - 1) * 6, TileID.IceBrick);
-								MiscTools.Rectangle(x - 1, y - (height - k) * 6 + 1, x + 1, y - (height - k - 1) * 6 - 1, -1);
-							}
+                                MiscTools.Rectangle(x - 1, y - (height - k) * 6, x + 1, y - (height - k - 1) * 6, TileID.IceBrick);
+                                MiscTools.Rectangle(x - 1, y - (height - k) * 6 + 1, x + 1, y - (height - k - 1) * 6 - 1, -1);
+                            }
 
-							//StructureTools.AddVariation(new Rectangle(x - 2, y - height * 6 - 1, 5, height * 6 + 7), 0);
+                            //StructureTools.AddVariation(new Rectangle(x - 2, y - height * 6 - 1, 5, height * 6 + 7), 0);
 
-							attempts = 0;
-						}
-					}
-				}
-			}
-		}
+                            attempts = 0;
+                        }
+                    }
+                }
+            }
+        }
 
         private bool CreatePlatform(int left, int right, int y)
         {

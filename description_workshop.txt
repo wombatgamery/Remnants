@@ -21,7 +21,7 @@ Fully compatible mods should be completely safe to use: [list]
 [/list]
 
 Partially compatible mods will cause some minor problems, but otherwise may still be playable: [list]
-[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2824688072][b]Calamity Mod[/b][/url] (The Sulphurous Sea is highly destructive)
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2824688072][b]Calamity Mod[/b][/url] (The Sulphurous Sea has a few visual bugs)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2815540735][b]Fargo's Souls[/b][/url] (The Cursed Coffin arena will not generate)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3015412343][b]Infernum Mode[/b][/url] (The Golem rework does not suit the new arena)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2563862309][b]The Stars Above[/b][/url] (The Neon Veil overlaps other structures)

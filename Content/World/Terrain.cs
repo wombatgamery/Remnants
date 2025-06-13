@@ -88,6 +88,8 @@ namespace Remnants.Content.World
         {
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
+            bool calamity = ModLoader.TryGetMod("CalamityMod", out Mod cal);
+
             #region terrain
             progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Terrain");
 
@@ -141,7 +143,7 @@ namespace Remnants.Content.World
             junglePools.SetFrequency(0.05f);
             junglePools.SetFractalType(FastNoiseLite.FractalType.FBm);
 
-            int oceanSpan = 325;
+            int oceanSpan = calamity ? 425 : 325;
 
             int seaStack1Position = WorldGen.genRand.Next(70, 110);
             int seaStack2Position = WorldGen.genRand.Next(140, 180);
@@ -223,7 +225,7 @@ namespace Remnants.Content.World
 
                     #region terrain
                     float i = x + roughness.GetNoise(x, y + 999) * 10;
-                    float j = y + roughness.GetNoise(x + 999, y) * 10 * Math.Clamp(MathHelper.Distance(x, (Desert.Center + 0.5f) * biomes.CellSize) / 25 - 1, 0, 1);
+                    float j = y + roughness.GetNoise(x + 999, y) * 10 * Math.Clamp(MathHelper.Distance(x, (Desert.Center + 0.5f) * biomes.CellSize) / 20 - 1, 0, 1);
 
                     if (y < Main.worldSurface)
                     {
@@ -647,46 +649,49 @@ namespace Remnants.Content.World
                 }
             }
 
-            count = 0;
-            while (count < 1)
+            if (!calamity)
             {
-                float radius = WorldGen.genRand.NextFloat(20, 30);
-
-                int x = Jungle.Center >= biomes.Width / 2 ? WorldGen.genRand.Next(120 + (int)radius, 220 - (int)radius) : Main.maxTilesX - WorldGen.genRand.Next(120 + (int)radius, 220 - (int)radius);
-                int y = Maximum + 1;
-
-                bool valid = true;
-
-                for (int j = (int)(y - radius); j <= y + radius / 2; j++)
+                count = 0;
+                while (count < 1)
                 {
-                    for (int i = (int)(x - radius - 5); i <= x + radius + 5; i++)
-                    {
-                        if (Main.tile[i, j].HasTile)
-                        {
-                            valid = false;
-                        }
-                    }
-                }
+                    float radius = WorldGen.genRand.NextFloat(20, 30);
 
-                if (valid)
-                {
-                    for (int j = (int)(y - radius); j <= y + radius; j++)
-                    {
-                        float flatness = j > y ? 2 : 8;
+                    int x = Jungle.Center >= biomes.Width / 2 ? WorldGen.genRand.Next(120 + (int)radius, 220 - (int)radius) : Main.maxTilesX - WorldGen.genRand.Next(120 + (int)radius, 220 - (int)radius);
+                    int y = Maximum + 1;
 
-                        for (int i = (int)(x - radius); i <= x + radius; i++)
+                    bool valid = true;
+
+                    for (int j = (int)(y - radius); j <= y + radius / 2; j++)
+                    {
+                        for (int i = (int)(x - radius - 5); i <= x + radius + 5; i++)
                         {
-                            if (Vector2.Distance(new Vector2(i, j * flatness), new Vector2(x, y * flatness)) < radius + roughness.GetNoise(i * 2, 0) * (40 / flatness) && WorldGen.InWorld(i, j))
+                            if (Main.tile[i, j].HasTile)
                             {
-                                Tile tile = Main.tile[i, j];
-
-                                tile.HasTile = true;
-                                tile.TileType = TileID.Stone;
+                                valid = false;
                             }
                         }
                     }
 
-                    count++;
+                    if (valid)
+                    {
+                        for (int j = (int)(y - radius); j <= y + radius; j++)
+                        {
+                            float flatness = j > y ? 2 : 8;
+
+                            for (int i = (int)(x - radius); i <= x + radius; i++)
+                            {
+                                if (Vector2.Distance(new Vector2(i, j * flatness), new Vector2(x, y * flatness)) < radius + roughness.GetNoise(i * 2, 0) * (40 / flatness) && WorldGen.InWorld(i, j))
+                                {
+                                    Tile tile = Main.tile[i, j];
+
+                                    tile.HasTile = true;
+                                    tile.TileType = TileID.Stone;
+                                }
+                            }
+                        }
+
+                        count++;
+                    }
                 }
             }
             #endregion

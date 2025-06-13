@@ -64,6 +64,8 @@ namespace Remnants.Content.World
             //InsertPass(tasks, new Meadows("Meadows", 0), FindIndex(tasks, "Flowers"), true);
             #endregion
 
+            InsertPass(tasks, new LifeCrystalReduction("Life Crystal Reduction", 1), FindIndex(tasks, "Life Crystals") + 1);
+
             InsertPass(tasks, new BoulderTraps("Boulder Traps", 1), FindIndex(tasks, "Traps"), true);
             //RemovePass(tasks, FindIndex(tasks, "Traps"));
 
@@ -93,6 +95,8 @@ namespace Remnants.Content.World
                 {
                     RemovePass(tasks, FindIndex(tasks, "Sunken Sea"));
                 }
+
+                //RemovePass(tasks, FindIndex(tasks, "Sulphur Sea"));
 
                 RemovePass(tasks, FindIndex(tasks, "Giant Hive"));
                 //if (!ModContent.GetInstance<Client>().ExperimentalWorldgen)
@@ -1268,7 +1272,7 @@ namespace Remnants.Content.World
 
             FastNoiseLite weathering = new FastNoiseLite();
             weathering.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
-            weathering.SetFrequency(0.3f);
+            weathering.SetFrequency(0.15f);
             weathering.SetFractalType(FastNoiseLite.FractalType.Ridged);
             weathering.SetFractalOctaves(1);
 
@@ -1395,7 +1399,7 @@ namespace Remnants.Content.World
                         }
                     }
 
-                    if (weathering.GetNoise(x, y) > 0.55f)
+                    if (weathering.GetNoise(x, y) > 0.65f)
                     {
                         if (tile.TileType == TileID.GrayBrick || tile.TileType == TileID.WoodBlock || tile.TileType == TileID.RichMahogany)
                         {
@@ -1484,7 +1488,7 @@ namespace Remnants.Content.World
 
             FastNoiseLite weathering = new FastNoiseLite(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
             weathering.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
-            weathering.SetFrequency(0.15f);
+            weathering.SetFrequency(0.3f);
             weathering.SetFractalType(FastNoiseLite.FractalType.FBm);
             weathering.SetFractalOctaves(2);
 
@@ -1514,7 +1518,11 @@ namespace Remnants.Content.World
                         }
                         else if (tile.WallType == ModContent.WallType<BrickStone>())
                         {
-                            tile.WallType = biomes.FindBiome(x, y) == BiomeID.Jungle ? WallID.JungleUnsafe3 : biomes.GetLayer(x, y) >= biomes.lavaLayer ? WallID.Cave8Unsafe : WallID.RocksUnsafe1;
+                            if (y < Main.worldSurface && !MiscTools.SurroundingTilesActive(x, y, true))
+                            {
+                                tile.WallType = WallID.Grass;
+                            }
+                            else tile.WallType = biomes.FindBiome(x, y) == BiomeID.Jungle ? WallID.JungleUnsafe3 : biomes.GetLayer(x, y) >= biomes.lavaLayer ? WallID.Cave8Unsafe : WallID.RocksUnsafe1;
                         }
                         else if (tile.WallType == ModContent.WallType<BrickIce>())
                         {
@@ -2208,6 +2216,43 @@ namespace Remnants.Content.World
             if (issuesFound)
             {
                 throw new Exception("\n \n" + message + "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n --------------------------------- \n");
+            }
+        }
+    }
+
+    public class LifeCrystalReduction : GenPass
+    {
+        public LifeCrystalReduction(string name, float loadWeight) : base(name, loadWeight)
+        {
+        }
+
+        protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
+        {
+            if (ModContent.GetInstance<Worldgen>().LifeCrystalReduction == 0)
+            {
+                return;
+            }
+
+            List<Point16> hearts = new List<Point16>();
+
+            for (int x = 40; x < Main.maxTilesX - 40; x++)
+            {
+                for (int y = (int)Main.worldSurface; y < Main.maxTilesY - 200; y++)
+                {
+                    if (MiscTools.HasTile(x, y, TileID.Heart) && !MiscTools.HasTile(x - 1, y, TileID.Heart) && !MiscTools.HasTile(x, y - 1, TileID.Heart))
+                    {
+                        hearts.Add(new Point16(x, y));
+                    }
+                }
+            }
+
+            int heartCount = hearts.Count;
+
+            while (hearts.Count > heartCount * (1 - ModContent.GetInstance<Worldgen>().LifeCrystalReduction))
+            {
+                Point16 target = hearts[WorldGen.genRand.Next(hearts.Count)];
+                WorldGen.KillTile(target.X, target.Y);
+                hearts.Remove(target);
             }
         }
     }
