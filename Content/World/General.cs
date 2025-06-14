@@ -2786,15 +2786,20 @@ namespace Remnants.Content.World
         {
         }
 
+        public static int savedX;
+        public static int savedY;
+
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
             progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Spawnpoint");
 
-            Main.spawnTileX = Main.maxTilesX / 2 + (WorldGen.genRand.NextBool(2) ? -50 : 50);
-            if (Main.spawnTileY < Main.worldSurface * 0.5f)
-            {
-                Main.spawnTileY = (int)(Main.worldSurface * 0.5f);
-            }
+            Main.spawnTileX = savedX;// Main.maxTilesX / 2 + (WorldGen.genRand.NextBool(2) ? -50 : 50);
+            Main.spawnTileY = savedY;
+            //Main.spawnTileY = (int)(Main.worldSurface * 0.6f); //
+            //                                                   //if (Main.spawnTileY < Main.worldSurface * 0.5f)
+            //{
+            //    Main.spawnTileY = (int)(Main.worldSurface * 0.5f);
+            //}
 
             if (SolidSpawn())
             {
@@ -2817,7 +2822,7 @@ namespace Remnants.Content.World
         {
             for (int i = Main.spawnTileX - 1; i <= Main.spawnTileX + 1; i++)
             {
-                Tile tile = MiscTools.Tile(i, Main.spawnTileY + 1);
+                Tile tile = MiscTools.Tile(i, Main.spawnTileY);
                 if (tile.HasTile && Main.tileSolid[tile.TileType] && tile.TileType != TileID.LivingWood && tile.TileType != TileID.LeafBlock)
                 {
                     return true;
