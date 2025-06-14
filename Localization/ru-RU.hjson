@@ -141,9 +141,9 @@ Mods: {
 				MapEntry: Шепчущий алтарь
 
 				Messages: {
-					EssenceofMight: Вы поглотили эссенцию могущества!
-					EssenceofEndurance: Вы поглотили эссенцию выносливости!
-					EssenceofFocus: Вы поглотили эссенцию концентрации!
+					EssenceofMight: Вы выбрали эссенцию могущества!
+					EssenceofEndurance: Вы выбрали эссенцию выносливости!
+					EssenceofFocus: Вы выбрали эссенцию концентрации!
 					Health: к максимальному запасу здоровья
 					Damage: к наносимому урону
 					Speed: к скорости бега
