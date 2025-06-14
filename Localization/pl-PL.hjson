@@ -724,11 +724,6 @@ Mods: {
 					LargerSky: Proporcje Swiata (Dla zaawansowanych)
 				}
 
-				TerrainAmplitude: {
-					Label: "[i:3] Amplituda Terenu"
-					Tooltip: Kontroluje zmienność wysokości powierzchni terenu
-				}
-
 				OreFrequency: {
 					Label: "[i:11] Częstotliwość Rud"
 					Tooltip: Kontroluje ilość rudy generowanej na nowych światach
@@ -752,16 +747,6 @@ Mods: {
 
 						Uwaga: TYLKO W CELACH TESTOWYCH – NIGDY NIE UŻYWAJ TEGO DO NORMALNEJ GRY
 						'''
-				}
-
-				IceMountain: {
-					Label: "[i:664] Lodowa Góra"
-					Tooltip: Włącza górę w biomie Tundry
-				}
-
-				JungleValley: {
-					Label: "[i:176] Dżunglowa Dolina"
-					Tooltip: Włącza dolinę w biomie Dżungli
 				}
 
 				Safeguard: {
@@ -792,32 +777,6 @@ Mods: {
 				RailroadFrequency: {
 					Label: "[i:2340] Częstotliwość Torowisk"
 					Tooltip: Kontroluje ilość torowisk generowanych w nowych światach
-				}
-
-				DoLivingTrees: {
-					Label: "[i:1182] Żywe Drzewa z Vanilii"
-					Tooltip:
-						'''
-						Włącza Żywe Drzewa z Vanilii
-
-						Uwaga: NIE zastępuje gigantycznego drzewa dodanego przez Remnants
-						Uwaga: Często generowane na Podniebnych Wyspach ze względu na ich zaprogramowanie
-						'''
-				}
-
-				PlatformFrequency: {
-					Label: "[i:94] Częstotliwość Platform"
-					Tooltip: Kontroluje ilość platform wydobywczych generowanych w nowych światach
-				}
-
-				CacheFrequency: {
-					Label: "[i:48] Częstotliwość Kryjówek"
-					Tooltip: Kontroluje ilość kryjówek generowanych w nowych światach
-				}
-
-				FrozenRuinFrequency: {
-					Label: "[i:2059] Częstotliwość Lodowej Świątyni"
-					Tooltip: Kontroluje ilość lodowych świątyń generowanych w nowych światach
 				}
 
 				FlatSurfaceRatioIncrease: {
@@ -881,17 +840,6 @@ Mods: {
 						Większość wrogów latających i wodnych będzie miała ulepszoną sztuczną inteligencję
 
 						Uwaga: Nie działa w trybie wieloosobowym
-						'''
-				}
-
-				ProjectileAI: {
-					Label: "[i:1321] Ulepszenie SI Pocisków"
-					Tooltip:
-						'''
-						Rzucane bronie będą miały płynniejszą trajektorię lotu, dzięki czemu będą łatwiejsze w użyciu
-						Zawiera dodatkowe zmiany w balansie, takie jak automatyczne atakowanie Shurikenami
-
-						Uwaga: Zawiera niejasne błędy
 						'''
 				}
 
