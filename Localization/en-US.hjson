@@ -67,19 +67,9 @@ Mods: {
 		}
 
 		Biomes: {
-			GoldenCity: {
-				DisplayName: The Golden City
-				TownNPCDialogueName: the Golden City
-			}
-
 			GraniteCave: {
 				DisplayName: Granite Cave
 				TownNPCDialogueName: the Granite Cave
-			}
-
-			Growth: {
-				DisplayName: Growth
-				TownNPCDialogueName: the Growth
 			}
 
 			Beehive: {
@@ -127,11 +117,6 @@ Mods: {
 				TownNPCDialogueName: the Forgotten Tomb
 			}
 
-			MagicalLabAscension: {
-				DisplayName: Magical Lab Ascension
-				TownNPCDialogueName: the Magical Lab Ascension
-			}
-
 			Undergrowth: {
 				DisplayName: The Undergrowth
 				TownNPCDialogueName: the Undergrowth
@@ -146,7 +131,6 @@ Mods: {
 		Tiles: {
 			Hardstone.MapEntry: Hardstone
 			StarOre.MapEntry: Stellar Remnant
-			vaultpipe.MapEntry: vaultpipe
 			LockedIronDoor.MapEntry: Locked Iron Door
 			RustedChest.MapEntry: Rusted Chest
 			LabyrinthSpawner.MapEntry: Spawner
@@ -176,14 +160,12 @@ Mods: {
 
 			Sarcophagus.MapEntry: Sarcophagus
 			Scrapper.MapEntry: Scrapper
-			spiritlamp.MapEntry: spiritlamp
 			Dreampod.MapEntry: Dreampod
 			Runestalk.MapEntry: Runestalk
 
 			PyramidChest: {
 				MapEntry: Pyramid Chest
 				MapEntry0: Locked Pyramid Chest
-				Messages.KeysinUnderground: The keys are hidden in the caverns below...
 			}
 
 			PyramidPot.MapEntry: Pyramid Pot
@@ -192,7 +174,6 @@ Mods: {
 			Nightglow.MapEntry: Nightglow
 			ArcaneChest.MapEntry: Arcane Chest
 			SacrificialAltar.MapEntry: Sacrificial Altar
-			Eyeball.MapEntry: Evil Eye
 			VaultPipe.MapEntry: Vault Pipe
 			AlchemyBench.MapEntry: Desk
 
@@ -222,11 +203,6 @@ Mods: {
 		}
 
 		Items: {
-			alchemybook: {
-				DisplayName: alchemybook
-				Tooltip: ""
-			}
-
 			devtool: {
 				DisplayName: devtool
 				Tooltip: ""
@@ -293,11 +269,6 @@ Mods: {
 
 			GardenBrick: {
 				DisplayName: Garden Brick
-				Tooltip: ""
-			}
-
-			GoldenPanel: {
-				DisplayName: Golden Panel
 				Tooltip: ""
 			}
 
@@ -376,32 +347,12 @@ Mods: {
 				Tooltip: ""
 			}
 
-			GoldenPanelWall: {
-				DisplayName: Golden Panel Wall
-				Tooltip: ""
-			}
-
 			PyramidBrickWall: {
 				DisplayName: Pyramid Brick Wall
 				Tooltip: ""
 			}
 
-			WaterBrickWall: {
-				DisplayName: Water Brick Wall
-				Tooltip: ""
-			}
-
 			LuminousHook.DisplayName: Luminous Hook
-
-			ArmCannon: {
-				DisplayName: Arm Cannon
-				Tooltip: ""
-			}
-
-			CursedFlamethrower: {
-				DisplayName: Cursed Flamethrower
-				Tooltip: ""
-			}
 
 			SpiritLance: {
 				DisplayName: Spirit Lance
@@ -582,11 +533,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			HeavyAlloy: {
-				DisplayName: Heavy Alloy
-				Tooltip: ""
-			}
-
 			VaultPlatform: {
 				DisplayName: Vault Platform
 				Tooltip: ""
@@ -603,8 +549,8 @@ Mods: {
 			}
 
 			HellishBrick: {
-				Tooltip: ""
 				DisplayName: Hellish Brick
+				Tooltip: ""
 			}
 
 			HellishPlatform: {
@@ -722,7 +668,6 @@ Mods: {
 
 		NPCs: {
 			HoneySlime.DisplayName: Honey Slime
-			IlluminantDagger.DisplayName: Illuminant Dagger
 			TomeofFrost.DisplayName: Tome of Frost
 			TomeofInferno.DisplayName: Tome of Inferno
 			Ward.DisplayName: Ward
@@ -755,7 +700,6 @@ Mods: {
 			LuminousHook.DisplayName: Luminous Hook
 			ichorjet.DisplayName: ichorjet
 			shockbolt.DisplayName: shockbolt
-			uraniumbullet.DisplayName: uraniumbullet
 			flamejet.DisplayName: flamejet
 			minigunholdout.DisplayName: minigunholdout
 			pulsebolt.DisplayName: pulsebolt
@@ -773,10 +717,9 @@ Mods: {
 
 		Configs: {
 			Worldgen: {
-				DisplayName: " World Generation"
+				DisplayName: World Generation
 
 				Headers: {
-					General: General
 					Terrain: Terrain
 					Structure: Structures
 					LargerSky: World Proportions (Advanced)
