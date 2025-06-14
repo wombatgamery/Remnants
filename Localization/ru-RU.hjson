@@ -67,19 +67,9 @@ Mods: {
 		}
 
 		Biomes: {
-			GoldenCity: {
-				DisplayName: Золотой город
-				TownNPCDialogueName: Золотой город
-			}
-
 			GraniteCave: {
 				DisplayName: Гранитный разлом
 				TownNPCDialogueName: Гранитный разлом
-			}
-
-			Growth: {
-				DisplayName: Заросли
-				TownNPCDialogueName: Заросли
 			}
 
 			Beehive: {
@@ -127,11 +117,6 @@ Mods: {
 				TownNPCDialogueName: Забытый склеп
 			}
 
-			MagicalLabAscension: {
-				DisplayName: Место вознесения магической лаборатории
-				TownNPCDialogueName: Место вознесения магической лаборатории
-			}
-
 			Undergrowth: {
 				DisplayName: Корневище
 				TownNPCDialogueName: Корневище
@@ -146,7 +131,6 @@ Mods: {
 		Tiles: {
 			Hardstone.MapEntry: Твердокамень
 			StarOre.MapEntry: Звёздные останки
-			vaultpipe.MapEntry: Труба
 			LockedIronDoor.MapEntry: Дверь
 			RustedChest.MapEntry: Сундук
 			LabyrinthSpawner.MapEntry: Око Стража
@@ -176,14 +160,12 @@ Mods: {
 
 			Sarcophagus.MapEntry: Саркофаг
 			Scrapper.MapEntry: Утилизатор
-			spiritlamp.MapEntry: Эфирная лампа
 			Dreampod.MapEntry: Стручок грёз
 			Runestalk.MapEntry: Руностебель
 
 			PyramidChest: {
 				MapEntry: Сундук
 				MapEntry0: Закрытый сундук
-				Messages.KeysinUnderground: Вы чувствуете, как песчинки с сундука тянутся к храмам над вами — ключи придётся искать именно там...
 			}
 
 			PyramidPot.MapEntry: Позолоченная ваза
@@ -192,7 +174,6 @@ Mods: {
 			Nightglow.MapEntry: Побег ягоды-фонаря
 			ArcaneChest.MapEntry: Сундук
 			SacrificialAltar.MapEntry: Алтарь для жертвоприношений
-			Eyeball.MapEntry: Злобный глаз
 			VaultPipe.MapEntry: Труба
 			AlchemyBench.MapEntry: Рабочий стол
 
@@ -222,11 +203,6 @@ Mods: {
 		}
 
 		Items: {
-			alchemybook: {
-				DisplayName: Книга экзотической алхимии
-				Tooltip: ""
-			}
-
 			devtool: {
 				DisplayName: devtool
 				Tooltip: ""
@@ -298,11 +274,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			GoldenPanel: {
-				DisplayName: Золотая панель
-				Tooltip: ""
-			}
-
 			Hardstone: {
 				DisplayName: Твердокамень
 				Tooltip: Сверхплотный камень неизвестного происхождения
@@ -325,11 +296,6 @@ Mods: {
 
 			ToxicWaste: {
 				DisplayName: Токсичный шлак
-				Tooltip: ""
-			}
-
-			WaterBrick: {
-				DisplayName: Водный кирпич
 				Tooltip: ""
 			}
 
@@ -378,32 +344,12 @@ Mods: {
 				Tooltip: ""
 			}
 
-			GoldenPanelWall: {
-				DisplayName: Стена из золотой панели
-				Tooltip: ""
-			}
-
 			PyramidBrickWall: {
 				DisplayName: Стена из кирпича храма пустыни
 				Tooltip: ""
 			}
 
-			WaterBrickWall: {
-				DisplayName: Стена из водного кирпича
-				Tooltip: ""
-			}
-
 			LuminousHook.DisplayName: Светящийся крюк
-
-			ArmCannon: {
-				DisplayName: Ручная пушка
-				Tooltip: ""
-			}
-
-			CursedFlamethrower: {
-				DisplayName: Вестник хаоса
-				Tooltip: ""
-			}
 
 			SpiritLance: {
 				DisplayName: Копьё духов
@@ -594,11 +540,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			HeavyAlloy: {
-				DisplayName: Тяжёлый сплав
-				Tooltip: ""
-			}
-
 			VaultPlatform: {
 				DisplayName: Платформа Убежища
 				Tooltip: ""
@@ -615,8 +556,8 @@ Mods: {
 			}
 
 			HellishBrick: {
-				Tooltip: ""
 				DisplayName: Кирпич пекла
+				Tooltip: ""
 			}
 
 			HellishPlatform: {
@@ -731,14 +672,13 @@ Mods: {
 			}
 
 			hivekey: {
-				DisplayName: Ключ улья
+				DisplayName: Генератор комнат для шахт
 				Tooltip: ""
 			}
 		}
 
 		NPCs: {
 			HoneySlime.DisplayName: Медовый слизень
-			IlluminantDagger.DisplayName: Лучезарный кинжал
 			TomeofFrost.DisplayName: Фолиант льда
 			TomeofInferno.DisplayName: Фолиант пламени
 			Ward.DisplayName: Страж
@@ -771,7 +711,6 @@ Mods: {
 			LuminousHook.DisplayName: Светящийся крюк
 			ichorjet.DisplayName: Струя ихора
 			shockbolt.DisplayName: Электрический заряд
-			uraniumbullet.DisplayName: Урановая пуля
 			flamejet.DisplayName: Струя огня
 			minigunholdout.DisplayName: Миниган
 			pulsebolt.DisplayName: Импульсный снаряд
@@ -792,7 +731,6 @@ Mods: {
 				DisplayName: Генерация мира
 
 				Headers: {
-					General: Общее
 					Terrain: Ландшафт и пещеры
 					Structure: Структуры
 					LargerSky: Пропорции мира
