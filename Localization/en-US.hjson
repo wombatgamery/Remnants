@@ -297,11 +297,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			WaterBrick: {
-				DisplayName: Water Brick
-				Tooltip: ""
-			}
-
 			EnergySpike: {
 				DisplayName: Energy Spike
 				Tooltip: ""
