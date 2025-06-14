@@ -720,11 +720,6 @@ Mods: {
 					// LargerSky: World Proportions (Advanced)
 				}
 
-				TerrainAmplitude: {
-					Label: "[i:3] Gelände-Amplitude"
-					Tooltip: Steuert die Höhenvariation des Oberflächengeländes
-				}
-
 				OreFrequency: {
 					Label: "[i:11] Erzhäufigkeit"
 					Tooltip: Steuert die Menge an Erz, die in neuen Welten generiert wird
@@ -748,16 +743,6 @@ Mods: {
 
 						Hinweis: NUR FÜR TESTZWECKE - NIEMALS FÜR EINEN NORMALEN DURCHLAUF VERWENDEN
 						'''
-				}
-
-				IceMountain: {
-					Label: "[i:664] Eisberg"
-					Tooltip: Aktiviert den Berg im Eisbiom
-				}
-
-				JungleValley: {
-					Label: "[i:176] Dschungeltal"
-					Tooltip: Aktiviert das Tal im Dschungelbiom
 				}
 
 				Safeguard: {
@@ -788,32 +773,6 @@ Mods: {
 				RailroadFrequency: {
 					Label: "[i:2340] Eisenbahnhäufigkeit"
 					Tooltip: Steuert die Anzahl der Eisenbahnen, die in neuen Welten generiert werden
-				}
-
-				DoLivingTrees: {
-					// Label: "[i:1182] Vanilla Living Trees"
-					/* Tooltip:
-						'''
-						Enables the vanilla living trees
-
-						Note: Does NOT replace the giant tree added by Remnants
-						Note: These frequently generate on floating islands due to their programming
-						''' */
-				}
-
-				PlatformFrequency: {
-					// Label: "[i:94] Platform Frequency"
-					// Tooltip: Controls the number of mining platforms generated in new worlds
-				}
-
-				CacheFrequency: {
-					// Label: "[i:48] Cache Frequency"
-					// Tooltip: Controls the number of hidden caches generated in new worlds
-				}
-
-				FrozenRuinFrequency: {
-					// Label: "[i:2059] Ice Temple Frequency"
-					// Tooltip: Controls the number of ice temples generated in new worlds
 				}
 
 				FlatSurfaceRatioIncrease: {
@@ -878,17 +837,6 @@ Mods: {
 						Die meisten Luft- oder Wassergegner haben eine verbesserte KI
 
 						Hinweis: Funktioniert nicht im Mehrspielermodus
-						'''
-				}
-
-				ProjectileAI: {
-					Label: "[i:1321] Verbesserungen der Projektil-KI"
-					Tooltip:
-						'''
-						Wurfwaffen haben eine glatte Flugbahn, was sie leichter zu benutzen macht
-						Kommt mit zusätzlichen Balanceänderungen, wie Autoswing für Shurikens
-
-						Hinweis: Enthält obskure Fehler
 						'''
 				}
 
