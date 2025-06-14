@@ -67,19 +67,9 @@ Mods: {
 		}
 
 		Biomes: {
-			GoldenCity: {
-				DisplayName: Goldene Stadt
-				TownNPCDialogueName: die Goldene Stadt
-			}
-
 			GraniteCave: {
 				DisplayName: Granithöhle
 				TownNPCDialogueName: die Granithöhle
-			}
-
-			Growth: {
-				DisplayName: Wachstum
-				TownNPCDialogueName: das Wachstum
 			}
 
 			Beehive: {
@@ -127,11 +117,6 @@ Mods: {
 				TownNPCDialogueName: das Vergessene Grab
 			}
 
-			MagicalLabAscension: {
-				DisplayName: Magischer Labor-Aufstieg
-				TownNPCDialogueName: den Magischen Labor-Aufstieg
-			}
-
 			Undergrowth: {
 				DisplayName: Unterholz
 				TownNPCDialogueName: das Unterholz
@@ -146,7 +131,6 @@ Mods: {
 		Tiles: {
 			Hardstone.MapEntry: Hartstein
 			StarOre.MapEntry: Stellarer Überrest
-			vaultpipe.MapEntry: Gewölberohr
 			LockedIronDoor.MapEntry: Abgeschlossene Eisentür
 			RustedChest.MapEntry: Verrostete Truhe
 			LabyrinthSpawner.MapEntry: Spawner
@@ -176,14 +160,12 @@ Mods: {
 
 			Sarcophagus.MapEntry: Sarkophag
 			Scrapper.MapEntry: Verschrotter
-			spiritlamp.MapEntry: Geisterlampe
 			Dreampod.MapEntry: Traumschote
 			Runestalk.MapEntry: Runenstängel
 
 			PyramidChest: {
 				MapEntry: Pyramiden-Truhe
 				MapEntry0: Abgeschlossene Pyramiden-Truhe
-				Messages.KeysinUnderground: Die Schlüssel sind in den Höhlen darunter verborgen...
 			}
 
 			PyramidPot.MapEntry: Pyramiden-Topf
@@ -192,7 +174,6 @@ Mods: {
 			Nightglow.MapEntry: Nachtleuchten
 			ArcaneChest.MapEntry: Arkane Truhe
 			SacrificialAltar.MapEntry: Opferaltar
-			Eyeball.MapEntry: Böses Auge
 			VaultPipe.MapEntry: Gewölberohr
 			AlchemyBench.MapEntry: Schreibtisch
 
@@ -222,11 +203,6 @@ Mods: {
 		}
 
 		Items: {
-			alchemybook: {
-				DisplayName: Alchemiebuch
-				Tooltip: ""
-			}
-
 			devtool: {
 				DisplayName: Entwicklungswerkzeug
 				Tooltip: ""
@@ -296,11 +272,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			GoldenPanel: {
-				DisplayName: Goldene Platte
-				Tooltip: ""
-			}
-
 			Hardstone: {
 				DisplayName: Hartstein
 				Tooltip: Ein superdichter Fels unbekannten Ursprungs
@@ -323,11 +294,6 @@ Mods: {
 
 			ToxicWaste: {
 				DisplayName: Giftmüll
-				Tooltip: ""
-			}
-
-			WaterBrick: {
-				DisplayName: Wasserziegel
 				Tooltip: ""
 			}
 
@@ -376,32 +342,12 @@ Mods: {
 				Tooltip: ""
 			}
 
-			GoldenPanelWall: {
-				DisplayName: Goldene Platten-Wand
-				Tooltip: ""
-			}
-
 			PyramidBrickWall: {
 				DisplayName: Pyramidenziegel-Wand
 				Tooltip: ""
 			}
 
-			WaterBrickWall: {
-				DisplayName: Wasserziegel-Wand
-				Tooltip: ""
-			}
-
 			LuminousHook.DisplayName: Leuchtender Haken
-
-			ArmCannon: {
-				DisplayName: Armkanone
-				Tooltip: ""
-			}
-
-			CursedFlamethrower: {
-				DisplayName: Verfluchter Flammenwerfer
-				Tooltip: ""
-			}
 
 			SpiritLance: {
 				DisplayName: Geisterlanze
@@ -582,11 +528,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			HeavyAlloy: {
-				DisplayName: Schwere Legierung
-				Tooltip: ""
-			}
-
 			VaultPlatform: {
 				DisplayName: Gewölbeplattform
 				Tooltip: ""
@@ -603,8 +544,8 @@ Mods: {
 			}
 
 			HellishBrick: {
-				Tooltip: ""
 				DisplayName: Höllischer Ziegel
+				Tooltip: ""
 			}
 
 			HellishPlatform: {
@@ -722,7 +663,6 @@ Mods: {
 
 		NPCs: {
 			HoneySlime.DisplayName: Honigschleim
-			IlluminantDagger.DisplayName: Leuchtender Dolch
 			TomeofFrost.DisplayName: Foliant des Frosts
 			TomeofInferno.DisplayName: Foliant des Infernos
 			Ward.DisplayName: Wächter
@@ -755,7 +695,6 @@ Mods: {
 			LuminousHook.DisplayName: Leuchtender Haken
 			ichorjet.DisplayName: Ichorstrahl
 			shockbolt.DisplayName: Schockbolzen
-			uraniumbullet.DisplayName: Urankugel
 			flamejet.DisplayName: Flammenstrahl
 			minigunholdout.DisplayName: Minigun-Haltepunkt
 			pulsebolt.DisplayName: Pulsbolzen
@@ -773,10 +712,9 @@ Mods: {
 
 		Configs: {
 			Worldgen: {
-				DisplayName: " Weltgenerierung"
+				DisplayName: Weltgenerierung
 
 				Headers: {
-					General: Allgemein
 					Terrain: Gelände
 					Structure: Struktur
 					// LargerSky: World Proportions (Advanced)
