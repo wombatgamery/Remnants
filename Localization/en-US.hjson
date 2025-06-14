@@ -720,11 +720,6 @@ Mods: {
 					LargerSky: World Proportions (Advanced)
 				}
 
-				TerrainAmplitude: {
-					Label: "[i:3] Terrain Amplitude"
-					Tooltip: Controls the height variance of surface terrain
-				}
-
 				OreFrequency: {
 					Label: "[i:11] Ore Frequency"
 					Tooltip: Controls the amount of ore generated in new worlds
@@ -748,16 +743,6 @@ Mods: {
 
 						Note: FOR TESTING PURPOSES ONLY - NEVER USE THIS FOR A NORMAL PLAYTHROUGH
 						'''
-				}
-
-				IceMountain: {
-					Label: "[i:664] Ice Mountain"
-					Tooltip: Enables the mountain in the ice biome
-				}
-
-				JungleValley: {
-					Label: "[i:176] Jungle Valley"
-					Tooltip: Enables the valley in the jungle biome
 				}
 
 				Safeguard: {
@@ -788,32 +773,6 @@ Mods: {
 				RailroadFrequency: {
 					Label: "[i:2340] Railroad Frequency"
 					Tooltip: Controls the number of railroads generated in new worlds
-				}
-
-				DoLivingTrees: {
-					Label: "[i:1182] Vanilla Living Trees"
-					Tooltip:
-						'''
-						Enables the vanilla living trees
-
-						Note: Does NOT replace the giant tree added by Remnants
-						Note: These frequently generate on floating islands due to their programming
-						'''
-				}
-
-				PlatformFrequency: {
-					Label: "[i:94] Platform Frequency"
-					Tooltip: Controls the number of mining platforms generated in new worlds
-				}
-
-				CacheFrequency: {
-					Label: "[i:48] Cache Frequency"
-					Tooltip: Controls the number of hidden caches generated in new worlds
-				}
-
-				FrozenRuinFrequency: {
-					Label: "[i:2059] Ice Temple Frequency"
-					Tooltip: Controls the number of ice temples generated in new worlds
 				}
 
 				FlatSurfaceRatioIncrease: {
@@ -878,17 +837,6 @@ Mods: {
 						Most airborne or aquatic enemies will have improved AI
 
 						Note: Does nothing in multiplayer
-						'''
-				}
-
-				ProjectileAI: {
-					Label: "[i:1321] Projectile AI Improvements"
-					Tooltip:
-						'''
-						Throwing weapons will have a smooth flight trajectory, making them easier to use
-						Comes with additional balance changes, like autoswing for shurikens
-
-						Note: Contains obscure bugs
 						'''
 				}
 
