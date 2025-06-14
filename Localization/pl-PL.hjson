@@ -67,19 +67,9 @@ Mods: {
 		}
 
 		Biomes: {
-			GoldenCity: {
-				DisplayName: Złote Miasto
-				TownNPCDialogueName: Złote Miasto
-			}
-
 			GraniteCave: {
 				DisplayName: Granitowa Jaskinia
 				TownNPCDialogueName: Granitowa Jaskinia
-			}
-
-			Growth: {
-				DisplayName: Narośl
-				TownNPCDialogueName: Narośl
 			}
 
 			Beehive: {
@@ -127,11 +117,6 @@ Mods: {
 				TownNPCDialogueName: Zapomniany Grobowiec
 			}
 
-			MagicalLabAscension: {
-				DisplayName: Wzniesienie Magicznego Laboratorium
-				TownNPCDialogueName: Wzniesienie Magicznego Laboratorium
-			}
-
 			Undergrowth: {
 				DisplayName: Runo Leśne
 				TownNPCDialogueName: Runo Leśne
@@ -146,7 +131,6 @@ Mods: {
 		Tiles: {
 			Hardstone.MapEntry: Lita Skała
 			StarOre.MapEntry: Gwiezdna Resztka
-			vaultpipe.MapEntry: Rura Krypty
 			LockedIronDoor.MapEntry: Zamknięte Żelazne Drzwi
 			RustedChest.MapEntry: Zardzewiały Kufer
 			LabyrinthSpawner.MapEntry: Spawner
@@ -176,14 +160,12 @@ Mods: {
 
 			Sarcophagus.MapEntry: Sarkofag
 			Scrapper.MapEntry: Zgarniak
-			spiritlamp.MapEntry: Lampion Dusz
 			Dreampod.MapEntry: Marzenica
 			Runestalk.MapEntry: Kryształ Runiczny
 
 			PyramidChest: {
 				MapEntry: Kufer Piramidy
 				MapEntry0: Zamknięty Kufer Piramidy
-				Messages.KeysinUnderground: Klucze są ukryte w jaskiniach pod tobą...
 			}
 
 			PyramidPot.MapEntry: Dzbanek Piramidy
@@ -192,7 +174,6 @@ Mods: {
 			Nightglow.MapEntry: Nocny Krzew
 			ArcaneChest.MapEntry: Kufer Arkanów
 			SacrificialAltar.MapEntry: Ołtarz Ofiarny
-			Eyeball.MapEntry: Złoko
 			VaultPipe.MapEntry: Rura Krypty
 			AlchemyBench.MapEntry: Biurko
 
@@ -222,11 +203,6 @@ Mods: {
 		}
 
 		Items: {
-			alchemybook: {
-				DisplayName: alchemybook
-				Tooltip: ""
-			}
-
 			devtool: {
 				DisplayName: devtool
 				Tooltip: ""
@@ -296,11 +272,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			GoldenPanel: {
-				DisplayName: Złoty Panel
-				Tooltip: ""
-			}
-
 			Hardstone: {
 				DisplayName: Lita Skała
 				Tooltip: Supergęsta skała o nieznanym pochodzeniu
@@ -323,11 +294,6 @@ Mods: {
 
 			ToxicWaste: {
 				DisplayName: Toksyczne Odpady
-				Tooltip: ""
-			}
-
-			WaterBrick: {
-				DisplayName: Wodna Cegła
 				Tooltip: ""
 			}
 
@@ -376,32 +342,12 @@ Mods: {
 				Tooltip: ""
 			}
 
-			GoldenPanelWall: {
-				DisplayName: Złota Ściana
-				Tooltip: ""
-			}
-
 			PyramidBrickWall: {
 				DisplayName: Ściana Piramidy
 				Tooltip: ""
 			}
 
-			WaterBrickWall: {
-				DisplayName: Wodna Ściana
-				Tooltip: ""
-			}
-
 			LuminousHook.DisplayName: Świecący Hak
-
-			ArmCannon: {
-				DisplayName: Armata Ręczna
-				Tooltip: ""
-			}
-
-			CursedFlamethrower: {
-				DisplayName: Przeklęty Miotacz Płomieni
-				Tooltip: ""
-			}
 
 			SpiritLance: {
 				DisplayName: Włócznia Energii
@@ -586,11 +532,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			HeavyAlloy: {
-				DisplayName: Ciężki Stop
-				Tooltip: ""
-			}
-
 			VaultPlatform: {
 				DisplayName: Platforma Krypty
 				Tooltip: ""
@@ -607,8 +548,8 @@ Mods: {
 			}
 
 			HellishBrick: {
-				Tooltip: ""
 				DisplayName: Piekielna Cegła
+				Tooltip: ""
 			}
 
 			HellishPlatform: {
@@ -726,7 +667,6 @@ Mods: {
 
 		NPCs: {
 			HoneySlime.DisplayName: Miodny Szlam
-			IlluminantDagger.DisplayName: Iluminujący Sztylet
 			TomeofFrost.DisplayName: Księga Szronu
 			TomeofInferno.DisplayName: Księga Piekła
 			Ward.DisplayName: Obrońca
@@ -759,7 +699,6 @@ Mods: {
 			LuminousHook.DisplayName: Święcący Hak
 			ichorjet.DisplayName: ichorjet
 			shockbolt.DisplayName: shockbolt
-			uraniumbullet.DisplayName: uraniumbullet
 			flamejet.DisplayName: flamejet
 			minigunholdout.DisplayName: minigunholdout
 			pulsebolt.DisplayName: pulsebolt
@@ -780,7 +719,6 @@ Mods: {
 				DisplayName: Ustawienia Klienta
 
 				Headers: {
-					General: Ogólne
 					Terrain: Teren
 					Structure: Struktury
 					LargerSky: Proporcje Swiata (Dla zaawansowanych)
