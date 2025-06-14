@@ -73,8 +73,8 @@ Mods: {
 			}
 
 			Beehive: {
-				DisplayName: Улей
-				TownNPCDialogueName: Улей
+				DisplayName: Пчелиный улей
+				TownNPCDialogueName: Пчелиный улей
 			}
 
 			JungleTemple: {
