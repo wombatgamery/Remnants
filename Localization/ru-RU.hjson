@@ -108,8 +108,8 @@ Mods: {
 			}
 
 			EchoingHalls: {
-				DisplayName: Шепчущие коридоры
-				TownNPCDialogueName: Шепчущие коридоры
+				DisplayName: Шепчущий лабиринт
+				TownNPCDialogueName: Шепчущий лабиринт
 			}
 
 			ForgottenTomb: {
