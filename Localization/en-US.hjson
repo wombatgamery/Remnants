@@ -67,19 +67,9 @@ Mods: {
 		}
 
 		Biomes: {
-			GoldenCity: {
-				DisplayName: The Golden City
-				TownNPCDialogueName: the Golden City
-			}
-
 			GraniteCave: {
 				DisplayName: Granite Cave
 				TownNPCDialogueName: the Granite Cave
-			}
-
-			Growth: {
-				DisplayName: Growth
-				TownNPCDialogueName: the Growth
 			}
 
 			Beehive: {
@@ -127,11 +117,6 @@ Mods: {
 				TownNPCDialogueName: the Forgotten Tomb
 			}
 
-			MagicalLabAscension: {
-				DisplayName: Magical Lab Ascension
-				TownNPCDialogueName: the Magical Lab Ascension
-			}
-
 			Undergrowth: {
 				DisplayName: The Undergrowth
 				TownNPCDialogueName: the Undergrowth
@@ -146,7 +131,6 @@ Mods: {
 		Tiles: {
 			Hardstone.MapEntry: Hardstone
 			StarOre.MapEntry: Stellar Remnant
-			vaultpipe.MapEntry: vaultpipe
 			LockedIronDoor.MapEntry: Locked Iron Door
 			RustedChest.MapEntry: Rusted Chest
 			LabyrinthSpawner.MapEntry: Spawner
@@ -176,14 +160,12 @@ Mods: {
 
 			Sarcophagus.MapEntry: Sarcophagus
 			Scrapper.MapEntry: Scrapper
-			spiritlamp.MapEntry: spiritlamp
 			Dreampod.MapEntry: Dreampod
 			Runestalk.MapEntry: Runestalk
 
 			PyramidChest: {
 				MapEntry: Pyramid Chest
 				MapEntry0: Locked Pyramid Chest
-				Messages.KeysinUnderground: The keys are hidden in the caverns below...
 			}
 
 			PyramidPot.MapEntry: Pyramid Pot
@@ -192,7 +174,6 @@ Mods: {
 			Nightglow.MapEntry: Nightglow
 			ArcaneChest.MapEntry: Arcane Chest
 			SacrificialAltar.MapEntry: Sacrificial Altar
-			Eyeball.MapEntry: Evil Eye
 			VaultPipe.MapEntry: Vault Pipe
 			AlchemyBench.MapEntry: Desk
 
@@ -222,11 +203,6 @@ Mods: {
 		}
 
 		Items: {
-			alchemybook: {
-				DisplayName: alchemybook
-				Tooltip: ""
-			}
-
 			devtool: {
 				DisplayName: devtool
 				Tooltip: ""
@@ -296,11 +272,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			GoldenPanel: {
-				DisplayName: Golden Panel
-				Tooltip: ""
-			}
-
 			Hardstone: {
 				DisplayName: Hardstone
 				Tooltip: "'A superdense rock of unknown origin'"
@@ -323,11 +294,6 @@ Mods: {
 
 			ToxicWaste: {
 				DisplayName: Toxic Waste
-				Tooltip: ""
-			}
-
-			WaterBrick: {
-				DisplayName: Water Brick
 				Tooltip: ""
 			}
 
@@ -376,32 +342,12 @@ Mods: {
 				Tooltip: ""
 			}
 
-			GoldenPanelWall: {
-				DisplayName: Golden Panel Wall
-				Tooltip: ""
-			}
-
 			PyramidBrickWall: {
 				DisplayName: Pyramid Brick Wall
 				Tooltip: ""
 			}
 
-			WaterBrickWall: {
-				DisplayName: Water Brick Wall
-				Tooltip: ""
-			}
-
 			LuminousHook.DisplayName: Luminous Hook
-
-			ArmCannon: {
-				DisplayName: Arm Cannon
-				Tooltip: ""
-			}
-
-			CursedFlamethrower: {
-				DisplayName: Cursed Flamethrower
-				Tooltip: ""
-			}
 
 			SpiritLance: {
 				DisplayName: Spirit Lance
@@ -582,11 +528,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			HeavyAlloy: {
-				DisplayName: Heavy Alloy
-				Tooltip: ""
-			}
-
 			VaultPlatform: {
 				DisplayName: Vault Platform
 				Tooltip: ""
@@ -603,8 +544,8 @@ Mods: {
 			}
 
 			HellishBrick: {
-				Tooltip: ""
 				DisplayName: Hellish Brick
+				Tooltip: ""
 			}
 
 			HellishPlatform: {
@@ -722,7 +663,6 @@ Mods: {
 
 		NPCs: {
 			HoneySlime.DisplayName: Honey Slime
-			IlluminantDagger.DisplayName: Illuminant Dagger
 			TomeofFrost.DisplayName: Tome of Frost
 			TomeofInferno.DisplayName: Tome of Inferno
 			Ward.DisplayName: Ward
@@ -755,7 +695,6 @@ Mods: {
 			LuminousHook.DisplayName: Luminous Hook
 			ichorjet.DisplayName: ichorjet
 			shockbolt.DisplayName: shockbolt
-			uraniumbullet.DisplayName: uraniumbullet
 			flamejet.DisplayName: flamejet
 			minigunholdout.DisplayName: minigunholdout
 			pulsebolt.DisplayName: pulsebolt
@@ -773,18 +712,12 @@ Mods: {
 
 		Configs: {
 			Worldgen: {
-				DisplayName: " World Generation"
+				DisplayName: World Generation
 
 				Headers: {
-					General: General
 					Terrain: Terrain
 					Structure: Structures
 					LargerSky: World Proportions (Advanced)
-				}
-
-				TerrainAmplitude: {
-					Label: "[i:3] Terrain Amplitude"
-					Tooltip: Controls the height variance of surface terrain
 				}
 
 				OreFrequency: {
@@ -810,16 +743,6 @@ Mods: {
 
 						Note: FOR TESTING PURPOSES ONLY - NEVER USE THIS FOR A NORMAL PLAYTHROUGH
 						'''
-				}
-
-				IceMountain: {
-					Label: "[i:664] Ice Mountain"
-					Tooltip: Enables the mountain in the ice biome
-				}
-
-				JungleValley: {
-					Label: "[i:176] Jungle Valley"
-					Tooltip: Enables the valley in the jungle biome
 				}
 
 				Safeguard: {
@@ -850,32 +773,6 @@ Mods: {
 				RailroadFrequency: {
 					Label: "[i:2340] Railroad Frequency"
 					Tooltip: Controls the number of railroads generated in new worlds
-				}
-
-				DoLivingTrees: {
-					Label: "[i:1182] Vanilla Living Trees"
-					Tooltip:
-						'''
-						Enables the vanilla living trees
-
-						Note: Does NOT replace the giant tree added by Remnants
-						Note: These frequently generate on floating islands due to their programming
-						'''
-				}
-
-				PlatformFrequency: {
-					Label: "[i:94] Platform Frequency"
-					Tooltip: Controls the number of mining platforms generated in new worlds
-				}
-
-				CacheFrequency: {
-					Label: "[i:48] Cache Frequency"
-					Tooltip: Controls the number of hidden caches generated in new worlds
-				}
-
-				FrozenRuinFrequency: {
-					Label: "[i:2059] Ice Temple Frequency"
-					Tooltip: Controls the number of ice temples generated in new worlds
 				}
 
 				FlatSurfaceRatioIncrease: {
@@ -940,17 +837,6 @@ Mods: {
 						Most airborne or aquatic enemies will have improved AI
 
 						Note: Does nothing in multiplayer
-						'''
-				}
-
-				ProjectileAI: {
-					Label: "[i:1321] Projectile AI Improvements"
-					Tooltip:
-						'''
-						Throwing weapons will have a smooth flight trajectory, making them easier to use
-						Comes with additional balance changes, like autoswing for shurikens
-
-						Note: Contains obscure bugs
 						'''
 				}
 
