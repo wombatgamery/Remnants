@@ -203,11 +203,6 @@ Mods: {
 		}
 
 		Items: {
-			devtool: {
-				DisplayName: devtool
-				Tooltip: ""
-			}
-
 			ManaShield: {
 				DisplayName: Magiczna Tarcza
 				Tooltip:
@@ -329,11 +324,6 @@ Mods: {
 
 			Scrapper: {
 				DisplayName: Zgarniak
-				Tooltip: ""
-			}
-
-			sprout: {
-				DisplayName: sprout
 				Tooltip: ""
 			}
 
@@ -539,11 +529,6 @@ Mods: {
 
 			VaultPipe: {
 				DisplayName: Rura Krypty
-				Tooltip: ""
-			}
-
-			devwand2: {
-				DisplayName: devwand2
 				Tooltip: ""
 			}
 
