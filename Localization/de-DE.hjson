@@ -203,11 +203,6 @@ Mods: {
 		}
 
 		Items: {
-			devtool: {
-				DisplayName: Entwicklungswerkzeug
-				Tooltip: ""
-			}
-
 			ManaShield: {
 				DisplayName: Magischer Schild
 				Tooltip:
@@ -329,11 +324,6 @@ Mods: {
 
 			Scrapper: {
 				DisplayName: Verschrotter
-				Tooltip: ""
-			}
-
-			sprout: {
-				DisplayName: Spross
 				Tooltip: ""
 			}
 
@@ -535,11 +525,6 @@ Mods: {
 
 			VaultPipe: {
 				DisplayName: Gewölberohrwerk
-				Tooltip: ""
-			}
-
-			devwand2: {
-				DisplayName: Entwicklungsstab2
 				Tooltip: ""
 			}
 
