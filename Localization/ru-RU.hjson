@@ -203,11 +203,6 @@ Mods: {
 		}
 
 		Items: {
-			devtool: {
-				DisplayName: devtool
-				Tooltip: ""
-			}
-
 			ManaShield: {
 				DisplayName: Магический щит
 				Tooltip:
@@ -331,11 +326,6 @@ Mods: {
 
 			Scrapper: {
 				DisplayName: Утилизатор
-				Tooltip: ""
-			}
-
-			sprout: {
-				DisplayName: Росток
 				Tooltip: ""
 			}
 
@@ -547,11 +537,6 @@ Mods: {
 
 			VaultPipe: {
 				DisplayName: Труба Убежища
-				Tooltip: ""
-			}
-
-			devwand2: {
-				DisplayName: devwand2
 				Tooltip: ""
 			}
 
