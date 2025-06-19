@@ -739,6 +739,7 @@ Mods: {
 					Tooltip:
 						'''
 						Zapobiega tworzeniu światów korzystających z niekompatybilnych modów lub ustawień
+						Notifies the players via an in-game chat if they have mods incompatible with multipayer enabled on a multiplayer client
 
 						Uwaga: Wysoce zalecane — Wyłączaj tylko wtedy, gdy wiesz, co robisz
 						'''
