@@ -9,7 +9,7 @@ Mods: {
 			// Aequus: The Aequus mod is enabled.
 			// StartWithBase: The Start With Base mod is enabled.
 			// Solution: To safely finish world creation, please remove these issues or disable Remnants.
-			// WOTGMultiplayer: Remnants detected Wrath of the Gods enabled on a multiplayer client. The latter does not work in multiplayer - disable it or use singleplayer.
+			// WOTGMultiplayer: Remnants detected Wrath of the Gods enabled on a multiplayer client. This mod is known to cause issues in multiplayer. If you are aware of this and wish to continue, disable the Safeguard option in the Remnants config.
 		}
 
 		WorldgenMessages: {
