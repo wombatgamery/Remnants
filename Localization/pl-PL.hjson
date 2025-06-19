@@ -9,7 +9,7 @@ Mods: {
 			Aequus: Modyfikacja "Aequus" jest włączona.
 			StartWithBase: Modyfikacja "Start with base" jest włączona.
 			Solution: Aby bezpiecznie dokończyć tworzenie świata, usuń te problemy lub wyłącz Remnants.
-			WOTGMultiplayer: Remnants wykryło modyfikację "Wrath of the Gods" która nie działa w tryie wieloosobym - wyłącz ją lub graj w trybie jednoosobowym.
+			WOTGMultiplayer: Remnants detected Wrath of the Gods enabled on a multiplayer client. This mod is known to cause issues in multiplayer. If you are aware of this and wish to continue, disable the Safeguard option in the Remnants config.
 		}
 
 		WorldgenMessages: {
