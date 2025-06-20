@@ -745,7 +745,8 @@ Mods: {
 					Label: "[i:2625] Sunken Sea Rework"
 					Tooltip:
 						'''
-						Enables the sunken sea rework when used with the Calamity mod
+						Enables the Sunken Sea rework when used with the Calamity mod
+						This also ensures that this biome will generate without causing any worldgen issues it has without the rework
 
 						Note: Will become obsolete after the biome is officially updated
 						'''
