@@ -746,6 +746,7 @@ Mods: {
 					Tooltip:
 						'''
 						Aktiviert die Überarbeitung des Versunkenen Meeres, wenn es mit der Calamity-Mod verwendet wird
+						This also ensures that this biome will generate without causing any worldgen issues it has without the rework
 
 						Hinweis: Wird überflüssig, nachdem das Biom offiziell aktualisiert wurde
 						'''
