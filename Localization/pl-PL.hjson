@@ -750,6 +750,7 @@ Mods: {
 					Tooltip:
 						'''
 						Zatopione Morze z modyfikacji "Calamity" staje się odnowione
+						This also ensures that this biome will generate without causing any worldgen issues it has without the rework
 
 						Uwaga: Zostanie wycofane po oficjalnej aktualizacji biomu
 						'''
