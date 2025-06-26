@@ -12,6 +12,10 @@ Mods: {
 			WOTGMultiplayer: Remnants detected Wrath of the Gods enabled on a multiplayer client. This mod is known to cause issues in multiplayer. If you are aware of this and wish to continue, disable the Safeguard option in the Remnants config.
 		}
 
+		Chat: {
+			LabyrinthTeleportation: Unknown magic prevents controlled teleportation...
+		}
+
 		WorldgenMessages: {
 			Safeguard: Weryfikacja zgodności
 			Setup: Konfigurowanie mapy biomu
