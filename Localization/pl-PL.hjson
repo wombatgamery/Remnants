@@ -9,7 +9,11 @@ Mods: {
 			Aequus: Modyfikacja "Aequus" jest włączona.
 			StartWithBase: Modyfikacja "Start with base" jest włączona.
 			Solution: Aby bezpiecznie dokończyć tworzenie świata, usuń te problemy lub wyłącz Remnants.
-			WOTGMultiplayer: Remnants wykryło modyfikację "Wrath of the Gods" która nie działa w tryie wieloosobym - wyłącz ją lub graj w trybie jednoosobowym.
+			WOTGMultiplayer: Remnants detected Wrath of the Gods enabled on a multiplayer client. This mod is known to cause issues in multiplayer. If you are aware of this and wish to continue, disable the Safeguard option in the Remnants config.
+		}
+
+		Chat: {
+			LabyrinthTeleportation: Unknown magic prevents controlled teleportation...
 		}
 
 		WorldgenMessages: {
@@ -67,19 +71,9 @@ Mods: {
 		}
 
 		Biomes: {
-			GoldenCity: {
-				DisplayName: Złote Miasto
-				TownNPCDialogueName: Złote Miasto
-			}
-
 			GraniteCave: {
 				DisplayName: Granitowa Jaskinia
 				TownNPCDialogueName: Granitowa Jaskinia
-			}
-
-			Growth: {
-				DisplayName: Narośl
-				TownNPCDialogueName: Narośl
 			}
 
 			Beehive: {
@@ -127,11 +121,6 @@ Mods: {
 				TownNPCDialogueName: Zapomniany Grobowiec
 			}
 
-			MagicalLabAscension: {
-				DisplayName: Wzniesienie Magicznego Laboratorium
-				TownNPCDialogueName: Wzniesienie Magicznego Laboratorium
-			}
-
 			Undergrowth: {
 				DisplayName: Runo Leśne
 				TownNPCDialogueName: Runo Leśne
@@ -146,7 +135,6 @@ Mods: {
 		Tiles: {
 			Hardstone.MapEntry: Lita Skała
 			StarOre.MapEntry: Gwiezdna Resztka
-			vaultpipe.MapEntry: Rura Krypty
 			LockedIronDoor.MapEntry: Zamknięte Żelazne Drzwi
 			RustedChest.MapEntry: Zardzewiały Kufer
 			LabyrinthSpawner.MapEntry: Spawner
@@ -176,14 +164,12 @@ Mods: {
 
 			Sarcophagus.MapEntry: Sarkofag
 			Scrapper.MapEntry: Zgarniak
-			spiritlamp.MapEntry: Lampion Dusz
 			Dreampod.MapEntry: Marzenica
 			Runestalk.MapEntry: Kryształ Runiczny
 
 			PyramidChest: {
 				MapEntry: Kufer Piramidy
 				MapEntry0: Zamknięty Kufer Piramidy
-				Messages.KeysinUnderground: Klucze są ukryte w jaskiniach pod tobą...
 			}
 
 			PyramidPot.MapEntry: Dzbanek Piramidy
@@ -192,7 +178,6 @@ Mods: {
 			Nightglow.MapEntry: Nocny Krzew
 			ArcaneChest.MapEntry: Kufer Arkanów
 			SacrificialAltar.MapEntry: Ołtarz Ofiarny
-			Eyeball.MapEntry: Złoko
 			VaultPipe.MapEntry: Rura Krypty
 			AlchemyBench.MapEntry: Biurko
 
@@ -222,16 +207,6 @@ Mods: {
 		}
 
 		Items: {
-			alchemybook: {
-				DisplayName: alchemybook
-				Tooltip: ""
-			}
-
-			devtool: {
-				DisplayName: devtool
-				Tooltip: ""
-			}
-
 			ManaShield: {
 				DisplayName: Magiczna Tarcza
 				Tooltip:
@@ -296,11 +271,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			GoldenPanel: {
-				DisplayName: Złoty Panel
-				Tooltip: ""
-			}
-
 			Hardstone: {
 				DisplayName: Lita Skała
 				Tooltip: Supergęsta skała o nieznanym pochodzeniu
@@ -323,11 +293,6 @@ Mods: {
 
 			ToxicWaste: {
 				DisplayName: Toksyczne Odpady
-				Tooltip: ""
-			}
-
-			WaterBrick: {
-				DisplayName: Wodna Cegła
 				Tooltip: ""
 			}
 
@@ -366,18 +331,8 @@ Mods: {
 				Tooltip: ""
 			}
 
-			sprout: {
-				DisplayName: sprout
-				Tooltip: ""
-			}
-
 			GardenBrickWall: {
 				DisplayName: Ściana Ogrodu
-				Tooltip: ""
-			}
-
-			GoldenPanelWall: {
-				DisplayName: Złota Ściana
 				Tooltip: ""
 			}
 
@@ -386,22 +341,7 @@ Mods: {
 				Tooltip: ""
 			}
 
-			WaterBrickWall: {
-				DisplayName: Wodna Ściana
-				Tooltip: ""
-			}
-
 			LuminousHook.DisplayName: Świecący Hak
-
-			ArmCannon: {
-				DisplayName: Armata Ręczna
-				Tooltip: ""
-			}
-
-			CursedFlamethrower: {
-				DisplayName: Przeklęty Miotacz Płomieni
-				Tooltip: ""
-			}
 
 			SpiritLance: {
 				DisplayName: Włócznia Energii
@@ -586,11 +526,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			HeavyAlloy: {
-				DisplayName: Ciężki Stop
-				Tooltip: ""
-			}
-
 			VaultPlatform: {
 				DisplayName: Platforma Krypty
 				Tooltip: ""
@@ -601,14 +536,9 @@ Mods: {
 				Tooltip: ""
 			}
 
-			devwand2: {
-				DisplayName: devwand2
-				Tooltip: ""
-			}
-
 			HellishBrick: {
-				Tooltip: ""
 				DisplayName: Piekielna Cegła
+				Tooltip: ""
 			}
 
 			HellishPlatform: {
@@ -726,7 +656,6 @@ Mods: {
 
 		NPCs: {
 			HoneySlime.DisplayName: Miodny Szlam
-			IlluminantDagger.DisplayName: Iluminujący Sztylet
 			TomeofFrost.DisplayName: Księga Szronu
 			TomeofInferno.DisplayName: Księga Piekła
 			Ward.DisplayName: Obrońca
@@ -759,7 +688,6 @@ Mods: {
 			LuminousHook.DisplayName: Święcący Hak
 			ichorjet.DisplayName: ichorjet
 			shockbolt.DisplayName: shockbolt
-			uraniumbullet.DisplayName: uraniumbullet
 			flamejet.DisplayName: flamejet
 			minigunholdout.DisplayName: minigunholdout
 			pulsebolt.DisplayName: pulsebolt
@@ -780,15 +708,9 @@ Mods: {
 				DisplayName: Ustawienia Klienta
 
 				Headers: {
-					General: Ogólne
 					Terrain: Teren
 					Structure: Struktury
 					LargerSky: Proporcje Swiata (Dla zaawansowanych)
-				}
-
-				TerrainAmplitude: {
-					Label: "[i:3] Amplituda Terenu"
-					Tooltip: Kontroluje zmienność wysokości powierzchni terenu
 				}
 
 				OreFrequency: {
@@ -816,21 +738,12 @@ Mods: {
 						'''
 				}
 
-				IceMountain: {
-					Label: "[i:664] Lodowa Góra"
-					Tooltip: Włącza górę w biomie Tundry
-				}
-
-				JungleValley: {
-					Label: "[i:176] Dżunglowa Dolina"
-					Tooltip: Włącza dolinę w biomie Dżungli
-				}
-
 				Safeguard: {
 					Label: "[i:156] Zabezpieczenie"
 					Tooltip:
 						'''
 						Zapobiega tworzeniu światów korzystających z niekompatybilnych modów lub ustawień
+						Notifies the players via an in-game chat if they have mods incompatible with multipayer enabled on a multiplayer client
 
 						Uwaga: Wysoce zalecane — Wyłączaj tylko wtedy, gdy wiesz, co robisz
 						'''
@@ -841,6 +754,7 @@ Mods: {
 					Tooltip:
 						'''
 						Zatopione Morze z modyfikacji "Calamity" staje się odnowione
+						This also ensures that this biome will generate without causing any worldgen issues it has without the rework
 
 						Uwaga: Zostanie wycofane po oficjalnej aktualizacji biomu
 						'''
@@ -854,32 +768,6 @@ Mods: {
 				RailroadFrequency: {
 					Label: "[i:2340] Częstotliwość Torowisk"
 					Tooltip: Kontroluje ilość torowisk generowanych w nowych światach
-				}
-
-				DoLivingTrees: {
-					Label: "[i:1182] Żywe Drzewa z Vanilii"
-					Tooltip:
-						'''
-						Włącza Żywe Drzewa z Vanilii
-
-						Uwaga: NIE zastępuje gigantycznego drzewa dodanego przez Remnants
-						Uwaga: Często generowane na Podniebnych Wyspach ze względu na ich zaprogramowanie
-						'''
-				}
-
-				PlatformFrequency: {
-					Label: "[i:94] Częstotliwość Platform"
-					Tooltip: Kontroluje ilość platform wydobywczych generowanych w nowych światach
-				}
-
-				CacheFrequency: {
-					Label: "[i:48] Częstotliwość Kryjówek"
-					Tooltip: Kontroluje ilość kryjówek generowanych w nowych światach
-				}
-
-				FrozenRuinFrequency: {
-					Label: "[i:2059] Częstotliwość Lodowej Świątyni"
-					Tooltip: Kontroluje ilość lodowych świątyń generowanych w nowych światach
 				}
 
 				FlatSurfaceRatioIncrease: {
@@ -943,17 +831,6 @@ Mods: {
 						Większość wrogów latających i wodnych będzie miała ulepszoną sztuczną inteligencję
 
 						Uwaga: Nie działa w trybie wieloosobowym
-						'''
-				}
-
-				ProjectileAI: {
-					Label: "[i:1321] Ulepszenie SI Pocisków"
-					Tooltip:
-						'''
-						Rzucane bronie będą miały płynniejszą trajektorię lotu, dzięki czemu będą łatwiejsze w użyciu
-						Zawiera dodatkowe zmiany w balansie, takie jak automatyczne atakowanie Shurikenami
-
-						Uwaga: Zawiera niejasne błędy
 						'''
 				}
 

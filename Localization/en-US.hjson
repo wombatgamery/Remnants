@@ -9,7 +9,11 @@ Mods: {
 			Aequus: The Aequus mod is enabled.
 			StartWithBase: The Start With Base mod is enabled.
 			Solution: To safely finish world creation, please remove these issues or disable Remnants.
-			WOTGMultiplayer: Remnants detected Wrath of the Gods enabled on a multiplayer client. The latter does not work in multiplayer - disable it or use singleplayer.
+			WOTGMultiplayer: Remnants detected Wrath of the Gods enabled on a multiplayer client. This mod is known to cause issues in multiplayer. If you are aware of this and wish to continue, disable the Safeguard option in the Remnants config.
+		}
+
+		Chat: {
+			LabyrinthTeleportation: Unknown magic prevents controlled teleportation...
 		}
 
 		WorldgenMessages: {
@@ -32,7 +36,7 @@ Mods: {
 			Mineshafts: Overseeing mining operations
 			Pyramid: Enshrining sacred relics
 			Beehives: Mutating hornet genomes
-			SkyIslands: Distorting gravity
+			SkyIslands: Distorting gravityФ
 			GemCaves: Forming resplendent geodes
 			Microdungeons: Expanding infrastructure
 			Boulders: Rigging boulder traps
@@ -67,19 +71,9 @@ Mods: {
 		}
 
 		Biomes: {
-			GoldenCity: {
-				DisplayName: The Golden City
-				TownNPCDialogueName: the Golden City
-			}
-
 			GraniteCave: {
 				DisplayName: Granite Cave
 				TownNPCDialogueName: the Granite Cave
-			}
-
-			Growth: {
-				DisplayName: Growth
-				TownNPCDialogueName: the Growth
 			}
 
 			Beehive: {
@@ -127,11 +121,6 @@ Mods: {
 				TownNPCDialogueName: the Forgotten Tomb
 			}
 
-			MagicalLabAscension: {
-				DisplayName: Magical Lab Ascension
-				TownNPCDialogueName: the Magical Lab Ascension
-			}
-
 			Undergrowth: {
 				DisplayName: The Undergrowth
 				TownNPCDialogueName: the Undergrowth
@@ -146,7 +135,6 @@ Mods: {
 		Tiles: {
 			Hardstone.MapEntry: Hardstone
 			StarOre.MapEntry: Stellar Remnant
-			vaultpipe.MapEntry: vaultpipe
 			LockedIronDoor.MapEntry: Locked Iron Door
 			RustedChest.MapEntry: Rusted Chest
 			LabyrinthSpawner.MapEntry: Spawner
@@ -176,14 +164,12 @@ Mods: {
 
 			Sarcophagus.MapEntry: Sarcophagus
 			Scrapper.MapEntry: Scrapper
-			spiritlamp.MapEntry: spiritlamp
 			Dreampod.MapEntry: Dreampod
 			Runestalk.MapEntry: Runestalk
 
 			PyramidChest: {
 				MapEntry: Pyramid Chest
 				MapEntry0: Locked Pyramid Chest
-				Messages.KeysinUnderground: The keys are hidden in the caverns below...
 			}
 
 			PyramidPot.MapEntry: Pyramid Pot
@@ -192,7 +178,6 @@ Mods: {
 			Nightglow.MapEntry: Nightglow
 			ArcaneChest.MapEntry: Arcane Chest
 			SacrificialAltar.MapEntry: Sacrificial Altar
-			Eyeball.MapEntry: Evil Eye
 			VaultPipe.MapEntry: Vault Pipe
 			AlchemyBench.MapEntry: Desk
 
@@ -222,16 +207,6 @@ Mods: {
 		}
 
 		Items: {
-			alchemybook: {
-				DisplayName: alchemybook
-				Tooltip: ""
-			}
-
-			devtool: {
-				DisplayName: devtool
-				Tooltip: ""
-			}
-
 			ManaShield: {
 				DisplayName: Magic Shield
 				Tooltip:
@@ -296,11 +271,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			GoldenPanel: {
-				DisplayName: Golden Panel
-				Tooltip: ""
-			}
-
 			Hardstone: {
 				DisplayName: Hardstone
 				Tooltip: "'A superdense rock of unknown origin'"
@@ -323,11 +293,6 @@ Mods: {
 
 			ToxicWaste: {
 				DisplayName: Toxic Waste
-				Tooltip: ""
-			}
-
-			WaterBrick: {
-				DisplayName: Water Brick
 				Tooltip: ""
 			}
 
@@ -366,18 +331,8 @@ Mods: {
 				Tooltip: ""
 			}
 
-			sprout: {
-				DisplayName: sprout
-				Tooltip: ""
-			}
-
 			GardenBrickWall: {
 				DisplayName: Garden Brick Wall
-				Tooltip: ""
-			}
-
-			GoldenPanelWall: {
-				DisplayName: Golden Panel Wall
 				Tooltip: ""
 			}
 
@@ -386,22 +341,7 @@ Mods: {
 				Tooltip: ""
 			}
 
-			WaterBrickWall: {
-				DisplayName: Water Brick Wall
-				Tooltip: ""
-			}
-
 			LuminousHook.DisplayName: Luminous Hook
-
-			ArmCannon: {
-				DisplayName: Arm Cannon
-				Tooltip: ""
-			}
-
-			CursedFlamethrower: {
-				DisplayName: Cursed Flamethrower
-				Tooltip: ""
-			}
 
 			SpiritLance: {
 				DisplayName: Spirit Lance
@@ -582,11 +522,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			HeavyAlloy: {
-				DisplayName: Heavy Alloy
-				Tooltip: ""
-			}
-
 			VaultPlatform: {
 				DisplayName: Vault Platform
 				Tooltip: ""
@@ -597,14 +532,9 @@ Mods: {
 				Tooltip: ""
 			}
 
-			devwand2: {
-				DisplayName: devwand2
-				Tooltip: ""
-			}
-
 			HellishBrick: {
-				Tooltip: ""
 				DisplayName: Hellish Brick
+				Tooltip: ""
 			}
 
 			HellishPlatform: {
@@ -722,7 +652,6 @@ Mods: {
 
 		NPCs: {
 			HoneySlime.DisplayName: Honey Slime
-			IlluminantDagger.DisplayName: Illuminant Dagger
 			TomeofFrost.DisplayName: Tome of Frost
 			TomeofInferno.DisplayName: Tome of Inferno
 			Ward.DisplayName: Ward
@@ -755,7 +684,6 @@ Mods: {
 			LuminousHook.DisplayName: Luminous Hook
 			ichorjet.DisplayName: ichorjet
 			shockbolt.DisplayName: shockbolt
-			uraniumbullet.DisplayName: uraniumbullet
 			flamejet.DisplayName: flamejet
 			minigunholdout.DisplayName: minigunholdout
 			pulsebolt.DisplayName: pulsebolt
@@ -773,18 +701,12 @@ Mods: {
 
 		Configs: {
 			Worldgen: {
-				DisplayName: " World Generation"
+				DisplayName: World Generation
 
 				Headers: {
-					General: General
 					Terrain: Terrain
 					Structure: Structures
 					LargerSky: World Proportions (Advanced)
-				}
-
-				TerrainAmplitude: {
-					Label: "[i:3] Terrain Amplitude"
-					Tooltip: Controls the height variance of surface terrain
 				}
 
 				OreFrequency: {
@@ -812,21 +734,12 @@ Mods: {
 						'''
 				}
 
-				IceMountain: {
-					Label: "[i:664] Ice Mountain"
-					Tooltip: Enables the mountain in the ice biome
-				}
-
-				JungleValley: {
-					Label: "[i:176] Jungle Valley"
-					Tooltip: Enables the valley in the jungle biome
-				}
-
 				Safeguard: {
 					Label: "[i:156] Safeguard"
 					Tooltip:
 						'''
 						Prevents the creation of worlds that use incompatible mods or settings
+						Notifies the players via an in-game chat if they have mods incompatible with multipayer enabled on a multiplayer client
 
 						Note: Highly recommended - only disable if you know what you are doing
 						'''
@@ -836,7 +749,8 @@ Mods: {
 					Label: "[i:2625] Sunken Sea Rework"
 					Tooltip:
 						'''
-						Enables the sunken sea rework when used with the Calamity mod
+						Enables the Sunken Sea rework when used with the Calamity mod
+						This also ensures that this biome will generate without causing any worldgen issues it has without the rework
 
 						Note: Will become obsolete after the biome is officially updated
 						'''
@@ -850,32 +764,6 @@ Mods: {
 				RailroadFrequency: {
 					Label: "[i:2340] Railroad Frequency"
 					Tooltip: Controls the number of railroads generated in new worlds
-				}
-
-				DoLivingTrees: {
-					Label: "[i:1182] Vanilla Living Trees"
-					Tooltip:
-						'''
-						Enables the vanilla living trees
-
-						Note: Does NOT replace the giant tree added by Remnants
-						Note: These frequently generate on floating islands due to their programming
-						'''
-				}
-
-				PlatformFrequency: {
-					Label: "[i:94] Platform Frequency"
-					Tooltip: Controls the number of mining platforms generated in new worlds
-				}
-
-				CacheFrequency: {
-					Label: "[i:48] Cache Frequency"
-					Tooltip: Controls the number of hidden caches generated in new worlds
-				}
-
-				FrozenRuinFrequency: {
-					Label: "[i:2059] Ice Temple Frequency"
-					Tooltip: Controls the number of ice temples generated in new worlds
 				}
 
 				FlatSurfaceRatioIncrease: {
@@ -940,17 +828,6 @@ Mods: {
 						Most airborne or aquatic enemies will have improved AI
 
 						Note: Does nothing in multiplayer
-						'''
-				}
-
-				ProjectileAI: {
-					Label: "[i:1321] Projectile AI Improvements"
-					Tooltip:
-						'''
-						Throwing weapons will have a smooth flight trajectory, making them easier to use
-						Comes with additional balance changes, like autoswing for shurikens
-
-						Note: Contains obscure bugs
 						'''
 				}
 

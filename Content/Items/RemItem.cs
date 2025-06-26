@@ -90,7 +90,7 @@ namespace Remnants.Content.Items
             {
                 if (item.type == ItemID.RodofDiscord || item.type == ItemID.RodOfHarmony)
                 {
-                    Main.NewText("Unknown magic prevents controlled teleportation...", 120, 242, 255);
+                    Main.NewText(Language.GetTextValue("Mods.Remnants.Chat.LabyrinthTeleportation"), 120, 242, 255);
                     return false;
                 }
             }
