@@ -26,11 +26,11 @@ Partially compatible mods will cause some minor problems, but otherwise may stil
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3015412343][b]Infernum Mode[/b][/url] (The Golem rework does not suit the new arena)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2563862309][b]The Stars Above[/b][/url] (The Neon Veil overlaps other structures)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2984622072][b]Starlight River[/b][/url] (A few biome and structure conflicts)
-[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2843112914][b]Secrets of the Shadows[/b][/url] (Conflicting pyramid reworks)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3019925104][b]Lunar Veil[/b][/url] (Numerous biome and structure conflicts)
 [/list]
 
 Incompatible mods will result in a guaranteed crash or unplayable world: [list]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2843112914][b]Secrets of the Shadows[/b][/url]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2807309918][b]Start With Base[/b][/url]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2930931197][b]Homeward Journey[/b][/url]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2833852432][b]Spooky Mod[/b][/url]

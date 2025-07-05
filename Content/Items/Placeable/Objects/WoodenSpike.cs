@@ -11,7 +11,7 @@ namespace Remnants.Content.Items.Placeable.Objects
 	{
 		public override void SetStaticDefaults()
 		{
-			Item.ResearchUnlockCount = 1;
+			Item.ResearchUnlockCount = 5;
 		}
 
 		public override void SetDefaults()

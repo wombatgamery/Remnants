@@ -1160,6 +1160,9 @@ namespace Remnants.Content.World
                         attempts = 0;
                     }
                 }
+
+                MiscTools.PlaceObjectsInArea(EntranceX - 20, EntranceY, EntranceX + 20, EntranceY,  ModContent.TileType<SkullSign>(), count: 3);
+
                 #endregion
 
                 for (int j = (int)(Main.worldSurface * 0.5f); j < bounds.Bottom; j++)

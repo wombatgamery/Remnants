@@ -12,9 +12,7 @@ Mods: {
 			// WOTGMultiplayer: Remnants detected Wrath of the Gods enabled on a multiplayer client. This mod is known to cause issues in multiplayer. If you are aware of this and wish to continue, disable the Safeguard option in the Remnants config.
 		}
 
-		Chat: {
-			LabyrinthTeleportation: Unknown magic prevents controlled teleportation...
-		}
+		Chat.LabyrinthTeleportation: Unknown magic prevents controlled teleportation...
 
 		WorldgenMessages: {
 			// Safeguard: Verifying compatibility
@@ -36,7 +34,7 @@ Mods: {
 			// Mineshafts: Overseeing mining operations
 			// Pyramid: Enshrining sacred relics
 			// Beehives: Mutating hornet genomes
-			// SkyIslands: Distorting gravity
+			// SkyIslands: Distorting gravityФ
 			// GemCaves: Forming resplendent geodes
 			// Microdungeons: Expanding infrastructure
 			// Boulders: Rigging boulder traps
@@ -130,6 +128,16 @@ Mods: {
 				DisplayName: Luftgarten
 				TownNPCDialogueName: den Luftgarten
 			}
+
+			MagicalLabAscension: {
+				// TownNPCDialogueName: the Magical Lab Ascension
+				// DisplayName: Magical Lab Ascension
+			}
+
+			GoldenCity: {
+				// TownNPCDialogueName: the Golden City
+				// DisplayName: Golden City
+			}
 		}
 
 		Tiles: {
@@ -187,6 +195,7 @@ Mods: {
 			}
 
 			PrismbudHead.MapEntry: Prismaknospe
+			// spiritlamp.MapEntry: spiritlamp
 		}
 
 		Buffs: {
@@ -647,6 +656,11 @@ Mods: {
 			hivekey: {
 				// DisplayName: hivekey
 				// Tooltip: ""
+			}
+
+			SkullSign: {
+				// Tooltip: ""
+				// DisplayName: Skull Sign
 			}
 		}
 

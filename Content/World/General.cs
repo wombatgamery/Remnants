@@ -682,7 +682,7 @@ namespace Remnants.Content.World
 
                     if (Framing.GetTileSafely(x, y).TileType != tile && !HasTile(x, y + 1, ModContent.TileType<nothing>()))
                     {
-                        WorldGen.PlaceObject(x, y, tile, style: style2, direction: tile == TileID.Chairs && WorldGen.genRand.NextBool(2) ? 1 : -1);
+                        WorldGen.PlaceObject(x, y, tile, style: style2, direction: (tile == TileID.Chairs || tile == ModContent.TileType<Tiles.Objects.Decoration.SkullSign>()) && WorldGen.genRand.NextBool(2) ? 1 : -1);
                     }
                     success = Framing.GetTileSafely(x, y).TileType == tile;
                     if (success)

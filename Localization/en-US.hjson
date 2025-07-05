@@ -12,9 +12,7 @@ Mods: {
 			WOTGMultiplayer: Remnants detected Wrath of the Gods enabled on a multiplayer client. This mod is known to cause issues in multiplayer. If you are aware of this and wish to continue, disable the Safeguard option in the Remnants config.
 		}
 
-		Chat: {
-			LabyrinthTeleportation: Unknown magic prevents controlled teleportation...
-		}
+		Chat.LabyrinthTeleportation: Unknown magic prevents controlled teleportation...
 
 		WorldgenMessages: {
 			Safeguard: Verifying compatibility
@@ -130,6 +128,16 @@ Mods: {
 				DisplayName: The Aerial Garden
 				TownNPCDialogueName: the Aerial Garden
 			}
+
+			MagicalLabAscension: {
+				TownNPCDialogueName: the Magical Lab Ascension
+				DisplayName: Magical Lab Ascension
+			}
+
+			GoldenCity: {
+				TownNPCDialogueName: the Golden City
+				DisplayName: Golden City
+			}
 		}
 
 		Tiles: {
@@ -187,6 +195,7 @@ Mods: {
 			}
 
 			PrismbudHead.MapEntry: Prismbud
+			spiritlamp.MapEntry: spiritlamp
 		}
 
 		Buffs: {
@@ -648,6 +657,11 @@ Mods: {
 				DisplayName: hivekey
 				Tooltip: ""
 			}
+
+			SkullSign: {
+				Tooltip: ""
+				DisplayName: Skull Sign
+			}
 		}
 
 		NPCs: {
@@ -701,7 +715,7 @@ Mods: {
 
 		Configs: {
 			Worldgen: {
-				DisplayName: World Generation
+				DisplayName: " World Generation"
 
 				Headers: {
 					Terrain: Terrain
@@ -750,7 +764,7 @@ Mods: {
 					Tooltip:
 						'''
 						Enables the Sunken Sea rework when used with the Calamity mod
-						This also ensures that this biome will generate without causing any worldgen issues it has without the rework
+						This also removes the many worldgen issues caused by the original programming
 
 						Note: Will become obsolete after the biome is officially updated
 						'''

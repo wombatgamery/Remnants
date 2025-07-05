@@ -12,9 +12,7 @@ Mods: {
 			WOTGMultiplayer: Wrath of the Gods несовместим с мультиплеером и вызывает множество багов. Настоятельно рекомендуем ради вашего же блага отключить его или играть в синглплеере.
 		}
 
-		Chat: {
-			LabyrinthTeleportation: Неизвестная магия этого места напрочь лишила вас возможности телепортироваться...
-		}
+		Chat.LabyrinthTeleportation: Неизвестная магия этого места напрочь лишила вас возможности телепортироваться...
 
 		WorldgenMessages: {
 			Safeguard: Проверяем соместимость модов...
@@ -130,6 +128,16 @@ Mods: {
 				DisplayName: Небесный сад
 				TownNPCDialogueName: Небесный сад
 			}
+
+			MagicalLabAscension: {
+				// TownNPCDialogueName: the Magical Lab Ascension
+				// DisplayName: Magical Lab Ascension
+			}
+
+			GoldenCity: {
+				// TownNPCDialogueName: the Golden City
+				// DisplayName: Golden City
+			}
 		}
 
 		Tiles: {
@@ -187,6 +195,7 @@ Mods: {
 			}
 
 			PrismbudHead.MapEntry: Луковица-призмоцветка
+			// spiritlamp.MapEntry: spiritlamp
 		}
 
 		Buffs: {
@@ -663,6 +672,11 @@ Mods: {
 			hivekey: {
 				DisplayName: Генератор комнат для шахт
 				Tooltip: ""
+			}
+
+			SkullSign: {
+				// Tooltip: ""
+				// DisplayName: Skull Sign
 			}
 		}
 

@@ -106,9 +106,11 @@ namespace Remnants.Content
                 //Player.runAcceleration *= 1.4f;
                 //Player.maxRunSpeed *= 1.2f;
 
-                Player.maxRunSpeed += 0.45f;
+                Player.moveSpeed *= 1.15f;
+
+                Player.maxRunSpeed += 0.4f;
                 Player.runAcceleration += 0.2f;
-                Player.runSlowdown += 0.1f;
+                Player.runSlowdown += 0.2f;
             }
 
             if (Player.ZoneDirtLayerHeight || Player.ZoneRockLayerHeight)
@@ -135,7 +137,7 @@ namespace Remnants.Content
                 manaRegenStopTimer--;
             }
 
-            if (WOTG && ModContent.GetInstance<Gameplay>().Safeguard)
+            if (WOTG && ModContent.GetInstance<Worldgen>().Safeguard)
             {
                 Main.NewText(Language.GetTextValue("Mods.Remnants.Safeguard.WOTGMultiplayer"), Color.Red);
             }
