@@ -115,6 +115,9 @@ namespace Remnants.Content.World
                         }
                     }
 
+                    SpawnPointFix.savedX = entranceX;// + 48 * (left ? -1 : 1);
+                    SpawnPointFix.savedY = entranceY - 48;
+
 
                     FastNoiseLite hill = new FastNoiseLite(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
                     hill.SetNoiseType(FastNoiseLite.NoiseType.Value);
@@ -2882,6 +2885,10 @@ namespace Remnants.Content.World
                     valid = false;
                 }
                 else if (!MiscTools.NonSolidInArea(tower.area.Left - 1, tower.area.Top + 4, tower.area.Left, tower.area.Top + 11) || !MiscTools.NonSolidInArea(tower.area.Right - 1, tower.area.Top + 4, tower.area.Right, tower.area.Top + 11))
+                {
+                    valid = false;
+                }
+                else if (MathHelper.Distance(tower.area.Center.X, SpawnPointFix.savedX) < 15)
                 {
                     valid = false;
                 }

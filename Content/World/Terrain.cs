@@ -1336,7 +1336,7 @@ namespace Remnants.Content.World
 
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            int[] blocksToReplace = new int[] { TileID.Dirt, TileID.Grass, TileID.CorruptGrass, TileID.CrimsonGrass, TileID.Stone, TileID.Ebonstone, TileID.Crimstone, TileID.SnowBlock, TileID.IceBlock, TileID.Mud, TileID.JungleGrass, TileID.MushroomGrass, TileID.Sand, TileID.HardenedSand, TileID.Sandstone };
+            int[] blocksToReplace = new int[] { TileID.Stone, TileID.Dirt, TileID.Grass, TileID.CorruptGrass, TileID.CrimsonGrass, TileID.Ebonstone, TileID.Crimstone, TileID.SnowBlock, TileID.IceBlock, TileID.Mud, TileID.JungleGrass, TileID.MushroomGrass, TileID.Sand, TileID.HardenedSand, TileID.Sandstone };
 
             int rarity;
             int type;
@@ -1349,7 +1349,7 @@ namespace Remnants.Content.World
                 {
                     Tile tile = Main.tile[x, y];
 
-                    if (tile.HasTile && blocksToReplace.Contains(tile.TileType) && biomes.FindBiome(x, y) != BiomeID.SunkenSea)
+                    if (tile.HasTile && biomes.FindBiome(x, y) != BiomeID.SunkenSea)
                     {
                         float radius = 3;
                         while (radius < 15)
@@ -1455,7 +1455,7 @@ namespace Remnants.Content.World
 
         public static void OreVein(int structureX, int structureY, int size, float rarity, int type, int[] blocksToReplace, int steps, float weight = 0.5f, int birthLimit = 4, int deathLimit = 4)
         {
-            if (ModContent.GetInstance<Worldgen>().OreFrequency == 0) { return; }
+            if (!blocksToReplace.Contains(Main.tile[structureX, structureY].TileType) || ModContent.GetInstance<Worldgen>().OreFrequency == 0) { return; }
 
             bool[] validTiles = TileID.Sets.Factory.CreateBoolSet(true, TileID.DesertFossil, TileID.FleshBlock);
 
