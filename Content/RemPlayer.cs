@@ -135,7 +135,7 @@ namespace Remnants.Content
                 manaRegenStopTimer--;
             }
 
-            if (WOTG)
+            if (WOTG && ModContent.GetInstance<Gameplay>().Safeguard)
             {
                 Main.NewText(Language.GetTextValue("Mods.Remnants.Safeguard.WOTGMultiplayer"), Color.Red);
             }
