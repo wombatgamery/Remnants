@@ -3736,6 +3736,11 @@ namespace Remnants.Content.World
                                 itemsToAdd.Add((ItemID.Fish, 1));
                             }
 
+                            if (WorldGen.genRand.NextBool(15))
+                            {
+                                itemsToAdd.Add((ItemID.IceMachine, 1));
+                            }
+
                             StructureTools.GenericLoot(chestIndex, itemsToAdd, 2);
 
                             StructureTools.FillChest(chestIndex, itemsToAdd);
