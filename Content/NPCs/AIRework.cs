@@ -50,6 +50,15 @@ namespace Remnants.Content.NPCs
 
         public bool bypassInvis;
 
+
+        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        {
+            if (npc.type == NPCID.QueenBee)
+            {
+                npcLoot.Add(ItemDropRule.Common(ItemID.HoneyDispenser, 15));
+            }
+        }
+
         public virtual bool IsValidNPC(NPC npc)
         {
             return false;
