@@ -1814,6 +1814,16 @@ namespace Remnants.Content.World
                                     itemsToAdd.Add((ModContent.ItemType<PyramidKey>(), 1));
                                 }
 
+                                if (WorldGen.genRand.NextBool(15))
+                                {
+                                    itemsToAdd.Add((ItemID.CatBast, 1));
+                                }
+
+                                if (WorldGen.genRand.NextBool(5))
+                                {
+                                    itemsToAdd.Add((ItemID.DesertMinecart, 1));
+                                }
+
                                 StructureTools.GenericLoot(chestIndex, itemsToAdd, 2);
 
                                 StructureTools.FillChest(chestIndex, itemsToAdd);
