@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Media;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -10,6 +11,14 @@ namespace Remnants.Content.Items.Materials
 
     public class Alchemy : GlobalItem
     {
+        public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
+        {
+            if (item.type == ItemID.QueenBeeBossBag)
+            {
+                itemLoot.Add(ItemDropRule.Common(ItemID.HoneyDispenser, 15));
+            }
+        }
+
         public override void AddRecipes()
         {
             //ModRecipe
