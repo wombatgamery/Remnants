@@ -80,7 +80,7 @@ namespace Remnants.Content.World
         private static float scaleX => Main.maxTilesX / 4200f;
         private static float scaleY => Main.maxTilesY / 1200f;
 
-        public static int Minimum => (int)(Main.worldSurface / 2);
+        public static int Minimum => Math.Max((int)(Main.worldSurface / 2), (int)Main.worldSurface - 400);
         public static int Maximum => (int)(Main.worldSurface - 60);
         public static int Middle => (Minimum + Maximum) / 2;
 
@@ -100,14 +100,14 @@ namespace Remnants.Content.World
             roughness.SetFractalOctaves(3);
 
             FastNoiseLite forestHills = new FastNoiseLite(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
-            forestHills.SetNoiseType(FastNoiseLite.NoiseType.Value);
-            forestHills.SetFrequency(0.005f);
+            forestHills.SetNoiseType(FastNoiseLite.NoiseType.OpenSimplex2);
+            forestHills.SetFrequency(0.004f);
             forestHills.SetFractalType(FastNoiseLite.FractalType.FBm);
             forestHills.SetFractalOctaves(3);
-            forestHills.SetFractalGain(0.25f);
+            //forestHills.SetFractalGain(0.25f);
 
-            int mountain1Pos = (Tundra.Left + Tundra.Width / 3) * biomes.CellSize;
-            int mountain2Pos = (Tundra.Right + 1 - Tundra.Width / 3) * biomes.CellSize;
+            int mountain1Pos = (int)((Tundra.Left + Tundra.Width / 3.5f) * biomes.CellSize);
+            int mountain2Pos = (int)((Tundra.Right + 1 - Tundra.Width / 3.5f) * biomes.CellSize);
             float mountain1Height = WorldGen.genRand.NextFloat(1.5f, 2f);
             float mountain2Height = WorldGen.genRand.NextFloat(1.5f, 2f);
             if (WorldGen.genRand.NextBool(2))
@@ -118,7 +118,7 @@ namespace Remnants.Content.World
 
             FastNoiseLite mountainJags = new FastNoiseLite(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
             mountainJags.SetNoiseType(FastNoiseLite.NoiseType.Value);
-            mountainJags.SetFrequency(0.04f);
+            mountainJags.SetFrequency(0.03f);
             mountainJags.SetFractalType(FastNoiseLite.FractalType.FBm);
             mountainJags.SetFractalOctaves(3);
             mountainJags.SetFractalGain(0.3f);
@@ -268,17 +268,18 @@ namespace Remnants.Content.World
                             //_terrain -= 0.25f * (float)SmootherStep(0, 1, MathHelper.Clamp(Math.Min(MathHelper.Distance(x, Main.maxTilesX * 0.4f), MathHelper.Distance(x, Main.maxTilesX * 0.6f)) / (Main.maxTilesX / 21), 0, 1));
                         }
 
+                        _terrain -= 0.8f * ((float)-Math.Cos(MathHelper.Pi * (1 - Math.Clamp(MathHelper.Distance(i, mountain1Pos) / (Main.maxTilesX / 21f), 0, 1)) / 2) + 1) * mountain1Height;
+                        _terrain -= 0.8f * ((float)-Math.Cos(MathHelper.Pi * (1 - Math.Clamp(MathHelper.Distance(i, mountain2Pos) / (Main.maxTilesX / 21f), 0, 1)) / 2) + 1) * mountain2Height;
+                        _terrain += mountainJags.GetNoise(i, 0) / 4 * (1 - MathHelper.Clamp(Math.Min(MathHelper.Distance(i, mountain1Pos), MathHelper.Distance(i, mountain2Pos)) / (Main.maxTilesX / 10.5f), 0, 1)) * MathHelper.Clamp(tundraDistance / (Main.maxTilesX / 4200f), 0, 1);
+
                         bool carve = false;
                         if (biomes.FindBiome(x, y, false) == BiomeID.None)
                         {
-                            _terrain += forestHills.GetNoise(i, 0) / 4 * (1 - beachFactor) * MathHelper.Clamp(forestDistance / (Main.maxTilesX / 2100f), 0, 1) * MathHelper.Clamp(MathHelper.Distance(i / biomes.CellSize, biomes.Width / 2) / (Main.maxTilesX / 2100f), 0, 1);
+                            _terrain += forestHills.GetNoise(i, 0) / 5 * (1 - beachFactor) * MathHelper.Clamp(forestDistance / (Main.maxTilesX / 2100f), 0, 1) * MathHelper.Clamp(MathHelper.Distance(i / biomes.CellSize, biomes.Width / 2) / (Main.maxTilesX / 2100f), 0, 1);
                         }
                         else if (biomes.FindBiome(x, y, false) == BiomeID.Tundra)
                         {
-                            _terrain += 0.2f * (float)MiscTools.LessSmoothStep(0, 1, MathHelper.Clamp(tundraDistance / (Main.maxTilesX / 2500f), 0, 1));
-                            _terrain -= 0.8f * ((float)-Math.Cos(MathHelper.Pi * (1 - Math.Clamp(MathHelper.Distance(i, mountain1Pos) / (Main.maxTilesX / 25f), 0, 1)) / 2) + 1) * mountain1Height;
-                            _terrain -= 0.8f * ((float)-Math.Cos(MathHelper.Pi * (1 - Math.Clamp(MathHelper.Distance(i, mountain2Pos) / (Main.maxTilesX / 25f), 0, 1)) / 2) + 1) * mountain2Height;
-                            _terrain += mountainJags.GetNoise(i, 0) / 4 * (1 - MathHelper.Clamp(Math.Min(MathHelper.Distance(i, mountain1Pos), MathHelper.Distance(i, mountain2Pos)) / (Main.maxTilesX / 12.5f), 0, 1)) * MathHelper.Clamp(tundraDistance / (Main.maxTilesX / 4200f), 0, 1);
+                            _terrain += 0.2f * (float)MiscTools.LessSmoothStep(0, 1, MathHelper.Clamp(tundraDistance / (Main.maxTilesX / 2100f), 0, 1));
                         }
                         else if (biomes.FindBiome(x, y, false) == BiomeID.Jungle)
                         {
@@ -971,7 +972,7 @@ namespace Remnants.Content.World
             }
 
             count = 0;
-            while (count < Main.maxTilesX / 420)
+            while (count < 20)
             {
                 progress.Set(0.95f + count / (Main.maxTilesX / 420f) * 0.05f);
 
@@ -1644,7 +1645,7 @@ namespace Remnants.Content.World
 
                 bool valid = true;
 
-                int height = WorldGen.genRand.Next((int)(20 * (Main.maxTilesY / 1200f)), (int)(40 * (Main.maxTilesY / 1200f)) + 1);
+                int height = WorldGen.genRand.Next((int)(20 * (MiscTools.GetSafeWorldScale())), (int)(40 * (MiscTools.GetSafeWorldScale())) + 1);
                 if (count < countInitial / 2)
                 {
                     height /= 4;
@@ -1655,7 +1656,7 @@ namespace Remnants.Content.World
                 int padding = 40;
 
                 int x = WorldGen.genRand.NextBool(2) ? WorldGen.genRand.Next(500 + padding, Main.maxTilesX / 2 - 200 - width) : WorldGen.genRand.Next(Main.maxTilesX / 2 + 200, Main.maxTilesX - 500 - width - padding);
-                int y = WorldGen.genRand.Next(100, (int)(Main.worldSurface * 0.4f) - height);
+                int y = WorldGen.genRand.Next(100, Terrain.Minimum - (int)(Main.worldSurface * 0.1f) - height);
 
                 bool rainCloud = count % 3 == 1;
 

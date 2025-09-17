@@ -675,8 +675,8 @@ Mods: {
 			}
 
 			SkullSign: {
-				// Tooltip: ""
-				// DisplayName: Skull Sign
+				Tooltip: ""
+				DisplayName: Знак черепа
 			}
 		}
 

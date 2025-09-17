@@ -80,7 +80,7 @@ namespace Remnants.Content.World
             bool devMode = false;
 
             #region setup
-            StructureTools.Dungeon dungeon = new StructureTools.Dungeon(0, (int)Main.worldSurface + 30, (int)(Main.maxTilesX / 4200f * 8) + 1, (int)(Main.maxTilesY / 1200f * 6), 35, 30, 5);
+            StructureTools.Dungeon dungeon = new StructureTools.Dungeon(0, (int)Main.worldSurface + 30, (int)(MiscTools.GetSafeWorldScale() * 8) + 1, (int)(MiscTools.GetSafeWorldScale() * 6), 35, 30, 5);
 
             if (GenVars.dungeonSide == 1)
             {
@@ -1579,7 +1579,7 @@ namespace Remnants.Content.World
         int roomWidth => 63;
         int roomHeight => 63;
 
-        int roomsVertical => 1 + Main.maxTilesY / 600;
+        int roomsVertical;
         int roomsHorizontal => roomsVertical * 2 - 1;
 
         int roomsLeft => 0 - (roomsHorizontal - 1) / 2;
@@ -1606,6 +1606,7 @@ namespace Remnants.Content.World
             bool devMode = false;
 
             #region setup
+            roomsVertical = (int)(1 + MiscTools.GetSafeWorldScale() * 2f);
             layout = new int[roomsHorizontal, roomsVertical, 6];
 
             X = (int)(Jungle.Center * biomes.CellSize);
@@ -2171,7 +2172,7 @@ namespace Remnants.Content.World
             bool devMode = false;
 
             #region setup
-            StructureTools.Dungeon tomb = new StructureTools.Dungeon(0, 0, 1 + (int)(Main.maxTilesX / 4200f * 4), (int)(Main.maxTilesY / 1200f * 4), 42, 18, 3);
+            StructureTools.Dungeon tomb = new StructureTools.Dungeon(0, 0, 1 + (int)(MiscTools.GetSafeWorldScale() * 4), (int)(MiscTools.GetSafeWorldScale() * 4), 42, 18, 3);
             tomb.X = WorldGen.genRand.Next((int)(Main.maxTilesX * 0.41f), (int)(Main.maxTilesX * 0.59f) - tomb.area.Width);
             tomb.Y = Main.maxTilesY - 320 - tomb.area.Height;
 
@@ -3753,7 +3754,7 @@ namespace Remnants.Content.World
 
         public void BuildMaze()
         {
-            StructureTools.Dungeon maze = new StructureTools.Dungeon(0, 0, (int)(1 + (float)(Main.maxTilesX / 4200f) * 12), (int)(1 + (float)(Main.maxTilesY / 1200f) * 12), 18, 18, 7);
+            StructureTools.Dungeon maze = new StructureTools.Dungeon(0, 0, (int)(1 + (float)(MiscTools.GetSafeWorldScale()) * 12), (int)(1 + (float)(MiscTools.GetSafeWorldScale()) * 12), 18, 18, 7);
 
             if (WorldGen.gen)
             {
@@ -3981,8 +3982,8 @@ namespace Remnants.Content.World
             int attempts = 0;
             while (roomCount > 0)
             {
-                int width = (int)((roomCount <= 4 ? 2 : 4) * Main.maxTilesX / 4200f);
-                int height = (int)((roomCount <= 4 ? 2 : 4) * Main.maxTilesY / 1200f);
+                int width = (int)((roomCount <= 4 ? 2 : 4) * MiscTools.GetSafeWorldScale());
+                int height = (int)((roomCount <= 4 ? 2 : 4) * MiscTools.GetSafeWorldScale());
                 int x = WorldGen.genRand.Next(maze.grid.Left + 1, maze.grid.Right - width);
                 int y = WorldGen.genRand.Next(maze.grid.Top + 1, maze.grid.Bottom - height);
 

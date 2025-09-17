@@ -106,14 +106,14 @@ namespace Remnants.Content.World
                 FastNoiseLite blendingNoise = new FastNoiseLite();
                 blendingNoise.SetNoiseType(FastNoiseLite.NoiseType.Value);
                 blendingNoise.SetSeed(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
-                blendingNoise.SetFrequency(0.01f);
+                blendingNoise.SetFrequency(0.02f);
                 blendingNoise.SetFractalType(FastNoiseLite.FractalType.FBm);
                 blendingNoise.SetFractalOctaves(4);
 
                 FastNoiseLite materialNoise = new FastNoiseLite();
                 materialNoise.SetNoiseType(FastNoiseLite.NoiseType.Value);
                 materialNoise.SetSeed(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
-                materialNoise.SetFrequency(0.05f);
+                materialNoise.SetFrequency(0.08f);
                 materialNoise.SetFractalType(FastNoiseLite.FractalType.FBm);
 
                 biomes.Materials = new float[Main.maxTilesX, Main.maxTilesY];
@@ -124,10 +124,10 @@ namespace Remnants.Content.World
 
                     for (int x = 0; x < Main.maxTilesX; x++)
                     {
-                        biomes.BlendX[x, y] = blendingNoise.GetNoise(x, y * 2 + 999);
-                        biomes.BlendY[x, y] = blendingNoise.GetNoise(x + 999, y * 2);
+                        biomes.BlendX[x, y] = blendingNoise.GetNoise(x, y + 999);
+                        biomes.BlendY[x, y] = blendingNoise.GetNoise(x + 999, y);
 
-                        biomes.Materials[x, y] = materialNoise.GetNoise(x, y * 2);
+                        biomes.Materials[x, y] = materialNoise.GetNoise(x, y);
                     }
                 }
 
@@ -250,7 +250,7 @@ namespace Remnants.Content.World
             {
                 int orbY = alternate ? orbYSecondary : orbYPrimary;
 
-                int radius = (int)(20 * Main.maxTilesX / 4200f);
+                int radius = (int)(20 * MiscTools.GetSafeWorldScale());
 
                 FastNoiseLite noise = new FastNoiseLite();
                 noise.SetNoiseType(FastNoiseLite.NoiseType.Cellular);
@@ -453,7 +453,7 @@ namespace Remnants.Content.World
                 bool tundraCorruptionSwap = WorldGen.genRand.NextBool(2); //GenVars.dungeonSide == 1;
 
                 int tundraSize = (int)(biomes.Width / 7);
-                Corruption.Size = biomes.Width / 42;
+                Corruption.Size = Math.Min(biomes.Width / 42, biomes.Height / 12);
 
                 Tundra.Bottom = biomes.lavaLayer - 1;
 
@@ -639,7 +639,7 @@ namespace Remnants.Content.World
                 {
                     for (int x = 6; x < biomes.Width - 6; x++)
                     {
-                        int i = x + (y >= biomes.surfaceLayer ? (int)(noise.GetNoise(x / 2f / (Main.maxTilesX / 4200f), y / (Main.maxTilesY / 1200f)) * (Main.maxTilesX / 700f)) : 0);
+                        int i = x + (y >= biomes.surfaceLayer ? (int)(noise.GetNoise(x / 4f, y / 4f) * 12) : 0);
                         int j = y;// + (int)(noise.GetNoise(x + 999, y) * (Main.maxTilesY / 600f));
 
                         if (biomes.Map[x, y] != BiomeID.Obsidian && biomes.Map[x, y] != BiomeID.Beach)
@@ -1301,25 +1301,15 @@ namespace Remnants.Content.World
 
                         if (layer >= surfaceLayer)
                         {
-                            bool doWalls = FindBiome(x - 2, y) == BiomeID.Desert && FindBiome(x + 2, y) == BiomeID.Desert && FindBiome(x, y - 2) == BiomeID.Desert && FindBiome(x, y + 2) == BiomeID.Desert;
-                            bool doCaves = doWalls && FindBiome(i - 25, j, false) == BiomeID.Desert && FindBiome(i + 25, j, false) == BiomeID.Desert && FindBiome(i, j - 25, false) == BiomeID.Desert && FindBiome(i, j + 25, false) == BiomeID.Desert;
+                            bool doWalls = FindBiome(x - 1, y) == BiomeID.Desert && FindBiome(x + 1, y) == BiomeID.Desert && FindBiome(x, y - 1) == BiomeID.Desert && FindBiome(x, y + 1) == BiomeID.Desert;
 
-                            if (GetTileDistribution(x, y, frequency: 2) >= 0.25f)
+                            tile.HasTile = true;
+                            tile.TileType = TileID.Sandstone;
+                            if (doWalls)
                             {
-                                tile.TileType = TileID.HardenedSand;
-                                if (doWalls)
-                                {
-                                    tile.WallType = WallID.HardenedSand;
-                                }
+                                tile.WallType = WallID.Sandstone;
                             }
-                            else
-                            {
-                                tile.TileType = TileID.Sandstone;
-                                if (doWalls)
-                                {
-                                    tile.WallType = WallID.Sandstone;
-                                }
-                            }
+                            tile.LiquidAmount = 0;
 
                             float _tunnels = caves1.GetNoise(i, j * 2);
                             //float _nests = nests.GetNoise(x, y + ((float)Math.Cos(x / 60) * 20)) * ((nests2.GetNoise(x, y + ((float)Math.Cos(x / 60) * 20)) + 1) / 2);
@@ -1327,37 +1317,26 @@ namespace Remnants.Content.World
 
                             float _background = (background.GetNoise(i, j * 2) + 1) / 2 * 0.4f;
 
-
                             float _size = (caves2.GetNoise(i, j * 2) / 2 + 0.5f) / 8 + 0.125f;
-
                             float _offset = caves3.GetNoise(i, j * 2);
 
-                            //if (MaterialBlend(x, y, frequency: 2) <= 0.2f)
-                            //{
-                            //    WGTools.Tile(x, y).TileType = TileID.HardenedSand;
-                            //}
-                            //else tile.TileType = TileID.Sand;
-                            if (doWalls)
+                            if (_tunnels + 0.2f < _offset - _size || _tunnels - 0.2f > _offset + _size)
                             {
-                                tile.HasTile = true;
-                                tile.Slope = 0;
-                            }
-                            tile.LiquidAmount = 0;
-                            if (_tunnels + _fossils < _offset - _size || _tunnels - _fossils > _offset + _size)
-                            {
-                                tile.TileType = TileID.Sandstone;
-                                if (doWalls)
-                                {
-                                    tile.WallType = WallID.Sandstone;
-                                }
-
-                                if (doCaves && _tunnels + 0.3f + _fossils < _offset - _size || _tunnels - 0.3f - _fossils > _offset + _size)
+                                if (_tunnels + 0.3f + _fossils < _offset - _size || _tunnels - 0.3f - _fossils > _offset + _size)
                                 {
                                     tile.TileType = TileID.DesertFossil;
                                     //tile.WallType = WallID.DesertFossil;
                                 }
+                                else if (_tunnels + 0.2f + _fossils > _offset - _size || _tunnels - 0.2f - _fossils < _offset + _size)
+                                {
+                                    tile.TileType = TileID.HardenedSand;
+                                    if (doWalls)
+                                    {
+                                        tile.WallType = WallID.HardenedSand;
+                                    }
+                                }
                             }
-                            else if (doCaves && _tunnels > _offset - _size && _tunnels < _offset + _size)
+                            else if (_tunnels > _offset - _size && _tunnels < _offset + _size)
                             {
                                 tile.HasTile = false;
                                 tile.LiquidAmount = 0;

@@ -744,7 +744,7 @@ Mods: {
 						'''
 						Enables worldgen still in development
 
-						Note: FOR TESTING PURPOSES ONLY - NEVER USE THIS FOR A NORMAL PLAYTHROUGH
+						Note: FOR TESTING PURPOSES ONLY; NEVER USE THIS FOR A NORMAL PLAYTHROUGH
 						'''
 				}
 
@@ -755,7 +755,7 @@ Mods: {
 						Prevents the creation of worlds that use incompatible mods or settings
 						Notifies the players via an in-game chat if they have mods incompatible with multipayer enabled on a multiplayer client
 
-						Note: Highly recommended - only disable if you know what you are doing
+						Note: Highly recommended; only disable if you know what you are doing
 						'''
 				}
 
@@ -766,7 +766,7 @@ Mods: {
 						Enables the Sunken Sea rework when used with the Calamity mod
 						This also removes the many worldgen issues caused by the original programming
 
-						Note: Will become obsolete after the biome is officially updated
+						Note: Will become obsolete when the biome is officially updated (never)
 						'''
 				}
 
@@ -828,10 +828,10 @@ Mods: {
 					Label: "[i:54] Freedom of Movement"
 					Tooltip:
 						'''
-						The player is naturally faster and more agile (15mph > 18mph) 
+						The player is naturally faster and more agile (15mph > 20mph) 
 						If using the Calamity mod, you are advised to choose this movement buff over theirs
 
-						Note: Highly recommended
+						Note: Highly recommended; all level design in Remnants assumes that this option is enabled, disable at your own expense
 						'''
 				}
 

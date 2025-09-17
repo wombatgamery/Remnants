@@ -152,6 +152,11 @@ namespace Remnants.Content.World
                 RemovePass(tasks, FindIndex(tasks, "Post Terrain"), true);
             }
 
+            if (ModLoader.TryGetMod("OrchidMineshaft", out Mod om))
+            {
+                RemovePass(tasks, FindIndex(tasks, "Post Terrain"), true);
+            }
+
             if (ModLoader.TryGetMod("Consolaria", out Mod Console))
             {
                 RemovePass(tasks, FindIndex(tasks, "Jungle Sanctum"), true);
@@ -211,6 +216,11 @@ namespace Remnants.Content.World
         public static bool HasTile(int x, int y, int type)
         {
             return Main.tile[x, y].TileType == type && Main.tile[x, y].HasTile;
+        }
+
+        public static double GetSafeWorldScale()
+        {
+            return Math.Min(Main.maxTilesX / 4200f, Main.maxTilesY / 1200f);
         }
 
         public static bool EmptyInArea(int left, int top, int right, int bottom)
@@ -2191,11 +2201,11 @@ namespace Remnants.Content.World
                 issuesFound = true;
                 message = message + "\n. " + Language.GetTextValue("Mods.Remnants.Safeguard.SecretSeeds");
             }
-            if (Main.maxTilesX != (int)(Main.maxTilesY * 84f/24f) && Main.maxTilesX != (int)(Main.maxTilesY * 64f / 18f))
-            {
-                issuesFound = true;
-                message = message + "\n. " + Language.GetTextValue("Mods.Remnants.Safeguard.BadRatio");
-            }
+            //if (Main.maxTilesX != (int)(Main.maxTilesY * 84f/24f) && Main.maxTilesX != (int)(Main.maxTilesY * 64f / 18f))
+            //{
+            //    issuesFound = true;
+            //    message = message + "\n. " + Language.GetTextValue("Mods.Remnants.Safeguard.BadRatio");
+            //}
             if (ModLoader.TryGetMod("StartWithBase", out Mod swb))
             {
                 issuesFound = true;
@@ -2767,6 +2777,7 @@ namespace Remnants.Content.World
                 WorldGen.PlaceTile(i, y, TileID.BreakableIce);
             }
             Framing.GetTileSafely(i, y).Slope = SlopeType.Solid;
+            Framing.GetTileSafely(i, y).IsHalfBlock = false;
 
             for (i = x + 1; i < x + 100 && !WorldGen.SolidOrSlopedTile(i, y) && !WorldGen.SolidTile(i - 1, y - 1); i++)
             {
@@ -2777,6 +2788,7 @@ namespace Remnants.Content.World
                 WorldGen.PlaceTile(i, y, TileID.BreakableIce);
             }
             Framing.GetTileSafely(i, y).Slope = SlopeType.Solid;
+            Framing.GetTileSafely(i, y).IsHalfBlock = false;
         }
     }
 

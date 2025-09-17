@@ -169,14 +169,18 @@ namespace Remnants.Content.World
 
                     #region rooms
                     List<int> rooms = new List<int>();
-                    rooms.Add(0);
-                    rooms.Add(1);
 
                     int roomCount = 0;
-                    while (roomCount < Math.Min(2, (mines.grid.Width * mines.grid.Height) / 22))
+                    while (roomCount < (mines.grid.Width * mines.grid.Height) / 22)
                     {
                         mines.targetCell.X = roomCount == 0 ? WorldGen.genRand.Next(mines.grid.Left + 1, mines.grid.Center.X - 1) : WorldGen.genRand.Next(mines.grid.Center.X + 1, mines.grid.Right - 2);
                         mines.targetCell.Y = WorldGen.genRand.Next(1, mines.grid.Bottom - 2);
+
+                        if (rooms.Count == 0)
+                        {
+                            rooms.Add(0);
+                            rooms.Add(1);
+                        }
 
                         int index = rooms[WorldGen.genRand.Next(rooms.Count)];
 
@@ -196,6 +200,7 @@ namespace Remnants.Content.World
                                             StructureHelper.API.MultiStructureGenerator.GenerateMultistructureSpecific("Content/World/Structures/Common/Mines/cavern", index, mines.roomPos, ModContent.GetInstance<Remnants>());
 
                                             rooms.Remove(index);
+
                                             roomCount++;
                                         }
                                     }
@@ -623,7 +628,7 @@ namespace Remnants.Content.World
                     #endregion
 
                     #region objects
-                    int objects = 5;// (int)(mines.grid.Height * (Main.maxTilesX / 4200f));
+                    int objects = (int)(Math.Max((Main.maxTilesX / 8400f) * (Main.maxTilesY / 2400f) * 5, 5));
                     while (objects > 0)
                     {
                         int x = WorldGen.genRand.Next(mines.area.Left, mines.area.Right);
@@ -895,7 +900,7 @@ namespace Remnants.Content.World
                 int attempts;
                 int lanternX;
                 int lanternY;
-                int rooms = (int)(Main.maxTilesX / 2100f * Main.maxTilesY / 1200f);
+                int rooms = (int)(MiscTools.GetSafeWorldScale() * MiscTools.GetSafeWorldScale() * 2);
                 int woodWand = WorldGen.genRand.Next(rooms);
                 while (rooms > 0 && roomLocations.Count > 0)
                 {
@@ -1474,7 +1479,7 @@ namespace Remnants.Content.World
 
         private void Root(Vector2 position, float radius, Vector2 direction)
         {
-            for (int k = 0; k < WorldGen.genRand.Next(60, 80) * (Main.maxTilesY / 3600f + 0.5f); k++)
+            for (int k = 0; k < WorldGen.genRand.Next(60, 80) * (MiscTools.GetSafeWorldScale() / 3 + 0.5f); k++)
             {
                 Vector2 distortionOffset = new Vector2(distortion.GetNoise(position.X, position.Y + 999), distortion.GetNoise(position.X + 999, position.Y) * 1.5f) * 50;
 
@@ -1493,7 +1498,7 @@ namespace Remnants.Content.World
                     direction.Y -= 0.025f;
                 }
                 position += Vector2.Normalize(direction * new Vector2(1, 1.5f));
-                radius -= 0.05f / (Main.maxTilesY / 1800f);
+                radius -= 0.05f / (float)(MiscTools.GetSafeWorldScale() / 1.5f);
 
                 if (position.Y > UpperLimit + 50 && position.Y < LowerLimit - 50)
                 {
@@ -1596,7 +1601,7 @@ namespace Remnants.Content.World
 
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            int countInitial = 2;
+            int countInitial = Math.Max(2, (int)(Main.maxTilesX / 4200f));
             int count = countInitial;
             while (count > 0)
             {
@@ -2281,7 +2286,7 @@ namespace Remnants.Content.World
             {
                 bool valid = true;
 
-                int height = WorldGen.genRand.Next((int)(20 * (Main.maxTilesY / 1200f)), (int)(30 * (Main.maxTilesY / 1200f)) + 1);
+                int height = WorldGen.genRand.Next((int)(20 * (MiscTools.GetSafeWorldScale())), (int)(30 * (MiscTools.GetSafeWorldScale())) + 1);
                 if (count < countInitial / 2)
                 {
                     height /= 2;
@@ -2292,7 +2297,7 @@ namespace Remnants.Content.World
                 int padding = 40;
 
                 int x = WorldGen.genRand.NextBool(2) ? WorldGen.genRand.Next(600 + padding, Main.maxTilesX / 2 - 200 - width) : WorldGen.genRand.Next(Main.maxTilesX / 2 + 200, Main.maxTilesX - 600 - width - padding);
-                int y = WorldGen.genRand.Next(100, (int)(Main.worldSurface * 0.35f) - height);
+                int y = WorldGen.genRand.Next(100, Terrain.Minimum - (int)(Main.worldSurface * 0.15f) - height);
 
                 if (!StructureTools.AvoidsBiomes(new Rectangle(x, y, width, height), new[] { BiomeID.Tundra }))
                 {

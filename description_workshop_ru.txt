@@ -25,14 +25,13 @@ Remnants — уникальный в своём роде проект, пере�
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3015412343][b]Infernum Mode[/b][/url] (Реворк Голема не был рассчитан на новую арену, структура с сакурами не генерируется)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2563862309][b]The Stars Above[/b][/url] (Неоновый заслон ломает почти все структуры в аду)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2984622072][b]Starlight River[/b][/url] (Различные мелкие структуры генерируются поверх структур из Remnants)
-[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2843112914][b]Secrets of the Shadows[/b][/url] (Конфликт двух реворков пирамиды)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3019925104][b]Lunar Veil[/b][/url] (Огромное количество всевозможных конфликтов между биомами и структурами)
 [/list]
 
 Несовместимые моды, в мирах с которыми играть будет невозможно, если игра у вас вообще не вылетит ещё во время генерации самого мира: [list]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2843112914][b]Secrets of the Shadows[/b][/url]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2930931197][b]Homeward Journey[/b][/url]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2833852432][b]Spooky Mod[/b][/url]
-[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2787632488][b]Aequus[/b][/url]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2807309918][b]Start with base[/b][/url]
 [/list]
 

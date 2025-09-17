@@ -368,7 +368,9 @@ namespace Remnants.Content.Biomes
         {
 			player.ZoneDesert = true;
 
-			if (player.GetBestPickaxe().pick < 65)
+			Item pick = player.GetBestPickaxe();
+
+            if (pick == null || pick.pick < 65)
 			{
                 player.AddBuff(ModContent.BuffType<PyramidAntiCheese>(), 2);
             }
