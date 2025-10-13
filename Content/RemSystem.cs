@@ -35,45 +35,6 @@ namespace Remnants.Content.World
         public static int whisperingMazeX;
         public static bool sightedWard = false;
 
-        public static int mushroomTiles;
-        public static int hiveTiles;
-        public static int marbleTiles;
-        public static int graniteTiles;
-        public static int pyramidTiles;
-        public static int oceanCaveTiles;
-        public static int gardenTiles;
-        public static bool pyramidPotNearby;
-
-        public override void ResetNearbyTileEffects()
-        {
-            mushroomTiles = 0;
-            hiveTiles = 0;
-            marbleTiles = 0;
-            graniteTiles = 0;
-            pyramidTiles = 0;
-            oceanCaveTiles = 0;
-            gardenTiles = 0;
-            pyramidPotNearby = false;
-        }
-
-        public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
-        {
-            pyramidTiles = tileCounts[ModContent.TileType<PyramidBrick>()];
-            //pyramidPotNearby = tileCounts[ModContent.TileType<PyramidPot>()] > 0;
-
-            mushroomTiles = tileCounts[TileID.MushroomGrass] + tileCounts[TileID.MushroomPlants] + tileCounts[TileID.MushroomBlock];
-            hiveTiles = tileCounts[TileID.Hive];
-
-            marbleTiles = tileCounts[TileID.Marble] + tileCounts[TileID.MarbleBlock] + tileCounts[TileID.MarbleColumn];
-            graniteTiles = tileCounts[TileID.Granite] + tileCounts[TileID.GraniteBlock] + tileCounts[TileID.GraniteColumn];
-
-            oceanCaveTiles = tileCounts[TileID.Coralstone];
-
-            gardenTiles = tileCounts[ModContent.TileType<GardenBrick>()];
-
-            Main.SceneMetrics.SandTileCount += pyramidTiles;
-        }
-
         public override void SaveWorldData(TagCompound tag)
         {
             //tag["savedX"] = Main.LocalPlayer.position.X;
@@ -113,6 +74,45 @@ namespace Remnants.Content.World
             {
                 sightedWard = true;
             }
+        }
+
+        public static int mushroomTiles;
+        public static int hiveTiles;
+        public static int marbleTiles;
+        public static int graniteTiles;
+        public static int sulfuricTiles;
+        public static int oceanCaveTiles;
+
+        public static int pyramidTiles;
+        public static int gardenTiles;
+
+        public override void ResetNearbyTileEffects()
+        {
+            mushroomTiles = 0;
+            hiveTiles = 0;
+            marbleTiles = 0;
+            graniteTiles = 0;
+            sulfuricTiles = 0;
+            oceanCaveTiles = 0;
+
+            pyramidTiles = 0;
+            gardenTiles = 0;
+        }
+
+        public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
+        {
+            mushroomTiles = tileCounts[TileID.MushroomGrass] + tileCounts[TileID.MushroomPlants] + tileCounts[TileID.MushroomBlock];
+            hiveTiles = tileCounts[TileID.Hive];
+            marbleTiles = tileCounts[TileID.Marble] + tileCounts[TileID.MarbleBlock];
+            graniteTiles = tileCounts[TileID.Granite] + tileCounts[TileID.GraniteBlock];
+            sulfuricTiles = tileCounts[ModContent.TileType<Sulfurstone>()] + tileCounts[ModContent.TileType<SulfuricVent>()];
+            oceanCaveTiles = tileCounts[TileID.Coralstone];
+
+            pyramidTiles = tileCounts[ModContent.TileType<PyramidBrick>()];
+            gardenTiles = tileCounts[ModContent.TileType<GardenBrick>()];
+            //pyramidPotNearby = tileCounts[ModContent.TileType<PyramidPot>()] > 0;
+
+            //Main.SceneMetrics.SandTileCount += pyramidTiles;
         }
     }
 }

@@ -8,6 +8,8 @@ using Remnants.Content.World;
 using System;
 using Terraria;
 using Terraria.Audio;
+using Terraria.Graphics.Capture;
+using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
@@ -129,7 +131,28 @@ namespace Remnants.Content.Biomes
 		}
 	}
 
-	public class Vault : ModBiome
+    public class SulfuricVents : ModBiome
+    {
+        public override int Music => MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/SulfuricVents");
+
+        public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
+
+        public override string BestiaryIcon => "Remnants/Content/Biomes/SulfuricVentsIcon";
+        public override string MapBackground => "Terraria/Images/MapBG32";
+        public override string BackgroundPath => "Terraria/Images/MapBG32";
+
+        public override bool IsBiomeActive(Player player)
+        {
+            return player.ZoneRockLayerHeight && player.Center.Y / 16 > Main.maxTilesY - 305 && RemSystem.sulfuricTiles >= 1000;
+        }
+
+        public override void SpecialVisuals(Player player, bool isActive)
+        {
+            player.ManageSpecialBiomeVisuals("Remnants:SulfuricVents", isActive);
+        }
+    }
+
+    public class Vault : ModBiome
 	{
 		public override ModWaterStyle WaterStyle => ModContent.Find<ModWaterStyle>("Remnants/Acid");
 		public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
@@ -270,6 +293,7 @@ namespace Remnants.Content.Biomes
 		public override string BestiaryIcon => "Remnants/Content/Biomes/UndergrowthIcon";
         public override string MapBackground => "Terraria/Images/MapBG13";
         public override string BackgroundPath => "Terraria/Images/MapBG13";
+        public override bool MapBackgroundFullbright => true;
         public override Color? BackgroundColor => base.BackgroundColor;
 
 		public override bool IsBiomeActive(Player player)

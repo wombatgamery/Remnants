@@ -16,9 +16,8 @@ using Remnants.Content.Tiles;
 using Remnants.Content.Walls.Vanity;
 using Remnants.Content.Tiles.Blocks;
 using Remnants.Content.Tiles.Plants;
-using static Terraria.GameContent.Bestiary.IL_BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions;
+using static Remnants.Content.World.RemWorld;
 using static Remnants.Content.World.BiomeMap;
-using static Terraria.WorldGen;
 
 namespace Remnants.Content.World
 {
@@ -26,47 +25,42 @@ namespace Remnants.Content.World
     {
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
         {
-            RemWorld.InsertPass(tasks, new BiomeGeneration("Biomes", 1), RemWorld.FindIndex(tasks, "Generate Ice Biome"), true);
-            RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Jungle")); RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Muds Walls In Jungle"));
-            RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Full Desert")); RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Dunes"));
+            InsertPass(tasks, new BiomeGeneration("Biomes", 1), FindIndex(tasks, "Generate Ice Biome"), true);
 
-            //RemWorld.InsertPass(tasks, new Undergrowth("Undergrowth", 100), RemWorld.FindIndex(tasks, "Tunnels") + 1);
+            #region Primary Biomes
+            RemovePass(tasks, FindIndex(tasks, "Ice"));
+            RemovePass(tasks, FindIndex(tasks, "Jungle")); RemovePass(tasks, FindIndex(tasks, "Muds Walls In Jungle"));
+            RemovePass(tasks, FindIndex(tasks, "Full Desert")); RemovePass(tasks, FindIndex(tasks, "Dunes"));
 
-            //RemWorld.InsertPass(tasks, new Hell("Underworld", 0), RemWorld.FindIndex(tasks, "Underworld"), true);
-            RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Underworld"));
-            RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Corruption"));
+            //InsertPass(tasks, new Undergrowth("Undergrowth", 100), FindIndex(tasks, "Tunnels") + 1);
 
-            //RemWorld.InsertPass(tasks, new Corruption("Corruption", 0), RemWorld.FindIndex(tasks, "Terrain") + 2);
-            //RemWorld.InsertPass(tasks, new Corruption("Infection", 0), RemWorld.FindIndex(tasks, "Dungeon") + 1);
+            //InsertPass(tasks, new Hell("Underworld", 0), FindIndex(tasks, "Underworld"), true);
+            RemovePass(tasks, FindIndex(tasks, "Underworld"));
+            RemovePass(tasks, FindIndex(tasks, "Corruption"));
 
-            //RemWorld.InsertPass(tasks, new SecondaryBiomes("Secondary Biomes", 20), RemWorld.FindIndex(tasks, "Mud Caves To Grass") + 1);
-            //RemWorld.InsertPass(tasks, new Aether("Aether", 20), RemWorld.FindIndex(tasks, "Granite") + 1);
+            RemovePass(tasks, FindIndex(tasks, "Beaches"));
+            RemovePass(tasks, FindIndex(tasks, "Ocean Sand"));
+            RemovePass(tasks, FindIndex(tasks, "Create Ocean Caves"));
+            #endregion
 
+            #region Secondary Biomes
+            RemovePass(tasks, FindIndex(tasks, "Mushroom Patches"));
+            RemovePass(tasks, FindIndex(tasks, "Marble"));
+            RemovePass(tasks, FindIndex(tasks, "Granite"));
+            RemovePass(tasks, FindIndex(tasks, "Gem Caves")); RemovePass(tasks, FindIndex(tasks, "Gems")); RemovePass(tasks, FindIndex(tasks, "Gems In Ice Biome")); RemovePass(tasks, FindIndex(tasks, "Random Gems"));
+            RemovePass(tasks, FindIndex(tasks, "Spider Caves"));
+            RemovePass(tasks, FindIndex(tasks, "Shimmer"));
 
-            //RemWorld.InsertPass(tasks, new Clouds("Clouds", 1), RemWorld.FindIndex(tasks, "Dungeon"));
+            if (ruinSeekerEnabled)
+            {
+                RemovePass(tasks, FindIndex(tasks, "[RS] Thermal Caves"));
+            }
+            #endregion
 
-            RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Mushroom Patches"));
-            RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Marble")); RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Granite"));
-            RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Shimmer"));
-            RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Gem Caves")); RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Gems")); RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Gems In Ice Biome")); RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Random Gems"));
-
-            RemWorld.InsertPass(tasks, new SpecialTrees("Special Trees", 20), RemWorld.FindIndex(tasks, "Planting Trees"));
-
-            //RemWorld.InsertPass(tasks, new Heaven("Sky Lands", 0), RemWorld.FindIndex(tasks, "Secondary Biomes") + 1);
-
-            RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Sand Patches"));
-
-            //RemWorld.InsertPass(tasks, RemWorld.FindIndex(tasks, "Beaches"), new Beaches("Beaches", 1), true);
-            RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Beaches"));
-            RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Ocean Sand"));
-            RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Create Ocean Caves"));
-
-            RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Spider Caves"));
-
-            RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Floating Islands"));
-            RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Floating Island Houses"));
+            InsertPass(tasks, new SpecialTrees("Special Trees", 20), FindIndex(tasks, "Planting Trees"));
         }
     }
+
     public class BiomeMap : ModSystem
     {
         public int[,] Map;
@@ -83,8 +77,8 @@ namespace Remnants.Content.World
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
         {
-            RemWorld.InsertPass(tasks, new BiomeMapPopulation("Biome Map Population", 1), RemWorld.FindIndex(tasks, "Terrain") + 1);
-            RemWorld.InsertPass(tasks, new BiomeMapSetup("Biome Map Setup", 1), 1);
+            InsertPass(tasks, new BiomeMapPopulation("Biome Map Population", 1), FindIndex(tasks, "Terrain") + 1);
+            InsertPass(tasks, new BiomeMapSetup("Biome Map Setup", 1), 1);
         }
 
         internal class BiomeMapSetup : GenPass
@@ -184,7 +178,7 @@ namespace Remnants.Content.World
 
             public const int AshForest = 14;
 
-            public const int Obsidian = 15;
+            public const int SulfuricVents = 15;
 
             public const int Toxic = 16;
 
@@ -194,7 +188,9 @@ namespace Remnants.Content.World
 
             public const int Savanna = 101;
 
-            public const int Abysm = 102;
+            public const int ThermalCaves = 102;
+
+            public const int Abysm = 103;
         }
 
         internal class Tundra
@@ -593,7 +589,7 @@ namespace Remnants.Content.World
                 {
                     for (int x = 0; x < biomes.Width; x++)
                     {
-                        biomes.AddBiome(x, y, BiomeID.Obsidian);
+                        biomes.AddBiome(x, y, BiomeID.SulfuricVents);
                     }
                 }
 
@@ -639,40 +635,52 @@ namespace Remnants.Content.World
                 {
                     for (int x = 6; x < biomes.Width - 6; x++)
                     {
-                        int i = x + (y >= biomes.surfaceLayer ? (int)(noise.GetNoise(x / 4f, y / 4f) * 12) : 0);
+                        float shakeMultiplier = (float)(y - biomes.surfaceLayer) / (float)(biomes.Height - 4 - biomes.surfaceLayer) * (3 + (Main.maxTilesX / 350f));
+
+                        int i = x + (y >= biomes.surfaceLayer ? (int)(noise.GetNoise(x / (Main.maxTilesX / 1050f), y / (Main.maxTilesY / 1200f)) * shakeMultiplier) : 0);
                         int j = y;// + (int)(noise.GetNoise(x + 999, y) * (Main.maxTilesY / 600f));
 
-                        if (biomes.Map[x, y] != BiomeID.Obsidian && biomes.Map[x, y] != BiomeID.Beach)
+                        if (biomes.Map[x, y] != BiomeID.Beach)
                         {
-                            if (i >= (Tundra.Left + (j == Tundra.Bottom - 1 ? 1 : 0)) && i <= (Tundra.Right - (j == Tundra.Bottom - 1 ? 1 : 0)) && j < Tundra.Bottom)
+                            if (i >= (Tundra.Left + (j == Tundra.Bottom - 1 ? 1 : 0)) && i <= (Tundra.Right - (j == Tundra.Bottom - 1 ? 1 : 0)))
                             {
-                                biomes.AddBiome(x, y, BiomeID.Tundra);
-                            }
-                            else if (i >= (Desert.Left + (j == Desert.Bottom - 1 ? 1 : 0)) && i <= (Desert.Right - (j == Desert.Bottom - 1 ? 1 : 0)) && j < Desert.Bottom)
-                            {
-                                if (ModContent.GetInstance<Worldgen>().SunkenSeaRework && calamity && j >= (biomes.lavaLayer - biomes.caveLayer) / 2 + biomes.caveLayer)
+                                if (j < Tundra.Bottom)
                                 {
-                                    biomes.AddBiome(x, y, BiomeID.SunkenSea);
+                                    biomes.AddBiome(x, y, BiomeID.Tundra);
                                 }
-                                else biomes.AddBiome(x, y, BiomeID.Desert);
-                            }
-                            else if (i >= Jungle.Left && i <= Jungle.Right)
-                            {
-                                if (y < biomes.Height - 4)
+                                else if (ruinSeekerEnabled && j < biomes.Height - 4)
                                 {
-                                    if (ModContent.GetInstance<Worldgen>().ExperimentalWorldgen && j > biomes.lavaLayer)
+                                    biomes.AddBiome(x, y, BiomeID.ThermalCaves);
+                                }
+                            }
+                            else if (biomes.Map[x, y] != BiomeID.SulfuricVents)
+                            {
+                                if (i >= (Desert.Left + (j == Desert.Bottom - 1 ? 1 : 0)) && i <= (Desert.Right - (j == Desert.Bottom - 1 ? 1 : 0)) && j < Desert.Bottom)
+                                {
+                                    if (ModContent.GetInstance<Worldgen>().SunkenSeaRework && calamity && j >= (biomes.lavaLayer - biomes.caveLayer) / 2 + biomes.caveLayer)
                                     {
-                                        biomes.AddBiome(x, y, BiomeID.Toxic);
+                                        biomes.AddBiome(x, y, BiomeID.SunkenSea);
                                     }
-                                    else biomes.AddBiome(x, y, BiomeID.Jungle);
+                                    else biomes.AddBiome(x, y, BiomeID.Desert);
                                 }
-                                else biomes.AddBiome(x, y, BiomeID.AshForest);
-                            }
-                            else if (spiritReforged && y < biomes.surfaceLayer - 1)
-                            {
-                                if (i > Desert.Center && i < Jungle.Center || i < Desert.Center && i > Jungle.Center)
+                                else if (i >= Jungle.Left && i <= Jungle.Right)
                                 {
-                                    biomes.AddBiome(x, y, BiomeID.Savanna);
+                                    if (y < biomes.Height - 4)
+                                    {
+                                        if (ModContent.GetInstance<Worldgen>().ExperimentalWorldgen && j > biomes.lavaLayer)
+                                        {
+                                            biomes.AddBiome(x, y, BiomeID.Toxic);
+                                        }
+                                        else biomes.AddBiome(x, y, BiomeID.Jungle);
+                                    }
+                                    else biomes.AddBiome(x, y, BiomeID.AshForest);
+                                }
+                                else if (spiritReforged && y < biomes.surfaceLayer - 1)
+                                {
+                                    if (i > Desert.Center && i < Jungle.Center || i < Desert.Center && i > Jungle.Center)
+                                    {
+                                        biomes.AddBiome(x, y, BiomeID.Savanna);
+                                    }
                                 }
                             }
                         }
@@ -721,6 +729,7 @@ namespace Remnants.Content.World
                 FastNoiseLite glowshroom = new FastNoiseLite(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
                 glowshroom.SetNoiseType(FastNoiseLite.NoiseType.Cellular);
                 glowshroom.SetFractalType(FastNoiseLite.FractalType.None);
+                glowshroom.SetCellularJitter(0.75f);
                 glowshroom.SetFrequency(0.1f);
 
                 int marbleCaveLeft = (int)(biomes.Width * 0.4f);
@@ -761,7 +770,7 @@ namespace Remnants.Content.World
                                 //}
                                 else if (biomes.Map[i, j] == BiomeID.None)
                                 {
-                                    if (j >= biomes.caveLayer && glowshroom.GetNoise(i, j * 2) < -0.93625f && j < biomes.lavaLayer)
+                                    if (j >= biomes.caveLayer && glowshroom.GetNoise(i, j * 2) < -0.95f && j < biomes.lavaLayer)
                                     {
                                         biomes.AddBiome(i, j, BiomeID.Glowshroom);
                                     }
@@ -914,6 +923,7 @@ namespace Remnants.Content.World
             bool calamity = ModLoader.TryGetMod("CalamityMod", out Mod cal);
             bool lunarVeil = ModLoader.TryGetMod("Stellamod", out Mod lv);
             bool spiritReforged = ModLoader.TryGetMod("SpiritReforged", out Mod sr);
+            bool ruinSeeker = ModLoader.TryGetMod("RuinSeeker", out Mod rs);
 
             #region sunkensea
             ushort eutrophicSand = 0;
@@ -1004,6 +1014,32 @@ namespace Remnants.Content.World
                 if (sr.TryFind("SavannaDirtWall_Unsafe", out ModWall dirtWall))
                 {
                     savannaDirtWall = dirtWall.Type;
+                }
+            }
+            #endregion
+
+            #region thermalcaves
+            ushort gabbro = 0;
+            ushort gabbroWall = 0;
+            ushort basalt = 0;
+            ushort basaltWall = 0;
+            if (ruinSeeker && biomesToUpdate[BiomeID.ThermalCaves])
+            {
+                if (rs.TryFind("Gabbro_Tile", out ModTile stone))
+                {
+                    gabbro = stone.Type;
+                }
+                if (rs.TryFind("Gabbro_Wall_Unsafe", out ModWall stoneWall))
+                {
+                    gabbroWall = stoneWall.Type;
+                }
+                if (rs.TryFind("Basalt_Tile", out ModTile bas))
+                {
+                    basalt = bas.Type;
+                }
+                if (rs.TryFind("Basalt_Wall_Unsafe", out ModWall basWall))
+                {
+                    basaltWall = basWall.Type;
                 }
             }
             #endregion
@@ -1189,59 +1225,65 @@ namespace Remnants.Content.World
                         {
                             tile.TileType = TileID.JungleGrass;
                         }
-                        else if (tile.TileType == TileID.Dirt)
+                        else if (tile.TileType == TileID.Dirt || tile.TileType == TileID.ClayBlock)
                         {
                             tile.TileType = TileID.Mud;
                         }
+                        else if (tile.TileType == TileID.Silt)
+                        {
+                            tile.TileType = TileID.Stone;
+                        }
 
-                        if (tile.WallType == WallID.DirtUnsafe)
+                        if (tile.WallType == WallID.DirtUnsafe || tile.WallType == WallID.Cave6Unsafe || tile.WallType == WallID.CaveWall2)
                         {
                             tile.WallType = WallID.JungleUnsafe;
                         }
-                        else if (tile.WallType == WallID.RocksUnsafe1)
+                        else if (tile.WallType == WallID.RocksUnsafe1 || tile.WallType == WallID.Cave8Unsafe)
                         {
                             tile.WallType = WallID.JungleUnsafe3;
                         }
+
+                        //if (GetTileDistribution(x, y, frequency: 2) >= (layer >= surfaceLayer && layer < caveLayer ? -0.3f : 0f))//(layer < caveLayer ? -0.2f : 0.2f))
+                        //{
+                        //    tile.TileType = TileID.Mud;
+                        //}
+                        //else tile.TileType = TileID.Stone;
 
                         caves1.SetNoiseType(FastNoiseLite.NoiseType.Value);
                         caves1.SetFractalType(FastNoiseLite.FractalType.FBm);
                         caves1.SetFrequency(0.02f);
 
                         caves2.SetNoiseType(FastNoiseLite.NoiseType.Value);
-                        caves2.SetFrequency(0.015f);
-                        caves2.SetFractalType(FastNoiseLite.FractalType.FBm);
+                        caves2.SetFrequency(0.02f);
+                        //caves2.SetFractalType(FastNoiseLite.FractalType.None);
                         caves2.SetFractalLacunarity(4);
+                        caves2.SetFractalGain(0.75f);
 
                         caves3.SetNoiseType(FastNoiseLite.NoiseType.Value);
                         caves3.SetFrequency(0.08f);
                         caves3.SetFractalType(FastNoiseLite.FractalType.FBm);
 
-                        background.SetNoiseType(FastNoiseLite.NoiseType.Value);
-                        background.SetFrequency(0.08f);
-                        background.SetFractalType(FastNoiseLite.FractalType.FBm);
-                        background.SetFractalOctaves(2);
+                        //if (layer >= surfaceLayer)
+                        //{
+                        //    if (GetTileDistribution(x, y, frequency: 2) >= (layer >= surfaceLayer && layer < caveLayer ? -0.3f : 0f))//(layer < caveLayer ? -0.2f : 0.2f))
+                        //    {
+                        //        tile.TileType = TileID.Mud;
+                        //    }
+                        //    else tile.TileType = TileID.Stone;
+                        //}
 
-                        if (layer >= surfaceLayer)
-                        {
-                            if (GetTileDistribution(x, y, frequency: 2) >= (layer >= surfaceLayer && layer < caveLayer ? -0.3f : 0f))//(layer < caveLayer ? -0.2f : 0.2f))
-                            {
-                                tile.TileType = TileID.Mud;
-                            }
-                            else tile.TileType = TileID.Stone;
-                        }
+                        //if (tile.WallType != 0)
+                        //{
+                        //    if (GetTileDistribution(x, y, frequency: 2) >= (layer >= surfaceLayer && layer < caveLayer ? -0.3f : 0f))//(layer < caveLayer ? -0.2f : 0.2f))
+                        //    {
+                        //        tile.WallType = WallID.JungleUnsafe;
+                        //    }
+                        //    else tile.WallType = WallID.JungleUnsafe3; //layer >= lavaLayer ? WallID.LavaUnsafe2 :
+                        //}
 
-                        if (tile.WallType != 0)
-                        {
-                            if (GetTileDistribution(x, y, frequency: 2) >= (layer >= surfaceLayer && layer < caveLayer ? -0.3f : 0f))//(layer < caveLayer ? -0.2f : 0.2f))
-                            {
-                                tile.WallType = WallID.JungleUnsafe;
-                            }
-                            else tile.WallType = WallID.JungleUnsafe3; //layer >= lavaLayer ? WallID.LavaUnsafe2 :
-                        }
-
-                        float _caves = caves1.GetNoise(x / 2f, j) / 2 + 0.5f;
-                        float _size = caves2.GetNoise(x / 2f, j) / 4 + 0.5f;
-                        float _chasm = layer < caveLayer ? (1 - Math.Clamp(MathHelper.Distance(x + caves3.GetNoise(x / 2f, j) * 12, (Jungle.Center + 0.5f) * CellSize) / (layer < surfaceLayer ? 12 : 18), 0, 1)) / 2 : 0;
+                        float _caves = caves1.GetNoise(x, y);
+                        float _size = caves2.GetNoise(x, y) / 2 + 0.5f;
+                        float _chasm = layer < caveLayer ? (1 - Math.Clamp(MathHelper.Distance(x + caves3.GetNoise(x / 2f, j) * 12, (Jungle.Center + 0.5f) * CellSize) / (layer < surfaceLayer ? 12 : 24), 0, 1)) / 2 : 0;
 
                         if (layer >= surfaceLayer || _chasm > 0)
                         {
@@ -1249,11 +1291,11 @@ namespace Remnants.Content.World
                             {
                                 tile.HasTile = true;
 
-                                if (GetTileDistribution(x, y, frequency: 2) >= -0.1f)
-                                {
-                                    tile.WallType = WallID.JungleUnsafe;
-                                }
-                                else tile.WallType = WallID.JungleUnsafe3;
+                                //if (GetTileDistribution(x, y, frequency: 2) >= -0.1f)
+                                //{
+                                //    tile.WallType = WallID.JungleUnsafe;
+                                //}
+                                //else tile.WallType = WallID.JungleUnsafe3;
                             }
 
                             if (_chasm > (layer >= surfaceLayer ? 0.2f : 0.1f))
@@ -1261,17 +1303,16 @@ namespace Remnants.Content.World
                                 tile.WallType = 0;
                             }
 
-                            float scale = layer >= caveLayer ? 1 : 0.75f;
-                            if (_caves > _size - 0.07f * scale - _chasm && _caves < _size + 0.07f * scale + _chasm)
+                            if (_caves > - _size / (layer >= caveLayer ? 3 : 6) - _chasm && _caves < _size / (layer >= caveLayer ? 3 : 6) + _chasm)
                             {
                                 tile.HasTile = false;
 
-                                if (layer >= caveLayer)
+                                if (layer > surfaceLayer)
                                 {
-                                    float _background = background.GetNoise(x / 2f, j) / 2 - 0.1f;
-                                    _background *= 0.2f;
+                                    //float _background = background.GetNoise(x, y);
+                                    //_background *= 0.01f;
 
-                                    if (_caves - _background > _size && _caves + _background < _size)
+                                    if (_size > 0.6f)
                                     {
                                         tile.WallType = 0;
                                     }
@@ -1282,15 +1323,17 @@ namespace Remnants.Content.World
                     else if (IsUpdatingBiome(x, y, biomesToUpdate, BiomeID.Desert))
                     {
                         caves1.SetNoiseType(FastNoiseLite.NoiseType.OpenSimplex2S);
-                        caves1.SetFrequency(0.06f / 6);
+                        caves1.SetFrequency(0.08f / 6);
                         caves1.SetFractalType(FastNoiseLite.FractalType.None);
                         //caves1.SetFractalOctaves(2);
                         caves1.SetFractalGain(0.8f);
                         caves2.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
-                        caves2.SetFrequency(0.03f / 6);
+                        caves2.SetFrequency(0.04f);
                         caves2.SetFractalType(FastNoiseLite.FractalType.FBm);
+                        caves2.SetFractalOctaves(4);
+                        caves2.SetFractalGain(0.75f);
                         caves3.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
-                        caves3.SetFrequency(0.03f / 6);
+                        caves3.SetFrequency(0.04f / 6);
                         caves3.SetFractalType(FastNoiseLite.FractalType.FBm);
 
                         //background.SetNoiseType(FastNoiseLite.NoiseType.Cellular);
@@ -1301,31 +1344,38 @@ namespace Remnants.Content.World
 
                         if (layer >= surfaceLayer)
                         {
-                            bool doWalls = FindBiome(x - 1, y) == BiomeID.Desert && FindBiome(x + 1, y) == BiomeID.Desert && FindBiome(x, y - 1) == BiomeID.Desert && FindBiome(x, y + 1) == BiomeID.Desert;
+                            bool doWalls = FindBiome(x - 25, y) == BiomeID.Desert && FindBiome(x + 25, y) == BiomeID.Desert && FindBiome(x, y - 25) == BiomeID.Desert && FindBiome(x, y + 25) == BiomeID.Desert;
 
                             tile.HasTile = true;
-                            tile.TileType = TileID.Sandstone;
-                            if (doWalls)
+                            tile.TileType = doWalls && GetLayer(x, y - 25) >= surfaceLayer ? TileID.Sandstone : TileID.HardenedSand;
+
+                            if (!doWalls && caves2.GetNoise(x, y) > 0)
                             {
-                                tile.WallType = WallID.Sandstone;
+                                tile.WallType = 0;
+                            }
+                            else if (doWalls || tile.WallType != 0)
+                            {
+                                tile.WallType = doWalls && GetLayer(x, y - 25) >= surfaceLayer ? WallID.Sandstone : WallID.HardenedSand;
                             }
                             tile.LiquidAmount = 0;
 
-                            float _tunnels = caves1.GetNoise(i, j * 2);
+                            float _tunnels = caves1.GetNoise(x, y);
                             //float _nests = nests.GetNoise(x, y + ((float)Math.Cos(x / 60) * 20)) * ((nests2.GetNoise(x, y + ((float)Math.Cos(x / 60) * 20)) + 1) / 2);
-                            float _fossils = (fossils.GetNoise(i, j * 2) + 1) / 4;
+                            float _fossils = (fossils.GetNoise(x, y) + 1) / 4;
 
-                            float _background = (background.GetNoise(i, j * 2) + 1) / 2 * 0.4f;
+                            float _background = (background.GetNoise(i, j) + 1) / 2 * 0.4f;
 
-                            float _size = (caves2.GetNoise(i, j * 2) / 2 + 0.5f) / 8 + 0.125f;
-                            float _offset = caves3.GetNoise(i, j * 2);
+                            float _size = caves2.GetNoise(x, y) / 4 + 0.1875f;
+                            float _offset = caves3.GetNoise(x, y);
 
                             if (_tunnels + 0.2f < _offset - _size || _tunnels - 0.2f > _offset + _size)
                             {
-                                if (_tunnels + 0.3f + _fossils < _offset - _size || _tunnels - 0.3f - _fossils > _offset + _size)
+                                if (_tunnels + 0.2f + _fossils < _offset - _size || _tunnels - 0.2f - _fossils > _offset + _size)
                                 {
-                                    tile.TileType = TileID.DesertFossil;
-                                    //tile.WallType = WallID.DesertFossil;
+                                    if (_tunnels + 0.3f + _fossils < _offset - _size || _tunnels - 0.3f - _fossils > _offset + _size)
+                                    {
+                                        tile.TileType = TileID.DesertFossil;
+                                    }
                                 }
                                 else if (_tunnels + 0.2f + _fossils > _offset - _size || _tunnels - 0.2f - _fossils < _offset + _size)
                                 {
@@ -1471,7 +1521,7 @@ namespace Remnants.Content.World
 
                         if (!Main.wallDungeon[tile.WallType])
                         {
-                            if (layer >= surfaceLayer || tile.TileType == TileID.Stone)
+                            if (tile.TileType == TileID.Stone)
                             {
                                 tile.TileType = TileID.Ebonstone;
                             }
@@ -1495,13 +1545,18 @@ namespace Remnants.Content.World
                                 float orbDistance = Vector2.Distance(new Vector2(i * 2, j), new Vector2(Corruption.orbX * 2, !WorldGen.crimson ? Corruption.orbYPrimary : Corruption.orbYSecondary));
                                 _caves += MathHelper.Clamp(1 - orbDistance / (Main.maxTilesX / 4200f * 36), 0, 1);
 
-                                if (_caves > 0.55f)//thing > _offset - _size / (ug ? 2 : 3) && thing < _offset + _size / (ug ? 2 : 3) && !sky)
+                                if (_caves > 0.4f)
                                 {
-                                    tile.HasTile = false;
+                                    tile.TileType = TileID.Ebonstone;
 
-                                    if (layer >= surfaceLayer && _caves > 0.7f)
+                                    if (_caves > 0.55f)
                                     {
-                                        tile.WallType = WallID.CorruptionUnsafe2;
+                                        tile.HasTile = false;
+
+                                        if (layer >= surfaceLayer && _caves > 0.7f)
+                                        {
+                                            tile.WallType = WallID.CorruptionUnsafe2;
+                                        }
                                     }
                                 }
                             }
@@ -1514,19 +1569,20 @@ namespace Remnants.Content.World
                     }
                     else if (IsUpdatingBiome(x, y, biomesToUpdate, BiomeID.Crimson))
                     {
+                        if (tile.TileType == TileID.Stone)
+                        {
+                            tile.TileType = TileID.Crimstone;
+                        }
+                        if (tile.WallType == WallID.RocksUnsafe1)
+                        {
+                            tile.WallType = WallID.CrimstoneUnsafe; //!MiscTools.SurroundingTilesActive(x, y) && layer < surfaceLayer ? WallID.CrimsonGrassUnsafe : WallID.CrimstoneUnsafe;
+                        }
+
                         if (!Main.wallDungeon[tile.WallType])
                         {
                             if (layer < surfaceLayer)
                             {
-                                if (layer >= surfaceLayer - 1 || tile.TileType == TileID.Stone)
-                                {
-                                    tile.TileType = TileID.Crimstone;
-                                }
-                                if (tile.WallType == WallID.RocksUnsafe1)
-                                {
-                                    tile.WallType = WallID.CrimstoneUnsafe; //!MiscTools.SurroundingTilesActive(x, y) && layer < surfaceLayer ? WallID.CrimsonGrassUnsafe : WallID.CrimstoneUnsafe;
-                                }
-                                else if (tile.WallType == WallID.DirtUnsafe)
+                                if (tile.WallType == WallID.DirtUnsafe)
                                 {
                                     tile.WallType = WallID.CrimsonGrassUnsafe;
                                 }
@@ -1548,7 +1604,10 @@ namespace Remnants.Content.World
                                     {
                                         tile.WallType = WorldGen.genRand.NextBool(2) ? WallID.CrimsonUnsafe3 : WallID.CrimstoneUnsafe;
                                     }
-                                    tile.TileType = TileID.Crimstone;
+                                    if ((float)i / CellSize > Corruption.Left + 0.5f && (float)i / CellSize < Corruption.Right + 0.5f)
+                                    {
+                                        tile.TileType = TileID.Crimstone;
+                                    }
 
                                     if (_oesophagi > stomachWidth + 0.2f && MathHelper.Distance(i, Math.Clamp(i, (Corruption.Left + 1) * CellSize, Corruption.Right * CellSize)) < 1)
                                     {
@@ -1559,12 +1618,15 @@ namespace Remnants.Content.World
                                         }
                                     }
                                 }
+                                else if (j > stomachMiddle && (float)i / CellSize > Corruption.Left + 0.5f && (float)i / CellSize < Corruption.Right + 0.5f)
+                                {
+                                    tile.TileType = TileID.Crimstone;
+                                    tile.WallType = WallID.CrimstoneUnsafe;
+                                }
                             }
                             else
                             {
                                 tile.HasTile = true;
-                                tile.TileType = TileID.Crimstone;
-                                tile.WallType = WallID.CrimstoneUnsafe;
 
                                 if (i / CellSize > Corruption.Left && i / CellSize < Corruption.Right)
                                 {
@@ -1594,6 +1656,12 @@ namespace Remnants.Content.World
                                         float _organBorders = caves1.GetNoise(i, j) * Math.Clamp(MathHelper.Distance(j, (int)Main.worldSurface) / 20f, 0, 1);
                                         float _borderMult = Math.Clamp(MathHelper.Distance(i, (Corruption.Left + 1) * CellSize) / 20f, 0, 1) * Math.Clamp(MathHelper.Distance(i, (Corruption.Right) * CellSize) / 20f, 0, 1);
 
+                                        if (_organBorders > -0.5f)
+                                        {
+                                            tile.TileType = TileID.Crimstone;
+                                            tile.WallType = WallID.CrimstoneUnsafe;
+                                        }
+
                                         if (_organBorders > -0.25f)
                                         {
                                             tile.HasTile = false;
@@ -1601,6 +1669,27 @@ namespace Remnants.Content.World
                                         else
                                         {
                                             _organBorders *= _borderMult;
+
+                                            if (_organBorders < -0.5f)
+                                            {
+                                                if (_organs > 0)
+                                                {
+                                                    tile.TileType = TileID.Crimstone;
+                                                    tile.WallType = WallID.CrimstoneUnsafe;
+
+                                                    if (caves2.GetNoise(i, j) < -0.6f)
+                                                    {
+                                                        tile.HasTile = false;
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    if (caves2.GetNoise(i, j) > -0.6f && (_organs < -0.5f || _organs > 0.5f))
+                                                    {
+                                                        tile.HasTile = false;
+                                                    }
+                                                }
+                                            }
 
                                             if (_organs < -0.5f || _organs > 0.5f)
                                             {
@@ -1615,29 +1704,18 @@ namespace Remnants.Content.World
                                                     //caves2.SetFrequency(0.1f);
                                                 }
                                             }
-
-                                            if (_organBorders < -0.5f)
-                                            {
-                                                if (_organs > 0)
-                                                {
-                                                    if (caves2.GetNoise(i, j) < -0.6f)
-                                                    {
-                                                        tile.HasTile = false;
-                                                        tile.TileColor = PaintID.None;
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    if (caves2.GetNoise(i, j) > -0.6f && (_organs < -0.5f || _organs > 0.5f))
-                                                    {
-                                                        tile.HasTile = false;
-                                                        tile.TileColor = PaintID.None;
-                                                    }
-                                                }
-                                            }
                                         }
                                     }
-                                    else tile.HasTile = false;
+                                    else
+                                    {
+                                        tile.HasTile = false;
+                                        tile.WallType = WallID.CrimstoneUnsafe;
+                                    }
+                                }
+                                else if ((float)i / CellSize > Corruption.Left + 0.75f && (float)i / CellSize < Corruption.Right + 0.25f)
+                                {
+                                    tile.TileType = TileID.Crimstone;
+                                    tile.WallType = WallID.CrimstoneUnsafe;
                                 }
                             }
 
@@ -1757,60 +1835,46 @@ namespace Remnants.Content.World
                         }
                         else tile.WallType = 0;
                     }
-                    else if (IsUpdatingBiome(x, y, biomesToUpdate, BiomeID.Obsidian))
+                    else if (IsUpdatingBiome(x, y, biomesToUpdate, BiomeID.SulfuricVents))
                     {
                         caves1.SetNoiseType(FastNoiseLite.NoiseType.Cellular);
-                        caves1.SetFrequency(0.02f);
+                        caves1.SetFrequency(0.05f);
                         caves1.SetFractalType(FastNoiseLite.FractalType.FBm);
-                        caves1.SetFractalGain(0.75f);
-                        caves1.SetCellularDistanceFunction(FastNoiseLite.CellularDistanceFunction.Manhattan);
-                        caves1.SetCellularReturnType(FastNoiseLite.CellularReturnType.Distance2Sub);
 
-                        if (lunarVeil && lv.TryFind("CindersparkDirt", out ModTile csDirt))
+                        caves2.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
+                        caves2.SetFrequency(0.1f);
+                        caves2.SetFractalType(FastNoiseLite.FractalType.FBm);
+
+                        if (GetTileDistribution(x, y) >= 0.2f)
                         {
-                            tile.TileType = csDirt.Type;
-                        }
-                        else if (GetTileDistribution(x, y, frequency: 2) >= -0.1f)
-                        {
-                            tile.TileType = TileID.Obsidian;
-                            tile.WallType = WallID.ObsidianBackUnsafe;
+                            tile.TileType = TileID.Silt;
+                            tile.WallType = WallID.LavaUnsafe1;
                         }
                         else
                         {
-                            tile.TileType = TileID.Ash;
-                            tile.WallType = WallID.LavaUnsafe1;
+                            tile.TileType = (ushort)ModContent.TileType<Sulfurstone>();
+                            tile.WallType = (ushort)ModContent.WallType<SulfurstoneWall>();
                         }
 
-                        float _caves = caves1.GetNoise(x, y * 2); //+((float)Math.Cos(x / 60) * 20)
+                        float _caves = caves1.GetNoise(x, y) + caves2.GetNoise(x, y * 2) * 0.025f;
 
-                        //shroomcaves.SetFractalPingPongStrength(shroomcaves2.GetNoise(x, y * 2) + 1.625f);
-                        //float _caves = shroomcaves.GetNoise(x, y * 2);
-                        //float _size = (shroomcaves3.GetNoise(x, y * 2) / 2) + 1;
-
-                        if (_caves > -0.7f)
+                        if (_caves < -0.8f)
                         {
                             tile.HasTile = false;
-                            tile.LiquidAmount = 0;
+                            tile.LiquidType = LiquidID.Lava;
 
-                            if (_caves > -0.55f)
+                            if (WorldGen.genRand.NextBool(25))
+                            {
+                                tile.LiquidAmount = 255;
+                            }
+
+                            if (_caves < -0.875f)
                             {
                                 tile.WallType = 0;
                             }
                         }
-                        else
-                        {
-                            tile.HasTile = true;
-                            tile.Slope = 0;
-                        }
-                        //if (tile.WallType == 0 && caves1.GetNoise(x + 999, y * 2 + 999) > -0.2f)
-                        //{
-                        //    //if (tile.type == TileID.Stone || _materials < -0.7f)
-                        //    //{
-                        //    //    tile.wall = WallID.RocksUnsafe1;
-                        //    //}
-                        //    //else
-                        //    tile.WallType = WallID.MushroomUnsafe;
-                        //}
+                        else tile.HasTile = true;
+
                     }
                     else if (IsUpdatingBiome(x, y, biomesToUpdate, BiomeID.Marble))
                     {
@@ -1856,19 +1920,20 @@ namespace Remnants.Content.World
 
                         tile.WallType = WallID.GraniteUnsafe;
 
-                        caves1.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
-                        caves1.SetFrequency(0.03f);
+                        caves1.SetNoiseType(FastNoiseLite.NoiseType.Cellular);
+                        caves1.SetCellularReturnType(FastNoiseLite.CellularReturnType.Distance2Sub);
+                        caves1.SetFrequency(0.025f);
                         caves1.SetFractalType(FastNoiseLite.FractalType.FBm);
                         caves1.SetFractalOctaves(2);
 
                         Vector2 point = new Vector2((Tundra.Center + 0.5f) * CellSize, MathHelper.Clamp(y, (int)Main.worldSurface + 100, Main.maxTilesY - 350));
                         float threshold = MathHelper.Clamp((1 - Vector2.Distance(new Vector2(x, y), point) / 75) * 1.5f, 0, 1);
 
-                        if (caves1.GetNoise(x, y * 2) * 1.5f + 0.5f < threshold * 2 - 1)
+                        if (caves1.GetNoise(x * 2, y) + 1.5f < threshold * 2 - 1)
                         {
                             MiscTools.Tile(x, y).HasTile = false;
 
-                            if (Vector2.Distance(new Vector2(x, y), point) > 35)
+                            if (Vector2.Distance(new Vector2(x, y), point) > 28)
                             {
                                 MiscTools.Tile(x, y).LiquidAmount = 255;
                             }
@@ -1878,7 +1943,7 @@ namespace Remnants.Content.World
                         point.Y = MathHelper.Clamp(point.Y, 0, Main.maxTilesY - 450);
                         threshold = MathHelper.Clamp((1 - Vector2.Distance(new Vector2(x, y), point) / 75) * 1.5f, 0, 1);
 
-                        if (caves1.GetNoise(x, y * 2) * 1.5f + 1 < threshold * 2 - 1)
+                        if (caves1.GetNoise(x * 2, y) + 1.75f < threshold * 2 - 1)
                         {
                             MiscTools.Tile(x, y).WallType = 0;
                         }
@@ -1918,8 +1983,8 @@ namespace Remnants.Content.World
                             caves2.SetFractalType(FastNoiseLite.FractalType.FBm);
                             caves2.SetFractalOctaves(3);
 
-                            float _caves = caves1.GetNoise(x, y * 2);
-                            float _size = caves3.GetNoise(x, y * 2) / 2 + 1;
+                            float _caves = caves1.GetNoise(x, y);
+                            float _size = caves3.GetNoise(x, y) / 2 + 1;
 
                             if (tile.TileType == TileID.Dirt || tile.TileType == TileID.Grass || tile.TileType == TileID.ClayBlock || tile.TileType == TileID.Stone || tile.TileType == TileID.Silt)
                             {
@@ -2080,10 +2145,10 @@ namespace Remnants.Content.World
                     else if (IsUpdatingBiome(x, y, biomesToUpdate, BiomeID.Aether))
                     {
                         caves1.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
-                        caves1.SetFrequency(0.015f);
+                        caves1.SetFrequency(0.04f);
                         caves1.SetFractalType(FastNoiseLite.FractalType.Ridged);
 
-                        float _caves = caves1.GetNoise(x, y * 2); //+((float)Math.Cos(x / 60) * 20)
+                        float _caves = caves1.GetNoise(x, y); //+((float)Math.Cos(x / 60) * 20)
 
                         //shroomcaves.SetFractalPingPongStrength(shroomcaves2.GetNoise(x, y * 2) + 1.625f);
                         //float _caves = shroomcaves.GetNoise(x, y * 2);
@@ -2125,7 +2190,7 @@ namespace Remnants.Content.World
                             }
                         }
 
-                        if (caves1.GetNoise(x + 999, y * 2 + 999) > 0.6f)
+                        if (caves1.GetNoise(x + 999, y + 999) > 0.6f)
                         {
                             //if (_materials < -0.2f)
                             //{
@@ -2137,6 +2202,7 @@ namespace Remnants.Content.World
                         }
                         else tile.WallType = 0;
                     }
+                    #endregion
                     #region modded
                     else if (IsUpdatingBiome(x, y, biomesToUpdate, BiomeID.SunkenSea))
                     {
@@ -2260,7 +2326,36 @@ namespace Remnants.Content.World
                             }
                         }
                     }
-                    #endregion
+                    else if (IsUpdatingBiome(x, y, biomesToUpdate, BiomeID.ThermalCaves))
+                    {
+                        if (GetTileDistribution(x, y, frequency: 2) >= 0.3f)
+                        {
+                            tile.TileType = TileID.Ash;
+                        }
+                        else if (GetTileDistribution(x, y) >= 0.2f)
+                        {
+                            tile.TileType = basalt;
+                        }
+                        else tile.TileType = gabbro;
+
+                        tile.LiquidType = LiquidID.Lava;
+                        if (!tile.HasTile)
+                        {
+                            if (WorldGen.genRand.NextBool(25))
+                            {
+                                tile.LiquidAmount = 255;
+                            }
+                        }
+
+                        if (tile.WallType != 0)
+                        {
+                            if (GetTileDistribution(x, y) >= 0.2f)
+                            {
+                                tile.WallType = basaltWall;
+                            }
+                            else tile.WallType = gabbroWall;
+                        }
+                    }
                     #endregion
 
                     if (y >= Main.maxTilesY - 20)
@@ -2287,7 +2382,7 @@ namespace Remnants.Content.World
             bool lunarVeil = ModLoader.TryGetMod("Stellamod", out Mod lv);
 
 
-            biomes.UpdateMap(new int[] { BiomeID.Tundra, BiomeID.Jungle, BiomeID.Desert, BiomeID.Corruption, BiomeID.Crimson, BiomeID.Underworld, BiomeID.AshForest, BiomeID.Obsidian, BiomeID.Beach, BiomeID.Toxic, BiomeID.SunkenSea, BiomeID.Savanna, BiomeID.Abysm, BiomeID.Glowshroom, BiomeID.Marble, BiomeID.Granite, BiomeID.Aether, BiomeID.OceanCave }, progress);
+            biomes.UpdateMap(new int[] { BiomeID.Tundra, BiomeID.Jungle, BiomeID.Desert, BiomeID.Corruption, BiomeID.Crimson, BiomeID.Underworld, BiomeID.AshForest, BiomeID.SulfuricVents, BiomeID.Beach, BiomeID.Toxic, BiomeID.Glowshroom, BiomeID.Marble, BiomeID.Granite, BiomeID.Aether, BiomeID.OceanCave, BiomeID.SunkenSea, BiomeID.Savanna, BiomeID.ThermalCaves, BiomeID.Abysm }, progress);
 
             #region tundra
             FastNoiseLite thinIce = new FastNoiseLite(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
@@ -2427,7 +2522,7 @@ namespace Remnants.Content.World
 
                             if (_noise + 1 > distance / radius)
                             {
-                                if (tile.TileType == TileID.Ebonstone)
+                                if (tile.TileType == TileID.Ebonstone || tile.TileType == TileID.Dirt)
                                 {
                                     tile.TileType = TileID.LesionBlock;
                                 }
@@ -3163,9 +3258,43 @@ namespace Remnants.Content.World
                         {
                             if (RemTile.SolidTop(x, y + 1))
                             {
-                                if (tile.LiquidType == 0)
+                                if (Framing.GetTileSafely(x, y + 1).TileType == ModContent.TileType<Sulfurstone>())
                                 {
-                                    if (Framing.GetTileSafely(x, y + 1).TileType == TileID.JungleGrass)
+                                    if (!WorldGen.genRand.NextBool(3))
+                                    {
+                                        WorldGen.PlaceTile(x, y, ModContent.TileType<SulfuricVent>());
+
+                                        for (int j = y - 1; j > (int)Main.worldSurface && !Framing.GetTileSafely(x, j).HasTile; j--)
+                                        {
+                                            if ((WorldGen.genRand.NextBool(3) || y - j >= 5 || Framing.GetTileSafely(x, j - 2).HasTile))
+                                            {
+                                                break;
+                                            }
+                                            else WorldGen.PlaceTile(x, j, ModContent.TileType<SulfuricVent>());
+                                        }
+                                    }
+                                }
+                                else if (tile.LiquidType == 0)
+                                {
+                                    if (biomes.FindBiome(x, y) == BiomeID.OceanCave)
+                                    {
+                                        if (tile.LiquidAmount == 255)
+                                        {
+                                            if (MiscTools.Tile(x, y + 1).TileType == TileID.Coralstone)
+                                            {
+                                                if (WorldGen.genRand.NextBool(2))
+                                                {
+                                                    WorldGen.PlaceTile(x, y, ModContent.TileType<Luminsponge>(), style: Main.rand.Next(12));
+                                                }
+                                                else WorldGen.PlaceTile(x, y, TileID.Coral, style: Main.rand.Next(6));
+                                            }
+                                            else if (WorldGen.genRand.NextBool(15))
+                                            {
+                                                WorldGen.PlaceTile(x, y, TileID.DyePlants, style: 5);
+                                            }
+                                        }
+                                    }
+                                    else if (Framing.GetTileSafely(x, y + 1).TileType == TileID.JungleGrass)
                                     {
                                         if (WorldGen.genRand.NextBool(6))
                                         {
@@ -3186,22 +3315,7 @@ namespace Remnants.Content.World
                                             }
                                         }
                                     }
-                                    else if (Framing.GetTileSafely(x, y + 1).TileType == TileID.Coralstone)
-                                    {
-                                        if (WorldGen.genRand.NextBool(2) && tile.LiquidAmount == 255)
-                                        {
-                                            int style = Main.rand.Next(12);
-                                            WorldGen.PlaceTile(x, y, ModContent.TileType<Luminsponge>());
-                                            Framing.GetTileSafely(x, y).TileFrameX = (short)(style * 18);
-                                        }
-                                    }
                                 }
-                                //if (WorldGen.genRand.NextBool(6) && tile.LiquidAmount == 255 && tile.LiquidType == 0 && (Framing.GetTileSafely(x, y + 1).TileType == TileID.Stone || Main.tileMoss[Framing.GetTileSafely(x, y + 1).TileType]))
-                                //{
-                                //    int style = Main.rand.Next(3);
-                                //    WorldGen.PlaceTile(x, y, ModContent.TileType<thermopod>());
-                                //    Framing.GetTileSafely(x, y).TileFrameX = (short)(style * 22);
-                                //}
                             }
                             else if (RemTile.SolidBottom(x, y - 1))
                             {

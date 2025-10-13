@@ -8,6 +8,7 @@ Mods: {
 			HomewardJourney: Modyfikacja "Homeward Journey" jest włączona.
 			Aequus: Modyfikacja "Aequus" jest włączona.
 			StartWithBase: Modyfikacja "Start with base" jest włączona.
+			LunarVeil: Modyfikacja "Lunar Veil" jest włączona.
 			Solution: Aby bezpiecznie dokończyć tworzenie świata, usuń te problemy lub wyłącz Remnants.
 			WOTGMultiplayer: Remnants detected Wrath of the Gods enabled on a multiplayer client. This mod is known to cause issues in multiplayer. If you are aware of this and wish to continue, disable the Safeguard option in the Remnants config.
 		}
@@ -137,6 +138,11 @@ Mods: {
 			GoldenCity: {
 				// TownNPCDialogueName: the Golden City
 				// DisplayName: Golden City
+			}
+
+			SulfuricVents: {
+				// DisplayName: Sulfuric Vents
+				// TownNPCDialogueName: the Sulfuric Vents
 			}
 		}
 
@@ -665,6 +671,11 @@ Mods: {
 			SkullSign: {
 				// Tooltip: ""
 				// DisplayName: Skull Sign
+			}
+
+			Sulfurstone: {
+				// Tooltip: ""
+				// DisplayName: Sulfurstone
 			}
 		}
 

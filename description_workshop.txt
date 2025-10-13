@@ -15,6 +15,7 @@ Supported mods have been built around to ensure an ideal experience: [list]
 Fully compatible mods should be completely safe to use: [list]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3449156562][b]Calamity Fables[/b][/url]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2893332653][b]Mod of Redemption[/b][/url]
+[*][url=https://steamcommunity.com/workshop/filedetails/?id=2939093580][b]Orchid Mineshaft[/b][/url]
 [/list]
 
 Partially compatible mods will cause some minor problems, but otherwise may still be playable: [list]
@@ -24,8 +25,6 @@ Partially compatible mods will cause some minor problems, but otherwise may stil
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2563862309][b]The Stars Above[/b][/url] (The Neon Veil overrides other structures)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2984622072][b]Starlight River[/b][/url] (A few biome and structure conflicts)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2982372319][b]Spirit Classic[/b][/url] (Sepulchres are disabled to prevent crashing)
-[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3019925104][b]Lunar Veil[/b][/url] (Numerous biome and structure conflicts)
-[*][url=https://steamcommunity.com/workshop/filedetails/?id=2939093580][b]Orchid Mineshaft[/b][/url] (Mineshafts are disabled as one overlaps the central tree)
 [/list]
 
 Incompatible mods will result in a guaranteed crash or unplayable world: [list]
@@ -33,6 +32,7 @@ Incompatible mods will result in a guaranteed crash or unplayable world: [list]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2843112914][b]Secrets of the Shadows[/b][/url]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2807309918][b]Start with Base[/b][/url]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2930931197][b]Homeward Journey[/b][/url]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3019925104][b]Lunar Veil[/b][/url]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2833852432][b]Spooky Mod[/b][/url]
 [/list]
 
@@ -51,7 +51,8 @@ Features/Mechanics: [list]
 [/list]
 
 Localisation: [list]
-[*]Russian localisation by [url=https://steamcommunity.com/id/xenofite][b]Xenofite.[/b][/url]
-[*]Polish localisation by [url=https://steamcommunity.com/id/nichiimishiari/][b]Nichiimishiari.[/b][/url]
-[*]German localisation by [url=https://steamcommunity.com/id/Cracky-XXX/][b]Cracky.[/b][/url]
+[*]Russian translations by [url=https://steamcommunity.com/id/xenofite][b]Xenofite.[/b][/url]
+[*]Polish translations by [url=https://steamcommunity.com/id/nichiimishiari/][b]Nichiimishiari.[/b][/url]
+[*]German translations by [url=https://steamcommunity.com/id/Cracky-XXX/][b]Cracky.[/b][/url]
 [/list]
+

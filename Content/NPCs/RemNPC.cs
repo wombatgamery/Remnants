@@ -255,21 +255,37 @@ namespace Remnants.Content.NPCs
                         pool[NPCID.WebbedStylist] = 1f;
                     }
                 }
-                else if ((tile.TileType == TileID.Granite || tile.TileType == TileID.GraniteBlock) && spawnInfo.SpawnTileY > Main.worldSurface)
+                else if (tile.WallType == WallID.HiveUnsafe)
                 {
-                    pool.Clear();
+                    if (tile.TileType == TileID.Hive)
+                    {
+                        pool.Clear();
 
-                    pool[NPCID.GraniteGolem] = 2f;
-                    pool[NPCID.GraniteFlyer] = 1f;
+                        pool[ModContent.NPCType<HoneySlime>()] = 3f;
+                        pool[NPCID.LittleHornetHoney] = 1f;
+                        pool[NPCID.HornetHoney] = 1f;
+                        pool[NPCID.BigHornetHoney] = 1f;
+                    }
                 }
-                else if (tile.TileType == TileID.Hive && tile.WallType == WallID.HiveUnsafe)
+                else if (tile.TileType == ModContent.TileType<Sulfurstone>())
                 {
-                    pool.Clear();
+                    if (spawnInfo.SpawnTileY >= Main.maxTilesY - 300)
+                    {
+                        pool.Clear();
 
-                    pool[ModContent.NPCType<HoneySlime>()] = 3f;
-                    pool[NPCID.LittleHornetHoney] = 1f;
-                    pool[NPCID.HornetHoney] = 1f;
-                    pool[NPCID.BigHornetHoney] = 1f;
+                        pool[NPCID.LavaSlime] = 2f;
+                        pool[NPCID.Hellbat] = 1f;
+                    }
+                }
+                else if (tile.TileType == TileID.Granite || tile.TileType == TileID.GraniteBlock)
+                {
+                    if (spawnInfo.SpawnTileY > Main.worldSurface)
+                    {
+                        pool.Clear();
+
+                        pool[NPCID.GraniteGolem] = 2f;
+                        pool[NPCID.GraniteFlyer] = 1f;
+                    }
                 }
                 else if (spawnInfo.Player.InModBiome(ModContent.GetInstance<OceanCave>()) && spawnInfo.SpawnTileY > Main.worldSurface)
                 {

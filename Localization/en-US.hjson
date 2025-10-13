@@ -2,12 +2,13 @@ Mods: {
 	Remnants: {
 		Safeguard: {
 			IssuesFound: Remnants found one or more compatibility issues, and cannot create the following world. Issues found:
-			SmallWorlds: The world size is too small.
+			SmallWorlds: The world dimensions are too small.
 			SecretSeeds: A secret seed has been selected.
 			BadRatio: A non-standard width-to-height ratio is in use.
 			HomewardJourney: The Homeward Journey mod is enabled.
 			Aequus: The Aequus mod is enabled.
 			StartWithBase: The Start With Base mod is enabled.
+			LunarVeil: The Lunar Veil mod is enabled.
 			Solution: To safely finish world creation, please remove these issues or disable Remnants.
 			WOTGMultiplayer: Remnants detected Wrath of the Gods enabled on a multiplayer client. This mod is known to cause issues in multiplayer. If you are aware of this and wish to continue, disable the Safeguard option in the Remnants config.
 		}
@@ -137,6 +138,11 @@ Mods: {
 			GoldenCity: {
 				TownNPCDialogueName: the Golden City
 				DisplayName: Golden City
+			}
+
+			SulfuricVents: {
+				DisplayName: Sulfuric Vents
+				TownNPCDialogueName: the Sulfuric Vents
 			}
 		}
 
@@ -661,6 +667,11 @@ Mods: {
 			SkullSign: {
 				Tooltip: ""
 				DisplayName: Skull Sign
+			}
+
+			Sulfurstone: {
+				Tooltip: ""
+				DisplayName: Sulfurstone
 			}
 		}
 

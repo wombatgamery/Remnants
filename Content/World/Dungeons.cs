@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using StructureHelper;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -10,12 +9,13 @@ using Terraria.Localization;
 using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
+using static Remnants.Content.World.RemWorld;
+using static Remnants.Content.World.BiomeMap;
 using Remnants.Content.Items.Accessories;
 using Remnants.Content.Items.Documents;
 using Remnants.Content.Items.Materials;
 using Remnants.Content.Items.Tools;
 using Remnants.Content.Items.Weapons;
-using Remnants.Content.Biomes;
 using Remnants.Content.Walls;
 using Remnants.Content.Tiles;
 using Remnants.Content.Walls.Parallax;
@@ -25,7 +25,6 @@ using Remnants.Content.Tiles.Plants;
 using Remnants.Content.Tiles.Objects.Decoration;
 using Remnants.Content.Tiles.Objects.Furniture;
 using Remnants.Content.Tiles.Objects.Hazards;
-using static Remnants.Content.World.BiomeMap;
 
 namespace Remnants.Content.World
 {
@@ -33,25 +32,26 @@ namespace Remnants.Content.World
     {
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
         {
-            RemWorld.InsertPass(tasks, new TheDungeon("Dungeon", 100), RemWorld.FindIndex(tasks, "Dungeon"), true);
+            InsertPass(tasks, new TheDungeon("Dungeon", 100), FindIndex(tasks, "Dungeon"), true);
+
             int genIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Dungeon"));
             if (genIndex != -1)
             {
-                RemWorld.InsertPass(tasks, new ForgottenTomb("Forgotten Tomb", 100), genIndex + 1);
+                InsertPass(tasks, new ForgottenTomb("Forgotten Tomb", 100), genIndex + 1);
 
                 if (ModContent.GetInstance<Worldgen>().ExperimentalWorldgen)
                 {
-                    RemWorld.InsertPass(tasks, new InfernalStronghold("Infernal Stronghold", 100), genIndex + 1);
-                    RemWorld.InsertPass(tasks, new WaterTemple("Water Temple", 100), genIndex + 1);
+                    InsertPass(tasks, new InfernalStronghold("Infernal Stronghold", 100), genIndex + 1);
+                    InsertPass(tasks, new WaterTemple("Water Temple", 100), genIndex + 1);
                 }
 
-                RemWorld.InsertPass(tasks, new MagicalLab("Magical Lab", 0), genIndex + 1);
-                RemWorld.InsertPass(tasks, new Labyrinth("Echoing Halls", 0), genIndex + 1);
+                InsertPass(tasks, new MagicalLab("Magical Lab", 0), genIndex + 1);
+                InsertPass(tasks, new Labyrinth("Echoing Halls", 0), genIndex + 1);
             }
 
-            RemWorld.InsertPass(tasks, new JungleTemple("Jungle Pyramid", 100), RemWorld.FindIndex(tasks, "Jungle Temple"), true);
-            RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Temple"));
-            RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Altars"));
+            InsertPass(tasks, new JungleTemple("Jungle Pyramid", 100), FindIndex(tasks, "Jungle Temple"), true);
+            RemovePass(tasks, FindIndex(tasks, "Temple"));
+            RemovePass(tasks, FindIndex(tasks, "Altars"));
 
             genIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Dungeon"));
             if (genIndex != -1 && ModContent.GetInstance<Worldgen>().ExperimentalWorldgen)

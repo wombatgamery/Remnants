@@ -8,6 +8,7 @@ Mods: {
 			HomewardJourney: Включён мод Homeward Journey. Remnants не поддерживает генерацию мира с этим модом.
 			Aequus: Включён мод Aequus. Remnants не поддерживает генерацию мира с этим модом.
 			StartWithBase: Включён мод Start With Base. Remnants не поддерживает генерацию мира с этим модом.
+			LunarVeil: Включён мод Lunar Veil. Remnants не поддерживает генерацию мира с этим модом.
 			Solution: Чтобы успешно сгенерировать новый мир, необходимо разрешить все перечисленные проблемы или отключить Remnants.
 			WOTGMultiplayer: Wrath of the Gods несовместим с мультиплеером и вызывает множество багов. Настоятельно рекомендуем ради вашего же блага отключить его или играть в синглплеере.
 		}
@@ -137,6 +138,11 @@ Mods: {
 			GoldenCity: {
 				// TownNPCDialogueName: the Golden City
 				// DisplayName: Golden City
+			}
+
+			SulfuricVents: {
+				// DisplayName: Sulfuric Vents
+				// TownNPCDialogueName: the Sulfuric Vents
 			}
 		}
 
@@ -677,6 +683,11 @@ Mods: {
 			SkullSign: {
 				Tooltip: ""
 				DisplayName: Знак черепа
+			}
+
+			Sulfurstone: {
+				// Tooltip: ""
+				// DisplayName: Sulfurstone
 			}
 		}
 

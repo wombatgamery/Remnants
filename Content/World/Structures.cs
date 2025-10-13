@@ -9,7 +9,8 @@ using Terraria.Localization;
 using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
-using static Remnants.Content.World.BiomeGeneration;
+using static Remnants.Content.World.RemWorld;
+using static Remnants.Content.World.BiomeMap;
 using Remnants.Content.Walls;
 using Remnants.Content.Tiles;
 using Remnants.Content.Walls.Parallax;
@@ -17,21 +18,12 @@ using Remnants.Content.Walls.Vanity;
 using Remnants.Content.Tiles.Blocks;
 using Remnants.Content.Tiles.Objects;
 using Remnants.Content.Tiles.Objects.Furniture;
-using static Remnants.Content.World.BiomeMap;
-using System.Reflection;
-using rail;
-using Microsoft.CodeAnalysis;
 using Remnants.Content.Tiles.Objects.Hazards;
 using Remnants.Content.Tiles.Objects.Decoration;
-using SteelSeries.GameSense;
 using Remnants.Content.Tiles.Plants;
 using Remnants.Content.Items.Consumable;
-using Microsoft.Xna.Framework.Audio;
-using System.Security.Policy;
 using Remnants.Content.Items.Accessories;
 using Remnants.Content.Items.Tools;
-using MonoMod.Core.Platforms;
-using Humanizer;
 
 namespace Remnants.Content.World
 {
@@ -39,39 +31,41 @@ namespace Remnants.Content.World
     {
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
         {
-            RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Surface Chests"));
-            RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Buried Chests"));
+            RemovePass(tasks, FindIndex(tasks, "Surface Chests"));
+            RemovePass(tasks, FindIndex(tasks, "Buried Chests"));
+            RemovePass(tasks, FindIndex(tasks, "Micro Biomes"));
 
             int genIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Smooth World"));
             if (genIndex != -1)
             {
-                RemWorld.InsertPass(tasks, new ThermalRigs("Thermal Engines", 0), genIndex + 1);
-                RemWorld.InsertPass(tasks, new GemCaves("Gem Caves", 0), genIndex);
-                RemWorld.InsertPass(tasks, new Microdungeons("Microdungeons", 0), genIndex);
-                RemWorld.InsertPass(tasks, new SwordShrines("Enchanted Swords", 0), genIndex);
+                InsertPass(tasks, new ThermalRigs("Thermal Engines", 0), genIndex + 1);
+                InsertPass(tasks, new GemCaves("Gem Caves", 0), genIndex);
+                InsertPass(tasks, new Microdungeons("Microdungeons", 0), genIndex);
+                InsertPass(tasks, new SwordShrines("Enchanted Swords", 0), genIndex);
             }
 
-            RemWorld.InsertPass(tasks, new SkyGardens("Sky Gardens", 1), RemWorld.FindIndex(tasks, "Dungeon"));
+            InsertPass(tasks, new SkyGardens("Sky Gardens", 1), FindIndex(tasks, "Dungeon"));
 
-            bool spiritReforged = ModLoader.TryGetMod("SpiritReforged", out Mod sr);
-            RemWorld.InsertPass(tasks, new FloatingIslands("Sky Islands", 1), RemWorld.FindIndex(tasks, "Dirt Rock Wall Runner"));
+            RemovePass(tasks, FindIndex(tasks, "Floating Islands"));
+            RemovePass(tasks, FindIndex(tasks, "Floating Island Houses"));
+            InsertPass(tasks, new FloatingIslands("Sky Islands", 1), FindIndex(tasks, "Dirt Rock Wall Runner"));
 
-            RemWorld.InsertPass(tasks, new DesertRuins("Desert Ruins", 100), RemWorld.FindIndex(tasks, "Pyramids"), true);
-            RemWorld.InsertPass(tasks, new Beehives("Beehives", 100), RemWorld.FindIndex(tasks, "Hives"), true);
+            InsertPass(tasks, new DesertRuins("Desert Ruins", 100), FindIndex(tasks, "Pyramids"), true);
+            InsertPass(tasks, new Beehives("Beehives", 100), FindIndex(tasks, "Hives"), true);
 
-            RemWorld.InsertPass(tasks, new Mineshafts("Mineshafts", 1), RemWorld.FindIndex(tasks, "Living Trees"));
-            RemWorld.InsertPass(tasks, new GiantTrees("Giant Trees", 1), RemWorld.FindIndex(tasks, "Living Trees"), true);
-            RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Wood Tree Walls"));
+            InsertPass(tasks, new Mineshafts("Mineshafts", 1), FindIndex(tasks, "Living Trees"));
+            InsertPass(tasks, new GiantTrees("Giant Trees", 1), FindIndex(tasks, "Living Trees"), true);
+            RemovePass(tasks, FindIndex(tasks, "Wood Tree Walls"));
 
+            InsertPass(tasks, new BoulderTraps("Boulder Traps", 1), FindIndex(tasks, "Traps"), true);
 
             if (!ModContent.GetInstance<Worldgen>().ExperimentalWorldgen)
             {
-                RemWorld.InsertPass(tasks, new HellStructures("Hell Structures", 0), RemWorld.FindIndex(tasks, "Underworld") + 1);
+                InsertPass(tasks, new HellStructures("Hell Structures", 0), FindIndex(tasks, "Underworld") + 1);
             }
 
-            RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Hellforge"));
-
-            RemWorld.RemovePass(tasks, RemWorld.FindIndex(tasks, "Jungle Chests"));
+            RemovePass(tasks, FindIndex(tasks, "Hellforge"));
+            RemovePass(tasks, FindIndex(tasks, "Jungle Chests"));
         }
     }
 
@@ -90,9 +84,9 @@ namespace Remnants.Content.World
             int structureCount = 0;
             while (structureCount < 1)
             {
-                StructureTools.Dungeon mines = new StructureTools.Dungeon(Main.maxTilesX / 2, (int)Main.worldSurface + 30, (int)((Main.maxTilesX / 840f) / 2) * 2 + 1, (int)(Main.maxTilesY / 600f) + 1, 36, 36, 6);
+                StructureTools.Dungeon mines = new StructureTools.Dungeon(Main.maxTilesX / 2, (int)Main.worldSurface + 20, (int)((Main.maxTilesX / 840f) / 2) * 2 + 1, (int)(Main.maxTilesY / 400f), 36, 36, 6);
 
-                mines.X = structureCount == 0 ? WorldGen.genRand.NextBool(2) ? (int)(Main.maxTilesX * 0.425f) : (int)(Main.maxTilesX * 0.575f) - mines.area.Width : (int)((Jungle.Center + 0.5f) * biomes.CellSize - mines.area.Width / 2);
+                mines.X = structureCount == 0 ? WorldGen.genRand.NextBool(2) ? (int)(Main.maxTilesX * 0.4125f) : (int)(Main.maxTilesX * 0.5875f) - mines.area.Width : (int)((Jungle.Center + 0.5f) * biomes.CellSize - mines.area.Width / 2);
 
                 if (true)//GenVars.structures.CanPlace(mines.area))
                 {
@@ -171,7 +165,7 @@ namespace Remnants.Content.World
                     List<int> rooms = new List<int>();
 
                     int roomCount = 0;
-                    while (roomCount < (mines.grid.Width * mines.grid.Height) / 22)
+                    while (roomCount < (Main.maxTilesX / 8400f) * (Main.maxTilesY / 2400f) * 2)
                     {
                         mines.targetCell.X = roomCount == 0 ? WorldGen.genRand.Next(mines.grid.Left + 1, mines.grid.Center.X - 1) : WorldGen.genRand.Next(mines.grid.Center.X + 1, mines.grid.Right - 2);
                         mines.targetCell.Y = WorldGen.genRand.Next(1, mines.grid.Bottom - 2);
@@ -210,7 +204,7 @@ namespace Remnants.Content.World
                     }
 
                     roomCount = 0;
-                    while (roomCount < (mines.grid.Width * mines.grid.Height) / 22)
+                    while (roomCount < (Main.maxTilesX / 8400f) * (Main.maxTilesY / 2400f) * 2)
                     {
                         mines.targetCell.X = WorldGen.genRand.Next(mines.grid.Left + 1, mines.grid.Right - 2);
                         mines.targetCell.Y = WorldGen.genRand.Next(1, mines.grid.Bottom - 1);
@@ -572,7 +566,7 @@ namespace Remnants.Content.World
                     //}
 
                     #region ores
-                    int[] blocksToReplace = new int[] { TileID.Dirt, TileID.Stone, TileID.Copper };
+                    List<int> blocksToReplace = new List<int>() { TileID.Dirt, TileID.Stone, TileID.Copper };
 
                     int copper = (mines.area.Width * mines.area.Height) / (15 * 100);
                     while (copper > 0)
@@ -668,6 +662,68 @@ namespace Remnants.Content.World
                         }
                     }
 
+                    bool orchid = ModLoader.TryGetMod("OrchidMineshaft", out Mod om);
+
+                    if (orchid)
+                    {
+                        if (om.TryFind("MineshaftHookTile", out ModTile hook))
+                        {
+                            objects = (int)(Math.Max((Main.maxTilesX / 8400f) * (Main.maxTilesY / 2400f) * 2, 1));
+                            while (objects > 0)
+                            {
+                                int x = WorldGen.genRand.Next(mines.area.Left, mines.area.Right);
+                                int y = WorldGen.genRand.Next(mines.area.Top + mines.room.Height, mines.area.Bottom);
+
+                                if (MiscTools.EmptyInArea(x - 2, y - 1, x + 2, y + 2) && Framing.GetTileSafely(x, y + 3).TileType == TileID.WoodBlock && MiscTools.SolidInArea(x - 2, y + 3, x + 2, y + 3) && Framing.GetTileSafely(x, y - 2).WallType == ModContent.WallType<Wood>())
+                                {
+                                    WorldGen.PlaceObject(x, y, hook.Type);
+                                    if (Framing.GetTileSafely(x, y).TileType == hook.Type)
+                                    {
+                                        objects--;
+                                    }
+                                }
+                            }
+                        }
+
+                        if (om.TryFind("MineshaftPickaxeTile", out ModTile pickaxe))
+                        {
+                            objects = (int)(Math.Max((Main.maxTilesX / 8400f) * (Main.maxTilesY / 2400f) * 2, 1));
+                            while (objects > 0)
+                            {
+                                int x = WorldGen.genRand.Next(mines.area.Left, mines.area.Right);
+                                int y = WorldGen.genRand.Next(mines.area.Top + mines.room.Height, mines.area.Bottom);
+
+                                if (MiscTools.EmptyInArea(x - 2, y - 1, x + 2, y + 2) && Framing.GetTileSafely(x, y + 3).TileType == TileID.WoodBlock && MiscTools.SolidInArea(x - 2, y + 3, x + 2, y + 3) && Framing.GetTileSafely(x, y - 2).WallType == ModContent.WallType<Wood>())
+                                {
+                                    WorldGen.PlaceObject(x, y, pickaxe.Type);
+                                    if (Framing.GetTileSafely(x, y).TileType == pickaxe.Type)
+                                    {
+                                        objects--;
+                                    }
+                                }
+                            }
+                        }
+
+                        if (om.TryFind("MineshaftToolboxTile", out ModTile toolbox))
+                        {
+                            objects = mines.grid.Height * mines.grid.Width / 16;
+                            while (objects > 0)
+                            {
+                                int x = WorldGen.genRand.Next(mines.area.Left, mines.area.Right);
+                                int y = WorldGen.genRand.Next(mines.area.Top + mines.room.Height, mines.area.Bottom);
+
+                                if (Framing.GetTileSafely(x, y).TileType != toolbox.Type && Framing.GetTileSafely(x, y + 1).TileType == TileID.WoodBlock && MiscTools.SolidInArea(x - 2, y + 1, x + 2, y + 1))
+                                {
+                                    WorldGen.PlaceObject(x, y, toolbox.Type);
+                                    if (Framing.GetTileSafely(x, y).TileType == toolbox.Type)
+                                    {
+                                        objects--;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
                     objects = mines.grid.Height * mines.grid.Width / 16;
                     while (objects > 0)
                     {
@@ -681,6 +737,21 @@ namespace Remnants.Content.World
                             {
                                 objects--;
                             }
+                        }
+                    }
+
+                    int crateTile = TileID.FishingCrate;// orchid && om.TryFind("MineshaftCrate", out ModTile crate) ? crate.Type : TileID.FishingCrate;
+
+                    objects = mines.grid.Height * mines.grid.Width / (crateTile != TileID.FishingCrate ? 4 : 8);
+                    while (objects > 0)
+                    {
+                        int x = WorldGen.genRand.Next(mines.area.Left, mines.area.Right);
+                        int y = WorldGen.genRand.Next(mines.area.Top + mines.room.Height, mines.area.Bottom);
+
+                        if (MiscTools.EmptyInArea(x - 2, y - 3, x + 2, y) && Framing.GetTileSafely(x, y + 1).TileType == TileID.WoodBlock && MiscTools.SolidInArea(x - 2, y + 1, x + 2, y + 1))
+                        {
+                            MiscTools.PlaceObjectsInArea(x - 2, y - 2, x + 1, y, crateTile, count: 3 - objects % 3);
+                            objects--;
                         }
                     }
 
@@ -1385,7 +1456,7 @@ namespace Remnants.Content.World
 
                     if (distance <= radius + 8)
                     {
-                        if ((radius > 12 || j > Main.worldSurface && j < Main.rockLayer)  && biomes.FindBiome(i, j) != BiomeID.Glowshroom)
+                        if (radius > ((position.Y > Main.worldSurface) ? 7 : 12) && biomes.FindBiome(i, j) != BiomeID.Glowshroom)
                         {
                             if (!tile.HasTile)
                             {
@@ -1397,7 +1468,10 @@ namespace Remnants.Content.World
 
                         if (distance <= radius)
                         {
-                            tile.HasTile = true;
+                            if (radius > 6 || position.Y < Main.worldSurface - 50)
+                            {
+                                tile.HasTile = true;
+                            }
 
                             if (tile.TileType != ModContent.TileType<nothing>() && tile.TileType != TileID.Grass && tile.TileType != TileID.WoodenBeam)
                             {
@@ -2858,7 +2932,7 @@ namespace Remnants.Content.World
             progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Microdungeons");
             int structureCount;
             int attempts;
-			float waterLavaRatio = (float)((GenVars.lavaLine - Main.rockLayer) / (Main.maxTilesY - 300 - Main.rockLayer));
+			float waterLavaRatio = (float)((GenVars.lavaLine - Main.worldSurface) / (Main.maxTilesY - 300 - Main.worldSurface));
 
 			int uniqueStructures = 8;
             int progressCounter = 0;
@@ -3262,13 +3336,15 @@ namespace Remnants.Content.World
             progressCounter++;
 
             structureCount = 0; // MINECART RAIL
-            while (structureCount < Main.maxTilesY / 150 * ModContent.GetInstance<Worldgen>().RailroadFrequency)
+            int structureCountTotal = (int)(Main.maxTilesY / 150 * ModContent.GetInstance<Worldgen>().RailroadFrequency);
+            while (structureCount < structureCountTotal)
             {
                 progress.Set((progressCounter + structureCount / (float)(Main.maxTilesY / 150)) / uniqueStructures);
 
                 #region spawnconditions
-                StructureTools.Dungeon rail = new StructureTools.Dungeon(0, WorldGen.genRand.Next((int)Main.rockLayer, GenVars.lavaLine - 50), WorldGen.genRand.Next(15, 30) * (Main.maxTilesX / 4200), 2, 12, 6, 2);
+                StructureTools.Dungeon rail = new StructureTools.Dungeon(0, 0, WorldGen.genRand.Next(15, 30) * (Main.maxTilesX / 4200), 2, 12, 6, 2);
                 rail.X = WorldGen.genRand.Next(400, Main.maxTilesX - 400 - rail.area.Width);// (structureCount < Main.maxTilesY / 240 ^ Tundra.Center > biomes.width / 2) ? WorldGen.genRand.Next(400, Main.maxTilesX / 2 - rail.area.Width / 2) : WorldGen.genRand.Next(Main.maxTilesX / 2 - rail.area.Width / 2, Main.maxTilesX - 400 - rail.area.Width);
+                rail.Y = ((float)structureCount / (float)structureCountTotal < waterLavaRatio) ? WorldGen.genRand.Next((int)Main.worldSurface, GenVars.lavaLine - rail.area.Height) : WorldGen.genRand.Next(GenVars.lavaLine, Main.maxTilesY - 300 - rail.area.Height);
                 rail.X = rail.X / 4 * 4;
 
                 bool[] invalidTiles = TileID.Sets.Factory.CreateBoolSet(true, TileID.Ash, TileID.Ebonstone, TileID.Crimstone, TileID.LihzahrdBrick, TileID.LivingWood);
@@ -3282,7 +3358,7 @@ namespace Remnants.Content.World
                 //{
                 //    valid = false;
                 //}
-                else if (!StructureTools.AvoidsBiomes(rail.area, new int[] { BiomeID.Tundra, BiomeID.Desert, BiomeID.Marble, BiomeID.Toxic, BiomeID.SunkenSea }))
+                else if (!StructureTools.AvoidsBiomes(rail.area, new int[] { BiomeID.Tundra, BiomeID.Desert, BiomeID.Marble, BiomeID.SulfuricVents, BiomeID.Toxic, BiomeID.SunkenSea }))
                 {
                     valid = false;
                 }
@@ -3451,7 +3527,7 @@ namespace Remnants.Content.World
 
             structureCount = 0; // GRANITE TOWER
             int missingPiece = WorldGen.genRand.NextBool(3) ? ItemID.AncientCobaltLeggings : WorldGen.genRand.NextBool(2) ? ItemID.AncientCobaltBreastplate : ItemID.AncientCobaltHelmet;
-            while (structureCount < Main.maxTilesY / 300)
+            while (structureCount < Main.maxTilesY / 600)
             {
                 progress.Set((progressCounter + structureCount / (float)(Main.maxTilesY / 300)) / uniqueStructures);
 
@@ -4071,7 +4147,7 @@ namespace Remnants.Content.World
             progressCounter++;
 
             structureCount = 0; // BURIED CABIN
-            int structureCountTotal = (int)(Main.maxTilesX * Main.maxTilesY / 1200f / 300 * ModContent.GetInstance<Worldgen>().CabinFrequency);
+            structureCountTotal = (int)(Main.maxTilesX * Main.maxTilesY / 1200f / 300 * ModContent.GetInstance<Worldgen>().CabinFrequency);
             while (structureCount < structureCountTotal)
             {
                 progress.Set((progressCounter + structureCount / (float)(Main.maxTilesX * Main.maxTilesY / 1200f / 300)) / uniqueStructures);
@@ -4089,7 +4165,7 @@ namespace Remnants.Content.World
                 {
                     valid = false;
                 }
-                else if (!StructureTools.AvoidsBiomes(cabin.area, new int[] { BiomeID.Granite, BiomeID.Toxic, BiomeID.Obsidian, BiomeID.SunkenSea }))
+                else if (!StructureTools.AvoidsBiomes(cabin.area, new int[] { BiomeID.Corruption, BiomeID.Crimson, BiomeID.Marble, BiomeID.Granite, BiomeID.Toxic, BiomeID.SulfuricVents, BiomeID.SunkenSea }))
                 {
                     valid = false;
                 }
@@ -4601,7 +4677,7 @@ namespace Remnants.Content.World
 
 				#region spawnconditions
 				int x = WorldGen.genRand.Next((int)(Main.maxTilesX * 0.1f), (int)(Main.maxTilesX * 0.9f));
-                int y = ((float)structureCount / (float)structureCountTotal < waterLavaRatio) ? WorldGen.genRand.Next((int)Main.rockLayer, GenVars.lavaLine) : WorldGen.genRand.Next(GenVars.lavaLine, Main.maxTilesY - 300);
+                int y = ((float)structureCount / (float)structureCountTotal < waterLavaRatio) ? WorldGen.genRand.Next((int)Main.worldSurface, GenVars.lavaLine) : WorldGen.genRand.Next(GenVars.lavaLine, Main.maxTilesY - 300);
 				int height = Math.Max(WorldGen.genRand.Next(2, 7), WorldGen.genRand.Next(2, 7));
                 Rectangle area = new Rectangle(x - 3, y - height * 6 - 8, 7, height * 6 + 8);
                 bool[] validTiles = TileID.Sets.Factory.CreateBoolSet(true, TileID.Sand, TileID.HardenedSand, TileID.Sandstone, TileID.Ebonstone, TileID.Crimstone, TileID.Ash, TileID.LihzahrdBrick);
@@ -4611,7 +4687,7 @@ namespace Remnants.Content.World
                 {
                     valid = false;
                 }
-                else if (!StructureTools.AvoidsBiomes(area, new int[] { BiomeID.Tundra, BiomeID.Jungle, BiomeID.Glowshroom, BiomeID.Granite, BiomeID.Toxic, BiomeID.Obsidian, BiomeID.SunkenSea }))
+                else if (!StructureTools.AvoidsBiomes(area, new int[] { BiomeID.Tundra, BiomeID.Jungle, BiomeID.Glowshroom, BiomeID.Granite, BiomeID.Toxic, BiomeID.SulfuricVents, BiomeID.SunkenSea }))
                 {
                     valid = false;
                 }
@@ -4897,14 +4973,14 @@ namespace Remnants.Content.World
 
             int count = 0;
 
-            while (count < Main.maxTilesX * Main.maxTilesY / 1200f / 21 * ModContent.GetInstance<Worldgen>().TrapFrequency)
+            while (count < Main.maxTilesX * Main.maxTilesY / 1200f / 28 * ModContent.GetInstance<Worldgen>().TrapFrequency)
             {
-                progress.Set(count / (float)(Main.maxTilesX * Main.maxTilesY / 1200f / 21 * ModContent.GetInstance<Worldgen>().TrapFrequency));
+                progress.Set(count / 2 / (float)(Main.maxTilesX * Main.maxTilesY / 1200f / 28 * ModContent.GetInstance<Worldgen>().TrapFrequency));
 
                 int x = WorldGen.genRand.Next((int)(Main.maxTilesX * 0.1f), (int)(Main.maxTilesX * 0.9f));
                 int y = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY - 300);
 
-                if ((WorldGen.genRand.NextBool(2) || y > Main.rockLayer) && (biomes.FindBiome(x, y) == BiomeID.None || biomes.FindBiome(x, y) == BiomeID.Jungle) && GenVars.structures.CanPlace(new Rectangle(x - 2, y - 3, 6, 6), 6))
+                if ((WorldGen.genRand.NextBool(2) || y > Main.rockLayer) && (biomes.FindBiome(x, y) == BiomeID.None || biomes.FindBiome(x, y) == BiomeID.Jungle || biomes.FindBiome(x, y) == BiomeID.ThermalCaves) && GenVars.structures.CanPlace(new Rectangle(x - 2, y - 3, 6, 6), 6))
                 {
                     bool valid = true;
                     for (int j = y - 3; j <= y + 2; j++)
@@ -4939,14 +5015,28 @@ namespace Remnants.Content.World
                                 plateY++;
                             }
 
-                            if (!MiscTools.Solid(plateX - 1, plateY) && !MiscTools.Solid(plateX + 1, plateY) && MiscTools.Tile(plateX, plateY).LiquidAmount < 255 && MiscTools.Tile(plateX, plateY).TileType != TileID.MinecartTrack)
+                            if (!WorldGen.SolidTile(plateX - 1, plateY) && !WorldGen.SolidTile(plateX + 1, plateY) && MiscTools.Tile(plateX, plateY).LiquidAmount < 255 && MiscTools.Tile(plateX, plateY).TileType != TileID.MinecartTrack)
                             {
                                 WorldGen.KillTile(plateX, plateY);
-                                WorldGen.PlaceTile(plateX, plateY, TileID.PressurePlates, style: 3);
+                                WorldGen.PlaceTile(plateX, plateY, TileID.PressurePlates, style: Main.tile[plateX, plateY + 1].TileType == TileID.Dirt ? 2 : 3);
                                 MiscTools.Wire(plateX, plateY, plateX, y + 3);
 
-                                MiscTools.Rectangle(x - 1, y - 2, x + 2, y + 1, TileID.GrayBrick);
-                                MiscTools.Rectangle(x, y - 1, x + 1, y, -1, ModContent.WallType<BrickStone>());
+                                int brick = TileID.GrayBrick;
+                                int brickWall = ModContent.WallType<BrickStone>();
+                                if (biomes.FindBiome(x, y) == BiomeID.ThermalCaves && ModLoader.TryGetMod("RuinSeeker", out Mod rs))
+                                {
+                                    if (rs.TryFind("Gabbro_Brick_Tile", out ModTile gabbroBrick))
+                                    {
+                                        brick = gabbroBrick.Type;
+                                    }
+                                    if (rs.TryFind("Gabbro_Brick_Wall", out ModWall gabbroBrickWall))
+                                    {
+                                        brickWall = gabbroBrickWall.Type;
+                                    }
+                                }
+
+                                MiscTools.Rectangle(x - 1, y - 2, x + 2, y + 1, brick);
+                                MiscTools.Rectangle(x, y - 1, x + 1, y, -1, brickWall);
                                 WorldGen.PlaceTile(x + 1, y, TileID.Boulder);
 
                                 for (int j = y + 1; j <= y + 2; j++)
@@ -4961,6 +5051,68 @@ namespace Remnants.Content.World
                                 GenVars.structures.AddProtectedStructure(new Rectangle(x - 2, y - 3, 6, 6));
 
                                 count++;
+                            }
+                        }
+                    }
+                }
+            }
+
+            count = 0;
+
+            while (count < Main.maxTilesX / 5 * ModContent.GetInstance<Worldgen>().TrapFrequency)
+            {
+                progress.Set(count / 2 / (float)(Main.maxTilesX / 5f * ModContent.GetInstance<Worldgen>().TrapFrequency) + 0.5f);
+
+                int x = WorldGen.genRand.Next(50, Main.maxTilesX - 50);
+                int y = WorldGen.genRand.Next(Main.maxTilesY - 300, Main.maxTilesY - 200);
+
+                if (biomes.FindBiome(x, y) == BiomeID.SulfuricVents)
+                {
+                    bool valid = true;
+                    for (int j = y - 2; j <= y + 2; j++)
+                    {
+                        for (int i = x - 2; i <= x + 3; i++)
+                        {
+                            if (!MiscTools.Solid(i, j) || Main.tileOreFinderPriority[Main.tile[i, j].TileType] > 0)
+                            {
+                                valid = false;
+                                break;
+                            }
+                        }
+                    }
+                    if (valid)
+                    {
+                        int length = 2;
+
+                        int plateX = x + WorldGen.genRand.Next(2);
+                        int plateY = y - 3;
+
+                        while (MiscTools.Solid(plateX, plateY))
+                        {
+                            plateY--;
+                            length++;
+                        }
+
+                        if (length >= 4 && length <= 12)
+                        {
+                            if (!WorldGen.SolidTile(plateX - 1, plateY) && !WorldGen.SolidTile(plateX + 1, plateY) && MiscTools.EmptyInArea(x, plateY - 4, x + 1, plateY - 1) && MiscTools.Tile(plateX, plateY).LiquidAmount == 0)
+                            {
+                                WorldGen.KillTile(plateX, plateY);
+                                WorldGen.PlaceTile(plateX, plateY, TileID.PressurePlates, style: 3);
+
+                                if (MiscTools.HasTile(plateX, plateY, TileID.PressurePlates))
+                                {
+                                    MiscTools.Wire(plateX, plateY, plateX, y);
+
+                                    MiscTools.Rectangle(x - 1, y - 1, x + 2, y + 1, ModContent.TileType<Sulfurstone>());
+                                    MiscTools.Rectangle(x, y, x + 1, y, -1, ModContent.WallType<SulfurstoneWall>());
+                                    WorldGen.Place2x1(x, y, TileID.GeyserTrap);
+                                    //WorldGen.PlaceTile(x, y, TileID.GeyserTrap, forced: true);
+
+                                    GenVars.structures.AddProtectedStructure(new Rectangle(x - 2, y - 2, 6, 5));
+
+                                    count++;
+                                }
                             }
                         }
                     }

@@ -32,7 +32,8 @@ namespace Remnants.Content.World
 {
     public class RemWorld : ModSystem
     {
-        public static float lavaLevel => GenVars.lavaLine - 50; // (int)(Main.rockLayer + Main.maxTilesY) / 2 + 15; //(int)((Main.maxTilesY - Main.rockLayer) / 2 + Main.rockLayer);
+        public static bool spiritReforgedEnabled => ModLoader.TryGetMod("SpiritReforged", out Mod sr);
+        public static bool ruinSeekerEnabled => ModLoader.TryGetMod("RuinSeeker", out Mod rs);
 
         public override void Load()
         {
@@ -46,28 +47,19 @@ namespace Remnants.Content.World
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
         {
-            int genIndex;
-
-            bool spiritReforged = ModLoader.TryGetMod("SpiritReforged", out Mod sr);
-
             #region decoration
-            InsertPass(tasks, new Grass("Moss", 1), FindIndex(tasks, "Moss"), true);
+            InsertPass(tasks, new Grass("Grass and Moss", 1), FindIndex(tasks, "Moss"), true);
 
             InsertPass(tasks, new SpecialPlants("Special Plants", 1), FindIndex(tasks, "Weeds"));
 
             RemovePass(tasks, FindIndex(tasks, "Piles"));
             InsertPass(tasks, new Piles("Piles", 0), FindIndex(tasks, "Planting Trees") + 1);
 
-            //InsertPass(tasks, new Bushes("Bushes", 1), FindIndex(tasks, "Final Cleanup"));
-
             RemovePass(tasks, FindIndex(tasks, "Flowers"));
             //InsertPass(tasks, new Meadows("Meadows", 0), FindIndex(tasks, "Flowers"), true);
             #endregion
 
             InsertPass(tasks, new LifeCrystalReduction("Life Crystal Reduction", 1), FindIndex(tasks, "Life Crystals") + 1);
-
-            InsertPass(tasks, new BoulderTraps("Boulder Traps", 1), FindIndex(tasks, "Traps"), true);
-            //RemovePass(tasks, FindIndex(tasks, "Traps"));
 
             InsertPass(tasks, new SpawnPointFix("Spawn Point Fix", 1), FindIndex(tasks, "Spawn Point") + 1);
 
@@ -81,13 +73,9 @@ namespace Remnants.Content.World
 
             //RemovePass(tasks, FindIndex(tasks, "Random Gems"));
 
-            RemovePass(tasks, FindIndex(tasks, "Gravitating Sand"));
-            RemovePass(tasks, FindIndex(tasks, "Shell Piles"));
-            RemovePass(tasks, FindIndex(tasks, "Ice"));
             RemovePass(tasks, FindIndex(tasks, "Cave Walls"));
             RemovePass(tasks, FindIndex(tasks, "Wall Variety"));
             RemovePass(tasks, FindIndex(tasks, "Mushrooms"));
-            RemovePass(tasks, FindIndex(tasks, "Micro Biomes"));
 
             if (ModLoader.TryGetMod("CalamityMod", out Mod cal))
             {
@@ -110,7 +98,7 @@ namespace Remnants.Content.World
                 RemovePass(tasks, FindIndex(tasks, "Growing garden"));
             }
 
-            if (spiritReforged)
+            if (spiritReforgedEnabled)
             {
                 RemovePass(tasks, FindIndex(tasks, "Savanna"));
                 RemovePass(tasks, FindIndex(tasks, "Beaches"), true);
@@ -168,6 +156,8 @@ namespace Remnants.Content.World
                 InsertPass(tasks, new Safeguard("Safeguard", 1), 1);
             }
         }
+
+
 
         public static void InsertPass(List<GenPass> tasks, GenPass item, int index, bool replace = false)
         {
@@ -1122,6 +1112,8 @@ namespace Remnants.Content.World
 
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
+            bool ruinSeeker = ModLoader.TryGetMod("RuinSeeker", out Mod rs);
+
             FastNoiseLite borders = new FastNoiseLite(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
             borders.SetNoiseType(FastNoiseLite.NoiseType.Value);
             borders.SetFractalType(FastNoiseLite.FractalType.FBm);
@@ -1149,7 +1141,7 @@ namespace Remnants.Content.World
                         if (noise + 1 > Vector2.Distance(new Vector2(x, y), point) / (radius / 2) && (biomes.FindBiome(x, y) != BiomeID.Desert || MiscTools.Tile(x, y - 1).HasTile || MiscTools.Tile(x, y - 1).LiquidAmount == 0))
                         {
                             tile.HasTile = true;
-                            tile.TileType = biomes.GetLayer(x, y) >= biomes.Height - 4 ? TileID.Ash : biomes.GetLayer(x, y) >= biomes.Height - 6 ? TileID.Obsidian : biomes.FindBiome(x, y) == BiomeID.Granite ? TileID.Granite : (biomes.FindBiome(x, y) == BiomeID.Jungle && biomes.GetTileDistribution(x, y, frequency: 2) < 0.3f) || biomes.FindBiome(x, y) == BiomeID.Glowshroom ? TileID.Mud : biomes.FindBiome(x, y) == BiomeID.Desert || biomes.FindBiome(x, y) == BiomeID.Savanna ? (biomes.GetLayer(x, y) >= biomes.surfaceLayer ? TileID.Sandstone : TileID.HardenedSand) : biomes.FindBiome(x, y) == BiomeID.Tundra ? TileID.IceBlock : biomes.GetLayer(x, y) < biomes.caveLayer && biomes.GetLayer(x, y) >= biomes.surfaceLayer && biomes.GetTileDistribution(x, y, frequency: 2) < 0.2f ? TileID.Dirt : TileID.Stone;
+                            tile.TileType = ruinSeeker && biomes.FindBiome(x, y) == BiomeID.ThermalCaves && rs.TryFind("Gabbro_Tile", out ModTile gabbro) ? gabbro.Type : biomes.FindBiome(x, y) == BiomeID.Underworld ? TileID.Ash : biomes.FindBiome(x, y) == BiomeID.SulfuricVents ? (ushort)ModContent.TileType<Sulfurstone>() : biomes.FindBiome(x, y) == BiomeID.Granite ? TileID.Granite : (biomes.FindBiome(x, y) == BiomeID.Jungle && biomes.GetTileDistribution(x, y, frequency: 2) < 0.3f) || biomes.FindBiome(x, y) == BiomeID.Glowshroom ? TileID.Mud : biomes.FindBiome(x, y) == BiomeID.Desert || biomes.FindBiome(x, y) == BiomeID.Savanna ? (biomes.GetLayer(x, y) >= biomes.surfaceLayer ? TileID.Sandstone : TileID.HardenedSand) : biomes.FindBiome(x, y) == BiomeID.Tundra ? TileID.IceBlock : biomes.GetLayer(x, y) < biomes.caveLayer && biomes.GetLayer(x, y) >= biomes.surfaceLayer && biomes.GetTileDistribution(x, y, frequency: 2) < 0.2f ? TileID.Dirt : TileID.Stone;
                         }
                         else if (!MiscTools.Tile(x, y).HasTile && MiscTools.Tile(x, y - 1).HasTile && MiscTools.Tile(x, y - 1).TileType == TileID.Mud && (biomes.FindBiome(x, y) == BiomeID.Jungle || biomes.FindBiome(x, y) == BiomeID.Glowshroom))
                         {
@@ -2216,6 +2208,11 @@ namespace Remnants.Content.World
                 issuesFound = true;
                 message = message + "\n. " + Language.GetTextValue("Mods.Remnants.Safeguard.HomewardJourney");
             }
+            if (ModLoader.TryGetMod("Stellamod", out Mod lv))
+            {
+                issuesFound = true;
+                message = message + "\n. " + Language.GetTextValue("Mods.Remnants.Safeguard.LunarVeil");
+            }
             if (ModLoader.TryGetMod("Aequus", out Mod aq))
             {
                 issuesFound = true;
@@ -2351,7 +2348,14 @@ namespace Remnants.Content.World
                         #endregion
                         else
                         {
-                            if (tile.TileType == TileID.Plants || tile.TileType == TileID.Plants2)
+                            if (tile.TileType == TileID.Stone)
+                            {
+                                if (biomes.FindBiome(x, y) == BiomeID.SulfuricVents)
+                                {
+                                    tile.TileType = (ushort)ModContent.TileType<Sulfurstone>();
+                                }
+                            }
+                            else if (tile.TileType == TileID.Plants || tile.TileType == TileID.Plants2)
                             {
                                 if (y < Main.worldSurface * 0.5f)
                                 {
@@ -2402,50 +2406,39 @@ namespace Remnants.Content.World
                                     }
                                 }
                             }
-                            else if (tile.TileType == TileID.WoodBlock || tile.TileType == TileID.GrayBrick || TileID.Sets.tileMossBrick[tile.TileType] || tile.TileType == TileID.Glass && tile.WallType == ModContent.WallType<magicallab>() || tile.TileType == ModContent.TileType<LockedIronDoor>() || tile.TileType == ModContent.TileType<VaultPipe>() || ModLoader.TryGetMod("WombatQOL", out Mod wombatqol) && wombatqol.TryFind("IndustrialPanel", out ModTile IndustrialPanel) && tile.TileType == IndustrialPanel.Type)
+                            else if (tile.TileType == TileID.Glass && tile.WallType == ModContent.WallType<magicallab>() || tile.TileType == ModContent.TileType<LockedIronDoor>() || tile.TileType == ModContent.TileType<VaultPipe>() || ModLoader.TryGetMod("WombatQOL", out Mod wombatqol) && wombatqol.TryFind("IndustrialPanel", out ModTile IndustrialPanel) && tile.TileType == IndustrialPanel.Type)
                             {
                                 tile.Slope = 0;
                                 tile.IsHalfBlock = false;
                             }
-                            else if (tile.TileType == TileID.TreeAmethyst || tile.TileType == TileID.TreeTopaz || tile.TileType == TileID.TreeSapphire || tile.TileType == TileID.TreeEmerald || tile.TileType == TileID.TreeRuby || tile.TileType == TileID.TreeDiamond)
+                            else if (biomes.FindBiome(x, y) == BiomeID.Corruption || biomes.FindBiome(x, y) == BiomeID.Crimson)
                             {
-                                if (biomes.FindBiome(x, y) == BiomeID.Corruption || biomes.FindBiome(x, y) == BiomeID.Crimson)
+                                if (tile.TileType == TileID.DemonAltar)
+                                {
+                                    if (biomes.FindBiome(x, y) == BiomeID.Crimson && tile.TileFrameX < 18 * 3)
+                                    {
+                                        tile.TileFrameX += 18 * 3;
+                                    }
+                                    else if (tile.TileFrameX >= 18 * 3)
+                                    {
+                                        tile.TileFrameX -= 18 * 3;
+                                    }
+                                }
+                                else if (tile.TileType == TileID.ShadowOrbs)
+                                {
+                                    if (biomes.FindBiome(x, y) == BiomeID.Crimson && tile.TileFrameX < 18 * 2)
+                                    {
+                                        tile.TileFrameX += 18 * 2;
+                                    }
+                                    else if (tile.TileFrameX >= 18 * 2)
+                                    {
+                                        tile.TileFrameX -= 18 * 2;
+                                    }
+                                }
+                                else if (TileID.Sets.CountsAsGemTree[tile.TileType])
                                 {
                                     WorldGen.KillTile(x, y);
                                     tile.HasTile = false;
-                                }
-                            }
-                            else if (tile.TileType == TileID.Pots && MiscTools.Tile(x - 1, y).TileType != TileID.Pots && MiscTools.Tile(x, y - 1).TileType != TileID.Pots && MiscTools.HasTile(x, y + 2, TileID.IceBrick))
-                            {
-                                int style = Main.rand.Next(4, 7);
-                                for (int j = 0; j < 2; j++)
-                                {
-                                    for (int i = 0; i < 2; i++)
-                                    {
-                                        MiscTools.Tile(x + i, y + j).TileFrameY = (short)(style * 36 + j * 18);
-                                    }
-                                }
-                            }
-                            else if (tile.TileType == TileID.DemonAltar)
-                            {
-                                if (biomes.FindBiome(x, y) == BiomeID.Crimson && tile.TileFrameX < 18 * 3)
-                                {
-                                    tile.TileFrameX += 18 * 3;
-                                }
-                                else if (biomes.FindBiome(x, y) == BiomeID.Corruption && tile.TileFrameX >= 18 * 3)
-                                {
-                                    tile.TileFrameX -= 18 * 3;
-                                }
-                            }
-                            else if (tile.TileType == TileID.ShadowOrbs)
-                            {
-                                if (biomes.FindBiome(x, y) == BiomeID.Crimson && tile.TileFrameX < 18 * 2)
-                                {
-                                    tile.TileFrameX += 18 * 2;
-                                }
-                                else if (biomes.FindBiome(x, y) == BiomeID.Corruption && tile.TileFrameX >= 18 * 2)
-                                {
-                                    tile.TileFrameX -= 18 * 2;
                                 }
                             }
 
@@ -2480,7 +2473,7 @@ namespace Remnants.Content.World
                                 {
                                     tile.WallType = WallID.IceUnsafe;
                                 }
-                                else if (tile.TileType == ModContent.TileType<Hardstone>() && tile.WallType == 0)
+                                else if (tile.TileType == ModContent.TileType<Hardstone>())
                                 {
                                     tile.WallType = (ushort)ModContent.WallType<hardstonewall>();
                                 }
@@ -2632,7 +2625,7 @@ namespace Remnants.Content.World
                             tile.HasTile = false;
                         }
                     }
-                    if (biomes.FindBiome(x, y, false) == BiomeID.Underworld || biomes.FindBiome(x, y) == BiomeID.Aether || tile.WallType == ModContent.WallType<whisperingmaze>() || tile.WallType == ModContent.WallType<LabyrinthTileWall>() || tile.WallType == ModContent.WallType<LabyrinthBrickWall>())
+                    if (biomes.FindBiome(x, y, false) == BiomeID.Underworld || biomes.FindBiome(x, y, false) == BiomeID.Aether || biomes.FindBiome(x, y) == BiomeID.SulfuricVents || biomes.FindBiome(x, y) == BiomeID.ThermalCaves)
                     {
                         if (tile.TileType == TileID.Cobweb)
                         {
@@ -2655,34 +2648,6 @@ namespace Remnants.Content.World
                             tile.TileType = TileID.WaterDrip;
                         }
                     }
-                    //    if (!tile.HasTile)
-                    //    {
-                    //        if (WorldGen.genRand.NextBool(20) && RemTile.SolidBottom(x, y - 1))
-                    //        {
-                    //            WorldGen.PlaceTile(x, y, TileID.DyePlants, style: 7);
-                    //        }
-                    //        else if (WorldGen.genRand.NextBool(4) && RemTile.SolidTop(x, y + 1) && RemTile.SolidTop(x + 1, y + 1) && !WGTools.GetTile(x + 1, y).HasTile)
-                    //        {
-                    //            WGTools.MediumPile(x, y, Main.rand.Next(6, 16));
-                    //        }
-                    //        else if (WorldGen.genRand.NextBool(2) && RemTile.SolidTop(x, y + 1) && !tile.HasTile)
-                    //        {
-                    //            RemTile.SmallPile(x, y, Main.rand.Next(12, 28));
-                    //        }
-                    //    }
-                    //}
-                    //if (biomes.FindBiome(x, y, false) == BiomeID.Glowshroom)
-                    //{
-                    //    if (WorldGen.genRand.NextBool(2) && RemTile.SolidTop(x, y + 1) && (WGTools.GetTile(x, y + 1).type == ModContent.TileType<mudstone>() || WGTools.GetTile(x, y + 1).type == TileID.Silt))
-                    //    {
-                    //        if (WorldGen.genRand.NextBool(2))
-                    //        {
-                    //            WorldGen.PlaceTile(x, y, TileID.DyePlants);
-                    //        }
-                    //        else WorldGen.PlaceTile(x, y, TileID.DyePlants, style: 1);
-                    //    }
-                    //}
-
                 }
             }
 
@@ -2736,27 +2701,6 @@ namespace Remnants.Content.World
                             if (MiscTools.AdjacentTiles(x, y, true) >= 1)
                             {
                                 WorldGen.PlaceTile(x, y, TileID.ExposedGems, style: 6);
-                            }
-                        }
-                    }
-                }
-            }
-
-            for (int y = (int)Main.worldSurface; y < Main.rockLayer; y++)
-            {
-                for (int x = 20; x < Main.maxTilesX - 20; x++)
-                {
-                    if (biomes.FindBiome(x, y) == BiomeID.OceanCave)
-                    {
-                        if (!MiscTools.Tile(x, y).HasTile && WorldGen.SolidTile(MiscTools.Tile(x, y + 1)) && MiscTools.Tile(x, y).LiquidAmount == 255)
-                        {
-                            if (MiscTools.Tile(x, y + 1).TileType == TileID.Coralstone)
-                            {
-                                WorldGen.PlaceTile(x, y, TileID.Coral, style: Main.rand.Next(6));
-                            }
-                            else if (WorldGen.genRand.NextBool(15))
-                            {
-                                WorldGen.PlaceTile(x, y, TileID.DyePlants, style: 5);
                             }
                         }
                     }
