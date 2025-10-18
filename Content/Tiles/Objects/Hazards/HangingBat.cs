@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Remnants.Content.Dusts;
+using Remnants.Content.World;
+using System.Linq;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -349,6 +351,100 @@ namespace Remnants.Content.Tiles.Objects.Hazards
             }
 
             Kill(i, j);
+        }
+    }
+
+    public class HangingBatSpawns : GlobalWall
+    {
+        public override void RandomUpdate(int i, int j, int type)
+        {
+            Tile tile = Main.tile[i, j];
+
+            //if (j > Main.worldSurface)
+            //         {
+            //	TryToPlaceGuardian(i, j);
+            //}
+
+            if (ModContent.GetInstance<Gameplay>().HangingBats && Main.netMode == NetmodeID.SinglePlayer)
+            {
+                int[] badWalls = new int[5];
+
+                //badWalls[0] = ModContent.WallType<temple>();
+                //badWalls[1] = WallID.LihzahrdBrickUnsafe;
+                //badWalls[2] = ModContent.WallType<pyramid>();
+                //badWalls[3] = ModContent.WallType<PyramidBrickWallUnsafe>();
+                //badWalls[4] = ModContent.WallType<whisperingmaze>();
+                //badWalls[5] = ModContent.WallType<LabyrinthTileWall>();
+                //badWalls[6] = ModContent.WallType<LabyrinthBrickWall>();
+                //badWalls[7] = ModContent.WallType<magicallab>();
+                //badWalls[8] = ModContent.WallType<EnchantedBrickWallUnsafe>();
+                badWalls[0] = WallID.SpiderUnsafe;
+                badWalls[1] = WallID.LivingWoodUnsafe;
+                badWalls[2] = WallID.HiveUnsafe;
+                badWalls[3] = WallID.CorruptionUnsafe3;
+                badWalls[4] = WallID.CrimsonUnsafe3;
+
+                Player player = Main.LocalPlayer;
+                if (Main.rand.NextBool(50) && !tile.HasTile && MiscTools.Solid(i, j - 1) && !MiscTools.Solid(i, j + 1) && tile.LiquidAmount == 0 && Main.tileOreFinderPriority[Main.tile[i, j - 1].TileType] == 0 && Vector2.Distance(new Vector2(i * 16 + 8, j * 16 + 8), player.Center) > 80 * 16)
+                {
+                    if (!Main.wallHouse[tile.WallType] && tile.WallType < WallID.Count)
+                    {
+                        //tile.WallType == 0 || tile.WallType == WallID.DirtUnsafe || tile.WallType == WallID.Cave6Unsafe || tile.WallType == WallID.DirtUnsafe1 || tile.WallType == WallID.DirtUnsafe2 || tile.WallType == WallID.DirtUnsafe3 || tile.WallType == WallID.DirtUnsafe4 || tile.WallType == WallID.SnowWallUnsafe || tile.WallType == WallID.IceUnsafe || tile.WallType == WallID.JungleUnsafe || tile.WallType == WallID.MudUnsafe || tile.WallType == WallID.JungleUnsafe1 || tile.WallType == WallID.JungleUnsafe2 || tile.WallType == WallID.JungleUnsafe3 || tile.WallType == WallID.JungleUnsafe4 || tile.WallType == WallID.LavaUnsafe1 || tile.WallType == WallID.LavaUnsafe2 || tile.WallType == WallID.LavaUnsafe3 || tile.WallType == WallID.LavaUnsafe4 || tile.WallType == WallID.ObsidianBackUnsafe)
+                        // && tile.WallType != ModContent.WallType<vault>() && tile.WallType != ModContent.WallType<vaultwallunsafe>()
+                        if (!Main.wallDungeon[tile.WallType] && !badWalls.Contains(tile.WallType) && !WallID.Sets.Conversion.Sandstone[tile.WallType] && !WallID.Sets.Conversion.HardenedSand[tile.WallType] && tile.WallType != WallID.DesertFossil)
+                        {
+                            tile = Main.tile[i, j - 1];
+                            int style = -1;
+
+                            if (j > Main.maxTilesY - 300)
+                            {
+                                if (Main.hardMode)
+                                {
+                                    style = 6;
+                                }
+                                else style = 2;
+                            }
+                            else if (j > Main.worldSurface)
+                            {
+                                if (TileID.Sets.Hallow[tile.TileType])
+                                {
+                                    style = 4;
+                                }
+                                else if (tile.TileType == TileID.JungleGrass || tile.TileType == TileID.LihzahrdBrick || tile.TileType == TileID.Hive || tile.TileType == TileID.Chlorophyte || tile.TileType == TileID.RichMahogany || tile.TileType == TileID.LivingMahogany || tile.TileType == TileID.LivingMahoganyLeaves)
+                                {
+                                    if (Main.hardMode)
+                                    {
+                                        style = 7;
+                                    }
+                                    else style = 1;
+                                }
+                                else if (tile.TileType == TileID.SnowBlock || tile.TileType == TileID.IceBlock || tile.TileType == TileID.SnowBrick || tile.TileType == TileID.IceBrick || tile.TileType == TileID.BorealWood)
+                                {
+                                    style = 5;
+                                }
+                                else if (tile.TileType == TileID.MushroomGrass || tile.TileType == TileID.MushroomBlock)
+                                {
+                                    style = 8;
+                                }
+                                else if (!TileID.Sets.Corrupt[tile.TileType] && !TileID.Sets.Crimson[tile.TileType])
+                                {
+                                    if (Main.hardMode)
+                                    {
+                                        style = 3;
+                                    }
+                                    else style = 0;
+                                }
+                            }
+
+                            if (style >= 0)
+                            {
+                                WorldGen.PlaceTile(i, j, ModContent.TileType<HangingBat>(), true, style: style);
+                                ModContent.GetInstance<TEhangingbat>().Place(i, j);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

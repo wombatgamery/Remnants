@@ -115,9 +115,9 @@ Mods: {
 				TownNPCDialogueName: Korytarze Echa
 			}
 
-			ForgottenTomb: {
-				DisplayName: Zapomniany Grobowiec
-				TownNPCDialogueName: Zapomniany Grobowiec
+			SpiderNest: {
+				// DisplayName: Spider Nest
+				// TownNPCDialogueName: the Spider Nest
 			}
 
 			Undergrowth: {
@@ -676,6 +676,16 @@ Mods: {
 			Sulfurstone: {
 				// Tooltip: ""
 				// DisplayName: Sulfurstone
+			}
+
+			InsectRemains: {
+				// DisplayName: Insect Remains
+				// Tooltip: Can be used at the Extractinator
+			}
+
+			SpiderEggs: {
+				// DisplayName: Spider Eggs
+				// Tooltip: ""
 			}
 		}
 

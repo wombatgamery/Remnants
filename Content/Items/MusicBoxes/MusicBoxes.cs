@@ -65,9 +65,10 @@ public class MagicalLabMusicBox : ModItem
 #endregion
 
 #region Forgotten Tomb
-public class ForgottenTombMusicBox : ModItem
+[LegacyName("ForgottenTombMusicBox")]
+public class SpiderNestMusicBox : ModItem
 {
-    public override LocalizedText DisplayName => Language.GetText("{0} ({1})").WithFormatArgs(Language.GetText("ItemName.MusicBox"), Language.GetText("Mods.Remnants.Biomes.ForgottenTomb.DisplayName"));
+    public override LocalizedText DisplayName => Language.GetText("{0} ({1})").WithFormatArgs(Language.GetText("ItemName.MusicBox"), Language.GetText("Mods.Remnants.Biomes.SpiderNest.DisplayName"));
 
     public override LocalizedText Tooltip => null;
 
@@ -76,13 +77,13 @@ public class ForgottenTombMusicBox : ModItem
         ItemID.Sets.CanGetPrefixes[Type] = false;
         ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.MusicBox;
 
-        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Tomb"), ModContent.ItemType<ForgottenTombMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.ForgottenTombMusicBox>());
+        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/SpiderNest"), ModContent.ItemType<SpiderNestMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.SpiderNestMusicBox>());
     }
 
     public override void SetDefaults()
     {
         Item.CloneDefaults(ItemID.MusicBoxAltOverworldDay);
-        Item.createTile = ModContent.TileType<Tiles.MusicBoxes.ForgottenTombMusicBox>();
+        Item.createTile = ModContent.TileType<Tiles.MusicBoxes.SpiderNestMusicBox>();
         Item.placeStyle = 0;
     }
 }

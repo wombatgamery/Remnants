@@ -115,9 +115,9 @@ Mods: {
 				TownNPCDialogueName: Шепчущий лабиринт
 			}
 
-			ForgottenTomb: {
-				DisplayName: Забытый склеп
-				TownNPCDialogueName: Забытый склеп
+			SpiderNest: {
+				// DisplayName: Spider Nest
+				// TownNPCDialogueName: the Spider Nest
 			}
 
 			Undergrowth: {
@@ -136,13 +136,13 @@ Mods: {
 			}
 
 			GoldenCity: {
-				// TownNPCDialogueName: the Golden City
-				// DisplayName: Golden City
+				TownNPCDialogueName: Золотой город
+				DisplayName: Золотой город
 			}
 
 			SulfuricVents: {
-				// DisplayName: Sulfuric Vents
-				// TownNPCDialogueName: the Sulfuric Vents
+				DisplayName: Сернистые жёрла
+				TownNPCDialogueName: Сернистые жёрла
 			}
 		}
 
@@ -686,8 +686,18 @@ Mods: {
 			}
 
 			Sulfurstone: {
+				Tooltip: ""
+				DisplayName: Отложения серы
+			}
+
+			InsectRemains: {
+				// DisplayName: Insect Remains
+				Tooltip: Можно использовать в промывателе
+			}
+
+			SpiderEggs: {
+				// DisplayName: Spider Eggs
 				// Tooltip: ""
-				// DisplayName: Sulfurstone
 			}
 		}
 

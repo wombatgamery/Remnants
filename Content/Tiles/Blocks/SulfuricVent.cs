@@ -98,5 +98,13 @@ namespace Remnants.Content.Tiles.Blocks
 
 			return true;
 		}
-	}
+
+        public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects)
+        {
+            if (i % 2 == 1)
+            {
+                spriteEffects = SpriteEffects.FlipHorizontally;
+            }
+        }
+    }
 }

@@ -37,7 +37,7 @@ namespace Remnants.Content.World
             int genIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Dungeon"));
             if (genIndex != -1)
             {
-                InsertPass(tasks, new ForgottenTomb("Forgotten Tomb", 100), genIndex + 1);
+                //InsertPass(tasks, new ForgottenTomb("Forgotten Tomb", 100), genIndex + 1);
 
                 if (ModContent.GetInstance<Worldgen>().ExperimentalWorldgen)
                 {
@@ -203,32 +203,38 @@ namespace Remnants.Content.World
                 StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Special/TheDungeon/entrance-bottom", dungeon.roomPos, ModContent.GetInstance<Remnants>());
             }
 
-            dungeon.targetCell.X = WorldGen.genRand.Next(dungeon.grid.Left, dungeon.grid.Right - 2);
-            dungeon.targetCell.Y = dungeon.grid.Height - 1;
-            if (dungeon.AddRoom(3, 1))
-            {
-                dungeon.AddMarker(dungeon.targetCell.X + 1, dungeon.targetCell.Y, 1);
-                dungeon.AddMarker(dungeon.targetCell.X, dungeon.targetCell.Y, 2); dungeon.AddMarker(dungeon.targetCell.X + 1, dungeon.targetCell.Y, 2); dungeon.AddMarker(dungeon.targetCell.X + 2, dungeon.targetCell.Y, 2);
-
-                StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Special/TheDungeon/vault", dungeon.roomPos, ModContent.GetInstance<Remnants>());
-            }
-
             int roomCount;
 
             #region special
-            if (!devMode)
+
+            #region vaults
+            roomCount = 1;
+            while (roomCount > 0)
             {
-                int chestIndex;
+                dungeon.targetCell.X = WorldGen.genRand.Next(dungeon.grid.Left, dungeon.grid.Right - 2);
+                dungeon.targetCell.Y = dungeon.grid.Height - 1;
+                if (dungeon.AddRoom(3, 1))
+                {
+                    dungeon.AddMarker(dungeon.targetCell.X + 1, dungeon.targetCell.Y, 1);
+                    dungeon.AddMarker(dungeon.targetCell.X, dungeon.targetCell.Y, 2); dungeon.AddMarker(dungeon.targetCell.X + 1, dungeon.targetCell.Y, 2); dungeon.AddMarker(dungeon.targetCell.X + 2, dungeon.targetCell.Y, 2);
 
-                chestIndex = WorldGen.PlaceChest(dungeon.roomPos.X + 37, dungeon.roomPos.Y + 21, TileID.Containers2, style: 13);
-                BiomeChestLoot(chestIndex, 6);
+                    StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Special/TheDungeon/vault", dungeon.roomPos, ModContent.GetInstance<Remnants>());
 
-                chestIndex = WorldGen.PlaceChest(dungeon.roomPos.X + 51, dungeon.roomPos.Y + 21, style: 23);
-                BiomeChestLoot(chestIndex, 1);
+                    int chestIndex;
 
-                chestIndex = WorldGen.PlaceChest(dungeon.roomPos.X + 67, dungeon.roomPos.Y + 21, style: 27);
-                BiomeChestLoot(chestIndex, 5);
+                    chestIndex = WorldGen.PlaceChest(dungeon.roomPos.X + 37, dungeon.roomPos.Y + 21, TileID.Containers2, style: 13);
+                    BiomeChestLoot(chestIndex, 6);
+
+                    chestIndex = WorldGen.PlaceChest(dungeon.roomPos.X + 51, dungeon.roomPos.Y + 21, style: 23);
+                    BiomeChestLoot(chestIndex, 1);
+
+                    chestIndex = WorldGen.PlaceChest(dungeon.roomPos.X + 67, dungeon.roomPos.Y + 21, style: 27);
+                    BiomeChestLoot(chestIndex, 5);
+
+                    roomCount--;
+                }
             }
+            #endregion
             #region 3x2
             roomCount = dungeon.grid.Height * dungeon.grid.Width / 54;
             while (roomCount > 0)

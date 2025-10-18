@@ -265,22 +265,16 @@ namespace Remnants.Content.Biomes
         }
     }
 
-	public class ForgottenTomb : ModBiome
+	public class SpiderNest : ModBiome
 	{
 		public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
 
-		public override int Music => MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Tomb");
-
-		public override string BestiaryIcon => base.BestiaryIcon;
-        public override string MapBackground => "Terraria/Images/MapBG19";
-        public override string BackgroundPath => "Terraria/Images/MapBG19";
-        public override Color? BackgroundColor => base.BackgroundColor;
-
+		public override int Music => MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/SpiderNest");
 
         public override bool IsBiomeActive(Player player)
 		{
 			int wall = Main.tile[(int)player.Center.X / 16, (int)player.Center.Y / 16].WallType;
-			return wall == ModContent.WallType<forgottentomb>() || wall == ModContent.WallType<TombBrickWallUnsafe>();
+			return wall == WallID.SpiderUnsafe || wall == ModContent.WallType<forgottentomb>() || wall == ModContent.WallType<TombBrickWallUnsafe>();
 		}
 	}
 

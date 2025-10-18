@@ -622,45 +622,7 @@ namespace Remnants.Content.World
                     #endregion
 
                     #region objects
-                    int objects = (int)(Math.Max((Main.maxTilesX / 8400f) * (Main.maxTilesY / 2400f) * 5, 5));
-                    while (objects > 0)
-                    {
-                        int x = WorldGen.genRand.Next(mines.area.Left, mines.area.Right);
-                        int y = WorldGen.genRand.Next(mines.area.Top, mines.area.Bottom + 1);
-
-                        if (Framing.GetTileSafely(x, y).TileType != TileID.Containers && MiscTools.Tile(x, y + 1).TileType == TileID.WoodBlock && MiscTools.Tile(x + 1, y + 1).TileType == TileID.WoodBlock && MiscTools.Tile(x - 1, y).TileType != TileID.WoodenBeam && MiscTools.Tile(x + 2, y).TileType != TileID.WoodenBeam)
-                        {
-                            int chestIndex = WorldGen.PlaceChest(x, y, notNearOtherChests: true);
-                            if (Framing.GetTileSafely(x, y).TileType == TileID.Containers)
-                            {
-                                #region chest
-                                var itemsToAdd = new List<(int type, int stack)>();
-
-                                int[] specialItems = new int[5];
-                                specialItems[0] = ItemID.ShoeSpikes;
-                                specialItems[1] = ItemID.Aglet;
-                                specialItems[2] = ItemID.Radar;
-                                specialItems[3] = ItemID.Spear;
-                                specialItems[4] = ItemID.PortableStool;
-
-                                int specialItem = specialItems[(objects - 1) % specialItems.Length];
-                                itemsToAdd.Add((specialItem, 1));
-
-                                StructureTools.GenericLoot(chestIndex, itemsToAdd, 1, new int[] { ItemID.MiningPotion, ItemID.ShinePotion });
-
-                                if (Main.rand.NextBool(2))
-                                {
-                                    itemsToAdd.Add((biomes.FindBiome(x, y) == BiomeID.Jungle ? ItemID.LeadOre : ItemID.IronOre, Main.rand.Next(15, 45)));
-                                }
-                                else itemsToAdd.Add((biomes.FindBiome(x, y) == BiomeID.Jungle ? ItemID.TinOre : ItemID.CopperOre, Main.rand.Next(30, 90)));
-
-                                StructureTools.FillChest(chestIndex, itemsToAdd);
-                                #endregion
-
-                                objects--;
-                            }
-                        }
-                    }
+                    int objects;
 
                     bool orchid = ModLoader.TryGetMod("OrchidMineshaft", out Mod om);
 
@@ -720,6 +682,46 @@ namespace Remnants.Content.World
                                         objects--;
                                     }
                                 }
+                            }
+                        }
+                    }
+
+                    objects = (int)(Math.Max((Main.maxTilesX / 8400f) * (Main.maxTilesY / 2400f) * 5, 5));
+                    while (objects > 0)
+                    {
+                        int x = WorldGen.genRand.Next(mines.area.Left, mines.area.Right);
+                        int y = WorldGen.genRand.Next(mines.area.Top, mines.area.Bottom + 1);
+
+                        if (Framing.GetTileSafely(x, y).TileType != TileID.Containers && MiscTools.Tile(x, y + 1).TileType == TileID.WoodBlock && MiscTools.Tile(x + 1, y + 1).TileType == TileID.WoodBlock && MiscTools.Tile(x - 1, y).TileType != TileID.WoodenBeam && MiscTools.Tile(x + 2, y).TileType != TileID.WoodenBeam)
+                        {
+                            int chestIndex = WorldGen.PlaceChest(x, y, notNearOtherChests: true);
+                            if (Framing.GetTileSafely(x, y).TileType == TileID.Containers)
+                            {
+                                #region chest
+                                var itemsToAdd = new List<(int type, int stack)>();
+
+                                int[] specialItems = new int[5];
+                                specialItems[0] = ItemID.ShoeSpikes;
+                                specialItems[1] = ItemID.Aglet;
+                                specialItems[2] = ItemID.Radar;
+                                specialItems[3] = ItemID.Spear;
+                                specialItems[4] = ItemID.PortableStool;
+
+                                int specialItem = specialItems[(objects - 1) % specialItems.Length];
+                                itemsToAdd.Add((specialItem, 1));
+
+                                StructureTools.GenericLoot(chestIndex, itemsToAdd, 1, new int[] { ItemID.MiningPotion, ItemID.ShinePotion });
+
+                                if (Main.rand.NextBool(2))
+                                {
+                                    itemsToAdd.Add((biomes.FindBiome(x, y) == BiomeID.Jungle ? ItemID.LeadOre : ItemID.IronOre, Main.rand.Next(15, 45)));
+                                }
+                                else itemsToAdd.Add((biomes.FindBiome(x, y) == BiomeID.Jungle ? ItemID.TinOre : ItemID.CopperOre, Main.rand.Next(30, 90)));
+
+                                StructureTools.FillChest(chestIndex, itemsToAdd);
+                                #endregion
+
+                                objects--;
                             }
                         }
                     }
@@ -2817,7 +2819,7 @@ namespace Remnants.Content.World
             {
                 progress.Set((float)count / (float)countTotal);
 
-                float radius = WorldGen.genRand.NextFloat(24, 36);
+                float radius = WorldGen.genRand.NextFloat(16, 24);
 
                 float waterLavaRatio = (float)((GenVars.lavaLine - Main.rockLayer) / (Main.maxTilesY - 300 - Main.rockLayer));
 
@@ -2836,7 +2838,7 @@ namespace Remnants.Content.World
                     {
                         for (int i = (int)(x - radius); i <= x + radius; i++)
                         {
-                            if (Vector2.Distance(new Vector2(i, j * 2), new Vector2(x, y * 2)) < radius && (!WorldGen.SolidTile3(i, j) || biomes.FindBiome(i, j) != BiomeID.None && biomes.FindBiome(i, j) != BiomeID.Jungle))
+                            if (Vector2.Distance(new Vector2(i, j), new Vector2(x, y)) < radius && (!WorldGen.SolidTile3(i, j) || biomes.FindBiome(i, j) != BiomeID.None && biomes.FindBiome(i, j) != BiomeID.Jungle))
                             {
                                 valid = false;
                             }
@@ -2846,14 +2848,15 @@ namespace Remnants.Content.World
 
                 if (valid)
                 {
-                    GenVars.structures.AddProtectedStructure(new Rectangle((int)(x - radius), (int)(y - radius / 2), (int)(radius * 2), (int)(radius)));
+                    GenVars.structures.AddProtectedStructure(new Rectangle((int)(x - radius), (int)(y - radius), (int)(radius * 2), (int)(radius * 2)));
 
                     FastNoiseLite noise = new FastNoiseLite(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
                     noise.SetNoiseType(FastNoiseLite.NoiseType.Cellular);
                     noise.SetFrequency(0.05f);
-                    noise.SetCellularDistanceFunction(FastNoiseLite.CellularDistanceFunction.Hybrid);
+                    //noise.SetCellularDistanceFunction(FastNoiseLite.CellularDistanceFunction.Hybrid);
                     noise.SetCellularReturnType(FastNoiseLite.CellularReturnType.Distance2Div);
-                    noise.SetFractalType(FastNoiseLite.FractalType.None);
+                    noise.SetFractalType(FastNoiseLite.FractalType.FBm);
+                    noise.SetFractalGain(0.25f);
                     //noise.SetFractalOctaves(1);
 
                     for (int j = (int)(y - radius); j <= y + radius; j++)
@@ -2862,7 +2865,7 @@ namespace Remnants.Content.World
                         {
                             Tile tile = Main.tile[i, j];
 
-                            float distance = Vector2.Distance(new Vector2(i, j * 2), new Vector2(x, y * 2)) + (noise.GetNoise(i, j * 2) / 2 + 0.5f) * (radius);
+                            float distance = Vector2.Distance(new Vector2(i, j), new Vector2(x, y)) + (noise.GetNoise(i, j) / 2 + 0.5f) * (radius);
 
                             if (distance < radius)
                             {
@@ -2886,7 +2889,7 @@ namespace Remnants.Content.World
                         }
                     }
 
-                    MiscTools.PlaceObjectsInArea((int)(x - radius / 1.5f), y, (int)(x + radius / 1.5f), (int)(y + radius / 2), ModContent.TileType<Runestalk>(), count: (radius >= 28 ? 3 : radius >= 26 ? 2 : 1));
+                    MiscTools.PlaceObjectsInArea((int)(x - radius / 1.5f), y, (int)(x + radius / 1.5f), (int)(y + radius), ModContent.TileType<Runestalk>(), count: (radius >= 28 ? 3 : radius >= 26 ? 2 : 1));
 
                     for (int j = (int)(y - radius); j <= y + radius; j++)
                     {
@@ -2934,7 +2937,7 @@ namespace Remnants.Content.World
             int attempts;
 			float waterLavaRatio = (float)((GenVars.lavaLine - Main.worldSurface) / (Main.maxTilesY - 300 - Main.worldSurface));
 
-			int uniqueStructures = 8;
+			float uniqueStructures = 9;
             int progressCounter = 0;
 
             structureCount = 0; // FOREST TOWER
@@ -3358,7 +3361,7 @@ namespace Remnants.Content.World
                 //{
                 //    valid = false;
                 //}
-                else if (!StructureTools.AvoidsBiomes(rail.area, new int[] { BiomeID.Tundra, BiomeID.Desert, BiomeID.Marble, BiomeID.SulfuricVents, BiomeID.Toxic, BiomeID.SunkenSea }))
+                else if (!StructureTools.AvoidsBiomes(rail.area, new int[] { BiomeID.Tundra, BiomeID.Desert, BiomeID.Marble, BiomeID.SpiderNest, BiomeID.SulfuricVents, BiomeID.Toxic, BiomeID.SunkenSea }))
                 {
                     valid = false;
                 }
@@ -4165,7 +4168,7 @@ namespace Remnants.Content.World
                 {
                     valid = false;
                 }
-                else if (!StructureTools.AvoidsBiomes(cabin.area, new int[] { BiomeID.Corruption, BiomeID.Crimson, BiomeID.Marble, BiomeID.Granite, BiomeID.Toxic, BiomeID.SulfuricVents, BiomeID.SunkenSea }))
+                else if (!StructureTools.AvoidsBiomes(cabin.area, new int[] { BiomeID.Corruption, BiomeID.Crimson, BiomeID.Marble, BiomeID.Granite, BiomeID.SpiderNest, BiomeID.Toxic, BiomeID.SulfuricVents, BiomeID.SunkenSea }))
                 {
                     valid = false;
                 }
@@ -4563,6 +4566,37 @@ namespace Remnants.Content.World
                 }
             }
 
+            progressCounter++;
+
+            structureCount = 0; // SPIDER CHEST
+            structureCountTotal = (int)(Main.maxTilesX / 140f * (Main.maxTilesY - 350 - (int)Main.rockLayer) / 1200f);
+            while (structureCount < structureCountTotal)
+            {
+                progress.Set((progressCounter + structureCount / (float)(Main.maxTilesX / 100f * (Main.maxTilesY - 350 - (int)Main.rockLayer) / 1200f)) / uniqueStructures);
+
+                int x = WorldGen.genRand.Next(350, Main.maxTilesX - 350);
+                int y = WorldGen.genRand.Next((int)Main.rockLayer, Main.maxTilesY - 350);
+
+                Rectangle rect = new Rectangle(x - 19, y - 20, 40, 40);
+
+                if (!Framing.GetTileSafely(x, y).HasTile && StructureTools.InsideBiome(rect, BiomeID.SpiderNest) && MiscTools.SolidInArea(x - 1, y + 1, x + 2, y + 3) && MiscTools.EmptyInArea(x - 1, y - 5, x + 2, y))
+                {
+                    int chestIndex = WorldGen.PlaceChest(x, y, style: 15, notNearOtherChests: true);
+                    if (Framing.GetTileSafely(x, y).TileType == TileID.Containers)
+                    {
+                        var itemsToAdd = new List<(int type, int stack)>();
+
+                        itemsToAdd.Add((ItemID.WebSlinger, 1));
+
+                        StructureTools.GenericLoot(chestIndex, itemsToAdd, 2, new int[] { ItemID.HunterPotion, ItemID.TrapsightPotion });
+
+                        StructureTools.FillChest(chestIndex, itemsToAdd);
+
+                        structureCount++;
+                    }
+                }
+            }
+
             //progressCounter++;
 
             //structureCount = 0; // CACHE
@@ -4687,7 +4721,7 @@ namespace Remnants.Content.World
                 {
                     valid = false;
                 }
-                else if (!StructureTools.AvoidsBiomes(area, new int[] { BiomeID.Tundra, BiomeID.Jungle, BiomeID.Glowshroom, BiomeID.Granite, BiomeID.Toxic, BiomeID.SulfuricVents, BiomeID.SunkenSea }))
+                else if (!StructureTools.AvoidsBiomes(area, new int[] { BiomeID.Tundra, BiomeID.Jungle, BiomeID.Glowshroom, BiomeID.Granite, BiomeID.SpiderNest, BiomeID.Toxic, BiomeID.SulfuricVents, BiomeID.SunkenSea }))
                 {
                     valid = false;
                 }

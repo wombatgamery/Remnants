@@ -114,7 +114,8 @@ public class MagicalLabMusicBox : ModTile
 #endregion
 
 #region Forgotten Tomb
-public class ForgottenTombMusicBox : ModTile
+[LegacyName("ForgottenTombMusicBox")]
+public class SpiderNestMusicBox : ModTile
 {
     public override void SetStaticDefaults()
     {
@@ -125,7 +126,7 @@ public class ForgottenTombMusicBox : ModTile
         TileObjectData.addTile(Type);
 
         AddMapEntry(new Color(200, 200, 200), Language.GetText("ItemName.MusicBox"));
-        RegisterItemDrop(ModContent.ItemType<Items.MusicBoxes.ForgottenTombMusicBox>());
+        RegisterItemDrop(ModContent.ItemType<Items.MusicBoxes.SpiderNestMusicBox>());
     }
 
     public override void MouseOver(int i, int j)
@@ -133,7 +134,7 @@ public class ForgottenTombMusicBox : ModTile
         Player player = Main.LocalPlayer;
         player.noThrow = 2;
         player.cursorItemIconEnabled = true;
-        player.cursorItemIconID = ModContent.ItemType<Items.MusicBoxes.ForgottenTombMusicBox>();
+        player.cursorItemIconID = ModContent.ItemType<Items.MusicBoxes.SpiderNestMusicBox>();
     }
 
     public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData)

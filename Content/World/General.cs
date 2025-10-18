@@ -935,7 +935,7 @@ namespace Remnants.Content.World
 
             bool magicalLab = MiscTools.Tile(x, y).WallType == ModContent.WallType<EnchantedBrickWallUnsafe>() || MiscTools.Tile(x, y).WallType == ModContent.WallType<magicallab>();
             bool pyramid = MiscTools.Tile(x, y).WallType == ModContent.WallType<PyramidBrickWallUnsafe>() || MiscTools.Tile(x, y).WallType == ModContent.WallType<pyramid>();
-            bool tomb = MiscTools.Tile(x, y).WallType == ModContent.WallType<TombBrickWallUnsafe>() || MiscTools.Tile(x, y).WallType == ModContent.WallType<forgottentomb>();
+            bool spider = MiscTools.Tile(x, y).WallType == WallID.SpiderUnsafe || MiscTools.Tile(x, y).WallType == ModContent.WallType<TombBrickWallUnsafe>() || MiscTools.Tile(x, y).WallType == ModContent.WallType<forgottentomb>();
             bool manaPotions = y <= Main.worldSurface * 0.5;
 
             if (grade > 0)
@@ -1008,7 +1008,7 @@ namespace Remnants.Content.World
                 if (grade < 3)
                 {
                     if (y > Main.worldSurface * 0.5 && Main.rand.NextBool(2) && !magicalLab)
-                        itemsToAdd.Add((tomb ? ItemID.WebRope : Main.wallDungeon[MiscTools.Tile(x, y).WallType] || y >= Main.maxTilesY - 200 ? ItemID.Chain : ItemID.Rope, Main.rand.Next(50, 100)));
+                        itemsToAdd.Add((spider ? ItemID.WebRope : Main.wallDungeon[MiscTools.Tile(x, y).WallType] || y >= Main.maxTilesY - 200 ? ItemID.Chain : ItemID.Rope, Main.rand.Next(50, 100)));
 
                     if (Main.rand.NextBool(2))
                     {
@@ -1034,7 +1034,7 @@ namespace Remnants.Content.World
 
             if (uniquePotions != null)
             {
-                itemsToAdd.Add((uniquePotions[Main.rand.Next(uniquePotions.Length)], WorldGen.genRand.Next(2, 4)));
+                itemsToAdd.Add((uniquePotions[Main.rand.Next(uniquePotions.Length)], WorldGen.genRand.Next(3, 6)));
             }
 
 
@@ -1098,7 +1098,7 @@ namespace Remnants.Content.World
                 }
                 if (y < Main.maxTilesY - 200 && Main.tile[x, y].LiquidAmount == 0)
                 {
-                    for (int k = 0; k < Main.rand.Next(3, 6); k++)
+                    for (int k = 0; k < (spider ? Main.rand.Next(6, 12) : Main.rand.Next(3, 6)); k++)
                     {
                         itemsToAdd.Add((ItemID.Cobweb, Main.rand.Next(1, 4)));
                     }
@@ -1132,7 +1132,7 @@ namespace Remnants.Content.World
                         tile.HasTile = true;
                         tile.TileType = (ushort)innerTile;
                     }
-                    else if (!MiscTools.Tile(x, y).HasTile || MiscTools.Tile(x, y).TileType != innerTile && MiscTools.Tile(x, y).TileType != ModContent.TileType<Hardstone>())
+                    else if (!MiscTools.Tile(x, y).HasTile || MiscTools.Tile(x, y).TileType != innerTile)
                     {
                         if (ignoreTop)
                         {
@@ -1141,7 +1141,7 @@ namespace Remnants.Content.World
                         if (noise + 1 > Vector2.Distance(new Vector2(x, y), point) / (radius / 2) && (biomes.FindBiome(x, y) != BiomeID.Desert || MiscTools.Tile(x, y - 1).HasTile || MiscTools.Tile(x, y - 1).LiquidAmount == 0))
                         {
                             tile.HasTile = true;
-                            tile.TileType = ruinSeeker && biomes.FindBiome(x, y) == BiomeID.ThermalCaves && rs.TryFind("Gabbro_Tile", out ModTile gabbro) ? gabbro.Type : biomes.FindBiome(x, y) == BiomeID.Underworld ? TileID.Ash : biomes.FindBiome(x, y) == BiomeID.SulfuricVents ? (ushort)ModContent.TileType<Sulfurstone>() : biomes.FindBiome(x, y) == BiomeID.Granite ? TileID.Granite : (biomes.FindBiome(x, y) == BiomeID.Jungle && biomes.GetTileDistribution(x, y, frequency: 2) < 0.3f) || biomes.FindBiome(x, y) == BiomeID.Glowshroom ? TileID.Mud : biomes.FindBiome(x, y) == BiomeID.Desert || biomes.FindBiome(x, y) == BiomeID.Savanna ? (biomes.GetLayer(x, y) >= biomes.surfaceLayer ? TileID.Sandstone : TileID.HardenedSand) : biomes.FindBiome(x, y) == BiomeID.Tundra ? TileID.IceBlock : biomes.GetLayer(x, y) < biomes.caveLayer && biomes.GetLayer(x, y) >= biomes.surfaceLayer && biomes.GetTileDistribution(x, y, frequency: 2) < 0.2f ? TileID.Dirt : TileID.Stone;
+                            tile.TileType = ruinSeeker && biomes.FindBiome(x, y) == BiomeID.ThermalCaves && rs.TryFind("Gabbro_Tile", out ModTile gabbro) ? gabbro.Type : biomes.FindBiome(x, y) == BiomeID.Underworld ? TileID.Ash : biomes.FindBiome(x, y) == BiomeID.SulfuricVents ? (ushort)ModContent.TileType<Sulfurstone>() : biomes.FindBiome(x, y) == BiomeID.Granite ? TileID.Granite : (biomes.FindBiome(x, y) == BiomeID.Jungle && biomes.GetTileDistribution(x, y, frequency: 2) < 0.3f) || biomes.FindBiome(x, y) == BiomeID.Glowshroom ? TileID.Mud : biomes.FindBiome(x, y) == BiomeID.Desert || biomes.FindBiome(x, y) == BiomeID.Savanna ? (biomes.GetLayer(x, y) >= biomes.surfaceLayer ? TileID.Sandstone : TileID.HardenedSand) : biomes.FindBiome(x, y) == BiomeID.Tundra ? TileID.IceBlock : biomes.FindBiome(x, y) == BiomeID.SpiderNest ? (ushort)ModContent.TileType<InsectRemains>() : biomes.GetLayer(x, y) < biomes.caveLayer && biomes.GetLayer(x, y) >= biomes.surfaceLayer && biomes.GetTileDistribution(x, y, frequency: 2) < 0.2f ? TileID.Dirt : TileID.Stone;
                         }
                         else if (!MiscTools.Tile(x, y).HasTile && MiscTools.Tile(x, y - 1).HasTile && MiscTools.Tile(x, y - 1).TileType == TileID.Mud && (biomes.FindBiome(x, y) == BiomeID.Jungle || biomes.FindBiome(x, y) == BiomeID.Glowshroom))
                         {
@@ -2472,10 +2472,6 @@ namespace Remnants.Content.World
                                 else if (tile.TileType == TileID.BreakableIce)
                                 {
                                     tile.WallType = WallID.IceUnsafe;
-                                }
-                                else if (tile.TileType == ModContent.TileType<Hardstone>())
-                                {
-                                    tile.WallType = (ushort)ModContent.WallType<hardstonewall>();
                                 }
 
                                 if (tile.WallType == WallID.GrassUnsafe)

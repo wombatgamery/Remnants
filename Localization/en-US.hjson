@@ -115,9 +115,9 @@ Mods: {
 				TownNPCDialogueName: the Echoing Halls
 			}
 
-			ForgottenTomb: {
-				DisplayName: The Forgotten Tomb
-				TownNPCDialogueName: the Forgotten Tomb
+			SpiderNest: {
+				DisplayName: Spider Nest
+				TownNPCDialogueName: the Spider Nest
 			}
 
 			Undergrowth: {
@@ -672,6 +672,16 @@ Mods: {
 			Sulfurstone: {
 				Tooltip: ""
 				DisplayName: Sulfurstone
+			}
+
+			InsectRemains: {
+				DisplayName: Insect Remains
+				Tooltip: Can be used at the Extractinator
+			}
+
+			SpiderEggs: {
+				DisplayName: Spider Eggs
+				Tooltip: ""
 			}
 		}
 
