@@ -116,8 +116,8 @@ Mods: {
 			}
 
 			SpiderNest: {
-				// DisplayName: Spider Nest
-				// TownNPCDialogueName: the Spider Nest
+				DisplayName: Паучьи гнёзда
+				TownNPCDialogueName: Паучьи гнёзда
 			}
 
 			Undergrowth: {
@@ -691,13 +691,13 @@ Mods: {
 			}
 
 			InsectRemains: {
-				// DisplayName: Insect Remains
-				Tooltip: Можно использовать в промывателе
+				DisplayName: Останки насекомых
+				Tooltip: Можно использовать на промывателе
 			}
 
 			SpiderEggs: {
-				// DisplayName: Spider Eggs
-				// Tooltip: ""
+				DisplayName: Кладки паучьих яич
+				Tooltip: ""
 			}
 		}
 
@@ -901,3 +901,4 @@ Mods: {
 		}
 	}
 }
+
