@@ -131,8 +131,8 @@ Mods: {
 			}
 
 			MagicalLabAscension: {
-				// TownNPCDialogueName: the Magical Lab Ascension
-				// DisplayName: Magical Lab Ascension
+				TownNPCDialogueName: Место вознесения Магической лаборатории
+				DisplayName: Место вознесения Магической лаборатории
 			}
 
 			GoldenCity: {
@@ -901,4 +901,5 @@ Mods: {
 		}
 	}
 }
+
 
