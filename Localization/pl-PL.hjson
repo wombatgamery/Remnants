@@ -889,9 +889,14 @@ Mods: {
 					// Tooltip: Enables the custom music for the granite cave
 				}
 
+				SpiderMusic: {
+					// Label: "[i:Remnants/InsectRemains] Spider Music"
+					// Tooltip: Enables the custom music for the spider nests
+				}
+
 				OceanMusic: {
 					// Label: "[i:2435] Ocean Music"
-					// Tooltip: Enables the custom music for the ocean cave
+					// Tooltip: Enables the custom music for the ocean caves
 				}
 			}
 		}

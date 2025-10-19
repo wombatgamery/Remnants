@@ -23,12 +23,17 @@ namespace Remnants.Content.Walls.Parallax
             VanillaFallbackOnModDeletion = WallID.LivingWoodUnsafe;
         }
 
-        public const int Width = 8;
-        public const int Height = 8;
-        public const int ScrollSpeed = 8;
+        const int Width = 8;
+        const int Height = 8;
+        const int ScrollSpeed = 8;
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
+            if (Lighting.GetColor(i, j) == Color.Black)
+            {
+                return false;
+            }
+
             Vector2 zero = Main.drawToScreen ? Vector2.Zero : new(Main.offScreenRange);
             Rectangle frame = new((int)(i * 16 - Main.screenPosition.X / ScrollSpeed) % (Width * 16), (int)(j * 16 - Main.screenPosition.Y / ScrollSpeed) % (Height * 16), 16, 16);
 

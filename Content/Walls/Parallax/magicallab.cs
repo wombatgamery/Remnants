@@ -23,24 +23,21 @@ namespace Remnants.Content.Walls.Parallax
             VanillaFallbackOnModDeletion = WallID.VioletMossBlockWall;
         }
 
+        const int Width = 8;
+        const int Height = 6;
+        const int ScrollSpeed = 8;
+
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
             Tile tile = Main.tile[i, j];
             if (!tile.HasTile || !Main.tileSolid[tile.TileType] || !Main.tileBlockLight[tile.TileType] || tile.Slope != SlopeType.Solid || tile.IsHalfBlock)
             {
-                Texture2D texture = ModContent.Request<Texture2D>(Texture).Value;
                 Vector2 zero = Main.drawToScreen ? Vector2.Zero : new(Main.offScreenRange);
 
-                int width = 8;
-                int height = 6;
-                int parallax = 8;
-
                 Vector2 position = new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero;
-                Rectangle frame = new((int)(i * 16 - Main.screenPosition.X / parallax) % (width * 16), (int)(j * 16 - Main.screenPosition.Y / parallax) % (height * 16), 16, 16);
+                Rectangle frame = new((int)(i * 16 - Main.screenPosition.X / ScrollSpeed) % (Width * 16), (int)(j * 16 - Main.screenPosition.Y / ScrollSpeed) % (Height * 16), 16, 16);                
 
-
-
-                Main.spriteBatch.Draw(texture, position, frame, Lighting.GetColor(i, j), 0f, Vector2.Zero, 1f, 0, 0f);
+                Main.spriteBatch.Draw(ModContent.Request<Texture2D>(Texture).Value, position, frame, Lighting.GetColor(i, j), 0f, Vector2.Zero, 1f, 0, 0f);
                 Main.spriteBatch.Draw(ModContent.Request<Texture2D>("Remnants/Content/Walls/Parallax/magicallabglow").Value, position, frame, RemTile.MagicalLabLightColour(j), 0f, Vector2.Zero, 1f, 0, 0f);
                 Main.spriteBatch.Draw(ModContent.Request<Texture2D>("Remnants/Content/Walls/Parallax/magicallabglow2").Value, position, frame, Color.White, 0f, Vector2.Zero, 1f, 0, 0f);
             }

@@ -21,28 +21,21 @@ namespace Remnants.Content.Walls.Parallax
             VanillaFallbackOnModDeletion = WallID.SandstoneBrick;
         }
 
+        const int Width = 8;
+        const int Height = 6;
+        const int ScrollSpeed = 8;
+
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
-            //Tile tile = Main.tile[i, j];
-            //if (tile.WallFrameX != (i % 6) * 36)
-            //{
-            //	tile.WallFrameX = (i % 6) * 36;
-            //}
-            //if (tile.WallFrameY != (j % 8) * 36)
-            //{
-            //	tile.WallFrameY = (j % 8) * 36;
-            //}
-            //return true;
+            if (Lighting.GetColor(i, j) == Color.Black)
+            {
+                return false;
+            }
 
-            int width = 8;
-            int height = 6;
-            int parallax = 8;
-
-            Texture2D texture = ModContent.Request<Texture2D>(Texture).Value;
             Vector2 zero = Main.drawToScreen ? Vector2.Zero : new(Main.offScreenRange);
-            Rectangle frame = new((int)(i * 16 - Main.screenPosition.X / parallax) % (width * 16), (int)(j * 16 - Main.screenPosition.Y / parallax) % (height * 16), 16, 16);
+            Rectangle frame = new((int)(i * 16 - Main.screenPosition.X / ScrollSpeed) % (Width * 16), (int)(j * 16 - Main.screenPosition.Y / ScrollSpeed) % (Height * 16), 16, 16);
 
-            Main.spriteBatch.Draw(texture, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero, frame, Lighting.GetColor(i, j), 0f, Vector2.Zero, 1f, 0, 0f);
+            Main.spriteBatch.Draw(ModContent.Request<Texture2D>(Texture).Value, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero, frame, Lighting.GetColor(i, j), 0f, Vector2.Zero, 1f, 0, 0f);
             return false;
         }
 

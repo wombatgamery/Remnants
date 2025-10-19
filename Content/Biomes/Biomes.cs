@@ -267,9 +267,15 @@ namespace Remnants.Content.Biomes
 
 	public class SpiderNest : ModBiome
 	{
-		public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
+        public override int Music => music;
 
-		public override int Music => MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/SpiderNest");
+        public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
+
+        int music = -1;
+        public override void OnEnter(Player player)
+        {
+            music = ModContent.GetInstance<Gameplay>().SpiderMusic ? MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/SpiderNest") : -1;
+        }
 
         public override bool IsBiomeActive(Player player)
 		{

@@ -165,7 +165,7 @@ namespace Remnants.Content.World
                     List<int> rooms = new List<int>();
 
                     int roomCount = 0;
-                    while (roomCount < (Main.maxTilesX / 8400f) * (Main.maxTilesY / 2400f) * 2)
+                    while (roomCount < (int)((Main.maxTilesX / 8400f) * (Main.maxTilesY / 2400f) * 2))
                     {
                         mines.targetCell.X = roomCount == 0 ? WorldGen.genRand.Next(mines.grid.Left + 1, mines.grid.Center.X - 1) : WorldGen.genRand.Next(mines.grid.Center.X + 1, mines.grid.Right - 2);
                         mines.targetCell.Y = WorldGen.genRand.Next(1, mines.grid.Bottom - 2);
@@ -204,7 +204,7 @@ namespace Remnants.Content.World
                     }
 
                     roomCount = 0;
-                    while (roomCount < (Main.maxTilesX / 8400f) * (Main.maxTilesY / 2400f) * 2)
+                    while (roomCount < (int)((Main.maxTilesX / 8400f) * (Main.maxTilesY / 2400f) * 2))
                     {
                         mines.targetCell.X = WorldGen.genRand.Next(mines.grid.Left + 1, mines.grid.Right - 2);
                         mines.targetCell.Y = WorldGen.genRand.Next(1, mines.grid.Bottom - 1);
@@ -4570,6 +4570,7 @@ namespace Remnants.Content.World
 
             structureCount = 0; // SPIDER CHEST
             structureCountTotal = (int)(Main.maxTilesX / 140f * (Main.maxTilesY - 350 - (int)Main.rockLayer) / 1200f);
+            attempts = 0;
             while (structureCount < structureCountTotal)
             {
                 progress.Set((progressCounter + structureCount / (float)(Main.maxTilesX / 100f * (Main.maxTilesY - 350 - (int)Main.rockLayer) / 1200f)) / uniqueStructures);
@@ -4579,20 +4580,34 @@ namespace Remnants.Content.World
 
                 Rectangle rect = new Rectangle(x - 19, y - 20, 40, 40);
 
-                if (!Framing.GetTileSafely(x, y).HasTile && StructureTools.InsideBiome(rect, BiomeID.SpiderNest) && Framing.GetTileSafely(x, y).WallType == WallID.SpiderUnsafe && MiscTools.SolidInArea(x - 1, y + 1, x + 2, y + 3) && MiscTools.EmptyInArea(x - 1, y - 5, x + 2, y))
+                if (!Framing.GetTileSafely(x, y).HasTile && StructureTools.InsideBiome(rect, BiomeID.SpiderNest) && Framing.GetTileSafely(x, y).WallType == WallID.SpiderUnsafe)
                 {
-                    int chestIndex = WorldGen.PlaceChest(x, y, style: 15, notNearOtherChests: true);
-                    if (Framing.GetTileSafely(x, y).TileType == TileID.Containers)
+                    attempts++;
+
+                    if (attempts > 1000)
                     {
-                        var itemsToAdd = new List<(int type, int stack)>();
+                        structureCountTotal--;
+                        attempts = 0; if (attempts >= 1000)
+                        {
+                            structureCountTotal--;
+                        }
+                    }
+                    else if (MiscTools.SolidInArea(x - 1, y + 1, x + 2, y + 3) && MiscTools.EmptyInArea(x - 1, y - 5, x + 2, y))
+                    {
+                        int chestIndex = WorldGen.PlaceChest(x, y, style: 15, notNearOtherChests: true);
+                        if (Framing.GetTileSafely(x, y).TileType == TileID.Containers)
+                        {
+                            var itemsToAdd = new List<(int type, int stack)>();
 
-                        itemsToAdd.Add((ItemID.WebSlinger, 1));
+                            itemsToAdd.Add((ItemID.WebSlinger, 1));
 
-                        StructureTools.GenericLoot(chestIndex, itemsToAdd, 2, new int[] { ItemID.HunterPotion, ItemID.TrapsightPotion });
+                            StructureTools.GenericLoot(chestIndex, itemsToAdd, 2, new int[] { ItemID.HunterPotion, ItemID.TrapsightPotion });
 
-                        StructureTools.FillChest(chestIndex, itemsToAdd);
+                            StructureTools.FillChest(chestIndex, itemsToAdd);
 
-                        structureCount++;
+                            structureCount++;
+                            attempts = 0;
+                        }
                     }
                 }
             }

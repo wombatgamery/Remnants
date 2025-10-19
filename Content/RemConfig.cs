@@ -153,6 +153,9 @@ namespace Remnants.Content
         public bool GraniteMusic;
 
         [DefaultValue(true)]
+        public bool SpiderMusic;
+
+        [DefaultValue(true)]
         public bool OceanMusic;
     }
 }
