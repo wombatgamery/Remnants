@@ -218,18 +218,42 @@ namespace Remnants.Content.World
                     dungeon.AddMarker(dungeon.targetCell.X + 1, dungeon.targetCell.Y, 1);
                     dungeon.AddMarker(dungeon.targetCell.X, dungeon.targetCell.Y, 2); dungeon.AddMarker(dungeon.targetCell.X + 1, dungeon.targetCell.Y, 2); dungeon.AddMarker(dungeon.targetCell.X + 2, dungeon.targetCell.Y, 2);
 
-                    StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Special/TheDungeon/vault", dungeon.roomPos, ModContent.GetInstance<Remnants>());
+                    StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Special/TheDungeon/vault1", dungeon.roomPos, ModContent.GetInstance<Remnants>());
 
                     int chestIndex;
 
-                    chestIndex = WorldGen.PlaceChest(dungeon.roomPos.X + 37, dungeon.roomPos.Y + 21, TileID.Containers2, style: 13);
+                    chestIndex = WorldGen.PlaceChest(dungeon.roomPos.X + 36, dungeon.roomPos.Y + 23, TileID.Containers2, style: 13);
                     BiomeChestLoot(chestIndex, 6);
 
-                    chestIndex = WorldGen.PlaceChest(dungeon.roomPos.X + 51, dungeon.roomPos.Y + 21, style: 23);
+                    chestIndex = WorldGen.PlaceChest(dungeon.roomPos.X + 50, dungeon.roomPos.Y + 23, style: 23);
                     BiomeChestLoot(chestIndex, 1);
 
-                    chestIndex = WorldGen.PlaceChest(dungeon.roomPos.X + 67, dungeon.roomPos.Y + 21, style: 27);
+                    chestIndex = WorldGen.PlaceChest(dungeon.roomPos.X + 66, dungeon.roomPos.Y + 23, style: 27);
                     BiomeChestLoot(chestIndex, 5);
+
+                    roomCount--;
+                }
+            }
+
+            roomCount = 1;
+            while (roomCount > 0)
+            {
+                dungeon.targetCell.X = WorldGen.genRand.Next(dungeon.grid.Left, dungeon.grid.Right - 2);
+                dungeon.targetCell.Y = dungeon.grid.Height - 1;
+                if (dungeon.AddRoom(3, 1))
+                {
+                    dungeon.AddMarker(dungeon.targetCell.X + 1, dungeon.targetCell.Y, 1);
+                    dungeon.AddMarker(dungeon.targetCell.X, dungeon.targetCell.Y, 2); dungeon.AddMarker(dungeon.targetCell.X + 1, dungeon.targetCell.Y, 2); dungeon.AddMarker(dungeon.targetCell.X + 2, dungeon.targetCell.Y, 2);
+
+                    StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Special/TheDungeon/vault2", dungeon.roomPos, ModContent.GetInstance<Remnants>());
+
+                    int chestIndex;
+
+                    chestIndex = WorldGen.PlaceChest(dungeon.roomPos.X + 37, dungeon.roomPos.Y + 23, style: 24);
+                    BiomeChestLoot(chestIndex, 3);
+
+                    chestIndex = WorldGen.PlaceChest(dungeon.roomPos.X + 67, dungeon.roomPos.Y + 23, style: 25);
+                    BiomeChestLoot(chestIndex, 2);
 
                     roomCount--;
                 }
@@ -1416,17 +1440,7 @@ namespace Remnants.Content.World
 
             StructureTools.GenericLoot(chestIndex, itemsToAdd, 3, new int[] { ItemID.BiomeSightPotion });
 
-            int chestItemIndex = 0;
-            foreach (var itemToAdd in itemsToAdd)
-            {
-                Item item = new Item();
-                item.SetDefaults(itemToAdd.type);
-                item.stack = itemToAdd.stack;
-                chest.item[chestItemIndex] = item;
-                chestItemIndex++;
-                if (chestItemIndex >= 40)
-                    break;
-            }
+            StructureTools.FillChest(chestIndex, itemsToAdd);
         }
 
         private void PlaceLargePainting(int x, int y, int style = -1)
@@ -2160,371 +2174,6 @@ namespace Remnants.Content.World
                 }
             }
             return MiscTools.Solid(x, y);
-        }
-    }
-
-    public class ForgottenTomb : GenPass
-    {
-        public ForgottenTomb(string name, float loadWeight) : base(name, loadWeight)
-        {
-        }
-
-        protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
-        {
-            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Tomb");
-
-            BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
-
-            bool devMode = false;
-
-            #region setup
-            StructureTools.Dungeon tomb = new StructureTools.Dungeon(0, 0, 1 + (int)(MiscTools.GetSafeWorldScale() * 4), (int)(MiscTools.GetSafeWorldScale() * 4), 42, 18, 3);
-            tomb.X = WorldGen.genRand.Next((int)(Main.maxTilesX * 0.41f), (int)(Main.maxTilesX * 0.59f) - tomb.area.Width);
-            tomb.Y = Main.maxTilesY - 320 - tomb.area.Height;
-
-            GenVars.structures.AddProtectedStructure(tomb.area, 25);
-
-            MiscTools.Terraform(new Vector2(tomb.area.Center.X, tomb.Y - 20), 30, killWall: true);
-
-            StructureTools.FillEdges(tomb.area.Left - 11, tomb.area.Top, tomb.area.Right + 10, tomb.area.Bottom + 5, ModContent.TileType<TombBrick>());
-
-            for (int j = GenVars.lavaLine; j <= tomb.Y + 1; j++)
-            {
-                for (int i = tomb.area.Left - 100; i < tomb.area.Right + 100; i++)
-                {
-                    if (biomes.FindBiome(i, j + 1) != BiomeID.Marble)
-                    {
-                        MiscTools.Tile(i, j).LiquidAmount = 0;
-                    }
-                }
-            }
-            #endregion
-
-            #region rooms
-
-            tomb.targetCell.Y = tomb.grid.Bottom - 1;
-            for (tomb.targetCell.X = tomb.grid.Left; tomb.targetCell.X < tomb.grid.Right; tomb.targetCell.X++)
-            {
-                MiscTools.Rectangle(tomb.room.Left - (tomb.targetCell.X == tomb.grid.Left ? 11 : 0), tomb.room.Y + tomb.room.Height + 1, tomb.room.Right - 1 + (tomb.targetCell.X == tomb.grid.Right - 1 ? 11 : 0), tomb.room.Y + tomb.room.Height + 5, ModContent.TileType<TombBrick>());
-                MiscTools.Rectangle(tomb.room.Left + 1 - (tomb.targetCell.X == tomb.grid.Left ? 11 : 0), tomb.room.Y + tomb.room.Height + 1, tomb.room.Right - 2 + (tomb.targetCell.X == tomb.grid.Right - 1 ? 11 : 0), tomb.room.Y + tomb.room.Height + 4, -2, ModContent.WallType<TombBrickWallUnsafe>());
-            }
-
-            tomb.targetCell.X = tomb.grid.Center.X;
-            tomb.targetCell.Y = 0;
-            if (tomb.AddRoom(1, 1))
-            {
-                StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Special/tomb/top", new Point16(tomb.roomPos.X, tomb.roomPos.Y - tomb.room.Height - 6), ModContent.GetInstance<Remnants>());
-            }
-
-            int roomCount;
-
-            #region special
-            roomCount = 0;
-            while (roomCount < 1)
-            {
-                tomb.targetCell.X = WorldGen.genRand.Next(tomb.grid.Left, tomb.grid.Right - 1);
-                tomb.targetCell.Y = tomb.grid.Bottom - 1;
-
-                if (tomb.AddRoom(2, 1))
-                {
-                    StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Special/tomb/vault", tomb.roomPos, ModContent.GetInstance<Remnants>());
-
-                    int chestIndex;
-                    var itemsToAdd = new List<(int type, int stack)>();
-
-                    chestIndex = WorldGen.PlaceChest(tomb.roomPos.X + 22, tomb.roomPos.Y + 15, style: 24);
-                    itemsToAdd = new List<(int type, int stack)>();
-                    itemsToAdd.Add((ItemID.ScourgeoftheCorruptor, 1));
-                    StructureTools.GenericLoot(chestIndex, itemsToAdd, 3, new int[] { ItemID.BiomeSightPotion });
-                    StructureTools.FillChest(chestIndex, itemsToAdd);
-
-                    chestIndex = WorldGen.PlaceChest(tomb.roomPos.X + 60, tomb.roomPos.Y + 15, style: 25);
-                    itemsToAdd = new List<(int type, int stack)>();
-                    itemsToAdd.Add((ItemID.VampireKnives, 1));
-                    StructureTools.GenericLoot(chestIndex, itemsToAdd, 3, new int[] { ItemID.BiomeSightPotion });
-                    StructureTools.FillChest(chestIndex, itemsToAdd);
-
-                    roomCount++;
-                }
-            }
-
-            roomCount = 0;
-            while (roomCount < tomb.grid.Width * tomb.grid.Height / 6)
-            {
-                tomb.targetCell.X = WorldGen.genRand.Next(tomb.grid.Left, tomb.grid.Right);
-                if (roomCount < tomb.grid.Height - 1)
-                {
-                    tomb.targetCell.Y = roomCount + 1;
-                }
-                else tomb.targetCell.Y = WorldGen.genRand.Next(1, tomb.grid.Bottom);
-
-                if (!tomb.FindMarker(tomb.targetCell.X, tomb.targetCell.Y) && !tomb.FindMarker(tomb.targetCell.X, tomb.targetCell.Y - 1) && (tomb.FindMarker(tomb.targetCell.X, tomb.targetCell.Y - 2, 1) || tomb.FindMarker(tomb.targetCell.X, tomb.targetCell.Y + 2, 1) || WorldGen.genRand.NextBool(2)))
-                {
-                    tomb.AddMarker(tomb.targetCell.X, tomb.targetCell.Y);
-                    tomb.AddMarker(tomb.targetCell.X, tomb.targetCell.Y - 1);
-                    tomb.AddMarker(tomb.targetCell.X, tomb.targetCell.Y, 1);
-                    tomb.AddMarker(tomb.targetCell.X, tomb.targetCell.Y - 1, 1);
-
-                    //tomb.AddMarker(tomb.targetCell.X, tomb.targetCell.Y - 1);
-
-                    //StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Special/tomb/shaft-bottom", tomb.roomPos, ModContent.GetInstance<Remnants>());
-
-                    roomCount++;
-                }
-            }
-
-            for (tomb.targetCell.Y = tomb.grid.Top; tomb.targetCell.Y < tomb.grid.Bottom; tomb.targetCell.Y++)
-            {
-                for (tomb.targetCell.X = tomb.grid.Left; tomb.targetCell.X < tomb.grid.Right; tomb.targetCell.X++)
-                {
-                    if (tomb.FindMarker(tomb.targetCell.X, tomb.targetCell.Y, 1))
-                    {
-                        bool top = tomb.FindMarker(tomb.targetCell.X, tomb.targetCell.Y - 1, 1);
-                        bool bottom = tomb.FindMarker(tomb.targetCell.X, tomb.targetCell.Y + 1, 1);
-                        if (top || bottom)
-                        {
-                            tomb.AddMarker(tomb.targetCell.X, tomb.targetCell.Y);
-
-                            if (top && bottom)
-                            {
-                                StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Special/tomb/shaft-mid", tomb.roomPos, ModContent.GetInstance<Remnants>());
-                            }
-                            else if (top)
-                            {
-                                StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Special/tomb/shaft-bottom", tomb.roomPos, ModContent.GetInstance<Remnants>());
-                            }
-                            else if (bottom)
-                            {
-                                StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Special/tomb/shaft-top", tomb.roomPos, ModContent.GetInstance<Remnants>());
-                            }
-                        }
-                    }
-                }
-            }
-
-            roomCount = 0;
-            while (roomCount < tomb.grid.Width * tomb.grid.Height / 12)
-            {
-                tomb.targetCell.X = WorldGen.genRand.Next(tomb.grid.Left, tomb.grid.Right - 1);
-                tomb.targetCell.Y = WorldGen.genRand.Next(0, tomb.grid.Bottom);
-
-                if (tomb.AddRoom(2, 1))
-                {
-                    StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Special/tomb/2x1", tomb.roomPos, ModContent.GetInstance<Remnants>());
-
-                    int frame = roomCount % 3;// (roomCount < 3) ? roomCount : WorldGen.genRand.Next(3);
-                    for (int j = 0; j <= 2; j++)
-                    {
-                        for (int i = 0; i <= 1; i++)
-                        {
-                            Main.tile[i + tomb.roomPos.X + 41, j + tomb.roomPos.Y + 11].TileFrameX = (short)((frame == 2 ? 1 : frame == 1 ? 2 : 4) * 36 + i * 18);
-                        }
-                    }
-
-                    roomCount++;
-                }
-            }
-
-            roomCount = 0;
-            while (roomCount < tomb.grid.Width * tomb.grid.Height / 12)
-            {
-                tomb.targetCell.X = WorldGen.genRand.Next(tomb.grid.Left, tomb.grid.Right);
-                tomb.targetCell.Y = roomCount == 0 && !Main.rand.NextBool(100) ? 0 : WorldGen.genRand.Next(1, tomb.grid.Bottom - 1);
-
-                if (tomb.AddRoom(1, 2, !tomb.FindMarker(tomb.targetCell.X - 1, tomb.targetCell.Y, 2) && !tomb.FindMarker(tomb.targetCell.X + 1, tomb.targetCell.Y, 2)))
-                {
-                    tomb.AddMarker(tomb.targetCell.X, tomb.targetCell.Y, 2);
-
-                    StructureHelper.API.MultiStructureGenerator.GenerateMultistructureRandom("Content/World/Structures/Special/tomb/1x2", tomb.roomPos, ModContent.GetInstance<Remnants>());
-
-                    roomCount++;
-                }
-            }
-
-            roomCount = 0;
-            while (roomCount < tomb.grid.Width * tomb.grid.Height / 12)
-            {
-                tomb.targetCell.X = WorldGen.genRand.Next(tomb.grid.Left, tomb.grid.Right);
-                tomb.targetCell.Y = WorldGen.genRand.Next(0, tomb.grid.Bottom);
-
-                if (tomb.AddRoom(1, 1))
-                {
-                    StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Special/tomb/1x1", tomb.roomPos, ModContent.GetInstance<Remnants>());
-
-                    roomCount++;
-                }
-            }
-            #endregion
-
-            #region filler
-            for (tomb.targetCell.Y = tomb.grid.Top; tomb.targetCell.Y < tomb.grid.Bottom; tomb.targetCell.Y++)
-            {
-                for (tomb.targetCell.X = tomb.grid.Left; tomb.targetCell.X < tomb.grid.Right; tomb.targetCell.X++)
-                {
-                    if (!tomb.FindMarker((int)tomb.targetCell.X, (int)tomb.targetCell.Y))
-                    {
-                        StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Special/tomb/hallway", tomb.roomPos, ModContent.GetInstance<Remnants>());
-                    }
-
-                    if (tomb.targetCell.X == tomb.grid.Left)
-                    {
-                        StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Special/tomb/left", new Point16(tomb.roomPos.X - 11, tomb.roomPos.Y), ModContent.GetInstance<Remnants>());
-                        //WGTools.Terraform(new Vector2(tomb.room.Left - 11, tomb.room.Bottom - 6), 11);
-                    }
-                    else if (tomb.targetCell.X == tomb.grid.Right - 1)
-                    {
-                        StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Special/tomb/right", new Point16(tomb.roomPos.X + tomb.room.Width, tomb.roomPos.Y), ModContent.GetInstance<Remnants>());
-                        //WGTools.Terraform(new Vector2(tomb.room.Right + 10, tomb.room.Bottom - 6), 11);
-                    }
-
-                    if (tomb.targetCell.Y == 0 && tomb.targetCell.X != tomb.grid.Center.X)
-                    {
-                        MiscTools.Rectangle(tomb.room.Left - (tomb.targetCell.X == tomb.grid.Left ? 11 : 0), tomb.room.Y, tomb.room.Right - 1 + (tomb.targetCell.X == tomb.grid.Right - 1 ? 11 : 0), tomb.room.Y, -2, -1);
-                    }
-                }
-            }
-            #endregion
-            #endregion
-
-            #region cleanup
-            for (int y = tomb.area.Top - tomb.room.Height; y <= tomb.area.Bottom; y++)
-            {
-                for (int x = tomb.area.Left; x <= tomb.area.Right; x++)
-                {
-                    Tile tile = Main.tile[x, y];
-                    if (tile.TileType == TileID.ClosedDoor || tile.TileType == TileID.OpenDoor)
-                    {
-                        tile.TileFrameY += 18 * 3 * 2;
-                    }
-                }
-            }
-            #endregion
-
-            StructureTools.AddDecorations(tomb.area);
-            StructureTools.AddVariation(tomb.area);
-            StructureTools.AddTraps(tomb.area);
-
-            #region objects
-            if (!devMode)
-            {
-                int objects;
-
-                objects = tomb.grid.Width * tomb.grid.Height / 6;
-                while (objects > 0)
-                {
-                    int x = WorldGen.genRand.Next(tomb.area.Left, tomb.area.Right);
-                    int y = WorldGen.genRand.Next(tomb.area.Top, tomb.area.Bottom);
-
-                    bool valid = true;
-                    if (Framing.GetTileSafely(x, y).TileType == TileID.Containers)
-                    {
-                        valid = false;
-                    }
-                    for (int i = -1; i <= 2; i++)
-                    {
-                        if (!MiscTools.Tile(x + i, y + 1).HasTile || !Main.tileSolid[MiscTools.Tile(x + i, y + 1).TileType])
-                        {
-                            valid = false;
-                            break;
-                        }
-                    }
-
-                    if (valid)
-                    {
-                        int chestIndex = WorldGen.PlaceChest(x, y, 21, true, 15);
-                        if (Framing.GetTileSafely(x, y).TileType == TileID.Containers)
-                        {
-                            var itemsToAdd = new List<(int type, int stack)>();
-
-                            //int[] specialItems = new int[5];
-                            //specialItems[0] = ItemID.WebSlinger;
-                            //specialItems[1] = ModContent.ItemType<LuminousHook>();
-                            //specialItems[2] = ItemID.FlowerBoots;
-                            //specialItems[3] = ItemID.CordageGuide;
-                            //specialItems[4] = ItemID.Umbrella;
-
-                            //int specialItem = specialItems[(objects - 1) % specialItems.Length];
-                            itemsToAdd.Add((ItemID.WebSlinger, 1));
-
-                            if (objects <= tomb.grid.Width * tomb.grid.Height / 12)
-                            {
-                                itemsToAdd.Add((ItemID.SuspiciousLookingEye, 1));
-                            }
-
-                            StructureTools.GenericLoot(chestIndex, itemsToAdd, 2, new int[] { ItemID.HunterPotion, ItemID.TrapsightPotion });
-
-                            StructureTools.FillChest(chestIndex, itemsToAdd);
-
-                            objects--;
-                        }
-                    }
-                }
-
-                objects = tomb.grid.Width * tomb.grid.Height / 2;
-                while (objects > 0)
-                {
-                    int x = WorldGen.genRand.Next(tomb.area.Left, tomb.area.Right);
-                    int y = WorldGen.genRand.Next(tomb.area.Top, tomb.area.Bottom);
-
-                    for (; !MiscTools.Tile(x, y - 1).HasTile || MiscTools.Tile(x, y).HasTile; y += MiscTools.Tile(x, y).HasTile ? 1 : -1)
-                    {
-
-                    }
-
-                    int length = WorldGen.genRand.Next(10, 30);
-
-                    bool valid = true;
-                    if (!MiscTools.Solid(x, y - 1) || MiscTools.Tile(x, y).WallType != ModContent.WallType<forgottentomb>())
-                    {
-                        valid = false;
-                    }
-                    else for (int j = y + 1; j <= y + length + 3; j++)
-                        {
-                            for (int i = x - 1; i <= x + 1; i++)
-                            {
-                                if (i == x && MiscTools.Tile(i, j).HasTile || MiscTools.Solid(i, j) || MiscTools.Tile(i, j).TileType == TileID.Chain)
-                                {
-                                    valid = false;
-                                    break;
-                                }
-                            }
-                            if (!valid) { break; }
-                        }
-
-                    if (valid)
-                    {
-                        //WGTools.GetTile(x, y - 1).TileType = TileID.IronBrick;
-                        for (int j = y; j < y + length; j++)
-                        {
-                            WorldGen.PlaceTile(x, j, TileID.Chain);
-                        }
-                        WorldGen.PlaceTile(x, y + length, TileID.BoneBlock);
-                        objects--;
-                    }
-                }
-            }
-            #endregion
-        }
-
-        private void Stalactite(int x, int y, int style)
-        {
-            if (Framing.GetTileSafely(x, y - 1).HasTile && Main.tileSolid[Framing.GetTileSafely(x, y - 1).TileType])
-            {
-                if (!Framing.GetTileSafely(x, y).HasTile && !Framing.GetTileSafely(x, y + 1).HasTile)
-                {
-                    Framing.GetTileSafely(x, y - 1).TileType = TileID.Stone;
-
-                    Framing.GetTileSafely(x, y).HasTile = true;
-                    Framing.GetTileSafely(x, y + 1).HasTile = true;
-                    Framing.GetTileSafely(x, y).TileType = TileID.Stalactite;
-                    Framing.GetTileSafely(x, y + 1).TileType = TileID.Stalactite;
-
-                    Framing.GetTileSafely(x, y).TileFrameX = (short)(style * 18);
-                    Framing.GetTileSafely(x, y + 1).TileFrameX = (short)(style * 18);
-                    Framing.GetTileSafely(x, y).TileFrameY = 0;
-                    Framing.GetTileSafely(x, y + 1).TileFrameY = 18;
-                }
-            }
         }
     }
 

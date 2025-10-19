@@ -116,8 +116,8 @@ Mods: {
 			}
 
 			SpiderNest: {
-				// DisplayName: Spider Nest
-				// TownNPCDialogueName: the Spider Nest
+				DisplayName: Паучьи гнёзда
+				TownNPCDialogueName: Паучьи гнёзда
 			}
 
 			Undergrowth: {
@@ -131,8 +131,8 @@ Mods: {
 			}
 
 			MagicalLabAscension: {
-				// TownNPCDialogueName: the Magical Lab Ascension
-				// DisplayName: Magical Lab Ascension
+				TownNPCDialogueName: Место вознесения Магической лаборатории
+				DisplayName: Место вознесения Магической лаборатории
 			}
 
 			GoldenCity: {
@@ -691,13 +691,13 @@ Mods: {
 			}
 
 			InsectRemains: {
-				// DisplayName: Insect Remains
-				Tooltip: Можно использовать в промывателе
+				DisplayName: Останки насекомых
+				Tooltip: Можно использовать на промывателе
 			}
 
 			SpiderEggs: {
-				// DisplayName: Spider Eggs
-				// Tooltip: ""
+				DisplayName: Кладки паучьих яич
+				Tooltip: ""
 			}
 		}
 

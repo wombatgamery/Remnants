@@ -22,18 +22,18 @@ namespace Remnants.Content.Items.Placeable.Blocks
             Item.createTile = ModContent.TileType <Tiles.Blocks.SpiderEggs>();
 		}
 
-        public override void AddRecipes()
-        {
-            Recipe recipe;
+        //public override void AddRecipes()
+        //{
+        //    Recipe recipe;
 
-            recipe = Recipe.Create(ItemID.Cobweb, 21);
-            recipe.AddIngredient(Type);
-            recipe.Register();
+        //    recipe = Recipe.Create(ItemID.Cobweb, 21);
+        //    recipe.AddIngredient(Type);
+        //    recipe.Register();
 
-            recipe = Recipe.Create(ItemID.Silk, 3);
-            recipe.AddIngredient(Type);
-            recipe.AddTile(TileID.Loom);
-            recipe.Register();
-        }
+        //    recipe = Recipe.Create(ItemID.Silk, 3);
+        //    recipe.AddIngredient(Type);
+        //    recipe.AddTile(TileID.Loom);
+        //    recipe.Register();
+        //}
     }
 }

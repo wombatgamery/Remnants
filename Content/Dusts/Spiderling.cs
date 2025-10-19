@@ -24,8 +24,8 @@ namespace Remnants.Content.Dusts
             }
             else
             {
-                dust.velocity += Main.rand.NextVector2CircularEdge(1, 1);
-                dust.velocity *= 0.95f;
+                dust.velocity += Main.rand.NextVector2CircularEdge(1, 1) / 2;
+                dust.velocity *= 0.98f;
 
                 dust.position += dust.velocity;
                 dust.rotation = dust.velocity.ToRotation();

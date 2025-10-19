@@ -3280,9 +3280,12 @@ namespace Remnants.Content.World
                         {
                             if (biomes.FindBiome(x, y) == BiomeID.SpiderNest)
                             {
-                                if (WorldGen.genRand.NextBool(20) && MiscTools.HasTile(x, y, TileID.Cobweb))
+                                if (biomes.FindBiome(x - 2, y) == BiomeID.SpiderNest && biomes.FindBiome(x + 2, y) == BiomeID.SpiderNest && biomes.FindBiome(x, y - 2) == BiomeID.SpiderNest && biomes.FindBiome(x, y + 2) == BiomeID.SpiderNest)
                                 {
-                                    tile.TileType = (ushort)ModContent.TileType<SpiderCocoon>();
+                                    if (WorldGen.genRand.NextBool(20) && MiscTools.HasTile(x, y, TileID.Cobweb))
+                                    {
+                                        tile.TileType = (ushort)ModContent.TileType<SpiderCocoon>();
+                                    }
                                 }
                             }
                             else if (RemTile.SolidTop(x, y + 1))

@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Remnants.Content.Gores;
 using Remnants.Content.World;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -18,6 +20,8 @@ namespace Remnants.Content.Tiles.Blocks
             Main.tileMergeDirt[Type] = true;
             Main.tileMerge[Type][TileID.Stone] = true;
             Main.tileMerge[TileID.Stone][Type] = true;
+            Main.tileMerge[Type][TileID.Mud] = true;
+            Main.tileMerge[TileID.Mud][Type] = true;
             Main.tileMerge[Type][TileID.ClayBlock] = true;
             Main.tileMerge[TileID.ClayBlock][Type] = true;
             Main.tileMerge[Type][ModContent.TileType<Sulfurstone>()] = true;
@@ -29,6 +33,18 @@ namespace Remnants.Content.Tiles.Blocks
 			AddMapEntry(new Color(124, 107, 92));
 
             VanillaFallbackOnModDeletion = TileID.Stone;
+        }
+
+        public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
+        {
+            if (!fail)
+            {
+                for (int k = 0; k < 5; k++)
+                {
+                    int type = Main.rand.NextBool(3) ? ModContent.GoreType<InsectRemains1>() : Main.rand.NextBool(2) ? ModContent.GoreType<InsectRemains2>() : ModContent.GoreType<InsectRemains3>();
+                    Gore.NewGorePerfect(new EntitySource_TileBreak(i, j), new Vector2(i + Main.rand.NextFloat(1), j + Main.rand.NextFloat(1)) * 16, Main.rand.NextVector2Circular(4, 4), type);
+                }
+            }
         }
 
         public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
@@ -62,13 +78,6 @@ namespace Remnants.Content.Tiles.Blocks
                 return true;
             }
             return false;
-        }
-
-        public override bool HasWalkDust() => true;
-
-        public override void WalkDust(ref int dustType, ref bool makeDust, ref Color color)
-        {
-            dustType = DustID.Shadewood;
         }
 
         public override bool KillSound(int i, int j, bool fail)

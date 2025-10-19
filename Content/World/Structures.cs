@@ -1,29 +1,29 @@
 using Microsoft.Xna.Framework;
+using Remnants.Content.Items.Accessories;
+using Remnants.Content.Items.Consumable;
+using Remnants.Content.Items.Tools;
+using Remnants.Content.Tiles;
+using Remnants.Content.Tiles.Blocks;
+using Remnants.Content.Tiles.Objects;
+using Remnants.Content.Tiles.Objects.Decoration;
+using Remnants.Content.Tiles.Objects.Furniture;
+using Remnants.Content.Tiles.Objects.Hazards;
+using Remnants.Content.Tiles.Plants;
+using Remnants.Content.Walls;
+using Remnants.Content.Walls.Parallax;
+using Remnants.Content.Walls.Vanity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.IO;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
-using static Remnants.Content.World.RemWorld;
 using static Remnants.Content.World.BiomeMap;
-using Remnants.Content.Walls;
-using Remnants.Content.Tiles;
-using Remnants.Content.Walls.Parallax;
-using Remnants.Content.Walls.Vanity;
-using Remnants.Content.Tiles.Blocks;
-using Remnants.Content.Tiles.Objects;
-using Remnants.Content.Tiles.Objects.Furniture;
-using Remnants.Content.Tiles.Objects.Hazards;
-using Remnants.Content.Tiles.Objects.Decoration;
-using Remnants.Content.Tiles.Plants;
-using Remnants.Content.Items.Consumable;
-using Remnants.Content.Items.Accessories;
-using Remnants.Content.Items.Tools;
+using static Remnants.Content.World.RemWorld;
 
 namespace Remnants.Content.World
 {
@@ -4579,7 +4579,7 @@ namespace Remnants.Content.World
 
                 Rectangle rect = new Rectangle(x - 19, y - 20, 40, 40);
 
-                if (!Framing.GetTileSafely(x, y).HasTile && StructureTools.InsideBiome(rect, BiomeID.SpiderNest) && MiscTools.SolidInArea(x - 1, y + 1, x + 2, y + 3) && MiscTools.EmptyInArea(x - 1, y - 5, x + 2, y))
+                if (!Framing.GetTileSafely(x, y).HasTile && StructureTools.InsideBiome(rect, BiomeID.SpiderNest) && Framing.GetTileSafely(x, y).WallType == WallID.SpiderUnsafe && MiscTools.SolidInArea(x - 1, y + 1, x + 2, y + 3) && MiscTools.EmptyInArea(x - 1, y - 5, x + 2, y))
                 {
                     int chestIndex = WorldGen.PlaceChest(x, y, style: 15, notNearOtherChests: true);
                     if (Framing.GetTileSafely(x, y).TileType == TileID.Containers)
@@ -5009,7 +5009,7 @@ namespace Remnants.Content.World
 
             while (count < Main.maxTilesX * Main.maxTilesY / 1200f / 28 * ModContent.GetInstance<Worldgen>().TrapFrequency)
             {
-                progress.Set(count / 2 / (float)(Main.maxTilesX * Main.maxTilesY / 1200f / 28 * ModContent.GetInstance<Worldgen>().TrapFrequency));
+                progress.Set(count / 3 / (float)(Main.maxTilesX * Main.maxTilesY / 1200f / 28 * ModContent.GetInstance<Worldgen>().TrapFrequency));
 
                 int x = WorldGen.genRand.Next((int)(Main.maxTilesX * 0.1f), (int)(Main.maxTilesX * 0.9f));
                 int y = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY - 300);
@@ -5052,7 +5052,7 @@ namespace Remnants.Content.World
                             if (!WorldGen.SolidTile(plateX - 1, plateY) && !WorldGen.SolidTile(plateX + 1, plateY) && MiscTools.Tile(plateX, plateY).LiquidAmount < 255 && MiscTools.Tile(plateX, plateY).TileType != TileID.MinecartTrack)
                             {
                                 WorldGen.KillTile(plateX, plateY);
-                                WorldGen.PlaceTile(plateX, plateY, TileID.PressurePlates, style: Main.tile[plateX, plateY + 1].TileType == TileID.Dirt ? 2 : 3);
+                                WorldGen.PlaceTile(plateX, plateY, TileID.PressurePlates, style: Main.tile[plateX, plateY + 1].TileType == TileID.Dirt ? 3 : 2);
                                 MiscTools.Wire(plateX, plateY, plateX, y + 3);
 
                                 int brick = TileID.GrayBrick;
@@ -5093,9 +5093,53 @@ namespace Remnants.Content.World
 
             count = 0;
 
+            while (count < Main.maxTilesX * Main.maxTilesY / 1200f / 14 * ModContent.GetInstance<Worldgen>().TrapFrequency)
+            {
+                progress.Set(count / 3 / (float)(Main.maxTilesX * Main.maxTilesY / 1200f / 14 * ModContent.GetInstance<Worldgen>().TrapFrequency) + 1 / 3f);
+
+                int x = WorldGen.genRand.Next((int)(Main.maxTilesX * 0.1f), (int)(Main.maxTilesX * 0.9f));
+                int y = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY - 300);
+
+                if ((WorldGen.genRand.NextBool(2) || y > Main.rockLayer) && biomes.FindBiome(x, y) == BiomeID.None || biomes.FindBiome(x, y) == BiomeID.Jungle || biomes.FindBiome(x, y) == BiomeID.Glowshroom || biomes.FindBiome(x, y) == BiomeID.ThermalCaves)
+                {
+                    if (!MiscTools.Tile(x, y).HasTile && MiscTools.Tile(x, y).LiquidAmount == 0 && !MiscTools.Solid(x, y - 1) && !MiscTools.Solid(x, y - 2) && MiscTools.Solid(x, y + 1) && Main.tileOreFinderPriority[Main.tile[x, y + 1].TileType] == 0)
+                    {
+                        int trapX = x;
+                        int trapY = y - WorldGen.genRand.Next(3);
+                        int direction = WorldGen.genRand.NextBool(2) ? -1 : 1;
+                        int length = 0;
+
+                        while (!MiscTools.Solid(trapX, trapY))
+                        {
+                            trapX += direction;
+                            length++;
+                            if (MiscTools.Tile(trapX, trapY - 1).RedWire)
+                            {
+                                length = 0;
+                                break;
+                            }
+                        }
+                        if (length > 12 && length <= 48 && !WorldGen.SolidTile(x - 1, y) && !WorldGen.SolidTile(x + 1, y) && WorldGen.SolidTile(trapX, trapY + 1) && MiscTools.Solid(trapX, trapY - 1) && WorldGen.SolidTile(trapX + direction, trapY) && MiscTools.Tile(trapX, trapY).TileType != TileID.Traps && GenVars.structures.CanPlace(new Rectangle(x, y, 1, 1), 6) && GenVars.structures.CanPlace(new Rectangle(trapX, trapY, 1, 1), 6))
+                        {
+                            WorldGen.PlaceTile(x, y, TileID.PressurePlates, style: Main.tile[x, y + 1].TileType == TileID.Dirt ? 3 : 2);
+
+                            MiscTools.Tile(trapX, trapY).Slope = SlopeType.Solid; MiscTools.Tile(trapX, trapY).TileType = TileID.Traps;
+                            MiscTools.Tile(trapX, trapY).TileFrameX = (short)((direction == 1 ? 0 : 1) * 18); MiscTools.Tile(trapX, trapY).TileFrameY = 0;
+
+                            MiscTools.Wire(x, y + 1, trapX, trapY);
+                            MiscTools.Wire(x, y, x, y);
+
+                            count++;
+                        }
+                    }
+                }
+            }
+
+            count = 0;
+
             while (count < Main.maxTilesX / 5 * ModContent.GetInstance<Worldgen>().TrapFrequency)
             {
-                progress.Set(count / 2 / (float)(Main.maxTilesX / 5f * ModContent.GetInstance<Worldgen>().TrapFrequency) + 0.5f);
+                progress.Set(count / 3 / (float)(Main.maxTilesX / 5f * ModContent.GetInstance<Worldgen>().TrapFrequency) + 2 / 3f);
 
                 int x = WorldGen.genRand.Next(50, Main.maxTilesX - 50);
                 int y = WorldGen.genRand.Next(Main.maxTilesY - 300, Main.maxTilesY - 200);
