@@ -25,6 +25,7 @@ Partially compatible mods will cause some minor problems, but otherwise may stil
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2563862309][b]The Stars Above[/b][/url] (The Neon Veil overrides other structures)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2984622072][b]Starlight River[/b][/url] (A few biome and structure conflicts)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2982372319][b]Spirit Classic[/b][/url] (Sepulchres are disabled to prevent crashing)
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2855691488][b]Polarities[/b][/url] (Salt caves overlap the underground evil biome)
 [/list]
 
 Incompatible mods will result in a guaranteed crash or unplayable world: [list]

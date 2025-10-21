@@ -41,15 +41,15 @@ namespace Remnants.Content.World
 
             RemovePass(tasks, FindIndex(tasks, "Beaches"));
             RemovePass(tasks, FindIndex(tasks, "Ocean Sand"));
-            RemovePass(tasks, FindIndex(tasks, "Create Ocean Caves"));
             #endregion
 
             #region Secondary Biomes
             RemovePass(tasks, FindIndex(tasks, "Mushroom Patches"));
             RemovePass(tasks, FindIndex(tasks, "Marble"));
             RemovePass(tasks, FindIndex(tasks, "Granite"));
-            RemovePass(tasks, FindIndex(tasks, "Gem Caves")); RemovePass(tasks, FindIndex(tasks, "Gems")); RemovePass(tasks, FindIndex(tasks, "Gems In Ice Biome")); RemovePass(tasks, FindIndex(tasks, "Random Gems"));
             RemovePass(tasks, FindIndex(tasks, "Spider Caves"));
+            RemovePass(tasks, FindIndex(tasks, "Gem Caves")); RemovePass(tasks, FindIndex(tasks, "Gems")); RemovePass(tasks, FindIndex(tasks, "Gems In Ice Biome")); RemovePass(tasks, FindIndex(tasks, "Random Gems"));
+            RemovePass(tasks, FindIndex(tasks, "Create Ocean Caves"));
             RemovePass(tasks, FindIndex(tasks, "Shimmer"));
 
             if (ruinSeekerEnabled)
@@ -60,6 +60,53 @@ namespace Remnants.Content.World
 
             InsertPass(tasks, new SpecialTrees("Special Trees", 20), FindIndex(tasks, "Planting Trees"));
         }
+    }
+
+    public class BiomeID
+    {
+        public const int None = 0;
+
+        public const int Tundra = 1;
+
+        public const int Jungle = 2;
+
+        public const int Desert = 3;
+
+        public const int Underworld = 4;
+
+        public const int Corruption = 5;
+
+        public const int Crimson = 6;
+
+        public const int Glowshroom = 7;
+
+        public const int Marble = 8;
+
+        public const int Granite = 9;
+
+        public const int SpiderNest = 10;
+
+        public const int Beach = 11;
+
+        public const int OceanCave = 12;
+
+        public const int Aether = 13;
+
+        public const int AshForest = 14;
+
+        public const int SulfuricVents = 15;
+
+        public const int Toxic = 16;
+
+
+
+        public const int SunkenSea = 100;
+
+        public const int Savanna = 101;
+
+        public const int ThermalCaves = 102;
+
+        public const int Abysm = 103;
     }
 
     public class BiomeMap : ModSystem
@@ -145,53 +192,6 @@ namespace Remnants.Content.World
                 //    }
                 //}
             }
-        }
-
-        internal class BiomeID
-        {
-            public const int None = 0;
-
-            public const int Tundra = 1;
-
-            public const int Jungle = 2;
-
-            public const int Desert = 3;
-
-            public const int Underworld = 4;
-
-            public const int Corruption = 5;
-
-            public const int Crimson = 6;
-
-            public const int Glowshroom = 7;
-
-            public const int Marble = 8;
-
-            public const int Granite = 9;
-
-            public const int SpiderNest = 10;
-
-            public const int Beach = 11;
-
-            public const int OceanCave = 12;
-
-            public const int Aether = 13;
-
-            public const int AshForest = 14;
-
-            public const int SulfuricVents = 15;
-
-            public const int Toxic = 16;
-
-
-
-            public const int SunkenSea = 100;
-
-            public const int Savanna = 101;
-
-            public const int ThermalCaves = 102;
-
-            public const int Abysm = 103;
         }
 
         internal class Tundra

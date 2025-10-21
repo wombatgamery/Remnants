@@ -836,8 +836,13 @@ Mods: {
 				}
 
 				LifeCrystalReduction: {
-					// Label: "[i:29]Life Crystal Reduction"
+					// Label: "[i:29] Life Crystal Reduction"
 					// Tooltip: Controls the proportion of life crystals to be removed from the world
+				}
+
+				IceMountainStyle: {
+					// Label: "[i:664] Mountains"
+					// Tooltip: Controls the number of ice mountains generated in new worlds
 				}
 			}
 
@@ -898,6 +903,13 @@ Mods: {
 					// Label: "[i:2435] Ocean Music"
 					// Tooltip: Enables the custom music for the ocean caves
 				}
+			}
+
+			IceMountainType: {
+				// Tooltip: ""
+				// Double.Label: Double
+				// Single.Label: Single
+				// None.Label: None
 			}
 		}
 	}

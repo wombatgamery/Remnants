@@ -1,5 +1,6 @@
-using Terraria.ModLoader.Config;
+using System;
 using System.ComponentModel;
+using Terraria.ModLoader.Config;
 
 namespace Remnants.Content
 {
@@ -20,6 +21,12 @@ namespace Remnants.Content
         public bool ExperimentalWorldgen;
 
         [Header("Terrain")]
+
+        [Range(0, 2)]
+        [Increment(1)]
+        [DefaultValue(2)]
+        [DrawTicks]
+        public int IceMountainStyle;
 
         [Range(0f, 1f)]
         [Increment(.25f)]
@@ -123,7 +130,7 @@ namespace Remnants.Content
 	{
 		public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [Header("Functional")]
+        //[Header("Functional")]
 
         [DefaultValue(true)]
         [BackgroundColor(90, 160, 140)]

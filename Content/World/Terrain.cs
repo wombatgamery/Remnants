@@ -114,11 +114,33 @@ namespace Remnants.Content.World
             int mountain2Pos = (int)((Tundra.Right + 1 - Tundra.Width / 3.5f) * biomes.CellSize);
             float mountain1Height = WorldGen.genRand.NextFloat(1.5f, 2f);
             float mountain2Height = WorldGen.genRand.NextFloat(1.5f, 2f);
-            if (WorldGen.genRand.NextBool(2))
+            if (ModContent.GetInstance<Worldgen>().IceMountainStyle == 0)
+            {
+                mountain1Height = 0;
+                mountain2Height = 0;
+            }
+            else if (WorldGen.genRand.NextBool(2))
             {
                 mountain1Height -= 0.5f;
             }
             else mountain2Height -= 0.5f;
+
+            if (ModContent.GetInstance<Worldgen>().IceMountainStyle == 1)
+            {
+                mountain1Pos = mountain2Pos = (int)((Tundra.Center + 0.5f) * biomes.CellSize);
+
+                //mountain1Pos -= (int)((Tundra.Center + 0.5f) * biomes.CellSize);
+                //mountain2Pos -= (int)((Tundra.Center + 0.5f) * biomes.CellSize);
+
+                //mountain1Pos = (int)(mountain1Pos * WorldGen.genRand.NextFloat(0.1f, 0.2f));
+                //mountain2Pos = (int)(mountain2Pos * WorldGen.genRand.NextFloat(0.1f, 0.2f));
+
+                //mountain1Pos += (int)((Tundra.Center + 0.5f) * biomes.CellSize);
+                //mountain2Pos += (int)((Tundra.Center + 0.5f) * biomes.CellSize);
+
+                mountain1Height /= 2f;
+                mountain2Height /= 2f;
+            }
 
             FastNoiseLite mountainJags = new FastNoiseLite(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
             mountainJags.SetNoiseType(FastNoiseLite.NoiseType.Value);
