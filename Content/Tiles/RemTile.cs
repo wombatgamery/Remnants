@@ -570,9 +570,15 @@ namespace Remnants.Content.Tiles
 
             if (tile.WallType == WallID.SpiderUnsafe)
             {
-                if (Main.rand.NextBool(5000) && tile.HasTile && tile.TileType == TileID.Cobweb)
+                if (Main.rand.NextBool(500) && tile.HasTile && tile.TileType == TileID.Cobweb)
                 {
-                    Dust.NewDust(new Vector2(i, j) * 16, 16, 16, ModContent.DustType<Spiderling>());
+                    Color color = Lighting.GetColor(i, j);
+                    byte brightness = Math.Max(Math.Max(color.R, color.G), color.B);
+
+                    if (brightness > 0 && brightness <= 17)
+                    {
+                        Dust.NewDust(new Vector2(i, j) * 16, 16, 16, ModContent.DustType<Spiderling>());
+                    }
                 }
             }
             if (tile.WallType == ModContent.WallType<undergrowth>() || tile.WallType == WallID.LivingWoodUnsafe)

@@ -16,7 +16,7 @@ using Remnants.Content.Items.Materials;
 using Remnants.Content.Biomes;
 using Remnants.Content.NPCs.Monsters;
 using Remnants.Content.NPCs.Monsters.MagicalLab;
-using Remnants.Content.NPCs.Monsters.TheVault;
+//using Remnants.Content.NPCs.Monsters.TheVault;
 using Remnants.Content.NPCs.Monsters.Undergrowth;
 using Remnants.Content.Walls;
 using Remnants.Content.Walls.Parallax;
@@ -187,17 +187,17 @@ namespace Remnants.Content.NPCs
                     pool[NPCID.Lihzahrd] = 2f;
                     pool[NPCID.FlyingSnake] = 1f;
                 }
-                else if (tile.WallType == ModContent.WallType<vault>() || tile.WallType == ModContent.WallType<VaultWallUnsafe>())
-                {
-                    pool.Clear();
+                //else if (tile.WallType == ModContent.WallType<vault>() || tile.WallType == ModContent.WallType<VaultWallUnsafe>())
+                //{
+                //    pool.Clear();
 
-                    pool[ModContent.NPCType<Shocker>()] = 1f;
-                    pool[ModContent.NPCType<Gunner>()] = 1f;
-                    pool[ModContent.NPCType<Blaster>()] = 1f;
-                    pool[ModContent.NPCType<Flamer>()] = 1f;
+                //    pool[ModContent.NPCType<Shocker>()] = 1f;
+                //    pool[ModContent.NPCType<Gunner>()] = 1f;
+                //    pool[ModContent.NPCType<Blaster>()] = 1f;
+                //    pool[ModContent.NPCType<Flamer>()] = 1f;
 
-                    pool[ModContent.NPCType<Icer>()] = 0.2f;
-                }
+                //    pool[ModContent.NPCType<Icer>()] = 0.2f;
+                //}
                 //else if (tile.WallType == WallID.LihzahrdBrickUnsafe || tile.WallType == ModContent.WallType<temple>())
                 //{
                 //	pool.Clear();
@@ -277,7 +277,7 @@ namespace Remnants.Content.NPCs
                         pool[NPCID.Hellbat] = 1f;
                     }
                 }
-                else if (tile.TileType == TileID.Granite || tile.TileType == TileID.GraniteBlock)
+                else if (tile.TileType == TileID.GraniteBlock)
                 {
                     if (spawnInfo.SpawnTileY > Main.worldSurface)
                     {

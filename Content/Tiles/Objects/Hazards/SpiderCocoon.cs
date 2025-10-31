@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Remnants.Content.Dusts;
+using Remnants.Content.Gores;
 using Remnants.Content.Items.Consumable;
 using Remnants.Content.Items.Placeable.Blocks;
 using Remnants.Content.Tiles;
@@ -34,16 +35,24 @@ namespace Remnants.Content.Tiles.Objects.Hazards
 
         public override IEnumerable<Item> GetItemDrops(int i, int j)
         {
-            yield return new Item(ModContent.ItemType<InsectRemains>(), Main.rand.Next(1, 4));
+            yield return new Item(ModContent.ItemType<Items.Placeable.Blocks.InsectRemains>(), Main.rand.Next(1, 4));
         }
 
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
+            fail = false;
+
             if (!fail)
             {
                 for (int k = 0; k < 30; k++)
                 {
                     Dust.NewDustPerfect(new Vector2(i + 0.5f, j + 0.5f) * 16, ModContent.DustType<Spiderling>());
+                }
+
+                for (int k = 0; k < 15; k++)
+                {
+                    int type = Main.rand.NextBool(3) ? ModContent.GoreType<InsectRemains1>() : Main.rand.NextBool(2) ? ModContent.GoreType<InsectRemains2>() : ModContent.GoreType<InsectRemains3>();
+                    Gore.NewGorePerfect(new EntitySource_TileBreak(i, j), new Vector2(i + 0.5f, j + 0.5f) * 16, Main.rand.NextVector2Circular(4, 4), type);
                 }
             }
         }

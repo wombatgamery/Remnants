@@ -38,7 +38,7 @@ Mods: {
 			// SkyIslands: Distorting gravityФ
 			// GemCaves: Forming resplendent geodes
 			// Microdungeons: Expanding infrastructure
-			// Boulders: Rigging boulder traps
+			// Boulders: Rigging traps
 			// IceTemples: Sculpting ice temples
 			// ThermalRigs: Building geothermal rigs
 			// Dungeon: Building a doomed city
@@ -832,8 +832,13 @@ Mods: {
 				}
 
 				LifeCrystalReduction: {
-					// Label: "[i:29]Life Crystal Reduction"
+					// Label: "[i:29] Life Crystal Reduction"
 					// Tooltip: Controls the proportion of life crystals to be removed from the world
+				}
+
+				IceMountainStyle: {
+					// Label: "[i:664] Mountains"
+					// Tooltip: Controls the number of ice mountains generated in new worlds
 				}
 			}
 
@@ -886,10 +891,22 @@ Mods: {
 					// Tooltip: Enables the custom music for the granite cave
 				}
 
+				SpiderMusic: {
+					// Label: "[i:Remnants/InsectRemains] Spider Music"
+					// Tooltip: Enables the custom music for the spider nests
+				}
+
 				OceanMusic: {
 					// Label: "[i:2435] Ocean Music"
-					// Tooltip: Enables the custom music for the ocean cave
+					// Tooltip: Enables the custom music for the ocean caves
 				}
+			}
+
+			IceMountainType: {
+				// Tooltip: ""
+				// Double.Label: Double
+				// Single.Label: Single
+				// None.Label: None
 			}
 		}
 	}

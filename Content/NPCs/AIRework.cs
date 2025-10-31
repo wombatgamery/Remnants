@@ -16,7 +16,6 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Remnants.Content.Tiles.Blocks;
-using Remnants.Content.NPCs.Monsters.TheVault;
 using Remnants.Content.Walls.Parallax;
 using Remnants.Content.NPCs.Monsters.MagicalLab;
 
