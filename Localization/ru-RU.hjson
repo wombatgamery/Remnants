@@ -16,7 +16,7 @@ Mods: {
 		Chat.LabyrinthTeleportation: Неизвестная магия этого места напрочь лишила вас возможности телепортироваться...
 
 		WorldgenMessages: {
-			Safeguard: Проверяем соместимость модов...
+			Safeguard: Проверяем совместимость модов...
 			Setup: Определяем, где будут располагаться биомы...
 			Cleanup: Проводим очистку...
 			Touchups: Делаем последние штрихи...
@@ -141,8 +141,8 @@ Mods: {
 			}
 
 			SulfuricVents: {
-				DisplayName: Сернистые жёрла
-				TownNPCDialogueName: Сернистые жёрла
+				DisplayName: Серные жерла
+				TownNPCDialogueName: Серные жерла
 			}
 		}
 
@@ -150,7 +150,7 @@ Mods: {
 			Hardstone.MapEntry: Твердокамень
 			StarOre.MapEntry: Звёздные останки
 			LockedIronDoor.MapEntry: Дверь
-			RustedChest.MapEntry: Сундук
+			RustedChest.MapEntry: Проржавевший сундук
 			LabyrinthSpawner.MapEntry: Око Стража
 			PiranhaSpawner.MapEntry: Слив
 			Spitflower.MapEntry: Плевоцвет
@@ -182,26 +182,25 @@ Mods: {
 			Runestalk.MapEntry: Руностебель
 
 			PyramidChest: {
-				MapEntry: Сундук
-				MapEntry0: Закрытый сундук
+				MapEntry: Сундук храма пустыни
+				MapEntry0: Закрытый сундук храма пустыни
 			}
 
 			PyramidPot.MapEntry: Позолоченная ваза
 			Cryocoral.MapEntry: Криокоралл
 			Luminsponge.MapEntry: Губкосвет
 			Nightglow.MapEntry: Побег ягоды-фонаря
-			ArcaneChest.MapEntry: Сундук
+			ArcaneChest.MapEntry: Арканный сундук
 			SacrificialAltar.MapEntry: Алтарь для жертвоприношений
 			VaultPipe.MapEntry: Труба
 			AlchemyBench.MapEntry: Рабочий стол
 
 			ArcaneChest2: {
-				MapEntry0: Сундук
-				MapEntry1: Закрытый сундук
+				MapEntry0: Арканный сундук
+				MapEntry1: Закрытый арканный сундук
 			}
 
 			PrismbudHead.MapEntry: Луковица-призмоцветка
-			// spiritlamp.MapEntry: spiritlamp
 		}
 
 		Buffs: {
@@ -681,13 +680,13 @@ Mods: {
 			}
 
 			SkullSign: {
-				Tooltip: ""
 				DisplayName: Знак черепа
+				Tooltip: ""
 			}
 
 			Sulfurstone: {
 				Tooltip: ""
-				DisplayName: Отложения серы
+				DisplayName: Сернистый камень
 			}
 
 			InsectRemains: {
@@ -696,8 +695,28 @@ Mods: {
 			}
 
 			SpiderEggs: {
-				DisplayName: Кладки паучьих яич
+				DisplayName: Кладки паучьих яиц
 				Tooltip: ""
+			}
+
+			SulfurstoneBrick: {
+				DisplayName: Сернистый кирпич
+				Tooltip: ""
+			}
+
+			SulfurstoneBrickWall: {
+				DisplayName: Стена из сернистого кирпича
+				Tooltip: ""
+			}
+
+			SulfuricVent: {
+				DisplayName: Сернистое жерло
+				Tooltip: ""
+			}
+
+			SulfurstoneDiamond: {
+				Tooltip: ""
+				DisplayName: Алмазный сернистый камень
 			}
 		}
 
@@ -724,7 +743,7 @@ Mods: {
 			cursedflamejet.DisplayName: Струя проклятого пламени
 			deathbolt.DisplayName: Снаряд смерти
 			magicshieldhit.DisplayName: Поломка магического щита
-			MazeGuardianTeleport.DisplayName: Телепорт Cтража
+			MazeGuardianTeleport.DisplayName: Телепорт Стража
 			blastermissile.DisplayName: Ракета бомбардировщика
 			fireball.DisplayName: Огненный шар
 			FireBolt.DisplayName: Огненный снаряд
@@ -827,7 +846,7 @@ Mods: {
 					Label: "[i:3] Уменьшение размера слоя пещер"
 					Tooltip:
 						'''
-						Уменьшает высоту слоя пещер кроме лавого слоя в мире на установленное количество блоков
+						Уменьшает высоту слоя пещер кроме лавового слоя в мире на установленное количество блоков
 						[c/808080:Отключите настройку «Меры предосторожности», чтобы изменения этой настройки вступили в силу]
 						'''
 				}
@@ -849,6 +868,15 @@ Mods: {
 				IceMountainStyle: {
 					Label: "[i:664] Количество гор в тундре"
 					Tooltip: Устанавливает количество генерируемых гор в снежном биоме
+				}
+
+				AquaticDepthsRework: {
+					Label: "[i:2338] Переработка генерации акватических глубин"
+					Tooltip:
+						'''
+						Перерабатывает генерацию биома акватических глубин, если у вас включён Thorium mod
+						Не позволяет глубинам генерироваться поверх соседних биомов и лучше вписывает в стилистику мода
+						'''
 				}
 			}
 
@@ -910,13 +938,11 @@ Mods: {
 			}
 
 			IceMountainType: {
-				// Tooltip: ""
-				// Double.Label: Double
-				// Single.Label: Single
-				// None.Label: None
+				Tooltip: ""
+				Double.Label: две
+				Single.Label: одна
+				None.Label: ноль
 			}
 		}
 	}
 }
-
-
