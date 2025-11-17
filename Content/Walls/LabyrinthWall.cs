@@ -11,8 +11,9 @@ namespace Remnants.Content.Walls
 		public override void SetStaticDefaults()		
 		{
 			Main.wallHouse[Type] = false;
+			Main.wallBlend[Type] = ModContent.WallType<LabyrinthBrickWall>();
 
-			DustType = DustID.Stone;
+            DustType = DustID.Stone;
 			HitSound = SoundID.Tink;
 
 			AddMapEntry(new Color(44, 47, 54));

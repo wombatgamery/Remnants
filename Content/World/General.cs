@@ -32,6 +32,8 @@ namespace Remnants.Content.World
 {
     public class RemWorld : ModSystem
     {
+        public static bool calamityEnabled => ModLoader.TryGetMod("CalamityMod", out Mod cal);
+        public static bool thoriumEnabled => ModLoader.TryGetMod("ThoriumMod", out Mod th);
         public static bool spiritReforgedEnabled => ModLoader.TryGetMod("SpiritReforged", out Mod sr);
         public static bool ruinSeekerEnabled => ModLoader.TryGetMod("RuinSeeker", out Mod rs);
 
@@ -79,11 +81,6 @@ namespace Remnants.Content.World
 
             if (ModLoader.TryGetMod("CalamityMod", out Mod cal))
             {
-                if (ModContent.GetInstance<Worldgen>().SunkenSeaRework)
-                {
-                    RemovePass(tasks, FindIndex(tasks, "Sunken Sea"));
-                }
-
                 //RemovePass(tasks, FindIndex(tasks, "Sulphur Sea"));
 
                 RemovePass(tasks, FindIndex(tasks, "Giant Hive"));
@@ -358,6 +355,9 @@ namespace Remnants.Content.World
                 tilesToDestroy[TileID.Granite] = true;
                 tilesToDestroy[TileID.Hive] = true;
                 tilesToDestroy[TileID.LivingWood] = true;
+                tilesToDestroy[ModContent.TileType<Sulfurstone>()] = true;
+                tilesToDestroy[ModContent.TileType<SpiderEggs>()] = true;
+                tilesToDestroy[ModContent.TileType<InsectRemains>()] = true;
 
                 tilesToDestroy[TileID.Copper] = true;
                 tilesToDestroy[TileID.Tin] = true;
@@ -374,6 +374,7 @@ namespace Remnants.Content.World
                 tilesToDestroy[TileID.Emerald] = true;
                 tilesToDestroy[TileID.Ruby] = true;
                 tilesToDestroy[TileID.Diamond] = true;
+                tilesToDestroy[ModContent.TileType<SulfurstoneDiamond>()] = true;
 
                 tilesToDestroy[TileID.Cobweb] = true;
             }
@@ -387,21 +388,24 @@ namespace Remnants.Content.World
 
                     if (WorldGen.InWorld(x, y))
                     {
-                        if (noise.GetNoise(x / scaleX, y / scaleY) / 0.8f <= threshold && tilesToDestroy[tile.TileType])
+                        if (noise.GetNoise(x / scaleX, y / scaleY) / 0.8f <= threshold)
                         {
-                            WorldGen.KillTile(x, y);
-                            tile.LiquidAmount = 0;
+                            if (tilesToDestroy[tile.TileType])
+                            {
+                                WorldGen.KillTile(x, y);
+                                tile.LiquidAmount = 0;
+
+                                if (Framing.GetTileSafely(x, y - 1).TileType == TileID.Sand)
+                                {
+                                    Framing.GetTileSafely(x, y - 1).TileType = TileID.HardenedSand;
+                                }
+                            }
 
                             if (killWall && !Main.wallDungeon[tile.WallType])
                             {
                                 Framing.GetTileSafely(x - 1, y).WallType = 0;
                                 Framing.GetTileSafely(x + 1, y).WallType = 0;
                                 Framing.GetTileSafely(x, y + 1).WallType = 0;
-                            }
-
-                            if (Framing.GetTileSafely(x, y - 1).TileType == TileID.Sand)
-                            {
-                                Framing.GetTileSafely(x, y - 1).TileType = TileID.HardenedSand;
                             }
                         }
                     }
@@ -938,6 +942,20 @@ namespace Remnants.Content.World
             bool spider = MiscTools.Tile(x, y).WallType == WallID.SpiderUnsafe || MiscTools.Tile(x, y).WallType == ModContent.WallType<TombBrickWallUnsafe>() || MiscTools.Tile(x, y).WallType == ModContent.WallType<forgottentomb>();
             bool manaPotions = y <= Main.worldSurface * 0.5;
 
+            int steelArrow = 0;
+            int springWater = 0;
+            if (ModLoader.TryGetMod("ThoriumMod", out Mod th))
+            {
+                if (th.TryFind("SteelArrow", out ModItem arrow))
+                {
+                    steelArrow = arrow.Type;
+                }
+                if (th.TryFind("SpringWater", out ModItem heal))
+                {
+                    springWater = heal.Type;
+                }
+            }
+
             if (grade > 0)
             {
                 int odds = biomes.FindBiome(x, y) == BiomeID.Marble || biomes.FindBiome(x, y) == BiomeID.Granite ? 2 : 3;
@@ -954,6 +972,10 @@ namespace Remnants.Content.World
                     {
                         //piece = Main.rand.Next(3);
                         //itemsToAdd.Add((piece == 3 ? ItemID.Gladius : piece == 2 ? ItemID.AncientCobaltLeggings : piece == 1 ? ItemID.AncientCobaltBreastplate : ItemID.AncientCobaltHelmet, 1));
+                    }
+                    else if (biomes.FindBiome(x, y) == BiomeID.AquaticDepths)
+                    {
+                        itemsToAdd.Add((piece == 3 ? ItemID.GoldBroadsword : piece == 2 ? ItemID.GoldGreaves : piece == 1 ? ItemID.GoldChainmail : ItemID.GoldHelmet, 1));
                     }
                     else if (biomes.FindBiome(x, y) == BiomeID.Jungle || biomes.FindBiome(x, y) == BiomeID.Desert)
                     {
@@ -1002,7 +1024,7 @@ namespace Remnants.Content.World
                     {
                         itemsToAdd.Add((ItemID.Dynamite, Main.rand.Next(1, 3)));
                     }
-                    else itemsToAdd.Add((y < Main.worldSurface ? ItemID.Grenade : biomes.FindBiome(x, y) == BiomeID.Desert ? ItemID.ScarabBomb : ItemID.Bomb, Main.rand.Next(5, 10)));
+                    else itemsToAdd.Add((y < Main.worldSurface ? ItemID.Grenade : biomes.FindBiome(x, y) == BiomeID.Desert ? ItemID.ScarabBomb : x < 350 || x > Main.maxTilesX - 350 ? ItemID.BombFish : ItemID.Bomb, Main.rand.Next(5, 10)));
                 }
 
                 if (grade < 3)
@@ -1016,6 +1038,10 @@ namespace Remnants.Content.World
                         {
                             itemsToAdd.Add((Main.rand.NextBool(2) ? ItemID.Shuriken : ItemID.ThrowingKnife, Main.rand.Next(50, 100)));
                         }
+                        else if (biomes.FindBiome(x, y) == BiomeID.AquaticDepths)
+                        {
+                            itemsToAdd.Add((steelArrow, Main.rand.Next(25, 50)));
+                        }
                         else if (grade <= 1)
                         {
                             itemsToAdd.Add((ItemID.WoodenArrow, Main.rand.Next(50, 100)));
@@ -1027,6 +1053,10 @@ namespace Remnants.Content.World
                 if (Main.tile[x, y].WallType == WallID.HiveUnsafe)
                 {
                     itemsToAdd.Add((ItemID.BottledHoney, Main.rand.Next(6, 12)));
+                }
+                else if (biomes.FindBiome(x, y) == BiomeID.AquaticDepths)
+                {
+                    itemsToAdd.Add((springWater, Main.rand.Next(2, 4)));
                 }
                 else if (Main.rand.NextBool(2) || magicalLab)
                     itemsToAdd.Add((grade > 2 ? haveRestorationPotions ? ItemID.RestorationPotion : manaPotions ? ItemID.GreaterManaPotion : ItemID.GreaterHealingPotion : grade == 2 ? haveRestorationPotions ? ItemID.RestorationPotion : manaPotions ? ItemID.ManaPotion : ItemID.HealingPotion : haveRestorationPotions ? ItemID.LesserRestorationPotion : manaPotions ? ItemID.LesserManaPotion : ItemID.LesserHealingPotion, Main.rand.Next(3, 6)));
@@ -1141,7 +1171,7 @@ namespace Remnants.Content.World
                         if (noise + 1 > Vector2.Distance(new Vector2(x, y), point) / (radius / 2) && (biomes.FindBiome(x, y) != BiomeID.Desert || MiscTools.Tile(x, y - 1).HasTile || MiscTools.Tile(x, y - 1).LiquidAmount == 0))
                         {
                             tile.HasTile = true;
-                            tile.TileType = ruinSeeker && biomes.FindBiome(x, y) == BiomeID.ThermalCaves && rs.TryFind("Gabbro_Tile", out ModTile gabbro) ? gabbro.Type : biomes.FindBiome(x, y) == BiomeID.Underworld ? TileID.Ash : biomes.FindBiome(x, y) == BiomeID.SulfuricVents ? (ushort)ModContent.TileType<Sulfurstone>() : biomes.FindBiome(x, y) == BiomeID.Granite ? TileID.Granite : (biomes.FindBiome(x, y) == BiomeID.Jungle && biomes.GetTileDistribution(x, y, frequency: 2) < 0.3f) || biomes.FindBiome(x, y) == BiomeID.Glowshroom ? TileID.Mud : biomes.FindBiome(x, y) == BiomeID.Desert || biomes.FindBiome(x, y) == BiomeID.Savanna ? (biomes.GetLayer(x, y) >= biomes.surfaceLayer ? TileID.Sandstone : TileID.HardenedSand) : biomes.FindBiome(x, y) == BiomeID.Tundra ? TileID.IceBlock : biomes.GetLayer(x, y) < biomes.caveLayer && biomes.GetLayer(x, y) >= biomes.surfaceLayer && biomes.GetTileDistribution(x, y, frequency: 2) < 0.2f ? TileID.Dirt : TileID.Stone;
+                            tile.TileType = ruinSeeker && biomes.FindBiome(x, y) == BiomeID.ThermalCaves && rs.TryFind("Gabbro_Tile", out ModTile gabbro) ? gabbro.Type : biomes.FindBiome(x, y) == BiomeID.Underworld ? TileID.Ash : biomes.FindBiome(x, y) == BiomeID.SulfuricVents ? (ushort)ModContent.TileType<Sulfurstone>() : biomes.FindBiome(x, y) == BiomeID.Granite ? TileID.Granite : (biomes.FindBiome(x, y) == BiomeID.Jungle && biomes.GetTileDistribution(x, y, frequency: 2) < 0.3f) || biomes.FindBiome(x, y) == BiomeID.Glowshroom ? TileID.Mud : biomes.FindBiome(x, y) == BiomeID.Desert || biomes.FindBiome(x, y) == BiomeID.Savanna ? (biomes.GetLayer(x, y) >= biomes.surfaceLayer ? TileID.Sandstone : TileID.HardenedSand) : biomes.FindBiome(x, y) == BiomeID.Tundra ? TileID.IceBlock : biomes.GetLayer(x, y) < biomes.caveLayer && biomes.GetLayer(x, y) >= biomes.surfaceLayer && biomes.GetTileDistribution(x, y, frequency: 2) < 0 ? TileID.Dirt : TileID.Stone;
                         }
                         else if (!MiscTools.Tile(x, y).HasTile && MiscTools.Tile(x, y - 1).HasTile && MiscTools.Tile(x, y - 1).TileType == TileID.Mud && (biomes.FindBiome(x, y) == BiomeID.Jungle || biomes.FindBiome(x, y) == BiomeID.Glowshroom))
                         {
@@ -2411,13 +2441,23 @@ namespace Remnants.Content.World
                                 tile.Slope = 0;
                                 tile.IsHalfBlock = false;
                             }
+                            else if (tile.TileType == ModContent.TileType<VaultPlating>() || tile.TileType == ModContent.TileType<VaultPlatform>())
+                            {
+                                if (MiscTools.HasTile(x, y - 1, TileID.Pots))
+                                {
+                                    WorldGen.KillTile(x, y - 1);
+                                }
+                            }
                             else if (biomes.FindBiome(x, y) == BiomeID.Corruption || biomes.FindBiome(x, y) == BiomeID.Crimson)
                             {
                                 if (tile.TileType == TileID.DemonAltar)
                                 {
-                                    if (biomes.FindBiome(x, y) == BiomeID.Crimson && tile.TileFrameX < 18 * 3)
+                                    if (biomes.FindBiome(x, y) == BiomeID.Crimson)
                                     {
-                                        tile.TileFrameX += 18 * 3;
+                                        if (tile.TileFrameX < 18 * 3)
+                                        {
+                                            tile.TileFrameX += 18 * 3;
+                                        }
                                     }
                                     else if (tile.TileFrameX >= 18 * 3)
                                     {
@@ -2426,9 +2466,12 @@ namespace Remnants.Content.World
                                 }
                                 else if (tile.TileType == TileID.ShadowOrbs)
                                 {
-                                    if (biomes.FindBiome(x, y) == BiomeID.Crimson && tile.TileFrameX < 18 * 2)
+                                    if (biomes.FindBiome(x, y) == BiomeID.Crimson)
                                     {
-                                        tile.TileFrameX += 18 * 2;
+                                        if (tile.TileFrameX < 18 * 2)
+                                        {
+                                            tile.TileFrameX += 18 * 2;
+                                        }
                                     }
                                     else if (tile.TileFrameX >= 18 * 2)
                                     {
@@ -2628,20 +2671,23 @@ namespace Remnants.Content.World
                             tile.HasTile = false;
                         }
                     }
-                    else if (biomes.FindBiome(x, y) == BiomeID.Glowshroom || biomes.FindBiome(x, y) == BiomeID.Desert || biomes.FindBiome(x, y) == BiomeID.Jungle && tile.LiquidType != LiquidID.Honey || biomes.FindBiome(x, y) == BiomeID.Savanna || biomes.FindBiome(x, y) == BiomeID.SunkenSea || biomes.FindBiome(x, y) == BiomeID.Marble || biomes.FindBiome(x, y) == BiomeID.Granite || biomes.FindBiome(x, y) == BiomeID.Corruption || biomes.FindBiome(x, y) == BiomeID.Crimson || biomes.FindBiome(x, y) == BiomeID.Beach && y < Main.worldSurface + 50)
+                    else if (y > Terrain.Minimum)
                     {
-                        tile.LiquidType = 0;
-                        if (tile.TileType == TileID.Cobweb || tile.TileType == TileID.Obsidian)
+                        if (biomes.FindBiome(x, y) == BiomeID.Glowshroom || biomes.FindBiome(x, y) == BiomeID.Desert || biomes.FindBiome(x, y) == BiomeID.Savanna || biomes.FindBiome(x, y) == BiomeID.SunkenSea || biomes.FindBiome(x, y) == BiomeID.Marble || biomes.FindBiome(x, y) == BiomeID.Granite || biomes.FindBiome(x, y) == BiomeID.Corruption || biomes.FindBiome(x, y) == BiomeID.Crimson || biomes.FindBiome(x, y) == BiomeID.Beach && y < Main.worldSurface + 50)
                         {
-                            WorldGen.KillTile(x, y);
-                            if (tile.TileType == TileID.Obsidian)
+                            tile.LiquidType = 0;
+                            if (tile.TileType == TileID.Cobweb || tile.TileType == TileID.Obsidian)
                             {
-                                tile.LiquidAmount = 255;
+                                WorldGen.KillTile(x, y);
+                                if (tile.TileType == TileID.Obsidian)
+                                {
+                                    tile.LiquidAmount = 255;
+                                }
                             }
-                        }
-                        if (tile.TileType == TileID.LavaDrip)
-                        {
-                            tile.TileType = TileID.WaterDrip;
+                            if (tile.TileType == TileID.LavaDrip)
+                            {
+                                tile.TileType = TileID.WaterDrip;
+                            }
                         }
                     }
                 }

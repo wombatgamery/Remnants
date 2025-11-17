@@ -27,6 +27,8 @@ namespace Remnants.Content.Tiles.Blocks
             Main.tileMerge[Type][ModContent.TileType<Sulfurstone>()] = true;
             Main.tileMerge[ModContent.TileType<Sulfurstone>()][Type] = true;
 
+            TileID.Sets.CanBeClearedDuringOreRunner[Type] = false;
+
             DustType = DustID.Shadewood;
 			HitSound = SoundID.Item48;
 

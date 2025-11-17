@@ -8,8 +8,6 @@ namespace Remnants.Content.Walls
 	{
 		public override void SetStaticDefaults()
 		{
-			WallID.Sets.AllowsPlantsToGrow[Type] = true;
-
 			DustType = DustID.Stone;
 
             AddMapEntry(new Color(55, 57, 52));

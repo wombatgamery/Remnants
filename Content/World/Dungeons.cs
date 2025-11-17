@@ -25,6 +25,7 @@ using Remnants.Content.Tiles.Plants;
 using Remnants.Content.Tiles.Objects.Decoration;
 using Remnants.Content.Tiles.Objects.Furniture;
 using Remnants.Content.Tiles.Objects.Hazards;
+using static Remnants.Content.World.BiomeLocations;
 
 namespace Remnants.Content.World
 {
@@ -3529,6 +3530,34 @@ namespace Remnants.Content.World
 
             maze.AddMarker(maze.grid.Center.X, maze.grid.Height - 1, 1);
 
+            int walls = maze.grid.Width * maze.grid.Height / 16;
+            while (walls > 0)
+            {
+                int x = WorldGen.genRand.Next(maze.grid.Left, maze.grid.Right + 1);
+                int y = WorldGen.genRand.Next(maze.grid.Top, maze.grid.Bottom + 1);
+
+                if ((x != maze.grid.Center.X || y > maze.grid.Top) && !maze.FindMarker(x, y))
+                {
+                    if (!maze.FindMarker(x - 1, y - 1) && !maze.FindMarker(x + 1, y - 1) && !maze.FindMarker(x - 1, y + 1) && !maze.FindMarker(x + 1, y + 1))
+                    {
+                        maze.AddMarker(x, y);
+                        
+                        walls--;
+                    }
+                }
+            }
+
+            for (maze.targetCell.Y = maze.grid.Top; maze.targetCell.Y < maze.grid.Bottom; maze.targetCell.Y++)
+            {
+                for (maze.targetCell.X = maze.grid.Left; maze.targetCell.X < maze.grid.Right; maze.targetCell.X++)
+                {
+                    if (!maze.FindMarker(maze.targetCell.X, maze.targetCell.Y))
+                    {
+                        StructureHelper.API.MultiStructureGenerator.GenerateMultistructureSpecific("Content/World/Structures/Special/EchoingHalls/room", maze.FindMarker(maze.targetCell.X, maze.targetCell.Y, 6) ? 1 : 0, maze.roomPos, ModContent.GetInstance<Remnants>());
+                    }
+                }
+            }
+
             maze.targetCell = new Point(maze.grid.Center.X, 0);
             List<Point> cellStack = new List<Point>();
 
@@ -3595,8 +3624,10 @@ namespace Remnants.Content.World
                 {
                     if (maze.FindMarker(maze.targetCell.X, maze.targetCell.Y) && !maze.FindMarker(maze.targetCell.X, maze.targetCell.Y, 5))
                     {
-                        StructureHelper.API.MultiStructureGenerator.GenerateMultistructureSpecific("Content/World/Structures/Special/EchoingHalls/room", maze.FindMarker(maze.targetCell.X, maze.targetCell.Y, 6) ? 1 : 0, maze.roomPos, ModContent.GetInstance<Remnants>());
-
+                        if (maze.FindMarker(maze.targetCell.X, maze.targetCell.Y, 6))
+                        {
+                            StructureHelper.API.MultiStructureGenerator.GenerateMultistructureSpecific("Content/World/Structures/Special/EchoingHalls/room", 1, maze.roomPos, ModContent.GetInstance<Remnants>());
+                        }
                         if (maze.FindMarker(maze.targetCell.X, maze.targetCell.Y, 1))
                         {
                             StructureHelper.API.MultiStructureGenerator.GenerateMultistructureSpecific("Content/World/Structures/Special/EchoingHalls/ladder", maze.targetCell == new Point(maze.grid.Center.X, maze.grid.Top) || maze.targetCell == new Point(maze.grid.Center.X, maze.grid.Height - 1) ? 1 : 0, new Point16(maze.room.X + 4, maze.room.Y), ModContent.GetInstance<Remnants>());
@@ -3788,6 +3819,8 @@ namespace Remnants.Content.World
                 {
                     if (!maze.FindMarker(maze.targetCell.X - 1, maze.targetCell.Y, 2) && !maze.FindMarker(maze.targetCell.X, maze.targetCell.Y, 4))
                     {
+                        MiscTools.Rectangle(maze.roomPos.X - 14, maze.roomPos.Y + 13, maze.roomPos.X + 14, maze.roomPos.Y + 17, -1);
+
                         StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Special/EchoingHalls/doorway", new Point16(maze.roomPos.X - 3, maze.roomPos.Y + 12), ModContent.GetInstance<Remnants>());
                         roomCount--;
                     }

@@ -57,6 +57,9 @@ namespace Remnants.Content
         [BackgroundColor(150, 150, 125)]
         public bool SunkenSeaRework;
 
+        [DefaultValue(true)]
+        public bool AquaticDepthsRework;
+
         [Header("Structure")]
 
         [Range(0f, 2f)]

@@ -533,7 +533,7 @@ Mods: {
 			}
 
 			VaultWall: {
-				DisplayName: Vault Wall
+				DisplayName: Vault Plating Wall
 				Tooltip: ""
 			}
 
@@ -683,6 +683,61 @@ Mods: {
 				DisplayName: Spider Eggs
 				Tooltip: ""
 			}
+
+			SulfurstoneBrick: {
+				DisplayName: Sulfurstone Brick
+				Tooltip: ""
+			}
+
+			SulfurstoneBrickWall: {
+				DisplayName: Sulfurstone Brick Wall
+				Tooltip: ""
+			}
+
+			SulfuricVent: {
+				DisplayName: Sulfuric Vent
+				Tooltip: ""
+			}
+
+			SulfurstoneDiamond: {
+				Tooltip: ""
+				DisplayName: Diamond Sulfurstone
+			}
+
+			VaultRailing: {
+				DisplayName: Vault Railing
+				Tooltip: ""
+			}
+
+			VaultConduit: {
+				Tooltip: ""
+				DisplayName: Vault Conduits
+			}
+
+			HeavyAlloy: {
+				Tooltip: ""
+				DisplayName: Heavy Alloy
+			}
+
+			VaultSupport: {
+				Tooltip: ""
+				DisplayName: Vault Buttress
+			}
+
+			VaultHazardWall: {
+				DisplayName: Vault Hazard Wall
+				Tooltip: ""
+			}
+
+			VaultProcessor: {
+				Tooltip: ""
+				DisplayName: Vault Computer
+			}
+
+			VaultBeamWall: {
+				Tooltip: ""
+				DisplayName: Vault Beam Wall
+			}
 		}
 
 		NPCs: {
@@ -739,7 +794,7 @@ Mods: {
 				DisplayName: " World Generation"
 
 				Headers: {
-					Terrain: Terrain
+					Terrain: Biomes
 					Structure: Structures
 					LargerSky: World Proportions (Advanced)
 				}
@@ -839,6 +894,15 @@ Mods: {
 				IceMountainStyle: {
 					Label: "[i:664] Mountains"
 					Tooltip: Controls the number of ice mountains generated in new worlds
+				}
+
+				AquaticDepthsRework: {
+					Label: "[i:2338] Aquatic Depths Rework"
+					Tooltip:
+						'''
+						Enables the Aquatic Depths rework when used with the Thorium mod
+						This also prevents it from intruding on adjacent biomes
+						'''
 				}
 			}
 

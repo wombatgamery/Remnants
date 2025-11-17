@@ -15,8 +15,7 @@ namespace Remnants.Content.Items.Placeable.Walls
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.StoneWall);
-			Item.height = 16;
-            Item.createWall = ModContent.WallType<global::Remnants.Content.Walls.HellishBrickWall>();
+            Item.createWall = ModContent.WallType<Content.Walls.HellishBrickWall>();
 		}
 
 		public override void AddRecipes()

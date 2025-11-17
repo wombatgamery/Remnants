@@ -1,7 +1,7 @@
 displayName = [c/FF99CC:Remnants]
 author = lazywombat
-version = 2.0.5.2
+version = 2.1
 
 dllReferences = StructureHelper
 modReferences = WombatQOL
-sortAfter = StructureHelper, WombatQOL, RuinSeeker, SpiritReforged, Stellamod, VervCaves
+sortAfter = StructureHelper, WombatQOL, ThoriumMod, SpiritReforged, RuinSeeker, Stellamod, VervCaves

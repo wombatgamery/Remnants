@@ -141,8 +141,8 @@ Mods: {
 			}
 
 			SulfuricVents: {
-				DisplayName: Сернистые жёрла
-				TownNPCDialogueName: Сернистые жёрла
+				DisplayName: Серные жёрла
+				TownNPCDialogueName: Серные жёрла
 			}
 		}
 
@@ -687,7 +687,7 @@ Mods: {
 
 			Sulfurstone: {
 				Tooltip: ""
-				DisplayName: Отложения серы
+				DisplayName: Сернистый камень
 			}
 
 			InsectRemains: {
@@ -698,6 +698,61 @@ Mods: {
 			SpiderEggs: {
 				DisplayName: Кладки паучьих яич
 				Tooltip: ""
+			}
+
+			SulfurstoneBrick: {
+				DisplayName: Сернистый кирпич
+				Tooltip: ""
+			}
+
+			SulfurstoneBrickWall: {
+				DisplayName: Стена из сернистого кирпича
+				Tooltip: ""
+			}
+
+			SulfuricVent: {
+				DisplayName: Сернистое жерло
+				Tooltip: ""
+			}
+
+			SulfurstoneDiamond: {
+				Tooltip: ""
+				DisplayName: Алмазный сернистый камень
+			}
+
+			VaultRailing: {
+				// DisplayName: Vault Railing
+				// Tooltip: ""
+			}
+
+			VaultConduit: {
+				// Tooltip: ""
+				// DisplayName: Vault Conduits
+			}
+
+			HeavyAlloy: {
+				// Tooltip: ""
+				// DisplayName: Heavy Alloy
+			}
+
+			VaultSupport: {
+				// Tooltip: ""
+				// DisplayName: Vault Buttress
+			}
+
+			VaultHazardWall: {
+				// DisplayName: Vault Hazard Wall
+				// Tooltip: ""
+			}
+
+			VaultProcessor: {
+				// Tooltip: ""
+				// DisplayName: Vault Computer
+			}
+
+			VaultBeamWall: {
+				// Tooltip: ""
+				// DisplayName: Vault Beam Wall
 			}
 		}
 
@@ -849,6 +904,15 @@ Mods: {
 				IceMountainStyle: {
 					Label: "[i:664] Количество гор в тундре"
 					Tooltip: Устанавливает количество генерируемых гор в снежном биоме
+				}
+
+				AquaticDepthsRework: {
+					Label: "[i:2338] Переработка генерации акватических глубин"
+					Tooltip:
+						'''
+						Перерабатывает генерацию биома акватических глубин, если у вас включён Thorium mod
+						Не позволяет глубинам генерироваться поверх соседних биомов и лучше вписывает в стилистику мода
+						'''
 				}
 			}
 

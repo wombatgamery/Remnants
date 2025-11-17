@@ -13,6 +13,8 @@ Supported mods have been built around to ensure an ideal experience: [list]
 [/list]
 
 Fully compatible mods should be completely safe to use: [list]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416][b]Thorium Mod[/b][/url]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2815540735][b]Fargo's Souls[/b][/url]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3449156562][b]Calamity Fables[/b][/url]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2893332653][b]Mod of Redemption[/b][/url]
 [*][url=https://steamcommunity.com/workshop/filedetails/?id=2939093580][b]Orchid Mineshaft[/b][/url]
@@ -20,8 +22,6 @@ Fully compatible mods should be completely safe to use: [list]
 
 Partially compatible mods will cause some minor problems, but otherwise may still be playable: [list]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2824688072][b]Calamity Mod[/b][/url] (The Sulphurous Sea has a few visual bugs)
-[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2909886416][b]Thorium Mod[/b][/url] (The Aquatic Depths can sometimes be invasive)
-[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2815540735][b]Fargo's Souls[/b][/url] (The Cursed Coffin arena will not generate)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2563862309][b]The Stars Above[/b][/url] (The Neon Veil overrides other structures)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2984622072][b]Starlight River[/b][/url] (A few biome and structure conflicts)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2982372319][b]Spirit Classic[/b][/url] (Sepulchres are disabled to prevent crashing)

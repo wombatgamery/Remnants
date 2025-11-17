@@ -61,6 +61,19 @@ namespace Remnants.Content.Tiles.Blocks
 			}
         }
 
+        public override void EmitParticles(int i, int j, Tile tile, short tileFrameX, short tileFrameY, Color tileLight, bool visible)
+        {
+			if (!WorldGen.SolidTile(i, j - 1) && Main.tile[i, j - 1].LiquidAmount == 0)
+            {
+                if (Main.rand.NextBool(256))
+                {
+                    Vector2 position = new Vector2(i + 0.5f, j - 1.5f) * 16;
+                    Vector2 velocity = Main.rand.NextVector2Circular(2f, 1f) / 2;
+                    Gore.NewGorePerfect(new EntitySource_TileUpdate(i, j), position, velocity, 1202, Main.rand.NextFloat(8, 16));
+                }
+            }
+        }
+
         public override bool HasWalkDust() => true;
         public override void WalkDust(ref int dustType, ref bool makeDust, ref Color color)
         {

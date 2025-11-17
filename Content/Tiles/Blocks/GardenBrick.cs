@@ -12,7 +12,7 @@ namespace Remnants.Content.Tiles.Blocks
 		{
 			Main.tileSolid[Type] = true;
 			Main.tileBlockLight[Type] = true;
-			//Main.tileMergeDirt[Type] = true;
+			Main.tileMergeDirt[Type] = true;
 			Main.tileMerge[Type][TileID.Grass] = true;
 			Main.tileMerge[TileID.Grass][Type] = true;
             Main.tileMerge[Type][TileID.Dirt] = true;

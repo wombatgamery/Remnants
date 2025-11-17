@@ -115,7 +115,7 @@ namespace Remnants.Content
 
             if (Player.ZoneDirtLayerHeight || Player.ZoneRockLayerHeight)
             {
-                Player.ZoneGlowshroom = RemSystem.mushroomTiles >= 1000;
+                Player.ZoneGlowshroom = RemSystem.mushroomTiles >= 500;
             }
 
             //Player.ZoneSkyHeight = Player.position.Y / 16 < Main.worldSurface / 2;

@@ -396,6 +396,7 @@ namespace Remnants.Content.Tiles
             Main.tileBlendAll[TileID.CrimsonGrass] = true;
             Main.tileBlendAll[TileID.JungleGrass] = true;
             Main.tileBlendAll[TileID.MushroomGrass] = true;
+            Main.tileBlendAll[TileID.AshGrass] = true;
 
             //TileMerge(TileID.Grass, TileID.ClayBlock);
 
@@ -581,11 +582,18 @@ namespace Remnants.Content.Tiles
                     }
                 }
             }
-            if (tile.WallType == ModContent.WallType<undergrowth>() || tile.WallType == WallID.LivingWoodUnsafe)
+            else if (tile.WallType == ModContent.WallType<undergrowth>())
             {
                 if (Main.rand.NextBool(5000) && !tile.HasTile && tile.LiquidAmount == 0)
                 {
                     Dust.NewDust(new Vector2(i, j) * 16, 16, 16, ModContent.DustType<treefirefly>());
+                }
+            }
+            else if (tile.WallType == ModContent.WallType<vault>())
+            {
+                if (Main.rand.NextBool(5000) && !tile.HasTile && tile.LiquidAmount == 0)
+                {
+                    Dust.NewDust(new Vector2(i, j) * 16, 16, 16, ModContent.DustType<hellfirefly>());
                 }
             }
             else if (tile.WallType == ModContent.WallType<whisperingmaze>() || tile.WallType == ModContent.WallType<LabyrinthTileWall>() || tile.WallType == ModContent.WallType<LabyrinthBrickWall>())

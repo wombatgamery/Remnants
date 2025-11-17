@@ -20,15 +20,11 @@ namespace Remnants.Content.Items.Placeable.Blocks
 		{
 			Recipe recipe;
 
-			if (ModLoader.TryGetMod("WombatQOL", out Mod wombatqol) && wombatqol.TryFind("concrete", out ModItem concrete))
-            {
-				recipe = Recipe.Create(Type, 50);
-				recipe.AddIngredient(concrete.Type, 50);
-                recipe.AddIngredient(ItemID.AdamantiteBar);
-                recipe.AddIngredient(ItemID.TitaniumBar);
-                recipe.AddTile(TileID.AdamantiteForge);
-                recipe.Register();
-			}
+            recipe = Recipe.Create(Type, 25);
+            recipe.AddIngredient(ModContent.ItemType<HeavyAlloy>());
+            recipe.AddIngredient(ItemID.IronBar);
+            recipe.AddTile(TileID.AdamantiteForge);
+            recipe.Register();
 
             recipe = Recipe.Create(Type);
 			recipe.AddIngredient(ModContent.ItemType<VaultWall>(), 4);

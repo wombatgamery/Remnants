@@ -24,7 +24,9 @@ namespace Remnants.Content.Tiles.Blocks
             Main.tileMerge[Type][ModContent.TileType<Sulfurstone>()] = true;
             Main.tileMerge[ModContent.TileType<Sulfurstone>()][Type] = true;
 
-            DustType = DustID.Web;
+            TileID.Sets.CanBeClearedDuringOreRunner[Type] = false;
+
+            DustType = DustID.GreenBlood;
 			HitSound = SoundID.NPCHit18;
 
 			AddMapEntry(new Color(160, 160, 178));

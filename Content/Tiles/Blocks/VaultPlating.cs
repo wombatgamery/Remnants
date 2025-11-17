@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Remnants.Content.Dusts;
 using Remnants.Content.World;
 using Terraria;
@@ -16,12 +17,13 @@ namespace Remnants.Content.Tiles.Blocks
 		{
 			Main.tileSolid[Type] = true;
 			Main.tileBlockLight[Type] = true;
-			//Main.tileMerge[Type][ModContent.TileType<vaultplatform>()] = true;
+            //Main.tileMerge[Type][ModContent.TileType<vaultplatform>()] = true;
 
-			TileID.Sets.CanBeClearedDuringGeneration[Type] = false;
+            TileID.Sets.CanBeClearedDuringGeneration[Type] = false;
 			TileID.Sets.CanBeClearedDuringOreRunner[Type] = false;
+            TileID.Sets.BlockMergesWithMergeAllBlockOverride[Type] = false;
 
-			MinPick = 180;
+            MinPick = 200;
 			MineResist = 4;
 			DustType = DustID.Iron;
 			HitSound = SoundID.Tink;
@@ -53,17 +55,35 @@ namespace Remnants.Content.Tiles.Blocks
 							tile.TileFrameX += 18;
                         }
 
-						return false;
+                        if (i % 2 == 1)
+                        {
+                            tile.TileFrameY += 18 * 2;
+                        }
+
+                        return false;
 					}
 				}
 			}
-			return true;
+            return true;
 		}
+
+        public override void PostTileFrame(int i, int j, int up, int down, int left, int right, int upLeft, int upRight, int downLeft, int downRight)
+        {
+            Tile tile = Main.tile[i, j];
+            if (tile.TileFrameY == 18 && tile.TileFrameX >= 18 && tile.TileFrameX <= 18 * 3)
+            {
+                if (i % 2 == 1)
+                {
+                    tile.TileFrameX += 18 * 5;
+                    tile.TileFrameY += 18 * 5;
+                }
+            }
+        }
 
 		private bool BlendingTile(int x, int y)
         {
 			Tile tile = Main.tile[x, y];
-			return tile.HasTile && (tile.TileType == Type || Main.tileBlendAll[tile.TileType]);
+			return tile.HasTile && (tile.TileType == Type || Main.tileMerge[Type][tile.TileType]);
 		}
 
 		public override bool CanKillTile(int i, int j, ref bool blockDamaged) => !WorldGen.gen;
@@ -81,7 +101,7 @@ namespace Remnants.Content.Tiles.Blocks
 
 			TileID.Sets.CanBeClearedDuringGeneration[Type] = false;
 
-			MinPick = 180;
+			MinPick = 200;
 			MineResist = 4;
 			DustType = DustID.Silver;
 			HitSound = SoundID.Item52;
@@ -98,4 +118,240 @@ namespace Remnants.Content.Tiles.Blocks
 			return false;
 		}
 	}
+
+    public class VaultProcessor : ModTile
+    {
+        public override void SetStaticDefaults()
+        {
+            Main.tileSolid[Type] = true;
+            Main.tileBlockLight[Type] = true;
+			Main.tileLighted[Type] = true;
+
+            Main.tileMerge[ModContent.TileType<VaultPlating>()][Type] = true;
+
+            TileID.Sets.CanBeClearedDuringGeneration[Type] = false;
+            TileID.Sets.CanBeClearedDuringOreRunner[Type] = false;
+            TileID.Sets.BlockMergesWithMergeAllBlock[Type] = false;
+
+            MinPick = 200;
+            MineResist = 4;
+            DustType = DustID.Iron;
+            HitSound = SoundID.Tink;
+
+            AddMapEntry(new Color(60, 53, 67));
+        }
+
+        public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
+        {
+            if (BlendingTile(i - 1, j) && BlendingTile(i + 1, j) && BlendingTile(i, j - 1) && BlendingTile(i, j + 1))
+            {
+                bool top = !BlendingTile(i - 1, j - 1) || !BlendingTile(i + 1, j - 1);
+                bool bottom = !BlendingTile(i - 1, j + 1) || !BlendingTile(i + 1, j + 1);
+
+                if (top ^ bottom)
+                {
+                    bool left = !BlendingTile(i - 1, j + (bottom ? 1 : -1));
+                    bool right = !BlendingTile(i + 1, j + (bottom ? 1 : -1));
+
+                    if (left ^ right)
+                    {
+                        Tile tile = Main.tile[i, j];
+
+                        tile.TileFrameX = (short)(Main.rand.Next(3) * 18 * 2);
+                        tile.TileFrameY = (short)(18 * 5 + (bottom ? 18 : 0));// (short)(Main.rand.Next(3) * 18);
+
+                        if (right)
+                        {
+                            tile.TileFrameX += 18;
+                        }
+
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        private bool BlendingTile(int x, int y)
+        {
+            Tile tile = Main.tile[x, y];
+            return tile.HasTile && (tile.TileType == Type || Main.tileBlendAll[tile.TileType]);
+        }
+
+        public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
+        {
+            Tile tile = Main.tile[i, j];
+
+            Vector2 zero = new Vector2(Main.offScreenRange, Main.offScreenRange);
+            if (Main.drawToScreen)
+            {
+                zero = Vector2.Zero;
+            }
+
+            Main.spriteBatch.Draw(ModContent.Request<Texture2D>(Texture).Value, new Vector2(i * 16 + 8 - (int)Main.screenPosition.X, j * 16 + 8 - (int)Main.screenPosition.Y) + zero, new Rectangle(16, Main.rand.NextBool(2) ? 2 : 0, 2, 2), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+        }
+
+        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
+        {
+            Tile tile = Main.tile[i, j];
+
+            r = Main.rand.NextFloat(0.4f, 0.5f);
+        }
+
+        public override bool CanKillTile(int i, int j, ref bool blockDamaged) => !WorldGen.gen;
+
+        public override bool CanExplode(int i, int j) => false;
+    }
+
+    public class VaultConduit : ModTile
+    {
+        public override void SetStaticDefaults()
+        {
+            Main.tileSolid[Type] = true;
+            Main.tileBlockLight[Type] = true;
+            Main.tileLighted[Type] = true;
+
+            Main.tileMerge[ModContent.TileType<VaultPlating>()][Type] = true;
+
+            TileID.Sets.CanBeClearedDuringGeneration[Type] = false;
+            TileID.Sets.CanBeClearedDuringOreRunner[Type] = false;
+            TileID.Sets.BlockMergesWithMergeAllBlock[Type] = false;
+
+            MinPick = 200;
+            MineResist = 4;
+            DustType = DustID.Iron;
+            HitSound = SoundID.Tink;
+
+            AddMapEntry(new Color(106, 77, 85));
+        }
+
+        public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
+        {
+            if (BlendingTile(i - 1, j) && BlendingTile(i + 1, j) && BlendingTile(i, j - 1) && BlendingTile(i, j + 1))
+            {
+                bool top = !BlendingTile(i - 1, j - 1) || !BlendingTile(i + 1, j - 1);
+                bool bottom = !BlendingTile(i - 1, j + 1) || !BlendingTile(i + 1, j + 1);
+
+                if (top ^ bottom)
+                {
+                    bool left = !BlendingTile(i - 1, j + (bottom ? 1 : -1));
+                    bool right = !BlendingTile(i + 1, j + (bottom ? 1 : -1));
+
+                    if (left ^ right)
+                    {
+                        Tile tile = Main.tile[i, j];
+
+                        tile.TileFrameX = (short)(Main.rand.Next(3) * 18 * 2);
+                        tile.TileFrameY = (short)(18 * 5 + (bottom ? 18 : 0));// (short)(Main.rand.Next(3) * 18);
+
+                        if (right)
+                        {
+                            tile.TileFrameX += 18;
+                        }
+
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        public override void PostTileFrame(int i, int j, int up, int down, int left, int right, int upLeft, int upRight, int downLeft, int downRight)
+        {
+            Tile tile = Main.tile[i, j];
+            if (tile.TileFrameY == 18 && tile.TileFrameX >= 18 && tile.TileFrameX <= 18 * 3)
+            {
+                if (i % 3 == 0)
+                {
+                    tile.TileFrameX = 18;
+                }
+                else tile.TileFrameX = (short)(18 * Main.rand.Next(2, 4));
+            }
+        }
+
+        private bool BlendingTile(int x, int y)
+        {
+            Tile tile = Main.tile[x, y];
+            return tile.HasTile && (tile.TileType == Type || Main.tileBlendAll[tile.TileType]);
+        }
+
+        public override bool CanKillTile(int i, int j, ref bool blockDamaged) => !WorldGen.gen;
+
+        public override bool CanExplode(int i, int j) => false;
+    }
+
+    public class VaultSupport : ModTile
+    {
+        public override void SetStaticDefaults()
+        {
+            Main.tileSolid[Type] = false;
+            Main.tileBlockLight[Type] = false;
+
+            TileID.Sets.IsBeam[Type] = true;
+            TileID.Sets.CanBeClearedDuringGeneration[Type] = false;
+            TileID.Sets.CanBeClearedDuringOreRunner[Type] = false;
+
+            MinPick = 200;
+            MineResist = 1;
+            DustType = DustID.Iron;
+            HitSound = SoundID.Tink;
+
+            AddMapEntry(new Color(54, 48, 61));
+        }
+
+        public override bool CanKillTile(int i, int j, ref bool blockDamaged) => !WorldGen.gen;
+
+        public override bool CanExplode(int i, int j) => false;
+    }
+
+    public class VaultLight : ModTile
+    {
+        public override void SetStaticDefaults()
+        {
+            Main.tileSolid[Type] = false;
+            Main.tileBlockLight[Type] = false;
+            Main.tileLighted[Type] = true;
+
+            TileID.Sets.CanBeClearedDuringGeneration[Type] = false;
+            TileID.Sets.CanBeClearedDuringOreRunner[Type] = false;
+
+            MinPick = 200;
+            MineResist = 1;
+            DustType = DustID.Iron;
+            HitSound = SoundID.Tink;
+
+            AddMapEntry(new Color(255, 255, 255));
+        }
+
+        public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
+        {
+            Tile tile = Main.tile[i, j];
+
+            if (tile.WallType == 0)
+            {
+                WorldGen.KillTile(i, j);
+                return false;
+            }
+
+            return true;
+        }
+
+        public override bool CanPlace(int i, int j)
+        {
+            Tile tile = Main.tile[i, j];
+
+            return tile.WallType != 0;
+        }
+
+        public override bool CanKillTile(int i, int j, ref bool blockDamaged) => !WorldGen.gen;
+
+        public override bool CanExplode(int i, int j) => false;
+
+        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
+        {
+            r = 1;
+            g = 1;
+            b = 1;
+        }
+    }
 }

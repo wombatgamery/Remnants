@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Remnants.Content.Gores;
 using Remnants.Content.Tiles.Blocks;
 using Terraria;
 using Terraria.DataStructures;
@@ -16,6 +17,7 @@ namespace Remnants.Content.Tiles.Blocks
 			Main.tileLavaDeath[Type] = false;
 
 			TileID.Sets.DisableSmartCursor[Type] = true;
+            TileID.Sets.IsBeam[Type] = true;
 
 			AddMapEntry(new Color(100, 100, 93));
 			DustType = DustID.Stone;
@@ -34,21 +36,22 @@ namespace Remnants.Content.Tiles.Blocks
 			{
                 if (Main.rand.NextBool(2))
                 {
-                    Dust dust = Dust.NewDustPerfect(new Vector2((i * 16) + Main.rand.NextFloat(7f, 9f), j * 16 + 8), DustID.Smoke, new Vector2(0f, Main.rand.NextFloat(0, -3)), 204, Scale: Main.rand.NextFloat(2, 4));
+                    Dust dust = Dust.NewDustPerfect(new Vector2((i * 16) + Main.rand.NextFloat(7f, 9f), j * 16 + 8), DustID.Smoke, new Vector2(0f, Main.rand.NextFloat(0, -3)), 225, Scale: Main.rand.NextFloat(2, 4));
                     dust.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
                 }
                 if (Main.rand.NextBool(2))
                 {
                     Gore gore = Gore.NewGorePerfect(new EntitySource_TileUpdate(i, j), new Vector2((i * 16) - 16 + Main.rand.NextFloat(7f, 9f), j * 16 - 8), new Vector2(0f, Main.rand.NextFloat(0, -3)), Main.rand.Next(220, 222), Main.rand.NextFloat(1, 2));
-                    gore.alpha = 229;
+                    gore.alpha = 235;
                     gore.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
                 }
 
                 if (Main.rand.NextBool(64))
                 {
-                    Vector2 position = new Vector2(i + 0.5f, j) * 16;
+                    Vector2 position = new Vector2(i + 0.5f, j + 0.5f) * 16;
                     Vector2 velocity = Main.rand.NextVector2Circular(2f, 1f);
-                    Gore.NewGorePerfect(new EntitySource_TileUpdate(i, j), position, velocity, 1202, Main.rand.NextFloat(8, 16));
+                    Gore gore = Gore.NewGorePerfect(new EntitySource_TileUpdate(i, j), position, velocity, ModContent.GoreType<ToxicFog>(), Main.rand.NextFloat(4, 8));
+                    gore.position -= new Vector2(6f * gore.scale, 3f * gore.scale);
                 }
             }
         }
@@ -59,7 +62,7 @@ namespace Remnants.Content.Tiles.Blocks
             {
                 return false;
             }
-            else if (Main.tile[i, j + 1].TileType != ModContent.TileType<Sulfurstone>() && Main.tile[i, j + 1].TileType != Type)
+            else if (Main.tile[i, j + 1].TileType != ModContent.TileType<Sulfurstone>() && Main.tile[i, j + 1].TileType != ModContent.TileType<SulfurstoneDiamond>() && Main.tile[i, j + 1].TileType != Type)
             {
                 return false;
             }
@@ -81,7 +84,7 @@ namespace Remnants.Content.Tiles.Blocks
 			{
 				anchor = false;
 			}
-			else if (Main.tile[i, j + 1].TileType != ModContent.TileType<Sulfurstone>() && Main.tile[i, j + 1].TileType != Type)
+			else if (Main.tile[i, j + 1].TileType != ModContent.TileType<Sulfurstone>() && Main.tile[i, j + 1].TileType != ModContent.TileType<SulfurstoneDiamond>() && Main.tile[i, j + 1].TileType != Type)
 			{
 				anchor = false;
 			}
