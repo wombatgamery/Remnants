@@ -144,6 +144,11 @@ Mods: {
 				// DisplayName: Sulfuric Vents
 				// TownNPCDialogueName: the Sulfuric Vents
 			}
+
+			SulfuricFog: {
+				// TownNPCDialogueName: the Sulfuric Fog
+				// DisplayName: Sulfuric Fog
+			}
 		}
 
 		Tiles: {

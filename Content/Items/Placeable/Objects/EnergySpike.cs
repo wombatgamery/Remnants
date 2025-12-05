@@ -18,7 +18,7 @@ namespace Remnants.Content.Items.Placeable.Objects
 			Item.CloneDefaults(ItemID.WoodenChair);
 			Item.width = 5 * 2;
 			Item.height = 13 * 2;
-			Item.createTile = ModContent.TileType<Tiles.Objects.Furniture.VaultAirlock>();
+			Item.createTile = ModContent.TileType<Tiles.Objects.Hazards.EnergySpike>();
 		}
 	}
 }

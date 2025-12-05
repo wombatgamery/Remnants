@@ -219,6 +219,12 @@ namespace Remnants.Content.NPCs
                         pool[ModContent.NPCType<TomeofFrost>()] = 1f;
                     }
                 }
+                else if (tile.WallType == ModContent.WallType<stronghold>() || tile.WallType == ModContent.WallType<HellishBrickWallUnsafe>())
+                {
+                    pool.Clear();
+
+                    pool[NPCID.Demon] = 1f;
+                }
                 else if (tile.WallType == ModContent.WallType<undergrowth>() || tile.WallType == WallID.LivingWoodUnsafe)
                 {
                     pool.Clear();
@@ -325,10 +331,6 @@ namespace Remnants.Content.NPCs
             //	}
             //}
 
-            if (tile.WallType == ModContent.WallType<stronghold>() || tile.WallType == ModContent.WallType<HellishBrickWallUnsafe>())
-            {
-                pool[NPCID.BlazingWheel] = 0.5f;
-            }
             if (spawnInfo.SpawnTileY > Main.worldSurface && spawnInfo.SpawnTileY < Main.rockLayer && Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY - 1].WallType == ModContent.WallType<Wood>())
             {
                 pool[NPCID.UndeadMiner] = 0.5f;

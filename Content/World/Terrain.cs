@@ -2216,7 +2216,7 @@ namespace Remnants.Content.World
                             }
                             else
                             {
-                                if (biomes.FindBiome(x, y) != BiomeID.OceanCave && WorldGen.genRand.NextBool(biomes.FindBiome(x, y) == BiomeID.Crimson || biomes.FindBiome(x, y) == BiomeID.SpiderNest ? 2 : 4) && MiscTools.NoDoors(x - 1, y, 3) && MiscTools.Tile(x, y + 1).TileType != TileID.Platforms && tile.TileType != ModContent.TileType<SacrificialAltar>())
+                                if (biomes.FindBiome(x, y) != BiomeID.OceanCave && WorldGen.genRand.NextBool(biomes.FindBiome(x, y) == BiomeID.Crimson || biomes.FindBiome(x, y) == BiomeID.SpiderNest ? 2 : 4) && MiscTools.NoDoors(x - 1, y, 3) && !TileID.Sets.Platforms[MiscTools.Tile(x, y + 1).TileType] && tile.TileType != ModContent.TileType<SacrificialAltar>())
                                 {
                                     LargePile(x, y);
                                 }
@@ -2256,7 +2256,7 @@ namespace Remnants.Content.World
 
                     style = Main.rand.Next(6, 9);
                 }
-                else if (Main.wallDungeon[tile.WallType] || y > Main.maxTilesY - 200 || tile.TileType == TileID.BoneBlock)
+                else if (Main.wallDungeon[tile.WallType] || y > Main.maxTilesY - 200 && tile.TileType != ModContent.TileType<HellishBrick>() || tile.TileType == TileID.BoneBlock)
                 {
                     style = Main.rand.Next(7);
                 }
@@ -2325,7 +2325,7 @@ namespace Remnants.Content.World
                 int X = -1;
                 int Y = 1;
 
-                if (tile.TileType == ModContent.TileType<SacrificialAltar>())
+                if (tile.TileType == ModContent.TileType<SacrificialAltar>() || tile.TileType == ModContent.TileType<HellishBrick>())
                 {
                     X = Main.rand.Next(11, 16);
                 }
@@ -2388,7 +2388,7 @@ namespace Remnants.Content.World
                 Tile tile = Main.tile[x, y + 1];
                 int X = -1;
 
-                if (tile.TileType == ModContent.TileType<SacrificialAltar>())
+                if (tile.TileType == ModContent.TileType<SacrificialAltar>() || tile.TileType == ModContent.TileType<HellishBrick>())
                 {
                     X = Main.rand.Next(20, 28);
                 }

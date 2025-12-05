@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Remnants.Content.Gores;
 using Remnants.Content.Tiles.Blocks;
+using Remnants.Content.World;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -34,23 +35,24 @@ namespace Remnants.Content.Tiles.Blocks
         {
 			if (!Main.tile[i, j - 1].HasTile || Main.tile[i, j - 1].TileType != Type)
 			{
-                if (Main.rand.NextBool(2))
+                float strength = (RemSystem.exhaustIntensity + 1) / 2;
+                if (Main.rand.NextFloat(1f) < strength)
                 {
-                    Dust dust = Dust.NewDustPerfect(new Vector2((i * 16) + Main.rand.NextFloat(7f, 9f), j * 16 + 8), DustID.Smoke, new Vector2(0f, Main.rand.NextFloat(0, -3)), 225, Scale: Main.rand.NextFloat(2, 4));
+                    Dust dust = Dust.NewDustPerfect(new Vector2((i * 16) + Main.rand.NextFloat(7f, 9f), j * 16 + 8), DustID.Smoke, new Vector2(0f, Main.rand.NextFloat(0, -4) * strength), 255 - (int)(strength * 25), Scale: Main.rand.NextFloat(2, 4));
                     dust.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
                 }
-                if (Main.rand.NextBool(2))
+                if (Main.rand.NextFloat(1f) < strength)
                 {
-                    Gore gore = Gore.NewGorePerfect(new EntitySource_TileUpdate(i, j), new Vector2((i * 16) - 16 + Main.rand.NextFloat(7f, 9f), j * 16 - 8), new Vector2(0f, Main.rand.NextFloat(0, -3)), Main.rand.Next(220, 222), Main.rand.NextFloat(1, 2));
-                    gore.alpha = 235;
+                    Gore gore = Gore.NewGorePerfect(new EntitySource_TileUpdate(i, j), new Vector2((i * 16) - 16 + Main.rand.NextFloat(7f, 9f), j * 16 - 8), new Vector2(0f, Main.rand.NextFloat(0, -4) * strength), Main.rand.Next(220, 222), Main.rand.NextFloat(0.5f, 1));
+                    gore.alpha = 255 - (int)(strength * 50);
                     gore.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
                 }
 
-                if (Main.rand.NextBool(64))
+                if (Main.rand.NextFloat(32f) < strength)
                 {
                     Vector2 position = new Vector2(i + 0.5f, j + 0.5f) * 16;
                     Vector2 velocity = Main.rand.NextVector2Circular(2f, 1f);
-                    Gore gore = Gore.NewGorePerfect(new EntitySource_TileUpdate(i, j), position, velocity, ModContent.GoreType<ToxicFog>(), Main.rand.NextFloat(4, 8));
+                    Gore gore = Gore.NewGorePerfect(new EntitySource_TileUpdate(i, j), position, velocity, ModContent.GoreType<ToxicFog>(), Main.rand.NextFloat(8, 16));
                     gore.position -= new Vector2(6f * gore.scale, 3f * gore.scale);
                 }
             }

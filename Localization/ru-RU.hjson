@@ -144,6 +144,11 @@ Mods: {
 				DisplayName: Серные жёрла
 				TownNPCDialogueName: Серные жёрла
 			}
+
+			SulfuricFog: {
+				// TownNPCDialogueName: the Sulfuric Fog
+				// DisplayName: Sulfuric Fog
+			}
 		}
 
 		Tiles: {

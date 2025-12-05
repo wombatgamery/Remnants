@@ -67,6 +67,10 @@ namespace Remnants.Content.Items.Tools
             {
                 tile.WallType = (ushort)ModContent.WallType<WoodLattice>();
             }
+            else if (tile.WallType == WallID.IronFence)
+            {
+                tile.WallType = (ushort)ModContent.WallType<IronBarsSafe>();
+            }
             else if (tile.WallType == WallID.BorealWood)
             {
                 tile.WallType = (ushort)ModContent.WallType<WoodBorealSafe>();

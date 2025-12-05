@@ -4,15 +4,17 @@ using Remnants.Content.Biomes.Backgrounds;
 using Remnants.Content.Buffs;
 using Remnants.Content.Walls;
 using Remnants.Content.Walls.Parallax;
+using Remnants.Content.World;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.Graphics.Effects;
+using Terraria.Graphics.Shaders;
 
 namespace Remnants.Content.Biomes
 {
     public class SulfuricVentsSky : CustomSky
     {
         private bool isActive = false;
-        private float intensity;
 
         public override void Update(GameTime gameTime)
         {
@@ -21,10 +23,12 @@ namespace Remnants.Content.Biomes
 
         public override void Draw(SpriteBatch spriteBatch, float minDepth, float maxDepth)
         {
-
+            //if (maxDepth >= 0 && minDepth < 0)
+            //{
+            //    float intensity = RemSystem.exhaustIntensity * 0.5f;
+            //    spriteBatch.Draw(TextureAssets.BlackTile.Value, new Rectangle(0, 0, Main.screenWidth * 2, Main.screenHeight * 2), new Color(0, 0, 0, intensity));
+            //}
         }
-
-        //public override Color OnTileColor(Color inColor) => new(Vector4.Lerp(new Vector4(0.75f, 0.75f, 0.5f, 1f), inColor.ToVector4(), 1 - intensity));
 
         public override void Activate(Vector2 position, params object[] args)
         {
@@ -43,7 +47,7 @@ namespace Remnants.Content.Biomes
 
         public override bool IsActive()
         {
-            return isActive || intensity > 0f;
+            return isActive;
         }
     }
 }

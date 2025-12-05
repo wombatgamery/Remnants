@@ -1,18 +1,20 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Terraria.ModLoader.IO;
-using Terraria.Audio;
-using System;
-using Terraria.DataStructures;
-using Terraria.Localization;
-using Remnants.Content.Projectiles.Hooks;
-using Remnants.Content.Items.Tools;
-using Remnants.Content.Dusts;
+using Remnants.Content.Biomes;
 using Remnants.Content.Buffs;
+using Remnants.Content.Dusts;
+using Remnants.Content.Items.Tools;
+using Remnants.Content.Projectiles.Hooks;
 using Remnants.Content.Walls;
 using Remnants.Content.World;
+using System;
+using Terraria;
+using Terraria.Audio;
+using Terraria.DataStructures;
+using Terraria.GameContent;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace Remnants.Content
 {
@@ -94,6 +96,43 @@ namespace Remnants.Content
             return base.CanUseItem(item);
         }
 
+        int breathCD = 0;
+
+        public override void UpdateBadLifeRegen()
+        {
+            if (Player.InModBiome<SulfuricVents>() && !Collision.DrownCollision(Player.position, Player.width, Player.height, Player.gravDir))
+            {
+                Player.breath -= 2;
+
+                if (RemSystem.exhaustIntensity > 0)
+                {
+                    Player.breath -= 1;
+                    breathCD++;
+                    if (breathCD >= Player.breathCDMax / RemSystem.exhaustIntensity)
+                    {
+                        breathCD = 0;
+                        Player.breath--;
+                        if (Player.breath == 0)
+                        {
+                            SoundEngine.PlaySound(SoundID.Drown);
+                        }
+
+                        if (Player.breath <= 0)
+                        {
+                            Player.lifeRegenTime = 0f;
+                            Player.breath = 0;
+                            Player.statLife -= 2;
+                            if (Player.statLife <= 0)
+                            {
+                                Player.statLife = 0;
+                                Player.KillMe(PlayerDeathReason.ByOther(7), 10.0, 0);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         public override void PostUpdateMiscEffects()
         {
             if (Player.miscEquips[4].type == ModContent.ItemType<Items.Tools.LuminousHook>() && Player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Hooks.LuminousHook>()] == 0)
@@ -171,6 +210,13 @@ namespace Remnants.Content
 
         public override void ModifyScreenPosition()
         {
+            if (RemSystem.exhaustIntensity > 0)
+            {
+                float strength = (1 - MathHelper.Clamp(MathHelper.Distance(Player.Center.Y / 16, Main.maxTilesY - 300) / (Main.maxTilesY - 300 - (int)Main.rockLayer) * 2, 0, 1));
+
+                shakeIntensity += 0.5f * strength * RemSystem.exhaustIntensity;
+            }
+
             if (shakeIntensity > 0)
             {
                 Main.screenPosition += new Vector2(Main.rand.NextFloat(shakeIntensity), Main.rand.NextFloat(shakeIntensity));
@@ -200,18 +246,18 @@ namespace Remnants.Content
             WOTG = ModLoader.TryGetMod("NoxusBoss", out Mod wotg) && Main.netMode == NetmodeID.MultiplayerClient;
         }
 
-        public override void UpdateBadLifeRegen()
-        {
-            if (Player.InModBiome<Biomes.Vault>() && Player.wet && !Player.lavaWet)
-            {
-                if (Player.lifeRegen > 0)
-                {
-                    Player.lifeRegen = 0;
-                }
-                Player.lifeRegenTime = 0;
-                Player.lifeRegen -= 180;
-            }
-        }
+        //public override void UpdateBadLifeRegen()
+        //{
+        //    if (Player.InModBiome<Biomes.Vault>() && Player.wet && !Player.lavaWet)
+        //    {
+        //        if (Player.lifeRegen > 0)
+        //        {
+        //            Player.lifeRegen = 0;
+        //        }
+        //        Player.lifeRegenTime = 0;
+        //        Player.lifeRegen -= 180;
+        //    }
+        //}
 
         public override void ModifyHurt(ref Player.HurtModifiers modifiers)
         {

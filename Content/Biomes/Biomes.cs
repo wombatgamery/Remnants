@@ -8,6 +8,7 @@ using Remnants.Content.World;
 using System;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.Graphics.Capture;
 using Terraria.Graphics.Effects;
 using Terraria.ID;
@@ -150,42 +151,6 @@ namespace Remnants.Content.Biomes
         {
             player.ManageSpecialBiomeVisuals("Remnants:SulfuricVents", isActive);
         }
-    }
-
-    public class Vault : ModBiome
-	{
-		public override ModWaterStyle WaterStyle => ModContent.Find<ModWaterStyle>("Remnants/Acid");
-		public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
-
-		//public override int Music => MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/spittingacid");
-
-		public override string BestiaryIcon => "Remnants/Content/Biomes/VaultIcon";
-		public override string BackgroundPath => base.BackgroundPath;
-		public override Color? BackgroundColor => base.BackgroundColor;
-
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("The Vault");
-		}
-
-		public override bool IsBiomeActive(Player player)
-		{
-			int wall = Main.tile[(int)player.Center.X / 16, (int)player.Center.Y / 16].WallType;
-			return wall == ModContent.WallType<vault>() || wall == ModContent.WallType<VaultWallUnsafe>();
-		}
-
-		//SoundStyle ambience = new SoundStyle("Remnants/Content/Sounds/ambience/Bluezone_BC0240_background_machine_room_ambience_004", SoundType.Ambient) with { Volume = 0.5f, IsLooped = true, SoundLimitBehavior = SoundLimitBehavior.IgnoreNew, MaxInstances = 1 };
-		//ReLogic.Utilities.SlotId ambienceSlot;
-
-		//public override void OnInBiome(Player player)
-		//{
-		//	ambienceSlot = SoundEngine.PlaySound(ambience);
-		//}
-
-  //      public override void OnLeave(Player player)
-  //      {
-		//	SoundEngine.StopTrackedSounds();
-  //      }
     }
 
 	public class GoldenCity : ModBiome

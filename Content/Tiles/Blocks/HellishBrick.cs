@@ -16,8 +16,12 @@ namespace Remnants.Content.Tiles.Blocks
 
             Main.tileMerge[Type][TileID.Ash] = true;
             Main.tileMerge[TileID.Ash][Type] = true;
+            Main.tileMerge[Type][TileID.AshWood] = true;
+            Main.tileMerge[TileID.AshWood][Type] = true;
             Main.tileMerge[Type][TileID.Hellstone] = true;
             Main.tileMerge[TileID.Hellstone][Type] = true;
+            Main.tileMerge[Type][TileID.HellstoneBrick] = true;
+            Main.tileMerge[TileID.HellstoneBrick][Type] = true;
             Main.tileMerge[Type][TileID.Obsidian] = true;
             Main.tileMerge[TileID.Obsidian][Type] = true;
 
@@ -30,7 +34,7 @@ namespace Remnants.Content.Tiles.Blocks
 			DustType = DustID.Ash;
 			HitSound = SoundID.Tink;
 
-			AddMapEntry(new Color(99, 82, 75));
+			AddMapEntry(new Color(98, 79, 86));
 
             VanillaFallbackOnModDeletion = TileID.ObsidianBrick;
         }

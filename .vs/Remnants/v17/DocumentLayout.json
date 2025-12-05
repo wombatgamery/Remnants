@@ -3,64 +3,56 @@
   "WorkspaceRootPath": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|c:\\users\\womba\\documents\\my games\\terraria\\tmodloader\\modsources\\remnants\\content\\world\\general.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|solutionrelative:content\\world\\general.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|c:\\users\\womba\\documents\\my games\\terraria\\tmodloader\\modsources\\remnants\\content\\world\\structures.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|solutionrelative:content\\world\\structures.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|c:\\users\\womba\\documents\\my games\\terraria\\tmodloader\\modsources\\remnants\\content\\world\\biomes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|solutionrelative:content\\world\\biomes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|c:\\users\\womba\\documents\\my games\\terraria\\tmodloader\\modsources\\remnants\\content\\world\\general.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|solutionrelative:content\\world\\general.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|c:\\users\\womba\\documents\\my games\\terraria\\tmodloader\\modsources\\remnants\\content\\tiles\\blocks\\hellishbrick.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|solutionrelative:content\\tiles\\blocks\\hellishbrick.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|c:\\users\\womba\\documents\\my games\\terraria\\tmodloader\\modsources\\remnants\\content\\world\\dungeons.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|solutionrelative:content\\world\\dungeons.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|c:\\users\\womba\\documents\\my games\\terraria\\tmodloader\\modsources\\remnants\\content\\remsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|solutionrelative:content\\remsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|c:\\users\\womba\\documents\\my games\\terraria\\tmodloader\\modsources\\remnants\\content\\world\\terrain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|solutionrelative:content\\world\\terrain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|c:\\users\\womba\\documents\\my games\\terraria\\tmodloader\\modsources\\remnants\\content\\tiles\\remtile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|solutionrelative:content\\tiles\\remtile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|c:\\users\\womba\\documents\\my games\\terraria\\tmodloader\\modsources\\remnants\\content\\npcs\\remnpc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|solutionrelative:content\\npcs\\remnpc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|c:\\users\\womba\\documents\\my games\\terraria\\tmodloader\\modsources\\remnants\\content\\tiles\\blocks\\lettering.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|solutionrelative:content\\tiles\\blocks\\lettering.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|c:\\users\\womba\\documents\\my games\\terraria\\tmodloader\\modsources\\remnants\\remnants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|solutionrelative:remnants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|c:\\users\\womba\\documents\\my games\\terraria\\tmodloader\\modsources\\remnants\\build.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|solutionrelative:build.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|c:\\users\\womba\\documents\\my games\\terraria\\tmodloader\\modsources\\remnants\\content\\remplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|solutionrelative:content\\remplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|c:\\users\\womba\\documents\\my games\\terraria\\tmodloader\\modsources\\remnants\\content\\tiles\\blocks\\vaultplating.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|solutionrelative:content\\tiles\\blocks\\vaultplating.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|c:\\users\\womba\\documents\\my games\\terraria\\tmodloader\\modsources\\remnants\\content\\fastnoiselite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|solutionrelative:content\\fastnoiselite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|c:\\users\\womba\\documents\\my games\\terraria\\tmodloader\\modsources\\remnants\\content\\walls\\vaultwall.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|solutionrelative:content\\walls\\vaultwall.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|c:\\users\\womba\\documents\\my games\\terraria\\tmodloader\\modsources\\remnants\\content\\items\\placeable\\objects\\energyspike.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|solutionrelative:content\\items\\placeable\\objects\\energyspike.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|c:\\users\\womba\\documents\\my games\\terraria\\tmodloader\\modsources\\remnants\\content\\items\\placeable\\blocks\\vaultprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|solutionrelative:content\\items\\placeable\\blocks\\vaultprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|c:\\users\\womba\\documents\\my games\\terraria\\tmodloader\\modsources\\remnants\\content\\tiles\\objects\\furniture\\hellishaltar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|solutionrelative:content\\tiles\\objects\\furniture\\hellishaltar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|c:\\users\\womba\\documents\\my games\\terraria\\tmodloader\\modsources\\remnants\\localization\\en-us.hjson||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|solutionrelative:localization\\en-us.hjson||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|c:\\users\\womba\\documents\\my games\\terraria\\tmodloader\\modsources\\remnants\\content\\tiles\\objects\\furniture\\vaultairlock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|solutionrelative:content\\tiles\\objects\\furniture\\vaultairlock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|c:\\users\\womba\\documents\\my games\\terraria\\tmodloader\\modsources\\remnants\\content\\biomes\\biomes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|solutionrelative:content\\biomes\\biomes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|c:\\users\\womba\\documents\\my games\\terraria\\tmodloader\\modsources\\remnants\\description_workshop.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|solutionrelative:description_workshop.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|c:\\users\\womba\\documents\\my games\\terraria\\tmodloader\\modsources\\remnants\\content\\remconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|solutionrelative:content\\remconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|c:\\users\\womba\\documents\\my games\\terraria\\tmodloader\\modsources\\remnants\\content\\biomes\\skies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D179B5D-654D-4A3F-82FC-4ADED77439B9}|Remnants.csproj|solutionrelative:content\\biomes\\skies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -70,7 +62,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 14,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -82,191 +74,171 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "build.txt",
-              "DocumentMoniker": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\build.txt",
-              "RelativeDocumentMoniker": "build.txt",
-              "ToolTip": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\build.txt",
-              "RelativeToolTip": "build.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-11-12T12:29:39.633Z",
+              "DocumentIndex": 9,
+              "Title": "FastNoiseLite.cs",
+              "DocumentMoniker": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\FastNoiseLite.cs",
+              "RelativeDocumentMoniker": "Content\\FastNoiseLite.cs",
+              "ToolTip": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\FastNoiseLite.cs",
+              "RelativeToolTip": "Content\\FastNoiseLite.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-05T06:47:18.825Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Lettering.cs",
-              "DocumentMoniker": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\Tiles\\Blocks\\Lettering.cs",
-              "RelativeDocumentMoniker": "Content\\Tiles\\Blocks\\Lettering.cs",
-              "ToolTip": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\Tiles\\Blocks\\Lettering.cs",
-              "RelativeToolTip": "Content\\Tiles\\Blocks\\Lettering.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
+              "DocumentIndex": 11,
+              "Title": "HellishAltar.cs",
+              "DocumentMoniker": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\Tiles\\Objects\\Furniture\\HellishAltar.cs",
+              "RelativeDocumentMoniker": "Content\\Tiles\\Objects\\Furniture\\HellishAltar.cs",
+              "ToolTip": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\Tiles\\Objects\\Furniture\\HellishAltar.cs",
+              "RelativeToolTip": "Content\\Tiles\\Objects\\Furniture\\HellishAltar.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAABVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T12:22:50.796Z",
+              "WhenOpened": "2025-12-05T05:47:25.715Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HellishBrick.cs",
+              "DocumentMoniker": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\Tiles\\Blocks\\HellishBrick.cs",
+              "RelativeDocumentMoniker": "Content\\Tiles\\Blocks\\HellishBrick.cs",
+              "ToolTip": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\Tiles\\Blocks\\HellishBrick.cs",
+              "RelativeToolTip": "Content\\Tiles\\Blocks\\HellishBrick.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-05T04:06:44.631Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "RemNPC.cs",
+              "DocumentMoniker": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\NPCs\\RemNPC.cs",
+              "RelativeDocumentMoniker": "Content\\NPCs\\RemNPC.cs",
+              "ToolTip": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\NPCs\\RemNPC.cs",
+              "RelativeToolTip": "Content\\NPCs\\RemNPC.cs",
+              "ViewState": "AgIAAJoAAAAAAAAAAAAAAKwAAABgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-05T01:33:00.746Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "General.cs",
+              "DocumentMoniker": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\World\\General.cs",
+              "RelativeDocumentMoniker": "Content\\World\\General.cs",
+              "ToolTip": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\World\\General.cs",
+              "RelativeToolTip": "Content\\World\\General.cs",
+              "ViewState": "AgIAAEEKAAAAAAAAAAAvwHMKAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T04:57:40.058Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Remnants.cs",
+              "DocumentMoniker": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Remnants.cs",
+              "RelativeDocumentMoniker": "Remnants.cs",
+              "ToolTip": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Remnants.cs",
+              "RelativeToolTip": "Remnants.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T02:24:03.041Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "RemPlayer.cs",
+              "DocumentMoniker": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\RemPlayer.cs",
+              "RelativeDocumentMoniker": "Content\\RemPlayer.cs",
+              "ToolTip": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\RemPlayer.cs",
+              "RelativeToolTip": "Content\\RemPlayer.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAvwHMAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T02:22:39.665Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "EnergySpike.cs",
+              "DocumentMoniker": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\Items\\Placeable\\Objects\\EnergySpike.cs",
+              "RelativeDocumentMoniker": "Content\\Items\\Placeable\\Objects\\EnergySpike.cs",
+              "ToolTip": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\Items\\Placeable\\Objects\\EnergySpike.cs",
+              "RelativeToolTip": "Content\\Items\\Placeable\\Objects\\EnergySpike.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T02:09:21.113Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "RemTile.cs",
-              "DocumentMoniker": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\Tiles\\RemTile.cs",
-              "RelativeDocumentMoniker": "Content\\Tiles\\RemTile.cs",
-              "ToolTip": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\Tiles\\RemTile.cs",
-              "RelativeToolTip": "Content\\Tiles\\RemTile.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJMBAAAAAAAAAAAAAA==",
+              "Title": "RemSystem.cs",
+              "DocumentMoniker": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\RemSystem.cs",
+              "RelativeDocumentMoniker": "Content\\RemSystem.cs",
+              "ToolTip": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\RemSystem.cs",
+              "RelativeToolTip": "Content\\RemSystem.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAAAGgAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T01:48:46.561Z",
+              "WhenOpened": "2025-11-27T12:52:17.649Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Terrain.cs",
               "DocumentMoniker": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\World\\Terrain.cs",
               "RelativeDocumentMoniker": "Content\\World\\Terrain.cs",
               "ToolTip": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\World\\Terrain.cs",
               "RelativeToolTip": "Content\\World\\Terrain.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFYCAABPAAAAAAAAAA==",
+              "ViewState": "AgIAAKkIAAAAAAAAAAAvwKgIAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-10T01:30:07.753Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "VaultProcessor.cs",
-              "DocumentMoniker": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\Items\\Placeable\\Blocks\\VaultProcessor.cs",
-              "RelativeDocumentMoniker": "Content\\Items\\Placeable\\Blocks\\VaultProcessor.cs",
-              "ToolTip": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\Items\\Placeable\\Blocks\\VaultProcessor.cs",
-              "RelativeToolTip": "Content\\Items\\Placeable\\Blocks\\VaultProcessor.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T01:11:01.051Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Biomes.cs",
-              "DocumentMoniker": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\World\\Biomes.cs",
-              "RelativeDocumentMoniker": "Content\\World\\Biomes.cs",
-              "ToolTip": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\World\\Biomes.cs",
-              "RelativeToolTip": "Content\\World\\Biomes.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGgMAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T01:02:37.814Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "VaultWall.cs",
-              "DocumentMoniker": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\Walls\\VaultWall.cs",
-              "RelativeDocumentMoniker": "Content\\Walls\\VaultWall.cs",
-              "ToolTip": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\Walls\\VaultWall.cs",
-              "RelativeToolTip": "Content\\Walls\\VaultWall.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-09T10:13:05.803Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Structures.cs",
               "DocumentMoniker": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\World\\Structures.cs",
               "RelativeDocumentMoniker": "Content\\World\\Structures.cs",
               "ToolTip": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\World\\Structures.cs",
               "RelativeToolTip": "Content\\World\\Structures.cs",
-              "ViewState": "AgIAAOUHAAAAAAAAAAAAAP8HAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAANgLAAAAAAAAAAAswBkMAABnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-22T02:54:22Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "VaultAirlock.cs",
-              "DocumentMoniker": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\Tiles\\Objects\\Furniture\\VaultAirlock.cs",
-              "RelativeDocumentMoniker": "Content\\Tiles\\Objects\\Furniture\\VaultAirlock.cs",
-              "ToolTip": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\Tiles\\Objects\\Furniture\\VaultAirlock.cs",
-              "RelativeToolTip": "Content\\Tiles\\Objects\\Furniture\\VaultAirlock.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "Dungeons.cs",
+              "DocumentMoniker": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\World\\Dungeons.cs",
+              "RelativeDocumentMoniker": "Content\\World\\Dungeons.cs",
+              "ToolTip": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\World\\Dungeons.cs",
+              "RelativeToolTip": "Content\\World\\Dungeons.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAvwC4AAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-08T07:23:22.479Z"
+              "WhenOpened": "2025-12-05T01:13:02.403Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 12,
-              "Title": "Biomes.cs",
-              "DocumentMoniker": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\Biomes\\Biomes.cs",
-              "RelativeDocumentMoniker": "Content\\Biomes\\Biomes.cs",
-              "ToolTip": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\Biomes\\Biomes.cs",
-              "RelativeToolTip": "Content\\Biomes\\Biomes.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAAAJEAAAB8AAAAAAAAAA==",
+              "Title": "Skies.cs",
+              "DocumentMoniker": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\Biomes\\Skies.cs",
+              "RelativeDocumentMoniker": "Content\\Biomes\\Skies.cs",
+              "ToolTip": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\Biomes\\Skies.cs",
+              "RelativeToolTip": "Content\\Biomes\\Skies.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAADMAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-06T11:29:32.466Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "VaultPlating.cs",
-              "DocumentMoniker": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\Tiles\\Blocks\\VaultPlating.cs",
-              "RelativeDocumentMoniker": "Content\\Tiles\\Blocks\\VaultPlating.cs",
-              "ToolTip": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\Tiles\\Blocks\\VaultPlating.cs",
-              "RelativeToolTip": "Content\\Tiles\\Blocks\\VaultPlating.cs",
-              "ViewState": "AgIAACYBAAAAAAAAAAAswFQBAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T11:48:41.445Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "en-US.hjson",
-              "DocumentMoniker": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Localization\\en-US.hjson",
-              "RelativeDocumentMoniker": "Localization\\en-US.hjson",
-              "ToolTip": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Localization\\en-US.hjson",
-              "RelativeToolTip": "Localization\\en-US.hjson",
-              "ViewState": "AgIAAKsCAAAAAAAAAAAAANYCAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-11-05T10:33:02.394Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "General.cs",
-              "DocumentMoniker": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\World\\General.cs",
-              "RelativeDocumentMoniker": "Content\\World\\General.cs",
-              "ToolTip": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\World\\General.cs",
-              "RelativeToolTip": "Content\\World\\General.cs",
-              "ViewState": "AgIAAEgBAAAAAAAAAAAvwGcBAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-22T10:23:31.595Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "description_workshop.txt",
-              "DocumentMoniker": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\description_workshop.txt",
-              "RelativeDocumentMoniker": "description_workshop.txt",
-              "ToolTip": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\description_workshop.txt",
-              "RelativeToolTip": "description_workshop.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAABkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-10-21T14:41:10.879Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "RemConfig.cs",
-              "DocumentMoniker": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\RemConfig.cs",
-              "RelativeDocumentMoniker": "Content\\RemConfig.cs",
-              "ToolTip": "C:\\Users\\womba\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Remnants\\Content\\RemConfig.cs",
-              "RelativeToolTip": "Content\\RemConfig.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAAADsAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-21T13:42:32.315Z"
+              "WhenOpened": "2025-11-28T02:03:44.858Z"
             }
           ]
         }

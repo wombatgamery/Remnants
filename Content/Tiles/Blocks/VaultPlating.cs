@@ -195,7 +195,7 @@ namespace Remnants.Content.Tiles.Blocks
         {
             Tile tile = Main.tile[i, j];
 
-            r = Main.rand.NextFloat(0.4f, 0.5f);
+            r = Main.rand.NextFloat(0.25f, 0.5f);
         }
 
         public override bool CanKillTile(int i, int j, ref bool blockDamaged) => !WorldGen.gen;
@@ -209,7 +209,6 @@ namespace Remnants.Content.Tiles.Blocks
         {
             Main.tileSolid[Type] = true;
             Main.tileBlockLight[Type] = true;
-            Main.tileLighted[Type] = true;
 
             Main.tileMerge[ModContent.TileType<VaultPlating>()][Type] = true;
 
@@ -288,6 +287,7 @@ namespace Remnants.Content.Tiles.Blocks
             Main.tileBlockLight[Type] = false;
 
             TileID.Sets.IsBeam[Type] = true;
+            TileID.Sets.WallsMergeWith[Type] = true;
             TileID.Sets.CanBeClearedDuringGeneration[Type] = false;
             TileID.Sets.CanBeClearedDuringOreRunner[Type] = false;
 

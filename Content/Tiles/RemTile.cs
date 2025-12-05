@@ -17,6 +17,7 @@ using Remnants.Content.Tiles.Objects.Furniture;
 using Remnants.Content.Tiles.Objects.Hazards;
 using Terraria.Audio;
 using Remnants.Content.Dusts;
+using Remnants.Content.Gores;
 
 namespace Remnants.Content.Tiles
 {
@@ -34,6 +35,7 @@ namespace Remnants.Content.Tiles
             TileID.Sets.CanBeClearedDuringGeneration[TileID.ObsidianBrick] = false;
             TileID.Sets.CanBeClearedDuringGeneration[TileID.HellstoneBrick] = false;
             TileID.Sets.CanBeClearedDuringGeneration[TileID.Glass] = false;
+            TileID.Sets.CanBeClearedDuringGeneration[TileID.AshWood] = false;
 
             WallID.Sets.AllowsPlantsToGrow[WallID.LivingWoodUnsafe] = true;
             WallID.Sets.AllowsPlantsToGrow[WallID.SnowWallUnsafe] = true;
@@ -549,15 +551,32 @@ namespace Remnants.Content.Tiles
         public override void PostDraw(int i, int j, int type, SpriteBatch spriteBatch)
         {
             Tile tile = Main.tile[i, j];
+            Player player = Main.LocalPlayer;
 
-            if (tile.TileType == TileID.AlchemyTable && tile.TileFrameX == 0 && tile.TileFrameY == 18)
+            if (tile.HasTile)
             {
-                Dust dust = Dust.NewDustDirect(new Vector2(i * 16, j * 16 + 2), 8, 8, DustID.Torch, SpeedY: -100);
-                dust.noGravity = true;
+                if (tile.TileType == TileID.AlchemyTable && tile.TileFrameX == 0 && tile.TileFrameY == 18)
+                {
+                    Dust dust = Dust.NewDustDirect(new Vector2(i * 16, j * 16 + 2), 8, 8, DustID.Torch, SpeedY: -100);
+                    dust.noGravity = true;
+                }
+                else if (!WorldGen.SolidTile(i, j + 1) && Main.tileSolid[tile.TileType] && j > Main.maxTilesY - 200 && j < Main.maxTilesY - 150)
+                {
+                    if (Main.rand.NextFloat(256f) < RemSystem.exhaustIntensity)
+                    {
+                        Vector2 position = new Vector2(i + 0.5f, j + 1.5f) * 16;
+                        Vector2 velocity = Main.rand.NextVector2Circular(2f, 1f);
+                        if (velocity.Y < 0)
+                        {
+                            velocity.Y *= -1;
+                        }
+                        Gore gore = Gore.NewGorePerfect(new EntitySource_TileUpdate(i, j), position, velocity, ModContent.GoreType<ToxicFog>(), Main.rand.NextFloat(8, 16));
+                        gore.position -= new Vector2(6f * gore.scale, 3f * gore.scale);
+                    }
+                }
             }
 
-            Player player = Main.LocalPlayer;
-            if ((!tile.HasTile || !Main.tileSolid[tile.TileType]) && tile.LiquidAmount > 0)
+            if (tile.LiquidAmount > 0)
             {
                 if (player.InModBiome<GraniteCave>())
                 {
@@ -568,39 +587,44 @@ namespace Remnants.Content.Tiles
                     }
                 }
             }
-
-            if (tile.WallType == WallID.SpiderUnsafe)
+            else
             {
-                if (Main.rand.NextBool(500) && tile.HasTile && tile.TileType == TileID.Cobweb)
+                if (tile.WallType == WallID.SpiderUnsafe)
                 {
-                    Color color = Lighting.GetColor(i, j);
-                    byte brightness = Math.Max(Math.Max(color.R, color.G), color.B);
-
-                    if (brightness > 0 && brightness <= 17)
+                    if (Main.rand.NextBool(500) && tile.HasTile && tile.TileType == TileID.Cobweb)
                     {
-                        Dust.NewDust(new Vector2(i, j) * 16, 16, 16, ModContent.DustType<Spiderling>());
+                        Color color = Lighting.GetColor(i, j);
+                        byte brightness = Math.Max(Math.Max(color.R, color.G), color.B);
+
+                        if (brightness > 0 && brightness <= 17)
+                        {
+                            Dust.NewDust(new Vector2(i, j) * 16, 16, 16, ModContent.DustType<Spiderling>());
+                        }
                     }
                 }
-            }
-            else if (tile.WallType == ModContent.WallType<undergrowth>())
-            {
-                if (Main.rand.NextBool(5000) && !tile.HasTile && tile.LiquidAmount == 0)
+                else if (!tile.HasTile || !Main.tileSolid[tile.TileType])
                 {
-                    Dust.NewDust(new Vector2(i, j) * 16, 16, 16, ModContent.DustType<treefirefly>());
-                }
-            }
-            else if (tile.WallType == ModContent.WallType<vault>())
-            {
-                if (Main.rand.NextBool(5000) && !tile.HasTile && tile.LiquidAmount == 0)
-                {
-                    Dust.NewDust(new Vector2(i, j) * 16, 16, 16, ModContent.DustType<hellfirefly>());
-                }
-            }
-            else if (tile.WallType == ModContent.WallType<whisperingmaze>() || tile.WallType == ModContent.WallType<LabyrinthTileWall>() || tile.WallType == ModContent.WallType<LabyrinthBrickWall>())
-            {
-                if (Main.rand.NextBool(5000) && !tile.HasTile && tile.LiquidAmount == 0 && tile.TileType != ModContent.TileType<LabyrinthSpawner>())
-                {
-                    Dust.NewDust(new Vector2(i, j) * 16, 16, 16, ModContent.DustType<mazefirefly>());
+                    if (tile.WallType == ModContent.WallType<undergrowth>())
+                    {
+                        if (Main.rand.NextBool(5000))
+                        {
+                            Dust.NewDust(new Vector2(i, j) * 16, 16, 16, ModContent.DustType<treefirefly>());
+                        }
+                    }
+                    else if (tile.WallType == ModContent.WallType<vault>())
+                    {
+                        if (Main.rand.NextBool(5000))
+                        {
+                            Dust.NewDust(new Vector2(i, j) * 16, 16, 16, ModContent.DustType<hellfirefly>());
+                        }
+                    }
+                    else if (tile.WallType == ModContent.WallType<whisperingmaze>() || tile.WallType == ModContent.WallType<LabyrinthTileWall>() || tile.WallType == ModContent.WallType<LabyrinthBrickWall>())
+                    {
+                        if (Main.rand.NextBool(5000) && tile.TileType != ModContent.TileType<LabyrinthSpawner>())
+                        {
+                            Dust.NewDust(new Vector2(i, j) * 16, 16, 16, ModContent.DustType<mazefirefly>());
+                        }
+                    }
                 }
             }
         }

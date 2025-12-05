@@ -200,9 +200,9 @@ namespace Remnants.Content.World
         public int Width => Main.maxTilesX / CellSize;
         public int Height => Main.maxTilesY / CellSize;
 
-        private float[,] BlendX;
-        private float[,] BlendY;
-        private int BlendDistance => ModContent.GetInstance<Worldgen>().ExperimentalWorldgen ? 0 : 40;
+        public float[,] BlendX;
+        public float[,] BlendY;
+        public int BlendDistance => ModContent.GetInstance<Worldgen>().ExperimentalWorldgen ? 0 : 40;
 
         public float[,] Materials;
 
@@ -1776,6 +1776,7 @@ namespace Remnants.Content.World
                         caves1.SetNoiseType(FastNoiseLite.NoiseType.Cellular);
                         caves1.SetFrequency(0.05f);
                         caves1.SetFractalType(FastNoiseLite.FractalType.FBm);
+                        caves1.SetFractalOctaves(3);
 
                         caves2.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
                         caves2.SetFrequency(0.1f);
@@ -2285,7 +2286,7 @@ namespace Remnants.Content.World
 
                             if (!MiscTools.Tile(x - 1, y - 1).HasTile)
                             {
-                                if (WorldGen.genRand.NextBool(8) && (MiscTools.SolidTileOf((int)x - 2, (int)y - 1, navystone) || MiscTools.SolidTileOf((int)x, (int)y - 1, navystone) || MiscTools.SolidTileOf((int)x - 1, (int)y - 2, navystone) || MiscTools.SolidTileOf((int)x - 1, (int)y, navystone)) || MiscTools.SolidTileOf((int)x - 2, (int)y - 1, seaPrism) || MiscTools.SolidTileOf((int)x, (int)y - 1, seaPrism) || MiscTools.SolidTileOf((int)x - 1, (int)y - 2, seaPrism) || MiscTools.SolidTileOf((int)x - 1, (int)y, seaPrism))
+                                if (WorldGen.genRand.NextBool(8) && (MiscTools.HasTile((int)x - 2, (int)y - 1, navystone) || MiscTools.HasTile((int)x, (int)y - 1, navystone) || MiscTools.HasTile((int)x - 1, (int)y - 2, navystone) || MiscTools.HasTile((int)x - 1, (int)y, navystone)) || MiscTools.HasTile((int)x - 2, (int)y - 1, seaPrism) || MiscTools.HasTile((int)x, (int)y - 1, seaPrism) || MiscTools.HasTile((int)x - 1, (int)y - 2, seaPrism) || MiscTools.HasTile((int)x - 1, (int)y, seaPrism))
                                 {
                                     WorldGen.PlaceTile((int)x - 1, (int)y - 1, prismShard);
 
@@ -2293,7 +2294,7 @@ namespace Remnants.Content.World
                                     MiscTools.Tile(x - 1, y - 1).TileFrameY = (short)((WorldGen.SolidTile((int)x - 1, (int)y) ? 0 : WorldGen.SolidTile((int)x - 1, (int)y - 2) ? 1 : WorldGen.SolidTile((int)x, (int)y - 1) ? 2 : 3) * 18);
                                 }
                             }
-                            if (!MiscTools.Tile(x - 1, y - 1).HasTile && WorldGen.genRand.NextBool(2) && MiscTools.SolidTileOf((int)x - 1, (int)y - 2, navystone))
+                            if (!MiscTools.Tile(x - 1, y - 1).HasTile && WorldGen.genRand.NextBool(2) && MiscTools.HasTile((int)x - 1, (int)y - 2, navystone))
                             {
                                 WorldGen.PlaceTile((int)x - 1, (int)y - 1, stalactite);
                                 MiscTools.Tile(x - 1, y - 1).TileFrameX = (short)(WorldGen.genRand.Next(3) * 18);
@@ -2814,7 +2815,7 @@ namespace Remnants.Content.World
                                 }
                             }
 
-                            if (MiscTools.SolidTileOf(x - 2, y, seaPrism) || MiscTools.SolidTileOf(x + 2, y, seaPrism) || WorldGen.SolidTile(x, y - 2) || WorldGen.SolidTile(x, y - 3))
+                            if (MiscTools.HasTile(x - 2, y, seaPrism) || MiscTools.HasTile(x + 2, y, seaPrism) || WorldGen.SolidTile(x, y - 2) || WorldGen.SolidTile(x, y - 3))
                             {
                                 valid = false;
                             }
@@ -2845,7 +2846,7 @@ namespace Remnants.Content.World
                                 {
                                     if (j == y + 1)
                                     {
-                                        if (!MiscTools.SolidTileOf(i, j, eutrophicSand))
+                                        if (!MiscTools.HasTile(i, j, eutrophicSand))
                                         {
                                             valid = false;
                                         }
@@ -2886,7 +2887,7 @@ namespace Remnants.Content.World
                                 {
                                     if (j == y + 1)
                                     {
-                                        if (!MiscTools.SolidTileOf(i, j, eutrophicSand))
+                                        if (!MiscTools.HasTile(i, j, eutrophicSand))
                                         {
                                             valid = false;
                                         }
@@ -2928,7 +2929,7 @@ namespace Remnants.Content.World
                                 {
                                     if (j == y + 1)
                                     {
-                                        if (!MiscTools.SolidTileOf(i, j, eutrophicSand))
+                                        if (!MiscTools.HasTile(i, j, eutrophicSand))
                                         {
                                             valid = false;
                                         }
@@ -2967,7 +2968,7 @@ namespace Remnants.Content.World
                             {
                                 valid = false;
                             }
-                            else if (!MiscTools.SolidTileOf(x, y + 1, eutrophicSand))
+                            else if (!MiscTools.HasTile(x, y + 1, eutrophicSand))
                             {
                                 valid = false;
                             }

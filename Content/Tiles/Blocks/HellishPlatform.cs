@@ -15,6 +15,7 @@ namespace Remnants.Content.Tiles.Blocks
             Main.tileSolidTop[Type] = true;
             Main.tileNoAttach[Type] = true;
             Main.tileTable[Type] = true;
+            Main.tileLavaDeath[Type] = false;
 
             TileID.Sets.Platforms[Type] = true;
             TileID.Sets.DisableSmartCursor[Type] = true;

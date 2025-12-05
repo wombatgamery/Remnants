@@ -19,7 +19,7 @@ namespace Remnants.Content.Walls
 
 			DustType = DustID.Ash;
 
-			AddMapEntry(new Color(62, 49, 44));
+			AddMapEntry(new Color(48, 39, 44));
 
             VanillaFallbackOnModDeletion = WallID.ObsidianBrickUnsafe;
         }
@@ -42,7 +42,7 @@ namespace Remnants.Content.Walls
 
 			DustType = DustID.Ash;
 
-            AddMapEntry(new Color(62, 49, 44));
+            AddMapEntry(new Color(48, 39, 44));
 
             VanillaFallbackOnModDeletion = WallID.ObsidianBrick;
         }

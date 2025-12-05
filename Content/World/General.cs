@@ -74,7 +74,7 @@ namespace Remnants.Content.World
 
 
             //RemovePass(tasks, FindIndex(tasks, "Random Gems"));
-
+            //RemovePass(tasks, FindIndex(tasks, "Quick Cleanup"));
             RemovePass(tasks, FindIndex(tasks, "Cave Walls"));
             RemovePass(tasks, FindIndex(tasks, "Wall Variety"));
             RemovePass(tasks, FindIndex(tasks, "Mushrooms"));
@@ -216,7 +216,7 @@ namespace Remnants.Content.World
             {
                 for (int x = left; x <= right; x++)
                 {
-                    if (MiscTools.Tile(x, y).HasTile)
+                    if (Tile(x, y).HasTile)
                     {
                         return false;
                     }
@@ -255,11 +255,17 @@ namespace Remnants.Content.World
             return true;
         }
 
-        public static bool SolidTileOf(float x, float y, int type)
+        public static bool SpecificWallInArea(int left, int top, int right, int bottom, int type)
         {
-            if (!WorldGen.SolidTile((int)x, (int)y) || Main.tile[(int)x, (int)y].TileType != type)
+            for (int y = top; y <= bottom; y++)
             {
-                return false;
+                for (int x = left; x <= right; x++)
+                {
+                    if (Tile(x, y).WallType != type)
+                    {
+                        return false;
+                    }
+                }
             }
             return true;
         }
@@ -516,6 +522,7 @@ namespace Remnants.Content.World
                             if (replace && tile.WallType != 0 || add && tile.WallType == 0)
                             {
                                 tile.WallType = (ushort)wall;
+                                tile.WallColor = PaintID.None;
                             }
                         }
                     }
@@ -2448,6 +2455,43 @@ namespace Remnants.Content.World
                                     WorldGen.KillTile(x, y - 1);
                                 }
                             }
+                            else if (tile.TileType == TileID.Ash)
+                            {
+                                if (tile.IsHalfBlock)
+                                {
+                                    if (MiscTools.HasTile(x + 1, y, TileID.Ash))
+                                    {
+                                        if (MiscTools.Tile(x + 1, y).IsHalfBlock)
+                                        {
+                                            tile.IsHalfBlock = false;
+                                            MiscTools.Tile(x + 1, y).IsHalfBlock = false;
+
+                                            tile.Slope = SlopeType.SlopeDownRight;
+                                            MiscTools.Tile(x + 1, y).Slope = SlopeType.SlopeDownLeft;
+                                        }
+                                    }
+                                    else if (!MiscTools.HasTile(x - 1, y, TileID.Ash))
+                                    {
+                                        WorldGen.KillTile(x, y);
+                                    }
+                                }
+                            }
+                            else if (tile.TileType == TileID.AshWood)
+                            {
+                                if (tile.IsHalfBlock && MiscTools.HasTile(x, y - 3, ModContent.TileType<HellishBrick>()))
+                                {
+                                    tile.IsHalfBlock = false;
+
+                                    if (MiscTools.HasTile(x - 1, y, TileID.AshWood))
+                                    {
+                                        tile.Slope = SlopeType.SlopeDownLeft;
+                                    }
+                                    else if (MiscTools.HasTile(x + 1, y, TileID.AshWood))
+                                    {
+                                        tile.Slope = SlopeType.SlopeDownRight;
+                                    }
+                                }
+                            }
                             else if (biomes.FindBiome(x, y) == BiomeID.Corruption || biomes.FindBiome(x, y) == BiomeID.Crimson)
                             {
                                 if (tile.TileType == TileID.DemonAltar)
@@ -2623,7 +2667,18 @@ namespace Remnants.Content.World
                         }
                         else if (y > Main.maxTilesY - 200 && tile.WallType == WallID.HellstoneBrickUnsafe)
                         {
+                            if (MiscTools.HasTile(x, y, TileID.Obsidian))
+                            {
+                                WorldGen.KillTile(x, y);
+                            }
+
                             tile.LiquidAmount = 255;
+                            tile.LiquidType = LiquidID.Lava;
+
+                            if (MiscTools.Tile(x, y - 1).WallType != WallID.HellstoneBrickUnsafe)
+                            {
+                                MiscTools.Tile(x, y - 1).LiquidAmount = 0;
+                            }
                         }
 
                         //if (biomes.FindLayer(x, y) >= biomes.lavaLayer)

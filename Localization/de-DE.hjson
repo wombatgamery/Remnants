@@ -49,7 +49,7 @@ Mods: {
 			// Stronghold: Multiplying hellish beasts
 			// WaterTemple: Carving an underwater labyrinth
 			// AerialGarden: Cultivating arcane flora
-			// Vault: Transcending humankind
+			// Vault: Running intergalactic experiments
 		}
 
 		Bestiary: {
@@ -143,6 +143,11 @@ Mods: {
 			SulfuricVents: {
 				// DisplayName: Sulfuric Vents
 				// TownNPCDialogueName: the Sulfuric Vents
+			}
+
+			SulfuricFog: {
+				// TownNPCDialogueName: the Sulfuric Fog
+				// DisplayName: Sulfuric Fog
 			}
 		}
 

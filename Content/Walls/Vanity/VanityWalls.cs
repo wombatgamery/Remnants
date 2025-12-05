@@ -35,7 +35,6 @@ namespace Remnants.Content.Walls.Vanity
 		{
 			Main.wallHouse[Type] = true;
 			Main.wallLight[Type] = true;
-			Main.wallBlend[Type] = 2;
 			DustType = 0;
 			RegisterItemDrop(ItemID.WoodenFence);
 
@@ -49,7 +48,7 @@ namespace Remnants.Content.Walls.Vanity
    //     }
     }
 
-	[LegacyName("woodboreal")]
+    [LegacyName("woodboreal")]
 	public class WoodBoreal : ModWall
 	{
 		public override void SetStaticDefaults()
@@ -96,14 +95,36 @@ namespace Remnants.Content.Walls.Vanity
 		}
 	}
 
-	[LegacyName("stonebrick")]
+    public class IronBars : ModWall
+    {
+        public override void SetStaticDefaults()
+        {
+            Main.wallHouse[Type] = false;
+            Main.wallLight[Type] = true;
+            DustType = DustID.Iron;
+            RegisterItemDrop(ItemID.IronFence);
+        }
+    }
+
+    public class IronBarsSafe : ModWall
+    {
+        public override string Texture => "Remnants/Content/Walls/Vanity/IronBars";
+        public override void SetStaticDefaults()
+        {
+            Main.wallHouse[Type] = true;
+            Main.wallLight[Type] = true;
+            DustType = DustID.Iron;
+            RegisterItemDrop(ItemID.IronFence);
+        }
+    }
+
+    [LegacyName("stonebrick")]
 	[LegacyName("brickstone")]
 	public class BrickStone : ModWall
 	{
 		public override void SetStaticDefaults()
 		{
 			Main.wallHouse[Type] = false;
-			Main.wallBlend[Type] = 1;
 			DustType = DustID.Stone;
 			RegisterItemDrop(ItemID.GrayBrickWall);
 			AddMapEntry(new Color(42, 41, 44));
@@ -115,7 +136,6 @@ namespace Remnants.Content.Walls.Vanity
 		public override void SetStaticDefaults()
 		{
 			Main.wallHouse[Type] = true;
-			Main.wallBlend[Type] = 1;
 			DustType = DustID.Stone;
 			RegisterItemDrop(ItemID.GrayBrickWall);
 			AddMapEntry(new Color(42, 41, 44));
@@ -129,7 +149,6 @@ namespace Remnants.Content.Walls.Vanity
 		public override void SetStaticDefaults()
 		{
 			Main.wallHouse[Type] = false;
-			Main.wallBlend[Type] = 1;
 			DustType = DustID.Ice;
 			RegisterItemDrop(ItemID.IceBrickWall);
 			AddMapEntry(new Color(71, 95, 131));
@@ -141,7 +160,6 @@ namespace Remnants.Content.Walls.Vanity
 		public override void SetStaticDefaults()
 		{
 			Main.wallHouse[Type] = true;
-			Main.wallBlend[Type] = 1;
 			DustType = DustID.Ice;
 			RegisterItemDrop(ItemID.IceBrickWall);
 			AddMapEntry(new Color(71, 95, 131));
