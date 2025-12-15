@@ -18,6 +18,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using Terraria;
+using Terraria.Audio;
 using Terraria.Chat;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -44,8 +45,10 @@ namespace Remnants.Content.World
         public static int whisperingMazeX;
         public static bool sightedWard = false;
 
-        public static bool exhaustAlarm = false;
-        public static float exhaustIntensity;
+        public static bool vaultExhaustAlarm = false;
+        public static float vaultExhaustIntensity;
+        public static float vaultLightIntensity;
+        public static float vaultLightFlicker;
 
         public static Dictionary<Point16, SlotId> ambience;
 
@@ -62,7 +65,7 @@ namespace Remnants.Content.World
             tag["whisperingMazeY"] = whisperingMazeY;
             tag["sightedWard"] = sightedWard;
 
-            tag["geoWeatherIntensity"] = exhaustIntensity;
+            tag["geoWeatherIntensity"] = vaultExhaustIntensity;
         }
 
         public override void LoadWorldData(TagCompound tag)
@@ -90,37 +93,64 @@ namespace Remnants.Content.World
 
             if (tag.TryGet("geoWeatherIntensity", out float str))
             {
-                exhaustIntensity = str;
+                vaultExhaustIntensity = str;
             }
         }
 
         public override void PostUpdateTime()
         {
             float time = Utils.GetDayTimeAs24FloatStartingFromMidnight();
-            exhaustAlarm = time % 12 < 0.25f || time % 12 >= 7.75f;
+            vaultExhaustAlarm = time % 6 < 0.25f || time % 6 >= 3.75f;
 
             float exhaustSpeed = 1f / 60 / 15;
 
-            if (time % 12 >= 8f)
+            if (time % 6 >= 4f)
             {
-                if (exhaustIntensity < 1)
+                if (vaultExhaustIntensity < 1)
                 {
-                    exhaustIntensity += exhaustSpeed;
+                    vaultExhaustIntensity += exhaustSpeed;
                 }
-                else if (exhaustIntensity > 1)
+                else if (vaultExhaustIntensity > 1)
                 {
-                    exhaustIntensity = 1;
+                    vaultExhaustIntensity = 1;
                 }
             }
             else
             {
-                if (exhaustIntensity > 0)
+                if (vaultExhaustIntensity > 0)
                 {
-                    exhaustIntensity -= exhaustSpeed;
+                    vaultExhaustIntensity -= exhaustSpeed;
                 }
-                else if (exhaustIntensity < 0)
+                else if (vaultExhaustIntensity < 0)
                 {
-                    exhaustIntensity = 0;
+                    vaultExhaustIntensity = 0;
+                }
+            }
+
+            if (vaultExhaustAlarm)
+            {
+                float sirenVolume = (Main.LocalPlayer.Center.Y / 16 - (Main.maxTilesY - 400)) / 100f;
+                //sirenVolume *= MathHelper.Distance(Main.LocalPlayer.Center.X / 16)
+                if (sirenVolume > 0)
+                {
+                    sirenVolume = MathHelper.Clamp(sirenVolume, 0, 1);
+                    //time *= 60;
+                    //time = (int)time;
+
+                    if (Main.GameUpdateCount % 300 == 0)
+                    {
+                        float distance = MathHelper.Distance(Main.LocalPlayer.Center.X / 16, Main.maxTilesX * 0.6f) / (Main.maxTilesX * 0.2f);
+                        distance = MathHelper.Clamp(distance, 0, 1);
+                        SoundStyle alarm = new SoundStyle("Remnants/Content/Sounds/Ambience/VaultExhaustAlarmLeft");
+                        alarm.Volume = sirenVolume * 0.75f * (1 - distance);
+                        SoundEngine.PlaySound(alarm);
+
+                        distance = MathHelper.Distance(Main.LocalPlayer.Center.X / 16, Main.maxTilesX * 0.4f) / (Main.maxTilesX * 0.2f);
+                        distance = MathHelper.Clamp(distance, 0, 1);
+                        alarm = new SoundStyle("Remnants/Content/Sounds/Ambience/VaultExhaustAlarmRight");
+                        alarm.Volume = sirenVolume * 0.75f * (1 - distance);
+                        SoundEngine.PlaySound(alarm);
+                    }
                 }
             }
         }
@@ -132,7 +162,7 @@ namespace Remnants.Content.World
             if (layer == RenderLayers.ForegroundWater)
             {
                 float targetIntensity = Main.LocalPlayer.InModBiome<SulfuricVents>() ? 1 : Main.LocalPlayer.ZoneUnderworldHeight ? 0.5f : 0;
-                targetIntensity += (exhaustIntensity - 1) * 0.75f;
+                targetIntensity += (vaultExhaustIntensity - 1) * 0.75f;
 
                 if (exhaustFogIntensity > 0 || targetIntensity > 0)
                 {
@@ -140,7 +170,7 @@ namespace Remnants.Content.World
                     {
                         if (exhaustFogIntensity < targetIntensity)
                         {
-                            exhaustFogIntensity += 0.01f;
+                            exhaustFogIntensity += 0.005f;
 
                             if (exhaustFogIntensity > targetIntensity)
                             {
@@ -149,7 +179,7 @@ namespace Remnants.Content.World
                         }
                         else if (exhaustFogIntensity > targetIntensity)
                         {
-                            exhaustFogIntensity -= 0.01f;
+                            exhaustFogIntensity -= 0.005f;
 
                             if (exhaustFogIntensity < targetIntensity)
                             {
@@ -211,6 +241,45 @@ namespace Remnants.Content.World
             //pyramidPotNearby = tileCounts[ModContent.TileType<PyramidPot>()] > 0;
 
             //Main.SceneMetrics.SandTileCount += pyramidTiles;
+        }
+
+        public override void PostUpdatePlayers()
+        {
+            bool lightsActive = false;
+            foreach (var player in Main.ActivePlayers)
+            {
+                if (!player.DeadOrGhost)
+                {
+                    if (player.InModBiome<VaultInterior>())
+                    {
+                        int wall = Main.tile[(int)player.Center.X / 16, (int)player.Center.Y / 16].WallType;
+                        if (wall != ModContent.WallType<vault>())
+                        {
+                            lightsActive = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (lightsActive)
+            {
+                if (vaultLightIntensity < 1)
+                {
+                    vaultLightIntensity += 0.025f;
+                    vaultLightFlicker = Main.rand.NextFloat(0, 1);
+                }
+                else vaultLightIntensity = 1;
+            }
+            else
+            {
+                if (vaultLightIntensity > 0)
+                {
+                    vaultLightIntensity -= 0.025f;
+                    vaultLightFlicker = Main.rand.NextFloat(0, 1);
+                }
+                else vaultLightIntensity = 0;
+            }
         }
     }
 }

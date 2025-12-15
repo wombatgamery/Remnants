@@ -12,6 +12,8 @@ namespace Remnants.Content.Items.Accessories
 {
     public class StoneofElements : ModItem
     {
+        public override LocalizedText Tooltip => Language.GetText("{0}\n{1}").WithFormatArgs(Language.GetText("ItemTooltip.PhilosophersStone"), Language.GetText("Mods.Remnants.Items.RingofElements.Tooltip"));
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;

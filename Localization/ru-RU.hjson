@@ -30,7 +30,6 @@ Mods: {
 			Grass: Выращиваем траву...
 			Moss: Выращиваем мох...
 			Piles: Мусорим...
-			Underworld: Разогреваем преисподнюю...
 			LivingTrees: Выращиваем корни старого древа...
 			Mineshafts: Начинаем шахтёрские раскопки...
 			Pyramid: Возводим сокровищницы среди дюн...
@@ -39,17 +38,14 @@ Mods: {
 			GemCaves: Формируем ослепительной красоты жеоды самоцветов...
 			Microdungeons: Строим всякое по мелочи...
 			Boulders: Расставляем ловушки с валунами...
-			IceTemples: Лепим башни из снега и льда...
-			ThermalRigs: Строим теплоэлектростанции...
 			Dungeon: Поднимаем мертвецов на ноги...
 			JungleTemple: Развиваем древнее племя рептилий...
-			Tomb: Проводим богохульные обряды с плотью...
 			MagicalLab: Совершаем невероятные открытия в области магии...
 			Labyrinth: Прячем следы присутствия инопланетных цивилизаций...
-			Stronghold: Разводим адских тварей...
+			// Warrens: Multiplying hellish beasts
 			WaterTemple: Погружаем древний храм под толщу океана...
 			AerialGarden: Обустраиваем райский уголок на небесах...
-			Vault: Прославляем трансгуманизм...
+			// Capsules: Preserving plants for millenia
 		}
 
 		Bestiary: {
@@ -149,6 +145,16 @@ Mods: {
 				// TownNPCDialogueName: the Sulfuric Fog
 				// DisplayName: Sulfuric Fog
 			}
+
+			VaultExterior: {
+				// DisplayName: Vault Exterior
+				// TownNPCDialogueName: the Vault Exterior
+			}
+
+			VaultInterior: {
+				// DisplayName: Vault Interior
+				// TownNPCDialogueName: the Vault Interior
+			}
 		}
 
 		Tiles: {
@@ -206,7 +212,6 @@ Mods: {
 			}
 
 			PrismbudHead.MapEntry: Луковица-призмоцветка
-			// spiritlamp.MapEntry: spiritlamp
 		}
 
 		Buffs: {
@@ -283,24 +288,9 @@ Mods: {
 				Tooltip: Магия мерцания этого жезла позволяет вам преобразовывать некоторые виды стен
 			}
 
-			EnchantedBrick: {
-				DisplayName: Арканный кирпич
-				Tooltip: ""
-			}
-
-			GardenBrick: {
-				DisplayName: Кирпич сада
-				Tooltip: ""
-			}
-
 			Hardstone: {
 				DisplayName: Твердокамень
 				Tooltip: Сверхплотный камень неизвестного происхождения
-			}
-
-			PyramidBrick: {
-				DisplayName: Кирпич храма пустыни
-				Tooltip: ""
 			}
 
 			PyramidChest: {
@@ -311,11 +301,6 @@ Mods: {
 			StarOre: {
 				DisplayName: Звёздные останки
 				Tooltip: Застывшая масса из нескольких упавших звёзд, всё ещё источающих свою рьяную энергию
-			}
-
-			ToxicWaste: {
-				DisplayName: Токсичный шлак
-				Tooltip: ""
 			}
 
 			EnergySpike: {
@@ -353,16 +338,10 @@ Mods: {
 				Tooltip: ""
 			}
 
-			GardenBrickWall: {
-				DisplayName: Стена из кирпича сада
-				Tooltip: ""
-			}
-
-			PyramidBrickWall: {
-				DisplayName: Стена из кирпича храма пустыни
-				Tooltip: ""
-			}
-
+			GardenBrickWall.DisplayName: Стена из кирпича сада
+			GardenBrick.DisplayName: Кирпич сада
+			PyramidBrickWall.DisplayName: Стена из кирпича храма пустыни
+			PyramidBrick.DisplayName: Кирпич храма пустыни
 			LuminousHook.DisplayName: Светящийся крюк
 
 			SpiritLance: {
@@ -374,52 +353,15 @@ Mods: {
 					'''
 			}
 
-			SoulLance: {
-				DisplayName: Копьё душегуба
-				Tooltip:
-					'''
-					Восстанавливает ману при нанесении урона
-					Наносит в четыре раза больше урона, если ваш запас маны не полон
-					'''
-			}
-
-			SpectralLance: {
-				DisplayName: Спектральный пронзатель
-				Tooltip:
-					'''
-					Восстанавливает ману при нанесении урона
-					Наносит в четыре раза больше урона, если ваш запас маны не полон
-					'''
-			}
-
-			VintageSniper: {
-				DisplayName: Винтажная снайперская винтовка
-				Tooltip:
-					'''
-					Стреляет мощной высокоскоростной пулей
-					Нажмите ПКМ, чтобы отдалить
-					'''
-			}
-
 			SummonCrown: {
 				DisplayName: Тиара покорности
 				Tooltip: Увеличивает урон призывателя по мере снижения вашего здоровья, вплоть до максимальной прибавки в 33%
 			}
 
-			TombBrick: {
-				DisplayName: Кирпич склепа
-				Tooltip: ""
-			}
-
-			TombBrickWall: {
-				DisplayName: Стена из кирпича склепа
-				Tooltip: ""
-			}
-
-			EnchantedBrickWall: {
-				DisplayName: Стена из арканного кирпича
-				Tooltip: ""
-			}
+			TombBrick.DisplayName: Кирпич склепа
+			TombBrickWall.DisplayName: Стена из кирпича склепа
+			EnchantedBrickWall.DisplayName: Стена из арканного кирпича
+			EnchantedBrick.DisplayName: Арканный кирпич
 
 			ScientistNotes1: {
 				DisplayName: Исследовательская записка: Подготовка
@@ -544,79 +486,12 @@ Mods: {
 				Tooltip: ""
 			}
 
-			VaultPlating: {
-				DisplayName: Обшивка Убежища
-				Tooltip: ""
-			}
-
-			VaultWall: {
-				DisplayName: Стена Убежища
-				Tooltip: ""
-			}
-
-			VaultPlatform: {
-				DisplayName: Платформа Убежища
-				Tooltip: ""
-			}
-
-			VaultPipe: {
-				DisplayName: Труба Убежища
-				Tooltip: ""
-			}
-
-			HellishBrick: {
-				DisplayName: Кирпич пекла
-				Tooltip: ""
-			}
-
-			HellishPlatform: {
-				DisplayName: Платформа пекла
-				Tooltip: ""
-			}
-
-			HellishBrickWall: {
-				DisplayName: Стена из кирпича пекла
-				Tooltip: ""
-			}
-
-			MarineSlab: {
-				DisplayName: Плита затонувшего храма
-				Tooltip: ""
-			}
-
-			MarinePlatform: {
-				DisplayName: Платформа затонувшего храма
-				Tooltip: ""
-			}
-
-			MarineSlabWall: {
-				DisplayName: Стена из плиты затонувшего храма
-				Tooltip: ""
-			}
-
-			ArcanePlatform: {
-				DisplayName: Арканная платформа
-				Tooltip: ""
-			}
-
-			ArcaneChandelier: {
-				DisplayName: Арканное светило
-				Tooltip: ""
-			}
-
 			AlchemyBench: {
 				DisplayName: Арканный рабочий стол
 				Tooltip: ""
 			}
 
-			StoneofElements: {
-				DisplayName: Камень элементов
-				Tooltip:
-					'''
-					Уменьшает время восстановления лечебных зелий на 25%
-					Снижает длительность всех дебаффов кроме послезельевой болезни и истощения маны в два раза
-					'''
-			}
+			StoneofElements.DisplayName: Камень элементов
 
 			CosmicStone: {
 				DisplayName: Камень космоса
@@ -670,16 +545,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			PyramidPlatform: {
-				DisplayName: Платформа храма пустыни
-				Tooltip: ""
-			}
-
-			GardenPlatform: {
-				DisplayName: Платформа сада
-				Tooltip: ""
-			}
-
 			hivekey: {
 				DisplayName: Генератор комнат для шахт
 				Tooltip: ""
@@ -690,10 +555,7 @@ Mods: {
 				DisplayName: Знак черепа
 			}
 
-			Sulfurstone: {
-				Tooltip: ""
-				DisplayName: Сернистый камень
-			}
+			Sulfurstone.DisplayName: Сернистый камень
 
 			InsectRemains: {
 				DisplayName: Останки насекомых
@@ -705,60 +567,52 @@ Mods: {
 				Tooltip: ""
 			}
 
-			SulfurstoneBrick: {
-				DisplayName: Сернистый кирпич
-				Tooltip: ""
-			}
-
-			SulfurstoneBrickWall: {
-				DisplayName: Стена из сернистого кирпича
-				Tooltip: ""
-			}
+			SulfurstoneBrick.DisplayName: Сернистый кирпич
+			SulfurstoneBrickWall.DisplayName: Стена из сернистого кирпича
 
 			SulfuricVent: {
 				DisplayName: Сернистое жерло
 				Tooltip: ""
 			}
 
-			SulfurstoneDiamond: {
-				Tooltip: ""
-				DisplayName: Алмазный сернистый камень
-			}
-
-			VaultRailing: {
-				// DisplayName: Vault Railing
-				// Tooltip: ""
-			}
-
-			VaultConduit: {
-				// Tooltip: ""
-				// DisplayName: Vault Conduits
-			}
+			SulfurstoneDiamond.DisplayName: Алмазный сернистый камень
 
 			HeavyAlloy: {
 				// Tooltip: ""
 				// DisplayName: Heavy Alloy
 			}
 
-			VaultSupport: {
-				// Tooltip: ""
-				// DisplayName: Vault Buttress
+			VintageSniper.DisplayName: Винтажная снайперская винтовка
+			SpectralLance.DisplayName: Спектральный пронзатель
+			SoulLance.DisplayName: Копьё душегуба
+			VaultWall.DisplayName: Стена Убежища
+			// VaultRailing.DisplayName: Vault Railing
+			// VaultHazardWall.DisplayName: Vault Hazard Wall
+			// VaultBeamWall.DisplayName: Vault Beam Wall
+			MarineSlabWall.DisplayName: Стена из плиты затонувшего храма
+			MarineSlab.DisplayName: Плита затонувшего храма
+			// AshenBrickWall.DisplayName: Ashen Brick Wall
+			// AshenBrick.DisplayName: Ashen Brick
+
+			ArcaneChandelier: {
+				Tooltip: ""
+				DisplayName: Арканное светило
 			}
 
-			VaultHazardWall: {
-				// DisplayName: Vault Hazard Wall
-				// Tooltip: ""
-			}
-
-			VaultProcessor: {
-				// Tooltip: ""
-				// DisplayName: Vault Computer
-			}
-
-			VaultBeamWall: {
-				// Tooltip: ""
-				// DisplayName: Vault Beam Wall
-			}
+			// VaultSupport.DisplayName: Vault Support
+			// VaultProcessor.DisplayName: Vault Computer
+			VaultPlating.DisplayName: Обшивка Убежища
+			VaultPlatform.DisplayName: Платформа Убежища
+			VaultPipe.DisplayName: Труба Убежища
+			// VaultConduit.DisplayName: Vault Conduits
+			PyramidPlatform.DisplayName: Платформа храма пустыни
+			MarinePlatform.DisplayName: Платформа затонувшего храма
+			// AshenPlatform.DisplayName: Ashen Platform
+			GardenPlatform.DisplayName: Платформа сада
+			// Cage.DisplayName: Cage
+			ArcanePlatform.DisplayName: Арканная платформа
+			HellishBrickWall.DisplayName: Стена из кирпича пекла
+			// ChainHook.DisplayName: Chain Hook
 		}
 
 		NPCs: {

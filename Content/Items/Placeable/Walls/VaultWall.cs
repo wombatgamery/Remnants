@@ -1,13 +1,16 @@
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria;
 using Remnants.Content.Items.Placeable.Blocks;
+using Terraria;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace Remnants.Content.Items.Placeable.Walls
 {
 	public class VaultWall : ModItem
 	{
-		public override void SetDefaults()
+        public override LocalizedText Tooltip => null;
+
+        public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.StoneWall);
 			Item.createWall = ModContent.WallType <Content.Walls.VaultWall>();
@@ -24,6 +27,8 @@ namespace Remnants.Content.Items.Placeable.Walls
 
     public class VaultBeamWall : ModItem
     {
+        public override LocalizedText Tooltip => null;
+
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.StoneWall);
@@ -49,6 +54,8 @@ namespace Remnants.Content.Items.Placeable.Walls
 
     public class VaultHazardWall : ModItem
     {
+        public override LocalizedText Tooltip => null;
+
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.StoneWall);
@@ -71,6 +78,8 @@ namespace Remnants.Content.Items.Placeable.Walls
 
     public class VaultRailing : ModItem
     {
+        public override LocalizedText Tooltip => null;
+
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.StoneWall);

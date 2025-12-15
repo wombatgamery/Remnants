@@ -1,11 +1,14 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Remnants.Content.Items.Placeable.Blocks
 {
     public class ArcanePlatform : ModItem
     {
+        public override LocalizedText Tooltip => null;
+
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.WoodPlatform);

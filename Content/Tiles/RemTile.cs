@@ -18,6 +18,7 @@ using Remnants.Content.Tiles.Objects.Hazards;
 using Terraria.Audio;
 using Remnants.Content.Dusts;
 using Remnants.Content.Gores;
+using Remnants.Content.Tiles.Objects;
 
 namespace Remnants.Content.Tiles
 {
@@ -30,9 +31,7 @@ namespace Remnants.Content.Tiles
 
             TileID.Sets.CanBeClearedDuringGeneration[TileID.WoodBlock] = false;
             TileID.Sets.CanBeClearedDuringGeneration[TileID.GrayBrick] = false;
-            TileID.Sets.CanBeClearedDuringGeneration[TileID.BrownMossBrick] = false;
-            TileID.Sets.CanBeClearedDuringGeneration[TileID.IridescentBrick] = false;
-            TileID.Sets.CanBeClearedDuringGeneration[TileID.ObsidianBrick] = false;
+            TileID.Sets.CanBeClearedDuringGeneration[TileID.BreakableIce] = false;
             TileID.Sets.CanBeClearedDuringGeneration[TileID.HellstoneBrick] = false;
             TileID.Sets.CanBeClearedDuringGeneration[TileID.Glass] = false;
             TileID.Sets.CanBeClearedDuringGeneration[TileID.AshWood] = false;
@@ -562,7 +561,7 @@ namespace Remnants.Content.Tiles
                 }
                 else if (!WorldGen.SolidTile(i, j + 1) && Main.tileSolid[tile.TileType] && j > Main.maxTilesY - 200 && j < Main.maxTilesY - 150)
                 {
-                    if (Main.rand.NextFloat(256f) < RemSystem.exhaustIntensity)
+                    if (Main.rand.NextFloat(256f) < RemSystem.vaultExhaustIntensity)
                     {
                         Vector2 position = new Vector2(i + 0.5f, j + 1.5f) * 16;
                         Vector2 velocity = Main.rand.NextVector2Circular(2f, 1f);

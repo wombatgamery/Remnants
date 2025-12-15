@@ -1,13 +1,16 @@
+using Remnants.Content.Tiles;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
-using Remnants.Content.Tiles;
 
 namespace Remnants.Content.Items.Placeable.Blocks
 {
 	public class VaultPipe : ModItem
 	{
-		public override void SetDefaults()
+        public override LocalizedText Tooltip => null;
+
+        public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.StoneBlock);
             Item.createTile = ModContent.TileType <Tiles.Blocks.VaultPipe>();

@@ -1,13 +1,16 @@
+using Remnants.Content.Items.Placeable.Blocks;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
-using Remnants.Content.Items.Placeable.Blocks;
 
 namespace Remnants.Content.Items.Placeable.Walls
 {
 	public class GardenBrickWall : ModItem
 	{
-		public override void SetStaticDefaults()
+        public override LocalizedText Tooltip => null;
+
+        public override void SetStaticDefaults()
 		{
 			Item.ResearchUnlockCount = 400;
 		}
@@ -23,7 +26,7 @@ namespace Remnants.Content.Items.Placeable.Walls
 		{
 			Recipe recipe;
 
-			recipe = Recipe.Create(Type, 4);
+            recipe = Recipe.Create(Type, 4);
 			recipe.AddIngredient(ModContent.ItemType<GardenBrick>());
 			recipe.Register();
 

@@ -64,6 +64,8 @@ namespace Remnants.Content.World
             RemovePass(tasks, FindIndex(tasks, "Shell Piles"));
             #endregion
 
+            //InsertPass(tasks, new Boulders("Hardstone", 1), FindIndex(tasks, "Smooth World"));
+
             InsertPass(tasks, new ReturnThinIce("Return Thin Ice", 1), FindIndex(tasks, "Tile Cleanup") + 1);
 
             if (ModContent.GetInstance<Worldgen>().OreFrequency > 0)
@@ -269,11 +271,22 @@ namespace Remnants.Content.World
 
             bool[,] crimsonHair = new bool[Main.maxTilesX, Main.maxTilesY];
 
+            for (int x = 0; x < Main.maxTilesX; x++)
+            {
+                for (int y = Main.maxTilesX - 20; y < Main.maxTilesY; y++)
+                {
+                    Tile tile = Main.tile[x, y];
+
+                    tile.HasTile = true;
+                    tile.TileType = (ushort)ModContent.TileType<Hardstone>();
+                }
+            }
+
             for (int x = 40; x < Main.maxTilesX - 40; x++)
             {
                 progress.Set((x - 40) / (float)(Main.maxTilesX - 40 - 40) / 3);
 
-                for (int y = 40; y <= Main.maxTilesY - 20; y++)
+                for (int y = 40; y < Main.maxTilesY - 20; y++)
                 {
                     Tile tile = Main.tile[x, y];
 
@@ -529,7 +542,7 @@ namespace Remnants.Content.World
                         }
 
                         float _terrain = 0.5f;
-                        bool forest = i > Main.maxTilesX * 0.4f && i < Main.maxTilesX * 0.6f;
+                        bool forest = i > Main.maxTilesX * 0.35f && i < Main.maxTilesX * 0.65f;
 
                         float _hellSpikePlacement = hellSpikes1.GetNoise(x, 0) / 0.85f;
                         _hellSpikePlacement /= 2;
@@ -1705,6 +1718,95 @@ namespace Remnants.Content.World
         }
     }
 
+    public class Boulders : GenPass
+    {
+        public Boulders(string name, float loadWeight) : base(name, loadWeight)
+        {
+        }
+
+        protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
+        {
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Hardstone");
+
+            FastNoiseLite boulders = new FastNoiseLite();
+            boulders.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
+            boulders.SetFrequency(0.05f);
+            boulders.SetFractalType(FastNoiseLite.FractalType.FBm);
+
+            FastNoiseLite minerals = new FastNoiseLite();
+            minerals.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
+            minerals.SetFrequency(0.1f);
+            minerals.SetFractalType(FastNoiseLite.FractalType.FBm);
+
+            int countInitial = (int)(Main.maxTilesX / 420f * (Main.maxTilesY - Main.worldSurface) / 120f);
+            int count = countInitial;
+
+            while (count > 0)
+            {
+                int radius = WorldGen.genRand.Next(5, 26);
+                radius = Math.Max(radius, WorldGen.genRand.Next(5, 26));
+
+                int x = WorldGen.genRand.Next(50 + radius, Main.maxTilesX - 50 - radius);
+                int y = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY - 40 - radius);
+
+                if (GenVars.structures.CanPlace(new Rectangle(x - radius, y - radius, radius * 2, radius * 2)))
+                {
+                    bool valid = true;
+
+                    for (int i = x - radius; i <= x + radius; i++)
+                    {
+                        for (int j = y - radius; j <= y + radius; j++)
+                        {
+                            float dist = Vector2.Distance(new Vector2(x, y), new Vector2(i, j));
+
+                            if (dist < radius * 0.8f)
+                            {
+                                if (!WorldGen.SolidTile(i, j))
+                                {
+                                    valid = false;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!valid)
+                        {
+                            break;
+                        }
+                    }
+
+                    if (valid)
+                    {
+                        for (int i = x - radius; i <= x + radius; i++)
+                        {
+                            for (int j = y - radius; j <= y + radius; j++)
+                            {
+                                float _boulders = (boulders.GetNoise(i, j) / 2 + 0.5f) / 0.8f;
+
+                                float dist = Vector2.Distance(new Vector2(x, y), new Vector2(i, j)) + _boulders * radius / 2f;
+
+                                if (dist < radius)
+                                {
+                                    Tile tile = Main.tile[i, j];
+                                    tile.HasTile = true;
+
+                                    float _minerals = minerals.GetNoise(i, j) / 2 + 0.5f;
+
+                                    if (radius > 10 && dist < (radius - 10) * (0.5f + _minerals / 2))
+                                    {
+                                        tile.TileType = TileID.Palladium;
+                                    }
+                                    else tile.TileType = (ushort)ModContent.TileType<Hardstone>();
+                                }
+                            }
+                        }
+
+                        count--;
+                    }
+                }
+            }
+        }
+    }
+
     public class Clouds : GenPass
     {
         public Clouds(string name, float loadWeight) : base(name, loadWeight)
@@ -2256,7 +2358,7 @@ namespace Remnants.Content.World
 
                     style = Main.rand.Next(6, 9);
                 }
-                else if (Main.wallDungeon[tile.WallType] || y > Main.maxTilesY - 200 && tile.TileType != ModContent.TileType<HellishBrick>() || tile.TileType == TileID.BoneBlock)
+                else if (Main.wallDungeon[tile.WallType] || y > Main.maxTilesY - 200 && tile.TileType != ModContent.TileType<AshenBrick>() || tile.TileType == TileID.BoneBlock)
                 {
                     style = Main.rand.Next(7);
                 }
@@ -2325,7 +2427,7 @@ namespace Remnants.Content.World
                 int X = -1;
                 int Y = 1;
 
-                if (tile.TileType == ModContent.TileType<SacrificialAltar>() || tile.TileType == ModContent.TileType<HellishBrick>())
+                if (tile.TileType == ModContent.TileType<SacrificialAltar>() || tile.TileType == ModContent.TileType<AshenBrick>())
                 {
                     X = Main.rand.Next(11, 16);
                 }
@@ -2388,7 +2490,7 @@ namespace Remnants.Content.World
                 Tile tile = Main.tile[x, y + 1];
                 int X = -1;
 
-                if (tile.TileType == ModContent.TileType<SacrificialAltar>() || tile.TileType == ModContent.TileType<HellishBrick>())
+                if (tile.TileType == ModContent.TileType<SacrificialAltar>() || tile.TileType == ModContent.TileType<AshenBrick>())
                 {
                     X = Main.rand.Next(20, 28);
                 }

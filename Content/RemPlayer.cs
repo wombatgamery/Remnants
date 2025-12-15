@@ -104,11 +104,11 @@ namespace Remnants.Content
             {
                 Player.breath -= 2;
 
-                if (RemSystem.exhaustIntensity > 0)
+                if (RemSystem.vaultExhaustIntensity > 0)
                 {
                     Player.breath -= 1;
                     breathCD++;
-                    if (breathCD >= Player.breathCDMax / RemSystem.exhaustIntensity)
+                    if (breathCD >= Player.breathCDMax / RemSystem.vaultExhaustIntensity)
                     {
                         breathCD = 0;
                         Player.breath--;
@@ -210,11 +210,12 @@ namespace Remnants.Content
 
         public override void ModifyScreenPosition()
         {
-            if (RemSystem.exhaustIntensity > 0)
+            if (RemSystem.vaultExhaustIntensity > 0)
             {
-                float strength = (1 - MathHelper.Clamp(MathHelper.Distance(Player.Center.Y / 16, Main.maxTilesY - 300) / (Main.maxTilesY - 300 - (int)Main.rockLayer) * 2, 0, 1));
+                float strength = (Player.Center.Y / 16 - (Main.maxTilesY - 400)) / 100f;
+                strength = MathHelper.Clamp(strength, 0, 1);
 
-                shakeIntensity += 0.5f * strength * RemSystem.exhaustIntensity;
+                shakeIntensity += 0.25f * strength * RemSystem.vaultExhaustIntensity;
             }
 
             if (shakeIntensity > 0)

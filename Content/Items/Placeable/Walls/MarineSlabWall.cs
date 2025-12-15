@@ -1,14 +1,17 @@
+using Remnants.Content.Items.Placeable.Blocks;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
-using Remnants.Content.Items.Placeable.Blocks;
 
 namespace Remnants.Content.Items.Placeable.Walls
 {
     [LegacyName("TidalSlabWall")]
     public class MarineSlabWall : ModItem
 	{
-		public override void SetStaticDefaults()
+        public override LocalizedText Tooltip => null;
+
+        public override void SetStaticDefaults()
 		{
 			Item.ResearchUnlockCount = 400;
 		}

@@ -28,7 +28,7 @@ Partially compatible mods will cause some minor problems, but otherwise may stil
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2824688072][b]Calamity Mod[/b][/url] (The Sulphurous Sea has a few visual bugs)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2984622072][b]Starlight River[/b][/url] (A few biome and structure conflicts)
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2982372319][b]Spirit Classic[/b][/url] (Sepulchres are disabled to prevent crashing)
-[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2855691488][b]Polarities[/b][/url] (Salt caves overlap the underground evil biome)
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2855691488][b]Polarities[/b][/url] (Salt caves overlap any biome they please)
 [/list]
 
 Incompatible mods will result in a guaranteed crash or unplayable world: [list]
@@ -40,7 +40,7 @@ Incompatible mods will result in a guaranteed crash or unplayable world: [list]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2833852432][b]Spooky Mod[/b][/url]
 [/list]
 
-Note that the compatibility of these mods are evaluated only by their individual changes, and not that of any dependencies they might have. 
+Note that the compatibility of these mods is evaluated only by themselves, so results may differ with certain combinations of the mods listed.
 
 [h2]Credits[/h2] [img]https://i.imgur.com/jdunrUl.png[/img]
 Music/Sounds: [list]

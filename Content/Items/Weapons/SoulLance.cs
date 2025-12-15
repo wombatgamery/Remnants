@@ -5,13 +5,16 @@ using Remnants.Content.Projectiles;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Remnants.Content.Items.Weapons
 {
 	public class SoulLance : ModItem
 	{
-		public override void SetStaticDefaults()
+        public override LocalizedText Tooltip => Language.GetText("Mods.Remnants.Items.SpiritLance.Tooltip");
+
+        public override void SetStaticDefaults()
 		{
 			ItemID.Sets.SkipsInitialUseSound[Item.type] = true; // This skips use animation-tied sound playback, so that we're able to make it be tied to use time instead in the UseItem() hook.
 			ItemID.Sets.Spears[Item.type] = true; // This allows the game to recognize our new item as a spear.

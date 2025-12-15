@@ -153,7 +153,91 @@ namespace Remnants.Content.Biomes
         }
     }
 
-	public class GoldenCity : ModBiome
+    public class VaultInterior : ModBiome
+    {
+        public override SceneEffectPriority Priority => SceneEffectPriority.Environment;
+
+        public override int Music => music;
+		int music = -1;
+		int duration;
+
+        public override void OnInBiome(Player player)
+        {
+			int weight = 4;
+
+            if (Main.musicFade[MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultInterior")] > 0.98f)
+            {
+                Main.musicFade[MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultInterior")] = 0.98f;
+                weight = 2;
+            }
+            if (Main.musicFade[MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultExterior")] < 0.02f)
+            {
+                Main.musicFade[MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultExterior")] = 0.02f;
+                weight = 2;
+            }
+
+            music = duration < 2 || Main.GameUpdateCount % weight == 0 ? MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultExterior") : MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultInterior");
+
+			duration++;
+        }
+
+        public override void OnEnter(Player player)
+        {
+			duration = 0;
+        }
+
+        public override bool IsBiomeActive(Player player)
+        {
+            int wall = Main.tile[(int)player.Center.X / 16, (int)player.Center.Y / 16].WallType;
+            return wall == ModContent.WallType<VaultWallUnsafe>() || wall == ModContent.WallType<VaultBeamWallUnsafe>() || wall == ModContent.WallType<VaultHazardWallUnsafe>() || wall == ModContent.WallType<vault>();
+        }
+    }
+
+    public class VaultExterior : ModBiome
+    {
+        public override SceneEffectPriority Priority => SceneEffectPriority.Environment;
+
+        public override int Music => music;
+        int music = -1;
+        int duration;
+
+        public override void OnInBiome(Player player)
+        {
+            int weight = 4;
+
+            if (Main.musicFade[MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultInterior")] < 0.02f)
+            {
+                Main.musicFade[MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultInterior")] = 0.02f;
+                weight = 2;
+            }
+            if (Main.musicFade[MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultExterior")] > 0.98f)
+            {
+                Main.musicFade[MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultExterior")] = 0.98f;
+                weight = 2;
+            }
+
+            music = duration < 2 || Main.GameUpdateCount % weight == 0 ? MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultInterior") : MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultExterior");
+
+            duration++;
+        }
+
+        public override void OnEnter(Player player)
+        {
+            duration = 0;
+        }
+
+        public override bool IsBiomeActive(Player player)
+        {
+			int wall = Main.tile[(int)player.Center.X / 16, (int)player.Center.Y / 16].WallType;
+			if (wall == ModContent.WallType<VaultWallUnsafe>() || wall == ModContent.WallType<VaultBeamWallUnsafe>() || wall == ModContent.WallType<VaultHazardWallUnsafe>() || wall == ModContent.WallType<vault>())
+			{
+				return false;
+			}
+			return player.ZoneUnderworldHeight && player.Center.X / 16 > Main.maxTilesX * 0.35f && player.Center.X / 16 < Main.maxTilesX * 0.65f;
+        }
+    }
+
+    public class GoldenCity : ModBiome
 	{
 		public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
 

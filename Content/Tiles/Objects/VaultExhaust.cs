@@ -4,6 +4,7 @@ using Remnants.Content.Dusts;
 using Remnants.Content.Gores;
 using Remnants.Content.World;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Localization;
@@ -47,21 +48,21 @@ namespace Remnants.Content.Tiles.Objects
 
         public override void EmitParticles(int i, int j, Tile tile, short tileFrameX, short tileFrameY, Color tileLight, bool visible)
         {
-            if (RemSystem.exhaustIntensity > 0)
+            if (RemSystem.vaultExhaustIntensity > 0)
             {
                 bool left = Main.tile[i, j].TileFrameX == 0;
 
                 for (int k = 0; k < 4; k++)
                 {
-                    if (Main.rand.NextFloat(1f) < RemSystem.exhaustIntensity)
+                    if (Main.rand.NextFloat(1f) < RemSystem.vaultExhaustIntensity)
                     {
-                        Dust dust = Dust.NewDustPerfect(new Vector2((i * 16) + Main.rand.NextFloat(7f, 9f), j * 16 + 8), DustID.Smoke, new Vector2(Main.rand.NextFloat(0, RemSystem.exhaustIntensity * 24) * (left ? -1 : 1), Main.rand.NextFloat(-2, 0)), 255 - (int)(RemSystem.exhaustIntensity * 25), Scale: Main.rand.NextFloat(2, 4));
+                        Dust dust = Dust.NewDustPerfect(new Vector2((i * 16) + Main.rand.NextFloat(7f, 9f), j * 16 + 8), DustID.Smoke, new Vector2(Main.rand.NextFloat(0, RemSystem.vaultExhaustIntensity * 24) * (left ? -1 : 1), Main.rand.NextFloat(-2, 0)), 255 - (int)(RemSystem.vaultExhaustIntensity * 25), Scale: Main.rand.NextFloat(2, 4));
                         dust.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
                     }
-                    if (Main.rand.NextFloat(1f) < RemSystem.exhaustIntensity)
+                    if (Main.rand.NextFloat(1f) < RemSystem.vaultExhaustIntensity)
                     {
-                        Gore gore = Gore.NewGorePerfect(new EntitySource_TileUpdate(i, j), new Vector2((i * 16) - 16 + (left ? -16 : 16) + Main.rand.NextFloat(7f, 9f), j * 16 - 8), new Vector2(Main.rand.NextFloat(0, RemSystem.exhaustIntensity * 24) * (left ? -1 : 1), 0), Main.rand.Next(220, 222), Main.rand.NextFloat(1, 2));
-                        gore.alpha = 255 - (int)(RemSystem.exhaustIntensity * 50);
+                        Gore gore = Gore.NewGorePerfect(new EntitySource_TileUpdate(i, j), new Vector2((i * 16) - 16 + (left ? -16 : 16) + Main.rand.NextFloat(7f, 9f), j * 16 - 8), new Vector2(Main.rand.NextFloat(0, RemSystem.vaultExhaustIntensity * 24) * (left ? -1 : 1), 0), Main.rand.Next(220, 222), Main.rand.NextFloat(1, 2));
+                        gore.alpha = 255 - (int)(RemSystem.vaultExhaustIntensity * 50);
                         gore.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
                     }
                 }
@@ -76,9 +77,21 @@ namespace Remnants.Content.Tiles.Objects
             }
         }
 
+        //public override void NearbyEffects(int i, int j, bool closer)
+        //{
+        //    if (!closer && RemSystem.vaultExhaustAlarm && (Main.GameUpdateCount / 4) % 5 == 0 && !Main.gamePaused)
+        //    {
+        //        SoundStyle alarm = new SoundStyle("Remnants/Content/Sounds/Ambience/VaultExhaustAlarm");
+        //        alarm.MaxInstances = 0;
+        //        alarm.Volume = 0.025f;
+        //        alarm.PitchVariance = 0;
+        //        SoundEngine.PlaySound(alarm, new Vector2(i + 0.5f, j + 0.5f) * 16);
+        //    }
+        //}
+
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
-            if (RemSystem.exhaustAlarm)
+            if (RemSystem.vaultExhaustAlarm)
             {
                 r = 1;
             }
@@ -94,7 +107,7 @@ namespace Remnants.Content.Tiles.Objects
                 zero = Vector2.Zero;
             }
 
-            Main.spriteBatch.Draw(ModContent.Request<Texture2D>(Texture).Value, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero, new Rectangle(tile.TileFrameX, RemSystem.exhaustAlarm ? 16 : 32, 16, 16), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(ModContent.Request<Texture2D>(Texture).Value, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero, new Rectangle(tile.TileFrameX, RemSystem.vaultExhaustAlarm ? 16 : 32, 16, 16), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         }
 
         public override bool CanKillTile(int i, int j, ref bool blockDamaged) => !WorldGen.gen;

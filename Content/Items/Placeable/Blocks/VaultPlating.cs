@@ -1,16 +1,19 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Remnants.Content.Tiles;
 using Remnants.Content.Items.Materials;
 using Remnants.Content.Items.Placeable.Walls;
+using Remnants.Content.Tiles;
+using Terraria;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace Remnants.Content.Items.Placeable.Blocks
 {
 	[LegacyName("vaultbrick")]
 	public class VaultPlating : ModItem
 	{
-		public override void SetDefaults()
+        public override LocalizedText Tooltip => null;
+
+        public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.StoneBlock);
 			Item.createTile = ModContent.TileType <Tiles.Blocks.VaultPlating>();

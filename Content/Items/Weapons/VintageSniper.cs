@@ -1,16 +1,19 @@
 using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Remnants.Content.Projectiles;
+using Terraria;
 using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace Remnants.Content.Items.Weapons
 {
 	[LegacyName("vintagesniper")]
 	public class VintageSniper : ModItem
 	{
-		public override void SetStaticDefaults() 
+        public override LocalizedText Tooltip => Language.GetText("ItemTooltip.SniperRifle");
+
+        public override void SetStaticDefaults() 
 		{
 			Item.ResearchUnlockCount = 1;
 		}

@@ -35,7 +35,7 @@ namespace Remnants.Content.Tiles.Blocks
         {
 			if (!Main.tile[i, j - 1].HasTile || Main.tile[i, j - 1].TileType != Type)
 			{
-                float strength = (RemSystem.exhaustIntensity + 1) / 2;
+                float strength = (RemSystem.vaultExhaustIntensity + 1) / 2;
                 if (Main.rand.NextFloat(1f) < strength)
                 {
                     Dust dust = Dust.NewDustPerfect(new Vector2((i * 16) + Main.rand.NextFloat(7f, 9f), j * 16 + 8), DustID.Smoke, new Vector2(0f, Main.rand.NextFloat(0, -4) * strength), 255 - (int)(strength * 25), Scale: Main.rand.NextFloat(2, 4));
@@ -48,7 +48,7 @@ namespace Remnants.Content.Tiles.Blocks
                     gore.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
                 }
 
-                if (Main.rand.NextFloat(32f) < strength)
+                if (Main.rand.NextBool(64))
                 {
                     Vector2 position = new Vector2(i + 0.5f, j + 0.5f) * 16;
                     Vector2 velocity = Main.rand.NextVector2Circular(2f, 1f);

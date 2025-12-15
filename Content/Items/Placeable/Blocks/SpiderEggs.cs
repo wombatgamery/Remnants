@@ -11,6 +11,8 @@
 //{
 //	public class SpiderEggs : ModItem
 //	{
+//      public override LocalizedText Tooltip => null;
+
 //		public override void SetStaticDefaults()
 //		{
 //			Item.ResearchUnlockCount = 100;

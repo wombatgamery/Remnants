@@ -1,14 +1,17 @@
-using Terraria.ID;
-using Terraria.ModLoader;
 using Remnants.Content.Tiles;
 using Terraria;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace Remnants.Content.Items.Placeable.Blocks
 {
 	[LegacyName("gardenbrick")]
 	public class GardenBrick : ModItem
 	{
-		public override void SetStaticDefaults()
+        public override LocalizedText Tooltip => null;
+
+        public override void SetStaticDefaults()
 		{
 			Item.ResearchUnlockCount = 100;
 		}
@@ -19,15 +22,15 @@ namespace Remnants.Content.Items.Placeable.Blocks
             Item.createTile = ModContent.TileType <Tiles.Blocks.GardenBrick>();
 		}
 
-		//public override void AddRecipes()
-		//{
-		//	Recipe recipe;
+		public override void AddRecipes()
+		{
+			Recipe recipe;
 
-		//	recipe = Recipe.Create(Type, 5);
-		//	recipe.AddIngredient(ItemID.StoneBlock, 10);
-		//	recipe.AddIngredient(ItemID.GrassSeeds);
-		//	recipe.AddTile(TileID.Furnaces);
-		//	recipe.Register();
-		//}
+            recipe = Recipe.Create(Type);
+            recipe.AddIngredient(ModContent.ItemType<Hardstone>());
+            recipe.AddIngredient(ItemID.DirtBlock);
+            recipe.AddTile(TileID.Furnaces);
+            recipe.Register();
+		}
 	}
 }

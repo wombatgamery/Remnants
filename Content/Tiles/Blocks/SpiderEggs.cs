@@ -60,7 +60,7 @@ namespace Remnants.Content.Tiles.Blocks
             {
                 SoundEngine.PlaySound(SoundID.NPCDeath1, new Vector2(i + 0.5f, j + 0.5f) * 16);
             }
-            return true;// false;
+            return false;
         }
     }
 }

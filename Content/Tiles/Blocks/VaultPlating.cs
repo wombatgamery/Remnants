@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Remnants.Content.Dusts;
+using Remnants.Content.Walls;
 using Remnants.Content.World;
 using Terraria;
 using Terraria.ID;
@@ -13,11 +14,11 @@ namespace Remnants.Content.Tiles.Blocks
 	[LegacyName("vaultbrickrusted")]
 	public class VaultPlating : ModTile
 	{
-		public override void SetStaticDefaults()
-		{
-			Main.tileSolid[Type] = true;
-			Main.tileBlockLight[Type] = true;
-            //Main.tileMerge[Type][ModContent.TileType<vaultplatform>()] = true;
+        public override void SetStaticDefaults()
+        {
+            Main.tileSolid[Type] = true;
+            Main.tileBlockLight[Type] = true;
+            Main.tileMerge[TileID.Grate][Type] = true;
 
             TileID.Sets.CanBeClearedDuringGeneration[Type] = false;
 			TileID.Sets.CanBeClearedDuringOreRunner[Type] = false;
@@ -349,9 +350,17 @@ namespace Remnants.Content.Tiles.Blocks
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
-            r = 1;
-            g = 1;
-            b = 1;
+            if (Main.tile[i, j].WallType != ModContent.WallType<VaultWallUnsafe>())
+            {
+                r = g = b = 1;
+            }
+            else if (RemSystem.vaultLightIntensity > 0)
+            {
+                if (RemSystem.vaultLightIntensity == 1 || RemSystem.vaultLightFlicker < RemSystem.vaultLightIntensity)
+                {
+                    r = g = b = RemSystem.vaultLightIntensity;
+                }
+            }
         }
     }
 }

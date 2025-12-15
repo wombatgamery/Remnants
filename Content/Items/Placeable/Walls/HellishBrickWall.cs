@@ -1,13 +1,16 @@
+using Remnants.Content.Items.Placeable.Blocks;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
-using Remnants.Content.Items.Placeable.Blocks;
 
 namespace Remnants.Content.Items.Placeable.Walls
 {
 	public class HellishBrickWall : ModItem
 	{
-		public override void SetStaticDefaults()
+        public override LocalizedText Tooltip => null;
+
+        public override void SetStaticDefaults()
 		{
 			Item.ResearchUnlockCount = 400;
 		}
@@ -15,7 +18,7 @@ namespace Remnants.Content.Items.Placeable.Walls
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.StoneWall);
-            Item.createWall = ModContent.WallType<Content.Walls.HellishBrickWall>();
+            Item.createWall = ModContent.WallType<Content.Walls.AshenBrickWall>();
 		}
 
 		public override void AddRecipes()
@@ -23,10 +26,10 @@ namespace Remnants.Content.Items.Placeable.Walls
 			Recipe recipe;
 
 			recipe = Recipe.Create(Type, 4);
-			recipe.AddIngredient(ModContent.ItemType<HellishBrick>());
+			recipe.AddIngredient(ModContent.ItemType<AshenBrick>());
 			recipe.Register();
 
-			recipe = Recipe.Create(ModContent.ItemType<HellishBrick>());
+			recipe = Recipe.Create(ModContent.ItemType<AshenBrick>());
 			recipe.AddIngredient(Type, 4);
 			recipe.Register();
 		}

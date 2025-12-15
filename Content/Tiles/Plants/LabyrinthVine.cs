@@ -17,8 +17,9 @@ namespace Remnants.Content.Tiles.Plants
 			Main.tileLavaDeath[Type] = true;
 			Main.tileCut[Type] = true;
 
-			TileID.Sets.IsVine[Type] = true;
-			TileID.Sets.VineThreads[Type] = true;
+            TileID.Sets.IsVine[Type] = true;
+            TileID.Sets.ReplaceTileBreakDown[Type] = true;
+            TileID.Sets.VineThreads[Type] = true;
 			TileID.Sets.DisableSmartCursor[Type] = true;
 
 			AddMapEntry(new Color(82, 144, 153));

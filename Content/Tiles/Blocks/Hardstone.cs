@@ -17,7 +17,7 @@ namespace Remnants.Content.Tiles.Blocks
 			TileID.Sets.CanBeClearedDuringOreRunner[Type] = false;
 
 			MineResist = 4;
-			MinPick = 180;
+			MinPick = 110;
 
 			DustType = DustID.Clay;
 			HitSound = SoundID.Tink;

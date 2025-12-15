@@ -30,7 +30,6 @@ Mods: {
 			Grass: Sianie trawy
 			// Moss: Growing moss
 			Piles: Układanie obiektów
-			Underworld: Tworzenie piekła
 			// LivingTrees: Growing ancient roots
 			Mineshafts: Budowanie kopalni
 			Pyramid: Budowanie piramidy pustynnej
@@ -39,17 +38,14 @@ Mods: {
 			// GemCaves: Forming resplendent geodes
 			Microdungeons: Budowanie mikrolochów
 			Boulders: Ustawianie głazów
-			IceTemples: Rzeźbienie lodowych świątyń
-			ThermalRigs: Budowanie instalacji geotermalnych
 			Dungeon: Budowanie przeklętego miasta
 			JungleTemple: Budowanie piramidy w dżungli
-			Tomb: Budowanie nawiedzonego grobowca
 			MagicalLab: Budowanie magicznego laboratorium
 			Labyrinth: Budowanie antycznego labiryntu
-			Stronghold: Budowanie piekielnej fortecy
+			// Warrens: Multiplying hellish beasts
 			WaterTemple: Rzeźbienie podwodnej świątyni
 			AerialGarden: Budowanie niebiańskiego ogrodu
-			Vault: Budowanie krypty
+			// Capsules: Preserving plants for millenia
 		}
 
 		Bestiary: {
@@ -149,6 +145,16 @@ Mods: {
 				// TownNPCDialogueName: the Sulfuric Fog
 				// DisplayName: Sulfuric Fog
 			}
+
+			VaultExterior: {
+				// DisplayName: Vault Exterior
+				// TownNPCDialogueName: the Vault Exterior
+			}
+
+			VaultInterior: {
+				// DisplayName: Vault Interior
+				// TownNPCDialogueName: the Vault Interior
+			}
 		}
 
 		Tiles: {
@@ -206,7 +212,6 @@ Mods: {
 			}
 
 			PrismbudHead.MapEntry: Pryzmik
-			// spiritlamp.MapEntry: spiritlamp
 		}
 
 		Buffs: {
@@ -281,24 +286,9 @@ Mods: {
 				Tooltip: Migocząca magia tej różdżki sprawia, że niektóre ściany wyglądają ładniej
 			}
 
-			EnchantedBrick: {
-				DisplayName: Cegła Arkanów
-				Tooltip: ""
-			}
-
-			GardenBrick: {
-				DisplayName: Cegła Ogrodu
-				Tooltip: ""
-			}
-
 			Hardstone: {
 				DisplayName: Lita Skała
 				Tooltip: Supergęsta skała o nieznanym pochodzeniu
-			}
-
-			PyramidBrick: {
-				DisplayName: Cegła Piramidy
-				Tooltip: ""
 			}
 
 			PyramidChest: {
@@ -309,11 +299,6 @@ Mods: {
 			StarOre: {
 				DisplayName: Gwiezdna Resztka
 				Tooltip: Ostudzona i zestalona gwiazda, wciąż świecąca żywą energią
-			}
-
-			ToxicWaste: {
-				DisplayName: Toksyczne Odpady
-				Tooltip: ""
 			}
 
 			EnergySpike: {
@@ -351,16 +336,10 @@ Mods: {
 				Tooltip: ""
 			}
 
-			GardenBrickWall: {
-				DisplayName: Ściana Ogrodu
-				Tooltip: ""
-			}
-
-			PyramidBrickWall: {
-				DisplayName: Ściana Piramidy
-				Tooltip: ""
-			}
-
+			GardenBrickWall.DisplayName: Ściana Ogrodu
+			GardenBrick.DisplayName: Cegła Ogrodu
+			PyramidBrickWall.DisplayName: Ściana Piramidy
+			PyramidBrick.DisplayName: Cegła Piramidy
 			LuminousHook.DisplayName: Świecący Hak
 
 			SpiritLance: {
@@ -368,44 +347,15 @@ Mods: {
 				Tooltip: Gdy nie ma pełnej many, zadaje 4-krotnie większe obrażenia i przywraca manę po udanych trafieniach
 			}
 
-			SoulLance: {
-				DisplayName: Włócznia Dusz
-				Tooltip: Gdy nie ma pełnej many, zadaje 4-krotnie większe obrażenia i przywraca manę po udanych trafieniach
-			}
-
-			SpectralLance: {
-				DisplayName: Włócznia Widm
-				Tooltip: Gdy nie ma pełnej many, zadaje 4-krotnie większe obrażenia i przywraca manę po udanych trafieniach
-			}
-
-			VintageSniper: {
-				DisplayName: Stara Strzelba Myśliwska
-				Tooltip:
-					'''
-					Strzela potężną, prędką kulą
-					Kliknij prawym przyciskiem, żeby oddalić
-					'''
-			}
-
 			SummonCrown: {
 				DisplayName: Korona Przewodnictwa
 				Tooltip: W zależności od obrażeń noszącego, słudzy zadają do 33% więcej obrażeń
 			}
 
-			TombBrick: {
-				DisplayName: Cegła Grobowca
-				Tooltip: ""
-			}
-
-			TombBrickWall: {
-				DisplayName: Ściana Grobowca
-				Tooltip: ""
-			}
-
-			EnchantedBrickWall: {
-				DisplayName: Ściana Arkanów
-				Tooltip: ""
-			}
+			TombBrick.DisplayName: Cegła Grobowca
+			TombBrickWall.DisplayName: Ściana Grobowca
+			EnchantedBrickWall.DisplayName: Ściana Arkanów
+			EnchantedBrick.DisplayName: Cegła Arkanów
 
 			ScientistNotes1: {
 				DisplayName: Notatki badacza: Przygotowanie
@@ -536,79 +486,12 @@ Mods: {
 				Tooltip: Powierzchnię ołtarza pokrywają stare plamy krwi, upamiętniające jego straszliwą historię
 			}
 
-			VaultPlating: {
-				DisplayName: Pokrycie Krypty
-				Tooltip: ""
-			}
-
-			VaultWall: {
-				DisplayName: Ściana Krypty
-				Tooltip: ""
-			}
-
-			VaultPlatform: {
-				DisplayName: Platforma Krypty
-				Tooltip: ""
-			}
-
-			VaultPipe: {
-				DisplayName: Rura Krypty
-				Tooltip: ""
-			}
-
-			HellishBrick: {
-				DisplayName: Piekielna Cegła
-				Tooltip: ""
-			}
-
-			HellishPlatform: {
-				DisplayName: Piekielna Platforma
-				Tooltip: ""
-			}
-
-			HellishBrickWall: {
-				DisplayName: Hellish Brick Wall
-				Tooltip: ""
-			}
-
-			MarineSlab: {
-				DisplayName: Morska Płyta
-				Tooltip: ""
-			}
-
-			MarinePlatform: {
-				DisplayName: Morska Platforma
-				Tooltip: ""
-			}
-
-			MarineSlabWall: {
-				DisplayName: Morska Ściana
-				Tooltip: ""
-			}
-
-			ArcanePlatform: {
-				DisplayName: Platforma Arkanów
-				Tooltip: ""
-			}
-
-			ArcaneChandelier: {
-				DisplayName: Żyrandol Arkanów
-				Tooltip: ""
-			}
-
 			AlchemyBench: {
 				DisplayName: Biurko Arkanów
 				Tooltip: ""
 			}
 
-			StoneofElements: {
-				DisplayName: Kamień Żywiołów
-				Tooltip:
-					'''
-					Skraca czas odnowienia mikstur leczenia o 25%
-					Wszystkie osłabienia ustępują o 100% szybciej, z wyjątkiem Wstrętu do mikstur i Zaburzenia many
-					'''
-			}
+			StoneofElements.DisplayName: Kamień Żywiołów
 
 			CosmicStone: {
 				DisplayName: Kosmiczny Kamień
@@ -658,16 +541,6 @@ Mods: {
 				// Tooltip: ""
 			}
 
-			PyramidPlatform: {
-				// DisplayName: Pyramid Platform
-				// Tooltip: ""
-			}
-
-			GardenPlatform: {
-				// DisplayName: Garden Platform
-				// Tooltip: ""
-			}
-
 			hivekey: {
 				// DisplayName: hivekey
 				// Tooltip: ""
@@ -678,10 +551,7 @@ Mods: {
 				// DisplayName: Skull Sign
 			}
 
-			Sulfurstone: {
-				// Tooltip: ""
-				// DisplayName: Sulfurstone
-			}
+			// Sulfurstone.DisplayName: Sulfurstone
 
 			InsectRemains: {
 				// DisplayName: Insect Remains
@@ -693,60 +563,52 @@ Mods: {
 				// Tooltip: ""
 			}
 
-			SulfurstoneBrick: {
-				// DisplayName: Sulfurstone Brick
-				// Tooltip: ""
-			}
-
-			SulfurstoneBrickWall: {
-				// DisplayName: Sulfurstone Brick Wall
-				// Tooltip: ""
-			}
+			// SulfurstoneBrick.DisplayName: Sulfurstone Brick
+			// SulfurstoneBrickWall.DisplayName: Sulfurstone Brick Wall
 
 			SulfuricVent: {
 				// DisplayName: Sulfuric Vent
-				// Tooltip: ""
+				// Tooltip: Creates a stream of gas
 			}
 
-			SulfurstoneDiamond: {
-				// Tooltip: ""
-				// DisplayName: Diamond Sulfurstone
-			}
-
-			VaultRailing: {
-				// DisplayName: Vault Railing
-				// Tooltip: ""
-			}
-
-			VaultConduit: {
-				// Tooltip: ""
-				// DisplayName: Vault Conduits
-			}
+			// SulfurstoneDiamond.DisplayName: Diamond Sulfurstone
 
 			HeavyAlloy: {
 				// Tooltip: ""
 				// DisplayName: Heavy Alloy
 			}
 
-			VaultSupport: {
-				// Tooltip: ""
-				// DisplayName: Vault Buttress
+			VintageSniper.DisplayName: Stara Strzelba Myśliwska
+			SpectralLance.DisplayName: Włócznia Widm
+			SoulLance.DisplayName: Włócznia Dusz
+			VaultWall.DisplayName: Ściana Krypty
+			// VaultRailing.DisplayName: Vault Railing
+			// VaultHazardWall.DisplayName: Vault Hazard Wall
+			// VaultBeamWall.DisplayName: Vault Beam Wall
+			MarineSlabWall.DisplayName: Morska Ściana
+			MarineSlab.DisplayName: Morska Płyta
+			// AshenBrickWall.DisplayName: Ashen Brick Wall
+			// AshenBrick.DisplayName: Ashen Brick
+
+			ArcaneChandelier: {
+				Tooltip: ""
+				DisplayName: Żyrandol Arkanów
 			}
 
-			VaultHazardWall: {
-				// DisplayName: Vault Hazard Wall
-				// Tooltip: ""
-			}
-
-			VaultProcessor: {
-				// Tooltip: ""
-				// DisplayName: Vault Computer
-			}
-
-			VaultBeamWall: {
-				// Tooltip: ""
-				// DisplayName: Vault Beam Wall
-			}
+			// VaultSupport.DisplayName: Vault Support
+			// VaultProcessor.DisplayName: Vault Computer
+			VaultPlating.DisplayName: Pokrycie Krypty
+			VaultPlatform.DisplayName: Platforma Krypty
+			VaultPipe.DisplayName: Rura Krypty
+			// VaultConduit.DisplayName: Vault Conduits
+			// PyramidPlatform.DisplayName: Pyramid Platform
+			MarinePlatform.DisplayName: Morska Platforma
+			// AshenPlatform.DisplayName: Ashen Platform
+			// GardenPlatform.DisplayName: Garden Platform
+			// Cage.DisplayName: Cage
+			ArcanePlatform.DisplayName: Platforma Arkanów
+			HellishBrickWall.DisplayName: Hellish Brick Wall
+			// ChainHook.DisplayName: Chain Hook
 		}
 
 		NPCs: {

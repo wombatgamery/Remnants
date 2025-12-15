@@ -1,12 +1,15 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Remnants.Content.Items.Placeable.Blocks
 {
 	public class MarinePlatform : ModItem
 	{
-		public override void SetDefaults()
+        public override LocalizedText Tooltip => null;
+
+        public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.WoodPlatform);
 			Item.createTile = ModContent.TileType <Tiles.Blocks.MarinePlatform>();

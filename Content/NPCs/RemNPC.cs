@@ -198,16 +198,6 @@ namespace Remnants.Content.NPCs
 
                 //    pool[ModContent.NPCType<Icer>()] = 0.2f;
                 //}
-                //else if (tile.WallType == WallID.LihzahrdBrickUnsafe || tile.WallType == ModContent.WallType<temple>())
-                //{
-                //	pool.Clear();
-
-                //	if (player.InModBiome(ModContent.GetInstance<JungleTemple>()))
-                //	{
-                //		pool[NPCID.Lihzahrd] = 1f;
-                //		pool[NPCID.FlyingSnake] = 0.5f;
-                //	}
-                //}
                 else if (tile.WallType == ModContent.WallType<magicallab>() || tile.WallType == ModContent.WallType<EnchantedBrickWallUnsafe>() || tile.WallType == ModContent.WallType<Ascension>())
                 {
                     pool.Clear();
@@ -219,11 +209,12 @@ namespace Remnants.Content.NPCs
                         pool[ModContent.NPCType<TomeofFrost>()] = 1f;
                     }
                 }
-                else if (tile.WallType == ModContent.WallType<stronghold>() || tile.WallType == ModContent.WallType<HellishBrickWallUnsafe>())
+                else if (tile.WallType == ModContent.WallType<AshenBrickWallUnsafe>() || tile.WallType == ModContent.WallType<IronBars>() && spawnInfo.SpawnTileY >= Main.maxTilesY - 200)
                 {
                     pool.Clear();
 
-                    pool[NPCID.Demon] = 1f;
+                    pool[NPCID.Demon] = 0.9f;
+                    pool[NPCID.VoodooDemon] = 0.1f;
                 }
                 else if (tile.WallType == ModContent.WallType<undergrowth>() || tile.WallType == WallID.LivingWoodUnsafe)
                 {

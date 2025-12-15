@@ -30,7 +30,6 @@ Mods: {
 			Grass: Growing grass
 			Moss: Growing moss
 			Piles: Placing objects
-			Underworld: Forming a volcanic hellscape
 			LivingTrees: Growing ancient roots
 			Mineshafts: Overseeing mining operations
 			Pyramid: Enshrining sacred relics
@@ -39,17 +38,14 @@ Mods: {
 			GemCaves: Forming resplendent geodes
 			Microdungeons: Expanding infrastructure
 			Boulders: Rigging traps
-			IceTemples: Sculpting ice temples
-			ThermalRigs: Building geothermal rigs
 			Dungeon: Building a doomed city
 			JungleTemple: Raising a jungle tribe
-			Tomb: Performing ungodly rituals
 			MagicalLab: Making supernatural discoveries
 			Labyrinth: Opening a portal to outer spheres
-			Stronghold: Multiplying hellish beasts
+			Warrens: Multiplying hellish beasts
 			WaterTemple: Carving an underwater labyrinth
 			AerialGarden: Cultivating arcane flora
-			Vault: Running intergalactic experiments
+			Capsules: Preserving plants for millenia
 		}
 
 		Bestiary: {
@@ -149,6 +145,16 @@ Mods: {
 				TownNPCDialogueName: the Sulfuric Fog
 				DisplayName: Sulfuric Fog
 			}
+
+			VaultExterior: {
+				DisplayName: Vault Exterior
+				TownNPCDialogueName: the Vault Exterior
+			}
+
+			VaultInterior: {
+				DisplayName: Vault Interior
+				TownNPCDialogueName: the Vault Interior
+			}
 		}
 
 		Tiles: {
@@ -206,7 +212,6 @@ Mods: {
 			}
 
 			PrismbudHead.MapEntry: Prismbud
-			spiritlamp.MapEntry: spiritlamp
 		}
 
 		Buffs: {
@@ -281,24 +286,9 @@ Mods: {
 				Tooltip: The shimmer magic in this wand makes certain walls look nicer
 			}
 
-			EnchantedBrick: {
-				DisplayName: Arcane Brick
-				Tooltip: ""
-			}
-
-			GardenBrick: {
-				DisplayName: Garden Brick
-				Tooltip: ""
-			}
-
 			Hardstone: {
 				DisplayName: Hardstone
 				Tooltip: "'A superdense rock of unknown origin'"
-			}
-
-			PyramidBrick: {
-				DisplayName: Pyramid Brick
-				Tooltip: ""
 			}
 
 			PyramidChest: {
@@ -309,11 +299,6 @@ Mods: {
 			StarOre: {
 				DisplayName: Stellar Remnant
 				Tooltip: "'A cooled and solidified star, still glowing with vibrant energy'"
-			}
-
-			ToxicWaste: {
-				DisplayName: Toxic Waste
-				Tooltip: ""
 			}
 
 			EnergySpike: {
@@ -351,16 +336,10 @@ Mods: {
 				Tooltip: ""
 			}
 
-			GardenBrickWall: {
-				DisplayName: Garden Brick Wall
-				Tooltip: ""
-			}
-
-			PyramidBrickWall: {
-				DisplayName: Pyramid Brick Wall
-				Tooltip: ""
-			}
-
+			GardenBrickWall.DisplayName: Garden Brick Wall
+			GardenBrick.DisplayName: Garden Brick
+			PyramidBrickWall.DisplayName: Pyramid Brick Wall
+			PyramidBrick.DisplayName: Pyramid Brick
 			LuminousHook.DisplayName: Luminous Hook
 
 			SpiritLance: {
@@ -368,44 +347,15 @@ Mods: {
 				Tooltip: When not at full mana, deals 4x damage and restores mana with successful hits
 			}
 
-			SoulLance: {
-				DisplayName: Soul Lance
-				Tooltip: When not at full mana, deals 4x damage and restores mana with successful hits
-			}
-
-			SpectralLance: {
-				DisplayName: Spectral Lance
-				Tooltip: When not at full mana, deals 4x damage and restores mana with successful hits
-			}
-
-			VintageSniper: {
-				DisplayName: Vintage Sniper
-				Tooltip:
-					'''
-					Shoots a powerful, high velocity bullet
-					Right click to zoom out
-					'''
-			}
-
 			SummonCrown: {
 				DisplayName: Crown of Loyalty
 				Tooltip: Depending on the wearer's injuries, minions deal up to 33% more damage
 			}
 
-			TombBrick: {
-				DisplayName: Tomb Brick
-				Tooltip: ""
-			}
-
-			TombBrickWall: {
-				DisplayName: Tomb Brick Wall
-				Tooltip: ""
-			}
-
-			EnchantedBrickWall: {
-				DisplayName: Arcane Brick Wall
-				Tooltip: ""
-			}
+			TombBrick.DisplayName: Tomb Brick
+			TombBrickWall.DisplayName: Tomb Brick Wall
+			EnchantedBrickWall.DisplayName: Arcane Brick Wall
+			EnchantedBrick.DisplayName: Enchanted Brick
 
 			ScientistNotes1: {
 				DisplayName: Researcher's Notes: Preparation
@@ -532,79 +482,12 @@ Mods: {
 				Tooltip: "'Old bloodstains cover the altar's surface, memorialising its terrible history'"
 			}
 
-			VaultPlating: {
-				DisplayName: Vault Plating
-				Tooltip: ""
-			}
-
-			VaultWall: {
-				DisplayName: Vault Plating Wall
-				Tooltip: ""
-			}
-
-			VaultPlatform: {
-				DisplayName: Vault Platform
-				Tooltip: ""
-			}
-
-			VaultPipe: {
-				DisplayName: Vault Pipework
-				Tooltip: ""
-			}
-
-			HellishBrick: {
-				DisplayName: Ashen Brick
-				Tooltip: ""
-			}
-
-			HellishPlatform: {
-				DisplayName: Ashen Platform
-				Tooltip: ""
-			}
-
-			HellishBrickWall: {
-				DisplayName: Ashen Brick Wall
-				Tooltip: ""
-			}
-
-			MarineSlab: {
-				DisplayName: Marine Slab
-				Tooltip: ""
-			}
-
-			MarinePlatform: {
-				DisplayName: Marine Platform
-				Tooltip: ""
-			}
-
-			MarineSlabWall: {
-				DisplayName: Marine Slab Wall
-				Tooltip: ""
-			}
-
-			ArcanePlatform: {
-				DisplayName: Arcane Platform
-				Tooltip: ""
-			}
-
-			ArcaneChandelier: {
-				DisplayName: Arcane Chandelier
-				Tooltip: ""
-			}
-
 			AlchemyBench: {
 				DisplayName: Arcane Desk
 				Tooltip: ""
 			}
 
-			StoneofElements: {
-				DisplayName: Stone of Elements
-				Tooltip:
-					'''
-					Reduces the cooldown of healing potions by 25%
-					All debuffs wear off 100% faster, except for health and mana sickness
-					'''
-			}
+			StoneofElements.DisplayName: Stone of Elements
 
 			CosmicStone: {
 				DisplayName: Cosmic Stone
@@ -654,16 +537,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			PyramidPlatform: {
-				DisplayName: Pyramid Platform
-				Tooltip: ""
-			}
-
-			GardenPlatform: {
-				DisplayName: Garden Platform
-				Tooltip: ""
-			}
-
 			hivekey: {
 				DisplayName: hivekey
 				Tooltip: ""
@@ -674,10 +547,7 @@ Mods: {
 				DisplayName: Skull Sign
 			}
 
-			Sulfurstone: {
-				Tooltip: ""
-				DisplayName: Sulfurstone
-			}
+			Sulfurstone.DisplayName: Sulfurstone
 
 			InsectRemains: {
 				DisplayName: Insect Remains
@@ -689,60 +559,52 @@ Mods: {
 				Tooltip: ""
 			}
 
-			SulfurstoneBrick: {
-				DisplayName: Sulfurstone Brick
-				Tooltip: ""
-			}
-
-			SulfurstoneBrickWall: {
-				DisplayName: Sulfurstone Brick Wall
-				Tooltip: ""
-			}
+			SulfurstoneBrick.DisplayName: Sulfurstone Brick
+			SulfurstoneBrickWall.DisplayName: Sulfurstone Brick Wall
 
 			SulfuricVent: {
 				DisplayName: Sulfuric Vent
-				Tooltip: ""
+				Tooltip: Creates a stream of gas
 			}
 
-			SulfurstoneDiamond: {
-				Tooltip: ""
-				DisplayName: Diamond Sulfurstone
-			}
-
-			VaultRailing: {
-				DisplayName: Vault Railing
-				Tooltip: ""
-			}
-
-			VaultConduit: {
-				Tooltip: ""
-				DisplayName: Vault Conduits
-			}
+			SulfurstoneDiamond.DisplayName: Diamond Sulfurstone
 
 			HeavyAlloy: {
 				Tooltip: ""
 				DisplayName: Heavy Alloy
 			}
 
-			VaultSupport: {
+			VintageSniper.DisplayName: Vintage Sniper
+			SpectralLance.DisplayName: Spectral Lance
+			SoulLance.DisplayName: Soul Lance
+			VaultWall.DisplayName: Vault Wall
+			VaultRailing.DisplayName: Vault Railing
+			VaultHazardWall.DisplayName: Vault Hazard Wall
+			VaultBeamWall.DisplayName: Vault Beam Wall
+			MarineSlabWall.DisplayName: Marine Slab Wall
+			MarineSlab.DisplayName: Marine Slab
+			AshenBrickWall.DisplayName: Ashen Brick Wall
+			AshenBrick.DisplayName: Ashen Brick
+
+			ArcaneChandelier: {
 				Tooltip: ""
-				DisplayName: Vault Buttress
+				DisplayName: Arcane Chandelier
 			}
 
-			VaultHazardWall: {
-				DisplayName: Vault Hazard Wall
-				Tooltip: ""
-			}
-
-			VaultProcessor: {
-				Tooltip: ""
-				DisplayName: Vault Computer
-			}
-
-			VaultBeamWall: {
-				Tooltip: ""
-				DisplayName: Vault Beam Wall
-			}
+			VaultSupport.DisplayName: Vault Support
+			VaultProcessor.DisplayName: Vault Computer
+			VaultPlating.DisplayName: Vault Plating
+			VaultPlatform.DisplayName: Vault Platform
+			VaultPipe.DisplayName: Vault Pipe
+			VaultConduit.DisplayName: Vault Conduits
+			PyramidPlatform.DisplayName: Pyramid Platform
+			MarinePlatform.DisplayName: Marine Platform
+			AshenPlatform.DisplayName: Ashen Platform
+			GardenPlatform.DisplayName: Garden Platform
+			Cage.DisplayName: Cage
+			ArcanePlatform.DisplayName: Arcane Platform
+			HellishBrickWall.DisplayName: Hellish Brick Wall
+			ChainHook.DisplayName: Chain Hook
 		}
 
 		NPCs: {

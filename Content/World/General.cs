@@ -478,7 +478,7 @@ namespace Remnants.Content.World
             {
                 for (int x = left; x <= right; x++)
                 {
-                    if (WorldGen.InWorld(x, y))
+                    if (x >= 0 && x < Main.maxTilesX && y >= 0 && y < Main.maxTilesY)
                     {
                         Tile tile = Main.tile[x, y];
 
@@ -1066,7 +1066,7 @@ namespace Remnants.Content.World
                     itemsToAdd.Add((springWater, Main.rand.Next(2, 4)));
                 }
                 else if (Main.rand.NextBool(2) || magicalLab)
-                    itemsToAdd.Add((grade > 2 ? haveRestorationPotions ? ItemID.RestorationPotion : manaPotions ? ItemID.GreaterManaPotion : ItemID.GreaterHealingPotion : grade == 2 ? haveRestorationPotions ? ItemID.RestorationPotion : manaPotions ? ItemID.ManaPotion : ItemID.HealingPotion : haveRestorationPotions ? ItemID.LesserRestorationPotion : manaPotions ? ItemID.LesserManaPotion : ItemID.LesserHealingPotion, Main.rand.Next(3, 6)));
+                    itemsToAdd.Add((haveRestorationPotions ? ItemID.RestorationPotion : grade > 2 ? (manaPotions ? ItemID.GreaterManaPotion : ItemID.GreaterHealingPotion) : grade == 2 ? (manaPotions ? ItemID.ManaPotion : ItemID.HealingPotion) : (manaPotions ? ItemID.LesserManaPotion : ItemID.LesserHealingPotion), haveRestorationPotions ? Main.rand.Next(6, 12) : Main.rand.Next(3, 6)));
             }
 
             if (uniquePotions != null)
@@ -2457,7 +2457,7 @@ namespace Remnants.Content.World
                             }
                             else if (tile.TileType == TileID.Ash)
                             {
-                                if (tile.IsHalfBlock)
+                                if (tile.IsHalfBlock && tile.WallType == ModContent.WallType<AshenBrickWallUnsafe>())
                                 {
                                     if (MiscTools.HasTile(x + 1, y, TileID.Ash))
                                     {
@@ -2478,7 +2478,7 @@ namespace Remnants.Content.World
                             }
                             else if (tile.TileType == TileID.AshWood)
                             {
-                                if (tile.IsHalfBlock && MiscTools.HasTile(x, y - 3, ModContent.TileType<HellishBrick>()))
+                                if (tile.IsHalfBlock && MiscTools.HasTile(x, y - 3, ModContent.TileType<AshenBrick>()))
                                 {
                                     tile.IsHalfBlock = false;
 

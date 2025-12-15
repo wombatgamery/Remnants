@@ -30,7 +30,6 @@ Mods: {
 			// Grass: Growing grass
 			// Moss: Growing moss
 			// Piles: Placing objects
-			// Underworld: Forming a volcanic hellscape
 			// LivingTrees: Growing ancient roots
 			// Mineshafts: Overseeing mining operations
 			// Pyramid: Enshrining sacred relics
@@ -39,17 +38,14 @@ Mods: {
 			// GemCaves: Forming resplendent geodes
 			// Microdungeons: Expanding infrastructure
 			// Boulders: Rigging traps
-			// IceTemples: Sculpting ice temples
-			// ThermalRigs: Building geothermal rigs
 			// Dungeon: Building a doomed city
 			// JungleTemple: Raising a jungle tribe
-			// Tomb: Performing ungodly rituals
 			// MagicalLab: Making supernatural discoveries
 			// Labyrinth: Opening a portal to outer spheres
-			// Stronghold: Multiplying hellish beasts
+			// Warrens: Multiplying hellish beasts
 			// WaterTemple: Carving an underwater labyrinth
 			// AerialGarden: Cultivating arcane flora
-			// Vault: Running intergalactic experiments
+			// Capsules: Preserving plants for millenia
 		}
 
 		Bestiary: {
@@ -149,6 +145,16 @@ Mods: {
 				// TownNPCDialogueName: the Sulfuric Fog
 				// DisplayName: Sulfuric Fog
 			}
+
+			VaultExterior: {
+				// DisplayName: Vault Exterior
+				// TownNPCDialogueName: the Vault Exterior
+			}
+
+			VaultInterior: {
+				// DisplayName: Vault Interior
+				// TownNPCDialogueName: the Vault Interior
+			}
 		}
 
 		Tiles: {
@@ -206,7 +212,6 @@ Mods: {
 			}
 
 			PrismbudHead.MapEntry: Prismaknospe
-			// spiritlamp.MapEntry: spiritlamp
 		}
 
 		Buffs: {
@@ -281,24 +286,9 @@ Mods: {
 				Tooltip: Die Schimmermagie in diesem Stab lässt bestimmte Wände schöner aussehen
 			}
 
-			EnchantedBrick: {
-				DisplayName: Arkaner Ziegel
-				Tooltip: ""
-			}
-
-			GardenBrick: {
-				DisplayName: Gartenziegel
-				Tooltip: ""
-			}
-
 			Hardstone: {
 				DisplayName: Hartstein
 				Tooltip: Ein superdichter Fels unbekannten Ursprungs
-			}
-
-			PyramidBrick: {
-				DisplayName: Pyramidenziegel
-				Tooltip: ""
 			}
 
 			PyramidChest: {
@@ -309,11 +299,6 @@ Mods: {
 			StarOre: {
 				DisplayName: Stellarer Überrest
 				Tooltip: Ein abgekühlter und verfestigter Stern, der immer noch mit lebendiger Energie glüht
-			}
-
-			ToxicWaste: {
-				DisplayName: Giftmüll
-				Tooltip: ""
 			}
 
 			EnergySpike: {
@@ -351,16 +336,10 @@ Mods: {
 				Tooltip: ""
 			}
 
-			GardenBrickWall: {
-				DisplayName: Gartenziegel-Wand
-				Tooltip: ""
-			}
-
-			PyramidBrickWall: {
-				DisplayName: Pyramidenziegel-Wand
-				Tooltip: ""
-			}
-
+			GardenBrickWall.DisplayName: Gartenziegel-Wand
+			GardenBrick.DisplayName: Gartenziegel
+			PyramidBrickWall.DisplayName: Pyramidenziegel-Wand
+			PyramidBrick.DisplayName: Pyramidenziegel
 			LuminousHook.DisplayName: Leuchtender Haken
 
 			SpiritLance: {
@@ -368,44 +347,15 @@ Mods: {
 				Tooltip: Wenn nicht bei vollem Mana, verursacht 4x Schaden und stellt Mana bei erfolgreichen Treffern wieder her
 			}
 
-			SoulLance: {
-				DisplayName: Seelenlanze
-				Tooltip: Wenn nicht bei vollem Mana, verursacht 4x Schaden und stellt Mana bei erfolgreichen Treffern wieder her
-			}
-
-			SpectralLance: {
-				DisplayName: Spektrallanze
-				Tooltip: Wenn nicht bei vollem Mana, verursacht 4x Schaden und stellt Mana bei erfolgreichen Treffern wieder her
-			}
-
-			VintageSniper: {
-				DisplayName: Vintage-Scharfschützengewehr
-				Tooltip:
-					'''
-					Schießt eine mächtige, hochgeschwindigkeits Kugel
-					Rechtsklick zum Herauszoomen
-					'''
-			}
-
 			SummonCrown: {
 				DisplayName: Krone der Führung
 				Tooltip: Je nach Verletzungen des Trägers verursachen Begleiter bis zu 33% mehr Schaden
 			}
 
-			TombBrick: {
-				DisplayName: Grabziegel
-				Tooltip: ""
-			}
-
-			TombBrickWall: {
-				DisplayName: Grabziegel-Wand
-				Tooltip: ""
-			}
-
-			EnchantedBrickWall: {
-				DisplayName: Arkane Ziegel-Wand
-				Tooltip: ""
-			}
+			TombBrick.DisplayName: Grabziegel
+			TombBrickWall.DisplayName: Grabziegel-Wand
+			EnchantedBrickWall.DisplayName: Arkane Ziegel-Wand
+			EnchantedBrick.DisplayName: Arkaner Ziegel
 
 			ScientistNotes1: {
 				DisplayName: Forscher-Notizen: Vorbereitung
@@ -532,79 +482,12 @@ Mods: {
 				Tooltip: Alte Blutflecken bedecken die Oberfläche des Altars und gedenken seiner schrecklichen Geschichte
 			}
 
-			VaultPlating: {
-				DisplayName: Gewölbeplatte
-				Tooltip: ""
-			}
-
-			VaultWall: {
-				DisplayName: Gewölbewand
-				Tooltip: ""
-			}
-
-			VaultPlatform: {
-				DisplayName: Gewölbeplattform
-				Tooltip: ""
-			}
-
-			VaultPipe: {
-				DisplayName: Gewölberohrwerk
-				Tooltip: ""
-			}
-
-			HellishBrick: {
-				DisplayName: Höllischer Ziegel
-				Tooltip: ""
-			}
-
-			HellishPlatform: {
-				DisplayName: Höllische Plattform
-				Tooltip: ""
-			}
-
-			HellishBrickWall: {
-				DisplayName: Höllische Ziegel-Wand
-				Tooltip: ""
-			}
-
-			MarineSlab: {
-				DisplayName: Meeresplatte
-				Tooltip: ""
-			}
-
-			MarinePlatform: {
-				DisplayName: Meeresplattform
-				Tooltip: ""
-			}
-
-			MarineSlabWall: {
-				DisplayName: Meeresplatten-Wand
-				Tooltip: ""
-			}
-
-			ArcanePlatform: {
-				DisplayName: Arkane Plattform
-				Tooltip: ""
-			}
-
-			ArcaneChandelier: {
-				DisplayName: Arkaner Kronleuchter
-				Tooltip: ""
-			}
-
 			AlchemyBench: {
 				DisplayName: Arkaner Schreibtisch
 				Tooltip: ""
 			}
 
-			StoneofElements: {
-				DisplayName: Stein der Elemente
-				Tooltip:
-					'''
-					Reduziert die Abklingzeit von Heiltränken um 25%
-					Alle Debuffs klingen 100% schneller ab, außer Gesundheits- und Manakrankheit
-					'''
-			}
+			StoneofElements.DisplayName: Stein der Elemente
 
 			CosmicStone: {
 				DisplayName: Kosmischer Stein
@@ -654,16 +537,6 @@ Mods: {
 				// Tooltip: ""
 			}
 
-			PyramidPlatform: {
-				// DisplayName: Pyramid Platform
-				// Tooltip: ""
-			}
-
-			GardenPlatform: {
-				// DisplayName: Garden Platform
-				// Tooltip: ""
-			}
-
 			hivekey: {
 				// DisplayName: hivekey
 				// Tooltip: ""
@@ -674,10 +547,7 @@ Mods: {
 				// DisplayName: Skull Sign
 			}
 
-			Sulfurstone: {
-				// Tooltip: ""
-				// DisplayName: Sulfurstone
-			}
+			// Sulfurstone.DisplayName: Sulfurstone
 
 			InsectRemains: {
 				// DisplayName: Insect Remains
@@ -689,60 +559,52 @@ Mods: {
 				// Tooltip: ""
 			}
 
-			SulfurstoneBrick: {
-				// DisplayName: Sulfurstone Brick
-				// Tooltip: ""
-			}
-
-			SulfurstoneBrickWall: {
-				// DisplayName: Sulfurstone Brick Wall
-				// Tooltip: ""
-			}
+			// SulfurstoneBrick.DisplayName: Sulfurstone Brick
+			// SulfurstoneBrickWall.DisplayName: Sulfurstone Brick Wall
 
 			SulfuricVent: {
 				// DisplayName: Sulfuric Vent
-				// Tooltip: ""
+				// Tooltip: Creates a stream of gas
 			}
 
-			SulfurstoneDiamond: {
-				// Tooltip: ""
-				// DisplayName: Diamond Sulfurstone
-			}
-
-			VaultRailing: {
-				// DisplayName: Vault Railing
-				// Tooltip: ""
-			}
-
-			VaultConduit: {
-				// Tooltip: ""
-				// DisplayName: Vault Conduits
-			}
+			// SulfurstoneDiamond.DisplayName: Diamond Sulfurstone
 
 			HeavyAlloy: {
 				// Tooltip: ""
 				// DisplayName: Heavy Alloy
 			}
 
-			VaultSupport: {
-				// Tooltip: ""
-				// DisplayName: Vault Buttress
+			VintageSniper.DisplayName: Vintage-Scharfschützengewehr
+			SpectralLance.DisplayName: Spektrallanze
+			SoulLance.DisplayName: Seelenlanze
+			VaultWall.DisplayName: Gewölbewand
+			// VaultRailing.DisplayName: Vault Railing
+			// VaultHazardWall.DisplayName: Vault Hazard Wall
+			// VaultBeamWall.DisplayName: Vault Beam Wall
+			MarineSlabWall.DisplayName: Meeresplatten-Wand
+			MarineSlab.DisplayName: Meeresplatte
+			// AshenBrickWall.DisplayName: Ashen Brick Wall
+			// AshenBrick.DisplayName: Ashen Brick
+
+			ArcaneChandelier: {
+				Tooltip: ""
+				DisplayName: Arkaner Kronleuchter
 			}
 
-			VaultHazardWall: {
-				// DisplayName: Vault Hazard Wall
-				// Tooltip: ""
-			}
-
-			VaultProcessor: {
-				// Tooltip: ""
-				// DisplayName: Vault Computer
-			}
-
-			VaultBeamWall: {
-				// Tooltip: ""
-				// DisplayName: Vault Beam Wall
-			}
+			// VaultSupport.DisplayName: Vault Support
+			// VaultProcessor.DisplayName: Vault Computer
+			VaultPlating.DisplayName: Gewölbeplatte
+			VaultPlatform.DisplayName: Gewölbeplattform
+			VaultPipe.DisplayName: Gewölberohrwerk
+			// VaultConduit.DisplayName: Vault Conduits
+			// PyramidPlatform.DisplayName: Pyramid Platform
+			MarinePlatform.DisplayName: Meeresplattform
+			// AshenPlatform.DisplayName: Ashen Platform
+			// GardenPlatform.DisplayName: Garden Platform
+			// Cage.DisplayName: Cage
+			ArcanePlatform.DisplayName: Arkane Plattform
+			HellishBrickWall.DisplayName: Höllische Ziegel-Wand
+			// ChainHook.DisplayName: Chain Hook
 		}
 
 		NPCs: {

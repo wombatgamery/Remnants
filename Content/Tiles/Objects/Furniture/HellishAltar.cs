@@ -23,7 +23,7 @@ namespace Remnants.Content.Tiles.Objects.Furniture
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
 			TileObjectData.newTile.Width = 4;
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, TileObjectData.newTile.Width, 0);
-            TileObjectData.newTile.CoordinateHeights = new[] { 16, 17 };
+            TileObjectData.newTile.CoordinateHeights = new[] { 16, 22 };
 			TileObjectData.newTile.CoordinatePadding = 0;
 			TileObjectData.newTile.LavaDeath = false;
 			TileObjectData.addTile(Type);
