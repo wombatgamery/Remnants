@@ -486,9 +486,29 @@ namespace Remnants.Content.World
                 }
                 for (int y = biomes.Height - 6; y < biomes.Height - 4; y++)
                 {
-                    for (int x = 0; x < biomes.Width; x++)
+                    if(!calamity)
                     {
-                        biomes.AddBiome(x, y, BiomeID.SulfuricVents);
+                        for (int x = 0; x < biomes.Width; x++)
+                        {
+                                biomes.AddBiome(x, y, BiomeID.SulfuricVents);
+                        }
+                    }
+                    else
+                    {
+                        if(GenVars.dungeonSide != 1)
+                        {
+                            for (int x = 7; x < biomes.Width; x++)
+                            {
+                                    biomes.AddBiome(x, y, BiomeID.SulfuricVents);
+                            }
+                        }
+                        else
+                        {
+                            for (int x = 0; x < biomes.Width-7; x++)
+                            {
+                                    biomes.AddBiome(x, y, BiomeID.SulfuricVents);
+                            }
+                        }
                     }
                 }
 
