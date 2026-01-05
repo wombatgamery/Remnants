@@ -10,7 +10,7 @@ namespace Remnants.Content.Items.Placeable.Objects
 		{
 			Item.CloneDefaults(ItemID.Fireplace);
 			Item.rare = 0;
-			Item.createTile = ModContent.TileType<Tiles.Objects.Furniture.AlchemyBench>();
+			Item.createTile = ModContent.TileType<Content.Tiles.Shimmer.AlchemyBench>();
 		}
 	}
 }

@@ -18,7 +18,7 @@ namespace Remnants.Content.Items.Placeable.Blocks
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.GrayBrick);
-            Item.createTile = ModContent.TileType <Tiles.Blocks.PyramidBrick>();
+            Item.createTile = ModContent.TileType <Tiles.DesertRuins.PyramidBrick>();
 		}
 
         public override void AddRecipes()

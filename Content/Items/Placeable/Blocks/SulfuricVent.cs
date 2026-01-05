@@ -16,7 +16,7 @@ namespace Remnants.Content.Items.Placeable.Blocks
 		{
 			Item.CloneDefaults(ItemID.StoneBlock);
             Item.height = 28;
-            Item.createTile = ModContent.TileType <Tiles.Blocks.SulfuricVent>();
+            Item.createTile = ModContent.TileType <Content.Tiles.SulfuricVents.SulfuricVent>();
 		}
 
         public override void AddRecipes()

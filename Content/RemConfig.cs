@@ -16,9 +16,9 @@ namespace Remnants.Content
         [BackgroundColor(90, 160, 140)]
         public bool Safeguard;
 
-        [DefaultValue(false)]
-        [BackgroundColor(150, 100, 125)]
-        public bool ExperimentalWorldgen;
+        //[DefaultValue(false)]
+        //[BackgroundColor(150, 100, 125)]
+        //public bool ExperimentalWorldgen;
 
         [Header("Terrain")]
 
@@ -61,6 +61,11 @@ namespace Remnants.Content
         public bool AquaticDepthsRework;
 
         [Header("Structure")]
+
+        //[DefaultValue(true)]
+        [DefaultValue(false)]
+        [BackgroundColor(150, 100, 125)]
+        public bool Prototypes;
 
         [Range(0f, 2f)]
         [Increment(.25f)]

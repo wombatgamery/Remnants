@@ -15,8 +15,8 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Remnants.Content.Tiles.Blocks;
-using Remnants.Content.Walls.Parallax;
+using Remnants.Content.Tiles;
+using Remnants.Content.Walls;
 using Remnants.Content.NPCs.Monsters.MagicalLab;
 
 namespace Remnants.Content.NPCs

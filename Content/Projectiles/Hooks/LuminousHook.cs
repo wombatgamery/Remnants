@@ -1,16 +1,19 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
-using ReLogic.Content;
 
 namespace Remnants.Content.Projectiles.Hooks
 {
 	public class LuminousHook : ModProjectile
 	{
-		private static Asset<Texture2D> chainTexture;
+        public override LocalizedText DisplayName => Language.GetText("Mods.Remnants.Items.LuminousHook.DisplayName");
+
+        private static Asset<Texture2D> chainTexture;
 
 		public override void Load()
 		{

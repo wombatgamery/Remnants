@@ -45,7 +45,7 @@ Mods: {
 			// Warrens: Multiplying hellish beasts
 			WaterTemple: Rzeźbienie podwodnej świątyni
 			AerialGarden: Budowanie niebiańskiego ogrodu
-			// Capsules: Preserving plants for millenia
+			// Prototypes: Preserving plants for millenia
 		}
 
 		Bestiary: {
@@ -146,14 +146,14 @@ Mods: {
 				// DisplayName: Sulfuric Fog
 			}
 
-			VaultExterior: {
-				// DisplayName: Vault Exterior
-				// TownNPCDialogueName: the Vault Exterior
+			PrototypeExterior: {
+				// DisplayName: Prototype Exterior
+				// TownNPCDialogueName: the Prototype Exterior
 			}
 
-			VaultInterior: {
-				// DisplayName: Vault Interior
-				// TownNPCDialogueName: the Vault Interior
+			PrototypeInterior: {
+				// DisplayName: Prototype Interior
+				// TownNPCDialogueName: the Prototype Interior
 			}
 		}
 
@@ -581,10 +581,6 @@ Mods: {
 			VintageSniper.DisplayName: Stara Strzelba Myśliwska
 			SpectralLance.DisplayName: Włócznia Widm
 			SoulLance.DisplayName: Włócznia Dusz
-			VaultWall.DisplayName: Ściana Krypty
-			// VaultRailing.DisplayName: Vault Railing
-			// VaultHazardWall.DisplayName: Vault Hazard Wall
-			// VaultBeamWall.DisplayName: Vault Beam Wall
 			MarineSlabWall.DisplayName: Morska Ściana
 			MarineSlab.DisplayName: Morska Płyta
 			// AshenBrickWall.DisplayName: Ashen Brick Wall
@@ -595,20 +591,37 @@ Mods: {
 				DisplayName: Żyrandol Arkanów
 			}
 
-			// VaultSupport.DisplayName: Vault Support
-			// VaultProcessor.DisplayName: Vault Computer
-			VaultPlating.DisplayName: Pokrycie Krypty
-			VaultPlatform.DisplayName: Platforma Krypty
-			VaultPipe.DisplayName: Rura Krypty
-			// VaultConduit.DisplayName: Vault Conduits
 			// PyramidPlatform.DisplayName: Pyramid Platform
 			MarinePlatform.DisplayName: Morska Platforma
 			// AshenPlatform.DisplayName: Ashen Platform
 			// GardenPlatform.DisplayName: Garden Platform
-			// Cage.DisplayName: Cage
+			// Cage.DisplayName: Metal Cage
+			// IronBars.DisplayName: Metal Bars
 			ArcanePlatform.DisplayName: Platforma Arkanów
-			HellishBrickWall.DisplayName: Hellish Brick Wall
 			// ChainHook.DisplayName: Chain Hook
+			// PrototypeComputer.DisplayName: Prototype Computer
+			// PrototypeConduits.DisplayName: Prototype Conduits
+			// PrototypePlatform.DisplayName: Prototype Platform
+			// PrototypePlating.DisplayName: Prototype Plating
+			// PrototypeSupport.DisplayName: Prototype Support
+			// PrototypeVent.DisplayName: Prototype Vent
+			// PrototypeBeamWall.DisplayName: Prototype Beam Wall
+			// PrototypeHazardWall.DisplayName: Prototype Hazard Wall
+			// PrototypeRailing.DisplayName: Prototype Railing
+			// PrototypeWall.DisplayName: Prototype Plating Wall
+			// PrototypeMonitor.DisplayName: Prototype Monitor
+			// PrototypeServer.DisplayName: Prototype Server
+			// PrototypeConsole.DisplayName: Prototype Console
+			// Tuff.DisplayName: Tuff
+
+			Moai: {
+				// DisplayName: Moai
+				// Tooltip: ""
+			}
+
+			// TuffBrick.DisplayName: Tuff Brick
+			// TuffBrickWall.DisplayName: Tuff Brick Wall
+			// ArcaneBrick.DisplayName: Arcane Brick
 		}
 
 		NPCs: {
@@ -629,10 +642,14 @@ Mods: {
 		}
 
 		Projectiles: {
+			AetherButterfly.DisplayName: Motyl Eatheru
+			FallingDreampod.DisplayName: Spadająca Mrzenica
+			FallingEyeball.DisplayName: Spadające Złoko
+			ResinShrapnel.DisplayName: Odłamki Żywicy
+			FragmentGrenade.DisplayName: Granat Odłamkowy
 			burn.DisplayName: burn
 			cursedburn.DisplayName: cursedburn
 			cursedflamejet.DisplayName: cursedflamejet
-			deathbolt.DisplayName: deathbolt
 			magicshieldhit.DisplayName: magicshieldhit
 			MazeGuardianTeleport.DisplayName: Teleportacja Strażnika Labiryntu
 			blastermissile.DisplayName: blastermissile
@@ -642,22 +659,9 @@ Mods: {
 			IceSpike.DisplayName: Lodowy Kolec
 			PoisonSpit.DisplayName: Trujące Splunięcie
 			frostburn.DisplayName: frostburn
-			LuminousHook.DisplayName: Święcący Hak
 			ichorjet.DisplayName: ichorjet
-			shockbolt.DisplayName: shockbolt
 			flamejet.DisplayName: flamejet
-			minigunholdout.DisplayName: minigunholdout
 			pulsebolt.DisplayName: pulsebolt
-			SpiritLanceHoldout.DisplayName: Włócznia Energii
-			AetherButterfly.DisplayName: Motyl Eatheru
-			FallingDreampod.DisplayName: Spadająca Mrzenica
-			FallingEyeball.DisplayName: Spadające Złoko
-			SoulLanceHoldout.DisplayName: Włócznia Dusz
-			SpectralLanceHoldout.DisplayName: Włócznia Widm
-			ResinShrapnel.DisplayName: Odłamki Żywicy
-			FragmentGrenade.DisplayName: Granat Odłamkowy
-			FragmentGlowstick.DisplayName: Świetlik Odłamkowy
-			// FragmentGlowstickFragment.DisplayName: Fragment Glowstick Fragment
 		}
 
 		Configs: {
@@ -773,6 +777,16 @@ Mods: {
 						'''
 						Enables the Aquatic Depths rework when used with the Thorium mod
 						This also prevents it from intruding on adjacent biomes
+						''' */
+				}
+
+				Prototypes: {
+					// Label: "[i:Remnants/PrototypePlating] Prototypes"
+					/* Tooltip:
+						'''
+						Enables generation of the prototype life capsules
+
+						Note: UNFINISHED
 						''' */
 				}
 			}

@@ -18,10 +18,15 @@ using Remnants.Content.NPCs.Monsters;
 using Remnants.Content.NPCs.Monsters.MagicalLab;
 //using Remnants.Content.NPCs.Monsters.TheVault;
 using Remnants.Content.NPCs.Monsters.Undergrowth;
+using Remnants.Content.Walls.Underworld;
+using Remnants.Content.Tiles.DesertRuins;
+using Remnants.Content.Tiles.Underworld.Prototypes;
+using Remnants.Content.Tiles.SulfuricVents;
+using Remnants.Content.Walls.EchoingHalls;
+using Remnants.Content.Walls.Shimmer;
+using Remnants.Content.Walls.DesertRuins;
+using Remnants.Content.Walls.Tomb;
 using Remnants.Content.Walls;
-using Remnants.Content.Walls.Parallax;
-using Remnants.Content.Tiles.Blocks;
-using Remnants.Content.Walls.Vanity;
 
 namespace Remnants.Content.NPCs
 {
@@ -175,152 +180,119 @@ namespace Remnants.Content.NPCs
             Player player = Main.LocalPlayer;
             Tile tile = Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY];
 
-            if (!Main.wallHouse[Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY - 1].WallType])
+            if (tile.WallType == ModContent.WallType<whisperingmaze>() || tile.WallType == ModContent.WallType<LabyrinthTileWall>() || tile.WallType == ModContent.WallType<LabyrinthBrickWall>())
             {
-                if (tile.WallType == ModContent.WallType<whisperingmaze>() || tile.WallType == ModContent.WallType<LabyrinthTileWall>() || tile.WallType == ModContent.WallType<LabyrinthBrickWall>())
+                pool.Clear();
+            }
+            else if (tile.TileType != TileID.LihzahrdBrick && (tile.WallType == WallID.LihzahrdBrickUnsafe || tile.WallType == ModContent.WallType<temple>()))
+            {
+                pool.Clear();
+                pool[NPCID.Lihzahrd] = 2f;
+                pool[NPCID.FlyingSnake] = 1f;
+            }
+            else if (tile.WallType == ModContent.WallType<magicallab>() || tile.WallType == ModContent.WallType<EnchantedBrickWallUnsafe>() || tile.WallType == ModContent.WallType<Ascension>())
+            {
+                pool.Clear();
+
+                if (tile.WallType != ModContent.WallType<Ascension>())
                 {
-                    pool.Clear();
-                }
-                else if (tile.TileType != TileID.LihzahrdBrick && (tile.WallType == WallID.LihzahrdBrickUnsafe || tile.WallType == ModContent.WallType<temple>()))
-                {
-                    pool.Clear();
-                    pool[NPCID.Lihzahrd] = 2f;
-                    pool[NPCID.FlyingSnake] = 1f;
-                }
-                //else if (tile.WallType == ModContent.WallType<vault>() || tile.WallType == ModContent.WallType<VaultWallUnsafe>())
-                //{
-                //    pool.Clear();
-
-                //    pool[ModContent.NPCType<Shocker>()] = 1f;
-                //    pool[ModContent.NPCType<Gunner>()] = 1f;
-                //    pool[ModContent.NPCType<Blaster>()] = 1f;
-                //    pool[ModContent.NPCType<Flamer>()] = 1f;
-
-                //    pool[ModContent.NPCType<Icer>()] = 0.2f;
-                //}
-                else if (tile.WallType == ModContent.WallType<magicallab>() || tile.WallType == ModContent.WallType<EnchantedBrickWallUnsafe>() || tile.WallType == ModContent.WallType<Ascension>())
-                {
-                    pool.Clear();
-
-                    if (tile.WallType != ModContent.WallType<Ascension>())
-                    {
-                        pool[ModContent.NPCType<Arcanist>()] = 1f;
-                        pool[ModContent.NPCType<TomeofInferno>()] = 1f;
-                        pool[ModContent.NPCType<TomeofFrost>()] = 1f;
-                    }
-                }
-                else if (tile.WallType == ModContent.WallType<AshenBrickWallUnsafe>() || tile.WallType == ModContent.WallType<IronBars>() && spawnInfo.SpawnTileY >= Main.maxTilesY - 200)
-                {
-                    pool.Clear();
-
-                    pool[NPCID.Demon] = 0.9f;
-                    pool[NPCID.VoodooDemon] = 0.1f;
-                }
-                else if (tile.WallType == ModContent.WallType<undergrowth>() || tile.WallType == WallID.LivingWoodUnsafe)
-                {
-                    pool.Clear();
-
-                    pool[ModContent.NPCType<ResinSlime>()] = 5f;
-
-                    if (spawnInfo.Player.InModBiome<Undergrowth>())
-                    {
-                        pool[ModContent.NPCType<CentipedeHead>()] = 1f;
-                    }
-                }
-                else if (tile.TileType == ModContent.TileType<PyramidBrick>() || tile.TileType == ModContent.TileType<PyramidPlatform>() || tile.TileType == TileID.HardenedSand && spawnInfo.SpawnTileY < Main.worldSurface)
-                {
-                    pool.Clear();
-
-                    if (tile.WallType != ModContent.WallType<pyramid>() && tile.WallType != ModContent.WallType<PyramidBrickWallUnsafe>() && tile.WallType != ModContent.WallType<PyramidRuneWall>())
-                    {
-                        pool[NPCID.SandSlime] = 2f;
-                        pool[NPCID.Vulture] = 2f;
-                    }
-
-                    pool[NPCID.Scorpion] = 1f;
-                    pool[NPCID.ScorpionBlack] = 1f;
-                }
-                else if (tile.WallType == ModContent.WallType<forgottentomb>() || tile.WallType == ModContent.WallType<TombBrickWallUnsafe>())
-                {
-                    pool.Clear();
-
-                    pool[Main.hardMode ? NPCID.Wraith : NPCID.Ghost] = 1f;
-                    pool[Main.hardMode ? NPCID.BlackRecluseWall : NPCID.WallCreeperWall] = 3f;
-
-                    if (!NPC.savedStylist && !NPC.AnyNPCs(NPCID.WebbedStylist))
-                    {
-                        pool[NPCID.WebbedStylist] = 1f;
-                    }
-                }
-                else if (tile.WallType == WallID.HiveUnsafe)
-                {
-                    if (tile.TileType == TileID.Hive)
-                    {
-                        pool.Clear();
-
-                        pool[ModContent.NPCType<HoneySlime>()] = 3f;
-                        pool[NPCID.LittleHornetHoney] = 1f;
-                        pool[NPCID.HornetHoney] = 1f;
-                        pool[NPCID.BigHornetHoney] = 1f;
-                    }
-                }
-                else if (tile.TileType == ModContent.TileType<Sulfurstone>())
-                {
-                    if (spawnInfo.SpawnTileY >= Main.maxTilesY - 300)
-                    {
-                        pool.Clear();
-
-                        pool[NPCID.LavaSlime] = 2f;
-                        pool[NPCID.Hellbat] = 1f;
-                    }
-                }
-                else if (tile.TileType == TileID.GraniteBlock)
-                {
-                    if (spawnInfo.SpawnTileY > Main.worldSurface)
-                    {
-                        pool.Clear();
-
-                        pool[NPCID.GraniteGolem] = 2f;
-                        pool[NPCID.GraniteFlyer] = 1f;
-                    }
-                }
-                else if (spawnInfo.Player.InModBiome(ModContent.GetInstance<OceanCave>()) && spawnInfo.SpawnTileY > Main.worldSurface)
-                {
-                    if (spawnInfo.Water)
-                    {
-                        pool.Clear();
-
-                        pool[NPCID.PinkJellyfish] = 1.5f;
-                        pool[NPCID.Shark] = 0.5f;
-
-                        pool[NPCID.Goldfish] = 0.5f;
-                        pool[NPCID.Seahorse] = 0.5f;
-                    }
+                    pool[ModContent.NPCType<Arcanist>()] = 1f;
+                    pool[ModContent.NPCType<TomeofInferno>()] = 1f;
+                    pool[ModContent.NPCType<TomeofFrost>()] = 1f;
                 }
             }
+            else if (tile.WallType == ModContent.WallType<AshenBrickWallUnsafe>() || tile.WallType == ModContent.WallType<IronBars>() && spawnInfo.SpawnTileY >= Main.maxTilesY - 200)
+            {
+                pool.Clear();
 
-            //if (SubworldSystem.IsActive<MansionSubworld>())
-            //{
-            //	//pool.Clear();
+                pool[NPCID.Demon] = 0.9f;
+                pool[NPCID.VoodooDemon] = 0.1f;
+            }
+            else if (tile.WallType == ModContent.WallType<undergrowth>() || tile.WallType == WallID.LivingWoodUnsafe)
+            {
+                pool.Clear();
 
-            //	if (tile.WallType != 0)
-            //             {
-            //		pool[NPCID.BlackRecluse] = 0.5f;
-            //		//pool[NPCID.Mimic] = 0.1f;
-            //	}
-            //}
+                pool[ModContent.NPCType<ResinSlime>()] = 5f;
 
-            //if (player.InModBiome(ModContent.GetInstance<Growth>()))
-            //{
-            //	pool.Clear();
-            //	if (spawnInfo.SpawnTileY <= Main.maxTilesY - 200 && spawnInfo.SpawnTileY > Main.worldSurface)
-            //	{
-            //		if (!spawnInfo.Water)
-            //		{
-            //			pool[NPCID.Firefly] = 4f;
-            //		}
-            //	}
-            //}
+                if (spawnInfo.Player.InModBiome<Undergrowth>())
+                {
+                    pool[ModContent.NPCType<CentipedeHead>()] = 1f;
+                }
+            }
+            else if (tile.TileType == ModContent.TileType<PyramidBrick>() || tile.TileType == ModContent.TileType<PyramidPlatform>() || tile.TileType == TileID.HardenedSand && spawnInfo.SpawnTileY < Main.worldSurface)
+            {
+                pool.Clear();
+
+                if (tile.WallType != ModContent.WallType<pyramid>() && tile.WallType != ModContent.WallType<PyramidBrickWallUnsafe>() && tile.WallType != ModContent.WallType<PyramidRuneWall>())
+                {
+                    pool[NPCID.SandSlime] = 2f;
+                    pool[NPCID.Vulture] = 2f;
+                }
+
+                pool[NPCID.Scorpion] = 1f;
+                pool[NPCID.ScorpionBlack] = 1f;
+            }
+            else if (tile.WallType == ModContent.WallType<forgottentomb>() || tile.WallType == ModContent.WallType<TombBrickWallUnsafe>())
+            {
+                pool.Clear();
+
+                pool[Main.hardMode ? NPCID.Wraith : NPCID.Ghost] = 1f;
+                pool[Main.hardMode ? NPCID.BlackRecluseWall : NPCID.WallCreeperWall] = 3f;
+
+                if (!NPC.savedStylist && !NPC.AnyNPCs(NPCID.WebbedStylist))
+                {
+                    pool[NPCID.WebbedStylist] = 1f;
+                }
+            }
+            else if (tile.WallType == WallID.HiveUnsafe)
+            {
+                if (tile.TileType == TileID.Hive)
+                {
+                    pool.Clear();
+
+                    pool[ModContent.NPCType<HoneySlime>()] = 3f;
+                    pool[NPCID.LittleHornetHoney] = 1f;
+                    pool[NPCID.HornetHoney] = 1f;
+                    pool[NPCID.BigHornetHoney] = 1f;
+                }
+            }
+            else if (tile.TileType == ModContent.TileType<Sulfurstone>())
+            {
+                if (spawnInfo.SpawnTileY >= Main.maxTilesY - 300)
+                {
+                    pool.Clear();
+
+                    pool[NPCID.LavaSlime] = 2f;
+                    pool[NPCID.Hellbat] = 1f;
+                }
+            }
+            else if (tile.TileType == ModContent.TileType<PrototypePlating>() || tile.TileType == ModContent.TileType<PrototypePlatform>())
+            {
+                pool.Clear();
+            }
+            else if (tile.TileType == TileID.GraniteBlock)
+            {
+                if (spawnInfo.SpawnTileY > Main.worldSurface)
+                {
+                    pool.Clear();
+
+                    pool[NPCID.GraniteGolem] = 2f;
+                    pool[NPCID.GraniteFlyer] = 1f;
+                }
+            }
+            else if (spawnInfo.Player.InModBiome(ModContent.GetInstance<OceanCave>()) && spawnInfo.SpawnTileY > Main.worldSurface)
+            {
+                if (spawnInfo.Water)
+                {
+                    pool.Clear();
+
+                    pool[NPCID.PinkJellyfish] = 1.5f;
+                    pool[NPCID.Shark] = 0.5f;
+
+                    pool[NPCID.Goldfish] = 0.5f;
+                    pool[NPCID.Seahorse] = 0.5f;
+                }
+            }
 
             if (spawnInfo.SpawnTileY > Main.worldSurface && spawnInfo.SpawnTileY < Main.rockLayer && Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY - 1].WallType == ModContent.WallType<Wood>())
             {

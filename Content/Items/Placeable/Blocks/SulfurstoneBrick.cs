@@ -18,7 +18,7 @@ namespace Remnants.Content.Items.Placeable.Blocks
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.GrayBrick);
-            Item.createTile = ModContent.TileType <Tiles.Blocks.SulfurstoneBrick>();
+            Item.createTile = ModContent.TileType <Content.Tiles.SulfuricVents.SulfurstoneBrick>();
 		}
 
         public override void AddRecipes()

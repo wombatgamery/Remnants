@@ -1,14 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Remnants.Content.Biomes.Backgrounds;
-using Remnants.Content.Buffs;
-using Remnants.Content.Walls;
-using Remnants.Content.Walls.Parallax;
-using Remnants.Content.World;
-using Terraria;
-using Terraria.GameContent;
 using Terraria.Graphics.Effects;
-using Terraria.Graphics.Shaders;
 
 namespace Remnants.Content.Biomes
 {

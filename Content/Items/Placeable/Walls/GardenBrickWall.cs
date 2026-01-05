@@ -19,7 +19,7 @@ namespace Remnants.Content.Items.Placeable.Walls
 		{
 			Item.CloneDefaults(ItemID.StoneWall);
 			Item.height = 16;
-            Item.createWall = ModContent.WallType<global::Remnants.Content.Walls.GardenBrickWall>();
+            Item.createWall = ModContent.WallType<Content.Walls.AerialGarden.GardenBrickWall>();
 		}
 
 		public override void AddRecipes()

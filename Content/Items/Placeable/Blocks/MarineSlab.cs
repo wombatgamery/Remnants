@@ -1,4 +1,3 @@
-using Remnants.Content.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -19,7 +18,7 @@ namespace Remnants.Content.Items.Placeable.Blocks
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.GrayBrick);
-            Item.createTile = ModContent.TileType <Tiles.Blocks.MarineSlab>();
+            Item.createTile = ModContent.TileType <Tiles.Ocean.WaterTemple.MarineSlab>();
 		}
 
 		//public override void AddRecipes()

@@ -3,7 +3,6 @@ using Remnants.Content.Dusts;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Remnants.Content.Tiles.Objects.Furniture;
 
 namespace Remnants.Content.Items.Placeable.Objects
 {
@@ -19,7 +18,7 @@ namespace Remnants.Content.Items.Placeable.Objects
 			Item.CloneDefaults(ItemID.Chest);
 			Item.width = 16;
 			Item.height = 14;
-            Item.createTile = ModContent.TileType<Tiles.Objects.Furniture.PyramidChest>();
+            Item.createTile = ModContent.TileType<Content.Tiles.DesertRuins.PyramidChest>();
 		}
 	}
 }

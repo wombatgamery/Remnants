@@ -3,7 +3,6 @@ using Remnants.Content.Dusts;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Remnants.Content.Tiles.Objects.Furniture;
 
 namespace Remnants.Content.Items.Placeable.Objects
 {
@@ -18,7 +17,7 @@ namespace Remnants.Content.Items.Placeable.Objects
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.Chest);
-            Item.createTile = ModContent.TileType<Tiles.Objects.Furniture.RustedChest>();
+            Item.createTile = ModContent.TileType<Content.Tiles.Ocean.RustedChest>();
 		}
 	}
 }

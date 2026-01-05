@@ -7,13 +7,16 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Remnants.Content.Projectiles.Weapons
 {
 	public class SoulLanceHoldout : ModProjectile
 	{
-		//public override string Texture => ModContent.GetModItem(ModContent.ItemType<Items.weapon.spiritlance>()).Texture;
+        public override LocalizedText DisplayName => Language.GetText("Mods.Remnants.Items.SoulLance.DisplayName");
+
+        //public override string Texture => ModContent.GetModItem(ModContent.ItemType<Items.weapon.spiritlance>()).Texture;
         // Define the range of the Spear Projectile. These are overrideable properties, in case you'll want to make a class inheriting from this one.
         protected virtual float HoldoutRangeMin => 56f;
 		protected virtual float HoldoutRangeMax => 160f;

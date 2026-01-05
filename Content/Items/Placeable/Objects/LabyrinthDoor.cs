@@ -1,7 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Remnants.Content.Tiles.Objects.Furniture;
+using Remnants.Content.Tiles.EchoingHalls;
 
 namespace Remnants.Content.Items.Placeable.Objects
 {

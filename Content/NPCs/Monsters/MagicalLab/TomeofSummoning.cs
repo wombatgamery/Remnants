@@ -202,7 +202,7 @@ namespace Remnants.Content.NPCs.Monsters.MagicalLab
 		//      public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		//      {
 		//	Tile tile = Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY];
-		//	if (spawnInfo.Player.InModBiome<Vault>() && (tile.WallType == ModContent.WallType<vault>() || tile.WallType == ModContent.WallType<vaultwallunsafe>()))
+		//	if (spawnInfo.Player.InModBiome<Prototype>() && (tile.WallType == ModContent.WallType<vault>() || tile.WallType == ModContent.WallType<vaultwallunsafe>()))
 		//          {
 		//		return 0.1f;
 		//          }

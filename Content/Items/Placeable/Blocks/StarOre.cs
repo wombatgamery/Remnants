@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Remnants.Content.Tiles;
 
 namespace Remnants.Content.Items.Placeable.Blocks
 {
@@ -19,7 +18,7 @@ namespace Remnants.Content.Items.Placeable.Blocks
 			Item.width = 8;
 			Item.height = 8;
 			Item.rare = ItemRarityID.Blue;
-            Item.createTile = ModContent.TileType<Tiles.Blocks.StarOre>();
+            Item.createTile = ModContent.TileType<Tiles.Space.StarOre>();
 		}
 
         public override void AddRecipes()

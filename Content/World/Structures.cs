@@ -3,15 +3,12 @@ using Remnants.Content.Items.Accessories;
 using Remnants.Content.Items.Consumable;
 using Remnants.Content.Items.Tools;
 using Remnants.Content.Tiles;
-using Remnants.Content.Tiles.Blocks;
-using Remnants.Content.Tiles.Objects;
-using Remnants.Content.Tiles.Objects.Decoration;
-using Remnants.Content.Tiles.Objects.Furniture;
-using Remnants.Content.Tiles.Objects.Hazards;
-using Remnants.Content.Tiles.Plants;
-using Remnants.Content.Walls;
-using Remnants.Content.Walls.Parallax;
-using Remnants.Content.Walls.Vanity;
+using Remnants.Content.Tiles.AerialGarden;
+using Remnants.Content.Tiles.DesertRuins;
+using Remnants.Content.Tiles.Forest;
+using Remnants.Content.Tiles.Underworld;
+using Remnants.Content.Tiles.Underworld.Prototypes;
+using Remnants.Content.Walls.Underworld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +24,11 @@ using Terraria.WorldBuilding;
 using static Remnants.Content.World.BiomeLocations;
 using static Remnants.Content.World.BiomeMap;
 using static Remnants.Content.World.RemWorld;
+using Remnants.Content.Tiles.SulfuricVents;
+using Remnants.Content.Walls.AerialGarden;
+using Remnants.Content.Walls.SulfuricVents;
+using Remnants.Content.Walls.DesertRuins;
+using Remnants.Content.Walls;
 
 namespace Remnants.Content.World
 {
@@ -48,7 +50,10 @@ namespace Remnants.Content.World
 
             InsertPass(tasks, new SkyGardens("Sky Gardens", 1), FindIndex(tasks, "Dungeon"));
 
-            InsertPass(tasks, new Capsules("Capsules", 0), FindIndex(tasks, "Underworld"));
+            if (ModContent.GetInstance<Worldgen>().Prototypes)
+            {
+                InsertPass(tasks, new Prototypes("Prototypes", 0), FindIndex(tasks, "Underworld"));
+            }
             InsertPass(tasks, new Warrens("Warrens", 0), FindIndex(tasks, "Underworld"));
 
             RemovePass(tasks, FindIndex(tasks, "Floating Islands"));
@@ -516,7 +521,7 @@ namespace Remnants.Content.World
                                     lengthSubtract = WorldGen.genRand.Next(0, 7);
                                 }
 
-                                if (MiscTools.NonSolidInArea(x, y, x, y + 4 + lengthSubtract) && !MiscTools.HasTile(x, y + 4, TileID.Platforms) && !MiscTools.HasTile(x, y + 24, ModContent.TileType<Tiles.Objects.Hazards.WoodenSpike>()))
+                                if (MiscTools.NonSolidInArea(x, y, x, y + 4 + lengthSubtract) && !MiscTools.HasTile(x, y + 4, TileID.Platforms) && !MiscTools.HasTile(x, y + 24, ModContent.TileType<Content.Tiles.Forest.WoodenSpike>()))
                                 {
                                     if (MiscTools.HasTile(x, y, TileID.Platforms))
                                     {
@@ -566,7 +571,7 @@ namespace Remnants.Content.World
                         {
                             for (int i = x - size / 3; i <= x + size / 3; i++)
                             {
-                                if (MiscTools.HasTile(i, j, TileID.WoodBlock) || MiscTools.HasTile(i, j, ModContent.TileType<Tiles.Objects.Hazards.WoodenSpike>()))
+                                if (MiscTools.HasTile(i, j, TileID.WoodBlock) || MiscTools.HasTile(i, j, ModContent.TileType<Content.Tiles.Forest.WoodenSpike>()))
                                 {
                                     valid = false;
                                 }
@@ -592,7 +597,7 @@ namespace Remnants.Content.World
                         {
                             for (int i = x - size / 3; i <= x + size / 3; i++)
                             {
-                                if (MiscTools.HasTile(i, j, TileID.WoodBlock) || MiscTools.HasTile(i, j, ModContent.TileType<Tiles.Objects.Hazards.WoodenSpike>()))
+                                if (MiscTools.HasTile(i, j, TileID.WoodBlock) || MiscTools.HasTile(i, j, ModContent.TileType<Content.Tiles.Forest.WoodenSpike>()))
                                 {
                                     valid = false;
                                 }
@@ -1034,7 +1039,7 @@ namespace Remnants.Content.World
 
                         MiscTools.PlaceObjectsInArea((position.X - radius / 2), height - 1, (position.X + radius / 2), height - 1, TileID.LivingLoom);
 
-                        MiscTools.PlaceObjectsInArea((int)(position.X - radius / 2.5f), height + 1, (int)(position.X + radius / 2.5f), (int)(position.Y + radius / 1.5f), ModContent.TileType<Tiles.Objects.Hazards.WoodenSpike>(), count: 16);
+                        MiscTools.PlaceObjectsInArea((int)(position.X - radius / 2.5f), height + 1, (int)(position.X + radius / 2.5f), (int)(position.Y + radius / 1.5f), ModContent.TileType<Content.Tiles.Forest.WoodenSpike>(), count: 16);
 
                         bool success = false;
 
@@ -1246,7 +1251,7 @@ namespace Remnants.Content.World
                             {
                                 tile.TileType = (ushort)ModContent.TileType<nothing>();
 
-                                if (MiscTools.HasTile(i, j - 1, ModContent.TileType<Tiles.Objects.Hazards.WoodenSpike>()))
+                                if (MiscTools.HasTile(i, j - 1, ModContent.TileType<Content.Tiles.Forest.WoodenSpike>()))
                                 {
                                     WorldGen.KillTile(i, j - 1);
                                 }
@@ -1341,7 +1346,7 @@ namespace Remnants.Content.World
                     {
                         Tile tile = Main.tile[i, j];
 
-                        if (Main.tile[i, j].HasTile && Main.tile[i, j].TileType == TileID.LivingWood && !MiscTools.HasTile(i - 1, j, TileID.Platforms) && !MiscTools.HasTile(i + 1, j, TileID.Platforms) && !MiscTools.HasTile(i - 1, j, TileID.Rope) && !MiscTools.HasTile(i + 1, j, TileID.Rope) && !MiscTools.HasTile(i, j - 1, ModContent.TileType<Tiles.Objects.Hazards.WoodenSpike>()))
+                        if (Main.tile[i, j].HasTile && Main.tile[i, j].TileType == TileID.LivingWood && !MiscTools.HasTile(i - 1, j, TileID.Platforms) && !MiscTools.HasTile(i + 1, j, TileID.Platforms) && !MiscTools.HasTile(i - 1, j, TileID.Rope) && !MiscTools.HasTile(i + 1, j, TileID.Rope) && !MiscTools.HasTile(i, j - 1, ModContent.TileType<Content.Tiles.Forest.WoodenSpike>()))
                         {
                             bool left = WorldGen.SolidOrSlopedTile(i - 1, j) && !WorldGen.SolidOrSlopedTile(i + 1, j);
                             bool right = WorldGen.SolidOrSlopedTile(i + 1, j) && !WorldGen.SolidOrSlopedTile(i - 1, j);
@@ -1978,15 +1983,17 @@ namespace Remnants.Content.World
         }
     }
 
-    public class Capsules : GenPass
+    public class Prototypes : GenPass
     {
-        public Capsules(string name, float loadWeight) : base(name, loadWeight)
+        public Prototypes(string name, float loadWeight) : base(name, loadWeight)
         {
         }
 
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
-            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Capsules");
+            progress.Message = Language.GetTextValue("Mods.Remnants.WorldgenMessages.Prototypes");
+
+            RemSystem.prototypesExist = true;
 
             FastNoiseLite roughness = new FastNoiseLite(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
             roughness.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
@@ -2004,25 +2011,34 @@ namespace Remnants.Content.World
 
             int countInitial = (int)(Main.maxTilesX / 2100f);
             int count = countInitial;
+            int attempts = 0;
 
             while (count > 0)
             {
-                Rectangle areaShell = new Rectangle(0, Main.maxTilesY - 270, 192, 224);
-                areaShell.X = WorldGen.genRand.Next((int)(Main.maxTilesX * 0.4f), (int)(Main.maxTilesX * 0.6f) - areaShell.Width);
+                Rectangle areaShell = new Rectangle(0, Main.maxTilesY - 280, 191, 234);
+                areaShell.X = WorldGen.genRand.Next((int)(Main.maxTilesX * (attempts > 1000 ? 0.35f : 0.4f)), (int)(Main.maxTilesX * (attempts > 1000 ? 0.65f : 0.6f)) - areaShell.Width);
                 areaShell.Y += WorldGen.genRand.Next(-5, 6);
 
                 Rectangle areaGarden = areaShell;
                 areaGarden.X += 48; areaGarden.Width -= 95;
-                areaGarden.Y += 48; areaGarden.Height -= 95;
+                areaGarden.Y += 56; areaGarden.Height -= 105;
                 areaGarden.Y += 18;
+
+                Rectangle areaControlRoom = areaGarden;
+                areaControlRoom.X += 19;
+                areaControlRoom.Width -= 39;
+                areaControlRoom.Y = areaShell.Top + 6 * 3 + 1;
+                areaControlRoom.Height = 17;
 
                 int corners = 48;
 
-                if (GenVars.structures.CanPlace(areaShell, 20))
-                {
-                    GenVars.structures.AddProtectedStructure(areaShell, 20);
+                attempts++;
 
-                    #region clear
+                if (GenVars.structures.CanPlace(areaShell, 40))
+                {
+                    GenVars.structures.AddProtectedStructure(areaShell, 40);
+
+                    #region chasm
                     for (int x = areaShell.Left - 40; x < areaShell.Right + 40; x++)
                     {
                         for (int y = Main.maxTilesY - 160; y < Main.maxTilesY - 40; y++)
@@ -2050,11 +2066,13 @@ namespace Remnants.Content.World
                     }
                     #endregion
 
-                    #region frame
-                    MiscTools.Rectangle(areaShell.Left + corners, areaShell.Top - 18, areaShell.Right - corners - 1, areaShell.Top - 1, ModContent.TileType<VaultPlating>());
-                    MiscTools.Rectangle(areaShell.Left + 12, areaShell.Center.Y, areaShell.Right - 13, Main.maxTilesY - 1, ModContent.TileType<VaultPlating>());
+                    #region shell
+                    int shellTop = areaShell.Top - 18;
 
-                    int entranceMiddle = areaShell.Center.Y + 18;
+                    MiscTools.Rectangle(areaShell.Left + corners, shellTop, areaShell.Right - corners - 1, areaShell.Top - 1, ModContent.TileType<PrototypePlating>());
+                    MiscTools.Rectangle(areaShell.Left + 12, areaShell.Center.Y, areaShell.Right - 13, Main.maxTilesY - 1, ModContent.TileType<PrototypePlating>());
+
+                    int entranceMiddle = areaShell.Center.Y + 21;
                     int entranceTop = entranceMiddle - 5;
                     int entranceBottom = entranceMiddle + 5;
 
@@ -2107,46 +2125,73 @@ namespace Remnants.Content.World
                         {
                             Tile tile = Main.tile[x, y];
                             tile.HasTile = true;
-                            tile.TileType = (ushort)ModContent.TileType<VaultPlating>();
+                            tile.TileType = (ushort)ModContent.TileType<PrototypePlating>();
 
                             if ((x == left || x == right) && (distance <= corners || y == entranceBottom + 6))
                             {
                                 if (y < areaShell.Center.Y)
                                 {
-                                    MiscTools.Terraform(new Vector2(x, y), WorldGen.genRand.Next(8, 16), scaleX: 0.5f, scaleY: 0.5f);
-
-                                    if (!MiscTools.Tile(x, y - 1).HasTile)
+                                    if (!MiscTools.HasTile(x, y - 1, ModContent.TileType<PrototypePlating>()))
                                     {
-                                        WorldGen.PlaceTile(x, y - 1, ModContent.TileType<VaultPlating>());
+                                        WorldGen.PlaceTile(x, y - 1, ModContent.TileType<PrototypePlating>());
+                                        Framing.GetTileSafely(x, y - 1).TileType = (ushort)ModContent.TileType<PrototypePlating>();
                                         Framing.GetTileSafely(x, y - 1).Slope = (x < areaShell.Center.X ? SlopeType.SlopeDownRight : SlopeType.SlopeDownLeft);
+
+                                        if (MiscTools.HasTile(x, y - 2, TileID.Silt))
+                                        {
+                                            Framing.GetTileSafely(x, y - 2).TileType = (ushort)ModContent.TileType<Sulfurstone>();
+                                            Framing.GetTileSafely(x, y - 1).WallType = (ushort)ModContent.WallType<SulfurstoneWall>();
+                                            Framing.GetTileSafely(x, y - 2).WallType = (ushort)ModContent.WallType<SulfurstoneWall>();
+                                        }
                                     }
                                 }
                                 else
                                 {
-                                    if (!MiscTools.Tile(x, y + 1).HasTile)
+                                    if (!MiscTools.HasTile(x, y + 1, ModContent.TileType<PrototypePlating>()))
                                     {
-                                        WorldGen.PlaceTile(x, y + 1, ModContent.TileType<VaultPlating>());
+                                        WorldGen.PlaceTile(x, y + 1, ModContent.TileType<PrototypePlating>());
+                                        Framing.GetTileSafely(x, y + 1).TileType = (ushort)ModContent.TileType<PrototypePlating>();
                                         Framing.GetTileSafely(x, y + 1).Slope = (x < areaShell.Center.X ? SlopeType.SlopeUpRight : SlopeType.SlopeUpLeft);
                                     }
                                 }
                             }
                         }
                     }
-                    WorldGen.PlaceTile(areaShell.Left - 2, entranceBottom + 1, ModContent.TileType<VaultPlatform>());
-                    WorldGen.PlaceTile(areaShell.Right + 1, entranceBottom + 1, ModContent.TileType<VaultPlatform>());
+                    WorldGen.PlaceTile(areaShell.Left - 2, entranceBottom + 1, ModContent.TileType<PrototypePlatform>());
+                    WorldGen.PlaceTile(areaShell.Right + 1, entranceBottom + 1, ModContent.TileType<PrototypePlatform>());
 
-                    MiscTools.Rectangle(areaShell.Left + corners - 1, areaShell.Top - 18, areaShell.Left + corners - 1, areaShell.Top - 12, ModContent.TileType<VaultPlating>());
-                    MiscTools.Rectangle(areaShell.Right - corners, areaShell.Top - 18, areaShell.Right -  corners, areaShell.Top - 12, ModContent.TileType<VaultPlating>());
-                    MiscTools.Tile(areaShell.Left + corners - 1, areaShell.Top - 12).Slope = SlopeType.SlopeUpRight;
-                    MiscTools.Tile(areaShell.Right - corners, areaShell.Top - 12).Slope = SlopeType.SlopeUpLeft;
+                    MiscTools.Rectangle(areaShell.Left + corners - 1, shellTop, areaShell.Left + corners - 1, shellTop + 6, ModContent.TileType<PrototypePlating>());
+                    MiscTools.Rectangle(areaShell.Right - corners, shellTop, areaShell.Right -  corners, shellTop + 6, ModContent.TileType<PrototypePlating>());
+                    MiscTools.Tile(areaShell.Left + corners - 1, shellTop + 6).Slope = SlopeType.SlopeUpRight;
+                    MiscTools.Tile(areaShell.Right - corners, shellTop + 6).Slope = SlopeType.SlopeUpLeft;
 
                     for (int x = areaShell.Left + corners; x < areaShell.Right - corners; x++)
                     {
                         MiscTools.Terraform(new Vector2(x, areaShell.Top - 18), 12, null, 1, 1, true);
                     }
 
-                    WorldGen.PlaceTile(areaShell.Left + corners - 2, areaShell.Top - 18, ModContent.TileType<VaultPlatform>());
-                    WorldGen.PlaceTile(areaShell.Right - corners + 1, areaShell.Top - 18, ModContent.TileType<VaultPlatform>());
+                    WorldGen.PlaceTile(areaShell.Left + corners - 2, shellTop, ModContent.TileType<PrototypePlatform>());
+                    WorldGen.PlaceTile(areaShell.Right - corners + 1, shellTop, ModContent.TileType<PrototypePlatform>());
+
+                    //int start = areaShell.Bottom - corners + 11;
+                    //for (int k = 0; k < 7; k++)
+                    //{
+                    //    MiscTools.Rectangle(areaShell.Left + 11, start + 3 + k * 8, areaShell.Left + 11, start + 8 + k * 8, ModContent.TileType<PrototypePlating>());
+                    //    MiscTools.Rectangle(areaShell.Left + 10, start + 4 + k * 8, areaShell.Left + 10, start + 7 + k * 8, ModContent.TileType<PrototypePlating>());
+
+                    //    MiscTools.Tile(areaShell.Left + 11, start + 3 + k * 8).Slope = SlopeType.SlopeDownRight;
+                    //    MiscTools.Tile(areaShell.Left + 10, start + 4 + k * 8).Slope = SlopeType.SlopeDownRight;
+                    //    MiscTools.Tile(areaShell.Left + 11, start + 8 + k * 8).Slope = SlopeType.SlopeUpRight;
+                    //    MiscTools.Tile(areaShell.Left + 10, start + 7 + k * 8).Slope = SlopeType.SlopeUpRight;
+
+                    //    MiscTools.Rectangle(areaShell.Right - 12, start + 3 + k * 8, areaShell.Right - 12, start + 8 + k * 8, ModContent.TileType<PrototypePlating>());
+                    //    MiscTools.Rectangle(areaShell.Right - 11, start + 4 + k * 8, areaShell.Right - 11, start + 7 + k * 8, ModContent.TileType<PrototypePlating>());
+
+                    //    MiscTools.Tile(areaShell.Right - 12, start + 3 + k * 8).Slope = SlopeType.SlopeDownLeft;
+                    //    MiscTools.Tile(areaShell.Right - 11, start + 4 + k * 8).Slope = SlopeType.SlopeDownLeft;
+                    //    MiscTools.Tile(areaShell.Right - 12, start + 8 + k * 8).Slope = SlopeType.SlopeUpLeft;
+                    //    MiscTools.Tile(areaShell.Right - 11, start + 7 + k * 8).Slope = SlopeType.SlopeUpLeft;
+                    //}
 
                     //int attempts = 0;
                     //while (attempts < 1000)
@@ -2161,7 +2206,7 @@ namespace Remnants.Content.World
 
                     //    for (int i = x - 1; i <= x + width; i++)
                     //    {
-                    //        if (MiscTools.HasTile(i, floor - 1, ModContent.TileType<VaultConduit>()))
+                    //        if (MiscTools.HasTile(i, floor - 1, ModContent.TileType<PrototypeConduits>()))
                     //        {
                     //            valid = false;
                     //            break;
@@ -2171,8 +2216,8 @@ namespace Remnants.Content.World
                     //    if (valid)
                     //    {
                     //        int height = WorldGen.genRand.Next(1, 4) * 6;
-                    //        MiscTools.Rectangle(x, floor - height, x + width - 1, floor - 1, ModContent.TileType<VaultPlating>());
-                    //        MiscTools.Rectangle(x + 1, floor - height + 1, x + width - 2, floor + 5, wall: ModContent.WallType<VaultWall>());
+                    //        MiscTools.Rectangle(x, floor - height, x + width - 1, floor - 1, ModContent.TileType<PrototypePlating>());
+                    //        MiscTools.Rectangle(x + 1, floor - height + 1, x + width - 2, floor + 5, wall: ModContent.WallType<PrototypeWall>());
 
                     //        MiscTools.Terraform(new Vector2(x + width / 2, floor - height), 12, scaleX: 1);
 
@@ -2186,8 +2231,8 @@ namespace Remnants.Content.World
 
                     //        for (int j = floor - height + 6; j <= floor; j += 6)
                     //        {
-                    //            MiscTools.Rectangle(x, j - 2, x + width - 1, j - 1, ModContent.TileType<VaultConduit>());
-                    //            //MiscTools.Tile(x + 2, j + 3).TileType = (ushort)ModContent.TileType<VaultProcessor>();
+                    //            MiscTools.Rectangle(x, j - 2, x + width - 1, j - 1, ModContent.TileType<PrototypeConduits>());
+                    //            //MiscTools.Tile(x + 2, j + 3).TileType = (ushort)ModContent.TileType<PrototypeComputer>();
                     //        }
 
                     //        attempts = 0;
@@ -2195,14 +2240,14 @@ namespace Remnants.Content.World
                     //}
                     #endregion
 
-                    #region walls
+                    #region background walls
                     for (int y = areaShell.Top - 15; y < areaShell.Bottom + 15; y++)
                     {
                         for (int x = areaShell.Left; x < areaShell.Right; x++)
                         {
                             Tile tile = Main.tile[x, y];
 
-                            if (tile.TileType == ModContent.TileType<VaultPlating>())
+                            if (tile.TileType == ModContent.TileType<PrototypePlating>())
                             {
                                 bool valid = true;
 
@@ -2212,7 +2257,7 @@ namespace Remnants.Content.World
                                     {
                                         tile = Framing.GetTileSafely(x + i, y + j);
 
-                                        if (!tile.HasTile || tile.TileType != ModContent.TileType<VaultPlating>())
+                                        if (!tile.HasTile || tile.TileType != ModContent.TileType<PrototypePlating>())
                                         {
                                             valid = false;
 
@@ -2232,52 +2277,119 @@ namespace Remnants.Content.World
 
                                     if (y == entranceTop + 1 || y == entranceBottom - 1)
                                     {
-                                        tile.WallType = (ushort)ModContent.WallType<VaultBeamWallUnsafe>();
+                                        tile.WallType = (ushort)ModContent.WallType<PrototypeBeamWallUnsafe>();
                                     }
-                                    else tile.WallType = (ushort)ModContent.WallType<VaultWallUnsafe>();
+                                    else tile.WallType = (ushort)ModContent.WallType<PrototypeWallUnsafe>();
                                     tile.WallColor = PaintID.None;
                                 }
                             }
                         }
                     }
+                    #endregion
 
-                    MiscTools.Rectangle(areaShell.Left - 2, entranceBottom - 1, areaGarden.Left, entranceBottom - 1, wall: ModContent.WallType<VaultRailing>(), replace: false);
-                    MiscTools.Rectangle(areaShell.Left - 2, entranceBottom + 1, areaGarden.Left, entranceBottom + 1, wall: ModContent.WallType<VaultRailing>(), replace: false);
-                    MiscTools.Rectangle(areaGarden.Right, entranceBottom - 1, areaShell.Right + 1, entranceBottom - 1, wall: ModContent.WallType<VaultRailing>(), replace: false);
-                    MiscTools.Rectangle(areaGarden.Right, entranceBottom + 1, areaShell.Right + 1, entranceBottom + 1, wall: ModContent.WallType<VaultRailing>(), replace: false);
-
-                    for (int k = 0; k < 7; k++)
+                    #region control room
+                    for (int j = areaControlRoom.Bottom - 1; j >= areaControlRoom.Y; j--)
                     {
-                        WorldGen.PlaceWall(areaShell.Left - 2 + k * 2, entranceBottom, ModContent.WallType<VaultRailing>());
-                        WorldGen.PlaceWall(areaShell.Right + 1 - k * 2, entranceBottom, ModContent.WallType<VaultRailing>());
-                        MiscTools.Tile(areaShell.Left - 2 + k * 2, entranceBottom).WallColor = PaintID.None;
-                        MiscTools.Tile(areaShell.Right + 1 - k * 2, entranceBottom).WallColor = PaintID.None;
+                        int slope = (int)MathHelper.Clamp(12 - (j - areaControlRoom.Y), 0, 10);
+                        for (int i = areaControlRoom.Left + slope; i < areaControlRoom.Right - slope; i++)
+                        {
+                            WorldGen.KillTile(i, j);
+                            MiscTools.Tile(i, j).LiquidAmount = 0;
+
+                            if (slope > 0 && j >= areaControlRoom.Y + 2)
+                            {
+                                if (i == areaControlRoom.Left + slope)
+                                {
+                                    MiscTools.Tile(i - 1, j).Slope = SlopeType.SlopeUpLeft;
+                                }
+                                else if (i == areaControlRoom.Right - slope - 1)
+                                {
+                                    MiscTools.Tile(i + 1, j).Slope = SlopeType.SlopeUpRight;
+                                }
+                            }
+                            else if (j == areaControlRoom.Y + 1 || j == areaControlRoom.Bottom - 2)
+                            {
+                                MiscTools.Tile(i, j).WallType = (ushort)ModContent.WallType<PrototypeBeamWallUnsafe>();
+                            }
+                            else if (j == areaControlRoom.Bottom - 1)
+                            {
+                                MiscTools.Tile(i, j).WallType = (ushort)ModContent.WallType<PrototypeHazardWallUnsafe>();
+                            }
+                        }
+
+                        for (int k = 0; k < 3; k++)
+                        {
+                            MiscTools.Rectangle(areaControlRoom.Center.X - 8 - k * 5, areaControlRoom.Y, areaControlRoom.Center.X - 5 - k * 5, areaControlRoom.Y, ModContent.TileType<PrototypeLight>());
+                            MiscTools.Rectangle(areaControlRoom.Center.X + 5 + k * 5, areaControlRoom.Y, areaControlRoom.Center.X + 8 + k * 5, areaControlRoom.Y, ModContent.TileType<PrototypeLight>());
+
+                            MiscTools.Rectangle(areaControlRoom.Center.X - 21 - k * 3, areaControlRoom.Bottom - 5, areaControlRoom.Center.X - 20 - k * 3, areaControlRoom.Bottom - 1, ModContent.TileType<PrototypeServer>());
+                            MiscTools.Rectangle(areaControlRoom.Center.X + 20 + k * 3, areaControlRoom.Bottom - 5, areaControlRoom.Center.X + 21 + k * 3, areaControlRoom.Bottom - 1, ModContent.TileType<PrototypeServer>());
+                        }
+
+                        bool swap = WorldGen.genRand.NextBool(2);
+                        WorldGen.PlaceObject(areaControlRoom.Center.X - 12, areaControlRoom.Bottom - 5, ModContent.TileType<PrototypeMonitorDiagram>(), style: swap ? 1 : 0);
+                        WorldGen.PlaceObject(areaControlRoom.Center.X + 11, areaControlRoom.Bottom - 5, ModContent.TileType<PrototypeMonitorDiagram>(), style: swap ? 0 : 1);
+                        //MiscTools.Rectangle(areaControlRoom.Center.X - 18, areaControlRoom.Top + 2, areaControlRoom.Center.X - 5, areaControlRoom.Bottom - 3, ModContent.TileType<PrototypeMonitor>(), replace: false);
+                        //MiscTools.Rectangle(areaControlRoom.Center.X + 5, areaControlRoom.Top + 2, areaControlRoom.Center.X + 18, areaControlRoom.Bottom - 3, ModContent.TileType<PrototypeMonitor>(), replace: false);
+
+                        MiscTools.Rectangle(areaControlRoom.Center.X - 22, areaControlRoom.Center.Y - 1, areaControlRoom.Center.X - 20, areaControlRoom.Center.Y + 1, ModContent.TileType<PrototypeVent>());
+                        MiscTools.Rectangle(areaControlRoom.Center.X + 20, areaControlRoom.Center.Y - 1, areaControlRoom.Center.X + 22, areaControlRoom.Center.Y + 1, ModContent.TileType<PrototypeVent>());
                     }
                     #endregion
 
-                    //DrawRoundedRectangle(areaGarden, 26, -12, ModContent.TileType<VaultAbsorber>());
-                    //DrawRoundedRectangle(areaGarden, 23, -7, ModContent.TileType<VaultPlating>());
+                    #region top entrance
+                    StructureHelper.API.Generator.GenerateStructure("Content/World/Structures/Special/Prototype/entrance", new Point16(areaShell.Center.X - 35, areaShell.Top - 42), ModContent.GetInstance<Remnants>());
+                    GenVars.structures.AddProtectedStructure(new Rectangle(areaShell.Center.X - 35, areaShell.Top - 42, 71, 42), 10);
 
-                    #region entrances
+                    MiscTools.Rectangle(areaShell.Center.X - 8, shellTop - 7, areaShell.Center.X - 6, shellTop - 5, ModContent.TileType<PrototypeVent>());
+                    MiscTools.Rectangle(areaShell.Center.X + 6, shellTop - 7, areaShell.Center.X + 8, shellTop - 5, ModContent.TileType<PrototypeVent>());
+
+                    MiscTools.Rectangle(areaShell.Left + corners - 2, areaShell.Top - 20, areaGarden.Left + corners, areaShell.Top - 20, wall: ModContent.WallType<PrototypeRailing>(), replace: false);
+                    MiscTools.Rectangle(areaShell.Left + corners - 2, areaShell.Top - 18, areaGarden.Left + corners, areaShell.Top - 18, wall: ModContent.WallType<PrototypeRailing>(), replace: false);
+                    MiscTools.Rectangle(areaGarden.Right - corners, areaShell.Top - 20, areaShell.Right - corners + 1, areaShell.Top - 20, wall: ModContent.WallType<PrototypeRailing>(), replace: false);
+                    MiscTools.Rectangle(areaGarden.Right - corners, areaShell.Top - 18, areaShell.Right - corners + 1, areaShell.Top - 18, wall: ModContent.WallType<PrototypeRailing>(), replace: false);
+
+                    for (int k = 0; k < 7; k++)
+                    {
+                        WorldGen.PlaceWall(areaShell.Left + corners - 2 + k * 2, areaShell.Top - 19, ModContent.WallType<PrototypeRailing>());
+                        WorldGen.PlaceWall(areaShell.Right - corners + 1 - k * 2, areaShell.Top - 19, ModContent.WallType<PrototypeRailing>());
+                    }
+                    #endregion
+
+                    #region side entrances
+                    MiscTools.Rectangle(areaShell.Left - 2, entranceBottom - 1, areaGarden.Left, entranceBottom - 1, wall: ModContent.WallType<PrototypeRailing>(), replace: false);
+                    MiscTools.Rectangle(areaShell.Left - 2, entranceBottom + 1, areaGarden.Left, entranceBottom + 1, wall: ModContent.WallType<PrototypeRailing>(), replace: false);
+                    MiscTools.Rectangle(areaGarden.Right, entranceBottom - 1, areaShell.Right + 1, entranceBottom - 1, wall: ModContent.WallType<PrototypeRailing>(), replace: false);
+                    MiscTools.Rectangle(areaGarden.Right, entranceBottom + 1, areaShell.Right + 1, entranceBottom + 1, wall: ModContent.WallType<PrototypeRailing>(), replace: false);
+
+                    for (int k = 0; k < 7; k++)
+                    {
+                        WorldGen.PlaceWall(areaShell.Left - 2 + k * 2, entranceBottom, ModContent.WallType<PrototypeRailing>());
+                        WorldGen.PlaceWall(areaShell.Right + 1 - k * 2, entranceBottom, ModContent.WallType<PrototypeRailing>());
+                    }
+
                     MiscTools.Rectangle(areaShell.Left + 10, entranceTop, areaShell.Right - 11, entranceBottom, -1, liquid: 0);
 
                     for (int k = 0; k < 2; k++)
                     {
-                        MiscTools.Rectangle(areaShell.Left + 13 + k * 23, entranceTop, areaShell.Left + 24 + k * 23, entranceBottom, ModContent.TileType<VaultSupport>());
-                        MiscTools.Rectangle(areaShell.Left + 16 + k * 23, entranceTop, areaShell.Left + 21 + k * 23, entranceBottom, -1, ModContent.WallType<VaultHazardWallUnsafe>());
-                        MiscTools.Rectangle(areaShell.Left + 17 + k * 23, entranceTop, areaShell.Left + 20 + k * 23, entranceBottom, ModContent.TileType<VaultSupport>());
-                        MiscTools.Rectangle(areaShell.Left + 18 + k * 23, entranceTop, areaShell.Left + 19 + k * 23, entranceBottom, -1, ModContent.WallType<VaultBeamWallUnsafe>());
+                        MiscTools.Rectangle(areaShell.Left + 13 + k * 23, entranceTop, areaShell.Left + 24 + k * 23, entranceBottom, ModContent.TileType<PrototypeSupport>());
+                        MiscTools.Rectangle(areaShell.Left + 16 + k * 23, entranceTop, areaShell.Left + 21 + k * 23, entranceBottom, -1, ModContent.WallType<PrototypeHazardWallUnsafe>());
+                        MiscTools.Rectangle(areaShell.Left + 17 + k * 23, entranceTop, areaShell.Left + 20 + k * 23, entranceBottom, ModContent.TileType<PrototypeSupport>());
+                        MiscTools.Rectangle(areaShell.Left + 18 + k * 23, entranceTop, areaShell.Left + 19 + k * 23, entranceBottom, -1, ModContent.WallType<PrototypeBeamWallUnsafe>());
 
-                        MiscTools.Rectangle(areaShell.Right - 25 - k * 23, entranceTop, areaShell.Right - 14 - k * 23, entranceBottom, ModContent.TileType<VaultSupport>());
-                        MiscTools.Rectangle(areaShell.Right - 22 - k * 23, entranceTop, areaShell.Right - 17 - k * 23, entranceBottom, -1, ModContent.WallType<VaultHazardWallUnsafe>());
-                        MiscTools.Rectangle(areaShell.Right - 21 - k * 23, entranceTop, areaShell.Right - 18 - k * 23, entranceBottom, ModContent.TileType<VaultSupport>());
-                        MiscTools.Rectangle(areaShell.Right - 20 - k * 23, entranceTop, areaShell.Right - 19 - k * 23, entranceBottom, -1, ModContent.WallType<VaultBeamWallUnsafe>());
+                        MiscTools.Rectangle(areaShell.Right - 25 - k * 23, entranceTop, areaShell.Right - 14 - k * 23, entranceBottom, ModContent.TileType<PrototypeSupport>());
+                        MiscTools.Rectangle(areaShell.Right - 22 - k * 23, entranceTop, areaShell.Right - 17 - k * 23, entranceBottom, -1, ModContent.WallType<PrototypeHazardWallUnsafe>());
+                        MiscTools.Rectangle(areaShell.Right - 21 - k * 23, entranceTop, areaShell.Right - 18 - k * 23, entranceBottom, ModContent.TileType<PrototypeSupport>());
+                        MiscTools.Rectangle(areaShell.Right - 20 - k * 23, entranceTop, areaShell.Right - 19 - k * 23, entranceBottom, -1, ModContent.WallType<PrototypeBeamWallUnsafe>());
+
+                        MiscTools.Rectangle(areaShell.Left + 25 + k * 6, entranceBottom - 1, areaShell.Left + 29 + k * 6, entranceBottom, ModContent.TileType<PrototypeVent>());
+                        MiscTools.Rectangle(areaShell.Right - 36 + k * 6, entranceBottom - 1, areaShell.Right - 32 + k * 6, entranceBottom, ModContent.TileType<PrototypeVent>());
                     }
                     for (int k = 0; k < 3; k++)
                     {
-                        MiscTools.Rectangle(areaShell.Left + 25 + k * 4, entranceTop, areaShell.Left + 27 + k * 4, entranceTop, ModContent.TileType<VaultLight>());
+                        MiscTools.Rectangle(areaShell.Left + 25 + k * 4, entranceTop, areaShell.Left + 27 + k * 4, entranceTop, ModContent.TileType<PrototypeLight>());
 
-                        MiscTools.Rectangle(areaShell.Right - 36 + k * 4, entranceTop, areaShell.Right - 34 + k * 4, entranceTop, ModContent.TileType<VaultLight>());
+                        MiscTools.Rectangle(areaShell.Right - 36 + k * 4, entranceTop, areaShell.Right - 34 + k * 4, entranceTop, ModContent.TileType<PrototypeLight>());
                     }
 
                     Framing.GetTileSafely(areaShell.Left + 12, entranceTop - 1).Slope = SlopeType.SlopeUpRight;
@@ -2296,71 +2408,83 @@ namespace Remnants.Content.World
                     {
                         DrawNumber(areaShell.Left + 26 + k * 5, entranceTop + 3, podNumberString[k]);
                         DrawNumber(areaShell.Right - 35 + k * 5, entranceTop + 3, podNumberString[k]);
+
+                        DrawNumber(areaShell.Center.X - 4 + k * 5, areaShell.Top - 26, podNumberString[k]);
                     }
 
                     #endregion
 
                     DrawRoundedRectangle(areaGarden, 19, 0, TileID.Ash);
 
-                    #region decorative block variants
-                    FastNoiseLite machinery1 = new FastNoiseLite();
+                    #region block variation
+                    FastNoiseLite machinery1 = new FastNoiseLite(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
                     machinery1.SetFrequency(0.15f);
                     machinery1.SetNoiseType(FastNoiseLite.NoiseType.Cellular);
                     machinery1.SetCellularDistanceFunction(FastNoiseLite.CellularDistanceFunction.Manhattan);
                     machinery1.SetCellularReturnType(FastNoiseLite.CellularReturnType.Distance2Sub);
                     machinery1.SetCellularJitter(0);
 
-                    FastNoiseLite machinery2 = new FastNoiseLite();
+                    FastNoiseLite machinery2 = new FastNoiseLite(WorldGen.genRand.Next(int.MinValue, int.MaxValue));
                     machinery2.SetFrequency(0.15f);
                     machinery2.SetNoiseType(FastNoiseLite.NoiseType.Cellular);
                     machinery2.SetCellularReturnType(FastNoiseLite.CellularReturnType.CellValue);
                     machinery2.SetCellularJitter(0);
 
-                    for (int y = areaShell.Top - 11; y < areaShell.Bottom + 10; y++)
+                    for (int y = areaShell.Top - 41; y < areaShell.Bottom + 10; y++)
                     {
                         for (int x = areaShell.Left; x < areaShell.Right; x++)
                         {
                             Tile tile = Main.tile[x, y];
 
-                            if (tile.HasTile && tile.TileType == ModContent.TileType<VaultPlating>())
+                            if (tile.HasTile)
                             {
-                                bool valid = true;
-
-                                for (int i = -7; i <= 7; i++)
+                                if (tile.TileType == ModContent.TileType<PrototypePlating>())
                                 {
-                                    for (int j = -7; j <= 7; j++)
+                                    bool valid = true;
+
+                                    for (int i = -7; i <= 7; i++)
                                     {
-                                        if (Math.Abs(i) + Math.Abs(j) <= 10)
+                                        for (int j = -7; j <= 7; j++)
                                         {
-                                            tile = Framing.GetTileSafely(x + i, y + j);
-
-                                            if (!WorldGen.SolidTile(x + i, y + j) || tile.TileType != ModContent.TileType<VaultPlating>() && tile.TileType != ModContent.TileType<VaultProcessor>() && tile.TileType != ModContent.TileType<VaultConduit>())
+                                            if (Math.Abs(i) + Math.Abs(j) <= 10)
                                             {
-                                                valid = false;
+                                                tile = Framing.GetTileSafely(x + i, y + j);
 
-                                                break;
+                                                if (!WorldGen.SolidTile(x + i, y + j) || tile.TileType != ModContent.TileType<PrototypePlating>() && tile.TileType != ModContent.TileType<PrototypeComputer>() && tile.TileType != ModContent.TileType<PrototypeConduits>())
+                                                {
+                                                    valid = false;
+
+                                                    break;
+                                                }
                                             }
+                                        }
+
+                                        if (!valid)
+                                        {
+                                            break;
                                         }
                                     }
 
-                                    if (!valid)
+                                    if (valid)
                                     {
-                                        break;
+                                        tile = Main.tile[x, y];
+
+                                        float _machinery1 = 1 + machinery1.GetNoise(x - areaShell.Center.X, y);
+                                        float _machinery2 = machinery2.GetNoise(x - areaShell.Center.X, y) / 2 + 0.5f;
+
+                                        if (_machinery1 > _machinery2 * 2 && y > shellTop)
+                                        {
+                                            tile.TileType = (ushort)ModContent.TileType<PrototypeComputer>();
+                                        }
+                                        else tile.TileType = (ushort)ModContent.TileType<PrototypeConduits>();
                                     }
                                 }
-
-                                if (valid)
+                            }
+                            else
+                            {
+                                if (MiscTools.HasTile(x - 1, y, ModContent.TileType<PrototypeLight>()) && MiscTools.HasTile(x + 1, y, ModContent.TileType<PrototypeLight>()) || MiscTools.HasTile(x - 1, y, ModContent.TileType<PrototypeVent>()) && MiscTools.HasTile(x + 1, y, ModContent.TileType<PrototypeVent>()) || MiscTools.HasTile(x - 1, y, ModContent.TileType<PrototypeServer>()) && MiscTools.HasTile(x + 1, y, ModContent.TileType<PrototypeServer>()))
                                 {
-                                    tile = Main.tile[x, y];
-
-                                    float _machinery1 = 1 + machinery1.GetNoise(x, y);
-                                    float _machinery2 = machinery2.GetNoise(x, y) / 2 + 0.5f;
-
-                                    if (_machinery1 > _machinery2 * 2)
-                                    {
-                                        tile.TileType = (ushort)ModContent.TileType<VaultProcessor>();
-                                    }
-                                    else tile.TileType = (ushort)ModContent.TileType<VaultConduit>();
+                                    WorldGen.PlaceTile(x, y, ModContent.TileType<PrototypeSupport>());
                                 }
                             }
                         }
@@ -2368,28 +2492,63 @@ namespace Remnants.Content.World
 
                     for (int k = 0; k < 4; k++)
                     {
-                        MiscTools.Rectangle(areaShell.Left, entranceBottom + 8 + k * 7, areaShell.Left + 6, entranceBottom + 12 + k * 7, ModContent.TileType<VaultConduit>());
-                        MiscTools.Rectangle(areaShell.Right - 7, entranceBottom + 8 + k * 7, areaShell.Right - 1, entranceBottom + 12 + k * 7, ModContent.TileType<VaultConduit>());
+                        MiscTools.Rectangle(areaShell.Left, entranceBottom + 8 + k * 8, areaShell.Left + 6, entranceBottom + 12 + k * 8, ModContent.TileType<PrototypeConduits>());
+                        MiscTools.Rectangle(areaShell.Right - 7, entranceBottom + 8 + k * 8, areaShell.Right - 1, entranceBottom + 12 + k * 8, ModContent.TileType<PrototypeConduits>());
 
-                        Framing.GetTileSafely(areaShell.Left, entranceBottom + 10 + k * 7).TileType = (ushort)ModContent.TileType<VaultExhaust>();
-                        Framing.GetTileSafely(areaShell.Right - 1, entranceBottom + 10 + k * 7).TileType = (ushort)ModContent.TileType<VaultExhaust>();
-                        Framing.GetTileSafely(areaShell.Left, entranceBottom + 10 + k * 7).TileFrameX = 0;
-                        Framing.GetTileSafely(areaShell.Right - 1, entranceBottom + 10 + k * 7).TileFrameX = 16;
-                        Framing.GetTileSafely(areaShell.Left, entranceBottom + 10 + k * 7).TileFrameY = 0;
-                        Framing.GetTileSafely(areaShell.Right - 1, entranceBottom + 10 + k * 7).TileFrameY = 0;
+                        Framing.GetTileSafely(areaShell.Left, entranceBottom + 10 + k * 8).TileType = (ushort)ModContent.TileType<PrototypeValve>();
+                        Framing.GetTileSafely(areaShell.Right - 1, entranceBottom + 10 + k * 8).TileType = (ushort)ModContent.TileType<PrototypeValve>();
+                        Framing.GetTileSafely(areaShell.Left, entranceBottom + 10 + k * 8).TileFrameX = 0;
+                        Framing.GetTileSafely(areaShell.Right - 1, entranceBottom + 10 + k * 8).TileFrameX = 16;
+                        Framing.GetTileSafely(areaShell.Left, entranceBottom + 10 + k * 8).TileFrameY = 0;
+                        Framing.GetTileSafely(areaShell.Right - 1, entranceBottom + 10 + k * 8).TileFrameY = 0;
 
-                        Framing.GetTileSafely(areaShell.Left, entranceBottom + 10 + k * 7).WallType = (ushort)ModContent.WallType<VaultWallUnsafe>();
-                        Framing.GetTileSafely(areaShell.Right - 1, entranceBottom + 10 + k * 7).WallType = (ushort)ModContent.WallType<VaultWallUnsafe>();
+                        Framing.GetTileSafely(areaShell.Left, entranceBottom + 10 + k * 8).WallType = (ushort)ModContent.WallType<PrototypeWallUnsafe>();
+                        Framing.GetTileSafely(areaShell.Right - 1, entranceBottom + 10 + k * 8).WallType = (ushort)ModContent.WallType<PrototypeWallUnsafe>();
 
-                        MiscTools.Rectangle(areaShell.Left + 12, entranceTop - 9 - k * 7, areaShell.Left + 18, entranceTop - 8 - k * 7, ModContent.TileType<VaultConduit>());
-                        MiscTools.Rectangle(areaShell.Right - 19, entranceTop - 9 - k * 7, areaShell.Right - 13, entranceTop - 8 - k * 7, ModContent.TileType<VaultConduit>());
+                        MiscTools.Rectangle(areaShell.Left + 12, entranceTop - 9 - k * 9, areaShell.Left + 18, entranceTop - 8 - k * 9, ModContent.TileType<PrototypeConduits>());
+                        MiscTools.Rectangle(areaShell.Right - 19, entranceTop - 9 - k * 9, areaShell.Right - 13, entranceTop - 8 - k * 9, ModContent.TileType<PrototypeConduits>());
 
                         if (k < 3)
                         {
-                            MiscTools.Rectangle(areaShell.Left + corners, areaShell.Top - 11 + k * 4, areaShell.Left + corners + 6, areaShell.Top - 9 + k * 4, ModContent.TileType<VaultConduit>());
-                            MiscTools.Rectangle(areaShell.Right - corners - 7, areaShell.Top - 11 + k * 4, areaShell.Right - corners - 1, areaShell.Top - 9 + k * 4, ModContent.TileType<VaultConduit>());
+                            MiscTools.Rectangle(areaShell.Left + corners, areaShell.Top - 11 + k * 4, areaShell.Left + corners + 6, areaShell.Top - 9 + k * 4, ModContent.TileType<PrototypeConduits>());
+                            MiscTools.Rectangle(areaShell.Right - corners - 7, areaShell.Top - 11 + k * 4, areaShell.Right - corners - 1, areaShell.Top - 9 + k * 4, ModContent.TileType<PrototypeConduits>());
                         }
                     }
+                    #endregion
+
+                    #region access shaft
+                    for (int k = 0; k < 9; k++)
+                    {
+                        MiscTools.Rectangle(areaShell.Center.X - 2, shellTop + k * 6, areaShell.Center.X + 2, shellTop + 5 + k * 6, ModContent.TileType<PrototypePlating>(), add: false, liquid: 0);
+                        MiscTools.Rectangle(areaShell.Center.X - 4, shellTop + k * 6, areaShell.Center.X + 4, shellTop + 5 + k * 6, ModContent.TileType<PrototypeSupport>(), replace: false);
+                        MiscTools.Rectangle(areaShell.Center.X - 1, shellTop + k * 6, areaShell.Center.X + 1, shellTop + 5 + k * 6, -1, ModContent.WallType<PrototypeBeamWallUnsafe>());
+                        MiscTools.Rectangle(areaShell.Center.X - 1, shellTop + k * 6, areaShell.Center.X + 1, shellTop + k * 6, ModContent.TileType<PrototypePlatform>());
+                        MiscTools.Rectangle(areaShell.Center.X - 1, shellTop + 1 + k * 6, areaShell.Center.X + 1, shellTop + 1 + k * 6, -1, ModContent.WallType<PrototypeWallUnsafe>());
+
+                        WorldGen.PlaceTile(areaShell.Center.X - 1, shellTop + 1 + k * 6, ModContent.TileType<PrototypeLight>());
+                        WorldGen.PlaceTile(areaShell.Center.X + 1, shellTop + 1 + k * 6, ModContent.TileType<PrototypeLight>());
+                    }
+                    #endregion
+
+                    #region drainage system
+                    DrainageChannel(areaShell.Center.X - 23, shellTop, areaShell.Center.X - 38, areaShell.Top - 1);
+                    WorldGen.PlaceTile(areaShell.Center.X - 23, shellTop, TileID.Grate);
+                    DrainageChannel(areaShell.Center.X - 38, areaShell.Top - 1, areaShell.Left + 30, areaControlRoom.Bottom + 18);
+                    DrainageChannel(areaShell.Left + 30, areaControlRoom.Bottom + 18, areaShell.Left + 12, entranceTop - 13);
+
+                    DrainageChannel(areaShell.Center.X + 23, shellTop, areaShell.Center.X + 38, areaShell.Top - 1);
+                    WorldGen.PlaceTile(areaShell.Center.X + 23, shellTop, TileID.Grate);
+                    DrainageChannel(areaShell.Center.X + 38, areaShell.Top - 1, areaShell.Right - 31, areaControlRoom.Bottom + 18);
+                    DrainageChannel(areaShell.Right - 31, areaControlRoom.Bottom + 18, areaShell.Right - 13, entranceTop - 13);
+
+                    DrainageChannel(areaShell.Left + 30, entranceTop - 22, areaShell.Left + 12, entranceTop - 22);
+                    DrainageChannel(areaShell.Right - 31, entranceTop - 22, areaShell.Right - 13, entranceTop - 22);
+                    DrainageChannel(areaShell.Left + 30, entranceTop - 31, areaShell.Left + 12, entranceTop - 31);
+                    DrainageChannel(areaShell.Right - 31, entranceTop - 31, areaShell.Right - 13, entranceTop - 31);
+
+                    DrainageChannel(areaControlRoom.Center.X, areaControlRoom.Bottom, areaControlRoom.Center.X, areaControlRoom.Bottom + 17);
+                    WorldGen.PlaceTile(areaControlRoom.Center.X, areaControlRoom.Bottom, TileID.Grate);
+                    DrainageChannel(areaShell.Center.X - 38, areaControlRoom.Bottom + 18, areaShell.Center.X + 38, areaControlRoom.Bottom + 18);
                     #endregion
 
                     #region garden terrain
@@ -2419,15 +2578,11 @@ namespace Remnants.Content.World
                     {
                         for (int y = 1; y < area.Height - 1; y++)
                         {
-                            if (y + area.Y > entranceBottom)
+                            if (y + area.Y >= entranceTop && y + area.Y <= entranceBottom)
                             {
-                                if (y + area.Y <= entranceBottom + 6)
-                                {
-                                    weight = 0.4f;
-                                }
-                                else weight = 0.48f;
+                                weight = 0.6f;
                             }
-                            else weight = 0.53f;
+                            else weight = 0.5f;
 
                             if (WorldGen.genRand.NextFloat(0, 1) <= weight)
                             {
@@ -2559,7 +2714,7 @@ namespace Remnants.Content.World
                         }
                     }
                     #endregion
-
+                    
                     #region garden plants
                     for (int x = areaGarden.Left; x < areaGarden.Right; x++)
                     {
@@ -2593,6 +2748,7 @@ namespace Remnants.Content.World
                     #endregion
 
                     count--;
+                    attempts = 0;
                 }
             }
 
@@ -2659,25 +2815,55 @@ namespace Remnants.Content.World
                 }
             }
 
-            for (int x = (int)(Main.maxTilesX * 0.35f); x < Main.maxTilesX * 0.65f; x++)
-            {
-                for (int y = Main.maxTilesY - 250; y < Main.maxTilesY - 50; y++)
-                {
-                    if (!MiscTools.SurroundingTilesActive(x, y, true))
-                    {
-                        Tile tile = Main.tile[x, y];
+            //for (int x = (int)(Main.maxTilesX * 0.35f); x < Main.maxTilesX * 0.65f; x++)
+            //{
+            //    for (int y = Main.maxTilesY - 250; y < Main.maxTilesY - 50; y++)
+            //    {
+            //        if (!MiscTools.SurroundingTilesActive(x, y, true))
+            //        {
+            //            Tile tile = Main.tile[x, y];
 
-                        if (MiscTools.HasTile(x, y, TileID.Ash))
-                        {
-                            tile.TileType = TileID.AshGrass;
-                        }
-                        if (tile.WallType == WallID.LavaUnsafe2)
-                        {
-                            tile.WallType = WallID.LavaUnsafe4;
-                            tile.WallColor = PaintID.None;
-                        }
-                    }
+            //            if (MiscTools.HasTile(x, y, TileID.Ash))
+            //            {
+            //                tile.TileType = TileID.AshGrass;
+            //            }
+            //            if (tile.WallType == ModContent.WallType<TuffWall>())
+            //            {
+            //                tile.WallType = WallID.LavaUnsafe4;
+            //            }
+            //        }
+            //    }
+            //}
+        }
+
+        private void DrainageChannel(int startX, int startY, int finishX, int finishY)
+        {
+            Tile tile;
+            for (int y = startY; y != finishY; y += y < finishY ? 1 : -1)
+            {
+                tile = Framing.GetTileSafely(startX, y);
+                tile.HasTile = false;
+                tile.LiquidAmount = 0;
+
+                if (y > startY || WorldGen.SolidTile(startX, y - 1))
+                {
+                    MiscTools.Rectangle(startX - 1, y - 1, startX + 1, y + 1, ModContent.TileType<PrototypePlating>(), add: false);
                 }
+            }
+            for (int x = startX; x != finishX; x += x < finishX ? 1 : -1)
+            {
+                tile = Framing.GetTileSafely(x, finishY);
+                tile.HasTile = false;
+                tile.LiquidAmount = 0;
+                MiscTools.Rectangle(x - 1, finishY - 1, x + 1, finishY + 1, ModContent.TileType<PrototypePlating>(), add: false);
+            }
+            tile = Framing.GetTileSafely(finishX, finishY);
+            tile.HasTile = false;
+
+            if (MiscTools.Tile(finishX, finishY).WallType != ModContent.WallType<PrototypeWallUnsafe>())
+            {
+                WorldGen.PlaceTile(finishX, finishY, TileID.Grate);
+                WorldGen.PlaceWall(finishX, finishY, ModContent.WallType<PrototypeWallUnsafe>());
             }
         }
 
@@ -2834,27 +3020,73 @@ namespace Remnants.Content.World
 
             BiomeMap biomes = ModContent.GetInstance<BiomeMap>();
 
-            bool starsAbove = ModLoader.TryGetMod("StarsAbove", out Mod tsa);
 
-            int countInitial = (int)(Main.maxTilesX / (starsAbove ? 1400 : 1050f));
+            int countInitial = (int)(Main.maxTilesX / 1050f);
+            bool tight = false;
+            if (ModContent.GetInstance<Worldgen>().Prototypes)
+            {
+                if (calamityEnabled && starsAboveEnabled)
+                {
+                    countInitial = (int)(countInitial * 0.5f);
+                    tight = true;
+                }
+                else if (calamityEnabled)
+                {
+                    countInitial = (int)(countInitial * 0.75f);
+                }
+                else if (starsAboveEnabled)
+                {
+                    countInitial = (int)(countInitial * 0.75f);
+                }
+            }
             int count = countInitial;
 
             while (count > 0)
             {
                 Rectangle area = new Rectangle(0, Main.maxTilesY - 155, (int)(WorldGen.genRand.Next(100, 200) / 3) * 3, 60);
-                area.X = WorldGen.genRand.NextBool(2) || starsAbove ? WorldGen.genRand.Next((int)(Main.maxTilesX * 0.1f), (int)(Main.maxTilesX * 0.3f) - area.Width) : WorldGen.genRand.Next((int)(Main.maxTilesX * 0.7f), (int)(Main.maxTilesX * 0.9f) - area.Width);
+                area.X = !ModContent.GetInstance<Worldgen>().Prototypes ? WorldGen.genRand.Next((int)(Main.maxTilesX * 0.1f), (int)(Main.maxTilesX * 0.9f) - area.Width) : WorldGen.genRand.NextBool(2) ? WorldGen.genRand.Next((int)(Main.maxTilesX * 0.1f), (int)(Main.maxTilesX * (tight ? 0.35f : 0.3f)) - area.Width) : WorldGen.genRand.Next((int)(Main.maxTilesX * (tight ? 0.65f : 0.7f)), (int)(Main.maxTilesX * 0.9f) - area.Width);
                 area.Y += WorldGen.genRand.Next(-5, 6);
 
-                if (GenVars.structures.CanPlace(area, 20))
+                bool valid = true;
+
+                int neonVeilSide = calamityEnabled && GenVars.dungeonSide == 1 ? -1 : 1;
+
+                if (!GenVars.structures.CanPlace(area, 20))
+                {
+                    valid = false;
+                }
+                else if (starsAboveEnabled && (neonVeilSide == 1 && area.Right > Main.maxTilesX * 0.6f || neonVeilSide == -1 && area.Left < Main.maxTilesX * 0.4f))
+                {
+                    valid = false;
+                }
+                else if (calamityEnabled)
+                {
+                    if (GenVars.dungeonSide == 1)
+                    {
+                        if (area.Right > Main.maxTilesX * 0.8f)
+                        {
+                            valid = false;
+                        }
+                    }
+                    else
+                    {
+                        if (area.Left < Main.maxTilesX * 0.2f)
+                        {
+                            valid = false;
+                        }
+                    }
+                }
+
+                if (valid)
                 {
                     GenVars.structures.AddProtectedStructure(area, 10);
 
                     MiscTools.Rectangle(area.Left - 1, area.Bottom - 2, area.Right + 1, area.Bottom + 30, ModContent.TileType<AshenBrick>());
                     MiscTools.Rectangle(area.Left, area.Bottom - 1, area.Right, area.Bottom + 29, wall: ModContent.WallType<AshenBrickWallUnsafe>());
 
-                    MiscTools.Rectangle(area.Left - 3, Main.maxTilesY - 160, area.Right + 3, Main.maxTilesY - 40, liquid: 0);
+                    MiscTools.Rectangle(area.Left - 3, Main.maxTilesY - 150, area.Right + 3, Main.maxTilesY - 40, liquid: 0);
 
-                    MiscTools.Rectangle(area.Left - 1, area.Bottom + 31, area.Right + 1, Main.maxTilesY - 20, TileID.Ash);
+                    MiscTools.Rectangle(area.Left - 1, area.Bottom + 31, area.Right + 1, Main.maxTilesY - 20, ModContent.TileType<Tuff>());
                     StructureTools.FillEdges(area.Left - 1, area.Bottom + 31, area.Right + 1, Main.maxTilesY - 40, ignoreTop: false);
 
                     rooms = new List<Room>();
@@ -3542,24 +3774,53 @@ namespace Remnants.Content.World
                     {
                         for (int i = area.Left - 3; i < area.Right + 3; i++)
                         {
-                            if (MiscTools.HasTile(i, j, TileID.Ash) && !MiscTools.HasTile(i, j - 1, TileID.Ash))
+                            if (MiscTools.HasTile(i, j, TileID.Ash))
                             {
-                                if (!MiscTools.HasTile(i - 1, j, TileID.Ash) && !MiscTools.HasTile(i + 1, j, TileID.Ash))
+                                if (!MiscTools.HasTile(i, j - 1, TileID.Ash))
                                 {
-                                    if (MiscTools.HasTile(i, j + 1, TileID.Ash))
+                                    if (!MiscTools.HasTile(i - 1, j, TileID.Ash) && !MiscTools.HasTile(i + 1, j, TileID.Ash))
                                     {
-                                        MiscTools.Tile(i, j).Slope = SlopeType.Solid;
-                                        MiscTools.Tile(i, j).IsHalfBlock = true;
+                                        if (MiscTools.HasTile(i, j + 1, TileID.Ash) || MiscTools.HasTile(i, j + 1, TileID.AshGrass))
+                                        {
+                                            MiscTools.Tile(i, j).Slope = SlopeType.Solid;
+                                            MiscTools.Tile(i, j).IsHalfBlock = true;
+                                        }
+                                        else WorldGen.KillTile(i, j);
                                     }
-                                    else WorldGen.KillTile(i, j);
+                                    else if (!MiscTools.HasTile(i + 1, j, TileID.Ash))
+                                    {
+                                        MiscTools.Tile(i, j).Slope = SlopeType.SlopeDownLeft;
+                                    }
+                                    else if (!MiscTools.HasTile(i - 1, j, TileID.Ash))
+                                    {
+                                        MiscTools.Tile(i, j).Slope = SlopeType.SlopeDownRight;
+                                    }
                                 }
-                                else if (!MiscTools.HasTile(i + 1, j, TileID.Ash))
+                            }
+                        }
+                    }
+
+                    for (int j = area.Bottom + 2; j >= area.Top - 10; j--)
+                    {
+                        for (int i = area.Left - 3; i < area.Right + 3; i++)
+                        {
+                            if (MiscTools.HasTile(i, j, TileID.Ash))
+                            {
+                                if (!MiscTools.SurroundingTilesActive(i, j))
                                 {
-                                    MiscTools.Tile(i, j).Slope = SlopeType.SlopeDownLeft;
+                                    if (MiscTools.Tile(i, j).WallType != ModContent.WallType<AshenBrickWallUnsafe>())
+                                    {
+                                        bool forest = i > Main.maxTilesX * 0.35f && i < Main.maxTilesX * 0.65f;
+
+                                        if (forest)
+                                        {
+                                            MiscTools.Tile(i, j).TileType = TileID.AshGrass;
+                                        }
+                                    }
                                 }
-                                else if (!MiscTools.HasTile(i - 1, j, TileID.Ash))
+                                else if (MiscTools.Tile(i, j).WallType == 0)
                                 {
-                                    MiscTools.Tile(i, j).Slope = SlopeType.SlopeDownRight;
+                                    MiscTools.Tile(i, j).WallType = (ushort)ModContent.WallType<TuffWall>();
                                 }
                             }
                         }
@@ -3796,12 +4057,15 @@ namespace Remnants.Content.World
                                         MiscTools.Rectangle(cube.Center.X + 1, cube.Center.Y - 1, cube.Center.X + 3, cube.Center.Y + 2, wall: ModContent.WallType<WoodLattice>());
                                         MiscTools.Rectangle(cube.Center.X + 5, cube.Center.Y - 1, cube.Center.X + 7, cube.Center.Y + 2, wall: ModContent.WallType<WoodLattice>());
 
-                                        MiscTools.PlaceObjectsInArea(cube.Left + 3, cube.Center.Y + 2, cube.Right - 4, cube.Center.Y + 2, TileID.ClayPot, count: 6);
+                                        MiscTools.PlaceObjectsInArea(cube.Left + 5, cube.Center.Y + 2, cube.Right - 6, cube.Center.Y + 2, TileID.ClayPot, count: 6);
 
                                         WorldGen.PlaceObject(cube.Center.X - 6, cube.Center.Y - 2, TileID.HangingLanterns, style: 2);
                                         WorldGen.PlaceObject(cube.Center.X - 2, cube.Center.Y - 2, TileID.HangingLanterns, style: 2);
                                         WorldGen.PlaceObject(cube.Center.X + 2, cube.Center.Y - 2, TileID.HangingLanterns, style: 2);
                                         WorldGen.PlaceObject(cube.Center.X + 6, cube.Center.Y - 2, TileID.HangingLanterns, style: 2);
+
+                                        WorldGen.PlaceObject(cube.Center.X + 9, cube.Center.Y + 2, ModContent.TileType<GardenPotPlant>());
+                                        WorldGen.PlaceObject(cube.Center.X - 10, cube.Center.Y + 2, ModContent.TileType<GardenPotPlant>());
 
                                         StructureTools.AddDecorations(cube);
                                     }
@@ -4373,7 +4637,7 @@ namespace Remnants.Content.World
 
                 float radius = 24;// WorldGen.genRand.NextFloat(48, 60);
                 int x = WorldGen.genRand.NextBool(2) ? WorldGen.genRand.Next(calamity ? 600 : 500, (int)(Main.maxTilesX * 0.35f)) : WorldGen.genRand.Next((int)(Main.maxTilesX * 0.65f), Main.maxTilesX - (calamity ? 600 : 500));
-                int y = (int)(Main.worldSurface - radius);
+                int y = Terrain.Maximum;
 
                 bool[] validTiles = TileID.Sets.Factory.CreateBoolSet(true, TileID.LivingWood, TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick);
 
@@ -5080,7 +5344,7 @@ namespace Remnants.Content.World
                 //{
                 //    valid = false;
                 //}
-                else if (!StructureTools.AvoidsBiomes(rail.area, new int[] { BiomeID.Tundra, BiomeID.Desert, BiomeID.Marble, BiomeID.SpiderNest, BiomeID.SulfuricVents, BiomeID.Toxic, BiomeID.SunkenSea }))
+                else if (!StructureTools.AvoidsBiomes(rail.area, new int[] { BiomeID.Tundra, BiomeID.Desert, BiomeID.Marble, BiomeID.SpiderNest, BiomeID.SulfuricVents, BiomeID.SunkenSea }))
                 {
                     valid = false;
                 }
@@ -5227,7 +5491,7 @@ namespace Remnants.Content.World
 
                         if (structureCount % 2 == 0)
                         {
-                            MiscTools.PlaceObjectsInArea(rail.roomPos.X + 1, rail.room.Bottom - 1, rail.room.Right + rail.room.Width - 1, rail.room.Bottom - 1, biomes.FindBiome(rail.room.Right, rail.room.Bottom) == BiomeID.Glowshroom ? ModContent.TileType<Shroomcart>() : ModContent.TileType<Tiles.Objects.Minecart>());
+                            MiscTools.PlaceObjectsInArea(rail.roomPos.X + 1, rail.room.Bottom - 1, rail.room.Right + rail.room.Width - 1, rail.room.Bottom - 1, biomes.FindBiome(rail.room.Right, rail.room.Bottom) == BiomeID.Glowshroom ? ModContent.TileType<Shroomcart>() : ModContent.TileType<Content.Tiles.Minecart>());
                         }
                         //WGTools.PlaceObjectsInArea(rail.roomPos.X + 1, rail.room.Bottom - 1, rail.room.Right + rail.room.Width - 1, rail.room.Bottom - 1, TileID.GrandfatherClocks); 
                         MiscTools.PlaceObjectsInArea(rail.roomPos.X + 1, rail.room.Bottom - 1, rail.room.Right + rail.room.Width - 1, rail.room.Bottom - 1, TileID.WorkBenches);
@@ -5559,9 +5823,9 @@ namespace Remnants.Content.World
             progressCounter++;
 
             structureCount = 0; // OVERGROWN CABIN
-            while (structureCount < Main.maxTilesX * Main.maxTilesY / 1200f / (ModContent.GetInstance<Worldgen>().ExperimentalWorldgen ? 1200 : 600) * ModContent.GetInstance<Worldgen>().CabinFrequency)
+            while (structureCount < Main.maxTilesX * Main.maxTilesY / 1200f / 600 * ModContent.GetInstance<Worldgen>().CabinFrequency)
             {
-                progress.Set((progressCounter + structureCount / (float)(Main.maxTilesX * Main.maxTilesY / 1200f) / (ModContent.GetInstance<Worldgen>().ExperimentalWorldgen ? 1200 : 600)) / uniqueStructures);
+                progress.Set((progressCounter + structureCount / (float)(Main.maxTilesX * Main.maxTilesY / 1200f) / 600) / uniqueStructures);
 
                 #region spawnconditions
                 StructureTools.Dungeon cabin = new StructureTools.Dungeon(WorldGen.genRand.Next(400, Main.maxTilesX - 400), 0, WorldGen.genRand.Next(2, 4), WorldGen.genRand.Next(1, 3), 12, 6, 3);
@@ -5887,7 +6151,7 @@ namespace Remnants.Content.World
                 {
                     valid = false;
                 }
-                else if (!StructureTools.AvoidsBiomes(cabin.area, new int[] { BiomeID.Corruption, BiomeID.Crimson, BiomeID.Marble, BiomeID.Granite, BiomeID.SpiderNest, BiomeID.Toxic, BiomeID.SulfuricVents, BiomeID.SunkenSea }))
+                else if (!StructureTools.AvoidsBiomes(cabin.area, new int[] { BiomeID.Corruption, BiomeID.Crimson, BiomeID.Marble, BiomeID.Granite, BiomeID.SpiderNest, BiomeID.SulfuricVents, BiomeID.SunkenSea }))
                 {
                     valid = false;
                 }
@@ -6566,7 +6830,7 @@ namespace Remnants.Content.World
                 {
                     valid = false;
                 }
-                else if (!StructureTools.AvoidsBiomes(area, new int[] { BiomeID.Tundra, BiomeID.Jungle, BiomeID.Glowshroom, BiomeID.Granite, BiomeID.SpiderNest, BiomeID.Toxic, BiomeID.SulfuricVents, BiomeID.SunkenSea }))
+                else if (!StructureTools.AvoidsBiomes(area, new int[] { BiomeID.Tundra, BiomeID.Jungle, BiomeID.Glowshroom, BiomeID.Granite, BiomeID.SpiderNest, BiomeID.SulfuricVents, BiomeID.SunkenSea }))
                 {
                     valid = false;
                 }

@@ -16,7 +16,7 @@ namespace Remnants.Content.Items.Placeable.Objects
 			Item.CloneDefaults(ItemID.Switch);
 			Item.width = 9 * 2;
 			Item.height = 9 * 2;
-			Item.createTile = ModContent.TileType<Tiles.Objects.Furniture.LabyrinthWallLamp>();
+			Item.createTile = ModContent.TileType<Content.Tiles.EchoingHalls.LabyrinthWallLamp>();
 		}
 	}
 }

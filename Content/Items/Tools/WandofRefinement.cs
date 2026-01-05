@@ -1,8 +1,8 @@
 using Microsoft.Xna.Framework;
-using Remnants.Content.Tiles.Blocks;
-using Remnants.Content.Tiles.Objects;
+using Remnants.Content.Tiles;
+using Remnants.Content.Tiles;
 using Remnants.Content.Walls;
-using Remnants.Content.Walls.Parallax;
+using Remnants.Content.Walls;
 using Remnants.Content.Walls.dev;
 using Terraria;
 using Terraria.Audio;
@@ -10,7 +10,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using System.Collections.Generic;
-using Remnants.Content.Walls.Vanity;
+using Remnants.Content.Walls.Underworld;
 
 namespace Remnants.Content.Items.Tools
 {

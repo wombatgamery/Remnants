@@ -3,9 +3,7 @@ using Remnants.Content.Biomes;
 using Remnants.Content.Items.Materials;
 using Remnants.Content.Items.Placeable.Blocks;
 using Remnants.Content.Projectiles.vanilla;
-using Remnants.Content.Tiles.Objects;
-using Remnants.Content.Walls;
-using Remnants.Content.Walls.Parallax;
+using Remnants.Content.Tiles;
 using Remnants.Content.Dusts;
 using Remnants.Content.World;
 //using SubworldLibrary;
@@ -16,6 +14,8 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Remnants.Content.Walls.EchoingHalls;
+using Remnants.Content.Walls.Shimmer;
 
 namespace Remnants.Content.Items
 {
@@ -398,19 +398,12 @@ namespace Remnants.Content.Items
             recipe.Register();
             #endregion
 
-            #region blocks
-            recipe = Recipe.Create(ItemID.SandBlock);
-            recipe.AddIngredient(ItemID.HardenedSand);
-            recipe.AddTile(TileID.HeavyWorkBench);
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemID.LihzahrdBrick, 50);
+            recipe = Recipe.Create(ItemID.LihzahrdBrick, 25);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Blocks.Hardstone>(), 5);
             recipe.AddIngredient(ItemID.BeetleHusk);
-            recipe.AddIngredient(ModContent.ItemType<Hardstone>(), 5);
-            recipe.AddIngredient(ItemID.StoneBlock, 5);
+            recipe.AddIngredient(ItemID.MudBlock, 5);
             recipe.AddTile(TileID.HeavyWorkBench);
             recipe.Register();
-            #endregion
 
             #region armor
             DisableRecipes(ItemID.FrostHelmet);
@@ -456,16 +449,6 @@ namespace Remnants.Content.Items
             recipe = Recipe.Create(ItemID.TurtleScaleMail); recipe.AddIngredient(ItemID.ChlorophytePlateMail); recipe.AddIngredient(ItemID.TurtleShell, 12); recipe.AddTile(TileID.MythrilAnvil); recipe.Register();
             recipe = Recipe.Create(ItemID.TurtleLeggings); recipe.AddIngredient(ItemID.ChlorophyteGreaves); recipe.AddIngredient(ItemID.TurtleShell, 9); recipe.AddTile(TileID.MythrilAnvil); recipe.Register();
             #endregion
-
-            ScrapperRecipe(7, ItemID.IronShortsword);
-            ScrapperRecipe(7, ItemID.IronBow);
-            ScrapperRecipe(8, ItemID.IronBroadsword);
-            ScrapperRecipe(15, ItemID.IronHelmet);
-            ScrapperRecipe(25, ItemID.IronChainmail);
-            ScrapperRecipe(20, ItemID.IronGreaves);
-
-            ScrapperRecipe(2, ItemID.EmptyBucket);
-            ScrapperRecipe(1, ItemID.Chain);
         }
 
         private void DisableRecipes(int item)
@@ -477,15 +460,6 @@ namespace Remnants.Content.Items
                     Main.recipe[index].DisableRecipe();
                 }
             }
-        }
-
-        private void ScrapperRecipe(int output, int item)
-        {
-            Recipe recipe = Recipe.Create(ModContent.ItemType<SalvagedMetal>(), output);
-            recipe.AddIngredient(item, item == ItemID.Chain ? 15 : item == ItemID.IronFence || item == ItemID.WroughtIronFence ? 4 : 1);
-
-            recipe.AddTile(ModContent.TileType<Scrapper>());
-            recipe.Register();
         }
     }
 }

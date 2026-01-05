@@ -20,7 +20,7 @@ namespace Remnants.Content.Items.Placeable.Blocks
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.StoneBlock);
-            Item.createTile = ModContent.TileType <Tiles.Blocks.InsectRemains>();
+            Item.createTile = ModContent.TileType <Tiles.SpiderNest.InsectRemains>();
 		}
 
         public override void ExtractinatorUse(int extractinatorBlockType, ref int resultType, ref int resultStack)

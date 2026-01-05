@@ -45,7 +45,7 @@ Mods: {
 			// Warrens: Multiplying hellish beasts
 			WaterTemple: Погружаем древний храм под толщу океана...
 			AerialGarden: Обустраиваем райский уголок на небесах...
-			// Capsules: Preserving plants for millenia
+			// Prototypes: Preserving plants for millenia
 		}
 
 		Bestiary: {
@@ -146,14 +146,14 @@ Mods: {
 				// DisplayName: Sulfuric Fog
 			}
 
-			VaultExterior: {
-				// DisplayName: Vault Exterior
-				// TownNPCDialogueName: the Vault Exterior
+			PrototypeExterior: {
+				// DisplayName: Prototype Exterior
+				// TownNPCDialogueName: the Prototype Exterior
 			}
 
-			VaultInterior: {
-				// DisplayName: Vault Interior
-				// TownNPCDialogueName: the Vault Interior
+			PrototypeInterior: {
+				// DisplayName: Prototype Interior
+				// TownNPCDialogueName: the Prototype Interior
 			}
 		}
 
@@ -585,10 +585,6 @@ Mods: {
 			VintageSniper.DisplayName: Винтажная снайперская винтовка
 			SpectralLance.DisplayName: Спектральный пронзатель
 			SoulLance.DisplayName: Копьё душегуба
-			VaultWall.DisplayName: Стена Убежища
-			// VaultRailing.DisplayName: Vault Railing
-			// VaultHazardWall.DisplayName: Vault Hazard Wall
-			// VaultBeamWall.DisplayName: Vault Beam Wall
 			MarineSlabWall.DisplayName: Стена из плиты затонувшего храма
 			MarineSlab.DisplayName: Плита затонувшего храма
 			// AshenBrickWall.DisplayName: Ashen Brick Wall
@@ -599,20 +595,37 @@ Mods: {
 				DisplayName: Арканное светило
 			}
 
-			// VaultSupport.DisplayName: Vault Support
-			// VaultProcessor.DisplayName: Vault Computer
-			VaultPlating.DisplayName: Обшивка Убежища
-			VaultPlatform.DisplayName: Платформа Убежища
-			VaultPipe.DisplayName: Труба Убежища
-			// VaultConduit.DisplayName: Vault Conduits
 			PyramidPlatform.DisplayName: Платформа храма пустыни
 			MarinePlatform.DisplayName: Платформа затонувшего храма
 			// AshenPlatform.DisplayName: Ashen Platform
 			GardenPlatform.DisplayName: Платформа сада
-			// Cage.DisplayName: Cage
+			// Cage.DisplayName: Metal Cage
+			// IronBars.DisplayName: Metal Bars
 			ArcanePlatform.DisplayName: Арканная платформа
-			HellishBrickWall.DisplayName: Стена из кирпича пекла
 			// ChainHook.DisplayName: Chain Hook
+			// PrototypeComputer.DisplayName: Prototype Computer
+			// PrototypeConduits.DisplayName: Prototype Conduits
+			// PrototypePlatform.DisplayName: Prototype Platform
+			// PrototypePlating.DisplayName: Prototype Plating
+			// PrototypeSupport.DisplayName: Prototype Support
+			// PrototypeVent.DisplayName: Prototype Vent
+			// PrototypeBeamWall.DisplayName: Prototype Beam Wall
+			// PrototypeHazardWall.DisplayName: Prototype Hazard Wall
+			// PrototypeRailing.DisplayName: Prototype Railing
+			// PrototypeWall.DisplayName: Prototype Plating Wall
+			// PrototypeMonitor.DisplayName: Prototype Monitor
+			// PrototypeServer.DisplayName: Prototype Server
+			// PrototypeConsole.DisplayName: Prototype Console
+			// Tuff.DisplayName: Tuff
+
+			Moai: {
+				// DisplayName: Moai
+				// Tooltip: ""
+			}
+
+			// TuffBrick.DisplayName: Tuff Brick
+			// TuffBrickWall.DisplayName: Tuff Brick Wall
+			// ArcaneBrick.DisplayName: Arcane Brick
 		}
 
 		NPCs: {
@@ -633,10 +646,14 @@ Mods: {
 		}
 
 		Projectiles: {
+			AetherButterfly.DisplayName: Эфирная бабочка
+			FallingDreampod.DisplayName: Стручок грёз
+			FallingEyeball.DisplayName: Злобный глаз
+			ResinShrapnel.DisplayName: Осколок затвердевшей смолы
+			FragmentGrenade.DisplayName: Осколочная граната
 			burn.DisplayName: Огонь
 			cursedburn.DisplayName: Проклятый огонь
 			cursedflamejet.DisplayName: Струя проклятого пламени
-			deathbolt.DisplayName: Снаряд смерти
 			magicshieldhit.DisplayName: Поломка магического щита
 			MazeGuardianTeleport.DisplayName: Телепорт Cтража
 			blastermissile.DisplayName: Ракета бомбардировщика
@@ -646,22 +663,9 @@ Mods: {
 			IceSpike.DisplayName: Ледяной шип
 			PoisonSpit.DisplayName: Ядовитый плевок
 			frostburn.DisplayName: Морозный огонь
-			LuminousHook.DisplayName: Светящийся крюк
 			ichorjet.DisplayName: Струя ихора
-			shockbolt.DisplayName: Электрический заряд
 			flamejet.DisplayName: Струя огня
-			minigunholdout.DisplayName: Миниган
 			pulsebolt.DisplayName: Импульсный снаряд
-			SpiritLanceHoldout.DisplayName: Копьё духов
-			AetherButterfly.DisplayName: Эфирная бабочка
-			FallingDreampod.DisplayName: Стручок грёз
-			FallingEyeball.DisplayName: Злобный глаз
-			SoulLanceHoldout.DisplayName: Копьё душегуба
-			SpectralLanceHoldout.DisplayName: Спектральный пронзатель
-			ResinShrapnel.DisplayName: Осколок затвердевшей смолы
-			FragmentGrenade.DisplayName: Осколочная граната
-			FragmentGlowstick.DisplayName: Осколочная светящаяся палочка
-			FragmentGlowstickFragment.DisplayName: Кусок осколочной светящейся палочки
 		}
 
 		Configs: {
@@ -772,6 +776,16 @@ Mods: {
 						Перерабатывает генерацию биома акватических глубин, если у вас включён Thorium mod
 						Не позволяет глубинам генерироваться поверх соседних биомов и лучше вписывает в стилистику мода
 						'''
+				}
+
+				Prototypes: {
+					// Label: "[i:Remnants/PrototypePlating] Prototypes"
+					/* Tooltip:
+						'''
+						Enables generation of the prototype life capsules
+
+						Note: UNFINISHED
+						''' */
 				}
 			}
 

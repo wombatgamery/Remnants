@@ -20,7 +20,7 @@ namespace Remnants.Content.Items.Placeable.Walls
 		{
 			Item.CloneDefaults(ItemID.StoneWall);
 			Item.height = 16;
-            Item.createWall = ModContent.WallType<global::Remnants.Content.Walls.MarineSlabWall>();
+            Item.createWall = ModContent.WallType<Content.Walls.WaterTemple.MarineSlabWall>();
 		}
 
 		public override void AddRecipes()

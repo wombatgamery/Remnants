@@ -12,7 +12,7 @@ namespace Remnants.Content.Items.Placeable.Blocks
         public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.WoodPlatform);
-			Item.createTile = ModContent.TileType <Tiles.Blocks.MarinePlatform>();
+			Item.createTile = ModContent.TileType <Tiles.Ocean.WaterTemple.MarinePlatform>();
 		}
 
 		public override void AddRecipes()

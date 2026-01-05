@@ -13,7 +13,7 @@ namespace Remnants.Content.Items.Placeable.Blocks
         public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.WoodPlatform);
-			Item.createTile = ModContent.TileType <Tiles.Blocks.AshenPlatform>();
+			Item.createTile = ModContent.TileType <Tiles.Underworld.AshenPlatform>();
 		}
 
 		public override void AddRecipes()

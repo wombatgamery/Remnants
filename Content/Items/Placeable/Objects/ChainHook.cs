@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
 using Remnants.Content.Dusts;
-using Remnants.Content.Tiles.Objects;
+using Remnants.Content.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -22,7 +22,7 @@ namespace Remnants.Content.Items.Placeable.Objects
 			Item.CloneDefaults(ItemID.ChainLantern);
 			Item.width = 14;
 			Item.height = 20;
-			Item.createTile = ModContent.TileType<Tiles.Objects.Decoration.ChainHook>();
+			Item.createTile = ModContent.TileType<Content.Tiles.Underworld.ChainHook>();
 		}
 	}
 }

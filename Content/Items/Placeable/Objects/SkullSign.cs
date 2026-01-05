@@ -1,9 +1,6 @@
-using Microsoft.Xna.Framework;
-using Remnants.Content.Dusts;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Remnants.Content.Tiles.Objects;
 
 namespace Remnants.Content.Items.Placeable.Objects
 {
@@ -19,7 +16,7 @@ namespace Remnants.Content.Items.Placeable.Objects
 			Item.CloneDefaults(ItemID.WoodenChair);
 			Item.width = 28;
 			Item.height = 28;
-			Item.createTile = ModContent.TileType<Tiles.Objects.Decoration.SkullSign>();
+			Item.createTile = ModContent.TileType<Tiles.Forest.SkullSign>();
 		}
 
 		public override void AddRecipes()

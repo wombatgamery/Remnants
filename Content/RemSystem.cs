@@ -4,13 +4,13 @@ using ReLogic.Utilities;
 using Remnants.Content.Biomes;
 using Remnants.Content.NPCs.Monsters;
 using Remnants.Content.Tiles;
-using Remnants.Content.Tiles.Blocks;
-using Remnants.Content.Tiles.Objects;
-using Remnants.Content.Tiles.Objects.Furniture;
-using Remnants.Content.Tiles.Plants;
+using Remnants.Content.Tiles.AerialGarden;
+using Remnants.Content.Tiles.DesertRuins;
+using Remnants.Content.Tiles;
+using Remnants.Content.Tiles;
+using Remnants.Content.Tiles;
 using Remnants.Content.Walls;
-using Remnants.Content.Walls.Parallax;
-using Remnants.Content.Walls.Vanity;
+using Remnants.Content.Walls;
 using SteelSeries.GameSense;
 using System;
 using System.Collections.Generic;
@@ -36,6 +36,8 @@ using Terraria.UI;
 using Terraria.WorldBuilding;
 using static Remnants.Content.World.BiomeGeneration;
 using static Remnants.Content.World.BiomeMap;
+using Remnants.Content.Tiles.SulfuricVents;
+using Remnants.Content.Walls.Underworld;
 
 namespace Remnants.Content.World
 {
@@ -45,6 +47,7 @@ namespace Remnants.Content.World
         public static int whisperingMazeX;
         public static bool sightedWard = false;
 
+        public static bool prototypesExist;
         public static bool vaultExhaustAlarm = false;
         public static float vaultExhaustIntensity;
         public static float vaultLightIntensity;
@@ -57,6 +60,11 @@ namespace Remnants.Content.World
             On_OverlayManager.Draw += VaultExhaustFog;
         }
 
+        public override void PreWorldGen()
+        {
+            prototypesExist = false;
+        }
+
         public override void SaveWorldData(TagCompound tag)
         {
             //tag["savedX"] = Main.LocalPlayer.position.X;
@@ -65,6 +73,7 @@ namespace Remnants.Content.World
             tag["whisperingMazeY"] = whisperingMazeY;
             tag["sightedWard"] = sightedWard;
 
+            tag["hasPrototypes"] = prototypesExist;
             tag["geoWeatherIntensity"] = vaultExhaustIntensity;
         }
 
@@ -91,20 +100,34 @@ namespace Remnants.Content.World
                 sightedWard = flag;
             }
 
+            if (tag.TryGet("hasPrototypes", out bool proto))
+            {
+                prototypesExist = proto;
+            }
             if (tag.TryGet("geoWeatherIntensity", out float str))
             {
                 vaultExhaustIntensity = str;
             }
         }
 
+        static float ventsProximity =>MathHelper.Clamp(1 - MathHelper.Distance(Main.LocalPlayer.Center.Y / 16, MathHelper.Clamp(Main.LocalPlayer.Center.Y / 16, Main.maxTilesY - 300, Main.maxTilesY - 200)) / 50f, 0, 1);
+        static float vaultsProximity => !prototypesExist ? 0 : Main.LocalPlayer.ZoneUnderworldHeight ? MathHelper.Clamp(1 - MathHelper.Distance(Main.LocalPlayer.Center.X / 16, MathHelper.Clamp(Main.LocalPlayer.Center.X / 16, Main.maxTilesX * 0.4f, Main.maxTilesX * 0.6f)) / (Main.maxTilesX * 0.05f), 0, 1) : 0;
+        public static float vaultRumbleIntensity => MathHelper.Clamp(ventsProximity + vaultsProximity, 0, 1);
+
+        SoundStyle rumble = new("Remnants/Content/Sounds/Ambience/Rumbling", SoundType.Ambient);
+        SoundStyle debris1 = new("Remnants/Content/Sounds/Ambience/Debris1", SoundType.Ambient);
+        SoundStyle debris2 = new("Remnants/Content/Sounds/Ambience/Debris2", SoundType.Ambient);
+        SoundStyle debris3 = new("Remnants/Content/Sounds/Ambience/Debris3", SoundType.Ambient);
+        SoundStyle debris4 = new("Remnants/Content/Sounds/Ambience/Debris4", SoundType.Ambient);
+
         public override void PostUpdateTime()
         {
             float time = Utils.GetDayTimeAs24FloatStartingFromMidnight();
-            vaultExhaustAlarm = time % 6 < 0.25f || time % 6 >= 3.75f;
+            vaultExhaustAlarm = (time % 12 < 0.25f || time % 12 >= 7.75f) && Main.dayRate <= 1;
 
             float exhaustSpeed = 1f / 60 / 15;
 
-            if (time % 6 >= 4f)
+            if (time % 12 >= 8f)
             {
                 if (vaultExhaustIntensity < 1)
                 {
@@ -129,27 +152,71 @@ namespace Remnants.Content.World
 
             if (vaultExhaustAlarm)
             {
-                float sirenVolume = (Main.LocalPlayer.Center.Y / 16 - (Main.maxTilesY - 400)) / 100f;
-                //sirenVolume *= MathHelper.Distance(Main.LocalPlayer.Center.X / 16)
-                if (sirenVolume > 0)
+                float volume = (Main.LocalPlayer.Center.Y / 16 - (Main.maxTilesY - 400)) / 100f;
+                if (volume > 0)
                 {
-                    sirenVolume = MathHelper.Clamp(sirenVolume, 0, 1);
-                    //time *= 60;
-                    //time = (int)time;
+                    volume = MathHelper.Clamp(volume, 0, 1);
 
-                    if (Main.GameUpdateCount % 300 == 0)
+                    if (Main.rand.NextBool(60))
                     {
-                        float distance = MathHelper.Distance(Main.LocalPlayer.Center.X / 16, Main.maxTilesX * 0.6f) / (Main.maxTilesX * 0.2f);
+                        debris1.Volume = volume * Main.rand.NextFloat(0.5f, 1) * 0.25f * vaultExhaustIntensity;
+                        debris1.PitchVariance = 1;
+                        debris1.MaxInstances = 1;
+                        debris1.SoundLimitBehavior = SoundLimitBehavior.IgnoreNew;
+                        SoundEngine.PlaySound(debris1);
+                    }
+                    if (Main.rand.NextBool(60))
+                    {
+                        debris2.Volume = volume * Main.rand.NextFloat(0.5f, 1) * 0.25f * vaultExhaustIntensity;
+                        debris2.PitchVariance = 1;
+                        debris2.MaxInstances = 1;
+                        debris2.SoundLimitBehavior = SoundLimitBehavior.IgnoreNew;
+                        SoundEngine.PlaySound(debris2);
+                    }
+                    if (Main.rand.NextBool(300))
+                    {
+                        debris3.Volume = volume * Main.rand.NextFloat(0.5f, 1) * 0.25f * vaultExhaustIntensity;
+                        debris3.PitchVariance = 1;
+                        debris3.MaxInstances = 1;
+                        debris3.SoundLimitBehavior = SoundLimitBehavior.IgnoreNew;
+                        SoundEngine.PlaySound(debris3);
+                    }
+                    if (Main.rand.NextBool(60))
+                    {
+                        debris4.Volume = volume * Main.rand.NextFloat(0.5f, 1) * 0.25f * vaultExhaustIntensity;
+                        debris4.PitchVariance = 1;
+                        debris4.MaxInstances = 1;
+                        debris4.SoundLimitBehavior = SoundLimitBehavior.IgnoreNew;
+                        SoundEngine.PlaySound(debris4);
+                    }
+
+                    time = (int)(Main.time + (Main.dayTime ? Main.nightLength : 0));
+
+                    if (time % 300 == 0 && prototypesExist)
+                    {
+                        float distance = MathHelper.Distance(Main.LocalPlayer.Center.X / 16, Main.maxTilesX * 0.6f) / (Main.maxTilesX * 0.3f);
                         distance = MathHelper.Clamp(distance, 0, 1);
-                        SoundStyle alarm = new SoundStyle("Remnants/Content/Sounds/Ambience/VaultExhaustAlarmLeft");
-                        alarm.Volume = sirenVolume * 0.75f * (1 - distance);
+                        SoundStyle alarm = new SoundStyle("Remnants/Content/Sounds/Ambience/VaultExhaustAlarmL", SoundType.Ambient);
+                        alarm.Volume = volume * 1.5f * (1 - distance);
+                        alarm.MaxInstances = 0;
+                        alarm.PauseBehavior = PauseBehavior.PauseWithGame;
                         SoundEngine.PlaySound(alarm);
 
-                        distance = MathHelper.Distance(Main.LocalPlayer.Center.X / 16, Main.maxTilesX * 0.4f) / (Main.maxTilesX * 0.2f);
+                        distance = MathHelper.Distance(Main.LocalPlayer.Center.X / 16, Main.maxTilesX * 0.4f) / (Main.maxTilesX * 0.3f);
                         distance = MathHelper.Clamp(distance, 0, 1);
-                        alarm = new SoundStyle("Remnants/Content/Sounds/Ambience/VaultExhaustAlarmRight");
-                        alarm.Volume = sirenVolume * 0.75f * (1 - distance);
+                        alarm = new SoundStyle("Remnants/Content/Sounds/Ambience/VaultExhaustAlarmR", SoundType.Ambient);
+                        alarm.Volume = volume * 1.5f * (1 - distance);
+                        alarm.MaxInstances = 0;
+                        alarm.PauseBehavior = PauseBehavior.PauseWithGame;
                         SoundEngine.PlaySound(alarm);
+                    }
+
+                    if (time % 120 == 0)
+                    {
+                        rumble.PauseBehavior = PauseBehavior.PauseWithGame;
+                        rumble.Volume = vaultRumbleIntensity * vaultExhaustIntensity;
+                        rumble.MaxInstances = 0;
+                        SoundEngine.PlaySound(rumble);
                     }
                 }
             }
@@ -161,7 +228,7 @@ namespace Remnants.Content.World
         {
             if (layer == RenderLayers.ForegroundWater)
             {
-                float targetIntensity = Main.LocalPlayer.InModBiome<SulfuricVents>() ? 1 : Main.LocalPlayer.ZoneUnderworldHeight ? 0.5f : 0;
+                float targetIntensity = Main.LocalPlayer.InModBiome<SulfuricVents>() ? 1 : false && (Main.LocalPlayer.ZoneUnderworldHeight || Main.LocalPlayer.InModBiome<PrototypeInterior>() && Main.LocalPlayer.Center.Y / 16 > Main.maxTilesY - 220) ? 0.5f : 0;
                 targetIntensity += (vaultExhaustIntensity - 1) * 0.75f;
 
                 if (exhaustFogIntensity > 0 || targetIntensity > 0)
@@ -250,7 +317,7 @@ namespace Remnants.Content.World
             {
                 if (!player.DeadOrGhost)
                 {
-                    if (player.InModBiome<VaultInterior>())
+                    if (player.InModBiome<PrototypeInterior>())
                     {
                         int wall = Main.tile[(int)player.Center.X / 16, (int)player.Center.Y / 16].WallType;
                         if (wall != ModContent.WallType<vault>())

@@ -19,7 +19,7 @@ namespace Remnants.Content.Items.Placeable.Walls
 		{
 			Item.CloneDefaults(ItemID.StoneWall);
 			Item.height = 16;
-            Item.createWall = ModContent.WallType<global::Remnants.Content.Walls.TombBrickWall>();
+            Item.createWall = ModContent.WallType<Content.Walls.Tomb.TombBrickWall>();
 		}
 
 		public override void AddRecipes()

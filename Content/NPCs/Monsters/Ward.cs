@@ -9,16 +9,12 @@ using System.Collections.Generic;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using System;
-using Remnants.Content.Tiles.Objects.Hazards;
+using Remnants.Content.Tiles;
 using Remnants.Content.Projectiles.Effects;
 using Remnants.Content.Biomes;
-using Remnants.Content.Walls;
 using Remnants.Content.World;
-using Remnants.Content.Walls.Parallax;
-using Remnants.Content.Tiles.Blocks;
-using Remnants.Content.Tiles.Objects;
-using Remnants.Content.Tiles.Plants;
-using Remnants.Content.Tiles.Objects.Furniture;
+using Remnants.Content.Tiles.EchoingHalls;
+using Remnants.Content.Walls.EchoingHalls;
 
 namespace Remnants.Content.NPCs.Monsters
 {

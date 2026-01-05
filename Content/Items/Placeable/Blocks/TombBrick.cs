@@ -1,4 +1,3 @@
-using Remnants.Content.Tiles;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -17,7 +16,7 @@ namespace Remnants.Content.Items.Placeable.Blocks
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.GrayBrick);
-            Item.createTile = ModContent.TileType <Tiles.Blocks.TombBrick>();
+            Item.createTile = ModContent.TileType <Tiles.Tomb.TombBrick>();
 		}
 	}
 }

@@ -4,12 +4,15 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Remnants.Content.Projectiles
 {
 	public class FragmentGlowstick : ModProjectile
 	{
+        public override LocalizedText DisplayName => Language.GetText("Mods.Remnants.Items.FragmentGlowstick.DisplayName");
+
 		public override void SetDefaults()
 		{
 			Projectile.CloneDefaults(ProjectileID.Glowstick);
@@ -76,6 +79,8 @@ namespace Remnants.Content.Projectiles
 
     public class FragmentGlowstickFragment : ModProjectile
     {
+        public override LocalizedText DisplayName => Language.GetText("Mods.Remnants.Items.FragmentGlowstick.DisplayName");
+
         public override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileID.Glowstick);

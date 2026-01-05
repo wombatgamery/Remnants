@@ -1,4 +1,4 @@
-﻿using Remnants.Content.Tiles.Blocks;
+﻿using Remnants.Content.Tiles;
 //using SubworldLibrary;
 using Terraria;
 using Terraria.DataStructures;

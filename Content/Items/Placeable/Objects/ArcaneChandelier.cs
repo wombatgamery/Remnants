@@ -12,7 +12,7 @@ namespace Remnants.Content.Items.Placeable.Objects
 			Item.width = 16;
 			Item.height = 16;
 			Item.placeStyle = 0;
-			Item.createTile = ModContent.TileType<Tiles.Objects.Furniture.ArcaneChandelier>();
+			Item.createTile = ModContent.TileType<Content.Tiles.Shimmer.ArcaneChandelier>();
 		}
 	}
 }

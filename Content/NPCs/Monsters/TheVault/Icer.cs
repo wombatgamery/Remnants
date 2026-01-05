@@ -7,7 +7,7 @@
 //using Terraria.GameContent.Bestiary;
 //using Terraria.Audio;
 //using Remnants.Content.Walls;
-//using Remnants.Content.Walls.Vanity;
+//using Remnants.Content.Walls;
 //using Remnants.Content.Projectiles.Enemy;
 //using Remnants.Content.Biomes;
 //using Remnants.Content.Gores;
@@ -38,7 +38,7 @@
 
 //            NPC.value = 200f;
 
-//            SpawnModBiomes = new int[] { ModContent.GetInstance<Vault>().Type };
+//            SpawnModBiomes = new int[] { ModContent.GetInstance<Prototype>().Type };
 //        }
 
 //        Vector2 lastKnownTargetPosition;
@@ -166,7 +166,7 @@
 //        //      public override float SpawnChance(NPCSpawnInfo spawnInfo)
 //        //      {
 //        //	Tile tile = Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY];
-//        //	if (spawnInfo.Player.InModBiome<Vault>() && (tile.WallType == ModContent.WallType<vault>() || tile.WallType == ModContent.WallType<vaultwallunsafe>()))
+//        //	if (spawnInfo.Player.InModBiome<Prototype>() && (tile.WallType == ModContent.WallType<vault>() || tile.WallType == ModContent.WallType<vaultwallunsafe>()))
 //        //          {
 //        //		return 0.1f;
 //        //          }
@@ -240,7 +240,7 @@
 //            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 
 //                new FlavorTextBestiaryInfoElement("Mods.Remnants.Bestiary.Icer"),
-//                new BestiaryPortraitBackgroundProviderPreferenceInfoElement(ModContent.GetInstance<Vault>().ModBiomeBestiaryInfoElement)
+//                new BestiaryPortraitBackgroundProviderPreferenceInfoElement(ModContent.GetInstance<Prototype>().ModBiomeBestiaryInfoElement)
 //            });
 //        }
 //    }

@@ -3,7 +3,7 @@
 //using Terraria;
 //using Terraria.ID;
 //using Terraria.ModLoader;
-//using Remnants.Content.Tiles.Objects;
+//using Remnants.Content.Tiles;
 
 //namespace Remnants.Content.Items.Placeable.Objects
 //{

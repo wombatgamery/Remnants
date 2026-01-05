@@ -12,7 +12,7 @@ namespace Remnants.Content.Items.Placeable.Blocks
         public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.WoodPlatform);
-			Item.createTile = ModContent.TileType <Tiles.Blocks.PyramidPlatform>();
+			Item.createTile = ModContent.TileType <Tiles.DesertRuins.PyramidPlatform>();
 		}
 
 		public override void AddRecipes()

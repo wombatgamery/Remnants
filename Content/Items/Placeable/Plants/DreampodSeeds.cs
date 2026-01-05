@@ -1,8 +1,6 @@
 using Terraria.ID;
 using Terraria.ModLoader;
-using Remnants.Content.Tiles;
 using Terraria;
-using Remnants.Content.Items.Placeable.Blocks;
 
 namespace Remnants.Content.Items.Placeable.Plants
 {
@@ -20,7 +18,7 @@ namespace Remnants.Content.Items.Placeable.Plants
             Item.height = 10 * 2;
             Item.rare = ItemRarityID.Green;
             Item.value = Item.sellPrice(silver: 1);
-            Item.createTile = ModContent.TileType<Tiles.Plants.DreampodVine>();
+            Item.createTile = ModContent.TileType<Tiles.Shimmer.DreampodVine>();
         }
     }
 }

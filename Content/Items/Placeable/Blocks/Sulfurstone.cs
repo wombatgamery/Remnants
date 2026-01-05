@@ -18,7 +18,7 @@ namespace Remnants.Content.Items.Placeable.Blocks
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.StoneBlock);
-            Item.createTile = ModContent.TileType <Tiles.Blocks.Sulfurstone>();
+            Item.createTile = ModContent.TileType <Content.Tiles.SulfuricVents.Sulfurstone>();
 		}
 	}
 }

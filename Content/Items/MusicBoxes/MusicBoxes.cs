@@ -10,7 +10,6 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Microsoft.Xna.Framework;
-using Remnants.Content.Tiles.MusicBoxes;
 using System.IO;
 
 namespace Remnants.Content.Items.MusicBoxes;
@@ -28,13 +27,13 @@ public class EchoingHallsMusicBox : ModItem
         ItemID.Sets.CanGetPrefixes[Type] = false;
         ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.MusicBox;
 
-        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/EchoingHalls"), ModContent.ItemType<EchoingHallsMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.EchoingHallsMusicBox>());
+        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/EchoingHalls"), ModContent.ItemType<EchoingHallsMusicBox>(), ModContent.TileType<Content.Tiles.MusicBoxes.EchoingHallsMusicBox>());
     }
 
     public override void SetDefaults()
     {
         Item.CloneDefaults(ItemID.MusicBoxAltOverworldDay);
-        Item.createTile = ModContent.TileType<Tiles.MusicBoxes.EchoingHallsMusicBox>();
+        Item.createTile = ModContent.TileType<Content.Tiles.MusicBoxes.EchoingHallsMusicBox>();
         Item.placeStyle = 0;
     }
 }
@@ -52,13 +51,13 @@ public class MagicalLabMusicBox : ModItem
         ItemID.Sets.CanGetPrefixes[Type] = false;
         ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.MusicBox;
 
-        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/MagicalLab"), ModContent.ItemType<MagicalLabMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.MagicalLabMusicBox>());
+        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/MagicalLab"), ModContent.ItemType<MagicalLabMusicBox>(), ModContent.TileType<Content.Tiles.MusicBoxes.MagicalLabMusicBox>());
     }
 
     public override void SetDefaults()
     {
         Item.CloneDefaults(ItemID.MusicBoxAltOverworldDay);
-        Item.createTile = ModContent.TileType<Tiles.MusicBoxes.MagicalLabMusicBox>();
+        Item.createTile = ModContent.TileType<Content.Tiles.MusicBoxes.MagicalLabMusicBox>();
         Item.placeStyle = 0;
     }
 }
@@ -77,13 +76,13 @@ public class SpiderNestMusicBox : ModItem
         ItemID.Sets.CanGetPrefixes[Type] = false;
         ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.MusicBox;
 
-        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/SpiderNest"), ModContent.ItemType<SpiderNestMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.SpiderNestMusicBox>());
+        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/SpiderNest"), ModContent.ItemType<SpiderNestMusicBox>(), ModContent.TileType<Content.Tiles.MusicBoxes.SpiderNestMusicBox>());
     }
 
     public override void SetDefaults()
     {
         Item.CloneDefaults(ItemID.MusicBoxAltOverworldDay);
-        Item.createTile = ModContent.TileType<Tiles.MusicBoxes.SpiderNestMusicBox>();
+        Item.createTile = ModContent.TileType<Content.Tiles.MusicBoxes.SpiderNestMusicBox>();
         Item.placeStyle = 0;
     }
 }
@@ -101,13 +100,13 @@ public class UndergrowthMusicBox : ModItem
         ItemID.Sets.CanGetPrefixes[Type] = false;
         ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.MusicBox;
 
-        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Undergrowth"), ModContent.ItemType<UndergrowthMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.UndergrowthMusicBox>());
+        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Undergrowth"), ModContent.ItemType<UndergrowthMusicBox>(), ModContent.TileType<Content.Tiles.MusicBoxes.UndergrowthMusicBox>());
     }
 
     public override void SetDefaults()
     {
         Item.CloneDefaults(ItemID.MusicBoxAltOverworldDay);
-        Item.createTile = ModContent.TileType<Tiles.MusicBoxes.UndergrowthMusicBox>();
+        Item.createTile = ModContent.TileType<Content.Tiles.MusicBoxes.UndergrowthMusicBox>();
         Item.placeStyle = 0;
     }
 }
@@ -125,13 +124,13 @@ public class GardenMusicBox : ModItem
         ItemID.Sets.CanGetPrefixes[Type] = false;
         ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.MusicBox;
 
-        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/AerialGarden"), ModContent.ItemType<GardenMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.GardenMusicBox>());
+        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/AerialGarden"), ModContent.ItemType<GardenMusicBox>(), ModContent.TileType<Content.Tiles.MusicBoxes.GardenMusicBox>());
     }
 
     public override void SetDefaults()
     {
         Item.CloneDefaults(ItemID.MusicBoxAltOverworldDay);
-        Item.createTile = ModContent.TileType<Tiles.MusicBoxes.GardenMusicBox>();
+        Item.createTile = ModContent.TileType<Content.Tiles.MusicBoxes.GardenMusicBox>();
         Item.placeStyle = 0;
     }
 }
@@ -149,13 +148,13 @@ public class GraniteMusicBox : ModItem
         ItemID.Sets.CanGetPrefixes[Type] = false;
         ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.MusicBox;
 
-        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/GraniteCave"), ModContent.ItemType<GraniteMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.GraniteMusicBox>());
+        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/GraniteCave"), ModContent.ItemType<GraniteMusicBox>(), ModContent.TileType<Content.Tiles.MusicBoxes.GraniteMusicBox>());
     }
 
     public override void SetDefaults()
     {
         Item.CloneDefaults(ItemID.MusicBoxAltOverworldDay);
-        Item.createTile = ModContent.TileType<Tiles.MusicBoxes.GraniteMusicBox>();
+        Item.createTile = ModContent.TileType<Content.Tiles.MusicBoxes.GraniteMusicBox>();
         Item.placeStyle = 0;
     }
 }
@@ -173,13 +172,13 @@ public class MarbleMusicBox : ModItem
         ItemID.Sets.CanGetPrefixes[Type] = false;
         ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.MusicBox;
 
-        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/MarbleCave"), ModContent.ItemType<MarbleMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.MarbleMusicBox>());
+        MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/MarbleCave"), ModContent.ItemType<MarbleMusicBox>(), ModContent.TileType<Content.Tiles.MusicBoxes.MarbleMusicBox>());
     }
 
     public override void SetDefaults()
     {
         Item.CloneDefaults(ItemID.MusicBoxAltOverworldDay);
-        Item.createTile = ModContent.TileType<Tiles.MusicBoxes.MarbleMusicBox>();
+        Item.createTile = ModContent.TileType<Content.Tiles.MusicBoxes.MarbleMusicBox>();
         Item.placeStyle = 0;
     }
 }

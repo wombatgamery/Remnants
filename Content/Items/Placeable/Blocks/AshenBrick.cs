@@ -19,7 +19,7 @@ namespace Remnants.Content.Items.Placeable.Blocks
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.GrayBrick);
-            Item.createTile = ModContent.TileType <Tiles.Blocks.AshenBrick>();
+            Item.createTile = ModContent.TileType <Tiles.Underworld.AshenBrick>();
 		}
 
         public override void AddRecipes()

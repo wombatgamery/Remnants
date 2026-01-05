@@ -18,7 +18,7 @@ namespace Remnants.Content.Items.Placeable.Walls
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.StoneWall);
-            Item.createWall = ModContent.WallType<Content.Walls.SulfurstoneBrickWall>();
+            Item.createWall = ModContent.WallType<Content.Walls.SulfuricVents.SulfurstoneBrickWall>();
 		}
 
 		public override void AddRecipes()

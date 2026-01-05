@@ -3,7 +3,7 @@ using Remnants.Content.Dusts;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Remnants.Content.Tiles.Objects.Furniture;
+using Remnants.Content.Tiles.Shimmer;
 
 namespace Remnants.Content.Items.Placeable.Objects
 {

@@ -7,7 +7,7 @@
 //using Terraria.GameContent.Bestiary;
 //using Terraria.Audio;
 //using Remnants.Content.Walls;
-//using Remnants.Content.Walls.Vanity;
+//using Remnants.Content.Walls;
 //using Remnants.Content.Biomes;
 //using Remnants.Content.Gores;
 
@@ -73,7 +73,7 @@
 //            NPC.buffImmune[BuffID.Venom] = true;
 //            NPC.buffImmune[BuffID.Bleeding] = true;
 
-//            SpawnModBiomes = new int[] { ModContent.GetInstance<Vault>().Type };
+//            SpawnModBiomes = new int[] { ModContent.GetInstance<Prototype>().Type };
 //        }
 
 //        Vector2 lastKnownTargetPosition;
@@ -194,7 +194,7 @@
 //        //      public override float SpawnChance(NPCSpawnInfo spawnInfo)
 //        //      {
 //        //	Tile tile = Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY];
-//        //	if (spawnInfo.Player.InModBiome<Vault>() && (tile.WallType == ModContent.WallType<vault>() || tile.WallType == ModContent.WallType<vaultwallunsafe>()))
+//        //	if (spawnInfo.Player.InModBiome<Prototype>() && (tile.WallType == ModContent.WallType<vault>() || tile.WallType == ModContent.WallType<vaultwallunsafe>()))
 //        //          {
 //        //		return 0.1f;
 //        //          }
@@ -281,7 +281,7 @@
 //            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 
 //                new FlavorTextBestiaryInfoElement("Mods.Remnants.Bestiary.Shocker"),
-//                new BestiaryPortraitBackgroundProviderPreferenceInfoElement(ModContent.GetInstance<Vault>().ModBiomeBestiaryInfoElement)
+//                new BestiaryPortraitBackgroundProviderPreferenceInfoElement(ModContent.GetInstance<Prototype>().ModBiomeBestiaryInfoElement)
 //            });
 //        }
 //    }

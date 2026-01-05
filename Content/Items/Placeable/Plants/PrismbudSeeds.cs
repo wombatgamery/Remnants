@@ -2,7 +2,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Remnants.Content.Tiles;
 using Terraria;
-using Remnants.Content.Items.Placeable.Blocks;
 
 namespace Remnants.Content.Items.Placeable.Plants
 {
@@ -21,7 +20,7 @@ namespace Remnants.Content.Items.Placeable.Plants
             Item.height = 10 * 2;
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.sellPrice(silver: 1);
-            Item.createTile = ModContent.TileType<Tiles.Plants.PrismbudStem>();
+            Item.createTile = ModContent.TileType<PrismbudStem>();
         }
     }
 }

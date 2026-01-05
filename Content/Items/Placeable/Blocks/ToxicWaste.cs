@@ -1,7 +1,7 @@
 //using Terraria.ID;
 //using Terraria.ModLoader;
 //using Remnants.Content.Tiles;
-//using Remnants.Content.Tiles.Blocks;
+//using Remnants.Content.Tiles;
 
 //namespace Remnants.Content.Items.Placeable.Blocks
 //{

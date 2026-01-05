@@ -18,7 +18,7 @@ namespace Remnants.Content.Items.Placeable.Blocks
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.DiamondStoneBlock);
-            Item.createTile = ModContent.TileType <Tiles.Blocks.SulfurstoneDiamond>();
+            Item.createTile = ModContent.TileType <Content.Tiles.SulfuricVents.SulfurstoneDiamond>();
 		}
 
         public override void AddRecipes()

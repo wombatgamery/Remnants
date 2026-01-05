@@ -8,17 +8,21 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Remnants.Content.Dusts.Environment;
 using Remnants.Content.Biomes;
-using Remnants.Content.Walls;
 using Remnants.Content.World;
-using Remnants.Content.Walls.Parallax;
-using Remnants.Content.Tiles.Blocks;
-using Remnants.Content.Tiles.Plants;
-using Remnants.Content.Tiles.Objects.Furniture;
-using Remnants.Content.Tiles.Objects.Hazards;
+using Remnants.Content.Tiles;
 using Terraria.Audio;
 using Remnants.Content.Dusts;
 using Remnants.Content.Gores;
-using Remnants.Content.Tiles.Objects;
+using Remnants.Content.Tiles;
+using Remnants.Content.Tiles.Dungeon;
+using Remnants.Content.Tiles.EchoingHalls;
+using Remnants.Content.Walls.EchoingHalls;
+using Remnants.Content.Walls.Underworld;
+using Remnants.Content.Walls.Shimmer;
+using Remnants.Content.Walls.DesertRuins;
+using Remnants.Content.Walls.Tomb;
+using Remnants.Content.Walls;
+using Remnants.Content.Walls.Dungeon;
 
 namespace Remnants.Content.Tiles
 {
@@ -90,7 +94,7 @@ namespace Remnants.Content.Tiles
         private bool IsBackgroundWall(int i, int j)
         {
             Tile tile = Main.tile[i, j];
-            return tile.WallType == ModContent.WallType<undergrowth>() || tile.WallType == ModContent.WallType<pyramid>() || tile.WallType == ModContent.WallType<forgottentomb>() || tile.WallType == ModContent.WallType<stronghold>() || tile.WallType == ModContent.WallType<magicallab>() || tile.WallType == ModContent.WallType<hive>() || tile.WallType == ModContent.WallType<dungeonblue>() || tile.WallType == ModContent.WallType<dungeongreen>() || tile.WallType == ModContent.WallType<dungeonpink>() || tile.WallType == ModContent.WallType<temple>() || tile.WallType == ModContent.WallType<whisperingmaze>();
+            return tile.WallType == ModContent.WallType<undergrowth>() || tile.WallType == ModContent.WallType<pyramid>() || tile.WallType == ModContent.WallType<forgottentomb>() || tile.WallType == ModContent.WallType<magicallab>() || tile.WallType == ModContent.WallType<dungeonblue>() || tile.WallType == ModContent.WallType<dungeongreen>() || tile.WallType == ModContent.WallType<dungeonpink>() || tile.WallType == ModContent.WallType<temple>() || tile.WallType == ModContent.WallType<whisperingmaze>();
         }
 
         public override bool TileFrame(int i, int j, int type, ref bool resetFrame, ref bool noBreak)
@@ -559,7 +563,7 @@ namespace Remnants.Content.Tiles
                     Dust dust = Dust.NewDustDirect(new Vector2(i * 16, j * 16 + 2), 8, 8, DustID.Torch, SpeedY: -100);
                     dust.noGravity = true;
                 }
-                else if (!WorldGen.SolidTile(i, j + 1) && Main.tileSolid[tile.TileType] && j > Main.maxTilesY - 200 && j < Main.maxTilesY - 150)
+                else if (!WorldGen.SolidTile(i, j + 1) && Main.tileSolid[tile.TileType] && j > Main.maxTilesY - 200 && j < Main.maxTilesY - 160)
                 {
                     if (Main.rand.NextFloat(256f) < RemSystem.vaultExhaustIntensity)
                     {

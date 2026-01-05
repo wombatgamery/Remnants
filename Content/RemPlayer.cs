@@ -4,7 +4,7 @@ using Remnants.Content.Buffs;
 using Remnants.Content.Dusts;
 using Remnants.Content.Items.Tools;
 using Remnants.Content.Projectiles.Hooks;
-using Remnants.Content.Walls;
+using Remnants.Content.Walls.Shimmer;
 using Remnants.Content.World;
 using System;
 using Terraria;
@@ -212,10 +212,7 @@ namespace Remnants.Content
         {
             if (RemSystem.vaultExhaustIntensity > 0)
             {
-                float strength = (Player.Center.Y / 16 - (Main.maxTilesY - 400)) / 100f;
-                strength = MathHelper.Clamp(strength, 0, 1);
-
-                shakeIntensity += 0.25f * strength * RemSystem.vaultExhaustIntensity;
+                shakeIntensity += 0.25f * RemSystem.vaultRumbleIntensity * RemSystem.vaultExhaustIntensity;
             }
 
             if (shakeIntensity > 0)
@@ -249,7 +246,7 @@ namespace Remnants.Content
 
         //public override void UpdateBadLifeRegen()
         //{
-        //    if (Player.InModBiome<Biomes.Vault>() && Player.wet && !Player.lavaWet)
+        //    if (Player.InModBiome<Biomes.Prototype>() && Player.wet && !Player.lavaWet)
         //    {
         //        if (Player.lifeRegen > 0)
         //        {

@@ -1,8 +1,7 @@
 using Microsoft.Xna.Framework;
-using Remnants.Content.Tiles.Blocks;
-using Remnants.Content.Tiles.Plants;
-using Remnants.Content.Walls;
-using Remnants.Content.Walls.Parallax;
+using Remnants.Content.Tiles.Forest;
+using Remnants.Content.Tiles.Space;
+using Remnants.Content.Walls.Tomb;
 using System.Collections.Generic;
 using System.Reflection;
 using Terraria;

@@ -1,6 +1,5 @@
 using Terraria.ID;
 using Terraria.ModLoader;
-using Remnants.Content.Tiles;
 
 namespace Remnants.Content.Items.Placeable.Blocks
 {
@@ -16,7 +15,7 @@ namespace Remnants.Content.Items.Placeable.Blocks
 			Item.CloneDefaults(ItemID.StoneBlock);
 			Item.width = 8;
 			Item.height = 8;
-            Item.createTile = ModContent.TileType<Tiles.Blocks.Hardstone>();
+            Item.createTile = ModContent.TileType<Tiles.Hardstone>();
 		}
 	}
 }

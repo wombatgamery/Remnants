@@ -16,16 +16,16 @@ using Remnants.Content.Items.Documents;
 using Remnants.Content.Items.Materials;
 using Remnants.Content.Items.Tools;
 using Remnants.Content.Items.Weapons;
-using Remnants.Content.Walls;
 using Remnants.Content.Tiles;
-using Remnants.Content.Walls.Parallax;
-using Remnants.Content.Tiles.Blocks;
-using Remnants.Content.Tiles.Objects;
-using Remnants.Content.Tiles.Plants;
-using Remnants.Content.Tiles.Objects.Decoration;
-using Remnants.Content.Tiles.Objects.Furniture;
-using Remnants.Content.Tiles.Objects.Hazards;
 using static Remnants.Content.World.BiomeLocations;
+using Remnants.Content.Tiles.Shimmer;
+using Remnants.Content.Tiles.Dungeon;
+using Remnants.Content.Tiles.EchoingHalls;
+using Remnants.Content.Tiles.Ocean.WaterTemple;
+using Remnants.Content.Walls.EchoingHalls;
+using Remnants.Content.Walls.Shimmer;
+using Remnants.Content.Walls;
+using Remnants.Content.Walls.Dungeon;
 
 namespace Remnants.Content.World
 {

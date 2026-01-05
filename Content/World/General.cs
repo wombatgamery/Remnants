@@ -13,20 +13,29 @@ using Terraria.Chat;
 using Terraria.Localization;
 using System.Reflection;
 using Remnants.Content.NPCs.Monsters;
-using Remnants.Content.Walls;
 using Remnants.Content.Tiles;
-using Remnants.Content.Walls.Parallax;
-using Remnants.Content.Tiles.Blocks;
-using Remnants.Content.Tiles.Plants;
-using Remnants.Content.Tiles.Objects.Furniture;
+using Remnants.Content.Tiles;
 using Terraria.GameContent.Generation;
 using System.Threading;
 using static Remnants.Content.World.BiomeMap;
 using SteelSeries.GameSense;
-using Remnants.Content.Walls.Vanity;
 using Terraria.DataStructures;
 using MonoMod.Core.Platforms;
 using static Terraria.GameContent.Bestiary.IL_BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions;
+using Remnants.Content.Walls.Underworld;
+using Remnants.Content.Tiles.Underworld;
+using Remnants.Content.Tiles.Underworld.Prototypes;
+using Remnants.Content.Tiles.Shimmer;
+using Remnants.Content.Tiles.Dungeon;
+using Remnants.Content.Tiles.EchoingHalls;
+using Remnants.Content.Tiles.SpiderNest;
+using Remnants.Content.Tiles.SulfuricVents;
+using Remnants.Content.Tiles.Tomb;
+using Remnants.Content.Walls.EchoingHalls;
+using Remnants.Content.Walls.Shimmer;
+using Remnants.Content.Walls.DesertRuins;
+using Remnants.Content.Walls.Tomb;
+using Remnants.Content.Walls;
 
 namespace Remnants.Content.World
 {
@@ -35,6 +44,7 @@ namespace Remnants.Content.World
         public static bool calamityEnabled => ModLoader.TryGetMod("CalamityMod", out Mod cal);
         public static bool thoriumEnabled => ModLoader.TryGetMod("ThoriumMod", out Mod th);
         public static bool spiritReforgedEnabled => ModLoader.TryGetMod("SpiritReforged", out Mod sr);
+        public static bool starsAboveEnabled => ModLoader.TryGetMod("StarsAbove", out Mod tsa);
         public static bool ruinSeekerEnabled => ModLoader.TryGetMod("RuinSeeker", out Mod rs);
 
         public override void Load()
@@ -693,7 +703,7 @@ namespace Remnants.Content.World
 
                     if (Framing.GetTileSafely(x, y).TileType != tile && !HasTile(x, y + 1, ModContent.TileType<nothing>()))
                     {
-                        WorldGen.PlaceObject(x, y, tile, style: style2, direction: (tile == TileID.Chairs || tile == ModContent.TileType<Tiles.Objects.Decoration.SkullSign>()) && WorldGen.genRand.NextBool(2) ? 1 : -1);
+                        WorldGen.PlaceObject(x, y, tile, style: style2, direction: (tile == TileID.Chairs || tile == ModContent.TileType<Tiles.Forest.SkullSign>()) && WorldGen.genRand.NextBool(2) ? 1 : -1);
                     }
                     success = Framing.GetTileSafely(x, y).TileType == tile;
                     if (success)
@@ -1178,7 +1188,7 @@ namespace Remnants.Content.World
                         if (noise + 1 > Vector2.Distance(new Vector2(x, y), point) / (radius / 2) && (biomes.FindBiome(x, y) != BiomeID.Desert || MiscTools.Tile(x, y - 1).HasTile || MiscTools.Tile(x, y - 1).LiquidAmount == 0))
                         {
                             tile.HasTile = true;
-                            tile.TileType = ruinSeeker && biomes.FindBiome(x, y) == BiomeID.ThermalCaves && rs.TryFind("Gabbro_Tile", out ModTile gabbro) ? gabbro.Type : biomes.FindBiome(x, y) == BiomeID.Underworld ? TileID.Ash : biomes.FindBiome(x, y) == BiomeID.SulfuricVents ? (ushort)ModContent.TileType<Sulfurstone>() : biomes.FindBiome(x, y) == BiomeID.Granite ? TileID.Granite : (biomes.FindBiome(x, y) == BiomeID.Jungle && biomes.GetTileDistribution(x, y, frequency: 2) < 0.3f) || biomes.FindBiome(x, y) == BiomeID.Glowshroom ? TileID.Mud : biomes.FindBiome(x, y) == BiomeID.Desert || biomes.FindBiome(x, y) == BiomeID.Savanna ? (biomes.GetLayer(x, y) >= biomes.surfaceLayer ? TileID.Sandstone : TileID.HardenedSand) : biomes.FindBiome(x, y) == BiomeID.Tundra ? TileID.IceBlock : biomes.GetLayer(x, y) < biomes.caveLayer && biomes.GetLayer(x, y) >= biomes.surfaceLayer && biomes.GetTileDistribution(x, y, frequency: 2) < 0 ? TileID.Dirt : TileID.Stone;
+                            tile.TileType = ruinSeeker && biomes.FindBiome(x, y) == BiomeID.ThermalCaves && rs.TryFind("Gabbro_Tile", out ModTile gabbro) ? gabbro.Type : biomes.FindBiome(x, y) == BiomeID.Underworld ? (ushort)ModContent.TileType<Tuff>() : biomes.FindBiome(x, y) == BiomeID.SulfuricVents ? (ushort)ModContent.TileType<Sulfurstone>() : biomes.FindBiome(x, y) == BiomeID.Granite ? TileID.Granite : (biomes.FindBiome(x, y) == BiomeID.Jungle && biomes.GetTileDistribution(x, y, frequency: 2) < 0.3f) || biomes.FindBiome(x, y) == BiomeID.Glowshroom ? TileID.Mud : biomes.FindBiome(x, y) == BiomeID.Desert || biomes.FindBiome(x, y) == BiomeID.Savanna ? (biomes.GetLayer(x, y) >= biomes.surfaceLayer ? TileID.Sandstone : TileID.HardenedSand) : biomes.FindBiome(x, y) == BiomeID.Tundra ? TileID.IceBlock : biomes.GetLayer(x, y) < biomes.caveLayer && biomes.GetLayer(x, y) >= biomes.surfaceLayer && biomes.GetTileDistribution(x, y, frequency: 2) < 0 ? TileID.Dirt : TileID.Stone;
                         }
                         else if (!MiscTools.Tile(x, y).HasTile && MiscTools.Tile(x, y - 1).HasTile && MiscTools.Tile(x, y - 1).TileType == TileID.Mud && (biomes.FindBiome(x, y) == BiomeID.Jungle || biomes.FindBiome(x, y) == BiomeID.Glowshroom))
                         {
@@ -1570,108 +1580,6 @@ namespace Remnants.Content.World
                         else if (tile.WallType == ModContent.WallType<WoodLattice>())
                         {
                             tile.WallType = 0;
-                        }
-                    }
-                }
-            }
-        }
-
-        public static void AddErosion(Rectangle location, ushort[] tilesToErode, int steps = 3, int chance = 4)
-        {
-            for (int i = 0; i < steps; i++)
-            {
-                for (int y = location.Top - 10; y <= location.Bottom + 10; y++)
-                {
-                    for (int x = location.Left - 10; x <= location.Right + 10; x++)
-                    {
-                        if (MiscTools.Tile(x, y).HasTile && WorldGen.genRand.NextBool(chance) && MiscTools.AdjacentTiles(x, y) < 4 && MiscTools.Tile(x, y).WallType != ModContent.WallType<GardenBrickWall>())
-                        {
-                            if (tilesToErode.Contains(Framing.GetTileSafely(x, y).TileType) && !Main.tileFrameImportant[Framing.GetTileSafely(x, y - 1).TileType])
-                            {
-                                Framing.GetTileSafely(x, y).TileType = (ushort)ModContent.TileType<devtile2>();
-                            }
-                        }
-
-                        //if (Framing.GetTileSafely(x, y).type == TileID.Platforms)
-                        //{
-                        //    if (Framing.GetTileSafely(x, y).slope() == 0)
-                        //    {
-                        //        bool slopeLeft = false;
-                        //        bool slopeRight = false;
-                        //        if (Framing.GetTileSafely(x - 1, y).active() && Main.tileSolid[Framing.GetTileSafely(x - 1, y).type])
-                        //        {
-                        //            slopeLeft = true;
-                        //        }
-                        //        if (Framing.GetTileSafely(x + 1, y).active() && Main.tileSolid[Framing.GetTileSafely(x + 1, y).type])
-                        //        {
-                        //            slopeRight = true;
-                        //        }
-                        //        if (slopeLeft && !slopeRight)
-                        //        {
-                        //            Framing.GetTileSafely(x, y).slope(1);
-                        //        }
-                        //        else if (!slopeLeft && slopeRight)
-                        //        {
-                        //            Framing.GetTileSafely(x, y).slope(2);
-                        //        }
-                        //    }
-
-                        //    if (!Framing.GetTileSafely(x + 1, y + 1).active() && Framing.GetTileSafely(x, y).slope() == 1)
-                        //    {
-                        //        WorldGen.PlaceTile(x + 1, y + 1, TileID.Platforms);
-                        //        Framing.GetTileSafely(x + 1, y + 1).slope(1);
-                        //    }
-                        //    if (!Framing.GetTileSafely(x - 1, y + 1).active() && Framing.GetTileSafely(x, y).slope() == 2)
-                        //    {
-                        //        WorldGen.PlaceTile(x - 1, y + 1, TileID.Platforms);
-                        //        Framing.GetTileSafely(x - 1, y + 1).slope(2);
-                        //    }
-                        //}
-                    }
-                }
-
-                for (int y = location.Top - 10; y <= location.Bottom + 10; y++)
-                {
-                    for (int x = location.Left - 10; x <= location.Right + 10; x++)
-                    {
-                        if (Framing.GetTileSafely(x, y).TileType == ModContent.TileType<devtile2>())
-                        {
-                            WorldGen.KillTile(x, y);
-                            Framing.GetTileSafely(x, y).TileType = 0;
-                        }
-                    }
-                }
-            }
-
-            for (int y = location.Top - 10; y <= location.Bottom + 10; y++)
-            {
-                for (int x = location.Left - 10; x <= location.Right + 10; x++)
-                {
-                    if (Framing.GetTileSafely(x, y).HasTile)
-                    {
-                        int adjacentTiles = 0;
-                        if (Framing.GetTileSafely(x + 1, y).HasTile)
-                        {
-                            adjacentTiles++;
-                        }
-                        if (Framing.GetTileSafely(x - 1, y).HasTile)
-                        {
-                            adjacentTiles++;
-                        }
-                        if (Framing.GetTileSafely(x, y + 1).HasTile)
-                        {
-                            adjacentTiles++;
-                        }
-                        if (Framing.GetTileSafely(x, y - 1).HasTile)
-                        {
-                            adjacentTiles++;
-                        }
-                        if (adjacentTiles <= 1)
-                        {
-                            if (tilesToErode.Contains(Framing.GetTileSafely(x, y).TileType))
-                            {
-                                WorldGen.KillTile(x, y);
-                            }
                         }
                     }
                 }
@@ -2410,9 +2318,9 @@ namespace Remnants.Content.World
                                     tile.TileType = TileID.VineFlowers;
                                 }
                             }
-                            else if (tile.TileType == ModContent.TileType<Tiles.Objects.Hazards.WoodenSpike>())
+                            else if (tile.TileType == ModContent.TileType<Content.Tiles.Forest.WoodenSpike>())
                             {
-                                if (MiscTools.Tile(x, y - 1).TileType != ModContent.TileType<Tiles.Objects.Hazards.WoodenSpike>())
+                                if (MiscTools.Tile(x, y - 1).TileType != ModContent.TileType<Content.Tiles.Forest.WoodenSpike>())
                                 {
                                     int style = Main.rand.Next(4);
                                     MiscTools.Tile(x, y).TileFrameX = (short)(style * 16);
@@ -2443,12 +2351,12 @@ namespace Remnants.Content.World
                                     }
                                 }
                             }
-                            else if (tile.TileType == TileID.Glass && tile.WallType == ModContent.WallType<magicallab>() || tile.TileType == ModContent.TileType<LockedIronDoor>() || tile.TileType == ModContent.TileType<VaultPipe>() || ModLoader.TryGetMod("WombatQOL", out Mod wombatqol) && wombatqol.TryFind("IndustrialPanel", out ModTile IndustrialPanel) && tile.TileType == IndustrialPanel.Type)
+                            else if (tile.TileType == TileID.Glass && tile.WallType == ModContent.WallType<magicallab>() || tile.TileType == ModContent.TileType<LockedIronDoor>() || ModLoader.TryGetMod("WombatQOL", out Mod wombatqol) && wombatqol.TryFind("IndustrialPanel", out ModTile IndustrialPanel) && tile.TileType == IndustrialPanel.Type)
                             {
                                 tile.Slope = 0;
                                 tile.IsHalfBlock = false;
                             }
-                            else if (tile.TileType == ModContent.TileType<VaultPlating>() || tile.TileType == ModContent.TileType<VaultPlatform>())
+                            else if (tile.TileType == ModContent.TileType<PrototypePlating>() || tile.TileType == ModContent.TileType<PrototypePlatform>())
                             {
                                 if (MiscTools.HasTile(x, y - 1, TileID.Pots))
                                 {

@@ -3,7 +3,7 @@ using Remnants.Content.Dusts;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Remnants.Content.Tiles.Objects;
+using Remnants.Content.Tiles;
 
 namespace Remnants.Content.Items.Placeable.Objects
 {
@@ -20,7 +20,7 @@ namespace Remnants.Content.Items.Placeable.Objects
 			Item.width = 16;
 			Item.height = 28;
 			Item.maxStack = 99;
-			Item.createTile = ModContent.TileType<Tiles.Objects.Hazards.WoodenSpike>();
+			Item.createTile = ModContent.TileType<Content.Tiles.Forest.WoodenSpike>();
 		}
 
         public override void AddRecipes()

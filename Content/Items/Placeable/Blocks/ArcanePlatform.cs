@@ -12,17 +12,17 @@ namespace Remnants.Content.Items.Placeable.Blocks
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.WoodPlatform);
-            Item.createTile = ModContent.TileType<Tiles.Blocks.ArcanePlatform>();
+            Item.createTile = ModContent.TileType<Tiles.Shimmer.ArcanePlatform>();
         }
 
         public override void AddRecipes()
         {
             Recipe recipe;
             recipe = Recipe.Create(Type, 2);
-            recipe.AddIngredient(ModContent.ItemType<EnchantedBrick>());
+            recipe.AddIngredient(ModContent.ItemType<ArcaneBrick>());
             recipe.Register();
 
-            recipe = Recipe.Create(ModContent.ItemType<EnchantedBrick>());
+            recipe = Recipe.Create(ModContent.ItemType<ArcaneBrick>());
             recipe.AddIngredient(Type, 2);
             recipe.Register();
         }

@@ -19,7 +19,7 @@ namespace Remnants.Content.Items.Placeable.Blocks
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.GrayBrick);
-            Item.createTile = ModContent.TileType <Tiles.Blocks.GardenBrick>();
+            Item.createTile = ModContent.TileType <Tiles.AerialGarden.GardenBrick>();
 		}
 
 		public override void AddRecipes()

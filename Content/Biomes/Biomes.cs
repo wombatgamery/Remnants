@@ -1,19 +1,17 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Remnants.Content.Biomes.Backgrounds;
 using Remnants.Content.Buffs;
 using Remnants.Content.Walls;
-using Remnants.Content.Walls.Parallax;
+using Remnants.Content.Walls.DesertRuins;
+using Remnants.Content.Walls.EchoingHalls;
+using Remnants.Content.Walls.Shimmer;
+using Remnants.Content.Walls.Tomb;
+using Remnants.Content.Walls.Underworld;
 using Remnants.Content.World;
-using System;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent;
-using Terraria.Graphics.Capture;
-using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.WorldBuilding;
 
 namespace Remnants.Content.Biomes
 {
@@ -134,7 +132,7 @@ namespace Remnants.Content.Biomes
 
     public class SulfuricVents : ModBiome
     {
-        public override int Music => MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/SulfuricVents");
+        public override int Music => (!RemSystem.prototypesExist && RemSystem.vaultExhaustIntensity > 0) || (RemSystem.prototypesExist && RemSystem.vaultExhaustAlarm) ? MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Silence") : MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/SulfuricVents");
 
         public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
 
@@ -144,7 +142,7 @@ namespace Remnants.Content.Biomes
 
         public override bool IsBiomeActive(Player player)
         {
-            return player.ZoneRockLayerHeight && player.Center.Y / 16 > Main.maxTilesY - 305 && RemSystem.sulfuricTiles >= 1000;
+            return player.ZoneRockLayerHeight && player.Center.Y / 16 > Main.maxTilesY - (RemSystem.prototypesExist ? 295 : 300) && RemSystem.sulfuricTiles >= 1000 && !player.InModBiome<PrototypeInterior>();
         }
 
         public override void SpecialVisuals(Player player, bool isActive)
@@ -153,124 +151,75 @@ namespace Remnants.Content.Biomes
         }
     }
 
-    public class VaultInterior : ModBiome
+    public class PrototypeInterior : ModBiome
     {
         public override SceneEffectPriority Priority => SceneEffectPriority.Environment;
 
-        public override int Music => music;
-		int music = -1;
-		int duration;
+        public override int Music => GetMusic();
 
-        public override void OnInBiome(Player player)
+        int musicPrimary => MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultInterior");
+        int musicSecondary => MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultExterior");
+
+        private int GetMusic()
         {
-			int weight = 4;
-
-            if (Main.musicFade[MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultInterior")] > 0.98f)
+            if (Main.musicFade[musicPrimary] > 0.99f)
             {
-                Main.musicFade[MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultInterior")] = 0.98f;
-                weight = 2;
+                Main.musicFade[musicPrimary] = 0.99f;
             }
-            if (Main.musicFade[MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultExterior")] < 0.02f)
+            if (Main.musicFade[musicSecondary] < 0.01f)
             {
-                Main.musicFade[MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultExterior")] = 0.02f;
-                weight = 2;
+                Main.musicFade[musicSecondary] = 0.01f;
             }
-
-            music = duration < 2 || Main.GameUpdateCount % weight == 0 ? MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultExterior") : MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultInterior");
-
-			duration++;
-        }
-
-        public override void OnEnter(Player player)
-        {
-			duration = 0;
+            return Main.musicFade[musicPrimary] >= 0.99f || Main.musicFade[musicSecondary] <= 0.01f ? musicSecondary : musicPrimary;
         }
 
         public override bool IsBiomeActive(Player player)
         {
-            int wall = Main.tile[(int)player.Center.X / 16, (int)player.Center.Y / 16].WallType;
-            return wall == ModContent.WallType<VaultWallUnsafe>() || wall == ModContent.WallType<VaultBeamWallUnsafe>() || wall == ModContent.WallType<VaultHazardWallUnsafe>() || wall == ModContent.WallType<vault>();
-        }
-    }
-
-    public class VaultExterior : ModBiome
-    {
-        public override SceneEffectPriority Priority => SceneEffectPriority.Environment;
-
-        public override int Music => music;
-        int music = -1;
-        int duration;
-
-        public override void OnInBiome(Player player)
-        {
-            int weight = 4;
-
-            if (Main.musicFade[MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultInterior")] < 0.02f)
-            {
-                Main.musicFade[MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultInterior")] = 0.02f;
-                weight = 2;
-            }
-            if (Main.musicFade[MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultExterior")] > 0.98f)
-            {
-                Main.musicFade[MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultExterior")] = 0.98f;
-                weight = 2;
-            }
-
-            music = duration < 2 || Main.GameUpdateCount % weight == 0 ? MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultInterior") : MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultExterior");
-
-            duration++;
-        }
-
-        public override void OnEnter(Player player)
-        {
-            duration = 0;
-        }
-
-        public override bool IsBiomeActive(Player player)
-        {
-			int wall = Main.tile[(int)player.Center.X / 16, (int)player.Center.Y / 16].WallType;
-			if (wall == ModContent.WallType<VaultWallUnsafe>() || wall == ModContent.WallType<VaultBeamWallUnsafe>() || wall == ModContent.WallType<VaultHazardWallUnsafe>() || wall == ModContent.WallType<vault>())
+			if (!RemSystem.prototypesExist)
 			{
 				return false;
 			}
-			return player.ZoneUnderworldHeight && player.Center.X / 16 > Main.maxTilesX * 0.35f && player.Center.X / 16 < Main.maxTilesX * 0.65f;
+            int wall = Main.tile[(int)player.Center.X / 16, (int)player.Center.Y / 16].WallType;
+            return wall == ModContent.WallType<PrototypeWallUnsafe>() || wall == ModContent.WallType<PrototypeBeamWallUnsafe>() || wall == ModContent.WallType<PrototypeHazardWallUnsafe>() || wall == ModContent.WallType<vault>();
         }
     }
 
-    public class GoldenCity : ModBiome
-	{
-		public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
+    public class PrototypeExterior : ModBiome
+    {
+        public override SceneEffectPriority Priority => SceneEffectPriority.Environment;
 
-		public override int Music => MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/WBA Free Track - Drifter");
+        public override int Music => GetMusic();
 
-		public override string BestiaryIcon => "Remnants/Content/Biomes/VaultIcon";
-		public override string BackgroundPath => base.BackgroundPath;
-		public override Color? BackgroundColor => base.BackgroundColor;
+		int musicPrimary => MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultExterior");
+        int musicSecondary => MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/VaultInterior");
 
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Golden City");
-		}
+        private int GetMusic()
+        {
+            if (Main.musicFade[musicPrimary] > 0.99f)
+            {
+                Main.musicFade[musicPrimary] = 0.99f;
+            }
+            if (Main.musicFade[musicSecondary] < 0.01f)
+            {
+                Main.musicFade[musicSecondary] = 0.01f;
+            }
+            return Main.musicFade[musicPrimary] >= 0.99f || Main.musicFade[musicSecondary] <= 0.01f ? musicSecondary : musicPrimary;
+        }
 
-		public override bool IsBiomeActive(Player player)
-		{
-			int wall = Main.tile[(int)player.Center.X / 16, (int)player.Center.Y / 16].WallType;
-			return wall == ModContent.WallType<Walls.Parallax.GoldenCity>() || wall == ModContent.WallType<GoldenPanelWallUnsafe>();
-		}
-
-		SoundStyle ambience = new SoundStyle("Remnants/Content/Sounds/ambience/Bluezone_BC0240_background_command_center_ambience_004", SoundType.Ambient) with { Volume = 0.75f, IsLooped = true, PlayOnlyIfFocused = true, SoundLimitBehavior = SoundLimitBehavior.IgnoreNew, MaxInstances = 1 };
-		ReLogic.Utilities.SlotId ambienceSlot;
-
-		public override void OnInBiome(Player player)
-		{
-			ambienceSlot = SoundEngine.PlaySound(ambience);
-		}
-
-		public override void OnLeave(Player player)
-		{
-			SoundEngine.StopTrackedSounds();
-		}
-	}
+        public override bool IsBiomeActive(Player player)
+        {
+            if (!RemSystem.prototypesExist)
+            {
+                return false;
+            }
+            int wall = Main.tile[(int)player.Center.X / 16, (int)player.Center.Y / 16].WallType;
+			if (wall == ModContent.WallType<PrototypeWallUnsafe>() || wall == ModContent.WallType<PrototypeBeamWallUnsafe>() || wall == ModContent.WallType<PrototypeHazardWallUnsafe>() || wall == ModContent.WallType<vault>())
+			{
+				return false;
+			}
+			return player.ZoneUnderworldHeight && player.Center.X / 16 > Main.maxTilesX * 0.4f - 50 && player.Center.X / 16 < Main.maxTilesX * 0.6f + 50;
+        }
+    }
 
 	public class MagicalLab : ModBiome
 	{
