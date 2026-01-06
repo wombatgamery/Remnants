@@ -16,7 +16,7 @@ Mods: {
 		Chat.LabyrinthTeleportation: Неизвестная магия этого места напрочь лишила вас возможности телепортироваться...
 
 		WorldgenMessages: {
-			Safeguard: Проверяем соместимость модов...
+			Safeguard: Проверяем совместимость модов...
 			Setup: Определяем, где будут располагаться биомы...
 			Cleanup: Проводим очистку...
 			Touchups: Делаем последние штрихи...
@@ -42,10 +42,10 @@ Mods: {
 			JungleTemple: Развиваем древнее племя рептилий...
 			MagicalLab: Совершаем невероятные открытия в области магии...
 			Labyrinth: Прячем следы присутствия инопланетных цивилизаций...
-			// Warrens: Multiplying hellish beasts
+			Warrens: Разводим адских выродков
 			WaterTemple: Погружаем древний храм под толщу океана...
 			AerialGarden: Обустраиваем райский уголок на небесах...
-			// Prototypes: Preserving plants for millenia
+			Prototypes: Сохраняем особые виды растений на тысячелетия...
 		}
 
 		Bestiary: {
@@ -61,7 +61,7 @@ Mods: {
 			TomeofInferno: Самая настоящая дань уважения безграничному потенциалу магии и целеустремлённости учёных-теургов — книга заклинаний, что сама же их читает и воспроизводит. Конкретно этот том умеет выпускать залпы обжигающего пламени, кремируя своих врагов заживо.
 			TomeofMending: Самая настоящая дань уважения безграничному потенциалу магии и целеустремлённости учёных-теургов — книга заклинаний, что сама же их читает и воспроизводит. Конкретно этот том способен поднимать своих союзников на ноги, восстанавливая их жизненную силу за считанные мгновения.
 			TomeofSummoning: Самая настоящая дань уважения безграничному потенциалу магии и целеустремлённости учёных-теургов — книга заклинаний, что сама же их читает и воспроизводит. Конкретно этот том взывает своих собратьев, едва заметив врага, обращая тем самым любую ситуацию на поле боя в свою сторону.
-			Centipede: Ненависти ко всему живому у этих мерзких насекомых исполинского размера не занимать. Сколопендры всегда наготове вырваться из своих укрытий в корнях старого древа и впрыснуть дозу смертельного яда в кого бы то ни было.
+			Centipede: Ненависти ко всему живому у этих мерзких насекомых исполинского размера не занимать. Сколопендры всегда готовы вырваться из своих укрытий в корнях старого древа и впрыснуть дозу смертельного яда в кого бы то ни было.
 			ResinSlime: Слизень из ожившей смолы старого древа, способной затвердевать под внешним воздействием на неё. Это свойство, однако, может обернуться против него же самого — затвердевшая смола со временем становится настолько хрупкой, что раскалывается как стекло при достаточно сильных повреждениях.
 		}
 
@@ -137,23 +137,23 @@ Mods: {
 			}
 
 			SulfuricVents: {
-				DisplayName: Серные жёрла
-				TownNPCDialogueName: Серные жёрла
+				DisplayName: Серные жерла
+				TownNPCDialogueName: Серные жерла
 			}
 
 			SulfuricFog: {
-				// TownNPCDialogueName: the Sulfuric Fog
-				// DisplayName: Sulfuric Fog
+				TownNPCDialogueName: Серный шторм
+				DisplayName: Серный шторм
 			}
 
 			PrototypeExterior: {
-				// DisplayName: Prototype Exterior
-				// TownNPCDialogueName: the Prototype Exterior
+				DisplayName: Корпус Прототипа
+				TownNPCDialogueName: Корпус Прототипа
 			}
 
 			PrototypeInterior: {
-				// DisplayName: Prototype Interior
-				// TownNPCDialogueName: the Prototype Interior
+				DisplayName: Внутренности прототипа
+				TownNPCDialogueName: Внутренности прототипа
 			}
 		}
 
@@ -161,7 +161,7 @@ Mods: {
 			Hardstone.MapEntry: Твердокамень
 			StarOre.MapEntry: Звёздные останки
 			LockedIronDoor.MapEntry: Дверь
-			RustedChest.MapEntry: Сундук
+			RustedChest.MapEntry: Проржавевший сундук
 			LabyrinthSpawner.MapEntry: Око Стража
 			PiranhaSpawner.MapEntry: Слив
 			Spitflower.MapEntry: Плевоцвет
@@ -193,22 +193,22 @@ Mods: {
 			Runestalk.MapEntry: Руностебель
 
 			PyramidChest: {
-				MapEntry: Сундук
-				MapEntry0: Закрытый сундук
+				MapEntry: Сундук храма пустыни
+				MapEntry0: Закрытый сундук храма пустыни
 			}
 
 			PyramidPot.MapEntry: Позолоченная ваза
 			Cryocoral.MapEntry: Криокоралл
 			Luminsponge.MapEntry: Губкосвет
 			Nightglow.MapEntry: Побег ягоды-фонаря
-			ArcaneChest.MapEntry: Сундук
+			ArcaneChest.MapEntry: Арканный сундук
 			SacrificialAltar.MapEntry: Алтарь для жертвоприношений
 			VaultPipe.MapEntry: Труба
-			AlchemyBench.MapEntry: Рабочий стол
+			AlchemyBench.MapEntry: Арканный рабочий стол
 
 			ArcaneChest2: {
-				MapEntry0: Сундук
-				MapEntry1: Закрытый сундук
+				MapEntry0: Арканный сундук
+				MapEntry1: Закрытый арканный сундук
 			}
 
 			PrismbudHead.MapEntry: Луковица-призмоцветка
@@ -221,7 +221,7 @@ Mods: {
 			}
 
 			RunestalkBlessing: {
-				DisplayName: Благословение руностебля
+				DisplayName: Благословление руностебля
 				Description: Увеличивает скорость копания на 50%
 			}
 
@@ -510,7 +510,7 @@ Mods: {
 
 			DreamJelly: {
 				DisplayName: Эфирная слизь
-				Tooltip: Мечта каждого алхимика — ей можно разбавлять любые микстуры без потерь в концентрации реагентов
+				Tooltip: Позволяет копировать полезные травы для зелий
 			}
 
 			DreampodSeeds: {
@@ -563,7 +563,7 @@ Mods: {
 			}
 
 			SpiderEggs: {
-				DisplayName: Кладки паучьих яич
+				DisplayName: Кладки паучьих яиц
 				Tooltip: ""
 			}
 
@@ -578,17 +578,17 @@ Mods: {
 			SulfurstoneDiamond.DisplayName: Алмазный сернистый камень
 
 			HeavyAlloy: {
-				// Tooltip: ""
-				// DisplayName: Heavy Alloy
+				Tooltip: ""
+				DisplayName: Тяжёлый сплав
 			}
 
 			VintageSniper.DisplayName: Винтажная снайперская винтовка
-			SpectralLance.DisplayName: Спектральный пронзатель
+			SpectralLance.DisplayName: Призрачный пронзатель
 			SoulLance.DisplayName: Копьё душегуба
 			MarineSlabWall.DisplayName: Стена из плиты затонувшего храма
 			MarineSlab.DisplayName: Плита затонувшего храма
-			// AshenBrickWall.DisplayName: Ashen Brick Wall
-			// AshenBrick.DisplayName: Ashen Brick
+			AshenBrickWall.DisplayName: Стена из пепельного кирпича
+			AshenBrick.DisplayName: Пепельный кирпич
 
 			ArcaneChandelier: {
 				Tooltip: ""
@@ -597,35 +597,35 @@ Mods: {
 
 			PyramidPlatform.DisplayName: Платформа храма пустыни
 			MarinePlatform.DisplayName: Платформа затонувшего храма
-			// AshenPlatform.DisplayName: Ashen Platform
+			AshenPlatform.DisplayName: Пепельная платформа
 			GardenPlatform.DisplayName: Платформа сада
-			// Cage.DisplayName: Metal Cage
-			// IronBars.DisplayName: Metal Bars
+			Cage.DisplayName: Металлическая клетка
+			IronBars.DisplayName: Металлическая решётка
 			ArcanePlatform.DisplayName: Арканная платформа
-			// ChainHook.DisplayName: Chain Hook
-			// PrototypeComputer.DisplayName: Prototype Computer
-			// PrototypeConduits.DisplayName: Prototype Conduits
-			// PrototypePlatform.DisplayName: Prototype Platform
-			// PrototypePlating.DisplayName: Prototype Plating
-			// PrototypeSupport.DisplayName: Prototype Support
-			// PrototypeVent.DisplayName: Prototype Vent
-			// PrototypeBeamWall.DisplayName: Prototype Beam Wall
-			// PrototypeHazardWall.DisplayName: Prototype Hazard Wall
-			// PrototypeRailing.DisplayName: Prototype Railing
-			// PrototypeWall.DisplayName: Prototype Plating Wall
-			// PrototypeMonitor.DisplayName: Prototype Monitor
-			// PrototypeServer.DisplayName: Prototype Server
-			// PrototypeConsole.DisplayName: Prototype Console
-			// Tuff.DisplayName: Tuff
+			ChainHook.DisplayName: Крюк на цепи
+			PrototypeComputer.DisplayName: Компьютер Прототипа
+			PrototypeConduits.DisplayName: Трубопровод Прототипа
+			PrototypePlatform.DisplayName: Платформа Прототипа
+			PrototypePlating.DisplayName: Обшивка Прототипа
+			PrototypeSupport.DisplayName: Балка Прототипа
+			PrototypeVent.DisplayName: Вентиляция Прототипа
+			PrototypeBeamWall.DisplayName: Пластинчатая балка Прототипа
+			PrototypeHazardWall.DisplayName: Предупредительная стена
+			PrototypeRailing.DisplayName: Перила Прототипа
+			PrototypeWall.DisplayName: Стена из обшивки Прототипа
+			PrototypeMonitor.DisplayName: Монитор Прототипа
+			PrototypeServer.DisplayName: Сервер Прототипа
+			PrototypeConsole.DisplayName: Консоль прототипа
+			Tuff.DisplayName: Вулканический туф
 
 			Moai: {
-				// DisplayName: Moai
-				// Tooltip: ""
+				DisplayName: Статуя Моаи
+				Tooltip: ""
 			}
 
-			// TuffBrick.DisplayName: Tuff Brick
-			// TuffBrickWall.DisplayName: Tuff Brick Wall
-			// ArcaneBrick.DisplayName: Arcane Brick
+			TuffBrick.DisplayName: Вулканический кирпич
+			TuffBrickWall.DisplayName: Стена из вулканического кирпича
+			ArcaneBrick.DisplayName: Арканный кирпич
 		}
 
 		NPCs: {
@@ -655,7 +655,7 @@ Mods: {
 			cursedburn.DisplayName: Проклятый огонь
 			cursedflamejet.DisplayName: Струя проклятого пламени
 			magicshieldhit.DisplayName: Поломка магического щита
-			MazeGuardianTeleport.DisplayName: Телепорт Cтража
+			MazeGuardianTeleport.DisplayName: Телепорт Стража
 			blastermissile.DisplayName: Ракета бомбардировщика
 			fireball.DisplayName: Огненный шар
 			FireBolt.DisplayName: Огненный снаряд
@@ -745,7 +745,7 @@ Mods: {
 					Label: "[i:3] Уменьшение размера слоя пещер"
 					Tooltip:
 						'''
-						Уменьшает высоту слоя пещер кроме лавого слоя в мире на установленное количество блоков
+						Уменьшает высоту слоя пещер кроме лавового слоя в мире на установленное количество блоков
 						[c/808080:Отключите настройку «Меры предосторожности», чтобы изменения этой настройки вступили в силу]
 						'''
 				}
@@ -779,13 +779,12 @@ Mods: {
 				}
 
 				Prototypes: {
-					// Label: "[i:Remnants/PrototypePlating] Prototypes"
-					/* Tooltip:
+					Label: "[i:Remnants/PrototypePlating] Прототипы"
+					Tooltip:
 						'''
-						Enables generation of the prototype life capsules
-
-						Note: UNFINISHED
-						''' */
+						Включает генерацию новых структур в аду — Прототипов — являющихся основой лора этого мода
+						[c/808080:На данный момент разработка этих структур ещё не завершена]
+						'''
 				}
 			}
 
@@ -847,11 +846,12 @@ Mods: {
 			}
 
 			IceMountainType: {
-				// Tooltip: ""
-				// Double.Label: Double
-				// Single.Label: Single
-				// None.Label: None
+				Tooltip: ""
+				Double.Label: две
+				Single.Label: одна
+				None.Label: ноль
 			}
 		}
 	}
 }
+
